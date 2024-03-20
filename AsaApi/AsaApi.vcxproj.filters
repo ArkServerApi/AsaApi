@@ -1,0 +1,2505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{a93ca284-f245-4ef2-901b-2535f554d545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Private">
+      <UniqueIdentifier>{58b93328-2dac-4b2b-8c41-02a17c7e731e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Private\PDBReader">
+      <UniqueIdentifier>{33f06268-195c-49c3-be9e-000d8db7c38e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public">
+      <UniqueIdentifier>{49a4967d-3b28-4100-8909-6e68961f8f39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API">
+      <UniqueIdentifier>{ac8f1bb7-c68f-483f-9526-a420ea83a11f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Private\Ark">
+      <UniqueIdentifier>{460fe5fd-2323-4145-8161-979d81e95a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE">
+      <UniqueIdentifier>{c2ae4a82-b5be-4866-879e-09e3ee68979e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Containers">
+      <UniqueIdentifier>{d4d4268a-bdc2-4c83-a60b-2fecc5a24b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\HAL">
+      <UniqueIdentifier>{6c3ff850-c449-4fe4-a2cf-cd49f8857f95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\ProfilingDebugging">
+      <UniqueIdentifier>{8da21413-b560-4b83-b251-e2be4bdf819b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Misc">
+      <UniqueIdentifier>{e40f2bd7-913a-4928-aa6f-201fcdafadcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\GenericPlatform">
+      <UniqueIdentifier>{66de8240-484e-427f-8d97-4dc62fa001d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Windows">
+      <UniqueIdentifier>{ae9c91b5-dc27-464a-be23-76bc6e55ea5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Templates">
+      <UniqueIdentifier>{7638352f-3552-4697-b73f-ce6a11053398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Math">
+      <UniqueIdentifier>{75abf16d-b04c-4420-8b33-42aa20532b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Traits">
+      <UniqueIdentifier>{d715d093-4431-48f8-b4db-6f1d8c8c010a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Serialization">
+      <UniqueIdentifier>{62637cf0-b6f7-4524-9ec7-7adf41e63160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Algo">
+      <UniqueIdentifier>{713e5b03-0ade-4e71-b5f2-370d3fc56598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Algo\Impl">
+      <UniqueIdentifier>{dbb3ad0b-18a9-47ca-8313-7308bab5be5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Concepts">
+      <UniqueIdentifier>{220c422a-1490-4cb8-9edb-edd687b0d87b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\MSVC">
+      <UniqueIdentifier>{7929299d-082e-44b7-b219-c7d8e367384f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\UObject">
+      <UniqueIdentifier>{ad232e59-6d29-4ff1-8bd9-8853663e4aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Logging">
+      <UniqueIdentifier>{823795f7-65d8-4001-9f29-9366c89108a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Microsoft">
+      <UniqueIdentifier>{b069fe64-4673-4eec-8592-c2d7c0e64b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Internationalization">
+      <UniqueIdentifier>{10d3e950-e594-487c-b2d0-a865cdfe6060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Delegates">
+      <UniqueIdentifier>{3dec8b44-c39a-4d89-919e-434960ba0146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\Ark">
+      <UniqueIdentifier>{fe8fb2d2-0054-4771-98da-971e12631245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\ARK">
+      <UniqueIdentifier>{c16ead9f-c4ce-4aca-b1e3-a9f53579e062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Private\Tools">
+      <UniqueIdentifier>{49e42150-4e90-48fb-9cc0-bea6194461bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Private\PluginManager">
+      <UniqueIdentifier>{376ce632-56e8-42e2-b68f-f42c8dfa175f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Public\API\UE\Hash">
+      <UniqueIdentifier>{be27673e-d777-4124-9ecf-54087f6deda0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Private\UE">
+      <UniqueIdentifier>{f1b840ad-6bee-4a69-b9ca-20346e129b27}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\PDBReader\PDBReader.cpp">
+      <Filter>Source Files\Core\Private\PDBReader</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Offsets.cpp">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Base.cpp">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Logger.cpp">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Ark\ArkBaseApi.cpp">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Cache.cpp">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Ark\HooksImpl.cpp">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Hooks.cpp">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Ark\ApiUtils.cpp">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Ark\HooksImpl.cpp">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Ark\HooksImpl.cpp">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Commands.cpp">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Tools\Tools.cpp">
+      <Filter>Source Files\Core\Private\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\PluginManager\PluginManager.cpp">
+      <Filter>Source Files\Core\Private\PluginManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Public\API\UE\Serialization\Archive.cpp">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Public\API\UE\Containers\GenericPlatformString.cpp">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Public\API\UE\Misc\CString.cpp">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Public\API\UE\Containers\String.cpp">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\UE\UE.cpp">
+      <Filter>Source Files\Core\Private\UE</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Tools\Requests.cpp">
+      <Filter>Source Files\Core\Private\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Tools\Timer.cpp">
+      <Filter>Source Files\Core\Private\Tools</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Private\PDBReader\PDBReader.h">
+      <Filter>Source Files\Core\Private\PDBReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\Fields.h">
+      <Filter>Source Files\Core\Public\API</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\Base.h">
+      <Filter>Source Files\Core\Public\API</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Helpers.h">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Offsets.h">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\IBaseApi.h">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Ark\ArkBaseApi.h">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Cache.h">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\UnrealString.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\UMemoryDefines.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\CoreGlobals.h">
+      <Filter>Source Files\Core\Public\API\UE</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\CoreTypes.h">
+      <Filter>Source Files\Core\Public\API\UE</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMemory.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformMemory.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsSystemIncludes.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\MinimalWindowsApi.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCompilerSetup.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformTLS.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformTLS.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\MakeUnsigned.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\MaxSizeof.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\MemoryOps.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Models.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\NonNullPointer.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\PimplPtr.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\PointerIsConvertibleFromTo.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\RefCounting.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\RemoveCV.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\RemoveExtent.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\RemoveReference.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\ResolveTypeAmbiguity.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\RetainedRef.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\ReversePredicate.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\ScopedCallback.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\SharedPointer.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\SharedPointerFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\SharedPointerInternals.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Sorting.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Tuple.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\TypeCompatibleBytes.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\TypeHash.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\UniqueObj.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\UniquePtr.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\UnrealTemplate.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\UnrealTypeTraits.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\ValueOrError.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\AlignmentTemplates.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\AndOrNot.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\AreTypesEqual.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Atomic.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\ChooseClass.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\CopyQualifiersAndRefsFromTo.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\CopyQualifiersFromTo.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Decay.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\DontCopy.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\EnableIf.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\EqualTo.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Function.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Greater.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Identity.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IdentityFunctor.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IntegralConstant.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Invoke.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsAbstract.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArithmetic.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArray.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArrayOrRefOfType.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArrayOrRefOfTypeByPredicate.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsClass.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsConst.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsConstructible.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsEnum.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsEnumClass.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsFloatingPoint.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsInitializerList.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsIntegral.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsInvocable.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsMemberPointer.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsPODType.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsPointer.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsPolymorphic.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsSigned.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTrivial.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTriviallyCopyAssignable.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTriviallyCopyConstructible.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTriviallyDestructible.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsUECoreType.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\IsValidVariadicFunctionArg.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\Less.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\LosesQualifiersFromTo.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Templates\MakeSigned.h">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\BasicArray.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\HashTable.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\List.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\ScriptArray.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\Set.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\Array.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\ElementType.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\IntType.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\IsCharEncodingCompatibleWith.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\IsCharEncodingSimplyConvertibleTo.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\IsCharType.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\IsContiguousContainer.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\IsFixedWidthCharEncoding.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\IsVoidType.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Traits\MemberFunctionPtrOuter.h">
+      <Filter>Source Files\Core\Public\API\UE\Traits</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\ContainerAllocationPolicies.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\ContainerElementTypeCompatibility.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\Archive.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveCookData.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveLoadCompressedProxy.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveProxy.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveSaveCompressedProxy.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveSerializedPropertyChain.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArrayReader.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArrayWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\BitArchive.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\BitReader.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\BitWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\BufferArchive.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\BufferReader.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\BufferWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinary.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryContainerSerialization.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryPackage.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinarySerialization.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryValidation.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryValue.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompressedChunkInfo.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\CustomVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\FileRegions.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\LargeMemoryData.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\LargeMemoryReader.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\LargeMemoryWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\LoadTimeTrace.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MappedName.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryArchive.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryHasher.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryImage.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryImageWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryLayout.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryReader.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\NameAsStringIndexProxyArchive.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\NameAsStringProxyArchive.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\PackageWriter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StaticMemoryReader.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchive.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveAdapters.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveChildReader.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveDefines.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveFormatter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveNameHelpers.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveSlotBase.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveSlots.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\VarInt.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\Csv\CsvParser.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Serialization\Formatters\BinaryArchiveFormatter.h">
+      <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Heapify.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\HeapSort.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\IsHeap.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Impl\BinaryHeap.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Impl\RangePointerType.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\EnumAsByte.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\StringFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Concepts\StaticStructProvider.h">
+      <Filter>Source Files\Core\Public\API\UE\Concepts</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Concepts\StaticClassProvider.h">
+      <Filter>Source Files\Core\Public\API\UE\Concepts</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatform.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformCompilerPreSetup.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCompilerPreSetup.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatform.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Compare.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Copy.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Count.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Find.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\FindLast.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\FindSequence.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\FindSortedStringCaseInsensitive.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\ForEach.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\IndexOf.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\IntroSort.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\IsSorted.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\KahnTopologicalSort.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\LegacySort.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\LevenshteinDistance.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\MaxElement.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\MinElement.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\NoneOf.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Partition.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\RandomShuffle.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\RemoveIf.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Replace.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Reverse.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Rotate.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\SelectRandomWeighted.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Sort.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\StableSort.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\TiedTupleOutput.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\TopologicalSort.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Transform.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Unique.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Accumulate.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\AllOf.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\AnyOf.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\BinarySearch.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Algo\Common.h">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\MSVC\MSVCPlatform.h">
+      <Filter>Source Files\Core\Public\API\UE\MSVC</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCodeAnalysis.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\CoreFwd.h">
+      <Filter>Source Files\Core\Public\API\UE</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\CoreMinimal.h">
+      <Filter>Source Files\Core\Public\API\UE</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\CoreSharedPCH.h">
+      <Filter>Source Files\Core\Public\API\UE</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Core.h">
+      <Filter>Source Files\Core\Public\API\UE</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\ContainersFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\DebugSerializationFlags.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\DestructionObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\DevObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\EditorObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\EnterpriseObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\ExternalPhysicsCustomObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\ExternalPhysicsMaterialCustomObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteMainBranchObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteNCBranchObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteReleaseBranchCustomObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteShaderworkObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\FrameworkObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\GeometryObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\LoadTimesObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\MediaFrameWorkObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\MobileObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\NameBatchSerialization.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\NameTypes.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\NetworkingObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\NiagaraObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\ObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\OnlineObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\PhysicsObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\PlatformObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\PropertyPortFlags.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\ReflectionCaptureObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\ReleaseObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\RenderingObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\ScriptDelegates.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\SequencerObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5CookerObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5LWCRenderingStreamObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5MainStreamObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5PrivateFrostyStreamObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5ReleaseStreamObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\UnrealNames.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\UObjectHierarchyFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\VirtualProductionObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\VRObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\WeakObjectPtrTemplates.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\AnimObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\AnimPhysObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\AutomationObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\BlueprintsObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\BuildObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\CineCameraObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\CoreObjectVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformAtomics.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformAtomics.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Logging\LogVerbosity.h">
+      <Filter>Source Files\Core\Public\API\UE\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformMath.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\AllowWindowsPlatformTypes.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\COMPointer.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\HideWindowsPlatformAtomics.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\HideWindowsPlatformTypes.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\MinWindows.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\PostWindowsApi.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\PreWindowsApi.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsCriticalSection.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsErrorOutputDevice.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsEventLogOutputDevice.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsHWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformAffinity.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCrashContext.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformFile.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformMisc.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformNamedPipe.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformOutputDevices.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformProcess.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformProperties.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformStackWalk.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformString.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformTime.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsSemaphore.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Windows\AllowWindowsPlatformAtomics.h">
+      <Filter>Source Files\Core\Public\API\UE\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformCriticalSection.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformDriver.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformFile.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformHostCommunication.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformHostSocket.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMallocCrash.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMath.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMemoryPoolStats.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMisc.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformNamedPipe.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformOutputDevices.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformProcess.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformProperties.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformStackWalk.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformStricmp.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformString.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformSymbolication.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformTime.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericWidePlatformString.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\MicrosoftPlatformString.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\OSAllocationPool.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\StandardPlatformString.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformAffinity.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformChunkInstall.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformCrashContext.h">
+      <Filter>Source Files\Core\Public\API\UE\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\AsyncTaskNotification.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Attribute.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\AutomationEvent.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\AutomationTest.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Base64.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\BufferedOutputDevice.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Build.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ByteSwap.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CallbackDevice.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Change.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Char.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CommandLine.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ComparisonUtility.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CompilationResult.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CompressedGrowableBuffer.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Compression.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigCacheIni.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigContext.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigHierarchy.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigTypes.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigUtilities.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreAsyncTaskNotificationImpl.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreDefines.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreDelegates.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreMisc.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreMiscDefines.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreStats.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Crc.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CString.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\DataDrivenPlatformInfoRegistry.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\DateTime.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\DefaultValueHelper.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\DelayedAutoRegister.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\DelegateFilter.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\DisableOldUETypes.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EmbeddedCommunication.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineBuildSettings.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineNetworkCustomVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineVersionBase.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineVersionComparison.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EnumerateRange.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EnumRange.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Exec.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ExpressionParser.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ExpressionParserTypes.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FallbackStruct.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FbxErrors.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FeedbackContext.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FeedbackContextMarkup.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FieldAccessor.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FileHelper.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FilterCollection.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Fnv.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Fork.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameNumber.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameRate.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameTime.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameValue.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\GeneratedTypeName.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\GenericGrowableAllocator.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Guid.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\HashBuilder.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\HierarchicalLogArchive.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ICompressionFormat.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\IEngineCrypto.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\IFilter.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ILifeCycle.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\InlineValue.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\InteractiveProcess.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\IQueuedWork.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ITransaction.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\KeyChainUtilities.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\LargeWorldCoordinates.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\LargeWorldCoordinatesSerializer.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\LargeWorldRenderPosition.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Launder.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\LazySingleton.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\LocalTimestampDirectoryVisitor.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\LowLevelTestAdapter.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MapErrors.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MemoryReadStream.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MemStack.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MemStackUtility.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MessageDialog.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MonitoredProcess.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MonolithicHeaderBoilerplate.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\MTAccessDetector.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\NamePermissionList.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\NetworkGuid.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\NetworkVersion.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\NoopCounter.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ObjectThumbnail.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Optional.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OptionalFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDevice.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceAnsiError.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceArchiveWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceConsole.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceDebug.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceError.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceFile.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceHelper.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceMemory.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceNull.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceRedirector.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Parse.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Paths.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\PathViews.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\PreloadableFile.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\PreLoadFile.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\QualifiedFrameTime.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\QueuedThreadPool.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\QueuedThreadPoolWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\RemoteConfigIni.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\RuntimeErrors.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopedEvent.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopedSlowTask.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeExit.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeLock.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeRWLock.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeTryLock.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\SecureHash.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\SingleThreadEvent.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\SingleThreadRunnable.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\SlowTask.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\SlowTaskStack.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\SpinLock.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\StaticAssertCompleteType.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\StringBuilder.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\StringFormatArg.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\StringFormatter.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\StringUtility.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\StructBuilder.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TextFilter.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TextFilterExpressionEvaluator.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TextFilterUtils.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Timecode.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TimeGuard.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Timeout.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Timespan.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TrackedActivity.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TVariant.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TVariantMeta.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\TypeContainer.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\UProjectInfo.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\URLRequestFilter.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\VarArgs.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\Variant.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\WildcardString.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\AccessDetection.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\AES.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\App.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\ArchiveMD5.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\AsciiSet.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\AssertionMacros.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\AllowTCHAR.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ConsoleManager.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\CriticalSection.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\DiskUtilizationTracker.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\Event.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ExceptionHandling.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\FeedbackContextAnsi.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\FileManager.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\FileManagerGeneric.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\HideTCHAR.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\IConsoleManager.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileCachedWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileLogWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileManagedStorageWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileModule.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileOpenLogWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\LowLevelMemStats.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\LowLevelMemTracker.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\LowLevelMemTrackerDefines.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocAnsi.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinned.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinned2.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinned3.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinnedArena.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinnedCommon.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinnedGPU.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocCallstackHandler.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocDebug.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocDoubleFreeFinder.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocFrameProfiler.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocJemalloc.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocLeakDetection.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocMimalloc.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocPoisonProxy.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocReplayProxy.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocStomp.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocStomp2.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocTBB.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocThreadSafeProxy.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocTimer.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MemoryBase.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MemoryMisc.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\OutputDevices.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PageCache.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformAffinity.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformAtomics.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformCrashContext.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformCrt.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformFile.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformFileCommon.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformFileManager.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformIncludes.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMallocCrash.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMath.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMemory.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMemoryHelpers.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMisc.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformNamedPipe.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformOutputDevices.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformProcess.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformProperties.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformStackWalk.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformString.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformTime.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformTLS.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PreprocessorHelpers.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadCriticalSection.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadEvent.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadRWLock.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadSemaphore.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\Runnable.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\RunnableThread.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\Thread.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadHeartBeat.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadingBase.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadManager.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSafeBool.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSafeCounter.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSafeCounter64.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSingleton.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\TlsAutoCleanup.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\UESemaphore.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\VirtualAllocator.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\CompressionFlags.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Misc\EnumClassFlags.h">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\HideMicrosoftPlatformAtomics.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\HideMicrosoftPlatformTypes.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MicrosoftPlatformCrashContext.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MicrosoftPlatformMath.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MicrosoftPlatformStackWalk.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MinimalWindowsApi.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MinWindows.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\PostWindowsApi.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\PreWindowsApi.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\WindowsHWrapper.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\AllowMicrosoftPlatformAtomics.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\AllowMicrosoftPlatformTypes.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Microsoft\COMPointer.h">
+      <Filter>Source Files\Core\Public\API\UE\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathUtility.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathVectorCommon.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathVectorConstants.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealPlatformMathSSE.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealPlatformMathSSE4.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Vector.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Vector2D.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Vector2DHalf.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Vector4.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\VectorRegister.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Axis.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\BasicMathExpressionEvaluator.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\BigInt.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Bounds.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Box.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Box2D.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\BoxSphereBounds.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\CapsuleShape.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\ClipProjectionMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Color.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\ColorList.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\ConvexHull2d.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\CurveEdInterface.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\DualQuat.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Edge.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Float16.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Float16Color.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Float32.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\FloatPacker.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\GenericOctree.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\GenericOctreePublic.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Halton.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Int128.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\InterpCurve.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\InterpCurvePoint.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Interval.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\IntPoint.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\IntRect.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\IntVector.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\InverseRotationMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\MathFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Matrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\MirrorMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\MovingWindowAverageFast.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\NumericLimits.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\OrientedBox.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\OrthoMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\PackedVector.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\PerspectiveMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Plane.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Quat.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\QuatRotationTranslationMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\RandomStream.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Range.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\RangeBound.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\RangeSet.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Ray.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\RotationAboutPointMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\RotationMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\RotationTranslationMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Rotator.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\ScalarRegister.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\ScaleMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\ScaleRotationTranslationMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\SHMath.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Sobol.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Sphere.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\StatisticalFloat.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\Transform.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\TransformCalculus.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\TransformCalculus2D.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\TransformCalculus3D.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\TransformNonVectorized.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\TransformVectorized.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\TranslationMatrix.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\TwoVectors.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnitConversion.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMath.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathDirectX.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathFPU.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathNeon.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathSSE.h">
+      <Filter>Source Files\Core\Public\API\UE\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextNamespaceFwd.h">
+      <Filter>Source Files\Core\Public\API\UE\Internationalization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\SparseArray.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\BitArray.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Concepts\EqualityComparable.h">
+      <Filter>Source Files\Core\Public\API\UE\Concepts</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Concepts\GetTypeHashable.h">
+      <Filter>Source Files\Core\Public\API\UE\Concepts</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Concepts\Insertable.h">
+      <Filter>Source Files\Core\Public\API\UE\Concepts</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Ark\HooksImpl.h">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Hooks.h">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\ArrayView.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\ChunkedArray.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\IndirectArray.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\LockFreeFixedSizeAllocator.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\LockFreeList.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\Queue.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\StringConv.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\StringView.h">
+      <Filter>Source Files\Core\Public\API\UE\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\Delegate.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateBase.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateCombinations.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateInstanceInterface.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateInstancesImpl.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateMacros.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateSettings.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\IDelegateInstance.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\IntegerSequence.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\MulticastDelegateBase.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Delegates\TSMulticastDelegateBase.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocLeakDetectionProxy.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocVerify.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\Regex.h">
+      <Filter>Source Files\Core\Public\API\UE\Internationalization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Logging\LogCategory.h">
+      <Filter>Source Files\Core\Public\API\UE\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Logging\LogMacros.h">
+      <Filter>Source Files\Core\Public\API\UE\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Logging\LogScopedCategoryAndVerbosityOverride.h">
+      <Filter>Source Files\Core\Public\API\UE\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Logging\LogTrace.h">
+      <Filter>Source Files\Core\Public\API\UE\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\CpuProfilerTrace.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\FormatArgsTrace.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\MallocProfiler.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\MemoryTrace.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\MiscTrace.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\TagTrace.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\Trace\Config.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\Trace\Trace.h">
+      <Filter>Source Files\Core\Public\API\UE\ProfilingDebugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\IApiUtils.h">
+      <Filter>Source Files\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\IHooks.h">
+      <Filter>Source Files\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Spill\UE_5.2\Engine\Source\Runtime\Core\Public\Delegates\IntegerSequence.h">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Ark\Globals.h">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\HAL\UnrealMemory.h">
+      <Filter>Source Files\Core\Public\API\UE\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Ark\ApiUtils.h">
+      <Filter>Source Files\Core\Private\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\Commands.h">
+      <Filter>Source Files\Core\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\ICommands.h">
+      <Filter>Source Files\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Ark\ArkApiUtils.h">
+      <Filter>Source Files\Core\Public\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\Ark.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Tools.h">
+      <Filter>Source Files\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\PluginManager\PluginManager.h">
+      <Filter>Source Files\Core\Private\PluginManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\Async.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\AsyncWork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\LocalQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\ReserveScheduler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\Scheduler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\Task.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\TaskDelegate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\Future.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\InheritedContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\TaskGraphFwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Async\TaskGraphInterfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Features\IModularFeature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Features\IModularFeatures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Hash\Blake3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Hash\CityHash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Stats\Stats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Stats\Stats2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Stats\StatsCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Stats\StatsTrace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\BytesToHex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\Escape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\Find.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\HexToBytes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\Join.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\LexFromString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\LineEndings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\ParseLines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\ParseTokens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\String\RemoveFrom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\UObject\ObjectPtr.h">
+      <Filter>Source Files\Core\Public\API\UE\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\Enums.h">
+      <Filter>Source Files\Core\Public\API</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\Inventory.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\Other.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\UE.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Containers\SortedMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Hash\CityHashHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Hash\xxhash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\CulturePointer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\Internationalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\ITextData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\LocalizedTextSourceTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\LocKeyFuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\LocTesting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\StringTableCoreFwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextComparison.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextLocalizationManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\Actor.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\GameMode.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Requests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Timer.h">
+      <Filter>Source Files\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\Helpers\Helpers.h">
+      <Filter>Source Files\Core\Public\API</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\Buff.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\PrimalStructure.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Ark\MessagingManager.h">
+      <Filter>Source Files\Core\Public\Ark</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\AsaApiModUtils.hpp">
+      <Filter>Source Files\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\ModParamStructs.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\ExtensionsDeclaration.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\API\ARK\ExtensionsDefinition.h">
+      <Filter>Source Files\Core\Public\API\ARK</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Ark\AsaApiUtilsMessagingManager.h">
+      <Filter>Source Files\Core\Public\Ark</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AsaApi.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="vcpkg.json" />
+    <None Include="Core\Public\API\UE\Templates\SharedPointerTesting.inl">
+      <Filter>Source Files\Core\Public\API\UE\Templates</Filter>
+    </None>
+    <None Include="Core\Public\API\UE\Algo\LevenshteinDistanceAlgorithm.tps">
+      <Filter>Source Files\Core\Public\API\UE\Algo</Filter>
+    </None>
+    <None Include="Core\Public\API\UE\Misc\ExpressionParserTypes.inl">
+      <Filter>Source Files\Core\Public\API\UE\Misc</Filter>
+    </None>
+    <None Include="Core\Public\API\UE\Delegates\DelegateSignatureImpl.inl">
+      <Filter>Source Files\Core\Public\API\UE\Delegates</Filter>
+    </None>
+    <None Include="..\Configs\config.json">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Core\Private\PDBReader\pdbignores.txt" />
+  </ItemGroup>
+</Project>

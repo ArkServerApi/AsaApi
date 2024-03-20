@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Lethal|Win32">
+      <Configuration>Lethal</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Lethal|x64">
+      <Configuration>Lethal</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Wooly|Win32">
+      <Configuration>Wooly</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Wooly|x64">
+      <Configuration>Wooly</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{1586e56e-b700-4f77-814e-a0150454949b}</ProjectGuid>
+    <RootNamespace>AsaApi</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Wooly|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Lethal|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Wooly|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Lethal|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Wooly|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Lethal|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Wooly|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Lethal|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VSInstallDir)\DIA SDK\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>..\lib;$(VSInstallDir)\DIA SDK\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>..\lib;$(VSInstallDir)\DIA SDK\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(VSInstallDir)\DIA SDK\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Wooly|x64'">
+    <LibraryPath>..\lib;$(VSInstallDir)\DIA SDK\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(VSInstallDir)\DIA SDK\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Lethal|x64'">
+    <LibraryPath>..\lib;$(VSInstallDir)\DIA SDK\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(VSInstallDir)\DIA SDK\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Wooly|x64'" />
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Lethal|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;ASAAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;ASAAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Wooly|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;ASAAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Lethal|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;ASAAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;ARK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)AsaApi\Core\Public\API\UE;$(SolutionDir)AsaApi\Core\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I  /Y "$(TargetDir)$(ProjectName).lib" "$(SolutionDir)out_lib\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;ASAAPI_EXPORTS;ARK_EXPORTS;_WINDOWS;_USRDLL;POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)AsaApi\Core\Public\API\UE;$(SolutionDir)AsaApi\Core\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);crypt32.lib;Ws2_32.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I  /Y "$(TargetDir)$(ProjectName).lib" "$(SolutionDir)out_lib\"</Command>
+      <Message>Move lib</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Wooly|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>API_DEBUG;NDEBUG;ASAAPI_EXPORTS;ARK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)AsaApi\Core\Public\API\UE;$(SolutionDir)AsaApi\Core\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I  /Y "$(TargetDir)$(ProjectName).lib" "$(SolutionDir)out_lib\"
+copy  /Y "$(TargetDir)AsaApi.dll" "E:\ASA\TestingServer\ShooterGame\Binaries\Win64\ArkApi"
+copy  /Y "$(SolutionDir)AsaApi\Core\Private\PDBReader\pdbignores.txt" "E:\ASA\TestingServer\ShooterGame\Binaries\Win64\ArkApi"
+
+copy  /Y "$(TargetDir)AsaApi.dll" "E:\ASA\Testing Server 2\ShooterGame\Binaries\Win64\ArkApi"
+copy  /Y "$(SolutionDir)AsaApi\Core\Private\PDBReader\pdbignores.txt" "E:\ASA\Testing Server 2\ShooterGame\Binaries\Win64\ArkApi"</Command>
+      <Message>Move lib</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Lethal|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;ASAAPI_EXPORTS;ARK_EXPORTS;_WINDOWS;_USRDLL;POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)AsaApi\Core\Public\API\UE;$(SolutionDir)AsaApi\Core\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>AsaApi.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);crypt32.lib;Ws2_32.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I  /Y "$(TargetDir)$(ProjectName).lib" "$(SolutionDir)..\ARK-API-Stable-Libs\dev-latest\"
+
+copy "$(SolutionDir)$(PlatformName)\$(ConfigurationName)\$(ProjectName).dll" "F:\ASA-Dedicated\asa-server\ShooterGame\Binaries\Win64\ArkApi\" /y
+copy "$(SolutionDir)$(PlatformName)\$(ConfigurationName)\$(ProjectName).pdb" "F:\ASA-Dedicated\asa-server\ShooterGame\Binaries\Win64\ArkApi\" /y</Command>
+      <Message>Move lib</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Private\Ark\ApiUtils.cpp" />
+    <ClCompile Include="Core\Private\Ark\ArkBaseApi.cpp" />
+    <ClCompile Include="Core\Private\Ark\HooksImpl.cpp" />
+    <ClCompile Include="Core\Private\Base.cpp" />
+    <ClCompile Include="Core\Private\Cache.cpp" />
+    <ClCompile Include="Core\Private\Commands.cpp" />
+    <ClCompile Include="Core\Private\Hooks.cpp" />
+    <ClCompile Include="Core\Private\Logger.cpp" />
+    <ClCompile Include="Core\Private\Offsets.cpp" />
+    <ClCompile Include="Core\Private\PDBReader\PDBReader.cpp" />
+    <ClCompile Include="Core\Private\PluginManager\PluginManager.cpp" />
+    <ClCompile Include="Core\Private\Tools\Requests.cpp" />
+    <ClCompile Include="Core\Private\Tools\Timer.cpp" />
+    <ClCompile Include="Core\Private\Tools\Tools.cpp" />
+    <ClCompile Include="Core\Private\UE\UE.cpp" />
+    <ClCompile Include="Core\Public\API\UE\Containers\GenericPlatformString.cpp" />
+    <ClCompile Include="Core\Public\API\UE\Containers\String.cpp" />
+    <ClCompile Include="Core\Public\API\UE\Misc\CString.cpp" />
+    <ClCompile Include="Core\Public\API\UE\Serialization\Archive.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Private\Ark\ApiUtils.h" />
+    <ClInclude Include="Core\Private\Ark\ArkBaseApi.h" />
+    <ClInclude Include="Core\Private\Ark\Globals.h" />
+    <ClInclude Include="Core\Private\Ark\HooksImpl.h" />
+    <ClInclude Include="Core\Private\Cache.h" />
+    <ClInclude Include="Core\Private\Commands.h" />
+    <ClInclude Include="Core\Private\Helpers.h" />
+    <ClInclude Include="Core\Private\Hooks.h" />
+    <ClInclude Include="Core\Private\IBaseApi.h" />
+    <ClInclude Include="Core\Private\Offsets.h" />
+    <ClInclude Include="Core\Private\PDBReader\PDBReader.h" />
+    <ClInclude Include="Core\Private\PluginManager\PluginManager.h" />
+    <ClInclude Include="Core\Public\API\ARK\Actor.h" />
+    <ClInclude Include="Core\Public\API\ARK\Ark.h" />
+    <ClInclude Include="Core\Public\API\ARK\Buff.h" />
+    <ClInclude Include="Core\Public\API\ARK\ExtensionsDeclaration.h" />
+    <ClInclude Include="Core\Public\API\ARK\ExtensionsDefinition.h" />
+    <ClInclude Include="Core\Public\API\ARK\GameMode.h" />
+    <ClInclude Include="Core\Public\API\ARK\Inventory.h" />
+    <ClInclude Include="Core\Public\API\ARK\ModParamStructs.h" />
+    <ClInclude Include="Core\Public\API\ARK\Other.h" />
+    <ClInclude Include="Core\Public\API\ARK\PrimalStructure.h" />
+    <ClInclude Include="Core\Public\API\ARK\UE.h" />
+    <ClInclude Include="Core\Public\API\Base.h" />
+    <ClInclude Include="Core\Public\API\Enums.h" />
+    <ClInclude Include="Core\Public\API\Fields.h" />
+    <ClInclude Include="Core\Public\API\Helpers\Helpers.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Accumulate.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\AllOf.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\AnyOf.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\BinarySearch.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Common.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Compare.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Copy.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Count.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Find.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\FindLast.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\FindSequence.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\FindSortedStringCaseInsensitive.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\ForEach.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Heapify.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\HeapSort.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Impl\BinaryHeap.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Impl\RangePointerType.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\IndexOf.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\IntroSort.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\IsHeap.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\IsSorted.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\KahnTopologicalSort.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\LegacySort.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\LevenshteinDistance.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\MaxElement.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\MinElement.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\NoneOf.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Partition.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\RandomShuffle.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\RemoveIf.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Replace.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Reverse.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Rotate.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\SelectRandomWeighted.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Sort.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\StableSort.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\TiedTupleOutput.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\TopologicalSort.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Transform.h" />
+    <ClInclude Include="Core\Public\API\UE\Algo\Unique.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\Async.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\AsyncWork.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\LocalQueue.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\ReserveScheduler.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\Scheduler.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\Task.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\Fundamental\TaskDelegate.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\Future.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\InheritedContext.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\TaskGraphFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Async\TaskGraphInterfaces.h" />
+    <ClInclude Include="Core\Public\API\UE\Concepts\EqualityComparable.h" />
+    <ClInclude Include="Core\Public\API\UE\Concepts\GetTypeHashable.h" />
+    <ClInclude Include="Core\Public\API\UE\Concepts\Insertable.h" />
+    <ClInclude Include="Core\Public\API\UE\Concepts\StaticClassProvider.h" />
+    <ClInclude Include="Core\Public\API\UE\Concepts\StaticStructProvider.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\Array.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\ArrayView.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\BasicArray.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\BitArray.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\ChunkedArray.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\ContainerAllocationPolicies.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\ContainerElementTypeCompatibility.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\ContainersFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\EnumAsByte.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\HashTable.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\IndirectArray.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\List.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\LockFreeFixedSizeAllocator.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\LockFreeList.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\Queue.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\ScriptArray.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\Set.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\SortedMap.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\SparseArray.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\StringConv.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\StringFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\StringView.h" />
+    <ClInclude Include="Core\Public\API\UE\Containers\UnrealString.h" />
+    <ClInclude Include="Core\Public\API\UE\Core.h" />
+    <ClInclude Include="Core\Public\API\UE\CoreFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\CoreGlobals.h" />
+    <ClInclude Include="Core\Public\API\UE\CoreMinimal.h" />
+    <ClInclude Include="Core\Public\API\UE\CoreSharedPCH.h" />
+    <ClInclude Include="Core\Public\API\UE\CoreTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\Delegate.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateBase.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateCombinations.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateInstanceInterface.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateInstancesImpl.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateMacros.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\DelegateSettings.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\IDelegateInstance.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\IntegerSequence.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\MulticastDelegateBase.h" />
+    <ClInclude Include="Core\Public\API\UE\Delegates\TSMulticastDelegateBase.h" />
+    <ClInclude Include="Core\Public\API\UE\Features\IModularFeature.h" />
+    <ClInclude Include="Core\Public\API\UE\Features\IModularFeatures.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatform.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformAffinity.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformAtomics.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformChunkInstall.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformCompilerPreSetup.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformCrashContext.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformCriticalSection.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformDriver.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformFile.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformHostCommunication.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformHostSocket.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMallocCrash.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMath.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMemory.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMemoryPoolStats.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformMisc.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformNamedPipe.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformOutputDevices.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformProcess.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformProperties.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformStackWalk.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformStricmp.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformString.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformSymbolication.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformTime.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericPlatformTLS.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\GenericWidePlatformString.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\MicrosoftPlatformString.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\OSAllocationPool.h" />
+    <ClInclude Include="Core\Public\API\UE\GenericPlatform\StandardPlatformString.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\AllowTCHAR.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ConsoleManager.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\CriticalSection.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\DiskUtilizationTracker.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\Event.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ExceptionHandling.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\FeedbackContextAnsi.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\FileManager.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\FileManagerGeneric.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\HideTCHAR.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\IConsoleManager.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileCachedWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileLogWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileManagedStorageWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileModule.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\IPlatformFileOpenLogWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\LowLevelMemStats.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\LowLevelMemTracker.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\LowLevelMemTrackerDefines.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocAnsi.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinned.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinned2.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinned3.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinnedArena.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinnedCommon.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocBinnedGPU.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocCallstackHandler.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocDebug.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocDoubleFreeFinder.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocFrameProfiler.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocJemalloc.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocLeakDetection.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocLeakDetectionProxy.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocMimalloc.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocPoisonProxy.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocReplayProxy.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocStomp.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocStomp2.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocTBB.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocThreadSafeProxy.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocTimer.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MallocVerify.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MemoryBase.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\MemoryMisc.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\OutputDevices.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PageCache.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformAffinity.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformAtomics.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformCrashContext.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformCrt.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformFile.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformFileCommon.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformFileManager.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformIncludes.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMallocCrash.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMath.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMemory.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMemoryHelpers.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformMisc.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformNamedPipe.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformOutputDevices.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformProcess.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformProperties.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformStackWalk.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformString.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformTime.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PlatformTLS.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PreprocessorHelpers.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadCriticalSection.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadEvent.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadRWLock.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\PThreadSemaphore.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\Runnable.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\RunnableThread.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\Thread.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadHeartBeat.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadingBase.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadManager.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSafeBool.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSafeCounter.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSafeCounter64.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\ThreadSingleton.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\TlsAutoCleanup.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\UESemaphore.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\UnrealMemory.h" />
+    <ClInclude Include="Core\Public\API\UE\HAL\VirtualAllocator.h" />
+    <ClInclude Include="Core\Public\API\UE\Hash\Blake3.h" />
+    <ClInclude Include="Core\Public\API\UE\Hash\CityHash.h" />
+    <ClInclude Include="Core\Public\API\UE\Hash\CityHashHelpers.h" />
+    <ClInclude Include="Core\Public\API\UE\Hash\xxhash.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\CulturePointer.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\Internationalization.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\ITextData.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\LocalizedTextSourceTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\LocKeyFuncs.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\LocTesting.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\Regex.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\StringTableCoreFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\Text.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextComparison.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextKey.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextLocalizationManager.h" />
+    <ClInclude Include="Core\Public\API\UE\Internationalization\TextNamespaceFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Logging\LogCategory.h" />
+    <ClInclude Include="Core\Public\API\UE\Logging\LogMacros.h" />
+    <ClInclude Include="Core\Public\API\UE\Logging\LogScopedCategoryAndVerbosityOverride.h" />
+    <ClInclude Include="Core\Public\API\UE\Logging\LogTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\Logging\LogVerbosity.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Axis.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\BasicMathExpressionEvaluator.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\BigInt.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Bounds.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Box.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Box2D.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\BoxSphereBounds.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\CapsuleShape.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\ClipProjectionMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Color.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\ColorList.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\ConvexHull2d.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\CurveEdInterface.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\DualQuat.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Edge.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Float16.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Float16Color.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Float32.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\FloatPacker.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\GenericOctree.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\GenericOctreePublic.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Halton.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Int128.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\InterpCurve.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\InterpCurvePoint.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Interval.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\IntPoint.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\IntRect.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\IntVector.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\InverseRotationMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\MathFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Matrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\MirrorMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\MovingWindowAverageFast.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\NumericLimits.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\OrientedBox.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\OrthoMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\PackedVector.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\PerspectiveMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Plane.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Quat.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\QuatRotationTranslationMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\RandomStream.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Range.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\RangeBound.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\RangeSet.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Ray.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\RotationAboutPointMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\RotationMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\RotationTranslationMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Rotator.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\ScalarRegister.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\ScaleMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\ScaleRotationTranslationMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\SHMath.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Sobol.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Sphere.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\StatisticalFloat.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Transform.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\TransformCalculus.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\TransformCalculus2D.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\TransformCalculus3D.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\TransformNonVectorized.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\TransformVectorized.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\TranslationMatrix.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\TwoVectors.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnitConversion.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMath.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathDirectX.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathFPU.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathNeon.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathSSE.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathUtility.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathVectorCommon.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealMathVectorConstants.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealPlatformMathSSE.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\UnrealPlatformMathSSE4.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Vector.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Vector2D.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Vector2DHalf.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\Vector4.h" />
+    <ClInclude Include="Core\Public\API\UE\Math\VectorRegister.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\AllowMicrosoftPlatformAtomics.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\AllowMicrosoftPlatformTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\COMPointer.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\HideMicrosoftPlatformAtomics.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\HideMicrosoftPlatformTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MicrosoftPlatformCrashContext.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MicrosoftPlatformMath.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MicrosoftPlatformStackWalk.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MinimalWindowsApi.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\MinWindows.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\PostWindowsApi.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\PreWindowsApi.h" />
+    <ClInclude Include="Core\Public\API\UE\Microsoft\WindowsHWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\AccessDetection.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\AES.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\App.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ArchiveMD5.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\AsciiSet.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\AssertionMacros.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\AsyncTaskNotification.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Attribute.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\AutomationEvent.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\AutomationTest.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Base64.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\BufferedOutputDevice.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Build.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ByteSwap.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CallbackDevice.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Change.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Char.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CommandLine.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ComparisonUtility.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CompilationResult.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CompressedGrowableBuffer.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Compression.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CompressionFlags.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigCacheIni.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigContext.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigHierarchy.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ConfigUtilities.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreAsyncTaskNotificationImpl.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreDefines.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreDelegates.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreMisc.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreMiscDefines.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CoreStats.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Crc.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\CString.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\DataDrivenPlatformInfoRegistry.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\DateTime.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\DefaultValueHelper.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\DelayedAutoRegister.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\DelegateFilter.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\DisableOldUETypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EmbeddedCommunication.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineBuildSettings.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineNetworkCustomVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineVersionBase.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EngineVersionComparison.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EnumClassFlags.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EnumerateRange.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\EnumRange.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Exec.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ExpressionParser.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ExpressionParserTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FallbackStruct.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FbxErrors.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FeedbackContext.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FeedbackContextMarkup.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FieldAccessor.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FileHelper.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FilterCollection.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Fnv.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Fork.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameNumber.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameRate.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameTime.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\FrameValue.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\GeneratedTypeName.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\GenericGrowableAllocator.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Guid.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\HashBuilder.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\HierarchicalLogArchive.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ICompressionFormat.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\IEngineCrypto.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\IFilter.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ILifeCycle.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\InlineValue.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\InteractiveProcess.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\IQueuedWork.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ITransaction.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\KeyChainUtilities.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\LargeWorldCoordinates.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\LargeWorldCoordinatesSerializer.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\LargeWorldRenderPosition.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Launder.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\LazySingleton.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\LocalTimestampDirectoryVisitor.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\LowLevelTestAdapter.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MapErrors.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MemoryReadStream.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MemStack.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MemStackUtility.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MessageDialog.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MonitoredProcess.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MonolithicHeaderBoilerplate.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\MTAccessDetector.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\NamePermissionList.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\NetworkGuid.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\NetworkVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\NoopCounter.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ObjectThumbnail.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Optional.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OptionalFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDevice.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceAnsiError.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceArchiveWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceConsole.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceDebug.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceError.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceFile.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceHelper.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceMemory.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceNull.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\OutputDeviceRedirector.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Parse.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Paths.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\PathViews.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\PreloadableFile.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\PreLoadFile.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\QualifiedFrameTime.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\QueuedThreadPool.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\QueuedThreadPoolWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\RemoteConfigIni.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\RuntimeErrors.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopedEvent.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopedSlowTask.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeExit.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeLock.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeRWLock.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\ScopeTryLock.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\SecureHash.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\SingleThreadEvent.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\SingleThreadRunnable.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\SlowTask.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\SlowTaskStack.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\SpinLock.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\StaticAssertCompleteType.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\StringBuilder.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\StringFormatArg.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\StringFormatter.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\StringUtility.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\StructBuilder.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TextFilter.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TextFilterExpressionEvaluator.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TextFilterUtils.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Timecode.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TimeGuard.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Timeout.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Timespan.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TrackedActivity.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TVariant.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TVariantMeta.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\TypeContainer.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\UProjectInfo.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\URLRequestFilter.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\VarArgs.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\Variant.h" />
+    <ClInclude Include="Core\Public\API\UE\Misc\WildcardString.h" />
+    <ClInclude Include="Core\Public\API\UE\MSVC\MSVCPlatform.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\CpuProfilerTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\FormatArgsTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\MallocProfiler.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\MemoryTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\MiscTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\TagTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\Trace\Config.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\Trace\Trace.h" />
+    <ClInclude Include="Core\Public\API\UE\ProfilingDebugging\UMemoryDefines.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\Archive.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveCookData.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveLoadCompressedProxy.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveProxy.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveSaveCompressedProxy.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArchiveSerializedPropertyChain.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArrayReader.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\ArrayWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\BitArchive.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\BitReader.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\BitWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\BufferArchive.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\BufferReader.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\BufferWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinary.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryContainerSerialization.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryPackage.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinarySerialization.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryValidation.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryValue.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompactBinaryWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CompressedChunkInfo.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\Csv\CsvParser.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\CustomVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\FileRegions.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\Formatters\BinaryArchiveFormatter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\LargeMemoryData.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\LargeMemoryReader.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\LargeMemoryWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\LoadTimeTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MappedName.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryArchive.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryHasher.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryImage.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryImageWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryLayout.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryReader.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\MemoryWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\NameAsStringIndexProxyArchive.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\NameAsStringProxyArchive.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\PackageWriter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StaticMemoryReader.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchive.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveAdapters.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveChildReader.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveDefines.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveFormatter.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveNameHelpers.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveSlotBase.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\StructuredArchiveSlots.h" />
+    <ClInclude Include="Core\Public\API\UE\Serialization\VarInt.h" />
+    <ClInclude Include="Core\Public\API\UE\Stats\Stats.h" />
+    <ClInclude Include="Core\Public\API\UE\Stats\Stats2.h" />
+    <ClInclude Include="Core\Public\API\UE\Stats\StatsCommon.h" />
+    <ClInclude Include="Core\Public\API\UE\Stats\StatsTrace.h" />
+    <ClInclude Include="Core\Public\API\UE\String\BytesToHex.h" />
+    <ClInclude Include="Core\Public\API\UE\String\Escape.h" />
+    <ClInclude Include="Core\Public\API\UE\String\Find.h" />
+    <ClInclude Include="Core\Public\API\UE\String\HexToBytes.h" />
+    <ClInclude Include="Core\Public\API\UE\String\Join.h" />
+    <ClInclude Include="Core\Public\API\UE\String\LexFromString.h" />
+    <ClInclude Include="Core\Public\API\UE\String\LineEndings.h" />
+    <ClInclude Include="Core\Public\API\UE\String\ParseLines.h" />
+    <ClInclude Include="Core\Public\API\UE\String\ParseTokens.h" />
+    <ClInclude Include="Core\Public\API\UE\String\RemoveFrom.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\AlignmentTemplates.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\AndOrNot.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\AreTypesEqual.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Atomic.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\ChooseClass.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\CopyQualifiersAndRefsFromTo.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\CopyQualifiersFromTo.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Decay.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\DontCopy.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\EnableIf.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\EqualTo.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Function.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Greater.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Identity.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IdentityFunctor.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IntegralConstant.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Invoke.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsAbstract.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArithmetic.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArray.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArrayOrRefOfType.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsArrayOrRefOfTypeByPredicate.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsClass.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsConst.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsConstructible.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsEnum.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsEnumClass.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsFloatingPoint.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsInitializerList.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsIntegral.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsInvocable.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsMemberPointer.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsPODType.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsPointer.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsPolymorphic.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsSigned.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTrivial.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTriviallyCopyAssignable.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTriviallyCopyConstructible.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsTriviallyDestructible.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsUECoreType.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\IsValidVariadicFunctionArg.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Less.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\LosesQualifiersFromTo.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\MakeSigned.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\MakeUnsigned.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\MaxSizeof.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\MemoryOps.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Models.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\NonNullPointer.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\PimplPtr.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\PointerIsConvertibleFromTo.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\RefCounting.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\RemoveCV.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\RemoveExtent.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\RemoveReference.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\ResolveTypeAmbiguity.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\RetainedRef.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\ReversePredicate.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\ScopedCallback.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\SharedPointer.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\SharedPointerFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\SharedPointerInternals.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Sorting.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\Tuple.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\TypeCompatibleBytes.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\TypeHash.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\UniqueObj.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\UniquePtr.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\UnrealTemplate.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\UnrealTypeTraits.h" />
+    <ClInclude Include="Core\Public\API\UE\Templates\ValueOrError.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\ElementType.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\IntType.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\IsCharEncodingCompatibleWith.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\IsCharEncodingSimplyConvertibleTo.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\IsCharType.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\IsContiguousContainer.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\IsFixedWidthCharEncoding.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\IsVoidType.h" />
+    <ClInclude Include="Core\Public\API\UE\Traits\MemberFunctionPtrOuter.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\AnimObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\AnimPhysObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\AutomationObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\BlueprintsObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\BuildObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\CineCameraObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\CoreObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\DebugSerializationFlags.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\DestructionObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\DevObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\EditorObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\EnterpriseObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\ExternalPhysicsCustomObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\ExternalPhysicsMaterialCustomObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteMainBranchObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteNCBranchObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteReleaseBranchCustomObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\FortniteShaderworkObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\FrameworkObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\GeometryObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\LoadTimesObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\MediaFrameWorkObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\MobileObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\NameBatchSerialization.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\NameTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\NetworkingObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\NiagaraObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\ObjectPtr.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\ObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\OnlineObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\PhysicsObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\PlatformObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\PropertyPortFlags.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\ReflectionCaptureObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\ReleaseObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\RenderingObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\ScriptDelegates.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\SequencerObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5CookerObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5LWCRenderingStreamObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5MainStreamObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5PrivateFrostyStreamObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\UE5ReleaseStreamObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\UnrealNames.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\UObjectHierarchyFwd.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\VirtualProductionObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\VRObjectVersion.h" />
+    <ClInclude Include="Core\Public\API\UE\UObject\WeakObjectPtrTemplates.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\AllowWindowsPlatformAtomics.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\AllowWindowsPlatformTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\COMPointer.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\HideWindowsPlatformAtomics.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\HideWindowsPlatformTypes.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\MinimalWindowsApi.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\MinWindows.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\PostWindowsApi.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\PreWindowsApi.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsCriticalSection.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsErrorOutputDevice.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsEventLogOutputDevice.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsHWrapper.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatform.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformAffinity.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformAtomics.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCodeAnalysis.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCompilerPreSetup.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCompilerSetup.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformCrashContext.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformFile.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformMath.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformMemory.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformMisc.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformNamedPipe.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformOutputDevices.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformProcess.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformProperties.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformStackWalk.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformString.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformTime.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsPlatformTLS.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsSemaphore.h" />
+    <ClInclude Include="Core\Public\API\UE\Windows\WindowsSystemIncludes.h" />
+    <ClInclude Include="Core\Public\Ark\ArkApiUtils.h" />
+    <ClInclude Include="Core\Public\Ark\AsaApiUtilsMessagingManager.h" />
+    <ClInclude Include="Core\Public\Ark\MessagingManager.h" />
+    <ClInclude Include="Core\Public\AsaApiModUtils.hpp" />
+    <ClInclude Include="Core\Public\IApiUtils.h" />
+    <ClInclude Include="Core\Public\ICommands.h" />
+    <ClInclude Include="Core\Public\IHooks.h" />
+    <ClInclude Include="Core\Public\Requests.h" />
+    <ClInclude Include="Core\Public\Timer.h" />
+    <ClInclude Include="Core\Public\Tools.h" />
+    <ClInclude Include="D:\Spill\UE_5.2\Engine\Source\Runtime\Core\Public\Delegates\IntegerSequence.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Configs\config.json" />
+    <None Include="AsaApi.def" />
+    <None Include="Core\Public\API\UE\Algo\LevenshteinDistanceAlgorithm.tps" />
+    <None Include="Core\Public\API\UE\Delegates\DelegateSignatureImpl.inl" />
+    <None Include="Core\Public\API\UE\Misc\ExpressionParserTypes.inl" />
+    <None Include="Core\Public\API\UE\Templates\SharedPointerTesting.inl" />
+    <None Include="vcpkg.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Core\Private\PDBReader\pdbignores.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

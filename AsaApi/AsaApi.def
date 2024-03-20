@@ -1,0 +1,3 @@
+LIBRARY AsaApi.dll
+EXPORTS
+	InitApi @1
