@@ -300,6 +300,82 @@ namespace API
 		return true;
 	}
 
+	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		const std::string& patch_data, std::vector<std::string> headers)
+	{
+		std::thread([this, url, callback, patch_data, headers]
+		{
+			std::string Result = "";
+			Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+			Poco::Net::HTTPClientSession* session = nullptr;
+
+			try
+			{
+				Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH);
+
+				request.setContentType("application/x-www-form-urlencoded");
+				request.setContentLength(patch_data.length());
+
+				std::ostream& OutputStream = session->sendRequest(request);
+				OutputStream << patch_data;
+
+				Result = pimpl->GetResponse(session, response);
+			}
+			catch (const Poco::Exception& exc)
+			{
+				Log::GetLog()->error(exc.displayText());
+			}
+
+			const bool success = (int)response.getStatus() >= 200
+				&& (int)response.getStatus() < 300;
+
+			pimpl->WriteRequest(callback, success, Result);
+			delete session;
+			session = nullptr;
+		}
+		).detach();
+
+		return true;
+	}
+
+	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		const std::string& patch_data, const std::string& content_type, std::vector<std::string> headers)
+	{
+		std::thread([this, url, callback, patch_data, content_type, headers]
+		{
+			std::string Result = "";
+			Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+			Poco::Net::HTTPClientSession* session = nullptr;
+
+			try
+			{
+				Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH);
+
+				request.setContentType(content_type);
+				request.setContentLength(patch_data.length());
+
+				std::ostream& OutputStream = session->sendRequest(request);
+				OutputStream << patch_data;
+
+				Result = pimpl->GetResponse(session, response);
+			}
+			catch (const Poco::Exception& exc)
+			{
+				Log::GetLog()->error(exc.displayText());
+			}
+
+			const bool success = (int)response.getStatus() >= 200
+				&& (int)response.getStatus() < 300;
+
+			pimpl->WriteRequest(callback, success, Result);
+			delete session;
+			session = nullptr;
+		}
+		).detach();
+
+		return true;
+	}
+
 	bool Requests::CreateDeleteRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
 		std::vector<std::string> headers)
 	{
