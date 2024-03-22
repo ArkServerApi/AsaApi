@@ -72,6 +72,32 @@ namespace API
 			std::vector<std::string> headers = {});
 
 		/**
+		 * \brief Creates an async PATCH Request with application/x-www-form-urlencoded content type that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool) and result(string), result is error code if request failed and the response otherwise
+		 * \param data to patch
+		 * \param included headers
+		 */
+		ARK_API bool CreatePatchRequest(const std::string& url,
+			const std::function<void(bool, std::string)>& callback,
+			const std::string& patch_data,
+			std::vector<std::string> headers = {});
+
+		/**
+		 * \brief Creates an async PATCH Request that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool) and result(string), result is error code if request failed and the response otherwise
+		 * \param data to patch
+		 * \param content type
+		 * \param included headers
+		 */
+		ARK_API bool CreatePatchRequest(const std::string& url,
+			const std::function<void(bool, std::string)>& callback,
+			const std::string& patch_data,
+			const std::string& content_type,
+			std::vector<std::string> headers = {});
+
+		/**
 		 * \brief Creates an async DELETE Request that runs in another thread but calls the callback from the main thread
 		 * \param request URL
 		 * \param the callback function, binds sucess(bool) and result(string), result is error code if request failed and the response otherwise
