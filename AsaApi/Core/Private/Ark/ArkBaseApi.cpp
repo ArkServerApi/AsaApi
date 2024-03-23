@@ -15,7 +15,7 @@
 
 namespace API
 {
-	constexpr float api_version = 1.13f;
+	constexpr float api_version = 1.14f;
 
 	ArkBaseApi::ArkBaseApi()
 		: commands_(std::make_unique<AsaApi::Commands>()),
@@ -32,6 +32,8 @@ namespace API
 		
 		Log::GetLog()->info("-----------------------------------------------");
 		Log::GetLog()->info("ARK:SA Api V{:.2f}", GetVersion());
+		Log::GetLog()->info("Brought to you by ArkServerApi");
+		Log::GetLog()->info("https://github.com/orgs/ArkServerApi");
 		Log::GetLog()->info("Loading...\n");
 
 		PdbReader pdb_reader;
@@ -56,20 +58,23 @@ namespace API
 			if (!fs::exists(fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache")))
 				fs::create_directory(fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache"));
 
+			const fs::path apiDLL = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/AsaApi.dll");
 			const fs::path pdbIgnoreFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/pdbignores.txt");
 			const fs::path keyCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_key.cache");
 			const fs::path offsetsCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_offsets.cache");
 			const fs::path bitfieldsCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_bitfields.cache");
 			const fs::path offsetsCacheFilePlain = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Cache/cached_offsets.txt");
 			const std::string fileHash = Cache::calculateSHA256(filepath);
+			const std::string apiDLLHash = Cache::calculateSHA256(apiDLL);
 			std::string storedHash = Cache::readFromFile(keyCacheFile);
 			std::unordered_set<std::string> pdbIgnoreSet = Cache::readFileIntoSet(pdbIgnoreFile);
+			const std::string defaultCDNUrl = "https://cdn.pelayori.com/cache/";
 
 			if (autoCacheConfig.value("Enable", true)
-				&& autoCacheConfig.value("DownloadCacheURL", "https://cdn.pelayori.com/cache/") != ""
+				&& autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) != ""
 				&& (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile)))
 			{
-				const fs::path downloadFile = autoCacheConfig.value("DownloadCacheURL", "") + fileHash + ".zip";
+				const fs::path downloadFile = autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) + fileHash + ".zip?hash=" + apiDLLHash;
 				const fs::path localFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Cache/" + fileHash + ".zip");
 
 				if (ArkBaseApi::DownloadCacheFiles(downloadFile, localFile))
