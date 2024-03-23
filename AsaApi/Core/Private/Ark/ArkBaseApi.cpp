@@ -66,12 +66,13 @@ namespace API
 			const std::string apiDLLHash = Cache::calculateSHA256(apiDLL);
 			std::string storedHash = Cache::readFromFile(keyCacheFile);
 			std::unordered_set<std::string> pdbIgnoreSet = Cache::readFileIntoSet(pdbIgnoreFile);
+			const std::string defaultCDNUrl = "https://cdn.pelayori.com/cache/";
 
 			if (autoCacheConfig.value("Enable", true)
-				&& autoCacheConfig.value("DownloadCacheURL", "https://cdn.pelayori.com/cache/") != ""
+				&& autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) != ""
 				&& (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile)))
 			{
-				const fs::path downloadFile = autoCacheConfig.value("DownloadCacheURL", "") + fileHash + ".zip?hash=" + apiDLLHash;
+				const fs::path downloadFile = autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) + fileHash + ".zip?hash=" + apiDLLHash;
 				const fs::path localFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Cache/" + fileHash + ".zip");
 
 				if (ArkBaseApi::DownloadCacheFiles(downloadFile, localFile))
