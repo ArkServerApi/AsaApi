@@ -43,9 +43,11 @@ namespace API
 			DetourTransactionAbort();
 			return false;
 		}
-		if (DetourAttach(&new_target, detour))
+
+		auto attachResult = DetourAttach(&new_target, detour);
+		if (attachResult)
 		{
-			Log::GetLog()->error("Failed to attach hook for {}", func_name);
+			Log::GetLog()->error("Failed to attach hook for {} with Error {}", func_name, attachResult);
 			DetourTransactionAbort();
 			return false;
 		}
