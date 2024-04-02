@@ -247,7 +247,7 @@ FString::FString(const UTF8CHAR* Str, int32 ExtraSlack)				{ UE::String::Private
 FString::FString(const UCS2CHAR* Str, int32 ExtraSlack)				{ UE::String::Private::ConstructWithSlack(Data, Str, ExtraSlack); }*/
 
 FString::FString(const ANSICHAR* Str)								{ NativeCall<void, const ANSICHAR*>(this, "FString.FString(char*)", Str); }
-FString::FString(const WIDECHAR* Str)								{ NativeCall<void, const WIDECHAR*>(this, "FString.FString(wchar_t*)", Str); }
+FString::FString(const WIDECHAR* Str)								{ UE::String::Private::ConstructFromCString(Data, Str); }
 FString::FString(const UTF8CHAR* Str)								{ UE::String::Private::ConstructFromCString(Data, Str); }
 FString::FString(const UCS2CHAR* Str)								{ UE::String::Private::ConstructFromCString(Data, Str); }
 FString::FString(int32 Len, const ANSICHAR* Str)					{ UE::String::Private::ConstructWithLength(Data, Len, Str); }
