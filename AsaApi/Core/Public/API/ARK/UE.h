@@ -138,14 +138,10 @@ template <typename T>
 struct TSoftClassPtr
 {
 private:
-	/*FORCEINLINE UClass* Retrieve() const
-	{
-		static UClass* resolvedClass =  NativeCall<UClass*>(this, "TSoftClassPtr<UObject>.LoadSynchronous()");
-		return resolvedClass;
-	}*/
+
 public:
 
-	FORCEINLINE UClass* Get() const { return NativeCall<UClass*>(this, "TSoftClassPtr<UObject>.LoadSynchronous()"); }
+	FORCEINLINE UClass* Get() { return NativeCall<UClass*, TSoftClassPtr<T>*>(nullptr, "UPrimalAssets.ClassAssetResolve(TSoftClassPtr<UObject>)", this); }
 	FORCEINLINE UClass* operator->() const { return Get(); }
 	FORCEINLINE UClass& operator*() const { return *Get(); }
 	FORCEINLINE operator bool() const { return Get() != nullptr; }
@@ -156,10 +152,10 @@ template <typename T>
 struct TSoftObjectPtr
 {
 private:
-	FORCEINLINE UObject* RealGet() const { return NativeCall<UObject*>(this, "TSoftObjectPtr<UObject>.Get()"); }
+	FORCEINLINE UObject* RealGet() const { return NativeCall<UObject*, TSoftObjectPtr<T>*>(nullptr, "UPrimalAssets.AssetResolve(TSoftObjectPtr<UObject>)", this); }
 public:
 
-	FORCEINLINE T* Get() const { return (T*)(RealGet()); }
+	FORCEINLINE T* Get() { return (T*)(RealGet()); }
 	FORCEINLINE T* operator->() const { return Get(); }
 	FORCEINLINE T& operator*() const { return *Get(); }
 	FORCEINLINE operator bool() const { return Get() != nullptr; }

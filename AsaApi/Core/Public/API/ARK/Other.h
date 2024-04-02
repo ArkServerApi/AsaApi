@@ -2551,6 +2551,29 @@ struct FUniqueNetId
 	bool Compare(const FUniqueNetId* Other) { return NativeCall<bool, const FUniqueNetId*>(this, "FUniqueNetId.Compare(FUniqueNetId&)", Other); }
 };
 
+struct FUniqueNetIdString : FUniqueNetId
+{
+	// Fields
+
+	FString& UniqueNetIdStrField() { return *GetNativePointerField<FString*>(this, "FUniqueNetIdString.UniqueNetIdStr"); }
+	FName& TypeField() { return *GetNativePointerField<FName*>(this, "FUniqueNetIdString.Type"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	unsigned char const* GetBytes()const { return NativeCall<unsigned char const*>(this, "FUniqueNetIdString.GetBytes()"); }
+	bool IsValid()const { return NativeCall<bool>(this, "FUniqueNetIdString.IsValid()"); }
+	int GetSize()const { return NativeCall<int>(this, "FUniqueNetIdString.GetSize()"); }
+	FString ToString()const { return NativeCall<FString>(this, "FUniqueNetIdString.ToString()"); }
+	FName GetType()const { return NativeCall<FName>(this, "FUniqueNetIdString.GetType()"); }
+	unsigned int GetTypeHash()const { return NativeCall<unsigned int>(this, "FUniqueNetIdString.GetTypeHash()"); }
+	FString ToDebugString()const { return NativeCall<FString>(this, "FUniqueNetIdString.ToDebugString()"); }
+	//static TSharedRef<FUniqueNetIdString const> Create(const FString& InUniqueNetId, FName InType) { return NativeCall<TSharedRef<FUniqueNetIdString const>, const FString&, FName>(this, "FUniqueNetIdString.Create(FString&,FName)", InUniqueNetId, InType); }
+
+};
+
 struct FUniqueNetIdEOS : FUniqueNetId
 {
 	// Fields
@@ -2632,4 +2655,19 @@ struct FTopLevelAssetPath
 	bool TrySetPath(TStringView<wchar_t>* Path) { return NativeCall<bool, TStringView<wchar_t>*>(this, "FTopLevelAssetPath.TrySetPath(TStringView<wchar_t>)", Path); }
 	bool ExportTextItem(FString* ValueStr, const FTopLevelAssetPath* DefaultValue, UObject* Parent, int PortFlags, UObject* ExportRootScope) { return NativeCall<bool, FString*, const FTopLevelAssetPath*, UObject*, int, UObject*>(this, "FTopLevelAssetPath.ExportTextItem(FString&,FTopLevelAssetPath&,UObject*,int,UObject*)", ValueStr, DefaultValue, Parent, PortFlags, ExportRootScope); }
 	bool ImportTextItem(const wchar_t** Buffer, int PortFlags, UObject* Parent, FOutputDevice* ErrorText, FArchive* InSerializingArchive) { return NativeCall<bool, const wchar_t**, int, UObject*, FOutputDevice*, FArchive*>(this, "FTopLevelAssetPath.ImportTextItem(wchar_t*&,int,UObject*,FOutputDevice*,FArchive*)", Buffer, PortFlags, Parent, ErrorText, InSerializingArchive); }
+};
+
+struct FUserCosmeticInfo
+{
+	// Fields
+
+	FString& TribeFlagFileField() { return *GetNativePointerField<FString*>(this, "FUserCosmeticInfo.TribeFlagFile"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FUserCosmeticInfo.StaticStruct()"); }
+
 };
