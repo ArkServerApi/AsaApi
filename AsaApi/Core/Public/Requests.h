@@ -124,5 +124,6 @@ namespace API
 	private:
 		class impl;
 		std::unique_ptr<impl> pimpl;
+		bool suppress_errors = false;
 	};
 } // namespace API

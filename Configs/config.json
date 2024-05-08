@@ -12,6 +12,7 @@
     "AutomaticCacheDownload": {
       "Enable": true,
       "DownloadCacheURL": "https://cdn.pelayori.com/cache/"
-    }
+    },
+    "SuppressHttpErrors": false
   }
 }
