@@ -114,7 +114,7 @@ namespace API
 			std::vector<std::string> headers = {});
 
 		/**
-		 * \brief Creates an sync GET Request
+		 * \brief Creates an sync GET Request that should NOT be called from the main game thread to avoid player timeout issues
 		 * \param request URL
 		 * \param included headers
 		 */
