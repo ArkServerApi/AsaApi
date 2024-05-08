@@ -21,6 +21,12 @@ namespace API
 		Requests& operator=(const Requests&) = delete;
 		Requests& operator=(Requests&&) = delete;
 
+		struct RequestSyncData {
+			bool success;
+			int statusCode;
+			std::string result;
+		};
+
 		/**
 		 * \brief Creates an async GET Request that runs in another thread but calls the callback from the main thread
 		 * \param request URL
@@ -106,6 +112,13 @@ namespace API
 		ARK_API bool CreateDeleteRequest(const std::string& url,
 			const std::function<void(bool, std::string)>& callback,
 			std::vector<std::string> headers = {});
+
+		/**
+		 * \brief Creates an sync GET Request
+		 * \param request URL
+		 * \param included headers
+		 */
+		ARK_API RequestSyncData CreateGetRequestSync(const std::string& url, std::vector<std::string> headers = {});
 
 		static bool DownloadFile(const std::string& url, const std::string& localPath, std::vector<std::string> headers = {});
 	private:
