@@ -80,7 +80,7 @@ namespace API
 				if (ArkBaseApi::DownloadCacheFiles(downloadFile, localFile))
 					storedHash = Cache::readFromFile(keyCacheFile);
 				else
-					Log::GetLog()->warn("Ooops you are early the cache has not finished cooking yet! Cache files usually take 10 minutes to be ready after an update. If more time has passed please contact developers.");
+					Log::GetLog()->warn("Ooops you are early, the cache has not finished cooking yet! Cache files usually take 10 minutes to be ready after an update. If more time has passed please contact developers.");
 
 				if (fs::exists(localFile))
 					fs::remove(localFile);
