@@ -409,6 +409,36 @@ namespace API
 		return true;
 	}
 
+	Requests::RequestSyncData Requests::CreateGetRequestSync(const std::string& url,
+		std::vector<std::string> headers)
+	{
+		
+		Requests::RequestSyncData Result;
+		Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+		Poco::Net::HTTPClientSession* session = nullptr;
+
+		try
+		{
+			Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_GET);
+
+			session->sendRequest(request);
+			Result.result = pimpl->GetResponse(session, response);
+		}
+		catch (const Poco::Exception& exc)
+		{
+			Log::GetLog()->error(exc.displayText());
+		}
+
+		Result.statusCode = (int)response.getStatus();
+		Result.success = (int)response.getStatus() >= 200
+			&& (int)response.getStatus() < 300;
+
+		delete session;
+		session = nullptr;
+
+		return Result;
+	}
+
 	bool Requests::DownloadFile(const std::string& url, const std::string& localPath, std::vector<std::string> headers)
 	{
 		Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
