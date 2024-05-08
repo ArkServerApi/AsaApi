@@ -494,7 +494,6 @@ namespace API
 			}
 			else
 			{
-				Log::GetLog()->error("Requested file '{}' failed with error: '{}'", url, response.getReason());
 				Poco::NullOutputStream null;
 				Poco::StreamCopier::copyStream(rs, null);
 				delete session;
