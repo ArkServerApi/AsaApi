@@ -155,7 +155,7 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					Result = exc.displayText();
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -193,7 +193,7 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					Result = exc.displayText();
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -231,7 +231,7 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					Result = exc.displayText();
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -285,7 +285,7 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					Result = exc.displayText();
 				}
 
 				const bool success = (int)response.getStatus() >= 200
