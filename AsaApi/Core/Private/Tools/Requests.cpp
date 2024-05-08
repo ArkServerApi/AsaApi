@@ -10,6 +10,8 @@
 
 #include <mutex>
 
+#include "json.hpp"
+
 #include "fstream"
 #include "Poco/StreamCopier.h"
 #include "Poco/URI.h"
@@ -29,6 +31,7 @@
 #include "Poco/Net/HTTPSClientSession.h"
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPResponse.h"
+#include "../Ark/ArkBaseApi.h"
 
 namespace API
 {
@@ -58,7 +61,9 @@ namespace API
 	Requests::Requests()
 		: pimpl{ std::make_unique<impl>() } 
 	{		
-		
+		const nlohmann::json config = dynamic_cast<ArkBaseApi&>(*game_api).GetConfig();
+		suppress_errors = config.value("SuppressHttpErrors", false);
+
 		Poco::Net::initializeSSL();
 		Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> ptrCert = new Poco::Net::RejectCertificateHandler(false);
 		
@@ -155,7 +160,8 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					if (!suppress_errors)
+						Log::GetLog()->error(exc.displayText());
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -193,7 +199,8 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					if (!suppress_errors)
+						Log::GetLog()->error(exc.displayText());
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -231,7 +238,8 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					if (!suppress_errors)
+						Log::GetLog()->error(exc.displayText());
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -285,7 +293,8 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					if (!suppress_errors)
+						Log::GetLog()->error(exc.displayText());
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -323,7 +332,8 @@ namespace API
 			}
 			catch (const Poco::Exception& exc)
 			{
-				Log::GetLog()->error(exc.displayText());
+				if (!suppress_errors)
+					Log::GetLog()->error(exc.displayText());
 			}
 
 			const bool success = (int)response.getStatus() >= 200
@@ -361,7 +371,8 @@ namespace API
 			}
 			catch (const Poco::Exception& exc)
 			{
-				Log::GetLog()->error(exc.displayText());
+				if (!suppress_errors)
+					Log::GetLog()->error(exc.displayText());
 			}
 
 			const bool success = (int)response.getStatus() >= 200
@@ -394,7 +405,8 @@ namespace API
 				}
 				catch (const Poco::Exception& exc)
 				{
-					Log::GetLog()->error(exc.displayText());
+					if (!suppress_errors)
+						Log::GetLog()->error(exc.displayText());
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -426,7 +438,8 @@ namespace API
 		}
 		catch (const Poco::Exception& exc)
 		{
-			Log::GetLog()->error(exc.displayText());
+			if (!suppress_errors)
+				Log::GetLog()->error(exc.displayText());
 		}
 
 		Result.statusCode = (int)response.getStatus();

@@ -23,8 +23,8 @@ namespace API
 		std::unique_ptr<AsaApi::IHooks>& GetHooks() override;
 		std::unique_ptr<AsaApi::IApiUtils>& GetApiUtils() override;
 
-	private:
 		nlohmann::json GetConfig();
+	private:
 		bool DownloadCacheFiles(const std::filesystem::path downloadFile, const std::filesystem::path localFile);
 
 		// Callbacks

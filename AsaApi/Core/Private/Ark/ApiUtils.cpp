@@ -169,7 +169,7 @@ namespace AsaApi
 				{
 					TArray<FString> parsedName;
 					it->first.ParseIntoArray(parsedName, L"\\", true);
-					Log::GetLog()->error("Custom messaging error for '{}', using normal messaging. Reason: {}", parsedName.Last().ToString(), error.value());
+					Log::GetLog()->warn("Custom messaging error for '{}', using normal messaging. Reason: {}", parsedName.Last().ToString(), error.value());
 					it = messaging_managers_.erase(it);
 					continue;
 				}
