@@ -2059,8 +2059,8 @@ struct AShooterPlayerState : APlayerState
 
     UPrimalPlayerData*& MyPlayerDataField() { return *GetNativePointerField<UPrimalPlayerData**>(this, "AShooterPlayerState.MyPlayerData"); }
     FPrimalPlayerDataStruct& MyPlayerDataStructField() { return *GetNativePointerField<FPrimalPlayerDataStruct*>(this, "AShooterPlayerState.MyPlayerDataStruct"); }
-    FieldArray<TSubclassOf<UPrimalItem>, 10>& DefaultItemSlotClassesField() { return *GetNativePointerField<FieldArray<TSubclassOf<UPrimalItem>, 10>*>(this, "AShooterPlayerState.DefaultItemSlotClasses"); }
-    FieldArray<unsigned char, 10>& DefaultItemSlotEngramsField() { return *GetNativePointerField<FieldArray<unsigned char, 10>*>(this, "AShooterPlayerState.DefaultItemSlotEngrams"); }
+    FieldArray<TSubclassOf<UPrimalItem>, 10> DefaultItemSlotClassesField() { return  { this, "AShooterPlayerState.DefaultItemSlotClasses" }; }
+    FieldArray<unsigned char, 10> DefaultItemSlotEngramsField() { return { this, "AShooterPlayerState.DefaultItemSlotEngrams" }; }
     FTribeData& MyTribeDataField() { return *GetNativePointerField<FTribeData*>(this, "AShooterPlayerState.MyTribeData"); }
     FTribeData& LastTribeInviteDataField() { return *GetNativePointerField<FTribeData*>(this, "AShooterPlayerState.LastTribeInviteData"); }
     //TDelegate<void __cdecl(TArray<FAdminPlayerDataInfo, TSizedDefaultAllocator<32> >), FDefaultDelegateUserPolicy>& OnClientAdminInfoPlayerConnectedRecivedField() { return *GetNativePointerField<TDelegate<void __cdecl(TArray<FAdminPlayerDataInfo, TSizedDefaultAllocator<32> >), FDefaultDelegateUserPolicy>*>(this, "AShooterPlayerState.OnClientAdminInfoPlayerConnectedRecived"); }
@@ -2077,7 +2077,7 @@ struct AShooterPlayerState : APlayerState
     float& AllowedRespawnIntervalField() { return *GetNativePointerField<float*>(this, "AShooterPlayerState.AllowedRespawnInterval"); }
     double& LastTimeDiedToEnemyTeamField() { return *GetNativePointerField<double*>(this, "AShooterPlayerState.LastTimeDiedToEnemyTeam"); }
     int& CurrentlySelectedDinoOrderGroupField() { return *GetNativePointerField<int*>(this, "AShooterPlayerState.CurrentlySelectedDinoOrderGroup"); }
-    FieldArray<FDinoOrderGroup, 10>& DinoOrderGroupsField() { return *GetNativePointerField<FieldArray<FDinoOrderGroup, 10>*>(this, "AShooterPlayerState.DinoOrderGroups"); }
+    FieldArray<FDinoOrderGroup, 10> DinoOrderGroupsField() { return { this, "AShooterPlayerState.DinoOrderGroups" }; }
     double& GenesisAbilityErrorLastTimeField() { return *GetNativePointerField<double*>(this, "AShooterPlayerState.GenesisAbilityErrorLastTime"); }
     double& NextAllowTurretCopySettingsTimeField() { return *GetNativePointerField<double*>(this, "AShooterPlayerState.NextAllowTurretCopySettingsTime"); }
     double& LastTribeRequestTimeField() { return *GetNativePointerField<double*>(this, "AShooterPlayerState.LastTribeRequestTime"); }
