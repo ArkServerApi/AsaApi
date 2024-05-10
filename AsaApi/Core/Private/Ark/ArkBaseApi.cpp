@@ -34,6 +34,7 @@ namespace API
 		Log::GetLog()->info("ARK:SA Api V{:.2f}", GetVersion());
 		Log::GetLog()->info("Brought to you by ArkServerApi");
 		Log::GetLog()->info("https://github.com/orgs/ArkServerApi");
+		Log::GetLog()->info("Website: https://ark-server-api.com");
 		Log::GetLog()->info("Loading...\n");
 
 		PdbReader pdb_reader;
