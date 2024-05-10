@@ -2084,7 +2084,7 @@ struct AShooterPlayerState : APlayerState
 
     // Bitfields
 
-    BitFieldValue<bool, unsigned __int32> bQuitterField() { return { this, "AShooterPlayerState.bQuitter" }; }
+    BitFieldValue<bool, unsigned __int32> bQuitter() { return { this, "AShooterPlayerState.bQuitter" }; }
 
     // Functions
 
