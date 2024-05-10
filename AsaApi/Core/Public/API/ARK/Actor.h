@@ -2095,7 +2095,7 @@ struct AShooterPlayerState : APlayerState
     void NotifyPlayerJoinedTribe_Implementation(const FString& ThePlayerName, const FString& TribeName, bool Joinee) { NativeCall<void, const FString&, const FString&, bool>(this, "AShooterPlayerState.NotifyPlayerJoinedTribe_Implementation(FString&,FString&,bool)", ThePlayerName, TribeName, Joinee); }
     void NotifyTribememberJoined_Implementation(const FString& ThePlayerName) { NativeCall<void, const FString&>(this, "AShooterPlayerState.NotifyTribememberJoined_Implementation(FString&)", ThePlayerName); }
     void Destroyed() { NativeCall<void>(this, "AShooterPlayerState.Destroyed()"); }
-    FString GetPlayerName()const { return NativeCall<FString>(this, "AShooterPlayerState.GetPlayerName()"); }
+    FString* GetPlayerName(FString* result) { return NativeCall<FString*, FString*>(this, "AShooterPlayerState.GetPlayerName()", result); }
     void ServerDinoOrderGroup_Clear_Implementation(int groupIndex, bool bClearClasses, bool bClearChars) { NativeCall<void, int, bool, bool>(this, "AShooterPlayerState.ServerDinoOrderGroup_Clear_Implementation(int,bool,bool)", groupIndex, bClearClasses, bClearChars); }
     int GetHexCostToPurchaseNextEngramPoint() { return NativeCall<int>(this, "AShooterPlayerState.GetHexCostToPurchaseNextEngramPoint()"); }
     static void StaticRegisterNativesAShooterPlayerState() { NativeCall<void>(nullptr, "AShooterPlayerState.StaticRegisterNativesAShooterPlayerState()"); }
@@ -2123,7 +2123,7 @@ struct AShooterPlayerState : APlayerState
     void ServerRequestApplyEngramPoints(TSubclassOf<UPrimalItem> forItemEntry) { NativeCall<void, TSubclassOf<UPrimalItem>>(this, "AShooterPlayerState.ServerRequestApplyEngramPoints(TSubclassOf<UPrimalItem>)", forItemEntry); }
     void ServerRequestRemovePlayerIndexFromMyTribe_Implementation(int PlayerIndexInTribe) { NativeCall<void, int>(this, "AShooterPlayerState.ServerRequestRemovePlayerIndexFromMyTribe_Implementation(int)", PlayerIndexInTribe); }
     FString GetEntryDefaultTextOverride(IDataListEntryInterface* entryInterface) { return NativeCall<FString, IDataListEntryInterface*>(this, "AShooterPlayerState.GetEntryDefaultTextOverride(IDataListEntryInterface*)", entryInterface); }
-    FString GetPlayerOrTribeName() { return NativeCall<FString>(this, "AShooterPlayerState.GetPlayerOrTribeName()"); }
+    FString* GetPlayerOrTribeName(FString* result) { return NativeCall<FString*, FString*>(this, "AShooterPlayerState.GetPlayerOrTribeName()", result); }
     void ServerRequestPromoteAllianceMember_Implementation(unsigned int AllianceID, unsigned int MemberID) { NativeCall<void, unsigned int, unsigned int>(this, "AShooterPlayerState.ServerRequestPromoteAllianceMember_Implementation(unsignedint,unsignedint)", AllianceID, MemberID); }
     void ClientNotifyLevelUpAvailable_Implementation() { NativeCall<void>(this, "AShooterPlayerState.ClientNotifyLevelUpAvailable_Implementation()"); }
     void BroadcastDeath_Implementation(AShooterPlayerState* KillerPlayerState, UDamageType* KillerDamageType, AShooterPlayerState* KilledPlayerState) { NativeCall<void, AShooterPlayerState*, UDamageType*, AShooterPlayerState*>(this, "AShooterPlayerState.BroadcastDeath_Implementation(AShooterPlayerState*,UDamageType*,AShooterPlayerState*)", KillerPlayerState, KillerDamageType, KilledPlayerState); }
@@ -2156,7 +2156,7 @@ struct AShooterPlayerState : APlayerState
     void ServerGetAllPlayerNamesAndLocations_Implementation() { NativeCall<void>(this, "AShooterPlayerState.ServerGetAllPlayerNamesAndLocations_Implementation()"); }
     //void ClientGetAllPlayerNamesAndLocations_Implementation(const TArray<FAliveNameAndLocation, TSizedDefaultAllocator<32> >& list) { NativeCall<void, const TArray<FAliveNameAndLocation, TSizedDefaultAllocator<32> >&>(this, "AShooterPlayerState.ClientGetAllPlayerNamesAndLocations_Implementation(TArray<FAliveNameAndLocation,TSizedDefaultAllocator<32>>&)", list); }
     void SetTribeTamingDinoSettings(APrimalDinoCharacter* aDinoChar) { NativeCall<void, APrimalDinoCharacter*>(this, "AShooterPlayerState.SetTribeTamingDinoSettings(APrimalDinoCharacter*)", aDinoChar); }
-    FString GetUniqueNetIdAsString() { return NativeCall<FString>(this, "AShooterPlayerState.GetUniqueNetIdAsString()"); }
+    FString* GetUniqueNetIdAsString(FString* result) { return NativeCall<FString*, FString*>(this, "AShooterPlayerState.GetUniqueNetIdAsString()", result); }
     void ServerRequestLeaveAlliance_Implementation(unsigned int AllianceID) { NativeCall<void, unsigned int>(this, "AShooterPlayerState.ServerRequestLeaveAlliance_Implementation(unsignedint)", AllianceID); }
     UObject* GetObject() { return NativeCall<UObject*>(this, "AShooterPlayerState.GetObject()"); }
     void RegisterPlayerWithSession(bool bWasFromInvite) { NativeCall<void, bool>(this, "AShooterPlayerState.RegisterPlayerWithSession(bool)", bWasFromInvite); }
