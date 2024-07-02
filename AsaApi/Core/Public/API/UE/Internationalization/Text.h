@@ -474,7 +474,10 @@ public:
 	 */
 	static FText AsCultureInvariant( FText Text );
 
-	const FString& ToString() const;
+	const FString& ToString() const
+	{
+		return NativeCall<FString&>(this, "FText.ToString()");
+	}
 
 	/** Deep build of the source string for this FText, climbing the history hierarchy */
 	FString BuildSourceString() const;

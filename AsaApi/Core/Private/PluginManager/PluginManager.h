@@ -90,6 +90,8 @@ namespace API
 
 		void DetectPluginChanges();
 
+		void MovePDB(const std::string& pluginname);
+
 		std::vector<std::shared_ptr<Plugin>> loaded_plugins_;
 
 		// Plugins auto reloading

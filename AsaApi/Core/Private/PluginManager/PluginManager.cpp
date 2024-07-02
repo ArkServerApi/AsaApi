@@ -98,6 +98,8 @@ namespace API
 
 	std::shared_ptr<Plugin>& PluginManager::LoadPlugin(const std::string& plugin_name) noexcept(false)
 	{
+		MovePDB(plugin_name);
+
 		namespace fs = std::filesystem;
 
 		const std::string dir_path = Tools::GetCurrentDir() + "/" + game_api->GetApiName() + "/Plugins/" + plugin_name;
@@ -324,6 +326,26 @@ namespace API
 					continue;
 				}
 			}
+		}
+	}
+
+	void PluginManager::MovePDB(const std::string& pluginname)
+	{
+		try
+		{
+			namespace fs = std::filesystem;
+
+			std::string source = AsaApi::Tools::GetCurrentDir() + "/ArkApi/Plugins/" + pluginname + "/" + pluginname + ".pdb";
+			std::string destination = AsaApi::Tools::GetCurrentDir() + "/" + pluginname + ".pdb";
+
+			if (fs::exists(source))
+			{
+				fs::copy_file(source, destination, fs::copy_options::overwrite_existing);
+				fs::remove(source);
+			}
+		}
+		catch (const std::exception&) {
+			Log::GetLog()->error("Failed to move PDB for '{}'", pluginname);
 		}
 	}
 } // namespace API

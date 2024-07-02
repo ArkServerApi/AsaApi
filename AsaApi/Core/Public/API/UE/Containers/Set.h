@@ -872,7 +872,7 @@ private:
 	template <typename ComparableKey>
 	SizeType FindIndexByHash(uint32 KeyHash, const ComparableKey& Key) const
 	{
-		if (Elements.Num() == 0)
+	if (Elements.Num() == 0)
 		{
 			return INDEX_NONE;
 		}
