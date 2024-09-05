@@ -102,7 +102,6 @@ namespace API
 
 		const std::string dir_path = Tools::GetCurrentDir() + "/" + game_api->GetApiName() + "/Plugins/" + plugin_name;
 		const std::string full_dll_path = dir_path + "/" + plugin_name + ".dll";
-		const std::string full_pdb_path = dir_path + "/" + plugin_name + ".pdb";
 
 		if (!fs::exists(full_dll_path))
 		{
@@ -129,9 +128,6 @@ namespace API
 			throw std::runtime_error(
 				"Failed to load plugin - " + plugin_name + "\nError code: " + std::to_string(GetLastError()));
 		}
-
-		// Move PDB file to the root directory, since when using the loader the PDB symbols do not get picked up on the crashstacks
-		MovePDBFile(full_pdb_path);
 
 		// Calls Plugin_Init (if found) after loading DLL
 		// Note: DllMain callbacks during LoadLibrary is load-locked so we cannot do things like WaitForMultipleObjects on threads
@@ -328,26 +324,6 @@ namespace API
 					continue;
 				}
 			}
-		}
-	}
-
-	void PluginManager::MovePDBFile(const std::string& file_dir)
-	{
-		namespace fs = std::filesystem;
-		const std::string destination = API::Tools::GetCurrentDir();
-
-		try
-		{
-			if (!fs::exists(file_dir))
-			{
-				return;
-			}
-			fs::copy(file_dir, destination, fs::copy_options::overwrite_existing);
-			fs::remove(file_dir);
-		}
-		catch (const std::exception&)
-		{
-			// pass
 		}
 	}
 } // namespace API
