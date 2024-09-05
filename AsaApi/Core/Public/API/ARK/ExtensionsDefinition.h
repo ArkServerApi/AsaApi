@@ -13,7 +13,8 @@ FORCEINLINE FVector ActorExtensions::GetActorForwardVector()
         return RootComponent->ComponentToWorldField().GetUnitAxis(EAxis::X);
     }
 
-    return FVector::ZeroVector;
+    //return FVector::ZeroVector;
+    return FVector(0, 0, 0);
 }
 
 FORCEINLINE bool ActorExtensions::IsA(UClass* SomeBase)

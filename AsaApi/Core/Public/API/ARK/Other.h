@@ -61,6 +61,7 @@ struct UVictoryCore : UVictoryCoreHighest
 
 	  // Functions
 
+	static void GetBestHitInfoFromDamageEvent(const FDamageEvent* damageEvent, FHitResult* OutHitInfo, UE::Math::TVector<double>& OutImpulseDir) { NativeCall<void, const FDamageEvent*, FHitResult*, UE::Math::TVector<double>&>(nullptr, "UVictoryCore.GetBestHitInfoFromDamageEvent(FDamageEvent&,FHitResult&,UE::Math::TVector<double>&)", damageEvent, OutHitInfo, OutImpulseDir); }
 	static void StaticRegisterNativesUVictoryCore() { NativeCall<void>(nullptr, "UVictoryCore.StaticRegisterNativesUVictoryCore()"); }
 	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UVictoryCore.GetPrivateStaticClass()"); }
 	static void DestroyWidget(UWidget* WidgetToDestroy) { NativeCall<void, UWidget*>(nullptr, "UVictoryCore.DestroyWidget(UWidget*)", WidgetToDestroy); }
@@ -285,6 +286,96 @@ struct UVictoryCore : UVictoryCoreHighest
 		else
 			return nullptr;
 	}
+};
+
+struct FTribeRankGroup
+{
+	// Fields
+
+	FString& RankGroupNameField() { return *GetNativePointerField<FString*>(this, "FTribeRankGroup.RankGroupName"); }
+	unsigned char& RankGroupRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.RankGroupRank"); }
+	unsigned char& InventoryRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.InventoryRank"); }
+	unsigned char& StructureActivationRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.StructureActivationRank"); }
+	unsigned char& NewStructureActivationRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.NewStructureActivationRank"); }
+	unsigned char& NewStructureInventoryRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.NewStructureInventoryRank"); }
+	unsigned char& PetOrderRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.PetOrderRank"); }
+	unsigned char& PetRidingRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.PetRidingRank"); }
+	unsigned char& InviteToGroupRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.InviteToGroupRank"); }
+	unsigned char& MaxPromotionGroupRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.MaxPromotionGroupRank"); }
+	unsigned char& MaxDemotionGroupRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.MaxDemotionGroupRank"); }
+	unsigned char& MaxBanishmentGroupRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.MaxBanishmentGroupRank"); }
+	unsigned char& NumInvitesRemainingField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.NumInvitesRemaining"); }
+	unsigned char& TeleportMembersRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.TeleportMembersRank"); }
+	unsigned char& TeleportDinosRankField() { return *GetNativePointerField<unsigned char*>(this, "FTribeRankGroup.TeleportDinosRank"); }
+
+	// Bitfields
+
+	BitFieldValue<bool, unsigned __int32> bPreventStructureDemolishField() { return { this, "FTribeRankGroup.bPreventStructureDemolish" }; }
+	BitFieldValue<bool, unsigned __int32> bPreventStructureAttachmentField() { return { this, "FTribeRankGroup.bPreventStructureAttachment" }; }
+	BitFieldValue<bool, unsigned __int32> bPreventStructureBuildInRangeField() { return { this, "FTribeRankGroup.bPreventStructureBuildInRange" }; }
+	BitFieldValue<bool, unsigned __int32> bPreventUnclaimingField() { return { this, "FTribeRankGroup.bPreventUnclaiming" }; }
+	BitFieldValue<bool, unsigned __int32> bAllowInvitesField() { return { this, "FTribeRankGroup.bAllowInvites" }; }
+	BitFieldValue<bool, unsigned __int32> bLimitInvitesField() { return { this, "FTribeRankGroup.bLimitInvites" }; }
+	BitFieldValue<bool, unsigned __int32> bAllowDemotionsField() { return { this, "FTribeRankGroup.bAllowDemotions" }; }
+	BitFieldValue<bool, unsigned __int32> bAllowPromotionsField() { return { this, "FTribeRankGroup.bAllowPromotions" }; }
+	BitFieldValue<bool, unsigned __int32> bAllowBanishmentsField() { return { this, "FTribeRankGroup.bAllowBanishments" }; }
+	BitFieldValue<bool, unsigned __int32> bPreventWirelessCraftingField() { return { this, "FTribeRankGroup.bPreventWirelessCrafting" }; }
+	BitFieldValue<bool, unsigned __int32> bDefaultRankField() { return { this, "FTribeRankGroup.bDefaultRank" }; }
+	BitFieldValue<bool, unsigned __int32> bAllowPingField() { return { this, "FTribeRankGroup.bAllowPing" }; }
+	BitFieldValue<bool, unsigned __int32> bAllowRallyPointField() { return { this, "FTribeRankGroup.bAllowRallyPoint" }; }
+
+	// Functions
+
+	FTribeRankGroup& operator=(const FTribeRankGroup* __that) { return NativeCall<FTribeRankGroup&, const FTribeRankGroup*>(this, "FTribeRankGroup.operator=(FTribeRankGroup&)", __that); }
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTribeRankGroup.StaticStruct()"); }
+	void ValidateSettings() { NativeCall<void>(this, "FTribeRankGroup.ValidateSettings()"); }
+
+};
+
+struct FTribeWar
+{
+	// Fields
+
+	int& EnemyTribeIDField() { return *GetNativePointerField<int*>(this, "FTribeWar.EnemyTribeID"); }
+	int& StartDayNumberField() { return *GetNativePointerField<int*>(this, "FTribeWar.StartDayNumber"); }
+	int& EndDayNumberField() { return *GetNativePointerField<int*>(this, "FTribeWar.EndDayNumber"); }
+	float& StartDayTimeField() { return *GetNativePointerField<float*>(this, "FTribeWar.StartDayTime"); }
+	float& EndDayTimeField() { return *GetNativePointerField<float*>(this, "FTribeWar.EndDayTime"); }
+	bool& bIsApprovedField() { return *GetNativePointerField<bool*>(this, "FTribeWar.bIsApproved"); }
+	int& InitiatingTribeIDField() { return *GetNativePointerField<int*>(this, "FTribeWar.InitiatingTribeID"); }
+	FString& EnemyTribeNameField() { return *GetNativePointerField<FString*>(this, "FTribeWar.EnemyTribeName"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	bool HasWarStarted(UWorld* ForWorld) { return NativeCall<bool, UWorld*>(this, "FTribeWar.HasWarStarted(UWorld*)", ForWorld); }
+	bool CanBeRejected(UWorld* ForWorld) { return NativeCall<bool, UWorld*>(this, "FTribeWar.CanBeRejected(UWorld*)", ForWorld); }
+	FString GetWarTimeString(int DayNumber, float DayTime) { return NativeCall<FString, int, float>(this, "FTribeWar.GetWarTimeString(int,float)", DayNumber, DayTime); }
+	bool IsCurrentlyActive(UWorld* ForWorld) const { return NativeCall<bool, UWorld*>(this, "FTribeWar.IsCurrentlyActive(UWorld*)", ForWorld); }
+	bool IsTribeWarOn(UWorld* ForWorld) const { return NativeCall<bool, UWorld*>(this, "FTribeWar.IsTribeWarOn(UWorld*)", ForWorld); }
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTribeWar.StaticStruct()"); }
+
+
+};
+struct FTribeAlliance
+{
+	// Fields
+
+	FString& AllianceNameField() { return *GetNativePointerField<FString*>(this, "FTribeAlliance.AllianceName"); }
+	unsigned int& AllianceIDField() { return *GetNativePointerField<unsigned int*>(this, "FTribeAlliance.AllianceID"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& MembersTribeNameField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FTribeAlliance.MembersTribeName"); }
+	TArray<unsigned int, TSizedDefaultAllocator<32> >& MembersTribeIDField() { return *GetNativePointerField<TArray<unsigned int, TSizedDefaultAllocator<32> >*>(this, "FTribeAlliance.MembersTribeID"); }
+	TArray<unsigned int, TSizedDefaultAllocator<32> >& AdminsTribeIDField() { return *GetNativePointerField<TArray<unsigned int, TSizedDefaultAllocator<32> >*>(this, "FTribeAlliance.AdminsTribeID"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTribeAlliance.StaticStruct()"); }
+
 };
 
 struct FCustomTrackedActorInfo
@@ -780,11 +871,50 @@ struct FBPNetExecParams
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FBPNetExecParams.StaticStruct()"); }
 };
 
+//struct FDamageEvent_vtbl
+//{
+//	//void(__fastcall* ~FDamageEvent)(FDamageEvent* _this);
+//	int(__fastcall* GetTypeID)(FDamageEvent* _this);
+//	bool(__fastcall* IsOfType)(FDamageEvent* _this, int);
+//	void(__fastcall* GetBestHitInfo)(FDamageEvent* _this, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*);
+//};
+//
+//struct FDamageEvent
+//{
+//	FDamageEvent_vtbl* vfptr;
+//	float Impulse;
+//	float OriginalDamage;
+//	int InstanceBodyIndex;
+//	int TypeIndex;
+//	TSubclassOf<UDamageType> DamageTypeClass;
+//};
+
+
+//struct FDamageEvent
+//{
+//	// Fields
+//
+//	//FDamageEvent_vtbl& vftableField() { return *GetNativePointerField<FDamageEvent_vtbl*>(this, "FDamageEvent.__vftable"); }
+//	//FDamageEvent_vtbl* vftableField() { return *((FDamageEvent_vtbl**)this); }
+//	float& ImpulseField() { return *GetNativePointerField<float*>(this, "FDamageEvent.Impulse"); }
+//	float& OriginalDamageField() { return *GetNativePointerField<float*>(this, "FDamageEvent.OriginalDamage"); }
+//	int& InstanceBodyIndexField() { return *GetNativePointerField<int*>(this, "FDamageEvent.InstanceBodyIndex"); }
+//	int& TypeIndexField() { return *GetNativePointerField<int*>(this, "FDamageEvent.TypeIndex"); }
+//	TSubclassOf<UDamageType>& DamageTypeClassField() { return *GetNativePointerField<TSubclassOf<UDamageType>*>(this, "FDamageEvent.DamageTypeClass"); }
+//
+//	// Bitfields
+//
+//
+//	// Functions
+//
+//	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDamageEvent.StaticStruct()"); }
+//	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>* OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*>(this, "FDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
+//};
+
 struct FDamageEvent
 {
 	// Fields
 
-	//FDamageEvent_vtbl*& __vftableField() { return *GetNativePointerField<FDamageEvent_vtbl**>(this, "FDamageEvent.__vftable"); }
 	float& ImpulseField() { return *GetNativePointerField<float*>(this, "FDamageEvent.Impulse"); }
 	float& OriginalDamageField() { return *GetNativePointerField<float*>(this, "FDamageEvent.OriginalDamage"); }
 	int& InstanceBodyIndexField() { return *GetNativePointerField<int*>(this, "FDamageEvent.InstanceBodyIndex"); }
@@ -797,7 +927,10 @@ struct FDamageEvent
 	// Functions
 
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDamageEvent.StaticStruct()"); }
-	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>* OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*>(this, "FDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
+	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>& OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>&>(this, "FDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
+	int GetTypeID()const { return NativeCall<int>(this, "FDamageEvent.GetTypeID()"); }
+	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FDamageEvent.IsOfType(int)", InID); }
+
 };
 
 struct FDamageHarvestingEntry
@@ -1476,6 +1609,31 @@ struct FActorInstanceHandle
 	int InstanceIndex;
 	unsigned int InstanceUID;
 };
+
+//struct FHitResult
+//{
+//	int FaceIndex;
+//	float Time;
+//	float Distance;
+//	UE::Math::TVector<double> Location;
+//	UE::Math::TVector<double> ImpactPoint;
+//	UE::Math::TVector<double> Normal;
+//	UE::Math::TVector<double> ImpactNormal;
+//	UE::Math::TVector<double> TraceStart;
+//	UE::Math::TVector<double> TraceEnd;
+//	float PenetrationDepth;
+//	int MyItem;
+//	int Item;
+//	unsigned __int8 ElementIndex;
+//	unsigned __int8 bBlockingHit : 1;
+//	unsigned __int8 bStartPenetrating : 1;
+//	unsigned __int32 bVolatileCollision : 1;
+//	TWeakObjectPtr<UPhysicalMaterial> PhysMaterial;
+//	FActorInstanceHandle HitObjectHandle;
+//	TWeakObjectPtr<UPrimitiveComponent> Component;
+//	FName BoneName;
+//	FName MyBoneName;
+//};
 
 struct FHitResult
 {
@@ -2605,6 +2763,44 @@ struct FCharacterAndControllerPair
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCharacterAndControllerPair.StaticStruct()"); }
 };
 
+struct FRadialDamageParams
+{
+	// Fields
+
+	float& BaseDamageField() { return *GetNativePointerField<float*>(this, "FRadialDamageParams.BaseDamage"); }
+	float& MinimumDamageField() { return *GetNativePointerField<float*>(this, "FRadialDamageParams.MinimumDamage"); }
+	float& InnerRadiusField() { return *GetNativePointerField<float*>(this, "FRadialDamageParams.InnerRadius"); }
+	float& OuterRadiusField() { return *GetNativePointerField<float*>(this, "FRadialDamageParams.OuterRadius"); }
+	float& DamageFalloffField() { return *GetNativePointerField<float*>(this, "FRadialDamageParams.DamageFalloff"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FRadialDamageParams.StaticStruct()"); }
+};
+
+struct FRadialDamageEvent : FDamageEvent
+{
+	// Fields
+
+	FRadialDamageParams& ParamsField() { return *GetNativePointerField<FRadialDamageParams*>(this, "FRadialDamageEvent.Params"); }
+	UE::Math::TVector<double>& OriginField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FRadialDamageEvent.Origin"); }
+	TArray<FHitResult, TSizedDefaultAllocator<32> >& ComponentHitsField() { return *GetNativePointerField<TArray<FHitResult, TSizedDefaultAllocator<32> >*>(this, "FRadialDamageEvent.ComponentHits"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>& OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>&>(this, "FRadialDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
+	int GetTypeID()const { return NativeCall<int>(this, "FRadialDamageEvent.GetTypeID()"); }
+	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FRadialDamageEvent.IsOfType(int)", InID); }
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FRadialDamageEvent.StaticStruct()"); }
+
+};
+
 struct FPointDamageEvent : FDamageEvent
 {
 	// Fields
@@ -2618,13 +2814,10 @@ struct FPointDamageEvent : FDamageEvent
 
 	// Functions
 
-	//void ~FPointDamageEvent() { NativeCall<void>(this, "FPointDamageEvent.~FPointDamageEvent()"); }
-	//void FPointDamageEvent(const FPointDamageEvent* __that) { NativeCall<void, const FPointDamageEvent*>(this, "FPointDamageEvent.FPointDamageEvent(FPointDamageEvent&)", __that); }
-	bool IsOfType(int InID) { return NativeCall<bool, int>(this, "FPointDamageEvent.IsOfType(int)", InID); }
-	//void FPointDamageEvent() { NativeCall<void>(this, "FPointDamageEvent.FPointDamageEvent()"); }
-	//void FPointDamageEvent(float InDamage, const FHitResult* InHitInfo, const UE::Math::TVector<double>* InShotDirection, TSubclassOf<UDamageType> InDamageTypeClass) { NativeCall<void, float, const FHitResult*, const UE::Math::TVector<double>*, TSubclassOf<UDamageType>>(this, "FPointDamageEvent.FPointDamageEvent(float,FHitResult&,UE::Math::TVector<double>&,TSubclassOf<UDamageType>)", InDamage, InHitInfo, InShotDirection, InDamageTypeClass); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPointDamageEvent.StaticStruct()"); }
 	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>* OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*>(this, "FPointDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
+	int GetTypeID()const { return NativeCall<int>(this, "FPointDamageEvent.GetTypeID()"); }
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPointDamageEvent.StaticStruct()"); }
+	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FPointDamageEvent.IsOfType(int)", InID); }
 };
 
 struct FTopLevelAssetPath
@@ -2660,5 +2853,236 @@ struct FUserCosmeticInfo
 	// Functions
 
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FUserCosmeticInfo.StaticStruct()"); }
+};
+
+struct IMemoryReadStream
+{
+	// Fields
+
+	FThreadSafeCounter& NumRefsField() { return *GetNativePointerField<FThreadSafeCounter*>(this, "IMemoryReadStream.NumRefs"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	void EnsureReadNonBlocking() { NativeCall<void>(this, "IMemoryReadStream.EnsureReadNonBlocking()"); }
+	void CopyTo(void* Buffer, long InOffset, long InSize) { NativeCall<void, void*, long, long>(this, "IMemoryReadStream.CopyTo(void*,__int64,__int64)", Buffer, InOffset, InSize); }
+
+};
+
+struct FCompression
+{
+	// Fields
+
+
+	// Bitfields
+
+
+	// Functions
+
+	static bool UncompressMemoryStream(FName FormatName, void* UncompressedBuffer, int UncompressedSize, IMemoryReadStream* Stream, long StreamOffset, int CompressedSize, ECompressionFlags Flags, int CompressionData) { return NativeCall<bool, FName, void*, int, IMemoryReadStream*, long, int, ECompressionFlags, int>(nullptr, "FCompression.UncompressMemoryStream(FName,void*,int,IMemoryReadStream*,__int64,int,ECompressionFlags,int)", FormatName, UncompressedBuffer, UncompressedSize, Stream, StreamOffset, CompressedSize, Flags, CompressionData); }
+	static bool CompressMemory(FName FormatName, void* CompressedBuffer, int& CompressedSize, const void* UncompressedBuffer, int UncompressedSize, ECompressionFlags Flags, int CompressionData) { return NativeCall<bool, FName, void*, int&, const void*, int, ECompressionFlags, int>(nullptr, "FCompression.CompressMemory(FName,void*,int&,void*,int,ECompressionFlags,int)", FormatName, CompressedBuffer, CompressedSize, UncompressedBuffer, UncompressedSize, Flags, CompressionData); }
+	static FName GetCompressionFormatFromDeprecatedFlags(ECompressionFlags Flags) { return NativeCall<FName, ECompressionFlags>(nullptr, "FCompression.GetCompressionFormatFromDeprecatedFlags(ECompressionFlags)", Flags); }
+	static bool UncompressMemory(FName FormatName, void* UncompressedBuffer, int UncompressedSize, const void* CompressedBuffer, int CompressedSize, ECompressionFlags Flags, int CompressionData) { return NativeCall<bool, FName, void*, int, const void*, int, ECompressionFlags, int>(nullptr, "FCompression.UncompressMemory(FName,void*,int,void*,int,ECompressionFlags,int)", FormatName, UncompressedBuffer, UncompressedSize, CompressedBuffer, CompressedSize, Flags, CompressionData); }
+	static int CompressMemoryBound(FName FormatName, int UncompressedSize, ECompressionFlags Flags, int CompressionData) { return NativeCall<int, FName, int, ECompressionFlags, int>(nullptr, "FCompression.CompressMemoryBound(FName,int,ECompressionFlags,int)", FormatName, UncompressedSize, Flags, CompressionData); }
+	//static ICompressionFormat* GetCompressionFormat(FName FormatName, bool bErrorOnFailure) { return NativeCall<ICompressionFormat*, FName, bool>(nullptr, "FCompression.GetCompressionFormat(FName,bool)", FormatName, bErrorOnFailure); }
+
+};
+
+struct FOverlappedFoliageElement
+{
+	// Fields
+
+	AActor*& HarvestActorField() { return *GetNativePointerField<AActor**>(this, "FOverlappedFoliageElement.HarvestActor"); }
+	UInstancedStaticMeshComponent*& InstancedStaticMeshComponentField() { return *GetNativePointerField<UInstancedStaticMeshComponent**>(this, "FOverlappedFoliageElement.InstancedStaticMeshComponent"); }
+	UPrimalHarvestingComponent*& HarvestingComponentField() { return *GetNativePointerField<UPrimalHarvestingComponent**>(this, "FOverlappedFoliageElement.HarvestingComponent"); }
+	UE::Math::TVector<double>& HarvestLocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FOverlappedFoliageElement.HarvestLocation"); }
+	int& HitBodyIndexField() { return *GetNativePointerField<int*>(this, "FOverlappedFoliageElement.HitBodyIndex"); }
+	float& MaxHarvestHealthField() { return *GetNativePointerField<float*>(this, "FOverlappedFoliageElement.MaxHarvestHealth"); }
+	float& CurrentHarvestHealthField() { return *GetNativePointerField<float*>(this, "FOverlappedFoliageElement.CurrentHarvestHealth"); }
+
+	// Bitfields
+
+	BitFieldValue<bool, unsigned __int32> bIsUnharvestableField() { return { this, "FOverlappedFoliageElement.bIsUnharvestable" }; }
+	BitFieldValue<bool, unsigned __int32> bIsVisibleAndActiveField() { return { this, "FOverlappedFoliageElement.bIsVisibleAndActive" }; }
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FOverlappedFoliageElement.StaticStruct()"); }
+
+};
+
+struct FPlacementData
+{
+	// Fields
+
+	UE::Math::TVector<double>& AdjustedLocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FPlacementData.AdjustedLocation"); }
+	UE::Math::TRotator<double>& AdjustedRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "FPlacementData.AdjustedRotation"); }
+	bool& bSnappedField() { return *GetNativePointerField<bool*>(this, "FPlacementData.bSnapped"); }
+	bool& bDisableEncroachmentCheckField() { return *GetNativePointerField<bool*>(this, "FPlacementData.bDisableEncroachmentCheck"); }
+	int& MySnapToIndexField() { return *GetNativePointerField<int*>(this, "FPlacementData.MySnapToIndex"); }
+	int& TheirSnapToIndexField() { return *GetNativePointerField<int*>(this, "FPlacementData.TheirSnapToIndex"); }
+	AActor*& FloorHitActorField() { return *GetNativePointerField<AActor**>(this, "FPlacementData.FloorHitActor"); }
+	APrimalStructure*& ParentStructureField() { return *GetNativePointerField<APrimalStructure**>(this, "FPlacementData.ParentStructure"); }
+	APrimalStructure*& ForcePlacedOnFloorParentStructureField() { return *GetNativePointerField<APrimalStructure**>(this, "FPlacementData.ForcePlacedOnFloorParentStructure"); }
+	APrimalStructure*& ReplacesStructureField() { return *GetNativePointerField<APrimalStructure**>(this, "FPlacementData.ReplacesStructure"); }
+	APawn*& AttachToPawnField() { return *GetNativePointerField<APawn**>(this, "FPlacementData.AttachToPawn"); }
+	FName& AttachToBoneField() { return *GetNativePointerField<FName*>(this, "FPlacementData.AttachToBone"); }
+	APrimalDinoCharacter*& DinoCharacterField() { return *GetNativePointerField<APrimalDinoCharacter**>(this, "FPlacementData.DinoCharacter"); }
+	float& HeightOffsetField() { return *GetNativePointerField<float*>(this, "FPlacementData.HeightOffset"); }
+	float& YawRotOffsetField() { return *GetNativePointerField<float*>(this, "FPlacementData.YawRotOffset"); }
+	int& PlacingAlignmentModeField() { return *GetNativePointerField<int*>(this, "FPlacementData.PlacingAlignmentMode"); }
+	bool& bIgnoreSnappingIfOptionalField() { return *GetNativePointerField<bool*>(this, "FPlacementData.bIgnoreSnappingIfOptional"); }
+	bool& bIsChoosingRotationField() { return *GetNativePointerField<bool*>(this, "FPlacementData.bIsChoosingRotation"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPlacementData.StaticStruct()"); }
+
+};
+
+struct FPaths
+{
+	// Fields
+
+	FWindowsCriticalSection& GameProjectFilePathLockField() { return *GetNativePointerField<FWindowsCriticalSection*>(this, "FPaths.GameProjectFilePathLock"); }
+	FString& GameProjectFilePathField() { return *GetNativePointerField<FString*>(this, "FPaths.GameProjectFilePath"); }
+	FString& UserDirArgField() { return *GetNativePointerField<FString*>(this, "FPaths.UserDirArg"); }
+	FString& GameSavedDirField() { return *GetNativePointerField<FString*>(this, "FPaths.GameSavedDir"); }
+	FString& EngineSavedDirField() { return *GetNativePointerField<FString*>(this, "FPaths.EngineSavedDir"); }
+	FString& ShaderDirField() { return *GetNativePointerField<FString*>(this, "FPaths.ShaderDir"); }
+	FString& UserFolderField() { return *GetNativePointerField<FString*>(this, "FPaths.UserFolder"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& EngineLocalizationPathsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.EngineLocalizationPaths"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& EditorLocalizationPathsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.EditorLocalizationPaths"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& CookedEditorLocalizationPathsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.CookedEditorLocalizationPaths"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& PropertyNameLocalizationPathsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.PropertyNameLocalizationPaths"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& ToolTipLocalizationPathsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.ToolTipLocalizationPaths"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& GameLocalizationPathsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.GameLocalizationPaths"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& RestrictedFolderNamesField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.RestrictedFolderNames"); }
+	TArray<FString, TSizedDefaultAllocator<32> >& RestrictedSlashedFolderNamesField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FPaths.RestrictedSlashedFolderNames"); }
+	FString& RelativePathToRootField() { return *GetNativePointerField<FString*>(this, "FPaths.RelativePathToRoot"); }
+	bool& bUserDirArgInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bUserDirArgInitialized"); }
+	bool& bGameSavedDirInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bGameSavedDirInitialized"); }
+	bool& bEngineSavedDirInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bEngineSavedDirInitialized"); }
+	bool& bShaderDirInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bShaderDirInitialized"); }
+	bool& bUserFolderInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bUserFolderInitialized"); }
+	bool& bEngineLocalizationPathsInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bEngineLocalizationPathsInitialized"); }
+	bool& bEditorLocalizationPathsInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bEditorLocalizationPathsInitialized"); }
+	bool& bCookedEditorLocalizationPathsInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bCookedEditorLocalizationPathsInitialized"); }
+	bool& bPropertyNameLocalizationPathsInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bPropertyNameLocalizationPathsInitialized"); }
+	bool& bToolTipLocalizationPathsInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bToolTipLocalizationPathsInitialized"); }
+	bool& bGameLocalizationPathsInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bGameLocalizationPathsInitialized"); }
+	bool& bRestrictedFolderNamesInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bRestrictedFolderNamesInitialized"); }
+	bool& bRestrictedSlashedFolderNamesInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bRestrictedSlashedFolderNamesInitialized"); }
+	bool& bRelativePathToRootInitializedField() { return *GetNativePointerField<bool*>(this, "FPaths.bRelativePathToRootInitialized"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static FString EngineVersionAgnosticUserDir() { return NativeCall<FString>(nullptr, "FPaths.EngineVersionAgnosticUserDir()"); }
+	static bool CollapseRelativeDirectories(FString& InPath) { return NativeCall<bool, FString&>(nullptr, "FPaths.CollapseRelativeDirectories(FString&)", InPath); }
+	static FString ProjectLogDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectLogDir()"); }
+	static FString EnterpriseFeaturePackDir() { return NativeCall<FString>(nullptr, "FPaths.EnterpriseFeaturePackDir()"); }
+	static TArray<FString, TSizedDefaultAllocator<32> > const& GetEditorLocalizationPaths() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetEditorLocalizationPaths()"); }
+	static FString RemoveDuplicateSlashes(const FString& InPath) { return NativeCall<FString, const FString&>(nullptr, "FPaths.RemoveDuplicateSlashes(FString&)", InPath); }
+	static void RemoveDuplicateSlashes(FString& InPath) { NativeCall<void, FString&>(nullptr, "FPaths.RemoveDuplicateSlashes(FString&)", InPath); }
+	static FString SandboxesDir() { return NativeCall<FString>(nullptr, "FPaths.SandboxesDir()"); }
+	static bool HasProjectPersistentDownloadDir() { return NativeCall<bool>(nullptr, "FPaths.HasProjectPersistentDownloadDir()"); }
+	static FString GameAgnosticSavedDir() { return NativeCall<FString>(nullptr, "FPaths.GameAgnosticSavedDir()"); }
+	static FString EnginePluginsDir() { return NativeCall<FString>(nullptr, "FPaths.EnginePluginsDir()"); }
+	static bool IsRestrictedPath(const FString& InPath) { return NativeCall<bool, const FString&>(nullptr, "FPaths.IsRestrictedPath(FString&)", InPath); }
+	static FString EngineContentDir() { return NativeCall<FString>(nullptr, "FPaths.EngineContentDir()"); }
+	static FString EngineUserDir() { return NativeCall<FString>(nullptr, "FPaths.EngineUserDir()"); }
+	static FString ShaderWorkingDir() { return NativeCall<FString>(nullptr, "FPaths.ShaderWorkingDir()"); }
+	static void Split(const FString& InPath, FString& PathPart, FString& FilenamePart, FString& ExtensionPart) { NativeCall<void, const FString&, FString&, FString&, FString&>(nullptr, "FPaths.Split(FString&,FString&,FString&,FString&)", InPath, PathPart, FilenamePart, ExtensionPart); }
+	static FString ProjectIntermediateDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectIntermediateDir()"); }
+	static FString EnginePlatformExtensionsDir() { return NativeCall<FString>(nullptr, "FPaths.EnginePlatformExtensionsDir()"); }
+	static TArray<FString, TSizedDefaultAllocator<32> > const& GetToolTipLocalizationPaths() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetToolTipLocalizationPaths()"); }
+	static FString GameUserDeveloperDir() { return NativeCall<FString>(nullptr, "FPaths.GameUserDeveloperDir()"); }
+	static FString EnterpriseDir() { return NativeCall<FString>(nullptr, "FPaths.EnterpriseDir()"); }
+	static FString const& CustomShaderDirArgument() { return NativeCall<FString const&>(nullptr, "FPaths.CustomShaderDirArgument()"); }
+	static TArray<FString, TSizedDefaultAllocator<32> > GetExtensionDirs(const FString& BaseDir, const FString& SubDir) { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> >, const FString&, const FString&>(nullptr, "FPaths.GetExtensionDirs(FString&,FString&)", BaseDir, SubDir); }
+	static FString GetExtension(const FString& InPath, bool bIncludeDot) { return NativeCall<FString, const FString&, bool>(nullptr, "FPaths.GetExtension(FString&,bool)", InPath, bIncludeDot); }
+	static FString SetExtension(const FString& InPath, const FString& InNewExtension) { return NativeCall<FString, const FString&, const FString&>(nullptr, "FPaths.SetExtension(FString&,FString&)", InPath, InNewExtension); }
+	static FString EngineIntermediateDir() { return NativeCall<FString>(nullptr, "FPaths.EngineIntermediateDir()"); }
+	static FString GetBaseFilename(FString* InPath, bool bRemovePath) { return NativeCall<FString, FString*, bool>(nullptr, "FPaths.GetBaseFilename(FString&&,bool)", InPath, bRemovePath); }
+	static FString GetBaseFilename(const FString& InPath, bool bRemovePath) { return NativeCall<FString, const FString&, bool>(nullptr, "FPaths.GetBaseFilename(FString&,bool)", InPath, bRemovePath); }
+	static FString GetCleanFilename(FString* InPath) { return NativeCall<FString, FString*>(nullptr, "FPaths.GetCleanFilename(FString&&)", InPath); }
+	static FString GetCleanFilename(const FString& InPath) { return NativeCall<FString, const FString&>(nullptr, "FPaths.GetCleanFilename(FString&)", InPath); }
+	static FString ConvertFromSandboxPath(const FString& InPath, const wchar_t* InSandboxName) { return NativeCall<FString, const FString&, const wchar_t*>(nullptr, "FPaths.ConvertFromSandboxPath(FString&,wchar_t*)", InPath, InSandboxName); }
+	static FString GeneratedConfigDir() { return NativeCall<FString>(nullptr, "FPaths.GeneratedConfigDir()"); }
+	static FString ProjectUserDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectUserDir()"); }
+	static FString MakeValidFileName(const FString& InString, wchar_t InReplacementChar) { return NativeCall<FString, const FString&, wchar_t>(nullptr, "FPaths.MakeValidFileName(FString&,wchar_t)", InString, InReplacementChar); }
+	static void CombineInternal(FString& OutPath, const TStringView<wchar_t>* Paths, int NumPaths) { NativeCall<void, FString&, const TStringView<wchar_t>*, int>(nullptr, "FPaths.CombineInternal(FString&,TStringView<wchar_t>*,int)", OutPath, Paths, NumPaths); }
+	static FString SourceConfigDir() { return NativeCall<FString>(nullptr, "FPaths.SourceConfigDir()"); }
+	static bool FileExists(const FString& InPath) { return NativeCall<bool, const FString&>(nullptr, "FPaths.FileExists(FString&)", InPath); }
+	static FString GetInvalidFileSystemChars() { return NativeCall<FString>(nullptr, "FPaths.GetInvalidFileSystemChars()"); }
+	static FString AutomationLogDir() { return NativeCall<FString>(nullptr, "FPaths.AutomationLogDir()"); }
+	static FString GameDevelopersDir() { return NativeCall<FString>(nullptr, "FPaths.GameDevelopersDir()"); }
+	static FString ScreenShotDir() { return NativeCall<FString>(nullptr, "FPaths.ScreenShotDir()"); }
+	static FString CreateStandardFilename(const FString& InPath) { return NativeCall<FString, const FString&>(nullptr, "FPaths.CreateStandardFilename(FString&)", InPath); }
+	static bool IsProjectFilePathSet() { return NativeCall<bool>(nullptr, "FPaths.IsProjectFilePathSet()"); }
+	static void NormalizeDirectoryName(FString& InPath) { NativeCall<void, FString&>(nullptr, "FPaths.NormalizeDirectoryName(FString&)", InPath); }
+	static FString EngineSavedDir() { return NativeCall<FString>(nullptr, "FPaths.EngineSavedDir()"); }
+	static bool DirectoryExists(const FString& InPath) { return NativeCall<bool, const FString&>(nullptr, "FPaths.DirectoryExists(FString&)", InPath); }
+	static FString ProjectPersistentDownloadDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectPersistentDownloadDir()"); }
+	static bool MakePathRelativeTo(FString& InPath, const wchar_t* InRelativeTo) { return NativeCall<bool, FString&, const wchar_t*>(nullptr, "FPaths.MakePathRelativeTo(FString&,wchar_t*)", InPath, InRelativeTo); }
+	static FString EngineDir() { return NativeCall<FString>(nullptr, "FPaths.EngineDir()"); }
+	static FString AutomationTransientDir() { return NativeCall<FString>(nullptr, "FPaths.AutomationTransientDir()"); }
+	static FString ChangeExtension(const FString& InPath, const FString& InNewExtension) { return NativeCall<FString, const FString&, const FString&>(nullptr, "FPaths.ChangeExtension(FString&,FString&)", InPath, InNewExtension); }
+	static bool ShouldSaveToUserDir() { return NativeCall<bool>(nullptr, "FPaths.ShouldSaveToUserDir()"); }
+	static bool IsRelative(const FString& InPath) { return NativeCall<bool, const FString&>(nullptr, "FPaths.IsRelative(FString&)", InPath); }
+	static FString GetPath(FString* InPath) { return NativeCall<FString, FString*>(nullptr, "FPaths.GetPath(FString&&)", InPath); }
+	static FString GetPath(const FString& InPath) { return NativeCall<FString, const FString&>(nullptr, "FPaths.GetPath(FString&)", InPath); }
+	static FString ProjectConfigDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectConfigDir()"); }
+	static FString const& CustomUserDirArgument() { return NativeCall<FString const&>(nullptr, "FPaths.CustomUserDirArgument()"); }
+	static FString RootDir() { return NativeCall<FString>(nullptr, "FPaths.RootDir()"); }
+	static FString BugItDir() { return NativeCall<FString>(nullptr, "FPaths.BugItDir()"); }
+	static FString ProjectPlatformExtensionsDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectPlatformExtensionsDir()"); }
+	static void MakeStandardFilename(FString& InPath) { NativeCall<void, FString&>(nullptr, "FPaths.MakeStandardFilename(FString&)", InPath); }
+	static FString CreateTempFilename(const wchar_t* Path, const wchar_t* Prefix, const wchar_t* Extension) { return NativeCall<FString, const wchar_t*, const wchar_t*, const wchar_t*>(nullptr, "FPaths.CreateTempFilename(wchar_t*,wchar_t*,wchar_t*)", Path, Prefix, Extension); }
+	static TArray<FString, TSizedDefaultAllocator<32> > const& GetGameLocalizationPaths() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetGameLocalizationPaths()"); }
+	static FString const& ProjectSavedDir() { return NativeCall<FString const&>(nullptr, "FPaths.ProjectSavedDir()"); }
+	static FString ConvertToSandboxPath(const FString& InPath, const wchar_t* InSandboxName) { return NativeCall<FString, const FString&, const wchar_t*>(nullptr, "FPaths.ConvertToSandboxPath(FString&,wchar_t*)", InPath, InSandboxName); }
+	static bool IsUnderDirectory(const FString& InPath, const FString& InDirectory) { return NativeCall<bool, const FString&, const FString&>(nullptr, "FPaths.IsUnderDirectory(FString&,FString&)", InPath, InDirectory); }
+	static FString EngineSourceDir() { return NativeCall<FString>(nullptr, "FPaths.EngineSourceDir()"); }
+	static FString ProfilingDir() { return NativeCall<FString>(nullptr, "FPaths.ProfilingDir()"); }
+	static bool IsSamePath(const FString& PathA, const FString& PathB) { return NativeCall<bool, const FString&, const FString&>(nullptr, "FPaths.IsSamePath(FString&,FString&)", PathA, PathB); }
+	static TArray<FString, TSizedDefaultAllocator<32> > const& GetEngineLocalizationPaths() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetEngineLocalizationPaths()"); }
+	static FString ProjectDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectDir()"); }
+	static FString ProjectPluginsDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectPluginsDir()"); }
+	static FString const& GetRelativePathToRoot() { return NativeCall<FString const&>(nullptr, "FPaths.GetRelativePathToRoot()"); }
+	static FString GetPlatformLocalizationFolderName() { return NativeCall<FString>(nullptr, "FPaths.GetPlatformLocalizationFolderName()"); }
+	static TArray<FString, TSizedDefaultAllocator<32> > const& GetRestrictedFolderNames() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetRestrictedFolderNames()"); }
+	static FString DiffDir() { return NativeCall<FString>(nullptr, "FPaths.DiffDir()"); }
+	static FString GameSourceDir() { return NativeCall<FString>(nullptr, "FPaths.GameSourceDir()"); }
+	static FString EnterprisePluginsDir() { return NativeCall<FString>(nullptr, "FPaths.EnterprisePluginsDir()"); }
+	static TArray<FString, TSizedDefaultAllocator<32> > const& GetPropertyNameLocalizationPaths() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetPropertyNameLocalizationPaths()"); }
+	static void NormalizeFilename(FString& InPath) { NativeCall<void, FString&>(nullptr, "FPaths.NormalizeFilename(FString&)", InPath); }
+	static FString ProjectContentDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectContentDir()"); }
+	static void SetProjectFilePath(const FString& NewGameProjectFilePath) { NativeCall<void, const FString&>(nullptr, "FPaths.SetProjectFilePath(FString&)", NewGameProjectFilePath); }
+	static FString GetProjectFilePath() { return NativeCall<FString>(nullptr, "FPaths.GetProjectFilePath()"); }
+	static FString FeaturePackDir() { return NativeCall<FString>(nullptr, "FPaths.FeaturePackDir()"); }
+	static bool IsDrive(const FString& InPath) { return NativeCall<bool, const FString&>(nullptr, "FPaths.IsDrive(FString&)", InPath); }
+	static FString CloudDir() { return NativeCall<FString>(nullptr, "FPaths.CloudDir()"); }
+	static FString LaunchDir() { return NativeCall<FString>(nullptr, "FPaths.LaunchDir()"); }
+	static FString EngineConfigDir() { return NativeCall<FString>(nullptr, "FPaths.EngineConfigDir()"); }
+	static bool ValidatePath(const FString& InPath, FText* OutReason) { return NativeCall<bool, const FString&, FText*>(nullptr, "FPaths.ValidatePath(FString&,FText*)", InPath, OutReason); }
+	static FString AudioCaptureDir() { return NativeCall<FString>(nullptr, "FPaths.AudioCaptureDir()"); }
+	static FString VideoCaptureDir() { return NativeCall<FString>(nullptr, "FPaths.VideoCaptureDir()"); }
+	static void MakePlatformFilename(FString& InPath) { NativeCall<void, FString&>(nullptr, "FPaths.MakePlatformFilename(FString&)", InPath); }
+	static FString ConvertRelativePathToFull(FString* BasePath, FString* InPath) { return NativeCall<FString, FString*, FString*>(nullptr, "FPaths.ConvertRelativePathToFull(FString&&,FString&&)", BasePath, InPath); }
+	static FString ConvertRelativePathToFull(FString* InPath) { return NativeCall<FString, FString*>(nullptr, "FPaths.ConvertRelativePathToFull(FString&&)", InPath); }
+	static FString ConvertRelativePathToFull(FString* BasePath, const FString& InPath) { return NativeCall<FString, FString*, const FString&>(nullptr, "FPaths.ConvertRelativePathToFull(FString&&,FString&)", BasePath, InPath); }
+	static FString ConvertRelativePathToFull(const FString& BasePath, const FString& InPath) { return NativeCall<FString, const FString&, const FString&>(nullptr, "FPaths.ConvertRelativePathToFull(FString&,FString&)", BasePath, InPath); }
+	static FString ConvertRelativePathToFull(const FString& InPath) { return NativeCall<FString, const FString&>(nullptr, "FPaths.ConvertRelativePathToFull(FString&)", InPath); }
+	static FString ProjectModsDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectModsDir()"); }
+	static FString AutomationDir() { return NativeCall<FString>(nullptr, "FPaths.AutomationDir()"); }
 
 };

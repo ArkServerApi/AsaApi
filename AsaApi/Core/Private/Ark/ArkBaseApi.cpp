@@ -60,6 +60,8 @@ namespace API
 				fs::create_directory(fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache"));
 
 			const fs::path apiDLL = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/AsaApi.dll");
+			const fs::path apiPDB = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/AsaApi.pdb");
+			const fs::path apiPDBDest = fs::path(exe_path).append("AsaApi.pdb");
 			const fs::path pdbIgnoreFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/pdbignores.txt");
 			const fs::path keyCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_key.cache");
 			const fs::path offsetsCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_offsets.cache");
@@ -70,6 +72,12 @@ namespace API
 			std::string storedHash = Cache::readFromFile(keyCacheFile);
 			std::unordered_set<std::string> pdbIgnoreSet = Cache::readFileIntoSet(pdbIgnoreFile);
 			const std::string defaultCDNUrl = "https://cdn.pelayori.com/cache/";
+
+			if (fs::exists(apiPDB))
+			{
+				fs::copy_file(apiPDB, apiPDBDest, fs::copy_options::overwrite_existing);
+				fs::remove(apiPDB);
+			}
 
 			if (autoCacheConfig.value("Enable", true)
 				&& autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) != ""
