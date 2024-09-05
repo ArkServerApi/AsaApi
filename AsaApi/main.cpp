@@ -74,7 +74,7 @@ void DeleteOldLogFiles()
 	file >> config;
 	file.close();
 
-	if (config.value("DeleteOldLogs", nlohmann::json::object()).value("Enabled", false) == false)
+	if (config.value("settings", nlohmann::json::object()).value("DeleteOldLogs", nlohmann::json::object()).value("Enable", false) == false)
 		return;
 
 	const std::string folderPath = API::Tools::GetCurrentDir() + "\\logs";
