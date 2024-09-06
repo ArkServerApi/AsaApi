@@ -150,6 +150,12 @@ namespace API
 	}
 
 	bool Requests::CreateGetRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		std::vector<std::string> headers)
+	{
+		return CreateGetRequest(url, callback, headers, 0L, 0L, 0L);
+	}
+
+	bool Requests::CreateGetRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
 		std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
 		std::thread([this, url, callback, headers, connectionTimeout, receiveTimeout, sendTimeout]
@@ -181,6 +187,12 @@ namespace API
 		).detach();
 
 		return true;
+	}
+
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		const std::string& post_data, std::vector<std::string> headers)
+	{
+		return CreatePostRequest(url, callback, post_data, headers, 0L, 0L, 0L);
 	}
 
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
@@ -222,8 +234,14 @@ namespace API
 		return true;
 	}
 
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback, const std::string& post_data, const std::string& content_type, std::vector<std::string> headers)
+	{
+		return CreatePostRequest(url, callback, post_data, content_type, headers, 0L, 0L, 0L);
+	}
+
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers,
+		long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
 		std::thread([this, url, callback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout]
 			{
@@ -316,6 +334,19 @@ namespace API
 		return true;
 	}
 
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		const std::vector<std::string>& post_ids,
+		const std::vector<std::string>& post_data, std::vector<std::string> headers)
+	{
+		return CreatePostRequest(url, callback, post_ids, post_data, headers, 0L, 0L, 0L);
+	}
+
+	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		const std::string& patch_data, std::vector<std::string> headers)
+	{
+		return CreatePatchRequest(url, callback, patch_data, headers, 0L, 0L, 0L);
+	}
+
 	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
 		const std::string& patch_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
@@ -353,6 +384,12 @@ namespace API
 		).detach();
 
 		return true;
+	}
+
+	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		const std::string& patch_data, const std::string& content_type, std::vector<std::string> headers)
+	{
+		return CreatePatchRequest(url, callback, patch_data, content_type, headers, 0L, 0L, 0L);
 	}
 
 	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
@@ -395,6 +432,12 @@ namespace API
 	}
 
 	bool Requests::CreateDeleteRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
+		std::vector<std::string> headers)
+	{
+		return CreateDeleteRequest(url, callback, headers, 0L, 0L, 0L);
+	}
+
+	bool Requests::CreateDeleteRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
 		std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
 		std::thread([this, url, callback, headers, connectionTimeout, receiveTimeout, sendTimeout]
@@ -426,6 +469,12 @@ namespace API
 		).detach();
 
 		return true;
+	}
+
+	Requests::RequestSyncData Requests::CreateGetRequestSync(const std::string& url,
+		std::vector<std::string> headers)
+	{
+		return CreateGetRequestSync(url, headers, 0L, 0L, 0L);
 	}
 
 	Requests::RequestSyncData Requests::CreateGetRequestSync(const std::string& url,
