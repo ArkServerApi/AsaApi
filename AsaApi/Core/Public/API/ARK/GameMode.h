@@ -1223,6 +1223,43 @@ struct UPrimalGlobals : UObject
 	static UClass* AttemptSlowClassDLO(const FString* ClassName) { return NativeCall<UClass*, const FString*>(nullptr, "UPrimalGlobals.AttemptSlowClassDLO(FString&)", ClassName); }
 };
 
+struct FMapData
+{
+	// Fields
+
+	FString& MapNameField() { return *GetNativePointerField<FString*>(this, "FMapData.MapName"); }
+	UTexture2D*& MapTextureField() { return *GetNativePointerField<UTexture2D**>(this, "FMapData.MapTexture"); }
+	UE::Math::TVector<double>& OriginMaxField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FMapData.OriginMax"); }
+	UE::Math::TVector<double>& OriginMinField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FMapData.OriginMin"); }
+	UE::Math::TVector<double>& PlayableMaxField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FMapData.PlayableMax"); }
+	UE::Math::TVector<double>& PlayableMinField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FMapData.PlayableMin"); }
+	bool& PreventFogOfWarField() { return *GetNativePointerField<bool*>(this, "FMapData.PreventFogOfWar"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FMapData.StaticStruct()"); }
+};
+
+struct UMinimapData : UObject
+{
+	// Fields
+
+	TArray<FMapData>& MinimapDataField() { return *GetNativePointerField<TArray<FMapData, TSizedDefaultAllocator<32> >*>(this, "UMinimapData.MinimapData"); }
+	FString& GeneralMapNameField() { return *GetNativePointerField<FString*>(this, "UMinimapData.GeneralMapName"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UMinimapData.GetPrivateStaticClass()"); }
+	static void StaticRegisterNativesUMinimapData() { NativeCall<void>(nullptr, "UMinimapData.StaticRegisterNativesUMinimapData()"); }
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UMinimapData.StaticClass()"); }
+};
+
 struct ABasePrimalWorldSettings : AInfo
 {
 	// Fields
@@ -1411,7 +1448,7 @@ struct APrimalWorldSettings : AARKNXWorldSettings
 	float& MaxKillYField() { return *GetNativePointerField<float*>(this, "APrimalWorldSettings.MaxKillY"); }
 	float& MaxKillZField() { return *GetNativePointerField<float*>(this, "APrimalWorldSettings.MaxKillZ"); }
 	float& MaxUnderWorldTraceRangeZField() { return *GetNativePointerField<float*>(this, "APrimalWorldSettings.MaxUnderWorldTraceRangeZ"); }
-	//TSubclassOf<UMinimapData>& CurrentMinimapDataField() { return *GetNativePointerField<TSubclassOf<UMinimapData>*>(this, "APrimalWorldSettings.CurrentMinimapData"); }
+	TSubclassOf<UMinimapData>& CurrentMinimapDataField() { return *GetNativePointerField<TSubclassOf<UMinimapData>*>(this, "APrimalWorldSettings.CurrentMinimapData"); }
 	UTexture2D*& OverrideWeaponMapTextureEmptyField() { return *GetNativePointerField<UTexture2D**>(this, "APrimalWorldSettings.OverrideWeaponMapTextureEmpty"); }
 	UTexture2D*& OverrideWeaponMapTextureFilledField() { return *GetNativePointerField<UTexture2D**>(this, "APrimalWorldSettings.OverrideWeaponMapTextureFilled"); }
 	UTexture2D*& OverrideUIMapTextureEmptyField() { return *GetNativePointerField<UTexture2D**>(this, "APrimalWorldSettings.OverrideUIMapTextureEmpty"); }
