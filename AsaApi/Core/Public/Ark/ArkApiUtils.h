@@ -219,14 +219,12 @@ namespace AsaApi
 		*/
 		static FORCEINLINE FString GetCharacterName(AShooterPlayerController* player_controller)
 		{
-			if (player_controller != nullptr)
-			{
-				FString player_name("");
-				player_controller->GetPlayerCharacterName(&player_name);
-				return player_name;
-			}
+			if (!player_controller)
+				return "";
 
-			return FString("");
+			FString player_name("");
+			player_controller->GetPlayerCharacterName(&player_name);
+			return player_name;
 		}
 
 		/**
@@ -235,7 +233,10 @@ namespace AsaApi
 		*/
 		static FORCEINLINE FString GetSteamName(AController* player_controller)
 		{
-			return player_controller != nullptr ? player_controller->PlayerStateField()->PlayerNamePrivateField() : "";
+			if (!player_controller || !player_controller->PlayerStateField())
+				return "";
+
+			return player_controller->PlayerStateField()->PlayerNamePrivateField();
 		}
 
 		/**
@@ -259,38 +260,47 @@ namespace AsaApi
 		 * \param life_span Life span
 		 * \return Returns true if drop was spawned, false otherwise
 		 */
-		FORCEINLINE bool SpawnDrop(const wchar_t* blueprint, FVector pos, int amount, float item_quality = 0.0f,
-			bool force_blueprint = false, float life_span = 0.0f) const
+		FORCEINLINE bool SpawnDrop(const FString& blueprint, const FVector& position, const int amount, const float item_quality = 0.0f,
+			const bool force_blueprint = false, const float life_span = 0.0f) const
 		{
-			APlayerController* player = GetWorld()->GetFirstPlayerController();
+			const auto player = GetWorld()->GetFirstPlayerController();
 			if (!player)
 				return false;
 
-			FString bpFstr(blueprint);
-
-			TSubclassOf<UObject> archetype;
-			UVictoryCore::StringReferenceToClass(&archetype, &bpFstr);
-
-			UPrimalItem* item = UPrimalItem::AddNewItem(archetype.uClass, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true);
+			TSubclassOf<ADroppedItem> item_archetype;
+												// This is ugly, we should properly ensure that T is convertible to UObject
+			UVictoryCore::StringReferenceToClass(reinterpret_cast<TSubclassOf<UObject>*>(&item_archetype), &blueprint);
+			UPrimalItem* item = UPrimalItem::AddNewItem(item_archetype.uClass, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, false, false, true);
 
 			if (!item)
 				return false;
 
 			FItemNetInfo* info = AllocateStruct<FItemNetInfo>();
-
 			item->GetItemNetInfo(info, false);
 
-			TSubclassOf<ADroppedItem> archetype_dropped;
-			archetype_dropped.uClass = archetype.uClass;
-
-			FVector zero_vector{ 0, 0, 0 };
-			FRotator rot{ 0, 0, 0 };
-
-			UPrimalInventoryComponent::StaticDropItem(player, info, archetype_dropped, &rot, true, &pos, &rot, true, false, false, true, nullptr, &zero_vector, nullptr, life_span);
-
-			FreeStruct(info);
+			UPrimalInventoryComponent::StaticDropItem(player, info, item_archetype, &FRotator::ZeroRotator, true, &position, &FRotator::ZeroRotator, true, false, false, true, nullptr, &FVector::ZeroVector, nullptr, life_span);
+			FMemory::Free(info);
 			return true;
 		}
+
+		/**
+		 * \brief Spawns an item drop
+		 * \param blueprint Item simplified BP
+		 * Example: '/Game/PrimalEarth/CoreBlueprints/Items/Armor/Riot/PrimalItemArmor_RiotPants.PrimalItemArmor_RiotPants_C'
+		 * \param pos Spawn position
+		 * \param amount Quantity
+		 * \param item_quality Quality
+		 * \param force_blueprint Is blueprint
+		 * \param life_span Life span
+		 * \return Returns true if drop was spawned, false otherwise
+		 */
+		FORCEINLINE bool SpawnDrop(const wchar_t* blueprint, FVector pos, int amount, float item_quality = 0.0f,
+			bool force_blueprint = false, float life_span = 0.0f) const
+		{
+			return SpawnDrop(FString(blueprint), pos, amount, item_quality, force_blueprint, life_span);
+		}
+
+
 
 		/**
 		 * \brief Spawns a dino near player or at specific coordinates
