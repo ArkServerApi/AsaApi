@@ -73,7 +73,7 @@ public:
 	};
 
 	/** A zero vector (0,0,0) */
-	static const TVector<T> ZeroVector;
+    static const TVector<T> ZeroVector;
 	
 	/** One vector (1,1,1) */
 	static const TVector<T> OneVector;
@@ -1183,6 +1183,40 @@ public:
 	template<typename FArg, TEMPLATE_REQUIRES(!std::is_same_v<T, FArg>)>
 	explicit TVector(const TVector<FArg>& From) : TVector<T>((T)From.X, (T)From.Y, (T)From.Z) {}
 };
+
+
+template<typename T>
+inline const TVector<T> TVector<T>::ZeroVector = { 0,0,0 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::OneVector = { 1,1,1 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::UpVector = { 0,0,1 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::DownVector = { 0,0,-1 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::ForwardVector = { 1,0,0 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::BackwardVector = { -1,0,0 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::RightVector = { 0,1,0 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::LeftVector = { 0,-1,0 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::XAxisVector = { 1,0,0 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::YAxisVector = { 0,1,0 };
+
+template<typename T>
+inline const TVector<T> TVector<T>::ZAxisVector = { 0,0,1 };
 
 /**
  * Structured archive slot serializer for FVector3f.
