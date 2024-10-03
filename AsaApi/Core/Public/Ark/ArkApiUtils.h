@@ -157,21 +157,18 @@ namespace AsaApi
 		 */
 		FORCEINLINE AShooterPlayerController* FindPlayerFromPlatformName(const FString& steam_name) const
 		{
-			AShooterPlayerController* result = nullptr;
-			const auto& player_controllers = GetWorld()->PlayerControllerListField();
-			for (TWeakObjectPtr<APlayerController> player_controller : player_controllers)
+			for (const auto& player_controllers = GetWorld()->PlayerControllerListField(); auto player_controller_weak : player_controllers)
 			{
-				const FString current_name = player_controller->PlayerStateField()->PlayerNamePrivateField();
-				if (current_name == steam_name)
-				{
-					auto* shooter_pc = static_cast<AShooterPlayerController*>(player_controller.Get());
+				APlayerController* player_controller = player_controller_weak.Get();
 
-					result = shooter_pc;
-					break;
-				}
+				if (!player_controller || !player_controller->PlayerStateField())
+					continue;
+
+				if (steam_name == player_controller->PlayerStateField()->PlayerNamePrivateField())
+					return static_cast<AShooterPlayerController*>(player_controller);
 			}
 
-			return result;
+			return nullptr;
 		}
 
 		/**
