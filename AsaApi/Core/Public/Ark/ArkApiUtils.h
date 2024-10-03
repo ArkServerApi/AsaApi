@@ -275,11 +275,10 @@ namespace AsaApi
 			if (!item)
 				return false;
 
-			FItemNetInfo* info = AllocateStruct<FItemNetInfo>();
-			item->GetItemNetInfo(info, false);
+			FItemNetInfo info{};
+			item->GetItemNetInfo(&info, false);
 
-			UPrimalInventoryComponent::StaticDropItem(player, info, item_archetype, &FRotator::ZeroRotator, true, &position, &FRotator::ZeroRotator, true, false, false, true, nullptr, &FVector::ZeroVector, nullptr, life_span);
-			FMemory::Free(info);
+			UPrimalInventoryComponent::StaticDropItem(player, &info, item_archetype, &FRotator::ZeroRotator, true, &position, &FRotator::ZeroRotator, true, false, false, true, nullptr, &FVector::ZeroVector, nullptr, life_span);
 			return true;
 		}
 

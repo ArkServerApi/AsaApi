@@ -1902,6 +1902,7 @@ struct FItemMultiplier
 
 struct FItemNetInfo
 {
+	void* data = alloca(GetStructSize<FItemNetInfo>());
 	// Fields
 
 	TSubclassOf<UPrimalItem>& ItemArchetypeField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FItemNetInfo.ItemArchetype"); }
@@ -1975,6 +1976,8 @@ struct FItemNetInfo
 	FItemNetInfo* operator=(const FItemNetInfo* __that) { return NativeCall<FItemNetInfo*, const FItemNetInfo*>(this, "FItemNetInfo.operator=(FItemNetInfo&)", __that); }
 	bool NetSerialize(FArchive* Ar, UPackageMap* Map, bool* bOutSuccess) { return NativeCall<bool, FArchive*, UPackageMap*, bool*>(this, "FItemNetInfo.NetSerialize(FArchive&,UPackageMap*,bool&)", Ar, Map, bOutSuccess); }
 };
+
+
 
 struct FItemSetup
 {
