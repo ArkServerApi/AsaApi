@@ -1,3 +1,4 @@
+// ReSharper disable CppClangTidyCppcoreguidelinesProTypeStaticCastDowncast
 #pragma once
 
 #include <optional>
@@ -178,12 +179,10 @@ namespace AsaApi
 		*/
 		FORCEINLINE AShooterPlayerController* FindControllerFromCharacter(AShooterCharacter* character) const
 		{
-			AShooterPlayerController* result = nullptr;
+			if (!character || character->IsDead())
+				return nullptr;
 
-			if (character != nullptr && !character->IsDead())
-				result = (AShooterPlayerController*)(character->GetOwnerController());
-
-			return result;
+			return static_cast<AShooterPlayerController*>(character->GetOwnerController());
 		}
 
 		/**
