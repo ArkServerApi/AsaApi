@@ -10,7 +10,7 @@
 
 namespace AsaApi
 {
-	enum class ServerStatus { Loading, Ready };
+	enum class ServerStatus { Loading = 0, Ready = 1 };
 
 	struct MapCoords
 	{
@@ -140,15 +140,21 @@ namespace AsaApi
 		/**
 		 * \brief Returns EOS ID from player controller
 		 */
-		static FORCEINLINE FString GetEOSIDFromController(AController* controller)
+		static FORCEINLINE FString GetEOSIDFromController(AController& controller)
 		{
 			FString eos_id = "";
-			
-			AShooterPlayerController* playerController = static_cast<AShooterPlayerController*>(controller);
-			if (playerController != nullptr)
-				playerController->GetUniqueNetIdAsString(&eos_id);
-
+			static_cast<AShooterPlayerController&>(controller).GetUniqueNetIdAsString(&eos_id);
 			return eos_id;
+		}
+
+		/**
+		 * \brief Returns EOS ID from player controller
+		 */
+		static FORCEINLINE FString GetEOSIDFromController(AController* controller)
+		{
+			if (!controller)
+				return "";
+			return GetEOSIDFromController(*controller);
 		}
 
 		/**
@@ -177,12 +183,24 @@ namespace AsaApi
 		* \param character Player character
 		* \return Pointer to AShooterPlayerController
 		*/
+		FORCEINLINE AShooterPlayerController* FindControllerFromCharacter(AShooterCharacter& character) const
+		{
+			if (character.IsDead())
+				return nullptr;
+			return static_cast<AShooterPlayerController*>(character.GetOwnerController());
+
+		}
+
+		/**
+		* \brief Finds player controller from the given player character
+		* \param character Player character
+		* \return Pointer to AShooterPlayerController
+		*/
 		FORCEINLINE AShooterPlayerController* FindControllerFromCharacter(AShooterCharacter* character) const
 		{
-			if (!character || character->IsDead())
+			if (!character)
 				return nullptr;
-
-			return static_cast<AShooterPlayerController*>(character->GetOwnerController());
+			return FindControllerFromCharacter(*character);
 		}
 
 		/**
@@ -217,14 +235,33 @@ namespace AsaApi
 		* \brief Returns the character name of player
 		* \param player_controller Player
 		*/
+		static FORCEINLINE FString GetCharacterName(AShooterPlayerController& player_controller)
+		{
+			FString player_name("");
+			player_controller.GetPlayerCharacterName(&player_name);
+			return player_name;
+		}
+
+		/**
+		* \brief Returns the character name of player
+		* \param player_controller Player
+		*/
 		static FORCEINLINE FString GetCharacterName(AShooterPlayerController* player_controller)
 		{
 			if (!player_controller)
 				return "";
+			return GetCharacterName(*player_controller);
+		}
 
-			FString player_name("");
-			player_controller->GetPlayerCharacterName(&player_name);
-			return player_name;
+		/**
+		* \brief Returns the steam name of player
+		* \param player_controller Player
+		*/
+		static FORCEINLINE FString GetSteamName(AController& player_controller)
+		{
+			if (const auto& player_state = player_controller.PlayerStateField())
+				return player_state->PlayerNamePrivateField();
+			return "";
 		}
 
 		/**
@@ -233,10 +270,9 @@ namespace AsaApi
 		*/
 		static FORCEINLINE FString GetSteamName(AController* player_controller)
 		{
-			if (!player_controller || !player_controller->PlayerStateField())
+			if (!player_controller)
 				return "";
-
-			return player_controller->PlayerStateField()->PlayerNamePrivateField();
+			return GetSteamName(*player_controller);
 		}
 
 		/**
@@ -261,8 +297,7 @@ namespace AsaApi
 		 * \param life_span Life span
 		 * \return Returns true if drop was spawned, false otherwise
 		 */
-		FORCEINLINE bool SpawnDrop(const FString& blueprint, const FVector& position, const int amount, const float item_quality = 0.0f,
-			const bool force_blueprint = false, const float life_span = 0.0f) const
+		FORCEINLINE bool SpawnDrop(const FString& blueprint, const FVector& position, const int amount, const float item_quality = 0.0f, const bool force_blueprint = false, const float life_span = 0.0f) const
 		{
 			const auto player = GetWorld()->GetFirstPlayerController();
 			if (!player)
@@ -270,7 +305,7 @@ namespace AsaApi
 
 			TSubclassOf<ADroppedItem> item_archetype;
 												// This is ugly, we should properly ensure that T is convertible to UObject
-			UVictoryCore::StringReferenceToClass(reinterpret_cast<TSubclassOf<UObject>*>(&item_archetype), &blueprint);
+			UVictoryCore::StringReferenceToClass(std::bit_cast<TSubclassOf<UObject>*>(&item_archetype), &blueprint);
 			UPrimalItem* item = UPrimalItem::AddNewItem(item_archetype.uClass, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, false, false, true);
 
 			if (!item)
@@ -296,8 +331,7 @@ namespace AsaApi
 		 * \param life_span Life span
 		 * \return Returns true if drop was spawned, false otherwise
 		 */
-		FORCEINLINE bool SpawnDrop(const wchar_t* blueprint, FVector pos, int amount, float item_quality = 0.0f,
-			bool force_blueprint = false, float life_span = 0.0f) const
+		FORCEINLINE bool SpawnDrop(const wchar_t* blueprint, FVector pos, int amount, float item_quality = 0.0f, bool force_blueprint = false, float life_span = 0.0f) const
 		{
 			return SpawnDrop(FString(blueprint), pos, amount, item_quality, force_blueprint, life_span);
 		}
@@ -600,10 +634,16 @@ namespace AsaApi
 				: 0;
 		}
 
+		static FORCEINLINE uint64 GetPlayerID(AController& controller)
+		{
+			return static_cast<AShooterPlayerController&>(controller).LinkedPlayerIDField();
+		}
+
 		static FORCEINLINE uint64 GetPlayerID(AController* controller)
 		{
-			auto* player = static_cast<AShooterPlayerController*>(controller);
-			return player != nullptr ? player->LinkedPlayerIDField() : 0;
+			if (!controller)
+				return 0;
+			return GetPlayerID(*controller);
 		}
 
 		FORCEINLINE const FString GetEOSIDForPlayerID(int player_id)
@@ -638,18 +678,36 @@ namespace AsaApi
 			return eos_id;
 		}
 
+		static FORCEINLINE FString GetBlueprint(UObjectBase& object)
+		{
+			const auto class_field = object.ClassPrivateField();
+			if (!class_field)
+				return "";
+			return GetClassBlueprint(class_field).Replace(L"Default__", L"", ESearchCase::CaseSensitive);
+		}
+
 		/**
 		 * \brief Returns blueprint path from any UObject
 		 */
 		static FORCEINLINE FString GetBlueprint(UObjectBase* object)
 		{
-			if (object != nullptr && object->ClassPrivateField() != nullptr)
-			{
-				FString path_name = GetClassBlueprint(object->ClassPrivateField());
-				return path_name.Replace(L"Default__", L"", ESearchCase::CaseSensitive);
-			}
-				
-			return FString("");
+			if (!object)
+				return "";
+			return GetBlueprint(*object);
+		}
+
+		/**
+		 * \brief Returns blueprint path from any UClass
+		 */
+		static FORCEINLINE FString GetClassBlueprint(UClass& the_class)
+		{
+			FString path;
+			UVictoryCore::GetClassDefaultObject(&the_class)->GetPathName(nullptr, &path);
+
+			if (path.EndsWith("_C"))
+				path = path.LeftChop(2);
+
+			return "Blueprint'" + path + "'";
 		}
 
 		/**
@@ -657,18 +715,9 @@ namespace AsaApi
 		 */
 		static FORCEINLINE FString GetClassBlueprint(UClass* the_class)
 		{
-			if (the_class != nullptr)
-			{
-				FString path;
-				auto the_object = UVictoryCore::GetClassDefaultObject(the_class);
-				the_object->GetPathName(nullptr, &path);
-				if (path.EndsWith("_C"))
-					return "Blueprint'" + path.LeftChop(2) + "'";
-				else
-					return "Blueprint'" + path + "'";
-			}
-
-			return FString("");
+			if (!the_class)
+				return "";
+			return GetClassBlueprint(*the_class);
 		}
 
 		/**
@@ -866,12 +915,22 @@ namespace AsaApi
 		* \param _this Player controller
 		* \param Command Command to run
 		*/
-		void RunHiddenCommand(AShooterPlayerController* _this, FString* Command)
+		void RunHiddenCommand(AShooterPlayerController* _this, const FString* Command) const
 		{
 			FString result;
 			HideCommand = true;
 			_this->ConsoleCommand(&result, Command, false);
 			HideCommand = false;
+		}
+
+		/**
+		* \brief Runs a command that is not logged anywhere
+		* \param _this Player controller
+		* \param Command Command to run
+		*/
+		void RunHiddenCommand(AShooterPlayerController* _this, const FString& Command) const
+		{
+			RunHiddenCommand(_this, &Command);
 		}
 
 		/**

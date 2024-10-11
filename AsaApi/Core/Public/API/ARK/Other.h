@@ -1915,6 +1915,7 @@ struct FItemMultiplier
 		if (size_diff > 0) \
 		{ \
 			Log::GetLog()->warn(#Name" exceeds real size ({} bytes larger), please report this.", std::abs(size_diff)); \
+			throw std::underflow_error(#Name" is not sufficiently sized."); \
 		} \
 	}
 
