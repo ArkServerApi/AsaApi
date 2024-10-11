@@ -546,12 +546,21 @@ namespace AsaApi
 		/**
 		 * \brief Returns IP address of player
 		 */
+		static FORCEINLINE FString GetIPAddress(AShooterPlayerController& player)
+		{
+			FString address {};
+			player.GetPlayerNetworkAddress(&address);
+			return address;
+		}
+
+		/**
+		 * \brief Returns IP address of player
+		 */
 		static FORCEINLINE FString GetIPAddress(AShooterPlayerController* player)
 		{
-			FString addr;
-			if (player)
-				player->GetPlayerNetworkAddress(&addr);
-			return addr;
+			if (!player)
+				return ""; // Should we replace this with a sane legal value, such as 255.255.255.255?
+			return GetIPAddress(*player);
 		}
 
 		/**
@@ -753,50 +762,56 @@ namespace AsaApi
 			return out_actors;
 		}
 
+		FORCEINLINE UMinimapData& GetMinimapData() const
+		{
+			constexpr auto default_path = "Blueprint'/Game/ASA/Minimap/Core/MinimapData_Base.MinimapData_Base'";
+			APrimalWorldSettings& world_settings = *static_cast<APrimalWorldSettings*>(GetWorld()->GetWorldSettings(false, true));
+
+			if(world_settings.CurrentMinimapDataField().uClass)
+				return *static_cast<UMinimapData*>(world_settings.CurrentMinimapDataField().uClass->GetDefaultObject(true));
+
+			return *static_cast<UMinimapData*>(UVictoryCore::BPLoadClass(default_path)->GetDefaultObject(true));
+		}
+
+		FORCEINLINE FMapData& GetMapDataFromMiniMap(UMinimapData& minimap_data, const FVector& reference_point = FVector::ZeroVector) const
+		{
+			if (minimap_data.MinimapDataField().Num() == 1)
+				return *minimap_data.MinimapDataField().GetData();
+
+			for (auto& data : minimap_data.MinimapDataField())
+			{
+				if (PointIntersectsRectangle(reference_point, data.PlayableMinField(), data.PlayableMaxField()))
+					return data;
+			}
+
+			throw std::invalid_argument("Unable To Find MapData.");
+		}
+
 		/**
 		* \brief Converts FVector into coords that are displayed when you view the ingame map
 		*/
-		FORCEINLINE MapCoords FVectorToCoords(FVector actor_position)
+		FORCEINLINE MapCoords FVectorToCoords(const FVector& position) const
 		{
-			MapCoords coords;
-			AWorldSettings* world_settings = GetWorld()->GetWorldSettings(false, true);
-			APrimalWorldSettings* p_world_settings = static_cast<APrimalWorldSettings*>(world_settings);
+			constexpr auto max = 100.f;
+			constexpr auto min = 0.f;
 
-			UMinimapData* minimap_data = nullptr;
-			if (p_world_settings->CurrentMinimapDataField().uClass)
-				minimap_data = static_cast<UMinimapData*>(p_world_settings->CurrentMinimapDataField().uClass->GetDefaultObject(true));
-			else
-				minimap_data = static_cast<UMinimapData*>(UVictoryCore::BPLoadClass("Blueprint'/Game/ASA/Minimap/Core/MinimapData_Base.MinimapData_Base'")->GetDefaultObject(true));
+			auto& minimap = GetMinimapData();
+			auto& map_data = GetMapDataFromMiniMap(minimap, position);
 
-			FMapData* map_data = nullptr;
-			if (minimap_data->MinimapDataField().Num() == 1)
-				map_data = minimap_data->MinimapDataField().GetData();
-			else
-			{
-				const int FMapDataSize = GetStructSize<FMapData>();
-				for (int i = 0; i < minimap_data->MinimapDataField().Num(); i++)
-				{
-					FMapData* data = minimap_data->MinimapDataField().GetData() + (i * FMapDataSize);
+			const auto& map_min = map_data.OriginMinField();
+			const auto& map_max = map_data.OriginMaxField();
+			const auto& projected = (map_max - position) / (map_max - map_min);
 
-					if (actor_position.X < data->PlayableMaxField().X
-						&& actor_position.Y < data->PlayableMaxField().Y
-						&& actor_position.X > data->PlayableMinField().X
-						&& actor_position.Y > data->PlayableMinField().Y
-						&& actor_position.Z < data->PlayableMaxField().Z
-						&& actor_position.Z > data->PlayableMinField().Z)
-					{
-						map_data = data;
-						break;
-					}
-				}
-			}
+			return { FMath::Lerp(max, min, projected.X), FMath::Lerp(max, min, projected.Y) };
+			
+		}
 
-			double xAlpha = (actor_position.X - map_data->OriginMaxField().X) / (map_data->OriginMinField().X - map_data->OriginMaxField().X);
-			double yAlpha = (actor_position.Y - map_data->OriginMaxField().Y) / (map_data->OriginMinField().Y - map_data->OriginMaxField().Y);
-
-			coords.x = (float)FMath::Lerp(100.0, 0.0, xAlpha);
-			coords.y = (float)FMath::Lerp(100.0, 0.0, yAlpha);
-			return coords;
+		// N.B., we should use dot projection here as not all rects are axis aligned.
+		FORCEINLINE bool PointIntersectsRectangle(const FVector& position, const FVector& start, const FVector& end) const
+		{
+			return
+				start.X < position.X && position.X < end.X &&
+				start.Y < position.Y && position.Y < end.Y;
 		}
 
 		/**
