@@ -249,11 +249,12 @@ namespace AsaApi
 			return FindPlayerFromEOSID_Internal(eos_id);
 		}
 
+
 		/**
 		 * \brief Spawns an item drop
 		 * \param blueprint Item simplified BP
 		 * Example: '/Game/PrimalEarth/CoreBlueprints/Items/Armor/Riot/PrimalItemArmor_RiotPants.PrimalItemArmor_RiotPants_C'
-		 * \param pos Spawn position
+		 * \param position Spawn position
 		 * \param amount Quantity
 		 * \param item_quality Quality
 		 * \param force_blueprint Is blueprint
@@ -275,10 +276,12 @@ namespace AsaApi
 			if (!item)
 				return false;
 
-			FItemNetInfo info{};
+			FItemNetInfo info;
+
 			item->GetItemNetInfo(&info, false);
 
 			UPrimalInventoryComponent::StaticDropItem(player, &info, item_archetype, &FRotator::ZeroRotator, true, &position, &FRotator::ZeroRotator, true, false, false, true, nullptr, &FVector::ZeroVector, nullptr, life_span);
+
 			return true;
 		}
 
@@ -368,72 +371,75 @@ namespace AsaApi
 		* \brief Returns true if character is riding a dino, false otherwise
 		* \param player_controller Player
 		*/
+		static FORCEINLINE bool IsRidingDino(AShooterPlayerController& player_controller)
+		{
+			return !!GetRidingDino(player_controller);
+		}
+
+		/**
+		* \brief Returns true if character is riding a dino, false otherwise
+		* \param player_controller Player
+		*/
 		static FORCEINLINE bool IsRidingDino(AShooterPlayerController* player_controller)
 		{
-			return player_controller != nullptr && player_controller->GetPlayerCharacter() != nullptr
-				&& player_controller->GetPlayerCharacter()->GetRidingDino() != nullptr;
+			if (!player_controller)
+				return false;
+			return IsRidingDino(*player_controller);
 		}
 
 		/**
 		* \brief Returns the dino the character is riding
-		* \param player_controller Player
+		* \param player_controller AShooterPlayerController&
+		* \return APrimalDinoCharacter*
+		*/
+		static FORCEINLINE APrimalDinoCharacter* GetRidingDino(AShooterPlayerController& player_controller)
+		{
+			const auto& player_character = player_controller.GetPlayerCharacter();
+			return player_character ? player_character->GetRidingDino() : nullptr;
+		}
+
+		/**
+		* \brief Returns the dino the character is riding
+		* \param player_controller AShooterPlayerController*
 		* \return APrimalDinoCharacter*
 		*/
 		static FORCEINLINE APrimalDinoCharacter* GetRidingDino(AShooterPlayerController* player_controller)
 		{
-			return player_controller != nullptr && player_controller->GetPlayerCharacter() != nullptr
-				? player_controller->GetPlayerCharacter()->GetRidingDino()
-				: nullptr;
+			return player_controller ? GetRidingDino(*player_controller) : nullptr;
 		}
 
 		/**
 		* \brief Returns the position of a player
-		* \param player_controller Player
+		* \param player_controller APlayerController&
+		* \return FVector
+		*/
+		static FORCEINLINE FVector GetPosition(APlayerController& player_controller)
+		{
+			const auto& player_pawn = player_controller.PawnField();
+			if (!player_pawn)
+				return FVector::ZeroVector;
+
+			return player_pawn->RootComponentField()->RelativeLocationField();
+		}
+
+		/**
+		* \brief Returns the position of a player
+		* \param player_controller APlayerController*
 		* \return FVector
 		*/
 		static FORCEINLINE FVector GetPosition(APlayerController* player_controller)
 		{
-			return player_controller != nullptr && player_controller->PawnField() != nullptr ? player_controller->PawnField()->RootComponentField()->RelativeLocationField() : FVector{0, 0, 0};
+			if (!player_controller)
+				return FVector::ZeroVector;
+			return GetPosition(*player_controller);
 		}
 
-		/**
-		* \brief Teleport one player to another
-		* \param me Player
-		* \param him Other Player
-		* \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
-		* \param max_dist Is the max distance the characters can be away from each other -1 is disabled
-		*/
-		static FORCEINLINE std::optional<FString> TeleportToPlayer(AShooterPlayerController* me, AShooterPlayerController* him,
-			bool check_for_dino, float max_dist)
+		static FORCEINLINE bool TeleportToPos(AShooterPlayerController& player_controller, const FVector& position)
 		{
-			FVector him_position = GetPosition(him);
-			if (!(me != nullptr && him != nullptr && me->GetPlayerCharacter() != nullptr && him->
-				GetPlayerCharacter()
-				!= nullptr
-				&& !me->GetPlayerCharacter()->IsDead() && !him->GetPlayerCharacter()->IsDead())
-				)
-			{
-				return "One of players is dead";
-			}
-
-			if (check_for_dino && (IsRidingDino(me) || IsRidingDino(him)))
-			{
-				return "One of players is riding a dino";
-			}
-
-			if (max_dist != -1 && FVector::Distance(GetPosition(me), him_position) > max_dist)
-			{
-				return "Person is too far away";
-			}
-
-			if (him_position.IsNearlyZero())
-			{
-				return "Player location is invalid";
-			}
-
-			me->SetPlayerPos((float)him_position.X, (float)him_position.Y, (float)him_position.Z);
-
-			return {};
+			if (IsPlayerDead(player_controller))
+				return false;
+			player_controller.SetPlayerPos(position.X, position.Y, position.Z);
+			return true;
 		}
 
 		/**
@@ -443,13 +449,62 @@ namespace AsaApi
 		*/
 		static FORCEINLINE bool TeleportToPos(AShooterPlayerController* player_controller, const FVector& pos)
 		{
-			if (player_controller != nullptr && !IsPlayerDead(player_controller))
-			{				
-				player_controller->SetPlayerPos((float)pos.X, (float)pos.Y, (float)pos.Z);
-				return true;
-			}
+			if (!player_controller)
+				return false;
 
-			return false;
+			return TeleportToPos(*player_controller, pos);
+		}
+
+		/**
+		* \brief Teleport one player to another
+		* \param me Player
+		* \param him Other Player
+		* \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
+		* \param max_dist Is the max distance the characters can be away from each other -1 is disabled
+		*/
+		static FORCEINLINE std::optional<FString> TeleportToPlayer(AShooterPlayerController& source, AShooterPlayerController& destination, bool check_for_dino = false, float max_dist = -1)
+		{
+			if (IsPlayerDead(source))
+				return "Source Player is dead.";
+
+			if (IsPlayerDead(destination))
+				return "Destination Player is dead.";
+
+			if (check_for_dino && IsRidingDino(source))
+				return "Source Player is riding a dino.";
+
+			if (check_for_dino && IsRidingDino(destination))
+				return "Destination Player is riding a dino.";
+
+			const FVector source_position = GetPosition(source);
+			const FVector destination_position = GetPosition(destination);
+
+			if (destination_position.IsNearlyZero())
+				return "Destination Location is invalid.";
+
+			if (max_dist != -1 && FVector::Distance(source_position, destination_position) > max_dist)
+				return "Distance between Players is too great.";
+
+			TeleportToPos(source, destination_position);
+			return {};
+		}
+
+		/**
+		* \brief Teleport one player to another
+		* \param me Player
+		* \param him Other Player
+		* \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
+		* \param max_dist Is the max distance the characters can be away from each other -1 is disabled
+		*/
+		static FORCEINLINE std::optional<FString> TeleportToPlayer(AShooterPlayerController* source, AShooterPlayerController* destination, bool check_for_dino, float max_dist)
+		{
+
+			if (!source)
+				return "Source Player Controller is null.";
+
+			if (!destination)
+				return "Destination Player Controller is null.";
+			return TeleportToPlayer(*source, *destination, check_for_dino, max_dist);
 		}
 
 		/**
@@ -510,14 +565,22 @@ namespace AsaApi
 		/**
 		 * \brief Returns true if player is dead, false otherwise
 		 */
+		static FORCEINLINE bool IsPlayerDead(AShooterPlayerController& player)
+		{
+			const auto player_character = player.GetPlayerCharacter();
+			if (!player_character)
+				return true;
+			return player_character->IsDead();
+		}
+
+		/**
+		 * \brief Returns true if player is dead, false otherwise
+		 */
 		static FORCEINLINE bool IsPlayerDead(AShooterPlayerController* player)
 		{
-			if (player == nullptr || player->GetPlayerCharacter() == nullptr)
-			{
+			if (!player)
 				return true;
-			}
-
-			return player->GetPlayerCharacter()->IsDead();
+			return IsPlayerDead(*player);
 		}
 
 		static FORCEINLINE uint64 GetPlayerID(APrimalCharacter* character)

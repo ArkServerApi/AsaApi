@@ -1900,11 +1900,34 @@ struct FItemMultiplier
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemMultiplier.StaticStruct()"); }
 };
 
+#define UE4_SizeOf(size) \
+	constexpr static std::size_t size_of = size; \
+	char storage[size_of] = { 0 };
+
+#define UE4_CheckSize(Name) \
+	{ \
+		const std::ptrdiff_t size_diff = size_of - GetStructSize<Name>(); \
+		if(size_diff < 0) \
+		{ \
+			Log::GetLog()->critical(#Name" will overrun ({} bytes smaller), please report this.", std::abs(size_diff)); \
+			throw std::overflow_error(#Name" is not sufficiently sized."); \
+		} \
+		if (size_diff > 0) \
+		{ \
+			Log::GetLog()->warn(#Name" exceeds real size ({} bytes larger), please report this.", std::abs(size_diff)); \
+		} \
+	}
+
+
 struct FItemNetInfo
 {
-	void* data = alloca(GetStructSize<FItemNetInfo>());
+	UE4_SizeOf(528);
+	FItemNetInfo()
+	{
+		UE4_CheckSize(FItemNetInfo);
+		NativeCall<void>(this, "FItemNetInfo.FItemNetInfo()");
+	}
 	// Fields
-
 	TSubclassOf<UPrimalItem>& ItemArchetypeField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FItemNetInfo.ItemArchetype"); }
 	FItemNetID& ItemIDField() { return *GetNativePointerField<FItemNetID*>(this, "FItemNetInfo.ItemID"); }
 	unsigned int& ItemQuantityField() { return *GetNativePointerField<unsigned int*>(this, "FItemNetInfo.ItemQuantity"); }
