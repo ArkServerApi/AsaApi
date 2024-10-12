@@ -18,7 +18,7 @@ public:
 	FORCEINLINE FString SendNotificationPrettyToPlayer(APlayerController* PC, const FString& Text, const FLinearColor& BackgroundColor, const FLinearColor& TextColor,
 		const double TextScale, const double Duration, const Position TextJustification, const Position ScreenPosition, const bool bAddToChat)
 	{
-		if (!PC->IsA(AShooterPlayerController::StaticClass()))
+		if (!PC->IsA<AShooterPlayerController>())
 			return "";
 		return SendNotificationPrettyToPlayer(std::bit_cast<AShooterPlayerController*>(PC)->GetUniqueNetIdAsString(), Text, BackgroundColor, TextColor, TextScale, Duration, TextJustification, ScreenPosition, bAddToChat);
 	}
@@ -40,8 +40,8 @@ public:
 
 		for (APlayerController* player_controller : player_controllers)
 		{
-			if (!player_controller->IsA(AShooterPlayerController::StaticClass()))
-				continue;;
+			if (!player_controller->IsA<AShooterPlayerController>())
+				continue;
 			ids.Add(std::bit_cast<AShooterPlayerController*>(player_controller)->GetUniqueNetIdAsString());
 		}
 

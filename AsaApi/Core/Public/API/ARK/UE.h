@@ -253,6 +253,11 @@ struct UObjectBaseUtility : UObjectBase
 {
 	// Start AsaApi Extensions
 	bool IsA(const UClass* base);
+	template<typename T>
+	bool IsA()
+	{
+		return IsA(T::StaticClass());
+	}
 	// End AsaApi Extensions
 	// Fields
 
