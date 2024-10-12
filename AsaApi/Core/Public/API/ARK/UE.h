@@ -1,5 +1,5 @@
 #pragma once
-
+// ReSharper disable CppInconsistentNaming
 #ifdef ARK_EXPORTS
 #define ARK_API __declspec(dllexport)
 #else
@@ -251,6 +251,9 @@ struct UObjectBase
 
 struct UObjectBaseUtility : UObjectBase
 {
+	// Start AsaApi Extensions
+	bool IsA(const UClass* base);
+	// End AsaApi Extensions
 	// Fields
 
 

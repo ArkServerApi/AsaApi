@@ -1377,8 +1377,24 @@ struct UInstancedStaticMeshComponent : UStaticMeshComponent
     void ReceiveComponentDamage(float DamageAmount, const FDamageEvent* DamageEvent, AController* EventInstigator, AActor* DamageCauser) { NativeCall<void, float, const FDamageEvent*, AController*, AActor*>(this, "UInstancedStaticMeshComponent.ReceiveComponentDamage(float,FDamageEvent&,AController*,AActor*)", DamageAmount, DamageEvent, EventInstigator, DamageCauser); }
 };
 
-struct AActor : UPrimalActor, ActorExtensions
+struct AActor : UPrimalActor
 {
+    // Start AsaApi Extensions
+    FORCEINLINE FVector GetActorForwardVector()
+    {
+        if (USceneComponent* root_component = RootComponentField())
+            return root_component->ComponentToWorldField().GetUnitAxis(EAxis::X);
+        return FVector::ZeroVector;
+    }
+
+    FORCEINLINE FVector GetLocation()
+    {
+        if (const auto& root = RootComponentField())
+            return root->ComponentToWorldField().GetLocation();
+        return FVector::ZeroVector;
+    }
+    // End AsaApi Extensions
+
     // Fields
 
     FActorTickFunction& PrimaryActorTickField() { return *GetNativePointerField<FActorTickFunction*>(this, "AActor.PrimaryActorTick"); }

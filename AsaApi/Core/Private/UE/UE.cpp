@@ -1,3 +1,4 @@
+// ReSharper disable CppInconsistentNaming
 #include "API/ARK/Ark.h"
 #include "API/ARK/UE.h"
 
@@ -9,4 +10,9 @@ ARK_API FProperty* UObject::FindProperty(FName name)
 			return Property;
 	}
 	return nullptr;
+}
+
+bool UObjectBaseUtility::IsA(const UClass* base)
+{
+	return this->ClassPrivateField()->IsChildOf(base);
 }
