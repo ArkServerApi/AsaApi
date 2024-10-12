@@ -6,7 +6,6 @@
 #include <API/ARK/Ark.h>
 #include <../Private/Ark/Globals.h>
 #include "MessagingManager.h"
-#include "API/ARK/ExtensionsDefinition.h"
 #include "API/Helpers/Helpers.h"
 
 namespace AsaApi::IApiUtils_Next
