@@ -1,17 +1,6 @@
 // ReSharper disable CppInconsistentNaming
 #pragma once
 
-#define STRINGIFY(a) #a
-#define Name_Persist(name) _Pragma( STRINGIFY( comment(linker, "/Export:AsaApi_" ## name ## "=" __FUNCDNAME__) ))
-
-DLLEXPORT FORCEINLINE FString GetSteamName(AController& player_controller)
-{
-    Name_Persist("IApiUtils_GetSteamName_0");
-    if (const auto& player_state = player_controller.PlayerStateField())
-        return player_state->PlayerNamePrivateField();
-    return "";
-}
-
 // Actor extensions
 FORCEINLINE FVector ActorExtensions::GetActorForwardVector()
 {
