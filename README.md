@@ -13,6 +13,9 @@ A website will be included soon, as well as a discord support server.
 - `\ARK\ShooterGame\Win64\logs\ArkApi.log`
 - `\ARK\ShooterGame\Saved\Logs`
 
+## Template:
+Community member TheMollusk has provided a template Visual Studio project [here](https://github.com/MolluskARK/ASA-Plugin-Template).
+
 ## Disclaimers
 - This is a community project aimed at extending the official server executable that is distributed with the game. Studio Wildcard retains all ownership over the original server files, game copyrights, etc.
 - Unless specified otherwise, the `AsaApi` is distributed under the MIT license.
