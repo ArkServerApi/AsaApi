@@ -6,7 +6,25 @@
 #include <API/ARK/Ark.h>
 #include <../Private/Ark/Globals.h>
 #include "MessagingManager.h"
+#include "API/ARK/ExtensionsDefinition.h"
 #include "API/Helpers/Helpers.h"
+
+namespace AsaApi::IApiUtils_Next
+{
+	FORCEINLINE FString GetSteamName(AController& player_controller)
+	{
+		if (const auto& player_state = player_controller.PlayerStateField())
+			return player_state->PlayerNamePrivateField();
+		return "";
+	}
+
+	FORCEINLINE FString GetSteamName(AController* player_controller)
+	{
+		if (!player_controller)
+			return "";
+		return GetSteamName(*player_controller);
+	}
+}
 
 namespace AsaApi
 {
@@ -231,15 +249,14 @@ namespace AsaApi
 			return found_players;
 		}
 
+
 		/**
 		* \brief Returns the character name of player
 		* \param player_controller Player
 		*/
 		static FORCEINLINE FString GetCharacterName(AShooterPlayerController& player_controller)
 		{
-			FString player_name("");
-			player_controller.GetPlayerCharacterName(&player_name);
-			return player_name;
+			return player_controller.GetPlayerCharacterName();
 		}
 
 		/**

@@ -2584,7 +2584,7 @@ struct APrimalController : AController
 };
 
 
-struct APlayerController : APrimalController, PlayerControllerExtensions
+struct APlayerController : APrimalController
 {
     // Fields
 
@@ -3056,8 +3056,33 @@ struct ABasePlayerController : APrimalPlayerController
 
 struct AShooterPlayerController : ABasePlayerController
 {
-    // Fields
+public:
+    // Start AsaApi Extensions
+    FString GetPlayerCharacterName()
+    {
+        FString player_name = *GetPlayerCharacterName(&player_name);
+        return player_name;
+    }
 
+    FString GetUniqueNetIdAsString()
+    {
+        FString unique_id = *GetUniqueNetIdAsString(&unique_id);
+        return unique_id;
+    }
+
+    void ClientServerChatDirectMessage(const FString& MessageText, FLinearColor MessageColor, bool bIsBold, const FString& SenderId)
+    {
+        ClientServerChatDirectMessage(&MessageText, MessageColor, bIsBold, &SenderId);
+    }
+
+    void ClientServerNotification(const FString& MessageText, FLinearColor MessageColor, float DisplayScale, float DisplayTime, UTexture2D* MessageIcon, USoundBase* SoundToPlay, int Priority)
+    {
+        ClientServerNotification(&MessageText, MessageColor, DisplayScale, DisplayTime, MessageIcon, SoundToPlay, Priority);
+    }
+
+    // End AsaApi Extensions
+
+    // Fields
     UPaintingStreamingComponent*& PaintingStreamingComponentField() { return *GetNativePointerField<UPaintingStreamingComponent**>(this, "AShooterPlayerController.PaintingStreamingComponent"); }
     FieldArray<unsigned __int8, 10> HeldItemSlotField() { return { this, "AShooterPlayerController.HeldItemSlot" }; }
     FieldArray<unsigned __int8, 10> UsedItemSlotField() { return { this, "AShooterPlayerController.UsedItemSlot" }; }

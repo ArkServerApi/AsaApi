@@ -18,7 +18,9 @@ public:
 	FORCEINLINE FString SendNotificationPrettyToPlayer(APlayerController* PC, const FString& Text, const FLinearColor& BackgroundColor, const FLinearColor& TextColor,
 		const double TextScale, const double Duration, const Position TextJustification, const Position ScreenPosition, const bool bAddToChat)
 	{
-		return SendNotificationPrettyToPlayer(PC->GetEOSId(), Text, BackgroundColor, TextColor, TextScale, Duration, TextJustification, ScreenPosition, bAddToChat);
+		if (!PC->IsA(AShooterPlayerController::StaticClass()))
+			return "";
+		return SendNotificationPrettyToPlayer(std::bit_cast<AShooterPlayerController*>(PC)->GetUniqueNetIdAsString(), Text, BackgroundColor, TextColor, TextScale, Duration, TextJustification, ScreenPosition, bAddToChat);
 	}
 
 	// this function lets you send a notification to a player using the pretty widgets from the api utils mod, will all the possible params, to specific player
@@ -31,12 +33,18 @@ public:
 	}
 
 	// this function lets you send a notification to a player using the pretty widgets from the api utils mod, will all the possible params, to all players
-	FORCEINLINE FString SendNotificationPrettyToPlayers(TArray<APlayerController*> PCs, const FString& Text, const FLinearColor& BackgroundColor, const FLinearColor& TextColor,
+	FORCEINLINE FString SendNotificationPrettyToPlayers(TArray<APlayerController*> player_controllers, const FString& Text, const FLinearColor& BackgroundColor, const FLinearColor& TextColor,
 		const double TextScale, const double Duration, const Position TextJustification, const Position ScreenPosition, const bool bAddToChat)
 	{
 		TArray<FString> ids;
-		for (APlayerController* PC : PCs)
-			ids.Add(PC->GetEOSId());
+
+		for (APlayerController* player_controller : player_controllers)
+		{
+			if (!player_controller->IsA(AShooterPlayerController::StaticClass()))
+				continue;;
+			ids.Add(std::bit_cast<AShooterPlayerController*>(player_controller)->GetUniqueNetIdAsString());
+		}
+
 		return SendNotificationPrettyToPlayers(ids, Text, BackgroundColor, TextColor, TextScale, Duration, TextJustification, ScreenPosition, bAddToChat);
 	}
 
@@ -51,7 +59,7 @@ protected:
 	void SendServerMessage_Impl(AShooterPlayerController* player_controller, FLinearColor msg_color, const FString& msg) override
 	{
 		TArray<FString> ids;
-		ids.Add(player_controller->GetEOSId());
+		ids.Add(player_controller->GetUniqueNetIdAsString());
 		SendNotificationPrettyToPlayers(ids, msg, FLinearColor(0, 0, 0, 0), msg_color, 1.0, 0.0, Position::Center, Position::Center, true);
 	}
 
@@ -60,7 +68,7 @@ protected:
 		float display_time, UTexture2D* icon, const FString& msg) override
 	{
 		TArray<FString> ids;
-		ids.Add(player_controller->GetEOSId());
+		ids.Add(player_controller->GetUniqueNetIdAsString());
 		SendNotificationPrettyToPlayers(ids, msg, FLinearColor(0, 0, 0, 0), color, display_scale, display_time, Position::Center, Position::Center, false);
 	}
 };

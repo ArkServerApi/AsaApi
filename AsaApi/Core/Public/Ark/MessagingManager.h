@@ -12,6 +12,7 @@
 class ARK_API MessagingManager
 {
 public:
+	virtual ~MessagingManager() = default;
 	/**
 	* \brief Sends server message to the specific player. Using fmt::format.
 	* \tparam T Either a a char or wchar_t
@@ -147,8 +148,8 @@ public:
 	}
 
 	/**
-	* \brief Returns wether this messaging manager is able to work in the current session.
-	* \brief The default one does not depend in any mod or external service so it always returns true.
+	* \brief Returns weather this messaging manager is able to work in the current session.
+	* \brief The default one does not depend on any mod or external service, so it always returns true.
 	* \brief Subclasses should redefine this function if they depend on any external service.
 	* \brief If it returns an error, it will be removed and the plugin will fall back to the default API messaging manager.
 	* \return Empty optional if no error, or optional filled with error string.
@@ -172,10 +173,9 @@ public:
 protected /*overridable functions*/: // these are to be redefined by the child classes
 	// default implementations
 
-	virtual void SendServerMessage_Impl(AShooterPlayerController* player_controller, FLinearColor msg_color, const FString& msg)
+	virtual void SendServerMessage_Impl(AShooterPlayerController* player_controller, FLinearColor color, const FString& message)
 	{
-		static const FString senderid = "Server";
-		player_controller->ClientServerChatDirectMessage(&msg, msg_color, false, &senderid);
+		player_controller->ClientServerChatDirectMessage(message, color, false, "Server");
 	}
 
 	virtual void SendChatMessage_Impl(AShooterPlayerController* player_controller, const FString& sender_name, const FString& msg)
@@ -183,14 +183,14 @@ protected /*overridable functions*/: // these are to be redefined by the child c
 		FPrimalChatMessage chat_message;
 		chat_message.SenderName = sender_name;
 		chat_message.Message = msg;
-		chat_message.UserId = player_controller->GetEOSId();
+		chat_message.UserId = player_controller->GetUniqueNetIdAsString();
 		player_controller->ClientChatMessage(chat_message);
 	}
 
 	virtual void SendNotification_Impl(AShooterPlayerController* player_controller, FLinearColor color, float display_scale,
-		float display_time, UTexture2D* icon, const FString& msg)
+		float display_time, UTexture2D* icon, const FString& message)
 	{
-		player_controller->ClientServerNotification(&msg, color, display_scale, display_time, icon, nullptr, 1);
+		player_controller->ClientServerNotification(message, color, display_scale, display_time, icon, nullptr, 1);
 	}
 
 protected /*variables*/:

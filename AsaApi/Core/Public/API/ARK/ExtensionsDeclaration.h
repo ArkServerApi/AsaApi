@@ -24,12 +24,3 @@ struct ActorExtensions
 	*/
     FVector GetLocation();
 };
-
-struct PlayerControllerExtensions
-{
-    /**
-    * \brief Returns the player's EOS id (platform unique identifier)
-    * \return The player's EOS id (platform unique identifier)
-	*/
-    FString GetEOSId();
-};

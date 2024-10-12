@@ -4,7 +4,7 @@
 // Actor extensions
 FORCEINLINE FVector ActorExtensions::GetActorForwardVector()
 {
-    if (USceneComponent* root_component = std::bit_cast<AActor*>(this)->RootComponentField().Get())
+    if (USceneComponent* root_component = std::bit_cast<AActor*>(this)->RootComponentField())
         return root_component->ComponentToWorldField().GetUnitAxis(EAxis::X);
     return FVector::ZeroVector;
 }
@@ -19,12 +19,4 @@ FORCEINLINE FVector ActorExtensions::GetLocation()
 	if (const auto& root = std::bit_cast<AActor*>(this)->RootComponentField())
         return root->ComponentToWorldField().GetLocation();
     return FVector::ZeroVector;
-}
-
-// Player Controller Extensions
-
-FORCEINLINE FString PlayerControllerExtensions::GetEOSId()
-{
-    FString eos_id = *std::bit_cast<AShooterPlayerController*>(this)->GetUniqueNetIdAsString(&eos_id);
-    return eos_id;
 }
