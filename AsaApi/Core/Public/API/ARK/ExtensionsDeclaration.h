@@ -14,10 +14,10 @@ struct ActorExtensions
 
     /**
     * \brief Returns if the actor is from SomeBase or a subclass of SomeBase.
-    * \param SomeBase The base class to check against.
+    * \param some_base The base class to check against.
     * \return true if the actor is from SomeBase or a subclass of SomeBase.
     */
-    bool IsA(UClass* SomeBase);
+    bool IsA(const UClass* some_base);
 
     /**
     * \brief Returns the actor's location in world space.
