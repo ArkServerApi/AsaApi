@@ -27,9 +27,7 @@ public:
 	FORCEINLINE FString SendNotificationPrettyToPlayer(const FString& EOSid, const FString& Text, const FLinearColor& BackgroundColor, const FLinearColor& TextColor,
 		const double TextScale, const double Duration, const Position TextJustification, const Position ScreenPosition, const bool bAddToChat)
 	{
-		TArray<FString> ids;
-		ids.Add(EOSid);
-		return SendNotificationPrettyToPlayers(ids, Text, BackgroundColor, TextColor, TextScale, Duration, TextJustification, ScreenPosition, bAddToChat);
+		return SendNotificationPrettyToPlayers({ EOSid }, Text, BackgroundColor, TextColor, TextScale, Duration, TextJustification, ScreenPosition, bAddToChat);
 	}
 
 	// this function lets you send a notification to a player using the pretty widgets from the api utils mod, will all the possible params, to all players
@@ -56,20 +54,15 @@ public:
 	}
 protected:
 	// changes the server messages to use pretty widgets from the api utils mod
-	void SendServerMessage_Impl(AShooterPlayerController* player_controller, FLinearColor msg_color, const FString& msg) override
+	void SendServerMessage_Impl(AShooterPlayerController* player_controller, const FLinearColor message, const FString& msg) override
 	{
-		TArray<FString> ids;
-		ids.Add(player_controller->GetUniqueNetIdAsString());
-		SendNotificationPrettyToPlayers(ids, msg, FLinearColor(0, 0, 0, 0), msg_color, 1.0, 0.0, Position::Center, Position::Center, true);
+		SendNotificationPrettyToPlayers({ player_controller->GetUniqueNetIdAsString() }, msg, FLinearColor(0, 0, 0, 0), message, 1.0, 0.0, Position::Center, Position::Center, true);
 	}
 
 	// changes notifications to use pretty widgets from the api utils mod, this version mostly mimics old ASE notifications
-	void SendNotification_Impl(AShooterPlayerController* player_controller, FLinearColor color, float display_scale,
-		float display_time, UTexture2D* icon, const FString& msg) override
+	void SendNotification_Impl(AShooterPlayerController* player_controller, const FLinearColor color, const float display_scale, const float display_time, UTexture2D* icon, const FString& msg) override
 	{
-		TArray<FString> ids;
-		ids.Add(player_controller->GetUniqueNetIdAsString());
-		SendNotificationPrettyToPlayers(ids, msg, FLinearColor(0, 0, 0, 0), color, display_scale, display_time, Position::Center, Position::Center, false);
+		SendNotificationPrettyToPlayers({ player_controller->GetUniqueNetIdAsString() }, msg, FLinearColor(0, 0, 0, 0), color, display_scale, display_time, Position::Center, Position::Center, false);
 	}
 };
 

@@ -2,6 +2,8 @@
 
 #include "API/ARK/Ark.h"
 
+
+
 /**
 * \brief Messaging manager. Allows to send server messages, notifications and chat messages.
 * \brief Usage:
@@ -13,23 +15,36 @@ class ARK_API MessagingManager
 {
 public:
 	virtual ~MessagingManager() = default;
+
 	/**
 	* \brief Sends server message to the specific player. Using fmt::format.
 	* \tparam T Either a a char or wchar_t
 	* \tparam Args Optional arguments types
 	* \param player_controller Player
-	* \param msg_color Message color
-	* \param msg Message
+	* \param color Message color
+	* \param message Message
 	* \param args Optional arguments
 	*/
 	template <typename T, typename... Args>
-	FORCEINLINE void SendServerMessage(AShooterPlayerController* player_controller, FLinearColor msg_color, const T* msg, Args&&... args)
+	FORCEINLINE void SendServerMessage(AShooterPlayerController& player_controller, FLinearColor color, const T* message, Args&&... args)
+	{
+		SendServerMessage_Impl(&player_controller, color, FString::Format(message, std::forward<Args>(args)...));
+	}
+	/**
+	* \brief Sends server message to the specific player. Using fmt::format.
+	* \tparam T Either a a char or wchar_t
+	* \tparam Args Optional arguments types
+	* \param player_controller Player
+	* \param color Message color
+	* \param message Message
+	* \param args Optional arguments
+	*/
+	template <typename T, typename... Args>
+	FORCEINLINE void SendServerMessage(AShooterPlayerController* player_controller, FLinearColor color, const T* message, Args&&... args)
 	{
 		if (!player_controller)
 			return;
-
-		FString message = FString::Format(msg, std::forward<Args>(args)...);
-		SendServerMessage_Impl(player_controller, msg_color, message);
+		SendServerMessage_Impl(player_controller, color, FString::Format(message, std::forward<Args>(args)...));
 	}
 
 	/**
@@ -105,18 +120,13 @@ public:
 	* \param args Optional arguments
 	*/
 	template <typename T, typename... Args>
-	FORCEINLINE void SendNotificationToAll(FLinearColor color, float display_scale,
-		float display_time, UTexture2D* icon, const T* msg, Args&&... args)
+	FORCEINLINE void SendNotificationToAll(const FLinearColor color, const float display_scale, const float display_time, UTexture2D* icon, const T* msg, Args&&... args)
 	{
-		FString text(FString::Format(msg, std::forward<Args>(args)...));
+		const FString text(FString::Format(msg, std::forward<Args>(args)...));
 
-		const auto& player_controllers = WorldContext->PlayerControllerListField();
-		for (TWeakObjectPtr<APlayerController> player_controller : player_controllers)
-		{
-			AShooterPlayerController* shooter_pc = static_cast<AShooterPlayerController*>(player_controller.Get());
-			if (shooter_pc)
-				SendNotification_Impl(shooter_pc, color, display_scale, display_time, icon, text);
-		}
+		for (const auto& controllers = WorldContext->PlayerControllerListField(); auto player_controller : controllers)
+			if (const auto shooter_controller = static_cast<AShooterPlayerController*>(player_controller.Get()))
+				SendNotification_Impl(shooter_controller, color, display_scale, display_time, icon, text);
 	}
 
 	/**
