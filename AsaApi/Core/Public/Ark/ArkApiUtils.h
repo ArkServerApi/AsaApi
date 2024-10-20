@@ -1,3 +1,4 @@
+// ReSharper disable CppClangTidyCppcoreguidelinesProTypeStaticCastDowncast
 #pragma once
 
 #include <optional>
@@ -7,9 +8,26 @@
 #include "MessagingManager.h"
 #include "API/Helpers/Helpers.h"
 
+namespace AsaApi::IApiUtils_Next
+{
+	FORCEINLINE FString GetSteamName(AController& player_controller)
+	{
+		if (const auto& player_state = player_controller.PlayerStateField())
+			return player_state->PlayerNamePrivateField();
+		return "";
+	}
+
+	FORCEINLINE FString GetSteamName(AController* player_controller)
+	{
+		if (!player_controller)
+			return "";
+		return GetSteamName(*player_controller);
+	}
+}
+
 namespace AsaApi
 {
-	enum class ServerStatus { Loading, Ready };
+	enum class ServerStatus { Loading = 0, Ready = 1 };
 
 	struct MapCoords
 	{
@@ -139,15 +157,21 @@ namespace AsaApi
 		/**
 		 * \brief Returns EOS ID from player controller
 		 */
-		static FORCEINLINE FString GetEOSIDFromController(AController* controller)
+		static FORCEINLINE FString GetEOSIDFromController(AController& controller)
 		{
 			FString eos_id = "";
-			
-			AShooterPlayerController* playerController = static_cast<AShooterPlayerController*>(controller);
-			if (playerController != nullptr)
-				playerController->GetUniqueNetIdAsString(&eos_id);
-
+			static_cast<AShooterPlayerController&>(controller).GetUniqueNetIdAsString(&eos_id);
 			return eos_id;
+		}
+
+		/**
+		 * \brief Returns EOS ID from player controller
+		 */
+		static FORCEINLINE FString GetEOSIDFromController(AController* controller)
+		{
+			if (!controller)
+				return "";
+			return GetEOSIDFromController(*controller);
 		}
 
 		/**
@@ -157,21 +181,31 @@ namespace AsaApi
 		 */
 		FORCEINLINE AShooterPlayerController* FindPlayerFromPlatformName(const FString& steam_name) const
 		{
-			AShooterPlayerController* result = nullptr;
-			const auto& player_controllers = GetWorld()->PlayerControllerListField();
-			for (TWeakObjectPtr<APlayerController> player_controller : player_controllers)
+			for (const auto& player_controllers = GetWorld()->PlayerControllerListField(); auto player_controller_weak : player_controllers)
 			{
-				const FString current_name = player_controller->PlayerStateField()->PlayerNamePrivateField();
-				if (current_name == steam_name)
-				{
-					auto* shooter_pc = static_cast<AShooterPlayerController*>(player_controller.Get());
+				APlayerController* player_controller = player_controller_weak.Get();
 
-					result = shooter_pc;
-					break;
-				}
+				if (!player_controller || !player_controller->PlayerStateField())
+					continue;
+
+				if (steam_name == player_controller->PlayerStateField()->PlayerNamePrivateField())
+					return static_cast<AShooterPlayerController*>(player_controller);
 			}
 
-			return result;
+			return nullptr;
+		}
+
+		/**
+		* \brief Finds player controller from the given player character
+		* \param character Player character
+		* \return Pointer to AShooterPlayerController
+		*/
+		FORCEINLINE AShooterPlayerController* FindControllerFromCharacter(AShooterCharacter& character) const
+		{
+			if (character.IsDead())
+				return nullptr;
+			return static_cast<AShooterPlayerController*>(character.GetOwnerController());
+
 		}
 
 		/**
@@ -181,12 +215,9 @@ namespace AsaApi
 		*/
 		FORCEINLINE AShooterPlayerController* FindControllerFromCharacter(AShooterCharacter* character) const
 		{
-			AShooterPlayerController* result = nullptr;
-
-			if (character != nullptr && !character->IsDead())
-				result = (AShooterPlayerController*)(character->GetOwnerController());
-
-			return result;
+			if (!character)
+				return nullptr;
+			return FindControllerFromCharacter(*character);
 		}
 
 		/**
@@ -217,20 +248,36 @@ namespace AsaApi
 			return found_players;
 		}
 
+
+		/**
+		* \brief Returns the character name of player
+		* \param player_controller Player
+		*/
+		static FORCEINLINE FString GetCharacterName(AShooterPlayerController& player_controller)
+		{
+			return player_controller.GetPlayerCharacterName();
+		}
+
 		/**
 		* \brief Returns the character name of player
 		* \param player_controller Player
 		*/
 		static FORCEINLINE FString GetCharacterName(AShooterPlayerController* player_controller)
 		{
-			if (player_controller != nullptr)
-			{
-				FString player_name("");
-				player_controller->GetPlayerCharacterName(&player_name);
-				return player_name;
-			}
+			if (!player_controller)
+				return "";
+			return GetCharacterName(*player_controller);
+		}
 
-			return FString("");
+		/**
+		* \brief Returns the steam name of player
+		* \param player_controller Player
+		*/
+		static FORCEINLINE FString GetSteamName(AController& player_controller)
+		{
+			if (const auto& player_state = player_controller.PlayerStateField())
+				return player_state->PlayerNamePrivateField();
+			return "";
 		}
 
 		/**
@@ -239,7 +286,9 @@ namespace AsaApi
 		*/
 		static FORCEINLINE FString GetSteamName(AController* player_controller)
 		{
-			return player_controller != nullptr ? player_controller->PlayerStateField()->PlayerNamePrivateField() : "";
+			if (!player_controller)
+				return "";
+			return GetSteamName(*player_controller);
 		}
 
 		/**
@@ -250,6 +299,41 @@ namespace AsaApi
 		FORCEINLINE AShooterPlayerController* FindPlayerFromEOSID(const FString& eos_id) const
 		{
 			return FindPlayerFromEOSID_Internal(eos_id);
+		}
+
+
+		/**
+		 * \brief Spawns an item drop
+		 * \param blueprint Item simplified BP
+		 * Example: '/Game/PrimalEarth/CoreBlueprints/Items/Armor/Riot/PrimalItemArmor_RiotPants.PrimalItemArmor_RiotPants_C'
+		 * \param position Spawn position
+		 * \param amount Quantity
+		 * \param item_quality Quality
+		 * \param force_blueprint Is blueprint
+		 * \param life_span Life span
+		 * \return Returns true if drop was spawned, false otherwise
+		 */
+		FORCEINLINE bool SpawnDrop(const FString& blueprint, const FVector& position, const int amount, const float item_quality = 0.0f, const bool force_blueprint = false, const float life_span = 0.0f) const
+		{
+			const auto player = GetWorld()->GetFirstPlayerController();
+			if (!player)
+				return false;
+
+			TSubclassOf<ADroppedItem> item_archetype;
+												// This is ugly, we should properly ensure that T is convertible to UObject
+			UVictoryCore::StringReferenceToClass(std::bit_cast<TSubclassOf<UObject>*>(&item_archetype), &blueprint);
+			UPrimalItem* item = UPrimalItem::AddNewItem(item_archetype.uClass, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, false, false, true);
+
+			if (!item)
+				return false;
+
+			FItemNetInfo info;
+
+			item->GetItemNetInfo(&info, false);
+
+			UPrimalInventoryComponent::StaticDropItem(player, &info, item_archetype, &FRotator::ZeroRotator, true, &position, &FRotator::ZeroRotator, true, false, false, true, nullptr, &FVector::ZeroVector, nullptr, life_span);
+
+			return true;
 		}
 
 		/**
@@ -263,38 +347,12 @@ namespace AsaApi
 		 * \param life_span Life span
 		 * \return Returns true if drop was spawned, false otherwise
 		 */
-		FORCEINLINE bool SpawnDrop(const wchar_t* blueprint, FVector pos, int amount, float item_quality = 0.0f,
-			bool force_blueprint = false, float life_span = 0.0f) const
+		FORCEINLINE bool SpawnDrop(const wchar_t* blueprint, FVector pos, int amount, float item_quality = 0.0f, bool force_blueprint = false, float life_span = 0.0f) const
 		{
-			APlayerController* player = GetWorld()->GetFirstPlayerController();
-			if (!player)
-				return false;
-
-			FString bpFstr(blueprint);
-
-			TSubclassOf<UObject> archetype;
-			UVictoryCore::StringReferenceToClass(&archetype, &bpFstr);
-
-			UPrimalItem* item = UPrimalItem::AddNewItem(archetype.uClass, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true);
-
-			if (!item)
-				return false;
-
-			FItemNetInfo* info = AllocateStruct<FItemNetInfo>();
-
-			item->GetItemNetInfo(info, false);
-
-			TSubclassOf<ADroppedItem> archetype_dropped;
-			archetype_dropped.uClass = archetype.uClass;
-
-			FVector zero_vector{ 0, 0, 0 };
-			FRotator rot{ 0, 0, 0 };
-
-			UPrimalInventoryComponent::StaticDropItem(player, info, archetype_dropped, &rot, true, &pos, &rot, true, false, false, true, nullptr, &zero_vector, nullptr, life_span);
-
-			FreeStruct(info);
-			return true;
+			return SpawnDrop(FString(blueprint), pos, amount, item_quality, force_blueprint, life_span);
 		}
+
+
 
 		/**
 		 * \brief Spawns a dino near player or at specific coordinates
@@ -363,72 +421,75 @@ namespace AsaApi
 		* \brief Returns true if character is riding a dino, false otherwise
 		* \param player_controller Player
 		*/
+		static FORCEINLINE bool IsRidingDino(AShooterPlayerController& player_controller)
+		{
+			return !!GetRidingDino(player_controller);
+		}
+
+		/**
+		* \brief Returns true if character is riding a dino, false otherwise
+		* \param player_controller Player
+		*/
 		static FORCEINLINE bool IsRidingDino(AShooterPlayerController* player_controller)
 		{
-			return player_controller != nullptr && player_controller->GetPlayerCharacter() != nullptr
-				&& player_controller->GetPlayerCharacter()->GetRidingDino() != nullptr;
+			if (!player_controller)
+				return false;
+			return IsRidingDino(*player_controller);
 		}
 
 		/**
 		* \brief Returns the dino the character is riding
-		* \param player_controller Player
+		* \param player_controller AShooterPlayerController&
+		* \return APrimalDinoCharacter*
+		*/
+		static FORCEINLINE APrimalDinoCharacter* GetRidingDino(AShooterPlayerController& player_controller)
+		{
+			const auto& player_character = player_controller.GetPlayerCharacter();
+			return player_character ? player_character->GetRidingDino() : nullptr;
+		}
+
+		/**
+		* \brief Returns the dino the character is riding
+		* \param player_controller AShooterPlayerController*
 		* \return APrimalDinoCharacter*
 		*/
 		static FORCEINLINE APrimalDinoCharacter* GetRidingDino(AShooterPlayerController* player_controller)
 		{
-			return player_controller != nullptr && player_controller->GetPlayerCharacter() != nullptr
-				? player_controller->GetPlayerCharacter()->GetRidingDino()
-				: nullptr;
+			return player_controller ? GetRidingDino(*player_controller) : nullptr;
 		}
 
 		/**
 		* \brief Returns the position of a player
-		* \param player_controller Player
+		* \param player_controller APlayerController&
+		* \return FVector
+		*/
+		static FORCEINLINE FVector GetPosition(APlayerController& player_controller)
+		{
+			const auto& player_pawn = player_controller.PawnField();
+			if (!player_pawn)
+				return FVector::ZeroVector;
+
+			return player_pawn->RootComponentField()->RelativeLocationField();
+		}
+
+		/**
+		* \brief Returns the position of a player
+		* \param player_controller APlayerController*
 		* \return FVector
 		*/
 		static FORCEINLINE FVector GetPosition(APlayerController* player_controller)
 		{
-			return player_controller != nullptr && player_controller->PawnField() != nullptr ? player_controller->PawnField()->RootComponentField()->RelativeLocationField() : FVector{0, 0, 0};
+			if (!player_controller)
+				return FVector::ZeroVector;
+			return GetPosition(*player_controller);
 		}
 
-		/**
-		* \brief Teleport one player to another
-		* \param me Player
-		* \param him Other Player
-		* \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
-		* \param max_dist Is the max distance the characters can be away from each other -1 is disabled
-		*/
-		static FORCEINLINE std::optional<FString> TeleportToPlayer(AShooterPlayerController* me, AShooterPlayerController* him,
-			bool check_for_dino, float max_dist)
+		static FORCEINLINE bool TeleportToPos(AShooterPlayerController& player_controller, const FVector& position)
 		{
-			FVector him_position = GetPosition(him);
-			if (!(me != nullptr && him != nullptr && me->GetPlayerCharacter() != nullptr && him->
-				GetPlayerCharacter()
-				!= nullptr
-				&& !me->GetPlayerCharacter()->IsDead() && !him->GetPlayerCharacter()->IsDead())
-				)
-			{
-				return "One of players is dead";
-			}
-
-			if (check_for_dino && (IsRidingDino(me) || IsRidingDino(him)))
-			{
-				return "One of players is riding a dino";
-			}
-
-			if (max_dist != -1 && FVector::Distance(GetPosition(me), him_position) > max_dist)
-			{
-				return "Person is too far away";
-			}
-
-			if (him_position.IsNearlyZero())
-			{
-				return "Player location is invalid";
-			}
-
-			me->SetPlayerPos((float)him_position.X, (float)him_position.Y, (float)him_position.Z);
-
-			return {};
+			if (IsPlayerDead(player_controller))
+				return false;
+			player_controller.SetPlayerPos(position.X, position.Y, position.Z);
+			return true;
 		}
 
 		/**
@@ -438,13 +499,62 @@ namespace AsaApi
 		*/
 		static FORCEINLINE bool TeleportToPos(AShooterPlayerController* player_controller, const FVector& pos)
 		{
-			if (player_controller != nullptr && !IsPlayerDead(player_controller))
-			{				
-				player_controller->SetPlayerPos((float)pos.X, (float)pos.Y, (float)pos.Z);
-				return true;
-			}
+			if (!player_controller)
+				return false;
 
-			return false;
+			return TeleportToPos(*player_controller, pos);
+		}
+
+		/**
+		* \brief Teleport one player to another
+		* \param me Player
+		* \param him Other Player
+		* \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
+		* \param max_dist Is the max distance the characters can be away from each other -1 is disabled
+		*/
+		static FORCEINLINE std::optional<FString> TeleportToPlayer(AShooterPlayerController& source, AShooterPlayerController& destination, bool check_for_dino = false, float max_dist = -1)
+		{
+			if (IsPlayerDead(source))
+				return "Source Player is dead.";
+
+			if (IsPlayerDead(destination))
+				return "Destination Player is dead.";
+
+			if (check_for_dino && IsRidingDino(source))
+				return "Source Player is riding a dino.";
+
+			if (check_for_dino && IsRidingDino(destination))
+				return "Destination Player is riding a dino.";
+
+			const FVector source_position = GetPosition(source);
+			const FVector destination_position = GetPosition(destination);
+
+			if (destination_position.IsNearlyZero())
+				return "Destination Location is invalid.";
+
+			if (max_dist != -1 && FVector::Distance(source_position, destination_position) > max_dist)
+				return "Distance between Players is too great.";
+
+			TeleportToPos(source, destination_position);
+			return {};
+		}
+
+		/**
+		* \brief Teleport one player to another
+		* \param me Player
+		* \param him Other Player
+		* \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
+		* \param max_dist Is the max distance the characters can be away from each other -1 is disabled
+		*/
+		static FORCEINLINE std::optional<FString> TeleportToPlayer(AShooterPlayerController* source, AShooterPlayerController* destination, bool check_for_dino, float max_dist)
+		{
+
+			if (!source)
+				return "Source Player Controller is null.";
+
+			if (!destination)
+				return "Destination Player Controller is null.";
+			return TeleportToPlayer(*source, *destination, check_for_dino, max_dist);
 		}
 
 		/**
@@ -486,12 +596,21 @@ namespace AsaApi
 		/**
 		 * \brief Returns IP address of player
 		 */
+		static FORCEINLINE FString GetIPAddress(AShooterPlayerController& player)
+		{
+			FString address {};
+			player.GetPlayerNetworkAddress(&address);
+			return address;
+		}
+
+		/**
+		 * \brief Returns IP address of player
+		 */
 		static FORCEINLINE FString GetIPAddress(AShooterPlayerController* player)
 		{
-			FString addr;
-			if (player)
-				player->GetPlayerNetworkAddress(&addr);
-			return addr;
+			if (!player)
+				return ""; // Should we replace this with a sane legal value, such as 255.255.255.255?
+			return GetIPAddress(*player);
 		}
 
 		/**
@@ -505,14 +624,22 @@ namespace AsaApi
 		/**
 		 * \brief Returns true if player is dead, false otherwise
 		 */
+		static FORCEINLINE bool IsPlayerDead(AShooterPlayerController& player)
+		{
+			const auto player_character = player.GetPlayerCharacter();
+			if (!player_character)
+				return true;
+			return player_character->IsDead();
+		}
+
+		/**
+		 * \brief Returns true if player is dead, false otherwise
+		 */
 		static FORCEINLINE bool IsPlayerDead(AShooterPlayerController* player)
 		{
-			if (player == nullptr || player->GetPlayerCharacter() == nullptr)
-			{
+			if (!player)
 				return true;
-			}
-
-			return player->GetPlayerCharacter()->IsDead();
+			return IsPlayerDead(*player);
 		}
 
 		static FORCEINLINE uint64 GetPlayerID(APrimalCharacter* character)
@@ -523,10 +650,16 @@ namespace AsaApi
 				: 0;
 		}
 
+		static FORCEINLINE uint64 GetPlayerID(AController& controller)
+		{
+			return static_cast<AShooterPlayerController&>(controller).LinkedPlayerIDField();
+		}
+
 		static FORCEINLINE uint64 GetPlayerID(AController* controller)
 		{
-			auto* player = static_cast<AShooterPlayerController*>(controller);
-			return player != nullptr ? player->LinkedPlayerIDField() : 0;
+			if (!controller)
+				return 0;
+			return GetPlayerID(*controller);
 		}
 
 		FORCEINLINE const FString GetEOSIDForPlayerID(int player_id)
@@ -561,18 +694,36 @@ namespace AsaApi
 			return eos_id;
 		}
 
+		static FORCEINLINE FString GetBlueprint(UObjectBase& object)
+		{
+			const auto class_field = object.ClassPrivateField();
+			if (!class_field)
+				return "";
+			return GetClassBlueprint(class_field).Replace(L"Default__", L"", ESearchCase::CaseSensitive);
+		}
+
 		/**
 		 * \brief Returns blueprint path from any UObject
 		 */
 		static FORCEINLINE FString GetBlueprint(UObjectBase* object)
 		{
-			if (object != nullptr && object->ClassPrivateField() != nullptr)
-			{
-				FString path_name = GetClassBlueprint(object->ClassPrivateField());
-				return path_name.Replace(L"Default__", L"", ESearchCase::CaseSensitive);
-			}
-				
-			return FString("");
+			if (!object)
+				return "";
+			return GetBlueprint(*object);
+		}
+
+		/**
+		 * \brief Returns blueprint path from any UClass
+		 */
+		static FORCEINLINE FString GetClassBlueprint(UClass& the_class)
+		{
+			FString path;
+			UVictoryCore::GetClassDefaultObject(&the_class)->GetPathName(nullptr, &path);
+
+			if (path.EndsWith("_C"))
+				path = path.LeftChop(2);
+
+			return "Blueprint'" + path + "'";
 		}
 
 		/**
@@ -580,18 +731,9 @@ namespace AsaApi
 		 */
 		static FORCEINLINE FString GetClassBlueprint(UClass* the_class)
 		{
-			if (the_class != nullptr)
-			{
-				FString path;
-				auto the_object = UVictoryCore::GetClassDefaultObject(the_class);
-				the_object->GetPathName(nullptr, &path);
-				if (path.EndsWith("_C"))
-					return "Blueprint'" + path.LeftChop(2) + "'";
-				else
-					return "Blueprint'" + path + "'";
-			}
-
-			return FString("");
+			if (!the_class)
+				return "";
+			return GetClassBlueprint(*the_class);
 		}
 
 		/**
@@ -685,50 +827,56 @@ namespace AsaApi
 			return out_actors;
 		}
 
+		FORCEINLINE UMinimapData& GetMinimapData() const
+		{
+			constexpr auto default_path = "Blueprint'/Game/ASA/Minimap/Core/MinimapData_Base.MinimapData_Base'";
+			APrimalWorldSettings& world_settings = *static_cast<APrimalWorldSettings*>(GetWorld()->GetWorldSettings(false, true));
+
+			if(world_settings.CurrentMinimapDataField().uClass)
+				return *static_cast<UMinimapData*>(world_settings.CurrentMinimapDataField().uClass->GetDefaultObject(true));
+
+			return *static_cast<UMinimapData*>(UVictoryCore::BPLoadClass(default_path)->GetDefaultObject(true));
+		}
+
+		FORCEINLINE FMapData& GetMapDataFromMiniMap(UMinimapData& minimap_data, const FVector& reference_point = FVector::ZeroVector) const
+		{
+			if (minimap_data.MinimapDataField().Num() == 1)
+				return *minimap_data.MinimapDataField().GetData();
+
+			for (auto& data : minimap_data.MinimapDataField())
+			{
+				if (PointIntersectsRectangle(reference_point, data.PlayableMinField(), data.PlayableMaxField()))
+					return data;
+			}
+
+			throw std::invalid_argument("Unable To Find MapData.");
+		}
+
 		/**
 		* \brief Converts FVector into coords that are displayed when you view the ingame map
 		*/
-		FORCEINLINE MapCoords FVectorToCoords(FVector actor_position)
+		FORCEINLINE MapCoords FVectorToCoords(const FVector& position) const
 		{
-			MapCoords coords;
-			AWorldSettings* world_settings = GetWorld()->GetWorldSettings(false, true);
-			APrimalWorldSettings* p_world_settings = static_cast<APrimalWorldSettings*>(world_settings);
+			constexpr auto max = 100.f;
+			constexpr auto min = 0.f;
 
-			UMinimapData* minimap_data = nullptr;
-			if (p_world_settings->CurrentMinimapDataField().uClass)
-				minimap_data = static_cast<UMinimapData*>(p_world_settings->CurrentMinimapDataField().uClass->GetDefaultObject(true));
-			else
-				minimap_data = static_cast<UMinimapData*>(UVictoryCore::BPLoadClass("Blueprint'/Game/ASA/Minimap/Core/MinimapData_Base.MinimapData_Base'")->GetDefaultObject(true));
+			auto& minimap = GetMinimapData();
+			auto& map_data = GetMapDataFromMiniMap(minimap, position);
 
-			FMapData* map_data = nullptr;
-			if (minimap_data->MinimapDataField().Num() == 1)
-				map_data = minimap_data->MinimapDataField().GetData();
-			else
-			{
-				const int FMapDataSize = GetStructSize<FMapData>();
-				for (int i = 0; i < minimap_data->MinimapDataField().Num(); i++)
-				{
-					FMapData* data = minimap_data->MinimapDataField().GetData() + (i * FMapDataSize);
+			const auto& map_min = map_data.OriginMinField();
+			const auto& map_max = map_data.OriginMaxField();
+			const auto& projected = (map_max - position) / (map_max - map_min);
 
-					if (actor_position.X < data->PlayableMaxField().X
-						&& actor_position.Y < data->PlayableMaxField().Y
-						&& actor_position.X > data->PlayableMinField().X
-						&& actor_position.Y > data->PlayableMinField().Y
-						&& actor_position.Z < data->PlayableMaxField().Z
-						&& actor_position.Z > data->PlayableMinField().Z)
-					{
-						map_data = data;
-						break;
-					}
-				}
-			}
+			return { FMath::Lerp(max, min, projected.X), FMath::Lerp(max, min, projected.Y) };
+			
+		}
 
-			double xAlpha = (actor_position.X - map_data->OriginMaxField().X) / (map_data->OriginMinField().X - map_data->OriginMaxField().X);
-			double yAlpha = (actor_position.Y - map_data->OriginMaxField().Y) / (map_data->OriginMinField().Y - map_data->OriginMaxField().Y);
-
-			coords.x = (float)FMath::Lerp(100.0, 0.0, xAlpha);
-			coords.y = (float)FMath::Lerp(100.0, 0.0, yAlpha);
-			return coords;
+		// N.B., we should use dot projection here as not all rects are axis aligned.
+		FORCEINLINE bool PointIntersectsRectangle(const FVector& position, const FVector& start, const FVector& end) const
+		{
+			return
+				start.X < position.X && position.X < end.X &&
+				start.Y < position.Y && position.Y < end.Y;
 		}
 
 		/**
@@ -783,12 +931,19 @@ namespace AsaApi
 		* \param _this Player controller
 		* \param Command Command to run
 		*/
-		void RunHiddenCommand(AShooterPlayerController* _this, FString* Command)
+		void RunHiddenCommand(AShooterPlayerController* _this, const FString* Command) const
 		{
-			FString result;
-			HideCommand = true;
-			_this->ConsoleCommand(&result, Command, false);
-			HideCommand = false;
+			_this->RunHiddenCommand(*Command);
+		}
+
+		/**
+		* \brief Runs a command that is not logged anywhere
+		* \param _this Player controller
+		* \param Command Command to run
+		*/
+		void RunHiddenCommand(AShooterPlayerController* _this, const FString& Command) const
+		{
+			RunHiddenCommand(_this, &Command);
 		}
 
 		/**

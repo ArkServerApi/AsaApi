@@ -471,6 +471,11 @@ public:
 	explicit TRotator(const TRotator<FArg>& From) : TRotator<T>((T)From.Pitch, (T)From.Yaw, (T)From.Roll) {}
 };
 
+
+template<typename T>
+inline const TRotator<T> TRotator<T>::ZeroRotator = { 0,0,0 };
+
+
 #if !defined(_MSC_VER) || defined(__clang__)  // MSVC can't forward declare explicit specializations
 template<> const FRotator3f FRotator3f::ZeroRotator;
 template<> const FRotator3d FRotator3d::ZeroRotator;

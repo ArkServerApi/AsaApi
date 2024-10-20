@@ -396,8 +396,6 @@ copy "$(SolutionDir)$(PlatformName)\$(ConfigurationName)\$(ProjectName).pdb" "F:
     <ClInclude Include="Core\Public\API\ARK\Actor.h" />
     <ClInclude Include="Core\Public\API\ARK\Ark.h" />
     <ClInclude Include="Core\Public\API\ARK\Buff.h" />
-    <ClInclude Include="Core\Public\API\ARK\ExtensionsDeclaration.h" />
-    <ClInclude Include="Core\Public\API\ARK\ExtensionsDefinition.h" />
     <ClInclude Include="Core\Public\API\ARK\GameMode.h" />
     <ClInclude Include="Core\Public\API\ARK\Inventory.h" />
     <ClInclude Include="Core\Public\API\ARK\ModParamStructs.h" />

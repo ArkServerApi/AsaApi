@@ -2,6 +2,8 @@
 
 #include "API/ARK/Ark.h"
 
+
+
 /**
 * \brief Messaging manager. Allows to send server messages, notifications and chat messages.
 * \brief Usage:
@@ -12,23 +14,37 @@
 class ARK_API MessagingManager
 {
 public:
+	virtual ~MessagingManager() = default;
+
 	/**
 	* \brief Sends server message to the specific player. Using fmt::format.
 	* \tparam T Either a a char or wchar_t
 	* \tparam Args Optional arguments types
 	* \param player_controller Player
-	* \param msg_color Message color
-	* \param msg Message
+	* \param color Message color
+	* \param message Message
 	* \param args Optional arguments
 	*/
 	template <typename T, typename... Args>
-	FORCEINLINE void SendServerMessage(AShooterPlayerController* player_controller, FLinearColor msg_color, const T* msg, Args&&... args)
+	FORCEINLINE void SendServerMessage(AShooterPlayerController& player_controller, FLinearColor color, const T* message, Args&&... args)
+	{
+		SendServerMessage_Impl(&player_controller, color, FString::Format(message, std::forward<Args>(args)...));
+	}
+	/**
+	* \brief Sends server message to the specific player. Using fmt::format.
+	* \tparam T Either a a char or wchar_t
+	* \tparam Args Optional arguments types
+	* \param player_controller Player
+	* \param color Message color
+	* \param message Message
+	* \param args Optional arguments
+	*/
+	template <typename T, typename... Args>
+	FORCEINLINE void SendServerMessage(AShooterPlayerController* player_controller, FLinearColor color, const T* message, Args&&... args)
 	{
 		if (!player_controller)
 			return;
-
-		FString message = FString::Format(msg, std::forward<Args>(args)...);
-		SendServerMessage_Impl(player_controller, msg_color, message);
+		SendServerMessage_Impl(player_controller, color, FString::Format(message, std::forward<Args>(args)...));
 	}
 
 	/**
@@ -104,18 +120,13 @@ public:
 	* \param args Optional arguments
 	*/
 	template <typename T, typename... Args>
-	FORCEINLINE void SendNotificationToAll(FLinearColor color, float display_scale,
-		float display_time, UTexture2D* icon, const T* msg, Args&&... args)
+	FORCEINLINE void SendNotificationToAll(const FLinearColor color, const float display_scale, const float display_time, UTexture2D* icon, const T* msg, Args&&... args)
 	{
-		FString text(FString::Format(msg, std::forward<Args>(args)...));
+		const FString text(FString::Format(msg, std::forward<Args>(args)...));
 
-		const auto& player_controllers = WorldContext->PlayerControllerListField();
-		for (TWeakObjectPtr<APlayerController> player_controller : player_controllers)
-		{
-			AShooterPlayerController* shooter_pc = static_cast<AShooterPlayerController*>(player_controller.Get());
-			if (shooter_pc)
-				SendNotification_Impl(shooter_pc, color, display_scale, display_time, icon, text);
-		}
+		for (const auto& controllers = WorldContext->PlayerControllerListField(); auto player_controller : controllers)
+			if (const auto shooter_controller = static_cast<AShooterPlayerController*>(player_controller.Get()))
+				SendNotification_Impl(shooter_controller, color, display_scale, display_time, icon, text);
 	}
 
 	/**
@@ -147,8 +158,8 @@ public:
 	}
 
 	/**
-	* \brief Returns wether this messaging manager is able to work in the current session.
-	* \brief The default one does not depend in any mod or external service so it always returns true.
+	* \brief Returns weather this messaging manager is able to work in the current session.
+	* \brief The default one does not depend on any mod or external service, so it always returns true.
 	* \brief Subclasses should redefine this function if they depend on any external service.
 	* \brief If it returns an error, it will be removed and the plugin will fall back to the default API messaging manager.
 	* \return Empty optional if no error, or optional filled with error string.
@@ -172,10 +183,9 @@ public:
 protected /*overridable functions*/: // these are to be redefined by the child classes
 	// default implementations
 
-	virtual void SendServerMessage_Impl(AShooterPlayerController* player_controller, FLinearColor msg_color, const FString& msg)
+	virtual void SendServerMessage_Impl(AShooterPlayerController* player_controller, FLinearColor color, const FString& message)
 	{
-		static const FString senderid = "Server";
-		player_controller->ClientServerChatDirectMessage(&msg, msg_color, false, &senderid);
+		player_controller->ClientServerChatDirectMessage(message, color, false, "Server");
 	}
 
 	virtual void SendChatMessage_Impl(AShooterPlayerController* player_controller, const FString& sender_name, const FString& msg)
@@ -183,14 +193,14 @@ protected /*overridable functions*/: // these are to be redefined by the child c
 		FPrimalChatMessage chat_message;
 		chat_message.SenderName = sender_name;
 		chat_message.Message = msg;
-		chat_message.UserId = player_controller->GetEOSId();
+		chat_message.UserId = player_controller->GetUniqueNetIdAsString();
 		player_controller->ClientChatMessage(chat_message);
 	}
 
 	virtual void SendNotification_Impl(AShooterPlayerController* player_controller, FLinearColor color, float display_scale,
-		float display_time, UTexture2D* icon, const FString& msg)
+		float display_time, UTexture2D* icon, const FString& message)
 	{
-		player_controller->ClientServerNotification(&msg, color, display_scale, display_time, icon, nullptr, 1);
+		player_controller->ClientServerNotification(message, color, display_scale, display_time, icon, nullptr, 1);
 	}
 
 protected /*variables*/:

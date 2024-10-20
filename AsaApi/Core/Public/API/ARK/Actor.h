@@ -1377,8 +1377,24 @@ struct UInstancedStaticMeshComponent : UStaticMeshComponent
     void ReceiveComponentDamage(float DamageAmount, const FDamageEvent* DamageEvent, AController* EventInstigator, AActor* DamageCauser) { NativeCall<void, float, const FDamageEvent*, AController*, AActor*>(this, "UInstancedStaticMeshComponent.ReceiveComponentDamage(float,FDamageEvent&,AController*,AActor*)", DamageAmount, DamageEvent, EventInstigator, DamageCauser); }
 };
 
-struct AActor : UPrimalActor, ActorExtensions
+struct AActor : UPrimalActor
 {
+    // Start AsaApi Extensions
+    FORCEINLINE FVector GetActorForwardVector()
+    {
+        if (USceneComponent* root_component = RootComponentField())
+            return root_component->ComponentToWorldField().GetUnitAxis(EAxis::X);
+        return FVector::ZeroVector;
+    }
+
+    FORCEINLINE FVector GetLocation()
+    {
+        if (const auto& root = RootComponentField())
+            return root->ComponentToWorldField().GetLocation();
+        return FVector::ZeroVector;
+    }
+    // End AsaApi Extensions
+
     // Fields
 
     FActorTickFunction& PrimaryActorTickField() { return *GetNativePointerField<FActorTickFunction*>(this, "AActor.PrimaryActorTick"); }
@@ -1957,7 +1973,15 @@ struct AInfo : AActor
 };
 
 struct UPlayer : UObject {
-    TObjectPtr<APlayerController>& PlayerControllerField() { return *GetNativePointerField<TObjectPtr<APlayerController>*>(this, "UPlayer.PlayerController"); }
+    // Start AsaApi Extensions
+    FString ConsoleCommand(const FString& Command, bool bWriteToLog)
+    {
+        FString result = *ConsoleCommand(&result, &Command, bWriteToLog);
+        return result;
+    }
+    // End AsaApi Extensions
+
+	TObjectPtr<APlayerController>& PlayerControllerField() { return *GetNativePointerField<TObjectPtr<APlayerController>*>(this, "UPlayer.PlayerController"); }
     // int CurrentNetSpeed;
     // int ConfiguredInternetSpeed;
     // int ConfiguredLanSpeed;
@@ -2584,7 +2608,7 @@ struct APrimalController : AController
 };
 
 
-struct APlayerController : APrimalController, PlayerControllerExtensions
+struct APlayerController : APrimalController
 {
     // Fields
 
@@ -3056,8 +3080,45 @@ struct ABasePlayerController : APrimalPlayerController
 
 struct AShooterPlayerController : ABasePlayerController
 {
-    // Fields
+public:
+    // Start AsaApi Extensions
+    FString GetPlayerCharacterName()
+    {
+        FString player_name = *GetPlayerCharacterName(&player_name);
+        return player_name;
+    }
 
+    FString GetUniqueNetIdAsString()
+    {
+        FString unique_id = *GetUniqueNetIdAsString(&unique_id);
+        return unique_id;
+    }
+
+    void ClientServerChatDirectMessage(const FString& MessageText, FLinearColor MessageColor, bool bIsBold, const FString& SenderId)
+    {
+        ClientServerChatDirectMessage(&MessageText, MessageColor, bIsBold, &SenderId);
+    }
+
+    void ClientServerNotification(const FString& MessageText, FLinearColor MessageColor, float DisplayScale, float DisplayTime, UTexture2D* MessageIcon, USoundBase* SoundToPlay, int Priority)
+    {
+        ClientServerNotification(&MessageText, MessageColor, DisplayScale, DisplayTime, MessageIcon, SoundToPlay, Priority);
+    }
+
+    FString ConsoleCommand(const FString& Command, bool bWriteToLog)
+    {
+        FString result = *ConsoleCommand(&result, &Command, bWriteToLog);
+        return result;
+    }
+
+    void RunHiddenCommand(const FString& Command)
+    {
+        this->PlayerField().Get()->ConsoleCommand(Command, false);
+    }
+
+
+    // End AsaApi Extensions
+
+    // Fields
     UPaintingStreamingComponent*& PaintingStreamingComponentField() { return *GetNativePointerField<UPaintingStreamingComponent**>(this, "AShooterPlayerController.PaintingStreamingComponent"); }
     FieldArray<unsigned __int8, 10> HeldItemSlotField() { return { this, "AShooterPlayerController.HeldItemSlot" }; }
     FieldArray<unsigned __int8, 10> UsedItemSlotField() { return { this, "AShooterPlayerController.UsedItemSlot" }; }

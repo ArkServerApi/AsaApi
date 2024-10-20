@@ -1225,6 +1225,13 @@ struct UPrimalGlobals : UObject
 
 struct FMapData
 {
+	UE4_SizeOf(128);
+
+	FMapData()
+	{
+		UE4_CheckSize(FMapData);
+		NativeCall<void>(this, "FMapData.FMapData()");
+	}
 	// Fields
 
 	FString& MapNameField() { return *GetNativePointerField<FString*>(this, "FMapData.MapName"); }
