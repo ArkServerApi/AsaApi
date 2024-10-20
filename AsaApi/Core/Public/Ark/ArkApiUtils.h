@@ -933,10 +933,7 @@ namespace AsaApi
 		*/
 		void RunHiddenCommand(AShooterPlayerController* _this, const FString* Command) const
 		{
-			FString result;
-			HideCommand = true;
-			_this->ConsoleCommand(&result, Command, false);
-			HideCommand = false;
+			_this->RunHiddenCommand(*Command);
 		}
 
 		/**

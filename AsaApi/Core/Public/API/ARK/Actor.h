@@ -1973,7 +1973,15 @@ struct AInfo : AActor
 };
 
 struct UPlayer : UObject {
-    TObjectPtr<APlayerController>& PlayerControllerField() { return *GetNativePointerField<TObjectPtr<APlayerController>*>(this, "UPlayer.PlayerController"); }
+    // Start AsaApi Extensions
+    FString ConsoleCommand(const FString& Command, bool bWriteToLog)
+    {
+        FString result = *ConsoleCommand(&result, &Command, bWriteToLog);
+        return result;
+    }
+    // End AsaApi Extensions
+
+	TObjectPtr<APlayerController>& PlayerControllerField() { return *GetNativePointerField<TObjectPtr<APlayerController>*>(this, "UPlayer.PlayerController"); }
     // int CurrentNetSpeed;
     // int ConfiguredInternetSpeed;
     // int ConfiguredLanSpeed;
@@ -3095,6 +3103,18 @@ public:
     {
         ClientServerNotification(&MessageText, MessageColor, DisplayScale, DisplayTime, MessageIcon, SoundToPlay, Priority);
     }
+
+    FString ConsoleCommand(const FString& Command, bool bWriteToLog)
+    {
+        FString result = *ConsoleCommand(&result, &Command, bWriteToLog);
+        return result;
+    }
+
+    void RunHiddenCommand(const FString& Command)
+    {
+        this->PlayerField().Get()->ConsoleCommand(Command, false);
+    }
+
 
     // End AsaApi Extensions
 
