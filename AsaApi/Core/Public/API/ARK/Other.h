@@ -60,6 +60,8 @@ struct UVictoryCore : UVictoryCoreHighest
 
 
 	  // Functions
+	static double PersistentToUtcTime(UObject* WorldContextObject, double PersistentTime) { return NativeCall<double, UObject*, double>(nullptr, "UVictoryCore.PersistentToUtcTime(UObject*,double)", WorldContextObject, PersistentTime); }
+	static double UtcToPersistentTime(UObject* WorldContextObject, double UtcTime) { return NativeCall<double, UObject*, double>(nullptr, "UVictoryCore.UtcToPersistentTime(UObject*,double)", WorldContextObject, UtcTime); }
 
 	static void GetBestHitInfoFromDamageEvent(const FDamageEvent* damageEvent, FHitResult* OutHitInfo, UE::Math::TVector<double>& OutImpulseDir) { NativeCall<void, const FDamageEvent*, FHitResult*, UE::Math::TVector<double>&>(nullptr, "UVictoryCore.GetBestHitInfoFromDamageEvent(FDamageEvent&,FHitResult&,UE::Math::TVector<double>&)", damageEvent, OutHitInfo, OutImpulseDir); }
 	static void StaticRegisterNativesUVictoryCore() { NativeCall<void>(nullptr, "UVictoryCore.StaticRegisterNativesUVictoryCore()"); }
