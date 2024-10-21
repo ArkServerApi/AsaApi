@@ -969,7 +969,6 @@ struct UPrimalInventoryComponent : UActorComponent
     bool LoadAdditionalStructureEngrams() { return NativeCall<bool>(this, "UPrimalInventoryComponent.LoadAdditionalStructureEngrams()"); }
     bool RemoveItem(const FItemNetID* itemID, bool bDoDrop, bool bSecondryAction, bool bForceRemoval, bool showHUDMessage) { return NativeCall<bool, const FItemNetID*, bool, bool, bool, bool>(this, "UPrimalInventoryComponent.RemoveItem(FItemNetID&,bool,bool,bool,bool)", itemID, bDoDrop, bSecondryAction, bForceRemoval, showHUDMessage); }
     ADroppedItem* EjectItem(const FItemNetID* itemID, bool bPreventImpule, bool bForceEject, bool bSetItemLocation, const UE::Math::TVector<double>* LocationOverride, bool showHUDMessage, TSubclassOf<ADroppedItem> TheDroppedTemplateOverride, bool bAssignToTribeForPickup, int AssignedTribeID) { return NativeCall<ADroppedItem*, const FItemNetID*, bool, bool, bool, const UE::Math::TVector<double>*, bool, TSubclassOf<ADroppedItem>, bool, int>(this, "UPrimalInventoryComponent.EjectItem(FItemNetID*,bool,bool,bool,UE::Math::TVector<double>*,bool,TSubclassOf<ADroppedItem>,bool,int)", itemID, bPreventImpule, bForceEject, bSetItemLocation, LocationOverride, showHUDMessage, TheDroppedTemplateOverride, bAssignToTribeForPickup, AssignedTribeID); }
-    bool ServerEquipItem(FItemNetID* itemID, AShooterPlayerController* RequestSPC) { return NativeCall<bool, FItemNetID*, AShooterPlayerController*>(this, "UPrimalInventoryComponent.ServerEquipItem(FItemNetID&,AShooterPlayerController*)", itemID, RequestSPC); }
     void DropItem(const FItemNetInfo* theInfo, bool bOverrideSpawnTransform, const UE::Math::TVector<double>* LocationOverride, const UE::Math::TRotator<double>* RotationOverride, bool bPreventDropImpulse, bool bThrow, bool bSecondryAction, bool bSetItemDropLocation) { NativeCall<void, const FItemNetInfo*, bool, const UE::Math::TVector<double>*, const UE::Math::TRotator<double>*, bool, bool, bool, bool>(this, "UPrimalInventoryComponent.DropItem(FItemNetInfo*,bool,UE::Math::TVector<double>*,UE::Math::TRotator<double>*,bool,bool,bool,bool)", theInfo, bOverrideSpawnTransform, LocationOverride, RotationOverride, bPreventDropImpulse, bThrow, bSecondryAction, bSetItemDropLocation); }
     static ADroppedItem* StaticDropNewItem() { return NativeCall<ADroppedItem*>(nullptr, "UPrimalInventoryComponent.StaticDropNewItem()"); }
     static ADroppedItem* StaticDropItem(AActor* forActor, const FItemNetInfo* theInfo, TSubclassOf<ADroppedItem> TheDroppedTemplateOverride, const UE::Math::TRotator<double>* DroppedRotationOffset, bool bOverrideSpawnTransform, const UE::Math::TVector<double>* LocationOverride, const UE::Math::TRotator<double>* RotationOverride, bool bPreventDropImpulse, bool bThrow, bool bSecondryAction, bool bSetItemDropLocation, UStaticMesh* DroppedMeshOverride, const UE::Math::TVector<double>* DroppedScaleOverride, UMaterialInterface* DroppedMaterialOverride, float DroppedLifeSpanOverride) { return NativeCall<ADroppedItem*, AActor*, const FItemNetInfo*, TSubclassOf<ADroppedItem>, const UE::Math::TRotator<double>*, bool, const UE::Math::TVector<double>*, const UE::Math::TRotator<double>*, bool, bool, bool, bool, UStaticMesh*, const UE::Math::TVector<double>*, UMaterialInterface*, float>(nullptr, "UPrimalInventoryComponent.StaticDropItem(AActor*,FItemNetInfo&,TSubclassOf<ADroppedItem>,UE::Math::TRotator<double>&,bool,UE::Math::TVector<double>&,UE::Math::TRotator<double>&,bool,bool,bool,bool,UStaticMesh*,UE::Math::TVector<double>&,UMaterialInterface*,float)", forActor, theInfo, TheDroppedTemplateOverride, DroppedRotationOffset, bOverrideSpawnTransform, LocationOverride, RotationOverride, bPreventDropImpulse, bThrow, bSecondryAction, bSetItemDropLocation, DroppedMeshOverride, DroppedScaleOverride, DroppedMaterialOverride, DroppedLifeSpanOverride); }
@@ -1400,4 +1399,48 @@ struct UPrimalCharacterStatusComponent : UActorComponent
     void ServerApplyMutagen(bool bHasAncestors) { NativeCall<void, bool>(this, "UPrimalCharacterStatusComponent.ServerApplyMutagen(bool)", bHasAncestors); }
     void ServerForceUpdateMaxStatValues() { NativeCall<void>(this, "UPrimalCharacterStatusComponent.ServerForceUpdateMaxStatValues()"); }
     float GetDinoStatDistributionAgainstMax(EPrimalCharacterStatusValue::Type valueType, bool bTamedPoints, bool bCheckLevel, bool bIncludeMaxTamingEffLevels) { return NativeCall<float, EPrimalCharacterStatusValue::Type, bool, bool, bool>(this, "UPrimalCharacterStatusComponent.GetDinoStatDistributionAgainstMax(EPrimalCharacterStatusValue::Type,bool,bool,bool)", valueType, bTamedPoints, bCheckLevel, bIncludeMaxTamingEffLevels); }
+};
+
+struct UPrimalEngramEntry : UObject
+{
+    // Fields
+
+    int& RequiredCharacterLevelField() { return *GetNativePointerField<int*>(this, "UPrimalEngramEntry.RequiredCharacterLevel"); }
+    int& RequiredEngramPointsField() { return *GetNativePointerField<int*>(this, "UPrimalEngramEntry.RequiredEngramPoints"); }
+    TSubclassOf<UPrimalItem>& BluePrintEntryField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalEngramEntry.BluePrintEntry"); }
+    //FString& ExtraEngramDescriptionField() { return *GetNativePointerField<FString*>(this, "UPrimalEngramEntry.ExtraEngramDescription"); }
+    //TArray<FEngramEntries, TSizedDefaultAllocator<32> >& EngramRequirementSetsField() { return *GetNativePointerField<TArray<FEngramEntries, TSizedDefaultAllocator<32> >*>(this, "UPrimalEngramEntry.EngramRequirementSets"); }
+    int& MyEngramIndexField() { return *GetNativePointerField<int*>(this, "UPrimalEngramEntry.MyEngramIndex"); }
+    //TEnumAsByte<enum EEngramGroup::Type>& EngramGroupField() { return *GetNativePointerField<TEnumAsByte<enum EEngramGroup::Type>*>(this, "UPrimalEngramEntry.EngramGroup"); }
+    //TEnumAsByte<enum EEngramCategory::Type>& EngramCategoryField() { return *GetNativePointerField<TEnumAsByte<enum EEngramCategory::Type>*>(this, "UPrimalEngramEntry.EngramCategory"); }
+
+    // Bitfields
+
+    BitFieldValue<bool, unsigned __int32> bGiveBlueprintToPlayerInventoryField() { return { this, "UPrimalEngramEntry.bGiveBlueprintToPlayerInventory" }; }
+    BitFieldValue<bool, unsigned __int32> bCanBeManuallyUnlockedField() { return { this, "UPrimalEngramEntry.bCanBeManuallyUnlocked" }; }
+    BitFieldValue<bool, unsigned __int32> bForceIsTekEngramField() { return { this, "UPrimalEngramEntry.bForceIsTekEngram" }; }
+    BitFieldValue<bool, unsigned __int32> AutoUnlockEngramField() { return { this, "UPrimalEngramEntry.AutoUnlockEngram" }; }
+
+    // Functions
+
+    int GetEngramFilterType() { return NativeCall<int>(this, "UPrimalEngramEntry.GetEngramFilterType()"); }
+    //static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(this, "UPrimalEngramEntry.GetPrivateStaticClass()"); }
+    int GetRequiredEngramPoints() { return NativeCall<int>(this, "UPrimalEngramEntry.GetRequiredEngramPoints()"); }
+    //static UClass* StaticClass() { return NativeCall<UClass*>(this, "UPrimalEngramEntry.StaticClass()"); }
+    int GetRequiredLevel() { return NativeCall<int>(this, "UPrimalEngramEntry.GetRequiredLevel()"); }
+    //FString GetEngramDescription(AShooterPlayerState* aPlayerState) { return NativeCall<FString, AShooterPlayerState*>(this, "UPrimalEngramEntry.GetEngramDescription(AShooterPlayerState*)", aPlayerState); }
+    //FString GetEntryString() { return NativeCall<FString>(this, "UPrimalEngramEntry.GetEntryString()"); }
+    //FString GetEngramName() { return NativeCall<FString>(this, "UPrimalEngramEntry.GetEngramName()"); }
+    bool UseEngramRequirementSets() { return NativeCall<bool>(this, "UPrimalEngramEntry.UseEngramRequirementSets()"); }
+    //UTexture2D* GetEntryIcon(UObject* AssociatedDataObject, bool bIsEnabled) { return NativeCall<UTexture2D*, UObject*, bool>(this, "UPrimalEngramEntry.GetEntryIcon(UObject*,bool)", AssociatedDataObject, bIsEnabled); }
+    //static void StaticRegisterNativesUPrimalEngramEntry() { NativeCall<void>(this, "UPrimalEngramEntry.StaticRegisterNativesUPrimalEngramEntry()"); }
+    bool MeetsEngramRequirements(AShooterPlayerState* aPlayerState, bool bOnlyCheckLevel, bool bDontCheckEngramPreRequirements) { return NativeCall<bool, AShooterPlayerState*, bool, bool>(this, "UPrimalEngramEntry.MeetsEngramRequirements(AShooterPlayerState*,bool,bool)", aPlayerState, bOnlyCheckLevel, bDontCheckEngramPreRequirements); }
+    //void GetAllChainedPreReqs(AShooterPlayerState* aPlayerState, TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >& TestedEntries) { NativeCall<void, AShooterPlayerState*, TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >&>(this, "UPrimalEngramEntry.GetAllChainedPreReqs(AShooterPlayerState*,TArray<TSubclassOf<UPrimalEngramEntry>,TSizedDefaultAllocator<32>>&)", aPlayerState, TestedEntries); }
+    //int GetChainRequiredEngramPoints(TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >& TestedEntries) { return NativeCall<int, TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >&>(this, "UPrimalEngramEntry.GetChainRequiredEngramPoints(TArray<TSubclassOf<UPrimalEngramEntry>,TSizedDefaultAllocator<32>>&)", TestedEntries); }
+    bool GetDownscaleWrappedTextToFit() { return NativeCall<bool>(this, "UPrimalEngramEntry.GetDownscaleWrappedTextToFit()"); }
+    bool MeetsEngramChainRequirements(AShooterPlayerState* aPlayerState) { return NativeCall<bool, AShooterPlayerState*>(this, "UPrimalEngramEntry.MeetsEngramChainRequirements(AShooterPlayerState*)", aPlayerState); }
+    UObject* _getUObject()const { return NativeCall<UObject*>(this, "UPrimalEngramEntry._getUObject()"); }
+    void ClearHiddenEngramRequirements() { NativeCall<void>(this, "UPrimalEngramEntry.ClearHiddenEngramRequirements()"); }
+    UObject* GetObject() { return NativeCall<UObject*>(this, "UPrimalEngramEntry.GetObject()"); }
+
 };
