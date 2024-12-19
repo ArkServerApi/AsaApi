@@ -1,5 +1,5 @@
 #pragma once
-
+// ReSharper disable CppInconsistentNaming
 #ifdef ARK_EXPORTS
 #define ARK_API __declspec(dllexport)
 #else
@@ -251,6 +251,14 @@ struct UObjectBase
 
 struct UObjectBaseUtility : UObjectBase
 {
+	// Start AsaApi Extensions
+	bool IsA(const UClass* base);
+	template<typename T>
+	bool IsA()
+	{
+		return IsA(T::StaticClass());
+	}
+	// End AsaApi Extensions
 	// Fields
 
 
@@ -1507,6 +1515,12 @@ int GetStructSize()
 	// Credits to Substitute#0001 for the idea
 	int size = 0;
 	UScriptStruct* staticStruct = T::StaticStruct();
+
+	size = staticStruct ? staticStruct->PropertiesSizeField() : 0;
+
+	printf("The size of this struct is %d bytes.", size);
+	return size;
+
 	if (staticStruct)
 	{
 		return staticStruct->PropertiesSizeField();
