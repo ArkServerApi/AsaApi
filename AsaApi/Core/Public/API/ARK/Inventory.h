@@ -128,7 +128,8 @@ struct UPrimalItem : UObject
     TSoftClassPtr<AShooterWeapon>& WeaponTemplateField() { return *GetNativePointerField<TSoftClassPtr<AShooterWeapon>*>(this, "UPrimalItem.WeaponTemplate"); }
     UTexture2D*& BrokenIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.BrokenIcon"); }
     UTexture2D*& CustomBrokenOverlayIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.CustomBrokenOverlayIcon"); }
-    UTexture2D*& ItemIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.ItemIcon"); }
+    UTexture2D*& ItemIcon_DEPRECATEDField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.ItemIcon_DEPRECATED"); }
+    FJustInTimeTexture2D& ItemIconJITField() { return *GetNativePointerField<FJustInTimeTexture2D*>(this, "UPrimalItem.ItemIconJIT"); }
     UTexture2D*& AlternateItemIconBelowDurabilityField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.AlternateItemIconBelowDurability"); }
     float& AlternateItemIconBelowDurabilityValueField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AlternateItemIconBelowDurabilityValue"); }
     float& DurabilityNotifyThresholdValueField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityNotifyThresholdValue"); }
