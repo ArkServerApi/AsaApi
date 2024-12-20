@@ -43,3 +43,22 @@ FORCEINLINE FString PlayerControllerExtensions::GetEOSId()
     _this->GetUniqueNetIdAsString(&eos_id);
     return eos_id;
 }
+
+FString PlayerControllerExtensions::GetCharacterName()
+{
+    AShooterPlayerController* _this = static_cast<AShooterPlayerController*>(this);
+    FString characterName = "";
+    _this->GetPlayerCharacterName(&characterName);
+    return characterName;
+}
+
+
+FString PlayerControllerExtensions::GetTribeName()
+{
+	AShooterPlayerController* _this = static_cast<AShooterPlayerController*>(this);
+	FString tribeName = "";
+    if (_this->IsInTribe())
+        tribeName = ((AShooterPlayerState*)_this->PlayerStateField().Get())->MyTribeDataField().TribeNameField();
+
+    return tribeName;
+}
