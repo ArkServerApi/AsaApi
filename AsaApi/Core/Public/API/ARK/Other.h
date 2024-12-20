@@ -657,13 +657,31 @@ struct BattleyePlayerInfo
 
 };
 
+struct FPaintingKeyValue
+{
+	// Fields
+
+	int Key;
+	int Value;
+
+	// Bitfields
+
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPaintingKeyValue.StaticStruct()"); }
+
+};
+
 struct FARKDinoData
 {
 	UClass* DinoClass;
-	TArray<unsigned char, TSizedDefaultAllocator<32> > DinoData;
+	TArray<unsigned char, TSizedDefaultAllocator<32>> DinoData;
 	FString DinoNameInMap;
 	FString DinoName;
 	bool bNetInfoFromClient;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
 
 	// Fields
 
@@ -671,6 +689,9 @@ struct FARKDinoData
 	TArray<unsigned char, TSizedDefaultAllocator<32> >& DinoDataField() { return *GetNativePointerField<TArray<unsigned char, TSizedDefaultAllocator<32> >*>(this, "FARKDinoData.DinoData"); }
 	FString& DinoNameInMapField() { return *GetNativePointerField<FString*>(this, "FARKDinoData.DinoNameInMap"); }
 	FString& DinoNameField() { return *GetNativePointerField<FString*>(this, "FARKDinoData.DinoName"); }
+	bool& bNetInfoFromClientField() { return *GetNativePointerField<bool*>(this, "FARKDinoData.bNetInfoFromClient"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FARKDinoData.UniquePaintingIdMap"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FARKDinoData.PaintingRevisionMap"); }
 
 	// Bitfields
 
@@ -678,6 +699,7 @@ struct FARKDinoData
 	// Functions
 
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FARKDinoData.StaticStruct()"); }
+	bool NetSerialize(FArchive* Ar, UPackageMap* Map, bool& bOutSuccess) { return NativeCall<bool, FArchive*, UPackageMap*, bool&>(this, "FARKDinoData.NetSerialize(FArchive&,UPackageMap*,bool&)", Ar, Map, bOutSuccess); }
 };
 
 struct FARKTributeData
@@ -2603,6 +2625,8 @@ struct FCustomItemData
 	TArray<FName, TSizedDefaultAllocator<32> > CustomDataNames;
 	FCustomItemByteArrays CustomDataBytes;
 	FCustomItemDoubles CustomDataDoubles;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMap;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMap;
 
 	// Fields
 
@@ -2614,6 +2638,8 @@ struct FCustomItemData
 	TArray<FName, TSizedDefaultAllocator<32> >& CustomDataNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataNames"); }
 	FCustomItemByteArrays& CustomDataBytesField() { return *GetNativePointerField<FCustomItemByteArrays*>(this, "FCustomItemData.CustomDataBytes"); }
 	FCustomItemDoubles& CustomDataDoublesField() { return *GetNativePointerField<FCustomItemDoubles*>(this, "FCustomItemData.CustomDataDoubles"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.UniquePaintingIdMap"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.PaintingRevisionMap"); }
 
 	// Bitfields
 
