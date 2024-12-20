@@ -2625,8 +2625,8 @@ struct FCustomItemData
 	TArray<FName, TSizedDefaultAllocator<32> > CustomDataNames;
 	FCustomItemByteArrays CustomDataBytes;
 	FCustomItemDoubles CustomDataDoubles;
-	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMap;
-	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMap;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
 
 	// Fields
 
