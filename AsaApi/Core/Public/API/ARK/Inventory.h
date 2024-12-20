@@ -128,7 +128,8 @@ struct UPrimalItem : UObject
     TSoftClassPtr<AShooterWeapon>& WeaponTemplateField() { return *GetNativePointerField<TSoftClassPtr<AShooterWeapon>*>(this, "UPrimalItem.WeaponTemplate"); }
     UTexture2D*& BrokenIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.BrokenIcon"); }
     UTexture2D*& CustomBrokenOverlayIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.CustomBrokenOverlayIcon"); }
-    UTexture2D*& ItemIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.ItemIcon"); }
+    UTexture2D*& ItemIcon_DEPRECATEDField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.ItemIcon_DEPRECATED"); }
+    FJustInTimeTexture2D& ItemIconJITField() { return *GetNativePointerField<FJustInTimeTexture2D*>(this, "UPrimalItem.ItemIconJIT"); }
     UTexture2D*& AlternateItemIconBelowDurabilityField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.AlternateItemIconBelowDurability"); }
     float& AlternateItemIconBelowDurabilityValueField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AlternateItemIconBelowDurabilityValue"); }
     float& DurabilityNotifyThresholdValueField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityNotifyThresholdValue"); }
@@ -530,7 +531,7 @@ struct UPrimalItem : UObject
     void InitFromNetInfo(const FItemNetInfo* theInfo) { NativeCall<void, const FItemNetInfo*>(this, "UPrimalItem.InitFromNetInfo(FItemNetInfo&)", theInfo); }
     UWorld* GetWorldHelper(UObject* WorldContextObject) { return NativeCall<UWorld*, UObject*>(this, "UPrimalItem.GetWorldHelper(UObject*)", WorldContextObject); }
     int GetMaxItemQuantity(UObject* WorldContextObject) { return NativeCall<int, UObject*>(this, "UPrimalItem.GetMaxItemQuantity(UObject*)", WorldContextObject); }
-    void AddItemDurability(float durabilityToAdd) { NativeCall<void, float>(this, "UPrimalItem.AddItemDurability(float)", durabilityToAdd); }
+    void AddItemDurability(float durabilityToAdd, bool bNotifyClientForEquippedItems) { NativeCall<void, float, bool>(this, "UPrimalItem.AddItemDurability(float,bool)", durabilityToAdd, bNotifyClientForEquippedItems); }
     void InitNewItem(float ItemQuality, UPrimalInventoryComponent* toInventory, float MaxItemDifficultyClamp, float MinRandomQuality) { NativeCall<void, float, UPrimalInventoryComponent*, float, float>(this, "UPrimalItem.InitNewItem(float,UPrimalInventoryComponent*,float,float)", ItemQuality, toInventory, MaxItemDifficultyClamp, MinRandomQuality); }
     bool AllowEquipItem(UPrimalInventoryComponent* toInventory) { return NativeCall<bool, UPrimalInventoryComponent*>(this, "UPrimalItem.AllowEquipItem(UPrimalInventoryComponent*)", toInventory); }
     void AddToInventory(UPrimalInventoryComponent* toInventory, bool bEquipItem, bool AddToSlotItems, FItemNetID* InventoryInsertAfterItemID, bool bShowHUDNotification, bool bDontRecalcSpoilingTime, bool bIgnoreAbsoluteMaxInventory, bool bInsertAtItemIDIndexInstead, bool DontHaveClientRefreshAttachmentsAfterUpdatingItem) { NativeCall<void, UPrimalInventoryComponent*, bool,bool, FItemNetID*, bool, bool, bool, bool, bool>(this, "UPrimalItem.AddToInventory(UPrimalInventoryComponent*,bool,bool,FItemNetID*,bool,bool,bool,bool,bool)", toInventory, bEquipItem, AddToSlotItems, InventoryInsertAfterItemID, bShowHUDNotification, bDontRecalcSpoilingTime, bIgnoreAbsoluteMaxInventory, bInsertAtItemIDIndexInstead, DontHaveClientRefreshAttachmentsAfterUpdatingItem); }

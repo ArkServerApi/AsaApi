@@ -44,7 +44,7 @@ FORCEINLINE FString PlayerControllerExtensions::GetEOSId()
     return eos_id;
 }
 
-FString PlayerControllerExtensions::GetCharacterName()
+FORCEINLINE FString PlayerControllerExtensions::GetCharacterName()
 {
     AShooterPlayerController* _this = static_cast<AShooterPlayerController*>(this);
     FString characterName = "";
@@ -53,7 +53,7 @@ FString PlayerControllerExtensions::GetCharacterName()
 }
 
 
-FString PlayerControllerExtensions::GetTribeName()
+FORCEINLINE FString PlayerControllerExtensions::GetTribeName()
 {
 	AShooterPlayerController* _this = static_cast<AShooterPlayerController*>(this);
 	FString tribeName = "";
