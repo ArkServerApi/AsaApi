@@ -46,3 +46,22 @@ FORCEINLINE FString PlayerControllerExtensions::GetEOSId()
 
     return eos_id;
 }
+
+FORCEINLINE FString PlayerControllerExtensions::GetCharacterName()
+{
+    AShooterPlayerController* _this = static_cast<AShooterPlayerController*>(this);
+    FString characterName = "";
+    _this->GetPlayerCharacterName(&characterName);
+    return characterName;
+}
+
+
+FORCEINLINE FString PlayerControllerExtensions::GetTribeName()
+{
+	AShooterPlayerController* _this = static_cast<AShooterPlayerController*>(this);
+	FString tribeName = "";
+    if (_this->IsInTribe())
+        tribeName = ((AShooterPlayerState*)_this->PlayerStateField().Get())->MyTribeDataField().TribeNameField();
+
+    return tribeName;
+}
