@@ -60,8 +60,6 @@ struct UVictoryCore : UVictoryCoreHighest
 
 
 	  // Functions
-	static double PersistentToUtcTime(UObject* WorldContextObject, double PersistentTime) { return NativeCall<double, UObject*, double>(nullptr, "UVictoryCore.PersistentToUtcTime(UObject*,double)", WorldContextObject, PersistentTime); }
-	static double UtcToPersistentTime(UObject* WorldContextObject, double UtcTime) { return NativeCall<double, UObject*, double>(nullptr, "UVictoryCore.UtcToPersistentTime(UObject*,double)", WorldContextObject, UtcTime); }
 
 	static void GetBestHitInfoFromDamageEvent(const FDamageEvent* damageEvent, FHitResult* OutHitInfo, UE::Math::TVector<double>& OutImpulseDir) { NativeCall<void, const FDamageEvent*, FHitResult*, UE::Math::TVector<double>&>(nullptr, "UVictoryCore.GetBestHitInfoFromDamageEvent(FDamageEvent&,FHitResult&,UE::Math::TVector<double>&)", damageEvent, OutHitInfo, OutImpulseDir); }
 	static void StaticRegisterNativesUVictoryCore() { NativeCall<void>(nullptr, "UVictoryCore.StaticRegisterNativesUVictoryCore()"); }
@@ -278,6 +276,7 @@ struct UVictoryCore : UVictoryCoreHighest
 	//static int IsChildOfClassesSoftRefT<class APrimalStructure>(TSubclassOf<UObject> childClass, const //TArray<//TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >* ParentClassesArray) { return NativeCall<int, TSubclassOf<UObject>, const //TArray<//TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >*>(nullptr, "UVictoryCore.IsChildOfClassesSoftRefT<class APrimalStructure>(TSubclassOf<UObject>,//TArray<//TSoftClassPtr<APrimalStructure>,TSizedDefaultAllocator<32>>*)", childClass, ParentClassesArray); }
 	//static int IsChildOfClassesT<class APrimalStructure>(TSubclassOf<UObject> childClass, const //TArray<TSubclassOf<APrimalStructure>, TSizedDefaultAllocator<32> >* ParentClassesArray) { return NativeCall<int, TSubclassOf<UObject>, const //TArray<TSubclassOf<APrimalStructure>, TSizedDefaultAllocator<32> >*>(nullptr, "UVictoryCore.IsChildOfClassesT<class APrimalStructure>(TSubclassOf<UObject>,//TArray<TSubclassOf<APrimalStructure>,TSizedDefaultAllocator<32>>*)", childClass, ParentClassesArray); }
 	static double PersistentToUtcTime(UObject* WorldContextObject, double PersistentTime) { return NativeCall<double, UObject*, double>(nullptr, "UVictoryCore.PersistentToUtcTime(UObject*,double)", WorldContextObject, PersistentTime); }
+	static double UtcToPersistentTime(UObject* WorldContextObject, double UtcTime) { return NativeCall<double, UObject*, double>(nullptr, "UVictoryCore.UtcToPersistentTime(UObject*,double)", WorldContextObject, UtcTime); }
 
 	static UClass* BPLoadClass(const FString& path_name)
 	{
@@ -3119,6 +3118,7 @@ struct FPaths
 
 };
 
+struct FJustInTimeTexture2D
 {
 	// Fields
 
