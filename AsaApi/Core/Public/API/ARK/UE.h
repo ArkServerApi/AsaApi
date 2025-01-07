@@ -541,6 +541,40 @@ struct UObject : UObjectBaseUtility
 	ARK_API FProperty* FindProperty(FName name);
 };
 
+struct UPrimalAssetsBase : UObject
+{
+	// Fields
+
+	//FOnAssetLoadHitch& OnHitchedField() { return *GetNativePointerField<FOnAssetLoadHitch*>(this, "UPrimalAssetsBase.OnHitched"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static void StaticRegisterNativesUPrimalAssetsBase() { NativeCall<void>(nullptr, "UPrimalAssetsBase.StaticRegisterNativesUPrimalAssetsBase()"); }
+	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAssetsBase.GetPrivateStaticClass()"); }
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAssetsBase.StaticClass()"); }
+
+};
+
+struct UPrimalAssets : UPrimalAssetsBase
+{
+	// Fields
+
+	FStreamableManager& StreamableManagerField() { return *GetNativePointerField<FStreamableManager*>(this, "UPrimalAssets.StreamableManager"); }
+	TSet<FSoftObjectPath, DefaultKeyFuncs<FSoftObjectPath, 0>, FDefaultSetAllocator>& CurrentAsyncField() { return *GetNativePointerField<TSet<FSoftObjectPath, DefaultKeyFuncs<FSoftObjectPath, 0>, FDefaultSetAllocator>*>(this, "UPrimalAssets.CurrentAsync"); }
+	//TMap<UObject*, FAssetRetainer, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<UObject*, FAssetRetainer, 0> >& RetainedObjectsField() { return *GetNativePointerField<TMap<UObject*, FAssetRetainer, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<UObject*, FAssetRetainer, 0> >*>(this, "UPrimalAssets.RetainedObjects"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	static UClass* ClassAssetResolve(TSoftClassPtr<UObject>* Ptr) { return NativeCall<UClass*, TSoftClassPtr<UObject>*>(nullptr, "UPrimalAssets.ClassAssetResolve(TSoftClassPtr<UObject>)", Ptr); }
+};
+
+
 struct UField : UObject
 {
 	// Fields

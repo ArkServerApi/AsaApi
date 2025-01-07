@@ -275,6 +275,7 @@ struct UVictoryCore : UVictoryCoreHighest
 	//static int IsChildOfClassesT<class UPrimalItem>(TSubclassOf<UObject> childClass, const //TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >* ParentClassesArray) { return NativeCall<int, TSubclassOf<UObject>, const //TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(nullptr, "UVictoryCore.IsChildOfClassesT<class UPrimalItem>(TSubclassOf<UObject>,//TArray<TSubclassOf<UPrimalItem>,TSizedDefaultAllocator<32>>*)", childClass, ParentClassesArray); }
 	//static int IsChildOfClassesSoftRefT<class APrimalStructure>(TSubclassOf<UObject> childClass, const //TArray<//TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >* ParentClassesArray) { return NativeCall<int, TSubclassOf<UObject>, const //TArray<//TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >*>(nullptr, "UVictoryCore.IsChildOfClassesSoftRefT<class APrimalStructure>(TSubclassOf<UObject>,//TArray<//TSoftClassPtr<APrimalStructure>,TSizedDefaultAllocator<32>>*)", childClass, ParentClassesArray); }
 	//static int IsChildOfClassesT<class APrimalStructure>(TSubclassOf<UObject> childClass, const //TArray<TSubclassOf<APrimalStructure>, TSizedDefaultAllocator<32> >* ParentClassesArray) { return NativeCall<int, TSubclassOf<UObject>, const //TArray<TSubclassOf<APrimalStructure>, TSizedDefaultAllocator<32> >*>(nullptr, "UVictoryCore.IsChildOfClassesT<class APrimalStructure>(TSubclassOf<UObject>,//TArray<TSubclassOf<APrimalStructure>,TSizedDefaultAllocator<32>>*)", childClass, ParentClassesArray); }
+	static double PersistentToUtcTime(UObject* WorldContextObject, double PersistentTime) { return NativeCall<double, UObject*, double>(nullptr, "UVictoryCore.PersistentToUtcTime(UObject*,double)", WorldContextObject, PersistentTime); }
 
 	static UClass* BPLoadClass(const FString& path_name)
 	{
@@ -473,6 +474,7 @@ struct FTribeData
 
 	// Functions
 
+	void MarkTribeNameChanged(UObject* WorldContextObject) { NativeCall<void, UObject*>(this, "FTribeData.MarkTribeNameChanged(UObject*)", WorldContextObject); }
 	bool IsTribeWarActive(int TribeID, UWorld* ForWorld, bool bIncludeUnstarted) { return NativeCall<bool, int, UWorld*, bool>(this, "FTribeData.IsTribeWarActive(int,UWorld*,bool)", TribeID, ForWorld, bIncludeUnstarted); }
 	FTribeAlliance* FindTribeAlliance(unsigned int AllianceID) { return NativeCall<FTribeAlliance*, unsigned int>(this, "FTribeData.FindTribeAlliance(unsignedint)", AllianceID); }
 	bool IsTribeAlliedWith(unsigned int OtherTribeID) { return NativeCall<bool, unsigned int>(this, "FTribeData.IsTribeAlliedWith(unsignedint)", OtherTribeID); }
@@ -655,13 +657,30 @@ struct BattleyePlayerInfo
 
 };
 
+struct FPaintingKeyValue
+{
+	// Fields
+
+	int Key;
+	int Value;
+
+	// Bitfields
+
+
+	// Functions
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPaintingKeyValue.StaticStruct()"); }
+};
+
 struct FARKDinoData
 {
 	UClass* DinoClass;
-	TArray<unsigned char, TSizedDefaultAllocator<32> > DinoData;
+	TArray<unsigned char, TSizedDefaultAllocator<32>> DinoData;
 	FString DinoNameInMap;
 	FString DinoName;
 	bool bNetInfoFromClient;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
 
 	// Fields
 
@@ -669,6 +688,9 @@ struct FARKDinoData
 	TArray<unsigned char, TSizedDefaultAllocator<32> >& DinoDataField() { return *GetNativePointerField<TArray<unsigned char, TSizedDefaultAllocator<32> >*>(this, "FARKDinoData.DinoData"); }
 	FString& DinoNameInMapField() { return *GetNativePointerField<FString*>(this, "FARKDinoData.DinoNameInMap"); }
 	FString& DinoNameField() { return *GetNativePointerField<FString*>(this, "FARKDinoData.DinoName"); }
+	bool& bNetInfoFromClientField() { return *GetNativePointerField<bool*>(this, "FARKDinoData.bNetInfoFromClient"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FARKDinoData.UniquePaintingIdMap"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FARKDinoData.PaintingRevisionMap"); }
 
 	// Bitfields
 
@@ -676,6 +698,7 @@ struct FARKDinoData
 	// Functions
 
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FARKDinoData.StaticStruct()"); }
+	bool NetSerialize(FArchive* Ar, UPackageMap* Map, bool& bOutSuccess) { return NativeCall<bool, FArchive*, UPackageMap*, bool&>(this, "FARKDinoData.NetSerialize(FArchive&,UPackageMap*,bool&)", Ar, Map, bOutSuccess); }
 };
 
 struct FARKTributeData
@@ -693,7 +716,7 @@ struct FARKTributeData
 	unsigned int& DataID2Field() { return *GetNativePointerField<unsigned int*>(this, "FARKTributeData.DataID2"); }
 
 	// Bitfields
-
+	
 
 	// Functions
 
@@ -2589,8 +2612,6 @@ struct FCustomItemDoubles
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemDoubles.StaticStruct()"); }
 };
 
-
-
 struct FCustomItemData
 {
 	FName CustomDataName;
@@ -2601,6 +2622,8 @@ struct FCustomItemData
 	TArray<FName, TSizedDefaultAllocator<32> > CustomDataNames;
 	FCustomItemByteArrays CustomDataBytes;
 	FCustomItemDoubles CustomDataDoubles;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
 
 	// Fields
 
@@ -2612,6 +2635,8 @@ struct FCustomItemData
 	TArray<FName, TSizedDefaultAllocator<32> >& CustomDataNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataNames"); }
 	FCustomItemByteArrays& CustomDataBytesField() { return *GetNativePointerField<FCustomItemByteArrays*>(this, "FCustomItemData.CustomDataBytes"); }
 	FCustomItemDoubles& CustomDataDoublesField() { return *GetNativePointerField<FCustomItemDoubles*>(this, "FCustomItemData.CustomDataDoubles"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.UniquePaintingIdMap"); }
+	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.PaintingRevisionMap"); }
 
 	// Bitfields
 
@@ -2620,6 +2645,11 @@ struct FCustomItemData
 
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemData.StaticStruct()"); }
 	FCustomItemData* operator=(const FCustomItemData* __that) { return NativeCall<FCustomItemData*, const FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&)", __that); }
+
+	//bool Serialize(FArchive* Ar) { return NativeCall<bool, FArchive*>(this, "FCustomItemData.Serialize(FArchive&)", Ar); }
+	//FCustomItemData& operator=(FCustomItemData* __that) { return NativeCall<FCustomItemData&, FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&&)", __that); }
+	//FCustomItemData& operator=(const FCustomItemData* __that) { return NativeCall<FCustomItemData&, const FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&)", __that); }
+	//static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemData.StaticStruct()"); }
 };
 
 struct FWeightedObjectList
@@ -3084,5 +3114,76 @@ struct FPaths
 	static FString ConvertRelativePathToFull(const FString& InPath) { return NativeCall<FString, const FString&>(nullptr, "FPaths.ConvertRelativePathToFull(FString&)", InPath); }
 	static FString ProjectModsDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectModsDir()"); }
 	static FString AutomationDir() { return NativeCall<FString>(nullptr, "FPaths.AutomationDir()"); }
+
+};
+
+struct FFunctionParams_NoArrays
+{
+	// Fields
+
+	bool& BoolParam1Field() { return *GetNativePointerField<bool*>(this, "FFunctionParams_NoArrays.BoolParam1"); }
+	bool& BoolParam2Field() { return *GetNativePointerField<bool*>(this, "FFunctionParams_NoArrays.BoolParam2"); }
+	bool& BoolParam3Field() { return *GetNativePointerField<bool*>(this, "FFunctionParams_NoArrays.BoolParam3"); }
+	bool& BoolParam4Field() { return *GetNativePointerField<bool*>(this, "FFunctionParams_NoArrays.BoolParam4"); }
+	bool& BoolParam5Field() { return *GetNativePointerField<bool*>(this, "FFunctionParams_NoArrays.BoolParam5"); }
+	bool& BoolParam6Field() { return *GetNativePointerField<bool*>(this, "FFunctionParams_NoArrays.BoolParam6"); }
+	int& IntParam1Field() { return *GetNativePointerField<int*>(this, "FFunctionParams_NoArrays.IntParam1"); }
+	int& IntParam2Field() { return *GetNativePointerField<int*>(this, "FFunctionParams_NoArrays.IntParam2"); }
+	int& IntParam3Field() { return *GetNativePointerField<int*>(this, "FFunctionParams_NoArrays.IntParam3"); }
+	int& IntParam4Field() { return *GetNativePointerField<int*>(this, "FFunctionParams_NoArrays.IntParam4"); }
+	int& IntParam5Field() { return *GetNativePointerField<int*>(this, "FFunctionParams_NoArrays.IntParam5"); }
+	float& FloatParam1Field() { return *GetNativePointerField<float*>(this, "FFunctionParams_NoArrays.FloatParam1"); }
+	float& FloatParam2Field() { return *GetNativePointerField<float*>(this, "FFunctionParams_NoArrays.FloatParam2"); }
+	float& FloatParam3Field() { return *GetNativePointerField<float*>(this, "FFunctionParams_NoArrays.FloatParam3"); }
+	float& FloatParam4Field() { return *GetNativePointerField<float*>(this, "FFunctionParams_NoArrays.FloatParam4"); }
+	float& FloatParam5Field() { return *GetNativePointerField<float*>(this, "FFunctionParams_NoArrays.FloatParam5"); }
+	float& FloatParam6Field() { return *GetNativePointerField<float*>(this, "FFunctionParams_NoArrays.FloatParam6"); }
+	FString& StringParam1Field() { return *GetNativePointerField<FString*>(this, "FFunctionParams_NoArrays.StringParam1"); }
+	FString& StringParam2Field() { return *GetNativePointerField<FString*>(this, "FFunctionParams_NoArrays.StringParam2"); }
+	FString& StringParam3Field() { return *GetNativePointerField<FString*>(this, "FFunctionParams_NoArrays.StringParam3"); }
+	FName& NameParam1Field() { return *GetNativePointerField<FName*>(this, "FFunctionParams_NoArrays.NameParam1"); }
+	FName& NameParam2Field() { return *GetNativePointerField<FName*>(this, "FFunctionParams_NoArrays.NameParam2"); }
+	FName& NameParam3Field() { return *GetNativePointerField<FName*>(this, "FFunctionParams_NoArrays.NameParam3"); }
+	UObject*& ObjectParam1Field() { return *GetNativePointerField<UObject**>(this, "FFunctionParams_NoArrays.ObjectParam1"); }
+	UObject*& ObjectParam2Field() { return *GetNativePointerField<UObject**>(this, "FFunctionParams_NoArrays.ObjectParam2"); }
+	UObject*& ObjectParam3Field() { return *GetNativePointerField<UObject**>(this, "FFunctionParams_NoArrays.ObjectParam3"); }
+	TSoftObjectPtr<UObject>& SoftObjectParam1Field() { return *GetNativePointerField<TSoftObjectPtr<UObject>*>(this, "FFunctionParams_NoArrays.SoftObjectParam1"); }
+	TSoftObjectPtr<UObject>& SoftObjectParam2Field() { return *GetNativePointerField<TSoftObjectPtr<UObject>*>(this, "FFunctionParams_NoArrays.SoftObjectParam2"); }
+	TSoftObjectPtr<UObject>& SoftObjectParam3Field() { return *GetNativePointerField<TSoftObjectPtr<UObject>*>(this, "FFunctionParams_NoArrays.SoftObjectParam3"); }
+	UE::Math::TVector<double>& VectorParam1Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam1"); }
+	UE::Math::TVector<double>& VectorParam2Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam2"); }
+	UE::Math::TVector<double>& VectorParam3Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam3"); }
+	UE::Math::TVector<double>& VectorParam4Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam4"); }
+	UE::Math::TVector<double>& VectorParam5Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam5"); }
+	UE::Math::TVector<double>& VectorParam6Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam6"); }
+	UE::Math::TVector<double>& VectorParam7Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam7"); }
+	UE::Math::TVector<double>& VectorParam8Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam8"); }
+	UE::Math::TVector<double>& VectorParam9Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam9"); }
+	UE::Math::TVector<double>& VectorParam10Field() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FFunctionParams_NoArrays.VectorParam10"); }
+	UE::Math::TRotator<double>& RotatorParams1Field() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "FFunctionParams_NoArrays.RotatorParams1"); }
+	UE::Math::TRotator<double>& RotatorParams2Field() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "FFunctionParams_NoArrays.RotatorParams2"); }
+	UE::Math::TRotator<double>& RotatorParams3Field() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "FFunctionParams_NoArrays.RotatorParams3"); }
+	TSubclassOf<UObject>& ClassParam1Field() { return *GetNativePointerField<TSubclassOf<UObject>*>(this, "FFunctionParams_NoArrays.ClassParam1"); }
+	TSubclassOf<UObject>& ClassParam2Field() { return *GetNativePointerField<TSubclassOf<UObject>*>(this, "FFunctionParams_NoArrays.ClassParam2"); }
+	TSubclassOf<UObject>& ClassParam3Field() { return *GetNativePointerField<TSubclassOf<UObject>*>(this, "FFunctionParams_NoArrays.ClassParam3"); }
+	TSoftClassPtr<UObject>& SoftClassParam1Field() { return *GetNativePointerField<TSoftClassPtr<UObject>*>(this, "FFunctionParams_NoArrays.SoftClassParam1"); }
+	TSoftClassPtr<UObject>& SoftClassParam2Field() { return *GetNativePointerField<TSoftClassPtr<UObject>*>(this, "FFunctionParams_NoArrays.SoftClassParam2"); }
+	TSoftClassPtr<UObject>& SoftClassParam3Field() { return *GetNativePointerField<TSoftClassPtr<UObject>*>(this, "FFunctionParams_NoArrays.SoftClassParam3"); }
+	FText& TextParam1Field() { return *GetNativePointerField<FText*>(this, "FFunctionParams_NoArrays.TextParam1"); }
+	FText& TextParam2Field() { return *GetNativePointerField<FText*>(this, "FFunctionParams_NoArrays.TextParam2"); }
+	FText& TextParam3Field() { return *GetNativePointerField<FText*>(this, "FFunctionParams_NoArrays.TextParam3"); }
+	unsigned char& ByteParam1Field() { return *GetNativePointerField<unsigned char*>(this, "FFunctionParams_NoArrays.ByteParam1"); }
+	unsigned char& ByteParam2Field() { return *GetNativePointerField<unsigned char*>(this, "FFunctionParams_NoArrays.ByteParam2"); }
+	unsigned char& ByteParam3Field() { return *GetNativePointerField<unsigned char*>(this, "FFunctionParams_NoArrays.ByteParam3"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	FFunctionParams_NoArrays& operator=(FFunctionParams_NoArrays* __that) { return NativeCall<FFunctionParams_NoArrays&, FFunctionParams_NoArrays*>(this, "FFunctionParams_NoArrays.operator=(FFunctionParams_NoArrays&&)", __that); }
+	FFunctionParams_NoArrays& operator=(const FFunctionParams_NoArrays* __that) { return NativeCall<FFunctionParams_NoArrays&, const FFunctionParams_NoArrays*>(this, "FFunctionParams_NoArrays.operator=(FFunctionParams_NoArrays&)", __that); }
+	void CopyFunctionParams(const FFunctionParams_NoArrays* InParams) { NativeCall<void, const FFunctionParams_NoArrays*>(this, "FFunctionParams_NoArrays.CopyFunctionParams(FFunctionParams_NoArrays&)", InParams); }
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FFunctionParams_NoArrays.StaticStruct()"); }
 
 };

@@ -692,22 +692,42 @@ namespace AsaApi
 		{
 			MapCoords coords;
 			AWorldSettings* world_settings = GetWorld()->GetWorldSettings(false, true);
-			APrimalWorldSettings* p_world_settings = static_cast<APrimalWorldSettings*>(world_settings);			
+			APrimalWorldSettings* p_world_settings = static_cast<APrimalWorldSettings*>(world_settings);
 
-			float lat_scale = p_world_settings->LatitudeScaleField() != 0 ? p_world_settings->LatitudeScaleField() : 800.0f;
-			float lon_scale = p_world_settings->LongitudeScaleField() != 0 ? p_world_settings->LongitudeScaleField() : 800.0f;
+			UMinimapData* minimap_data = nullptr;
+			if (p_world_settings->CurrentMinimapDataField().uClass)
+				minimap_data = static_cast<UMinimapData*>(p_world_settings->CurrentMinimapDataField().uClass->GetDefaultObject(true));
+			else
+				minimap_data = static_cast<UMinimapData*>(UVictoryCore::BPLoadClass("Blueprint'/Game/ASA/Minimap/Core/MinimapData_Base.MinimapData_Base'")->GetDefaultObject(true));
 
-			float lat_origin = p_world_settings->LatitudeOriginField() != 0 ? p_world_settings->LatitudeOriginField() : -400000.0f;
-			float lon_origin = p_world_settings->LongitudeOriginField() != 0 ? p_world_settings->LongitudeOriginField() : -400000.0f;
+			FMapData* map_data = nullptr;
+			if (minimap_data->MinimapDataField().Num() == 1)
+				map_data = minimap_data->MinimapDataField().GetData();
+			else
+			{
+				const int FMapDataSize = GetStructSize<FMapData>();
+				for (int i = 0; i < minimap_data->MinimapDataField().Num(); i++)
+				{
+					FMapData* data = minimap_data->MinimapDataField().GetData() + (i * FMapDataSize);
 
-			float lat_div = 100.f / lat_scale;
-			float lat = (lat_div * (float)actor_position.Y + lat_div * abs(lat_origin)) / 1000.f;
+					if (actor_position.X < data->PlayableMaxField().X
+						&& actor_position.Y < data->PlayableMaxField().Y
+						&& actor_position.X > data->PlayableMinField().X
+						&& actor_position.Y > data->PlayableMinField().Y
+						&& actor_position.Z < data->PlayableMaxField().Z
+						&& actor_position.Z > data->PlayableMinField().Z)
+					{
+						map_data = data;
+						break;
+					}
+				}
+			}
 
-			float lon_div = 100.f / lon_scale;
-			float lon = (lon_div * (float)actor_position.X + lon_div * abs(lon_origin)) / 1000.f;
+			double xAlpha = (actor_position.X - map_data->OriginMaxField().X) / (map_data->OriginMinField().X - map_data->OriginMaxField().X);
+			double yAlpha = (actor_position.Y - map_data->OriginMaxField().Y) / (map_data->OriginMinField().Y - map_data->OriginMaxField().Y);
 
-			coords.x = std::floor(lon * 10.0f) / 10.0f;
-			coords.y = std::floor(lat * 10.0f) / 10.0f;
+			coords.x = (float)FMath::Lerp(100.0, 0.0, xAlpha);
+			coords.y = (float)FMath::Lerp(100.0, 0.0, yAlpha);
 			return coords;
 		}
 

@@ -59,8 +59,21 @@ namespace API
 		 * \param data to post
 		 * \param included headers
 		 */
+		[[deprecated]]
 		ARK_API bool CreatePostRequest(const std::string& url,
 			const std::function<void(bool, std::string)>& callback,
+			const std::string& post_data,
+			std::vector<std::string> headers = {});
+
+		/**
+		 * \brief Creates an async POST Request with application/x-www-form-urlencoded content type that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool), result(string) and , responseHeaders(std::unordered_map<std::string, std::string>), result is error code if request failed and the response otherwise
+		 * \param data to post
+		 * \param included headers
+		 */
+		ARK_API bool CreatePostRequest(const std::string& url,
+			const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 			const std::string& post_data,
 			std::vector<std::string> headers = {});
 
@@ -74,8 +87,26 @@ namespace API
 		 * \param included receiveTimeout in seconds (0 = default)
 		 * \param included sendTimeout in seconds (0 = default)
 		 */
+		[[deprecated]]
 		ARK_API bool CreatePostRequest(const std::string& url,
 			const std::function<void(bool, std::string)>& callback,
+			const std::string& post_data,
+			std::vector<std::string> headers,
+			long connectionTimeout, long receiveTimeout, long sendTimeout);
+
+
+		/**
+		 * \brief Creates an async POST Request with application/x-www-form-urlencoded content type that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool), result(string) and , responseHeaders(std::unordered_map<std::string, std::string>), result is error code if request failed and the response otherwise
+		 * \param data to post
+		 * \param included headers
+		 * \param included connectionTimeout in seconds (0 = default)
+		 * \param included receiveTimeout in seconds (0 = default)
+		 * \param included sendTimeout in seconds (0 = default)
+		 */
+		ARK_API bool CreatePostRequest(const std::string& url,
+			const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 			const std::string& post_data,
 			std::vector<std::string> headers,
 			long connectionTimeout, long receiveTimeout, long sendTimeout);
@@ -88,8 +119,23 @@ namespace API
 		 * \param content type
 		 * \param included headers
 		 */
+		[[deprecated]]
 		ARK_API bool CreatePostRequest(const std::string& url,
 			const std::function<void(bool, std::string)>& callback,
+			const std::string& post_data,
+			const std::string& content_type,
+			std::vector<std::string> headers = {});
+
+		/**
+		 * \brief Creates an async POST Request that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool), result(string) and , responseHeaders(std::unordered_map<std::string, std::string>), result is error code if request failed and the response otherwise
+		 * \param data to post
+		 * \param content type
+		 * \param included headers
+		 */
+		ARK_API bool CreatePostRequest(const std::string& url,
+			const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 			const std::string& post_data,
 			const std::string& content_type,
 			std::vector<std::string> headers = {});
@@ -105,8 +151,27 @@ namespace API
 		 * \param included receiveTimeout in seconds (0 = default)
 		 * \param included sendTimeout in seconds (0 = default)
 		 */
+		[[deprecated]]
 		ARK_API bool CreatePostRequest(const std::string& url,
 			const std::function<void(bool, std::string)>& callback,
+			const std::string& post_data,
+			const std::string& content_type,
+			std::vector<std::string> headers,
+			long connectionTimeout, long receiveTimeout, long sendTimeout);
+
+		/**
+		 * \brief Creates an async POST Request that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool), result(string) and , responseHeaders(std::unordered_map<std::string, std::string>), result is error code if request failed and the response otherwise
+		 * \param data to post
+		 * \param content type
+		 * \param included headers
+		 * \param included connectionTimeout in seconds (0 = default)
+		 * \param included receiveTimeout in seconds (0 = default)
+		 * \param included sendTimeout in seconds (0 = default)
+		 */
+		ARK_API bool CreatePostRequest(const std::string& url,
+			const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 			const std::string& post_data,
 			const std::string& content_type,
 			std::vector<std::string> headers,
@@ -120,8 +185,23 @@ namespace API
 		 * \param data value
 		 * \param included headers
 		 */
+		[[deprecated]]
 		ARK_API bool CreatePostRequest(const std::string& url,
 			const std::function<void(bool, std::string)>& callback,
+			const std::vector<std::string>& post_ids,
+			const std::vector<std::string>& post_data,
+			std::vector<std::string> headers = {});
+
+		/**
+		 * \brief Creates an async POST Request that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool), result(string) and , responseHeaders(std::unordered_map<std::string, std::string>), result is error code if request failed and the response otherwise
+		 * \param data key
+		 * \param data value
+		 * \param included headers
+		 */
+		ARK_API bool CreatePostRequest(const std::string& url,
+			const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 			const std::vector<std::string>& post_ids,
 			const std::vector<std::string>& post_data,
 			std::vector<std::string> headers = {});
@@ -137,8 +217,27 @@ namespace API
 		 * \param included receiveTimeout in seconds (0 = default)
 		 * \param included sendTimeout in seconds (0 = default)
 		 */
+		[[deprecated]]
 		ARK_API bool CreatePostRequest(const std::string& url,
 			const std::function<void(bool, std::string)>& callback,
+			const std::vector<std::string>& post_ids,
+			const std::vector<std::string>& post_data,
+			std::vector<std::string> headers,
+			long connectionTimeout, long receiveTimeout, long sendTimeout);
+
+		/**
+		 * \brief Creates an async POST Request that runs in another thread but calls the callback from the main thread
+		 * \param request URL
+		 * \param the callback function, binds sucess(bool), result(string) and , responseHeaders(std::unordered_map<std::string, std::string>), result is error code if request failed and the response otherwise
+		 * \param data key
+		 * \param data value
+		 * \param included headers
+		 * \param included connectionTimeout in seconds (0 = default)
+		 * \param included receiveTimeout in seconds (0 = default)
+		 * \param included sendTimeout in seconds (0 = default)
+		 */
+		ARK_API bool CreatePostRequest(const std::string& url,
+			const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 			const std::vector<std::string>& post_ids,
 			const std::vector<std::string>& post_data,
 			std::vector<std::string> headers,
