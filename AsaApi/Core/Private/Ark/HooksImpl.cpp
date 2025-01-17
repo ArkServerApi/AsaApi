@@ -9,6 +9,8 @@
 #include "Containers/UnrealString.h"
 #include "HAL/UnrealMemory.h"
 #include <Logger/Logger.h>
+#include <shellapi.h>
+
 //temp predefines
 struct AShooterGameMode;
 struct AShooterPlayerController;
@@ -165,11 +167,66 @@ namespace AsaApi
 		AGameState_DefaultTimer_original(_this);
 	}
 
-	void Hook_AShooterGameMode_BeginPlay(AShooterGameMode* _AShooterGameMode)
-	{
-		AShooterGameMode_BeginPlay_original(_AShooterGameMode);
-		dynamic_cast<ApiUtils&>(*API::game_api->GetApiUtils()).SetStatus(ServerStatus::Ready);
-	}
+    void Hook_AShooterGameMode_BeginPlay(AShooterGameMode* _AShooterGameMode)
+    {
+        AShooterGameMode_BeginPlay_original(_AShooterGameMode);
+        dynamic_cast<ApiUtils&>(*API::game_api->GetApiUtils()).SetStatus(ServerStatus::Ready);
+        
+		std::uint64_t mask = 0;
+
+		LPWSTR* argv;
+		int argc;
+		int i;
+		FString affinity = "";
+
+		argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+		if (NULL != argv)
+		{
+			for (i = 0; i < argc; i++)
+			{
+				FString arg(argv[i]);
+				FString param = "-affinity=";
+				if (arg.Contains(param))
+				{
+					if (arg.RemoveFromStart(param))
+					{
+						affinity = arg;
+						break;
+					}
+				}
+			}
+
+			LocalFree(argv);
+		}
+
+		if (affinity.IsEmpty())
+			return;
+
+		TArray<FString> parsed;
+		affinity.ParseIntoArray(parsed, L",", true);
+		for (const FString& token : parsed)
+		{
+			try
+			{
+				int coreIndex = std::stoi(token.ToString());
+
+				if (coreIndex >= 0 && coreIndex < 64)
+					mask |= (1ULL << coreIndex);
+				else
+					Log::GetLog()->warn("Warning: core index {} is out of valid range 0..63", coreIndex);
+			}
+			catch (const std::exception&)
+			{
+				Log::GetLog()->warn("Warning: invalid core index \"{}\"", token.ToString());
+			}
+		}
+
+		if (mask != 0)
+		{
+			SetProcessAffinityMask(GetCurrentProcess(), mask);
+			Log::GetLog()->info("Set process affinity mask to 0x{:016X}", mask);
+		}
+    }
 
 	bool Hook_URCONServer_Init(URCONServer* _this, FString* Password, unsigned int InPort, UShooterCheatManager* SCheatManager)
 	{
