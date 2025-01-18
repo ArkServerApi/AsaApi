@@ -2646,11 +2646,6 @@ struct FCustomItemData
 
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemData.StaticStruct()"); }
 	FCustomItemData* operator=(const FCustomItemData* __that) { return NativeCall<FCustomItemData*, const FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&)", __that); }
-
-	//bool Serialize(FArchive* Ar) { return NativeCall<bool, FArchive*>(this, "FCustomItemData.Serialize(FArchive&)", Ar); }
-	//FCustomItemData& operator=(FCustomItemData* __that) { return NativeCall<FCustomItemData&, FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&&)", __that); }
-	//FCustomItemData& operator=(const FCustomItemData* __that) { return NativeCall<FCustomItemData&, const FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&)", __that); }
-	//static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemData.StaticStruct()"); }
 };
 
 struct FWeightedObjectList
