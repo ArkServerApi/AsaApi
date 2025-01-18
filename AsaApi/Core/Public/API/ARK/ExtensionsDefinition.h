@@ -40,7 +40,9 @@ FORCEINLINE FString PlayerControllerExtensions::GetEOSId()
 {
     AShooterPlayerController* _this = static_cast<AShooterPlayerController*>(this);
     FString eos_id = "";
+    
     _this->GetUniqueNetIdAsString(&eos_id);
+
     return eos_id;
 }
 
