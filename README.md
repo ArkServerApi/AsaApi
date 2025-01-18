@@ -6,7 +6,8 @@ As of March 18th 2024, maintenance and development will be handled by the `ArkSe
 
 This is the continuation of `AsaApi` project as you always knew it. 
 Updates will be provided in this repository, under the `ArkServerApi` organization.
-A website will be included soon, as well as a discord support server.
+Website: https://ark-server-api.com/resources/
+Discord: https://discord.gg/2uRNp99M9r
 
 ## Notes:
 - The API generates two types of logs, regular and crash logs, these logs are located in the denoted locations respectively.
