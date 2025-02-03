@@ -487,6 +487,7 @@ struct APrimalBuff : APrimalEmitterSpawnable
     void Multi_SyncBuffLifetime_Implementation(const float NewDeactivateAfterTime) { NativeCall<void, const float>(this, "APrimalBuff.Multi_SyncBuffLifetime_Implementation(float)", NewDeactivateAfterTime); }
     void OnBuffLifetimeUpdated() { NativeCall<void>(this, "APrimalBuff.OnBuffLifetimeUpdated()"); }
     float GetRemainingTime(float DeactivateAfterTimeOverride) { return NativeCall<float, float>(this, "APrimalBuff.GetRemainingTime(float)", DeactivateAfterTimeOverride); }
+    float GetTimeLeft() { return NativeCall<float>(this, "APrimalBuff.GetTimeLeft()"); }
     void OnOwnerTeleported() { NativeCall<void>(this, "APrimalBuff.OnOwnerTeleported()"); }
     FString* GetUniqueName(FString* result) { return NativeCall<FString*, FString*>(this, "APrimalBuff.GetUniqueName()", result); }
     FColor* BPGetDinoNameColorOverride_Implementation(FColor* result, AShooterHUD* HUD, FColor ColorToOverride) { return NativeCall<FColor*, FColor*, AShooterHUD*, FColor>(this, "APrimalBuff.BPGetDinoNameColorOverride_Implementation(AShooterHUD*,FColor)", result, HUD, ColorToOverride); }
