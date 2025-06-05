@@ -432,11 +432,8 @@ struct UObjectBaseUtility : UObjectBase
 	//UClass* GetTypedOuter<class UClass>() { return NativeCall<UClass*>(this, "UObjectBaseUtility.GetTypedOuter<class UClass>()"); }
 
 	FString GetPathName(const UObject* StopOuter) const { return NativeCall<FString, const UObject*>(this, "UObjectBaseUtility.GetPathName(UObject*)", StopOuter); }
-	void GetPathName(const UObject* StopOuter, FString* ResultString) const { NativeCall<void, const UObject*, FString*>(this, "UObjectBaseUtility.GetPathName(UObject*,FString&)", StopOuter, ResultString); }
 	void GetPathName(const UObject* StopOuter, TStringBuilderBase<wchar_t>* ResultString) const { NativeCall<void, const UObject*, TStringBuilderBase<wchar_t>*>(this, "UObjectBaseUtility.GetPathName(UObject*,TStringBuilderBase<wchar_t>&)", StopOuter, ResultString); }
-	//FString* GetPathName(FString* result, const UObject* StopOuter) { return NativeCall<FString*, FString*, const UObject*>(this, "UObjectBaseUtility.GetPathName(FString&,UObject*)", result, StopOuter); }
-	//void GetPathName(const UObject* StopOuter, FString* ResultString) { NativeCall<void, const UObject*, FString*>(this, "UObjectBaseUtility.GetPathName(UObject*,FString&)", StopOuter, ResultString); }
-	//void GetPathName(const UObject* StopOuter, TStringBuilderBase<wchar_t>* ResultString) { NativeCall<void, const UObject*, TStringBuilderBase<wchar_t>*>(this, "UObjectBaseUtility.GetPathName(UObject*,TStringBuilderBase<wchar_t>*)", StopOuter, ResultString); }
+	void GetPathName(const UObject* StopOuter, FString& ResultString) const { NativeCall<void, const UObject*, FString&>(this, "UObjectBaseUtility.GetPathName(UObject*,FString&)", StopOuter, ResultString); }
 
 	//FString* GetFullName(FString* result, const UObject* StopOuter, EObjectFullNameFlags Flags) { return NativeCall<FString*, FString*, const UObject*, EObjectFullNameFlags>(this, "UObjectBaseUtility.GetFullName(FString&,UObject*,EObjectFullNameFlags)", result, StopOuter, Flags); }
 	//void GetFullName(const UObject* StopOuter, FString* ResultString, EObjectFullNameFlags Flags) { NativeCall<void, const UObject*, FString*, EObjectFullNameFlags>(this, "UObjectBaseUtility.GetFullName(UObject*,FString&,EObjectFullNameFlags)", StopOuter, ResultString, Flags); }
