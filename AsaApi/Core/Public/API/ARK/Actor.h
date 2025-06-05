@@ -55,6 +55,9 @@ struct FPrimalPlayerCharacterConfigStructReplicated
     unsigned __int8 FacialHairIndex;
     unsigned __int8 HeadHairIndex;
     unsigned __int8 EyebrowIndex;
+    __int64 FacialHairCustomCosmeticModID;
+    __int64 HeadHairCustomCosmeticModID;
+    __int64 EyebrowCustomCosmeticModID;
     float PercentOfFullHeadHairGrowth;
     float PercentOfFullFacialHairGrowth;
     float RawBoneModifiers[26];
@@ -67,16 +70,21 @@ struct FPrimalPlayerCharacterConfigStructReplicated
 
     // Fields
 
-    FieldArray<FLinearColor, 4> BodyColorsField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.BodyColors" }; }
+    FieldArray<FLinearColor, 4>& BodyColorsField() { return *GetNativePointerField<FieldArray<FLinearColor, 4>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.BodyColors"); }
     FString& PlayerCharacterNameField() { return *GetNativePointerField<FString*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PlayerCharacterName"); }
+    unsigned __int8& FacialHairIndexField() { return *GetNativePointerField<unsigned __int8*>(this, "FPrimalPlayerCharacterConfigStructReplicated.FacialHairIndex"); }
     unsigned __int8& HeadHairIndexField() { return *GetNativePointerField<unsigned __int8*>(this, "FPrimalPlayerCharacterConfigStructReplicated.HeadHairIndex"); }
+    unsigned __int8& EyebrowIndexField() { return *GetNativePointerField<unsigned __int8*>(this, "FPrimalPlayerCharacterConfigStructReplicated.EyebrowIndex"); }
+    __int64& FacialHairCustomCosmeticModIDField() { return *GetNativePointerField<__int64*>(this, "FPrimalPlayerCharacterConfigStructReplicated.FacialHairCustomCosmeticModID"); }
+    __int64& HeadHairCustomCosmeticModIDField() { return *GetNativePointerField<__int64*>(this, "FPrimalPlayerCharacterConfigStructReplicated.HeadHairCustomCosmeticModID"); }
+    __int64& EyebrowCustomCosmeticModIDField() { return *GetNativePointerField<__int64*>(this, "FPrimalPlayerCharacterConfigStructReplicated.EyebrowCustomCosmeticModID"); }
     float& PercentOfFullHeadHairGrowthField() { return *GetNativePointerField<float*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PercentOfFullHeadHairGrowth"); }
     float& PercentOfFullFacialHairGrowthField() { return *GetNativePointerField<float*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PercentOfFullFacialHairGrowth"); }
-    FieldArray<float, 26> RawBoneModifiersField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.RawBoneModifiers" }; }
+    FieldArray<float, 26>& RawBoneModifiersField() { return *GetNativePointerField<FieldArray<float, 26>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.RawBoneModifiers"); }
     int& PlayerSpawnRegionIndexField() { return *GetNativePointerField<int*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PlayerSpawnRegionIndex"); }
-    FieldArray<unsigned __int8, 2> OverrideHeadHairColorField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideHeadHairColor" }; }
-    FieldArray<unsigned __int8, 2> OverrideFacialHairColorField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideFacialHairColor" }; }
-    FieldArray<unsigned __int8, 50> DynamicMaterialBytesField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.DynamicMaterialBytes" }; }
+    FieldArray<unsigned __int8, 2>& OverrideHeadHairColorField() { return *GetNativePointerField<FieldArray<unsigned __int8, 2>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideHeadHairColor"); }
+    FieldArray<unsigned __int8, 2>& OverrideFacialHairColorField() { return *GetNativePointerField<FieldArray<unsigned __int8, 2>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideFacialHairColor"); }
+    FieldArray<unsigned __int8, 50>& DynamicMaterialBytesField() { return *GetNativePointerField<FieldArray<unsigned __int8, 50>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.DynamicMaterialBytes"); }
     int& PlayerVoiceCollectionIndexField() { return *GetNativePointerField<int*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PlayerVoiceCollectionIndex"); }
 
     // Bitfields
@@ -86,14 +94,10 @@ struct FPrimalPlayerCharacterConfigStructReplicated
 
     // Functions
 
-    //void FPrimalPlayerCharacterConfigStructReplicated(const FPrimalPlayerCharacterConfigStructReplicated* __that) { NativeCall<void, const FPrimalPlayerCharacterConfigStructReplicated*>(this, "FPrimalPlayerCharacterConfigStructReplicated.FPrimalPlayerCharacterConfigStructReplicated(FPrimalPlayerCharacterConfigStructReplicated&)", __that); }
     static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalPlayerCharacterConfigStructReplicated.StaticStruct()"); }
     FPrimalPlayerCharacterConfigStructReplicated* operator=(const FPrimalPlayerCharacterConfigStructReplicated* __that) { return NativeCall<FPrimalPlayerCharacterConfigStructReplicated*, const FPrimalPlayerCharacterConfigStructReplicated*>(this, "FPrimalPlayerCharacterConfigStructReplicated.operator=(FPrimalPlayerCharacterConfigStructReplicated&)", __that); }
-    //void FPrimalPlayerCharacterConfigStructReplicated() { NativeCall<void>(this, "FPrimalPlayerCharacterConfigStructReplicated.FPrimalPlayerCharacterConfigStructReplicated()"); }
     FPrimalPlayerCharacterConfigStructReplicated* operator=(FPrimalPlayerCharacterConfigStructReplicated* __that) { return NativeCall<FPrimalPlayerCharacterConfigStructReplicated*, FPrimalPlayerCharacterConfigStructReplicated*>(this, "FPrimalPlayerCharacterConfigStructReplicated.operator=(FPrimalPlayerCharacterConfigStructReplicated&)", __that); }
-    //void FPrimalPlayerCharacterConfigStructReplicated(FPrimalPlayerCharacterConfigStructReplicated* __that) { NativeCall<void, FPrimalPlayerCharacterConfigStructReplicated*>(this, "FPrimalPlayerCharacterConfigStructReplicated.FPrimalPlayerCharacterConfigStructReplicated(FPrimalPlayerCharacterConfigStructReplicated&)", __that); }
     FPrimalPlayerCharacterConfigStruct* GetPlayerCharacterConfig(FPrimalPlayerCharacterConfigStruct* result) { return NativeCall<FPrimalPlayerCharacterConfigStruct*, FPrimalPlayerCharacterConfigStruct*>(this, "FPrimalPlayerCharacterConfigStructReplicated.GetPlayerCharacterConfig()", result); }
-    //void FPrimalPlayerCharacterConfigStructReplicated(const FPrimalPlayerCharacterConfigStruct* fromConfig) { NativeCall<void, const FPrimalPlayerCharacterConfigStruct*>(this, "FPrimalPlayerCharacterConfigStructReplicated.FPrimalPlayerCharacterConfigStructReplicated(FPrimalPlayerCharacterConfigStruct&)", fromConfig); }
 };
 
 struct FCollisionShape
@@ -6545,7 +6549,7 @@ struct UPrimalPlayerData : UObject
     void SetChibiLevels_Implementation(int newLevels, AShooterPlayerController* ForPC) { NativeCall<void, int, AShooterPlayerController*>(this, "UPrimalPlayerData.SetChibiLevels_Implementation(int,AShooterPlayerController*)", newLevels, ForPC); }
     void InitForPlayer(AShooterPlayerState* aPlayerState, bool bDontSaveGame) { NativeCall<void, AShooterPlayerState*, bool>(this, "UPrimalPlayerData.InitForPlayer(AShooterPlayerState*,bool)", aPlayerState, bDontSaveGame); }
     void SaveToFile(FObjectWriter* Writer) { NativeCall<void, FObjectWriter*>(this, "UPrimalPlayerData.SaveToFile(FObjectWriter&)", Writer); }
-    void SavePlayerData(UWorld* ForWorld) { NativeCall<void, UWorld*>(this, "UPrimalPlayerData.SavePlayerData(UWorld*)", ForWorld); }
+    void SavePlayerData(UWorld* ForWorld, bool bSkipBuffRefresh) { NativeCall<void, UWorld*, bool>(this, "UPrimalPlayerData.SavePlayerData(UWorld*,bool)", ForWorld, bSkipBuffRefresh); }
     UWorld* GetWorld()const { return NativeCall<UWorld*>(this, "UPrimalPlayerData.GetWorld()"); }
     int GetPlayerHexagonCount_Implementation() { return NativeCall<int>(this, "UPrimalPlayerData.GetPlayerHexagonCount_Implementation()"); }
     bool HasGeneralizedAchievementTag(FName Tag) { return NativeCall<bool, FName>(this, "UPrimalPlayerData.HasGeneralizedAchievementTag(FName)", Tag); }
@@ -8180,7 +8184,7 @@ struct APrimalDinoCharacter : APrimalCharacter
     void GetDinoData(FARKDinoData* OutDinoData) { NativeCall<void, FARKDinoData*>(this, "APrimalDinoCharacter.GetDinoData(FARKDinoData&)", OutDinoData); }
     static APrimalDinoCharacter* SpawnFromDinoData(const FARKDinoData* InDinoData, UWorld* InWorld, const UE::Math::TVector<double>* AtLocation, const UE::Math::TRotator<double>* AtRotation, int ForTeam, bool bGenerateNewDinoID, AShooterPlayerController* TamerController) { return NativeCall<APrimalDinoCharacter*, const FARKDinoData*, UWorld*, const UE::Math::TVector<double>*, const UE::Math::TRotator<double>*, int, bool, AShooterPlayerController*>(nullptr, "APrimalDinoCharacter.SpawnFromDinoData(FARKDinoData&,UWorld*,UE::Math::TVector<double>&,UE::Math::TRotator<double>&,int,bool,AShooterPlayerController*)", InDinoData, InWorld, AtLocation, AtRotation, ForTeam, bGenerateNewDinoID, TamerController); }
     void CheckDinoDuped(bool* dupedDino) { NativeCall<void, bool*>(this, "APrimalDinoCharacter.CheckDinoDuped(bool&)", dupedDino); }
-    static APrimalDinoCharacter* SpawnFromDinoDataEx(const FARKDinoData* InDinoData, UWorld* InWorld, const UE::Math::TVector<double>& AtLocation, const UE::Math::TRotator<double>& AtRotation, bool& dupedDino, int ForTeam, bool bGenerateNewDinoID, AShooterPlayerController* TamerController, bool bDontUpdateDownloadTime) { return NativeCall<APrimalDinoCharacter*, const FARKDinoData*, UWorld*, const UE::Math::TVector<double>&, const UE::Math::TRotator<double>&, bool&, int, bool, AShooterPlayerController*, bool>(nullptr, "APrimalDinoCharacter.SpawnFromDinoDataEx(FARKDinoData&,UWorld*,UE::Math::TVector<double>&,UE::Math::TRotator<double>&,bool&,int,bool,AShooterPlayerController*,bool)", InDinoData, InWorld, AtLocation, AtRotation, dupedDino, ForTeam, bGenerateNewDinoID, TamerController, bDontUpdateDownloadTime); }
+    static APrimalDinoCharacter* SpawnFromDinoDataEx(const FARKDinoData* InDinoData, UWorld* InWorld, const UE::Math::TVector<double>& AtLocation, const UE::Math::TRotator<double>& AtRotation, bool& dupedDino, int ForTeam, bool bGenerateNewDinoID, AShooterPlayerController* TamerController, bool bDontUpdateDownloadTime, bool bSkipControllerChecks) { return NativeCall<APrimalDinoCharacter*, const FARKDinoData*, UWorld*, const UE::Math::TVector<double>&, const UE::Math::TRotator<double>&, bool&, int, bool, AShooterPlayerController*, bool, bool>(nullptr, "APrimalDinoCharacter.SpawnFromDinoDataEx(FARKDinoData&,UWorld*,UE::Math::TVector<double>&,UE::Math::TRotator<double>&,bool&,int,bool,AShooterPlayerController*,bool,bool)", InDinoData, InWorld, AtLocation, AtRotation, dupedDino, ForTeam, bGenerateNewDinoID, TamerController, bDontUpdateDownloadTime, bSkipControllerChecks); }
     void SetLastMovementDesiredRotation(const UE::Math::TRotator<double>* InRotation) { NativeCall<void, const UE::Math::TRotator<double>*>(this, "APrimalDinoCharacter.SetLastMovementDesiredRotation(UE::Math::TRotator<double>&)", InRotation); }
     USoundBase* GetDinoTameSound_Implementation() { return NativeCall<USoundBase*>(this, "APrimalDinoCharacter.GetDinoTameSound_Implementation()"); }
     void CheckForTamedFoodConsumption(int Steps) { NativeCall<void, int>(this, "APrimalDinoCharacter.CheckForTamedFoodConsumption(int)", Steps); }

@@ -299,7 +299,7 @@ namespace API
 				if (save_world)
 				{
 					Log::GetLog()->info("Saving world before reloading plugins");
-					AsaApi::GetApiUtils().GetShooterGameMode()->SaveWorld(true, true);
+					AsaApi::GetApiUtils().GetShooterGameMode()->SaveWorld(true, true, false);
 					Log::GetLog()->info("World saved.");
 
 					save_world = false; // do not save again if multiple plugins are reloaded in this loop

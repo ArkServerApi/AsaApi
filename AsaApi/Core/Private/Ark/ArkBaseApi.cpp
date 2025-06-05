@@ -15,7 +15,7 @@
 
 namespace API
 {
-	constexpr float api_version = 1.18f;
+	constexpr float api_version = 1.19f;
 
 	ArkBaseApi::ArkBaseApi()
 		: commands_(std::make_unique<AsaApi::Commands>()),
@@ -373,7 +373,7 @@ namespace API
 						AsaApi::GetApiUtils().GetShooterGameMode()->ServerIDField() = new_server_id;
 						Log::GetLog()->info("SERVER ID: {}", new_server_id);
 						Log::GetLog()->info("Forcing world save to lock-in new server id");
-						AsaApi::GetApiUtils().GetShooterGameMode()->SaveWorld(false, true);
+						AsaApi::GetApiUtils().GetShooterGameMode()->SaveWorld(false, true, false);
 
 						break;
 					}
