@@ -583,8 +583,10 @@ namespace AsaApi
 			if (the_class != nullptr)
 			{
 				FString path;
-				auto the_object = UVictoryCore::GetClassDefaultObject(the_class);
-				the_object->GetPathName(nullptr, path);
+				TSubclassOf<UObject> subclass;
+				subclass.uClass = the_class;
+				path = UVictoryCore::ClassToStringReference(&subclass);
+				Log::GetLog()->info(path.ToString());
 				if (path.EndsWith("_C"))
 					return "Blueprint'" + path.LeftChop(2) + "'";
 				else
