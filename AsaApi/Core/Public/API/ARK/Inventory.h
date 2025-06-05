@@ -1,6 +1,159 @@
 #pragma once
 #include "UE.h"
 
+struct FPrimalItemSparseClassData
+{
+    // Fields
+
+    TSoftObjectPtr<USkeletalMesh>& CostumeDinoSaddleOverrideMeshField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "FPrimalItemSparseClassData.CostumeDinoSaddleOverrideMesh"); }
+    TSoftObjectPtr<USkeletalMesh>& CostumeDinoSaddleOverrideTorchMeshField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "FPrimalItemSparseClassData.CostumeDinoSaddleOverrideTorchMesh"); }
+    TSoftObjectPtr<USkeletalMesh>& DyePreviewMeshOverrideSKField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "FPrimalItemSparseClassData.DyePreviewMeshOverrideSK"); }
+    TSoftObjectPtr<UStaticMesh>& DyePreviewMeshOverrideSMField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "FPrimalItemSparseClassData.DyePreviewMeshOverrideSM"); }
+    TSoftObjectPtr<UStaticMesh>& DyeEquippedSkinPreviewMeshOverrideSMField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "FPrimalItemSparseClassData.DyeEquippedSkinPreviewMeshOverrideSM"); }
+    TSoftClassPtr<APrimalEmitterSpawnable>& UseParticleEffectField() { return *GetNativePointerField<TSoftClassPtr<APrimalEmitterSpawnable>*>(this, "FPrimalItemSparseClassData.UseParticleEffect"); }
+    TSoftClassPtr<AActor>& CraftingActorToSpawnField() { return *GetNativePointerField<TSoftClassPtr<AActor>*>(this, "FPrimalItemSparseClassData.CraftingActorToSpawn"); }
+    TSoftClassPtr<AActor>& UseSpawnActorClassField() { return *GetNativePointerField<TSoftClassPtr<AActor>*>(this, "FPrimalItemSparseClassData.UseSpawnActorClass"); }
+    TSoftClassPtr<ADroppedItem>& DroppedItemTemplateOverrideField() { return *GetNativePointerField<TSoftClassPtr<ADroppedItem>*>(this, "FPrimalItemSparseClassData.DroppedItemTemplateOverride"); }
+    TSoftClassPtr<ADroppedItem>& DroppedItemTemplateForSecondryActionField() { return *GetNativePointerField<TSoftClassPtr<ADroppedItem>*>(this, "FPrimalItemSparseClassData.DroppedItemTemplateForSecondryAction"); }
+    TSoftObjectPtr<UStaticMesh>& DroppedMeshOverrideField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "FPrimalItemSparseClassData.DroppedMeshOverride"); }
+    TSoftClassPtr<APrimalBuff>& BuffToGiveOwnerCharacterField() { return *GetNativePointerField<TSoftClassPtr<APrimalBuff>*>(this, "FPrimalItemSparseClassData.BuffToGiveOwnerCharacter"); }
+    UE::Math::TVector<double>& BlockingShieldFPVTranslationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FPrimalItemSparseClassData.BlockingShieldFPVTranslation"); }
+    UE::Math::TVector<double>& UseSpawnActorLocOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FPrimalItemSparseClassData.UseSpawnActorLocOffset"); }
+    UE::Math::TVector<double>& PreviewCameraPivotOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FPrimalItemSparseClassData.PreviewCameraPivotOffset"); }
+    UE::Math::TVector<double>& SpawnOnWaterEncroachmentBoxExtentField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FPrimalItemSparseClassData.SpawnOnWaterEncroachmentBoxExtent"); }
+    UE::Math::TRotator<double>& BlockingShieldFPVRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "FPrimalItemSparseClassData.BlockingShieldFPVRotation"); }
+    UE::Math::TRotator<double>& PreviewCameraRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "FPrimalItemSparseClassData.PreviewCameraRotation"); }
+    FString& CraftItemButtonStringOverrideField() { return *GetNativePointerField<FString*>(this, "FPrimalItemSparseClassData.CraftItemButtonStringOverride"); }
+    FString& AbstractItemCraftingDescriptionField() { return *GetNativePointerField<FString*>(this, "FPrimalItemSparseClassData.AbstractItemCraftingDescription"); }
+    FString& ItemRatingStringField() { return *GetNativePointerField<FString*>(this, "FPrimalItemSparseClassData.ItemRatingString"); }
+    FString& CustomRepairTextField() { return *GetNativePointerField<FString*>(this, "FPrimalItemSparseClassData.CustomRepairText"); }
+    FString& OverrideUseStringField() { return *GetNativePointerField<FString*>(this, "FPrimalItemSparseClassData.OverrideUseString"); }
+    TArray<FName, TSizedDefaultAllocator<32> >& TopLevelCustomContextMenuOptionsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.TopLevelCustomContextMenuOptions"); }
+    TArray<FCustomContextSubmenu, TSizedDefaultAllocator<32> >& CustomContextSubMenusField() { return *GetNativePointerField<TArray<FCustomContextSubmenu, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.CustomContextSubMenus"); }
+    TArray<FCustomContextMenuData, TSizedDefaultAllocator<32> >& CustomContextOptionDataField() { return *GetNativePointerField<TArray<FCustomContextMenuData, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.CustomContextOptionData"); }
+    TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& SupportDragOntoItemClassesField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.SupportDragOntoItemClasses"); }
+    TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >& AmmoSupportDragOntoWeaponItemWeaponTemplatesField() { return *GetNativePointerField<TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.AmmoSupportDragOntoWeaponItemWeaponTemplates"); }
+    TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >& OverrideRepairingRequirementsField() { return *GetNativePointerField<TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.OverrideRepairingRequirements"); }
+    TArray<FCropItemPhaseData, TSizedDefaultAllocator<32> >& CropPhasesDataField() { return *GetNativePointerField<TArray<FCropItemPhaseData, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.CropPhasesData"); }
+    TArray<FName, TSizedDefaultAllocator<32> >& EggAlertDinosAggroTagsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "FPrimalItemSparseClassData.EggAlertDinosAggroTags"); }
+    FLinearColor& DurabilityBarColorForegroundField() { return *GetNativePointerField<FLinearColor*>(this, "FPrimalItemSparseClassData.DurabilityBarColorForeground"); }
+    FLinearColor& DurabilityBarColorBackgroundField() { return *GetNativePointerField<FLinearColor*>(this, "FPrimalItemSparseClassData.DurabilityBarColorBackground"); }
+    FName& DefaultWeaponMeshNameField() { return *GetNativePointerField<FName*>(this, "FPrimalItemSparseClassData.DefaultWeaponMeshName"); }
+    FName& SaddleOverrideRiderSocketNameField() { return *GetNativePointerField<FName*>(this, "FPrimalItemSparseClassData.SaddleOverrideRiderSocketName"); }
+    FName& UseParticleEffectSocketNameField() { return *GetNativePointerField<FName*>(this, "FPrimalItemSparseClassData.UseParticleEffectSocketName"); }
+    FName& UseUnlocksEmoteNameField() { return *GetNativePointerField<FName*>(this, "FPrimalItemSparseClassData.UseUnlocksEmoteName"); }
+    FName& EquippingCosmeticRequiresUnlockedEmoteNameField() { return *GetNativePointerField<FName*>(this, "FPrimalItemSparseClassData.EquippingCosmeticRequiresUnlockedEmoteName"); }
+    FColor& CustomBrokenBorderColorField() { return *GetNativePointerField<FColor*>(this, "FPrimalItemSparseClassData.CustomBrokenBorderColor"); }
+    USoundBase*& ItemBrokenSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.ItemBrokenSound"); }
+    USoundCue*& UseItemSoundField() { return *GetNativePointerField<USoundCue**>(this, "FPrimalItemSparseClassData.UseItemSound"); }
+    USoundBase*& EquipSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.EquipSound"); }
+    USoundBase*& UnEquipSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.UnEquipSound"); }
+    USoundBase*& UsedOnOtherItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.UsedOnOtherItemSound"); }
+    USoundBase*& RemovedFromOtherItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.RemovedFromOtherItemSound"); }
+    USoundBase*& ExtraThrowItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.ExtraThrowItemSound"); }
+    USoundBase*& ShieldHitSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.ShieldHitSound"); }
+    USoundBase*& UseItemOnItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalItemSparseClassData.UseItemOnItemSound"); }
+    UAnimMontage*& PlayAnimationOnUseField() { return *GetNativePointerField<UAnimMontage**>(this, "FPrimalItemSparseClassData.PlayAnimationOnUse"); }
+    UAnimMontage*& ShowAnimationMaleField() { return *GetNativePointerField<UAnimMontage**>(this, "FPrimalItemSparseClassData.ShowAnimationMale"); }
+    UAnimMontage*& ShowAnimationFemaleField() { return *GetNativePointerField<UAnimMontage**>(this, "FPrimalItemSparseClassData.ShowAnimationFemale"); }
+    UAnimMontage*& HideAnimationMaleField() { return *GetNativePointerField<UAnimMontage**>(this, "FPrimalItemSparseClassData.HideAnimationMale"); }
+    UAnimMontage*& HideAnimationFemaleField() { return *GetNativePointerField<UAnimMontage**>(this, "FPrimalItemSparseClassData.HideAnimationFemale"); }
+    UMaterialInterface*& DroppedMeshMaterialOverrideField() { return *GetNativePointerField<UMaterialInterface**>(this, "FPrimalItemSparseClassData.DroppedMeshMaterialOverride"); }
+    TSubclassOf<UPrimalItem>& SpoilingItemField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.SpoilingItem"); }
+    TSubclassOf<UPrimalItem>& PreservingItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.PreservingItemClass"); }
+    TSubclassOf<UPrimalItem>& GiveItemWhenUsedField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.GiveItemWhenUsed"); }
+    TSubclassOf<UUserWidget>& CustomItemTooltipOverrideField() { return *GetNativePointerField<TSubclassOf<UUserWidget>*>(this, "FPrimalItemSparseClassData.CustomItemTooltipOverride"); }
+    TSubclassOf<UPrimalItem>& BrokenGiveItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.BrokenGiveItemClass"); }
+    TSubclassOf<UPrimalItem>& ItemClassToUseAsInitialCustomDataField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.ItemClassToUseAsInitialCustomData"); }
+    TSubclassOf<UPrimalItem>& OverrideCooldownTimeItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.OverrideCooldownTimeItemClass"); }
+    TSubclassOf<UPrimalItem>& EngramRequirementItemClassOverrideField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.EngramRequirementItemClassOverride"); }
+    TSubclassOf<UPrimalItem>& SendToClientClassOverrideField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "FPrimalItemSparseClassData.SendToClientClassOverride"); }
+    float& CraftingCooldownIntervalField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CraftingCooldownInterval"); }
+    float& DinoAutoHealingThresholdPercentField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.DinoAutoHealingThresholdPercent"); }
+    float& DinoAutoHealingUseTimeIntervalField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.DinoAutoHealingUseTimeInterval"); }
+    float& RandomChanceToBeBlueprintField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.RandomChanceToBeBlueprint"); }
+    float& ItemIconScaleField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ItemIconScale"); }
+    float& ShieldBlockDamagePercentageField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ShieldBlockDamagePercentage"); }
+    float& ShieldDamageToDurabilityRatioField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ShieldDamageToDurabilityRatio"); }
+    float& Ingredient_WeightIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.Ingredient_WeightIncreasePerQuantity"); }
+    float& Ingredient_FoodIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.Ingredient_FoodIncreasePerQuantity"); }
+    float& Ingredient_HealthIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.Ingredient_HealthIncreasePerQuantity"); }
+    float& Ingredient_WaterIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.Ingredient_WaterIncreasePerQuantity"); }
+    float& Ingredient_StaminaIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.Ingredient_StaminaIncreasePerQuantity"); }
+    float& PreservingItemSpoilingTimeMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.PreservingItemSpoilingTimeMultiplier"); }
+    float& RepairResourceRequirementMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.RepairResourceRequirementMultiplier"); }
+    float& DurabilityIncreaseMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.DurabilityIncreaseMultiplier"); }
+    float& DurabilityDecreaseMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.DurabilityDecreaseMultiplier"); }
+    float& UseDecreaseDurabilityField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.UseDecreaseDurability"); }
+    float& AutoDurabilityDecreaseIntervalField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.AutoDurabilityDecreaseInterval"); }
+    float& AutoDecreaseMinDurabilityField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.AutoDecreaseMinDurability"); }
+    float& UseDecreaseDurabilityMinField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.UseDecreaseDurabilityMin"); }
+    float& UseMinDurabilityRequirementField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.UseMinDurabilityRequirement"); }
+    float& MinBlueprintTimeToCraftField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.MinBlueprintTimeToCraft"); }
+    float& BlueprintWeightField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.BlueprintWeight"); }
+    float& MinimumUseIntervalField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.MinimumUseInterval"); }
+    float& TimeForFullRepairField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.TimeForFullRepair"); }
+    float& BaseRepairingXPField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.BaseRepairingXP"); }
+    float& PreviewCameraDistanceScaleFactorField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.PreviewCameraDistanceScaleFactor"); }
+    float& PreviewCameraDefaultZoomMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.PreviewCameraDefaultZoomMultiplier"); }
+    float& PreviewCameraMaxZoomMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.PreviewCameraMaxZoomMultiplier"); }
+    float& DurabilityNotifyThresholdValueField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.DurabilityNotifyThresholdValue"); }
+    float& CropGrowingFertilizerConsumptionRateField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CropGrowingFertilizerConsumptionRate"); }
+    float& CropMaxFruitFertilizerConsumptionRateField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CropMaxFruitFertilizerConsumptionRate"); }
+    float& CropGrowingWaterConsumptionRateField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CropGrowingWaterConsumptionRate"); }
+    float& CropMaxFruitWaterConsumptionRateField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CropMaxFruitWaterConsumptionRate"); }
+    float& CropNoFertilizerOrWaterCacheReductionRateField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CropNoFertilizerOrWaterCacheReductionRate"); }
+    float& FertilizerEffectivenessMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.FertilizerEffectivenessMultiplier"); }
+    float& EggAlertDinosAggroAmountField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.EggAlertDinosAggroAmount"); }
+    float& EggAlertDinosForcedAggroTimeField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.EggAlertDinosForcedAggroTime"); }
+    float& EggMaximumDistanceFromOriginalDropToAlertDinosField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.EggMaximumDistanceFromOriginalDropToAlertDinos"); }
+    float& MinDurabilityForCraftingResourceField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.MinDurabilityForCraftingResource"); }
+    float& ResourceRequirementIncreaseRatingPowerField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ResourceRequirementIncreaseRatingPower"); }
+    float& ResourceRequirementRatingScaleField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ResourceRequirementRatingScale"); }
+    float& ResourceRequirementRatingIncreasePercentageField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ResourceRequirementRatingIncreasePercentage"); }
+    float& ClearColorDurabilityThresholdField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ClearColorDurabilityThreshold"); }
+    float& RecipeCraftingSkillScaleField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.RecipeCraftingSkillScale"); }
+    float& DamageTorpidityArmorRatingField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.DamageTorpidityArmorRating"); }
+    float& IndirectTorpidityArmorRatingField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.IndirectTorpidityArmorRating"); }
+    float& UseGiveDinoTameAffinityPercentField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.UseGiveDinoTameAffinityPercent"); }
+    float& GlobalTameAffinityMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.GlobalTameAffinityMultiplier"); }
+    float& CraftingSkillQualityMultiplierMinField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CraftingSkillQualityMultiplierMin"); }
+    float& CraftingSkillQualityMultiplierMaxField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CraftingSkillQualityMultiplierMax"); }
+    float& SinglePlayerCraftingSpeedMultiplierField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.SinglePlayerCraftingSpeedMultiplier"); }
+    float& EquippedReduceDurabilityIntervalField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.EquippedReduceDurabilityInterval"); }
+    float& EquippedReduceDurabilityPerIntervalField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.EquippedReduceDurabilityPerInterval"); }
+    float& CustomInventoryWidgetTextVerticalOffsetField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.CustomInventoryWidgetTextVerticalOffset"); }
+    float& ImprintingQualitySpeedField() { return *GetNativePointerField<float*>(this, "FPrimalItemSparseClassData.ImprintingQualitySpeed"); }
+    int& MaxCustomItemDescriptionLengthField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.MaxCustomItemDescriptionLength"); }
+    int& CraftingMinLevelRequirementField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.CraftingMinLevelRequirement"); }
+    int& ArkTributeVersionField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.ArkTributeVersion"); }
+    int& BlueprintAllowMaxCraftingsField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.BlueprintAllowMaxCraftings"); }
+    int& CraftingConsumesDurabilityField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.CraftingConsumesDurability"); }
+    int& ExtraItemCategoryFlagsField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.ExtraItemCategoryFlags"); }
+    int& NoLevelEngramSortingPriorityField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.NoLevelEngramSortingPriority"); }
+    int& CraftingGiveItemCountField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.CraftingGiveItemCount"); }
+    int& CraftingGivesItemQuantityOverrideField() { return *GetNativePointerField<int*>(this, "FPrimalItemSparseClassData.CraftingGivesItemQuantityOverride"); }
+    TEnumAsByte<enum EEngramGroup::Type>& PreventUseAndShouldShowDLCPurchaseItemWhenAttemptingToUseIfDLCIsNotOwned_WhichDLCField() { return *GetNativePointerField<TEnumAsByte<enum EEngramGroup::Type>*>(this, "FPrimalItemSparseClassData.PreventUseAndShouldShowDLCPurchaseItemWhenAttemptingToUseIfDLCIsNotOwned_WhichDLC"); }
+
+    // Bitfields
+
+    BitFieldValue<bool, unsigned __int32> bUseBPOnLocalUseField() { return { this, "FPrimalItemSparseClassData.bUseBPOnLocalUse" }; }
+    BitFieldValue<bool, unsigned __int32> bUseCustomContextMenuOptionsField() { return { this, "FPrimalItemSparseClassData.bUseCustomContextMenuOptions" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOnItemAddedToInventoryField() { return { this, "FPrimalItemSparseClassData.bUseBPOnItemAddedToInventory" }; }
+    BitFieldValue<bool, unsigned __int32> bHideDuringEquipAnimationField() { return { this, "FPrimalItemSparseClassData.bHideDuringEquipAnimation" }; }
+    BitFieldValue<bool, unsigned __int32> bHideWeaponDuringEquipAnimationField() { return { this, "FPrimalItemSparseClassData.bHideWeaponDuringEquipAnimation" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBlueprintAnimNotificationsField() { return { this, "FPrimalItemSparseClassData.bUseBlueprintAnimNotifications" }; }
+    BitFieldValue<bool, unsigned __int32> bDontReplicateCustomItemDataClassesField() { return { this, "FPrimalItemSparseClassData.bDontReplicateCustomItemDataClasses" }; }
+    BitFieldValue<bool, unsigned __int32> bDisableAnimUROIfEquippedField() { return { this, "FPrimalItemSparseClassData.bDisableAnimUROIfEquipped" }; }
+
+    // Functions
+
+    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalItemSparseClassData.StaticStruct()"); }
+    FPrimalItemSparseClassData& operator=(const FPrimalItemSparseClassData* __that) { return NativeCall<FPrimalItemSparseClassData&, const FPrimalItemSparseClassData*>(this, "FPrimalItemSparseClassData.operator=(FPrimalItemSparseClassData&)", __that); }
+
+};
+
+
 struct UPrimalItem : UObject
 {
     // Fields
@@ -702,6 +855,7 @@ struct UPrimalItem : UObject
     const TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >* GetAllStructuresToBuild() { return NativeCall<const TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.GetAllStructuresToBuild()"); }
     void ConsumeCraftingResources(TArray<FCustomItemData, TSizedDefaultAllocator<32> >* ItemDataOutBuffer, float* ItemDurabilityUsed) { NativeCall<void, TArray<FCustomItemData, TSizedDefaultAllocator<32> >*, float*>(this, "UPrimalItem.ConsumeCraftingResources(TArray<FCustomItemData,TSizedDefaultAllocator<32>>*,float*)", ItemDataOutBuffer, ItemDurabilityUsed); }
     void ConsumeRepairingResources(float RepairPercent) { NativeCall<void, float>(this, "UPrimalItem.ConsumeRepairingResources(float)", RepairPercent); }
+    FPrimalItemSparseClassData* GetPrimalItemSparseClassData(EGetSparseClassDataMethod GetMethod) { return NativeCall<FPrimalItemSparseClassData*, EGetSparseClassDataMethod>(this, "UPrimalItem.GetPrimalItemSparseClassData(EGetSparseClassDataMethod)", GetMethod); }
 
     inline bool HasCustomItemData(FName& CustomDataName)
     {
