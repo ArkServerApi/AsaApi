@@ -70,7 +70,7 @@ struct FPrimalPlayerCharacterConfigStructReplicated
 
     // Fields
 
-    FieldArray<FLinearColor, 4>& BodyColorsField() { return *GetNativePointerField<FieldArray<FLinearColor, 4>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.BodyColors"); }
+    FieldArray<FLinearColor, 4> BodyColorsField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.BodyColors" }; }
     FString& PlayerCharacterNameField() { return *GetNativePointerField<FString*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PlayerCharacterName"); }
     unsigned __int8& FacialHairIndexField() { return *GetNativePointerField<unsigned __int8*>(this, "FPrimalPlayerCharacterConfigStructReplicated.FacialHairIndex"); }
     unsigned __int8& HeadHairIndexField() { return *GetNativePointerField<unsigned __int8*>(this, "FPrimalPlayerCharacterConfigStructReplicated.HeadHairIndex"); }
@@ -80,11 +80,11 @@ struct FPrimalPlayerCharacterConfigStructReplicated
     __int64& EyebrowCustomCosmeticModIDField() { return *GetNativePointerField<__int64*>(this, "FPrimalPlayerCharacterConfigStructReplicated.EyebrowCustomCosmeticModID"); }
     float& PercentOfFullHeadHairGrowthField() { return *GetNativePointerField<float*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PercentOfFullHeadHairGrowth"); }
     float& PercentOfFullFacialHairGrowthField() { return *GetNativePointerField<float*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PercentOfFullFacialHairGrowth"); }
-    FieldArray<float, 26>& RawBoneModifiersField() { return *GetNativePointerField<FieldArray<float, 26>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.RawBoneModifiers"); }
+    FieldArray<float, 26> RawBoneModifiersField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.RawBoneModifiers" }; }
     int& PlayerSpawnRegionIndexField() { return *GetNativePointerField<int*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PlayerSpawnRegionIndex"); }
-    FieldArray<unsigned __int8, 2>& OverrideHeadHairColorField() { return *GetNativePointerField<FieldArray<unsigned __int8, 2>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideHeadHairColor"); }
-    FieldArray<unsigned __int8, 2>& OverrideFacialHairColorField() { return *GetNativePointerField<FieldArray<unsigned __int8, 2>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideFacialHairColor"); }
-    FieldArray<unsigned __int8, 50>& DynamicMaterialBytesField() { return *GetNativePointerField<FieldArray<unsigned __int8, 50>*>(this, "FPrimalPlayerCharacterConfigStructReplicated.DynamicMaterialBytes"); }
+    FieldArray<unsigned __int8, 2> OverrideHeadHairColorField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideHeadHairColor" }; }
+    FieldArray<unsigned __int8, 2> OverrideFacialHairColorField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.OverrideFacialHairColor" }; }
+    FieldArray<unsigned __int8, 50> DynamicMaterialBytesField() { return { this, "FPrimalPlayerCharacterConfigStructReplicated.DynamicMaterialBytes" }; }
     int& PlayerVoiceCollectionIndexField() { return *GetNativePointerField<int*>(this, "FPrimalPlayerCharacterConfigStructReplicated.PlayerVoiceCollectionIndex"); }
 
     // Bitfields
