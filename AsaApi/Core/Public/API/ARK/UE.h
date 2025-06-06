@@ -221,39 +221,33 @@ struct FItemNetID
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemNetID.StaticStruct()"); }
 };
 
+
 struct UObjectBase
 {
 	// Fields
 
+	UObjectBase_vtbl*& __vftableField() { return *GetNativePointerField<UObjectBase_vtbl**>(this, "UObjectBase.__vftable"); }
 	EObjectFlags& ObjectFlagsField() { return *GetNativePointerField<EObjectFlags*>(this, "UObjectBase.ObjectFlags"); }
 	int& InternalIndexField() { return *GetNativePointerField<int*>(this, "UObjectBase.InternalIndex"); }
 	UClass*& ClassPrivateField() { return *GetNativePointerField<UClass**>(this, "UObjectBase.ClassPrivate"); }
 	UClass*& ClassField() { return ClassPrivateField(); }
 	FName& NamePrivateField() { return *GetNativePointerField<FName*>(this, "UObjectBase.NamePrivate"); }
-	UClass*& OuterPrivateField() { return *GetNativePointerField<UClass**>(this, "UObjectBase.OuterPrivate"); }
+	FName& NameField() { return NamePrivateField(); }
+	UObject*& OuterPrivateField() { return *GetNativePointerField<UObject**>(this, "UObjectBase.OuterPrivate"); }
 
 	// Bitfields
 
 
 	// Functions
 
-	UPackage* GetExternalPackage()const { return NativeCall<UPackage*>(this, "UObjectBase.GetExternalPackage()"); }
-	FName GetFNameForStatID()const { return NativeCall<FName>(this, "UObjectBase.GetFNameForStatID()"); }
-	void RegisterDependencies() { NativeCall<void>(this, "UObjectBase.RegisterDependencies()"); }
-	void Register(const wchar_t* PackageName, const wchar_t* InName) { NativeCall<void, const wchar_t*, const wchar_t*>(this, "UObjectBase.Register(wchar_t*,wchar_t*)", PackageName, InName); }
-	void MarkAsReachable()const { NativeCall<void>(this, "UObjectBase.MarkAsReachable()"); }
-	void LowLevelRename(FName NewName, UObject* NewOuter) { NativeCall<void, FName, UObject*>(this, "UObjectBase.LowLevelRename(FName,UObject*)", NewName, NewOuter); }
-	bool IsValidLowLevelFast(bool bRecursive) const { return NativeCall<bool, bool>(this, "UObjectBase.IsValidLowLevelFast(bool)", bRecursive); }
-	FName GetFName()const { return NativeCall<FName>(this, "UObjectBase.GetFName()"); }
-	void AtomicallySetFlags(EObjectFlags FlagsToAdd) { NativeCall<void, EObjectFlags>(this, "UObjectBase.AtomicallySetFlags(EObjectFlags)", FlagsToAdd); }
-	void SetExternalPackage(UPackage* InPackage) { NativeCall<void, UPackage*>(this, "UObjectBase.SetExternalPackage(UPackage*)", InPackage); }
-	void AddObject(FName InName, EInternalObjectFlags InSetInternalFlags, int InInternalIndex, int InSerialNumber) { NativeCall<void, FName, EInternalObjectFlags, int, int>(this, "UObjectBase.AddObject(FName,EInternalObjectFlags,int,int)", InName, InSetInternalFlags, InInternalIndex, InSerialNumber); }
+	//void AtomicallyClearFlags(EObjectFlags FlagsToClear) { NativeCall<void, EObjectFlags>(this, "UObjectBase.AtomicallyClearFlags(EObjectFlags)", FlagsToClear); }
+	//void ~UObjectBase() { NativeCall<void>(this, "UObjectBase.~UObjectBase()"); }
 	void DeferredRegister(UClass* UClassStaticClass, const wchar_t* PackageName, const wchar_t* InName) { NativeCall<void, UClass*, const wchar_t*, const wchar_t*>(this, "UObjectBase.DeferredRegister(UClass*,wchar_t*,wchar_t*)", UClassStaticClass, PackageName, InName); }
-	void AddRef()const { NativeCall<void>(this, "UObjectBase.AddRef()"); }
-	bool IsValidLowLevel()const { return NativeCall<bool>(this, "UObjectBase.IsValidLowLevel()"); }
-	UPackage* GetExternalPackageInternal()const { return NativeCall<UPackage*>(this, "UObjectBase.GetExternalPackageInternal()"); }
-	void ReleaseRef()const { NativeCall<void>(this, "UObjectBase.ReleaseRef()"); }
-	void AtomicallyClearFlags(EObjectFlags FlagsToClear) { NativeCall<void, EObjectFlags>(this, "UObjectBase.AtomicallyClearFlags(EObjectFlags)", FlagsToClear); }
+	//void AddObject(FName InName, EInternalObjectFlags InSetInternalFlags, int InInternalIndex, int InSerialNumber) { NativeCall<void, FName, EInternalObjectFlags, int, int>(this, "UObjectBase.AddObject(FName,EInternalObjectFlags,int,int)", InName, InSetInternalFlags, InInternalIndex, InSerialNumber); }
+	UPackage* GetExternalPackageInternal() { return NativeCall<UPackage*>(this, "UObjectBase.GetExternalPackageInternal()"); }
+	void SetExternalPackage(UPackage* InPackage) { NativeCall<void, UPackage*>(this, "UObjectBase.SetExternalPackage(UPackage*)", InPackage); }
+	bool IsValidLowLevel() { return NativeCall<bool>(this, "UObjectBase.IsValidLowLevel()"); }
+	bool IsValidLowLevelFast(bool bRecursive) { return NativeCall<bool, bool>(this, "UObjectBase.IsValidLowLevelFast(bool)", bRecursive); }
 };
 
 struct UObjectBaseUtility : UObjectBase
