@@ -1096,6 +1096,7 @@ struct UPrimalInventoryComponent : UActorComponent
     static void DeleteItemFromCustomFolder() { NativeCall<void>(nullptr, "UPrimalInventoryComponent.DeleteItemFromCustomFolder()"); }
     float GetItemWeightMultiplier(UPrimalItem* anItem) { return NativeCall<float, UPrimalItem*>(this, "UPrimalInventoryComponent.GetItemWeightMultiplier(UPrimalItem*)", anItem); }
     void UpdateTribeGroupInventoryRank_Implementation(unsigned __int8 NewRank) { NativeCall<void, unsigned __int8>(this, "UPrimalInventoryComponent.UpdateTribeGroupInventoryRank_Implementation(unsigned__int8)", NewRank); }
+    void BPDropInventoryDeposit(long double DestroyAtTime, int OverrideMaxItemsDropped, bool bOverrideCacheLocation, UE::Math::TVector<double>* CacheLocationOverride, bool someBool) { NativeCall<void, long double, int, bool, UE::Math::TVector<double>*, bool>(this, "UPrimalInventoryComponent.BPDropInventoryDeposit(double,int,bool,UE::Math::TVector<double>,bool)", DestroyAtTime, OverrideMaxItemsDropped, bOverrideCacheLocation, CacheLocationOverride, someBool); };
     float OverrideItemMinimumUseInterval(const UPrimalItem* theItem) { return NativeCall<float, const UPrimalItem*>(this, "UPrimalInventoryComponent.OverrideItemMinimumUseInterval(UPrimalItem*)", theItem); }
     UPrimalItem* AddItemObject(UPrimalItem* anItem) { return NativeCall<UPrimalItem*, UPrimalItem*>(this, "UPrimalInventoryComponent.AddItemObject(UPrimalItem*)", anItem); }
     void OnComponentCreated() { NativeCall<void>(this, "UPrimalInventoryComponent.OnComponentCreated()"); }
