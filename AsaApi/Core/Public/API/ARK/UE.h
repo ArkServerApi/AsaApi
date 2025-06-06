@@ -247,6 +247,7 @@ struct UObjectBase
 	void SetExternalPackage(UPackage* InPackage) { NativeCall<void, UPackage*>(this, "UObjectBase.SetExternalPackage(UPackage*)", InPackage); }
 	bool IsValidLowLevel() { return NativeCall<bool>(this, "UObjectBase.IsValidLowLevel()"); }
 	bool IsValidLowLevelFast(bool bRecursive) { return NativeCall<bool, bool>(this, "UObjectBase.IsValidLowLevelFast(bool)", bRecursive); }
+	void MarkAsReachable() { NativeCall<void>(this, "UObjectBase.MarkAsReachable()"); }
 };
 
 struct UObjectBaseUtility : UObjectBase

@@ -2626,6 +2626,7 @@ struct FCustomItemData
 	FCustomItemDoubles CustomDataDoubles;
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
+	TArray<TSoftClassPtr<UObject>> CustomDataSoftClasses;
 
 	// Fields
 
@@ -2639,6 +2640,7 @@ struct FCustomItemData
 	FCustomItemDoubles& CustomDataDoublesField() { return *GetNativePointerField<FCustomItemDoubles*>(this, "FCustomItemData.CustomDataDoubles"); }
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.UniquePaintingIdMap"); }
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.PaintingRevisionMap"); }
+	TArray<TSoftClassPtr<UObject>, TSizedDefaultAllocator<32> >& CustomDataSoftClassesField() { return *GetNativePointerField<TArray<TSoftClassPtr<UObject>, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataSoftClasses"); }
 
 	// Bitfields
 
