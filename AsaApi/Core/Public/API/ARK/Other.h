@@ -526,7 +526,31 @@ struct UGameplayStatics : UBlueprintFunctionLibrary
 	static void OpenLevelBySoftObjectPtr(const UObject* WorldContextObject, const TSoftObjectPtr<UWorld>* Level, bool bAbsolute, FString* Options) { NativeCall<void, const UObject*, const TSoftObjectPtr<UWorld>*, bool, FString*>(nullptr, "UGameplayStatics.OpenLevelBySoftObjectPtr(UObject*,TSoftObjectPtr<UWorld>,bool,FString)", WorldContextObject, Level, bAbsolute, Options); }
 	static FString* GetCurrentLevelName(FString* result, const UObject* WorldContextObject, FName bRemovePrefixString) { return NativeCall<FString*, FString*, const UObject*, FName>(nullptr, "UGameplayStatics.GetCurrentLevelName(UObject*,bool)", result, WorldContextObject, bRemovePrefixString); }
 	static AActor* GetActorOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass) { return NativeCall<AActor*, const UObject*, TSubclassOf<AActor>>(nullptr, "UGameplayStatics.GetActorOfClass(UObject*,TSubclassOf<AActor>)", WorldContextObject, ActorClass); }
-	static void GetAllActorsOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<AActor>, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsOfClass(UObject*,TSubclassOf<AActor>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, ActorClass, OutActors); }
+	static void GetAllActorsOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) 
+	{ 
+		auto defaultObject = GetPrivateStaticClass()->GetDefaultObject(true);
+		if (!defaultObject)
+		{
+			return;
+		}
+
+		UFunction* func = defaultObject->FindFunctionChecked(FName("GetAllActorsOfClass", EFindName::FNAME_Find));
+		if (!func)
+		{
+			return;
+		}
+
+		struct Params
+		{
+			const UObject* Param_WorldContextObject;
+			TSubclassOf<AActor> Param_ActorClass;
+			TArray<AActor*, TSizedDefaultAllocator<32>> Param_OutActors;
+		};
+
+		Params parms{ WorldContextObject, ActorClass };
+		defaultObject->ProcessEvent(func, &parms);
+		*OutActors = std::move(parms.Param_OutActors);
+	}
 	static void GetAllActorsWithInterface(const UObject* WorldContextObject, TSubclassOf<UInterface> Interface, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<UInterface>, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsWithInterface(UObject*,TSubclassOf<UInterface>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, Interface, OutActors); }
 	static void GetAllActorsWithTag(const UObject* WorldContextObject, FName Tag, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, FName, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsWithTag(UObject*,FName,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, Tag, OutActors); }
 	static void GetAllActorsOfClassWithTag(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, FName Tag, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<AActor>, FName, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsOfClassWithTag(UObject*,TSubclassOf<AActor>,FName,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, ActorClass, Tag, OutActors); }
