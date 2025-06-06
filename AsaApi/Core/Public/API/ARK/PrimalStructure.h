@@ -968,7 +968,7 @@ struct APrimalStructure : APrimalTargetableActor
     void GetWindSourceComponents(TArray<UActorComponent*, TSizedDefaultAllocator<32> >* Components, int includePriorityGreaterThan, bool bIsFirstPerson) { NativeCall<void, TArray<UActorComponent*, TSizedDefaultAllocator<32> >*, int, bool>(this, "APrimalStructure.GetWindSourceComponents(TArray<UActorComponent*,TSizedDefaultAllocator<32>>&,int,bool)", Components, includePriorityGreaterThan, bIsFirstPerson); }
     bool ShouldPerformMeshingCheck(bool bIsFinalPlacement) { return NativeCall<bool, bool>(this, "APrimalStructure.ShouldPerformMeshingCheck(bool)", bIsFinalPlacement); }
     AActor* GetBasedOnDinoAsActor(bool bUseReplicatedData, bool bOnlyConsciousDino) { return NativeCall<AActor*, bool, bool>(this, "APrimalStructure.GetBasedOnDinoAsActor(bool,bool)", bUseReplicatedData, bOnlyConsciousDino); }
-    TSubclassOf<UPrimalItem> GetConsumesPrimalItem() { return this->GetPrimalStructureSparseClassData(EGetSparseClassDataMethod::CreateIfNull)->ConsumesPrimalItemField(); }
+    TSubclassOf<UPrimalItem> GetConsumesPrimalItem() { return this->GetPrimalStructureSparseClassData(EGetSparseClassDataMethod::ArchetypeIfNull)->ConsumesPrimalItemField(); }
     FPrimalStructureSparseClassData* GetPrimalStructureSparseClassData(EGetSparseClassDataMethod GetMethod) { return NativeCall<FPrimalStructureSparseClassData*, EGetSparseClassDataMethod>(this, "APrimalStructure.GetPrimalStructureSparseClassData(EGetSparseClassDataMethod)", GetMethod); }
 };
 

@@ -5155,6 +5155,7 @@ struct APrimalCharacter : ACharacter
 
     // Bitfields
 
+    BitFieldValue<bool, unsigned __int32> bIsVoiceTalking() { return { this, "APrimalCharacter.bIsVoiceTalking" }; }
     BitFieldValue<bool, unsigned __int32> bIsProne() { return { this, "APrimalCharacter.bIsProne" }; }
     BitFieldValue<bool, unsigned __int32> bCanEverProne() { return { this, "APrimalCharacter.bCanEverProne" }; }
     BitFieldValue<bool, unsigned __int32> bUseBlueprintJumpInputEvents() { return { this, "APrimalCharacter.bUseBlueprintJumpInputEvents" }; }
@@ -5170,10 +5171,8 @@ struct APrimalCharacter : ACharacter
     BitFieldValue<bool, unsigned __int32> bDisableSpawnDefaultController() { return { this, "APrimalCharacter.bDisableSpawnDefaultController" }; }
     BitFieldValue<bool, unsigned __int32> bIsDragging() { return { this, "APrimalCharacter.bIsDragging" }; }
     BitFieldValue<bool, unsigned __int32> bIsDraggingWithGrapHook() { return { this, "APrimalCharacter.bIsDraggingWithGrapHook" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowCapsuleDamageAfterDeath() { return { this, "APrimalCharacter.bAllowCapsuleDamageAfterDeath" }; }
     BitFieldValue<bool, unsigned __int32> bRemoteRunning() { return { this, "APrimalCharacter.bRemoteRunning" }; }
     BitFieldValue<bool, unsigned __int32> bCanRun() { return { this, "APrimalCharacter.bCanRun" }; }
-    BitFieldValue<bool, unsigned __int32> bUseHealthDamageMaterialOverlay() { return { this, "APrimalCharacter.bUseHealthDamageMaterialOverlay" }; }
     BitFieldValue<bool, unsigned __int32> bIsBlinking() { return { this, "APrimalCharacter.bIsBlinking" }; }
     BitFieldValue<bool, unsigned __int32> bSleepedWaterRagdoll() { return { this, "APrimalCharacter.bSleepedWaterRagdoll" }; }
     BitFieldValue<bool, unsigned __int32> bCanBeTorpid() { return { this, "APrimalCharacter.bCanBeTorpid" }; }
@@ -5182,23 +5181,15 @@ struct APrimalCharacter : ACharacter
     BitFieldValue<bool, unsigned __int32> bForceAlwaysUpdateMesh() { return { this, "APrimalCharacter.bForceAlwaysUpdateMesh" }; }
     BitFieldValue<bool, unsigned __int32> bRagdollIgnoresPawnCapsules() { return { this, "APrimalCharacter.bRagdollIgnoresPawnCapsules" }; }
     BitFieldValue<bool, unsigned __int32> bUsePoopAnimationNotify() { return { this, "APrimalCharacter.bUsePoopAnimationNotify" }; }
-    BitFieldValue<bool, unsigned __int32> bIsBigDino() { return { this, "APrimalCharacter.bIsBigDino" }; }
     BitFieldValue<bool, unsigned __int32> bDeathUseRagdoll() { return { this, "APrimalCharacter.bDeathUseRagdoll" }; }
     BitFieldValue<bool, unsigned __int32> bCanBeCarried() { return { this, "APrimalCharacter.bCanBeCarried" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanNotifyTeamAggroAI() { return { this, "APrimalCharacter.bUseBPCanNotifyTeamAggroAI" }; }
     BitFieldValue<bool, unsigned __int32> bDamageNotifyTeamAggroAI() { return { this, "APrimalCharacter.bDamageNotifyTeamAggroAI" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_OverrideCameraTargetOriginLocation() { return { this, "APrimalCharacter.bUseBP_OverrideCameraTargetOriginLocation" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPGetOverrideCameraInterpSpeed() { return { this, "APrimalCharacter.bUseBPGetOverrideCameraInterpSpeed" }; }
     BitFieldValue<bool, unsigned __int32> bRecentlyUpdateIk() { return { this, "APrimalCharacter.bRecentlyUpdateIk" }; }
     BitFieldValue<bool, unsigned __int32> bIKEnabled() { return { this, "APrimalCharacter.bIKEnabled" }; }
     BitFieldValue<bool, unsigned __int32> bIsCarried() { return { this, "APrimalCharacter.bIsCarried" }; }
     BitFieldValue<bool, unsigned __int32> bIsCarriedAsPassenger() { return { this, "APrimalCharacter.bIsCarriedAsPassenger" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPPreventFallDamage() { return { this, "APrimalCharacter.bUseBPPreventFallDamage" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPNotifyIsDamageCauserOfAddedBuff() { return { this, "APrimalCharacter.bUseBPNotifyIsDamageCauserOfAddedBuff" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventProjectileAttachment() { return { this, "APrimalCharacter.bPreventProjectileAttachment" }; }
     BitFieldValue<bool, unsigned __int32> bForceIKOnDedicatedServer() { return { this, "APrimalCharacter.bForceIKOnDedicatedServer" }; }
-    BitFieldValue<bool, unsigned __int32> bIgnoreAllImmobilizationTraps() { return { this, "APrimalCharacter.bIgnoreAllImmobilizationTraps" }; }
-    BitFieldValue<bool, unsigned __int32> bForceTriggerIgnoredTraps() { return { this, "APrimalCharacter.bForceTriggerIgnoredTraps" }; }
     BitFieldValue<bool, unsigned __int32> bIsImmobilized() { return { this, "APrimalCharacter.bIsImmobilized" }; }
     BitFieldValue<bool, unsigned __int32> bCanIgnoreWater() { return { this, "APrimalCharacter.bCanIgnoreWater" }; }
     BitFieldValue<bool, unsigned __int32> bIsDead() { return { this, "APrimalCharacter.bIsDead" }; }
@@ -5207,160 +5198,69 @@ struct APrimalCharacter : ACharacter
     BitFieldValue<bool, unsigned __int32> bCanDrag() { return { this, "APrimalCharacter.bCanDrag" }; }
     BitFieldValue<bool, unsigned __int32> bCanBeDragged() { return { this, "APrimalCharacter.bCanBeDragged" }; }
     BitFieldValue<bool, unsigned __int32> bUsesRunningAnimation() { return { this, "APrimalCharacter.bUsesRunningAnimation" }; }
-    BitFieldValue<bool, unsigned __int32> bForceNetDidLand() { return { this, "APrimalCharacter.bForceNetDidLand" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventSimpleIK() { return { this, "APrimalCharacter.bPreventSimpleIK" }; }
-    BitFieldValue<bool, unsigned __int32> bOnlyAllowRunningWhileFlying() { return { this, "APrimalCharacter.bOnlyAllowRunningWhileFlying" }; }
     BitFieldValue<bool, unsigned __int32> bOrbitCamera() { return { this, "APrimalCharacter.bOrbitCamera" }; }
-    BitFieldValue<bool, unsigned __int32> bClientSetCurrentAimRot() { return { this, "APrimalCharacter.bClientSetCurrentAimRot" }; }
-    BitFieldValue<bool, unsigned __int32> bDisablePawnTick() { return { this, "APrimalCharacter.bDisablePawnTick" }; }
-    BitFieldValue<bool, unsigned __int32> bSetDeath() { return { this, "APrimalCharacter.bSetDeath" }; }
-    BitFieldValue<bool, unsigned __int32> bTicksOnClient() { return { this, "APrimalCharacter.bTicksOnClient" }; }
-    BitFieldValue<bool, unsigned __int32> bPlayingRunSound() { return { this, "APrimalCharacter.bPlayingRunSound" }; }
-    BitFieldValue<bool, unsigned __int32> bIsRespawn() { return { this, "APrimalCharacter.bIsRespawn" }; }
-    BitFieldValue<bool, unsigned __int32> bCreatedDynamicMaterials() { return { this, "APrimalCharacter.bCreatedDynamicMaterials" }; }
-    BitFieldValue<bool, unsigned __int32> bCurrentFrameAnimPreventInput() { return { this, "APrimalCharacter.bCurrentFrameAnimPreventInput" }; }
     BitFieldValue<bool, unsigned __int32> bDraggedFromExtremitiesOnly() { return { this, "APrimalCharacter.bDraggedFromExtremitiesOnly" }; }
     BitFieldValue<bool, unsigned __int32> bEnableIK() { return { this, "APrimalCharacter.bEnableIK" }; }
-    BitFieldValue<bool, unsigned __int32> bOnlyPlayPoopAnimWhileWalking() { return { this, "APrimalCharacter.bOnlyPlayPoopAnimWhileWalking" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBlueprintAnimNotifyCustomEvent() { return { this, "APrimalCharacter.bUseBlueprintAnimNotifyCustomEvent" }; }
     BitFieldValue<bool, unsigned __int32> bNoDamageImpulse() { return { this, "APrimalCharacter.bNoDamageImpulse" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventImmobilization() { return { this, "APrimalCharacter.bPreventImmobilization" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowAirJump() { return { this, "APrimalCharacter.bAllowAirJump" }; }
-    BitFieldValue<bool, unsigned __int32> bSleepingUseRagdoll() { return { this, "APrimalCharacter.bSleepingUseRagdoll" }; }
-    BitFieldValue<bool, unsigned __int32> bDediForceUnregisterSKMesh() { return { this, "APrimalCharacter.bDediForceUnregisterSKMesh" }; }
     BitFieldValue<bool, unsigned __int32> bReadyToPoop() { return { this, "APrimalCharacter.bReadyToPoop" }; }
     BitFieldValue<bool, unsigned __int32> bHasDynamicBase() { return { this, "APrimalCharacter.bHasDynamicBase" }; }
-    BitFieldValue<bool, unsigned __int32> bIsBeingDraggedByDino() { return { this, "APrimalCharacter.bIsBeingDraggedByDino" }; }
-    BitFieldValue<bool, unsigned __int32> bIsDraggingDinoStopped() { return { this, "APrimalCharacter.bIsDraggingDinoStopped" }; }
-    BitFieldValue<bool, unsigned __int32> bMissingDynamicBase() { return { this, "APrimalCharacter.bMissingDynamicBase" }; }
-    BitFieldValue<bool, unsigned __int32> bClientRagdollUpdateTimerEnabled() { return { this, "APrimalCharacter.bClientRagdollUpdateTimerEnabled" }; }
     BitFieldValue<bool, unsigned __int32> bDieIfLeftWater() { return { this, "APrimalCharacter.bDieIfLeftWater" }; }
     BitFieldValue<bool, unsigned __int32> bIsAmphibious() { return { this, "APrimalCharacter.bIsAmphibious" }; }
     BitFieldValue<bool, unsigned __int32> bUseAmphibiousTargeting() { return { this, "APrimalCharacter.bUseAmphibiousTargeting" }; }
-    BitFieldValue<bool, unsigned __int32> bIsWaterDino() { return { this, "APrimalCharacter.bIsWaterDino" }; }
-    BitFieldValue<bool, unsigned __int32> bIsFlyerDino() { return { this, "APrimalCharacter.bIsFlyerDino" }; }
-    BitFieldValue<bool, unsigned __int32> bIgnoreTargetingCarnivores() { return { this, "APrimalCharacter.bIgnoreTargetingCarnivores" }; }
-    BitFieldValue<bool, unsigned __int32> bAimGettingCharacterMeshRotation() { return { this, "APrimalCharacter.bAimGettingCharacterMeshRotation" }; }
-    BitFieldValue<bool, unsigned __int32> bIsRunningCheckIgnoreVelocity() { return { this, "APrimalCharacter.bIsRunningCheckIgnoreVelocity" }; }
     BitFieldValue<bool, unsigned __int32> bIsPlayingLowHealthAnim() { return { this, "APrimalCharacter.bIsPlayingLowHealthAnim" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowCharacterPainting() { return { this, "APrimalCharacter.bAllowCharacterPainting" }; }
-    BitFieldValue<bool, unsigned __int32> bTickStatusComponent() { return { this, "APrimalCharacter.bTickStatusComponent" }; }
-    BitFieldValue<bool, unsigned __int32> bReplicateDamageMomentum() { return { this, "APrimalCharacter.bReplicateDamageMomentum" }; }
     BitFieldValue<bool, unsigned __int32> bDontActuallyEmitPoop() { return { this, "APrimalCharacter.bDontActuallyEmitPoop" }; }
-    BitFieldValue<bool, unsigned __int32> bBPHUDOverideBuffProgressBar() { return { this, "APrimalCharacter.bBPHUDOverideBuffProgressBar" }; }
     BitFieldValue<bool, unsigned __int32> bAllowRunningWhileSwimming() { return { this, "APrimalCharacter.bAllowRunningWhileSwimming" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPNotifyBumpedByPawn() { return { this, "APrimalCharacter.bUseBPNotifyBumpedByPawn" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPNotifyBumpedPawn() { return { this, "APrimalCharacter.bUseBPNotifyBumpedPawn" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPAdjustDamage() { return { this, "APrimalCharacter.bUseBPAdjustDamage" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPTimerServer() { return { this, "APrimalCharacter.bUseBPTimerServer" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPTimerNonDedicated() { return { this, "APrimalCharacter.bUseBPTimerNonDedicated" }; }
     BitFieldValue<bool, unsigned __int32> bTriggerBPStasis() { return { this, "APrimalCharacter.bTriggerBPStasis" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPSetCharacterMeshseMaterialScalarParamValue() { return { this, "APrimalCharacter.bUseBPSetCharacterMeshseMaterialScalarParamValue" }; }
     BitFieldValue<bool, unsigned __int32> bIsMounted() { return { this, "APrimalCharacter.bIsMounted" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventTargetingByTurrets() { return { this, "APrimalCharacter.bPreventTargetingByTurrets" }; }
-    BitFieldValue<bool, unsigned __int32> bDelayFootstepsUnderMinInterval() { return { this, "APrimalCharacter.bDelayFootstepsUnderMinInterval" }; }
-    BitFieldValue<bool, unsigned __int32> bSleepingDisableIK() { return { this, "APrimalCharacter.bSleepingDisableIK" }; }
-    BitFieldValue<bool, unsigned __int32> bRagdollRetainAnimations() { return { this, "APrimalCharacter.bRagdollRetainAnimations" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPAddedAttachments() { return { this, "APrimalCharacter.bUseBPAddedAttachments" }; }
     BitFieldValue<bool, unsigned __int32> bCanPlayLandingAnim() { return { this, "APrimalCharacter.bCanPlayLandingAnim" }; }
-    BitFieldValue<bool, unsigned __int32> bOnlyHasRunningAnimationWhenWalking() { return { this, "APrimalCharacter.bOnlyHasRunningAnimationWhenWalking" }; }
-    BitFieldValue<bool, unsigned __int32> bIsReflectingDamage() { return { this, "APrimalCharacter.bIsReflectingDamage" }; }
     BitFieldValue<bool, unsigned __int32> bPreventTargetingAndMovement() { return { this, "APrimalCharacter.bPreventTargetingAndMovement" }; }
     BitFieldValue<bool, unsigned __int32> bPreventMovement() { return { this, "APrimalCharacter.bPreventMovement" }; }
     BitFieldValue<bool, unsigned __int32> bPreventWaterHopCorrectionVelChange() { return { this, "APrimalCharacter.bPreventWaterHopCorrectionVelChange" }; }
-    BitFieldValue<bool, unsigned __int32> bIsWhistleTargetingDown() { return { this, "APrimalCharacter.bIsWhistleTargetingDown" }; }
-    BitFieldValue<bool, unsigned __int32> bBPPreventInputType() { return { this, "APrimalCharacter.bBPPreventInputType" }; }
     BitFieldValue<bool, unsigned __int32> bForcePreventAllInput() { return { this, "APrimalCharacter.bForcePreventAllInput" }; }
     BitFieldValue<bool, unsigned __int32> bPreventAllBuffs() { return { this, "APrimalCharacter.bPreventAllBuffs" }; }
     BitFieldValue<bool, unsigned __int32> LastIsInsideVaccumSealedCube() { return { this, "APrimalCharacter.LastIsInsideVaccumSealedCube" }; }
+    BitFieldValue<bool, unsigned __int32> LastIsInsideVaccumSealedCubeOnDino() { return { this, "APrimalCharacter.LastIsInsideVaccumSealedCubeOnDino" }; }
     BitFieldValue<bool, unsigned __int32> bPreventJump() { return { this, "APrimalCharacter.bPreventJump" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPPreventStasis() { return { this, "APrimalCharacter.bUseBPPreventStasis" }; }
     BitFieldValue<bool, unsigned __int32> bDestroyOnStasis() { return { this, "APrimalCharacter.bDestroyOnStasis" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPPreSerializeSaveGame() { return { this, "APrimalCharacter.bUseBPPreSerializeSaveGame" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPPostLoadedFromSaveGame() { return { this, "APrimalCharacter.bUseBPPostLoadedFromSaveGame" }; }
-    BitFieldValue<bool, unsigned __int32> bUseHeavyCombatMusic() { return { this, "APrimalCharacter.bUseHeavyCombatMusic" }; }
-    BitFieldValue<bool, unsigned __int32> bMarkForDestruction() { return { this, "APrimalCharacter.bMarkForDestruction" }; }
     BitFieldValue<bool, unsigned __int32> bBPModifyAllowedViewHitDir() { return { this, "APrimalCharacter.bBPModifyAllowedViewHitDir" }; }
     BitFieldValue<bool, unsigned __int32> bBPLimitPlayerRotation() { return { this, "APrimalCharacter.bBPLimitPlayerRotation" }; }
     BitFieldValue<bool, unsigned __int32> bBPManagedFPVViewLocation() { return { this, "APrimalCharacter.bBPManagedFPVViewLocation" }; }
     BitFieldValue<bool, unsigned __int32> bBPCameraRotationFinal() { return { this, "APrimalCharacter.bBPCameraRotationFinal" }; }
-    BitFieldValue<bool, unsigned __int32> bServerBPNotifyInventoryItemChangesUseQuantity() { return { this, "APrimalCharacter.bServerBPNotifyInventoryItemChangesUseQuantity" }; }
-    BitFieldValue<bool, unsigned __int32> bServerBPNotifyInventoryItemChanges() { return { this, "APrimalCharacter.bServerBPNotifyInventoryItemChanges" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowRun() { return { this, "APrimalCharacter.bAllowRun" }; }
     BitFieldValue<bool, unsigned __int32> bIsAtMaxInventoryItems() { return { this, "APrimalCharacter.bIsAtMaxInventoryItems" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnStaminaDrained() { return { this, "APrimalCharacter.bUseBPOnStaminaDrained" }; }
-    BitFieldValue<bool, unsigned __int32> bStaminaIsGreaterThanZero() { return { this, "APrimalCharacter.bStaminaIsGreaterThanZero" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGrabDebugSnapshot() { return { this, "APrimalCharacter.bUseBPGrabDebugSnapshot" }; }
     BitFieldValue<bool, unsigned __int32> bIsAttachedOtherCharacter() { return { this, "APrimalCharacter.bIsAttachedOtherCharacter" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOnLethalDamage() { return { this, "APrimalCharacter.bUseBPOnLethalDamage" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPAdjustTorpidityDamage() { return { this, "APrimalCharacter.bUseBPAdjustTorpidityDamage" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPForceCameraStyle() { return { this, "APrimalCharacter.bUseBPForceCameraStyle" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPRemovedAsPassenger() { return { this, "APrimalCharacter.bUseBPRemovedAsPassenger" }; }
     BitFieldValue<bool, unsigned __int32> bDisableFPV() { return { this, "APrimalCharacter.bDisableFPV" }; }
     BitFieldValue<bool, unsigned __int32> bConsumeZoomInput() { return { this, "APrimalCharacter.bConsumeZoomInput" }; }
-    BitFieldValue<bool, unsigned __int32> bDisableIkOnDeath() { return { this, "APrimalCharacter.bDisableIkOnDeath" }; }
-    BitFieldValue<bool, unsigned __int32> bDisabledIKFromDeath() { return { this, "APrimalCharacter.bDisabledIKFromDeath" }; }
-    BitFieldValue<bool, unsigned __int32> bIsReplicatedRagdoll() { return { this, "APrimalCharacter.bIsReplicatedRagdoll" }; }
-    BitFieldValue<bool, unsigned __int32> bWasAllBodiesSleeping() { return { this, "APrimalCharacter.bWasAllBodiesSleeping" }; }
     BitFieldValue<bool, unsigned __int32> bInRagdoll() { return { this, "APrimalCharacter.bInRagdoll" }; }
-    BitFieldValue<bool, unsigned __int32> bIsNPC() { return { this, "APrimalCharacter.bIsNPC" }; }
-    BitFieldValue<bool, unsigned __int32> LastCheckedSubmergedFull() { return { this, "APrimalCharacter.LastCheckedSubmergedFull" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowFullSubmergedCheck() { return { this, "APrimalCharacter.bAllowFullSubmergedCheck" }; }
-    BitFieldValue<bool, unsigned __int32> bRagdollWasInWaterVolume() { return { this, "APrimalCharacter.bRagdollWasInWaterVolume" }; }
     BitFieldValue<bool, unsigned __int32> bIsBuffed() { return { this, "APrimalCharacter.bIsBuffed" }; }
-    BitFieldValue<bool, unsigned __int32> bIsDraggingWithOffset() { return { this, "APrimalCharacter.bIsDraggingWithOffset" }; }
-    BitFieldValue<bool, unsigned __int32> bIsDraggedWithOffset() { return { this, "APrimalCharacter.bIsDraggedWithOffset" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventRunningWhileWalking() { return { this, "APrimalCharacter.bPreventRunningWhileWalking" }; }
-    BitFieldValue<bool, unsigned __int32> bCanLandOnWater() { return { this, "APrimalCharacter.bCanLandOnWater" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPAdjustMoveForward() { return { this, "APrimalCharacter.bUseBPAdjustMoveForward" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPAdjustMoveRight() { return { this, "APrimalCharacter.bUseBPAdjustMoveRight" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPGetGravity() { return { this, "APrimalCharacter.bUseBPGetGravity" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowDamageWhenMounted() { return { this, "APrimalCharacter.bAllowDamageWhenMounted" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnAttachmentReplication() { return { this, "APrimalCharacter.bUseBPOnAttachmentReplication" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnMovementModeChangedNotify() { return { this, "APrimalCharacter.bUseBPOnMovementModeChangedNotify" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnAnimPlayedNotify() { return { this, "APrimalCharacter.bUseBPOnAnimPlayedNotify" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideCharacterNewFallVelocity() { return { this, "APrimalCharacter.bUseBPOverrideCharacterNewFallVelocity" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOverrideCharacterNewSwimVelocity() { return { this, "APrimalCharacter.bUseBPOverrideCharacterNewSwimVelocity" }; }
+    BitFieldValue<bool, unsigned __int32> bSleepingDisableRagdoll() { return { this, "APrimalCharacter.bSleepingDisableRagdoll" }; }
+    BitFieldValue<bool, unsigned __int32> bDediServerAutoUnregisterSkeletalMeshWhenNotRelevant() { return { this, "APrimalCharacter.bDediServerAutoUnregisterSkeletalMeshWhenNotRelevant" }; }
+    BitFieldValue<bool, unsigned __int32> bPreventLiveBlinking() { return { this, "APrimalCharacter.bPreventLiveBlinking" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideCharacterSound() { return { this, "APrimalCharacter.bUseBPOverrideCharacterSound" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideCharacterParticle() { return { this, "APrimalCharacter.bUseBPOverrideCharacterParticle" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_OnSetRunningEvent() { return { this, "APrimalCharacter.bUseBP_OnSetRunningEvent" }; }
-    BitFieldValue<bool, unsigned __int32> bForceTurretFastTargeting() { return { this, "APrimalCharacter.bForceTurretFastTargeting" }; }
-    BitFieldValue<bool, unsigned __int32> bFlyingOrWaterDinoPreventBackwardsRun() { return { this, "APrimalCharacter.bFlyingOrWaterDinoPreventBackwardsRun" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOverrideFlyingVelocity() { return { this, "APrimalCharacter.bUseBPOverrideFlyingVelocity" }; }
-    BitFieldValue<bool, unsigned __int32> bSleepingDisableRagdoll() { return { this, "APrimalCharacter.bSleepingDisableRagdoll" }; }
-    BitFieldValue<bool, unsigned __int32> bDestroyOnStasisWhenDead() { return { this, "APrimalCharacter.bDestroyOnStasisWhenDead" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventLiveBlinking() { return { this, "APrimalCharacter.bPreventLiveBlinking" }; }
-    BitFieldValue<bool, unsigned __int32> bIgnoreSeatingDetachment() { return { this, "APrimalCharacter.bIgnoreSeatingDetachment" }; }
-    BitFieldValue<bool, unsigned __int32> bForceAlwaysUpdateMeshAndCollision() { return { this, "APrimalCharacter.bForceAlwaysUpdateMeshAndCollision" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetHUDElements() { return { this, "APrimalCharacter.bUseBPGetHUDElements" }; }
     BitFieldValue<bool, unsigned __int32> bPreventHurtAnim() { return { this, "APrimalCharacter.bPreventHurtAnim" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanBeBaseForCharacter() { return { this, "APrimalCharacter.bUseBPCanBeBaseForCharacter" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanBaseOnCharacter() { return { this, "APrimalCharacter.bUseBPCanBaseOnCharacter" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnLanded() { return { this, "APrimalCharacter.bUseBPOnLanded" }; }
-    BitFieldValue<bool, unsigned __int32> bEnableMoveCollapsing() { return { this, "APrimalCharacter.bEnableMoveCollapsing" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_ForceAllowBuffClasses() { return { this, "APrimalCharacter.bUseBP_ForceAllowBuffClasses" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCheckJumpInput() { return { this, "APrimalCharacter.bUseBPCheckJumpInput" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOverrideHurtAnim() { return { this, "APrimalCharacter.bUseBPOverrideHurtAnim" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideDamageCauserHitMarker() { return { this, "APrimalCharacter.bUseBPOverrideDamageCauserHitMarker" }; }
     BitFieldValue<bool, unsigned __int32> bIsSkinned() { return { this, "APrimalCharacter.bIsSkinned" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPAdjustImpulseFromDamage() { return { this, "APrimalCharacter.bUseBPAdjustImpulseFromDamage" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPAdjustCharacterMovementImpulse() { return { this, "APrimalCharacter.bUseBPAdjustCharacterMovementImpulse" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPModifyFOVInterpSpeed() { return { this, "APrimalCharacter.bUseBPModifyFOVInterpSpeed" }; }
-    BitFieldValue<bool, unsigned __int32> bVerifyBasingForSaddleStructures() { return { this, "APrimalCharacter.bVerifyBasingForSaddleStructures" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_OverrideTerminalVelocity() { return { this, "APrimalCharacter.bUseBP_OverrideTerminalVelocity" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_ShouldForceDisableTPVCameraInterpolation() { return { this, "APrimalCharacter.bUseBP_ShouldForceDisableTPVCameraInterpolation" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPAllowPlayMontage() { return { this, "APrimalCharacter.bUseBPAllowPlayMontage" }; }
     BitFieldValue<bool, unsigned __int32> bPreventPerPixelPainting() { return { this, "APrimalCharacter.bPreventPerPixelPainting" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPItemSlotOverrides() { return { this, "APrimalCharacter.bUseBPItemSlotOverrides" }; }
     BitFieldValue<bool, unsigned __int32> bPreventMoveUp() { return { this, "APrimalCharacter.bPreventMoveUp" }; }
     BitFieldValue<bool, unsigned __int32> bForceAllowDediServerGroundConformInterpolate() { return { this, "APrimalCharacter.bForceAllowDediServerGroundConformInterpolate" }; }
+    BitFieldValue<bool, unsigned __int32> bIsHost() { return { this, "APrimalCharacter.bIsHost" }; }
     BitFieldValue<bool, unsigned __int32> bCanBePushed() { return { this, "APrimalCharacter.bCanBePushed" }; }
     BitFieldValue<bool, unsigned __int32> bCanPushOthers() { return { this, "APrimalCharacter.bCanPushOthers" }; }
-    BitFieldValue<bool, unsigned __int32> bIsBigPusher() { return { this, "APrimalCharacter.bIsBigPusher" }; }
     BitFieldValue<bool, unsigned __int32> bCanEverCrouch() { return { this, "APrimalCharacter.bCanEverCrouch" }; }
-    BitFieldValue<bool, unsigned __int32> bUseOptimizedPhysWalkingChecks() { return { this, "APrimalCharacter.bUseOptimizedPhysWalkingChecks" }; }
+    BitFieldValue<bool, unsigned __int32> bShouldBeInGodMode() { return { this, "APrimalCharacter.bShouldBeInGodMode" }; }
     BitFieldValue<bool, unsigned __int32> bIgnoreLowGravityDisorientation() { return { this, "APrimalCharacter.bIgnoreLowGravityDisorientation" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnMassTeleportEvent() { return { this, "APrimalCharacter.bUseBPOnMassTeleportEvent" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBlueprintAnimNotifyCustomState() { return { this, "APrimalCharacter.bUseBlueprintAnimNotifyCustomState" }; }
     BitFieldValue<bool, unsigned __int32> bPreventIKWhenNotWalking() { return { this, "APrimalCharacter.bPreventIKWhenNotWalking" }; }
     BitFieldValue<bool, unsigned __int32> bIgnoreCorpseDecompositionMultipliers() { return { this, "APrimalCharacter.bIgnoreCorpseDecompositionMultipliers" }; }
     BitFieldValue<bool, unsigned __int32> bInterpHealthDamageMaterialOverlayAlpha() { return { this, "APrimalCharacter.bInterpHealthDamageMaterialOverlayAlpha" }; }
@@ -5373,10 +5273,7 @@ struct APrimalCharacter : ACharacter
     BitFieldValue<bool, unsigned __int32> bAllowMultiUseByRemoteDino() { return { this, "APrimalCharacter.bAllowMultiUseByRemoteDino" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideJumpZModifier() { return { this, "APrimalCharacter.bUseBPOverrideJumpZModifier" }; }
     BitFieldValue<bool, unsigned __int32> bUseZeroGravityWander() { return { this, "APrimalCharacter.bUseZeroGravityWander" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPPreventNotifySound() { return { this, "APrimalCharacter.bUseBPPreventNotifySound" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_ModifyInputAcceleration() { return { this, "APrimalCharacter.bUseBP_ModifyInputAcceleration" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_ModifySavedMoveAcceleration_PreRep() { return { this, "APrimalCharacter.bUseBP_ModifySavedMoveAcceleration_PreRep" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_ModifySavedMoveAcceleration_PostRep() { return { this, "APrimalCharacter.bUseBP_ModifySavedMoveAcceleration_PostRep" }; }
     BitFieldValue<bool, unsigned __int32> bForceSimpleTeleportFade() { return { this, "APrimalCharacter.bForceSimpleTeleportFade" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPGetArmorDurabilityDecreaseMultiplier() { return { this, "APrimalCharacter.bUseBPGetArmorDurabilityDecreaseMultiplier" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPShieldBlock() { return { this, "APrimalCharacter.bUseBPShieldBlock" }; }
@@ -5386,30 +5283,75 @@ struct APrimalCharacter : ACharacter
     BitFieldValue<bool, unsigned __int32> bOverrideSwimmingAcceleration() { return { this, "APrimalCharacter.bOverrideSwimmingAcceleration" }; }
     BitFieldValue<bool, unsigned __int32> bOverrideNewFallVelocity() { return { this, "APrimalCharacter.bOverrideNewFallVelocity" }; }
     BitFieldValue<bool, unsigned __int32> bOverrideFlyingVelocity() { return { this, "APrimalCharacter.bOverrideFlyingVelocity" }; }
-    BitFieldValue<bool, unsigned __int32> bUsesRootMotion() { return { this, "APrimalCharacter.bUsesRootMotion" }; }
     BitFieldValue<bool, unsigned __int32> bEnableAnimationGroundConforming() { return { this, "APrimalCharacter.bEnableAnimationGroundConforming" }; }
     BitFieldValue<bool, unsigned __int32> bWasBeingDragged() { return { this, "APrimalCharacter.bWasBeingDragged" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverridePhysicsImpulses() { return { this, "APrimalCharacter.bUseBPOverridePhysicsImpulses" }; }
     BitFieldValue<bool, unsigned __int32> bAllowASACamera() { return { this, "APrimalCharacter.bAllowASACamera" }; }
-    BitFieldValue<bool, unsigned __int32> bWasUsingOldCameraOnDinoBase() { return { this, "APrimalCharacter.bWasUsingOldCameraOnDinoBase" }; }
-    BitFieldValue<bool, unsigned __int32> bDediServerAutoUnregisterSkeletalMeshWhenNotRelevant() { return { this, "APrimalCharacter.bDediServerAutoUnregisterSkeletalMeshWhenNotRelevant" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventUnconsciousMeshBasing() { return { this, "APrimalCharacter.bPreventUnconsciousMeshBasing" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPShouldUseLongFallCameraPivotZValues() { return { this, "APrimalCharacter.bUseBPShouldUseLongFallCameraPivotZValues" }; }
     BitFieldValue<bool, unsigned __int32> bUseOnCharacterSteppedNotify() { return { this, "APrimalCharacter.bUseOnCharacterSteppedNotify" }; }
+    BitFieldValue<bool, unsigned __int32> bIsDoingDraggedInterp() { return { this, "APrimalCharacter.bIsDoingDraggedInterp" }; }
+    BitFieldValue<bool, unsigned __int32> bOverrideBlendSpaceSmoothType() { return { this, "APrimalCharacter.bOverrideBlendSpaceSmoothType" }; }
+    BitFieldValue<bool, unsigned __int32> bIgnoreWeightWhenUsingExtraMaxSpeedModifier() { return { this, "APrimalCharacter.bIgnoreWeightWhenUsingExtraMaxSpeedModifier" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOnSimulatedTick() { return { this, "APrimalCharacter.bUseBPOnSimulatedTick" }; }
+    BitFieldValue<bool, unsigned __int32> bVehicleUpdatePPBlends() { return { this, "APrimalCharacter.bVehicleUpdatePPBlends" }; }
+    BitFieldValue<bool, unsigned __int32> bIsOverridingClientPositionErrorTolerance() { return { this, "APrimalCharacter.bIsOverridingClientPositionErrorTolerance" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPNotifyOnBuffAdded() { return { this, "APrimalCharacter.bUseBPNotifyOnBuffAdded" }; }
+    BitFieldValue<bool, unsigned __int32> bUseOnStartedAllyTargetLooking() { return { this, "APrimalCharacter.bUseOnStartedAllyTargetLooking" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPPlayHitEffect() { return { this, "APrimalCharacter.bUseBPPlayHitEffect" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPAllowRunningWhileFalling() { return { this, "APrimalCharacter.bUseBPAllowRunningWhileFalling" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPModifyXPMultiplier() { return { this, "APrimalCharacter.bUseBPModifyXPMultiplier" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPGetFinalMaxSpeed() { return { this, "APrimalCharacter.bUseBPGetFinalMaxSpeed" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPAllowPlayMontage() { return { this, "APrimalCharacter.bUseBPAllowPlayMontage" }; }
+    BitFieldValue<bool, unsigned __int32> Hotfix_AreGeneTraitsEnabled() { return { this, "APrimalCharacter.Hotfix_AreGeneTraitsEnabled" }; }
+    BitFieldValue<bool, unsigned __int32> bIgnoreOnDeathNotifyNearbyCharacters() { return { this, "APrimalCharacter.bIgnoreOnDeathNotifyNearbyCharacters" }; }
+    BitFieldValue<bool, unsigned __int32> bIgnoreAllImmobilizationTraps() { return { this, "APrimalCharacter.bIgnoreAllImmobilizationTraps" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOnImmobilize() { return { this, "APrimalCharacter.bUseBPOnImmobilize" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOverridePlayAnimExMontage() { return { this, "APrimalCharacter.bUseBPOverridePlayAnimExMontage" }; }
+    BitFieldValue<bool, unsigned __int32> bForceWildEncumberBasedOnTamedDino() { return { this, "APrimalCharacter.bForceWildEncumberBasedOnTamedDino" }; }
+    BitFieldValue<bool, unsigned __int32> bIsMuted() { return { this, "APrimalCharacter.bIsMuted" }; }
+    BitFieldValue<bool, unsigned __int32> bClientSetCurrentAimRot() { return { this, "APrimalCharacter.bClientSetCurrentAimRot" }; }
+    BitFieldValue<bool, unsigned __int32> bDisablePawnTick() { return { this, "APrimalCharacter.bDisablePawnTick" }; }
+    BitFieldValue<bool, unsigned __int32> bSetDeath() { return { this, "APrimalCharacter.bSetDeath" }; }
+    BitFieldValue<bool, unsigned __int32> bTicksOnClient() { return { this, "APrimalCharacter.bTicksOnClient" }; }
+    BitFieldValue<bool, unsigned __int32> bPlayingRunSound() { return { this, "APrimalCharacter.bPlayingRunSound" }; }
+    BitFieldValue<bool, unsigned __int32> bIsRespawn() { return { this, "APrimalCharacter.bIsRespawn" }; }
+    BitFieldValue<bool, unsigned __int32> bCreatedDynamicMaterials() { return { this, "APrimalCharacter.bCreatedDynamicMaterials" }; }
+    BitFieldValue<bool, unsigned __int32> bCurrentFrameAnimPreventInput() { return { this, "APrimalCharacter.bCurrentFrameAnimPreventInput" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowAirJump() { return { this, "APrimalCharacter.bAllowAirJump" }; }
+    BitFieldValue<bool, unsigned __int32> bIsBeingDraggedByDino() { return { this, "APrimalCharacter.bIsBeingDraggedByDino" }; }
+    BitFieldValue<bool, unsigned __int32> bIsDraggingDinoStopped() { return { this, "APrimalCharacter.bIsDraggingDinoStopped" }; }
+    BitFieldValue<bool, unsigned __int32> bMissingDynamicBase() { return { this, "APrimalCharacter.bMissingDynamicBase" }; }
+    BitFieldValue<bool, unsigned __int32> bClientRagdollUpdateTimerEnabled() { return { this, "APrimalCharacter.bClientRagdollUpdateTimerEnabled" }; }
+    BitFieldValue<bool, unsigned __int32> bAimGettingCharacterMeshRotation() { return { this, "APrimalCharacter.bAimGettingCharacterMeshRotation" }; }
+    BitFieldValue<bool, unsigned __int32> bIsRunningCheckIgnoreVelocity() { return { this, "APrimalCharacter.bIsRunningCheckIgnoreVelocity" }; }
+    BitFieldValue<bool, unsigned __int32> bReplicateDamageMomentum() { return { this, "APrimalCharacter.bReplicateDamageMomentum" }; }
+    BitFieldValue<bool, unsigned __int32> bIsReflectingDamage() { return { this, "APrimalCharacter.bIsReflectingDamage" }; }
+    BitFieldValue<bool, unsigned __int32> bIsWhistleTargetingDown() { return { this, "APrimalCharacter.bIsWhistleTargetingDown" }; }
+    BitFieldValue<bool, unsigned __int32> bMarkForDestruction() { return { this, "APrimalCharacter.bMarkForDestruction" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowRun() { return { this, "APrimalCharacter.bAllowRun" }; }
+    BitFieldValue<bool, unsigned __int32> bStaminaIsGreaterThanZero() { return { this, "APrimalCharacter.bStaminaIsGreaterThanZero" }; }
+    BitFieldValue<bool, unsigned __int32> bDisabledIKFromDeath() { return { this, "APrimalCharacter.bDisabledIKFromDeath" }; }
+    BitFieldValue<bool, unsigned __int32> bPreventUnregisterMeshUntilForceUpdateEnd() { return { this, "APrimalCharacter.bPreventUnregisterMeshUntilForceUpdateEnd" }; }
+    BitFieldValue<bool, unsigned __int32> bIsReplicatedRagdoll() { return { this, "APrimalCharacter.bIsReplicatedRagdoll" }; }
+    BitFieldValue<bool, unsigned __int32> bWasAllBodiesSleeping() { return { this, "APrimalCharacter.bWasAllBodiesSleeping" }; }
+    BitFieldValue<bool, unsigned __int32> LastCheckedSubmergedFull() { return { this, "APrimalCharacter.LastCheckedSubmergedFull" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowFullSubmergedCheck() { return { this, "APrimalCharacter.bAllowFullSubmergedCheck" }; }
+    BitFieldValue<bool, unsigned __int32> bRagdollWasInWaterVolume() { return { this, "APrimalCharacter.bRagdollWasInWaterVolume" }; }
+    BitFieldValue<bool, unsigned __int32> bIsDraggedWithOffset() { return { this, "APrimalCharacter.bIsDraggedWithOffset" }; }
+    BitFieldValue<bool, unsigned __int32> bIgnoreSeatingDetachment() { return { this, "APrimalCharacter.bIgnoreSeatingDetachment" }; }
+    BitFieldValue<bool, unsigned __int32> AccessSpawn1Pressed() { return { this, "APrimalCharacter.AccessSpawn1Pressed" }; }
+    BitFieldValue<bool, unsigned __int32> AccessSpawn2Pressed() { return { this, "APrimalCharacter.AccessSpawn2Pressed" }; }
+    BitFieldValue<bool, unsigned __int32> bIsForceUpdatingChildMeshes() { return { this, "APrimalCharacter.bIsForceUpdatingChildMeshes" }; }
+    BitFieldValue<bool, unsigned __int32> bUseOptimizedPhysWalkingChecks() { return { this, "APrimalCharacter.bUseOptimizedPhysWalkingChecks" }; }
+    BitFieldValue<bool, unsigned __int32> bForceRefreshBonesRecursionGuard() { return { this, "APrimalCharacter.bForceRefreshBonesRecursionGuard" }; }
+    BitFieldValue<bool, unsigned __int32> bWasUsingOldCameraOnDinoBase() { return { this, "APrimalCharacter.bWasUsingOldCameraOnDinoBase" }; }
     BitFieldValue<bool, unsigned __int32> bHasAppliedDraggedSettings() { return { this, "APrimalCharacter.bHasAppliedDraggedSettings" }; }
     BitFieldValue<bool, unsigned __int32> bWantsToRestoreSavedBase() { return { this, "APrimalCharacter.bWantsToRestoreSavedBase" }; }
     BitFieldValue<bool, unsigned __int32> bUnregisteredMeshDueToVisibilityTickOption() { return { this, "APrimalCharacter.bUnregisteredMeshDueToVisibilityTickOption" }; }
     BitFieldValue<bool, unsigned __int32> bHasAutoUnregisteredExtraSkeletalComponents() { return { this, "APrimalCharacter.bHasAutoUnregisteredExtraSkeletalComponents" }; }
     BitFieldValue<bool, unsigned __int32> bDraggedFlip180() { return { this, "APrimalCharacter.bDraggedFlip180" }; }
-    BitFieldValue<bool, unsigned __int32> bIsDoingDraggedInterp() { return { this, "APrimalCharacter.bIsDoingDraggedInterp" }; }
-    BitFieldValue<bool, unsigned __int32> bCorrectMeshRelativeZOffsetWhileDragged() { return { this, "APrimalCharacter.bCorrectMeshRelativeZOffsetWhileDragged" }; }
-    BitFieldValue<bool, unsigned __int32> bReturnToCapsuleCenterWhenDroppedInWater() { return { this, "APrimalCharacter.bReturnToCapsuleCenterWhenDroppedInWater" }; }
-    BitFieldValue<bool, unsigned __int32> bOverrideBlendSpaceSmoothType() { return { this, "APrimalCharacter.bOverrideBlendSpaceSmoothType" }; }
     BitFieldValue<bool, unsigned __int32> bSetAnimationTickPrerequisite() { return { this, "APrimalCharacter.bSetAnimationTickPrerequisite" }; }
-    BitFieldValue<bool, unsigned __int32> bNetworkClientsUpdateBasedMovementOnTick() { return { this, "APrimalCharacter.bNetworkClientsUpdateBasedMovementOnTick" }; }
-    BitFieldValue<bool, unsigned __int32> bUseArmorDurabilityVFX() { return { this, "APrimalCharacter.bUseArmorDurabilityVFX" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventStaggeredMovement() { return { this, "APrimalCharacter.bPreventStaggeredMovement" }; }
-    BitFieldValue<bool, unsigned __int32> bBPForceUseOldASECamera() { return { this, "APrimalCharacter.bBPForceUseOldASECamera" }; }
-    BitFieldValue<bool, unsigned __int32> bUsesWaterFinLocking() { return { this, "APrimalCharacter.bUsesWaterFinLocking" }; }
+    BitFieldValue<bool, unsigned __int32> bIsProcessingBuffsForAdjustedDamage() { return { this, "APrimalCharacter.bIsProcessingBuffsForAdjustedDamage" }; }
 
     // Functions
 
@@ -8144,12 +8086,8 @@ struct APrimalDinoCharacter : APrimalCharacter
 
     // Bitfields
 
-    BitFieldValue<bool, unsigned __int32> bAttackStopsMovement() { return { this, "APrimalDinoCharacter.bAttackStopsMovement" }; }
-    BitFieldValue<bool, unsigned __int32> bLocationBasedAttack() { return { this, "APrimalDinoCharacter.bLocationBasedAttack" }; }
-    BitFieldValue<bool, unsigned __int32> bTamedWanderHarvestAllowUsableHarvestingAsWell() { return { this, "APrimalDinoCharacter.bTamedWanderHarvestAllowUsableHarvestingAsWell" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPKilledSomethingEvent() { return { this, "APrimalDinoCharacter.bUseBPKilledSomethingEvent" }; }
+    BitFieldValue<bool, unsigned __int32> bUseMountCharacterProneOffset() { return { this, "APrimalDinoCharacter.bUseMountCharacterProneOffset" }; }
     BitFieldValue<bool, unsigned __int32> bPreventDinoResetAffinityOnUnsleep() { return { this, "APrimalDinoCharacter.bPreventDinoResetAffinityOnUnsleep" }; }
-    BitFieldValue<bool, unsigned __int32> bKeepInventoryForWakingTame() { return { this, "APrimalDinoCharacter.bKeepInventoryForWakingTame" }; }
     BitFieldValue<bool, unsigned __int32> bForceReachedDestination() { return { this, "APrimalDinoCharacter.bForceReachedDestination" }; }
     BitFieldValue<bool, unsigned __int32> bHadLinkedSupplyCrate() { return { this, "APrimalDinoCharacter.bHadLinkedSupplyCrate" }; }
     BitFieldValue<bool, unsigned __int32> bRemovingStructuresOnDeath() { return { this, "APrimalDinoCharacter.bRemovingStructuresOnDeath" }; }
@@ -8160,48 +8098,21 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bIsElevating() { return { this, "APrimalDinoCharacter.bIsElevating" }; }
     BitFieldValue<bool, unsigned __int32> bIsBraking() { return { this, "APrimalDinoCharacter.bIsBraking" }; }
     BitFieldValue<bool, unsigned __int32> MovingForward() { return { this, "APrimalDinoCharacter.MovingForward" }; }
-    BitFieldValue<bool, unsigned __int32> bTamedWanderCorpseHarvesting() { return { this, "APrimalDinoCharacter.bTamedWanderCorpseHarvesting" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPNotifyStructurePlacedNearby() { return { this, "APrimalDinoCharacter.bUseBPNotifyStructurePlacedNearby" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanTargetCorpse() { return { this, "APrimalDinoCharacter.bUseBPCanTargetCorpse" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPShouldForceFlee() { return { this, "APrimalDinoCharacter.bUseBPShouldForceFlee" }; }
     BitFieldValue<bool, unsigned __int32> bReceivedDinoAncestors() { return { this, "APrimalDinoCharacter.bReceivedDinoAncestors" }; }
-    BitFieldValue<bool, unsigned __int32> bForceWanderOverrideNPCZoneManager() { return { this, "APrimalDinoCharacter.bForceWanderOverrideNPCZoneManager" }; }
-    BitFieldValue<bool, unsigned __int32> bDeprecateDino() { return { this, "APrimalDinoCharacter.bDeprecateDino" }; }
-    BitFieldValue<bool, unsigned __int32> bForceFoodItemAutoConsume() { return { this, "APrimalDinoCharacter.bForceFoodItemAutoConsume" }; }
-    BitFieldValue<bool, unsigned __int32> bFlyerAllowFlyingWithExplosive() { return { this, "APrimalDinoCharacter.bFlyerAllowFlyingWithExplosive" }; }
-    BitFieldValue<bool, unsigned __int32> bForceUseDediAttackTiming() { return { this, "APrimalDinoCharacter.bForceUseDediAttackTiming" }; }
     BitFieldValue<bool, unsigned __int32> bForcePreventExitingWater() { return { this, "APrimalDinoCharacter.bForcePreventExitingWater" }; }
-    BitFieldValue<bool, unsigned __int32> bWakingTameConsumeEntireStack() { return { this, "APrimalDinoCharacter.bWakingTameConsumeEntireStack" }; }
     BitFieldValue<bool, unsigned __int32> bAllowCarryCharacterWithoutRider() { return { this, "APrimalDinoCharacter.bAllowCarryCharacterWithoutRider" }; }
-    BitFieldValue<bool, unsigned __int32> bWildDinoPreventWeight() { return { this, "APrimalDinoCharacter.bWildDinoPreventWeight" }; }
     BitFieldValue<bool, unsigned __int32> bDebugMeleeAttacks() { return { this, "APrimalDinoCharacter.bDebugMeleeAttacks" }; }
-    BitFieldValue<bool, unsigned __int32> bRetainCarriedCharacterOnDismount() { return { this, "APrimalDinoCharacter.bRetainCarriedCharacterOnDismount" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnTamedProcessOrder() { return { this, "APrimalDinoCharacter.bUseBPOnTamedProcessOrder" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_OnTamedOrderReceived() { return { this, "APrimalDinoCharacter.bUseBP_OnTamedOrderReceived" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowAttackWithCryoSickness() { return { this, "APrimalDinoCharacter.bAllowAttackWithCryoSickness" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanCryo() { return { this, "APrimalDinoCharacter.bUseBPCanCryo" }; }
-    BitFieldValue<bool, unsigned __int32> bWildPreventTeleporting() { return { this, "APrimalDinoCharacter.bWildPreventTeleporting" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPClampMaxHarvestHealth() { return { this, "APrimalDinoCharacter.bUseBPClampMaxHarvestHealth" }; }
     BitFieldValue<bool, unsigned __int32> bForceUseAltAimSocketsForTurrets() { return { this, "APrimalDinoCharacter.bForceUseAltAimSocketsForTurrets" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPBecameNewBaby() { return { this, "APrimalDinoCharacter.bUseBPBecameNewBaby" }; }
-    BitFieldValue<bool, unsigned __int32> bTryAlwaysApplyCryoSickness() { return { this, "APrimalDinoCharacter.bTryAlwaysApplyCryoSickness" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPSetSimulatedInterpRollOverride() { return { this, "APrimalDinoCharacter.bUseBPSetSimulatedInterpRollOverride" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPSetInitialAimOffsetTargets() { return { this, "APrimalDinoCharacter.bUseBPSetInitialAimOffsetTargets" }; }
-    BitFieldValue<bool, unsigned __int32> bConsoleIgnoreSafeZonesForCrosshair() { return { this, "APrimalDinoCharacter.bConsoleIgnoreSafeZonesForCrosshair" }; }
-    BitFieldValue<bool, unsigned __int32> bForceDrawCrosshairWhenHUDIsHidden() { return { this, "APrimalDinoCharacter.bForceDrawCrosshairWhenHUDIsHidden" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanLand() { return { this, "APrimalDinoCharacter.bUseBPCanLand" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowCheckRefreshDefaultInventoryItems() { return { this, "APrimalDinoCharacter.bAllowCheckRefreshDefaultInventoryItems" }; }
-    BitFieldValue<bool, unsigned __int32> bIsBigBossDinoWithHighPrioritySounds() { return { this, "APrimalDinoCharacter.bIsBigBossDinoWithHighPrioritySounds" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPDinoFaceRotation() { return { this, "APrimalDinoCharacter.bUseBPDinoFaceRotation" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPCheckCanSpawnFromLocation() { return { this, "APrimalDinoCharacter.bUseBPCheckCanSpawnFromLocation" }; }
     BitFieldValue<bool, unsigned __int32> bIsLanding() { return { this, "APrimalDinoCharacter.bIsLanding" }; }
-    BitFieldValue<bool, unsigned __int32> bCanCharge() { return { this, "APrimalDinoCharacter.bCanCharge" }; }
     BitFieldValue<bool, unsigned __int32> bCancelInterpolation() { return { this, "APrimalDinoCharacter.bCancelInterpolation" }; }
     BitFieldValue<bool, unsigned __int32> bIsCharging() { return { this, "APrimalDinoCharacter.bIsCharging" }; }
-    BitFieldValue<bool, unsigned __int32> bChargeDamageStructures() { return { this, "APrimalDinoCharacter.bChargeDamageStructures" }; }
     BitFieldValue<bool, unsigned __int32> bReplicatePitchWhileSwimming() { return { this, "APrimalDinoCharacter.bReplicatePitchWhileSwimming" }; }
     BitFieldValue<bool, unsigned __int32> bIsFlying() { return { this, "APrimalDinoCharacter.bIsFlying" }; }
     BitFieldValue<bool, unsigned __int32> bIsWakingTame() { return { this, "APrimalDinoCharacter.bIsWakingTame" }; }
     BitFieldValue<bool, unsigned __int32> bAllowRiding() { return { this, "APrimalDinoCharacter.bAllowRiding" }; }
+    BitFieldValue<bool, unsigned __int32> bHasPlayerController() { return { this, "APrimalDinoCharacter.bHasPlayerController" }; }
     BitFieldValue<bool, unsigned __int32> bForceAutoTame() { return { this, "APrimalDinoCharacter.bForceAutoTame" }; }
     BitFieldValue<bool, unsigned __int32> bRiderJumpTogglesFlight() { return { this, "APrimalDinoCharacter.bRiderJumpTogglesFlight" }; }
     BitFieldValue<bool, unsigned __int32> bHasRider() { return { this, "APrimalDinoCharacter.bHasRider" }; }
@@ -8210,34 +8121,30 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bFlyerForceNoPitch() { return { this, "APrimalDinoCharacter.bFlyerForceNoPitch" }; }
     BitFieldValue<bool, unsigned __int32> bFlyerForceLimitPitch() { return { this, "APrimalDinoCharacter.bFlyerForceLimitPitch" }; }
     BitFieldValue<bool, unsigned __int32> bPreventStasis() { return { this, "APrimalDinoCharacter.bPreventStasis" }; }
-    BitFieldValue<bool, unsigned __int32> bAutoTameable() { return { this, "APrimalDinoCharacter.bAutoTameable" }; }
-    BitFieldValue<bool, unsigned __int32> bAlwaysSetTamingTeamOnItemAdd() { return { this, "APrimalDinoCharacter.bAlwaysSetTamingTeamOnItemAdd" }; }
     BitFieldValue<bool, unsigned __int32> bDinoLoadedFromSaveGame() { return { this, "APrimalDinoCharacter.bDinoLoadedFromSaveGame" }; }
+    BitFieldValue<bool, unsigned __int32> bIsAWildFollowerKnownServerside() { return { this, "APrimalDinoCharacter.bIsAWildFollowerKnownServerside" }; }
+    BitFieldValue<bool, unsigned __int32> AllowWildBabyTaming() { return { this, "APrimalDinoCharacter.AllowWildBabyTaming" }; }
+    BitFieldValue<bool, unsigned __int32> bIsParentWildDino() { return { this, "APrimalDinoCharacter.bIsParentWildDino" }; }
+    BitFieldValue<bool, unsigned __int32> bDontForceUpdateRateOptimizations() { return { this, "APrimalDinoCharacter.bDontForceUpdateRateOptimizations" }; }
+    BitFieldValue<bool, unsigned __int32> bDisabledFromAscension() { return { this, "APrimalDinoCharacter.bDisabledFromAscension" }; }
     BitFieldValue<bool, unsigned __int32> bCheatForceTameRide() { return { this, "APrimalDinoCharacter.bCheatForceTameRide" }; }
     BitFieldValue<bool, unsigned __int32> bIsFemale() { return { this, "APrimalDinoCharacter.bIsFemale" }; }
-    BitFieldValue<bool, unsigned __int32> bRiderUseDirectionalAttackIndex() { return { this, "APrimalDinoCharacter.bRiderUseDirectionalAttackIndex" }; }
     BitFieldValue<bool, unsigned __int32> bCanBeTamed() { return { this, "APrimalDinoCharacter.bCanBeTamed" }; }
     BitFieldValue<bool, unsigned __int32> bTargetingIgnoredByWildDinos() { return { this, "APrimalDinoCharacter.bTargetingIgnoredByWildDinos" }; }
     BitFieldValue<bool, unsigned __int32> bTargetingIgnoreWildDinos() { return { this, "APrimalDinoCharacter.bTargetingIgnoreWildDinos" }; }
     BitFieldValue<bool, unsigned __int32> bCanMountOnHumans() { return { this, "APrimalDinoCharacter.bCanMountOnHumans" }; }
-    BitFieldValue<bool, unsigned __int32> bIKIgnoreSaddleStructures() { return { this, "APrimalDinoCharacter.bIKIgnoreSaddleStructures" }; }
-    BitFieldValue<bool, unsigned __int32> bAttackTargetWhenLaunched() { return { this, "APrimalDinoCharacter.bAttackTargetWhenLaunched" }; }
-    BitFieldValue<bool, unsigned __int32> bCanOpenLockedDoors() { return { this, "APrimalDinoCharacter.bCanOpenLockedDoors" }; }
     BitFieldValue<bool, unsigned __int32> bUseColorization() { return { this, "APrimalDinoCharacter.bUseColorization" }; }
     BitFieldValue<bool, unsigned __int32> bMeleeSwingDamageBlockedByStrutures() { return { this, "APrimalDinoCharacter.bMeleeSwingDamageBlockedByStrutures" }; }
+    BitFieldValue<bool, unsigned __int32> bApplyDamageEffectToChildComponents() { return { this, "APrimalDinoCharacter.bApplyDamageEffectToChildComponents" }; }
     BitFieldValue<bool, unsigned __int32> bAllowTargetingCorpses() { return { this, "APrimalDinoCharacter.bAllowTargetingCorpses" }; }
     BitFieldValue<bool, unsigned __int32> bRiderDontRequireSaddle() { return { this, "APrimalDinoCharacter.bRiderDontRequireSaddle" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowsFishingOnSaddle() { return { this, "APrimalDinoCharacter.bAllowsFishingOnSaddle" }; }
     BitFieldValue<bool, unsigned __int32> bCanBeOrdered() { return { this, "APrimalDinoCharacter.bCanBeOrdered" }; }
-    BitFieldValue<bool, unsigned __int32> bOverridePlatformStructureLimit() { return { this, "APrimalDinoCharacter.bOverridePlatformStructureLimit" }; }
-    BitFieldValue<bool, unsigned __int32> bMeleeAttackHarvetUsableComponents() { return { this, "APrimalDinoCharacter.bMeleeAttackHarvetUsableComponents" }; }
-    BitFieldValue<bool, unsigned __int32> bPlatformSaddleIgnoreRotDotCheck() { return { this, "APrimalDinoCharacter.bPlatformSaddleIgnoreRotDotCheck" }; }
-    BitFieldValue<bool, unsigned __int32> bUseInteprolatedVelocity() { return { this, "APrimalDinoCharacter.bUseInteprolatedVelocity" }; }
     BitFieldValue<bool, unsigned __int32> bIsCarnivore() { return { this, "APrimalDinoCharacter.bIsCarnivore" }; }
     BitFieldValue<bool, unsigned __int32> bAllowRidingInWater() { return { this, "APrimalDinoCharacter.bAllowRidingInWater" }; }
     BitFieldValue<bool, unsigned __int32> bUsesGender() { return { this, "APrimalDinoCharacter.bUsesGender" }; }
+    BitFieldValue<bool, unsigned __int32> hasAlreadySetGender() { return { this, "APrimalDinoCharacter.hasAlreadySetGender" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBP_OnBasedPawnSetNotifies() { return { this, "APrimalDinoCharacter.bUseBP_OnBasedPawnSetNotifies" }; }
     BitFieldValue<bool, unsigned __int32> bTargetEverything() { return { this, "APrimalDinoCharacter.bTargetEverything" }; }
-    BitFieldValue<bool, unsigned __int32> bTamedWanderHarvestNonUsableHarvesting() { return { this, "APrimalDinoCharacter.bTamedWanderHarvestNonUsableHarvesting" }; }
     BitFieldValue<bool, unsigned __int32> bEnableTamedWandering() { return { this, "APrimalDinoCharacter.bEnableTamedWandering" }; }
     BitFieldValue<bool, unsigned __int32> bEnableTamedMating() { return { this, "APrimalDinoCharacter.bEnableTamedMating" }; }
     BitFieldValue<bool, unsigned __int32> bCollectVictimItems() { return { this, "APrimalDinoCharacter.bCollectVictimItems" }; }
@@ -8249,26 +8156,12 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bDontWander() { return { this, "APrimalDinoCharacter.bDontWander" }; }
     BitFieldValue<bool, unsigned __int32> bAnimIsMoving() { return { this, "APrimalDinoCharacter.bAnimIsMoving" }; }
     BitFieldValue<bool, unsigned __int32> bDoStepDamage() { return { this, "APrimalDinoCharacter.bDoStepDamage" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventBasingWhenUntamed() { return { this, "APrimalDinoCharacter.bPreventBasingWhenUntamed" }; }
     BitFieldValue<bool, unsigned __int32> bForceAlwaysAllowBasing() { return { this, "APrimalDinoCharacter.bForceAlwaysAllowBasing" }; }
-    BitFieldValue<bool, unsigned __int32> bChargingRequiresWalking() { return { this, "APrimalDinoCharacter.bChargingRequiresWalking" }; }
     BitFieldValue<bool, unsigned __int32> bUseRootLocSwimOffset() { return { this, "APrimalDinoCharacter.bUseRootLocSwimOffset" }; }
     BitFieldValue<bool, unsigned __int32> bUseLowQualityAnimationTick() { return { this, "APrimalDinoCharacter.bUseLowQualityAnimationTick" }; }
-    BitFieldValue<bool, unsigned __int32> bDisplaySummonedNotification() { return { this, "APrimalDinoCharacter.bDisplaySummonedNotification" }; }
-    BitFieldValue<bool, unsigned __int32> bDisplayKilledNotification() { return { this, "APrimalDinoCharacter.bDisplayKilledNotification" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetAttackWeight() { return { this, "APrimalDinoCharacter.bUseBPGetAttackWeight" }; }
-    BitFieldValue<bool, unsigned __int32> bServerForceUpdateDinoGameplayMeshNearPlayer() { return { this, "APrimalDinoCharacter.bServerForceUpdateDinoGameplayMeshNearPlayer" }; }
     BitFieldValue<bool, unsigned __int32> bPreventAllRiderWeapons() { return { this, "APrimalDinoCharacter.bPreventAllRiderWeapons" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventAllRiderWeaponsOnReequip() { return { this, "APrimalDinoCharacter.bPreventAllRiderWeaponsOnReequip" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowDeathAutoGrab() { return { this, "APrimalDinoCharacter.bAllowDeathAutoGrab" }; }
     BitFieldValue<bool, unsigned __int32> bSupportWakingTame() { return { this, "APrimalDinoCharacter.bSupportWakingTame" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowAutoUnstasisDestroy() { return { this, "APrimalDinoCharacter.bAllowAutoUnstasisDestroy" }; }
     BitFieldValue<bool, unsigned __int32> bDebugBaby() { return { this, "APrimalDinoCharacter.bDebugBaby" }; }
-    BitFieldValue<bool, unsigned __int32> bAlwaysUpdateAimOffsetInterpolation() { return { this, "APrimalDinoCharacter.bAlwaysUpdateAimOffsetInterpolation" }; }
-    BitFieldValue<bool, unsigned __int32> WildAmbientHarvestingAnimationServerTickPose() { return { this, "APrimalDinoCharacter.WildAmbientHarvestingAnimationServerTickPose" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventSleepingTame() { return { this, "APrimalDinoCharacter.bPreventSleepingTame" }; }
-    BitFieldValue<bool, unsigned __int32> bTamedWanderHarvest() { return { this, "APrimalDinoCharacter.bTamedWanderHarvest" }; }
-    BitFieldValue<bool, unsigned __int32> bSimulatedNetLandCheckFloor() { return { this, "APrimalDinoCharacter.bSimulatedNetLandCheckFloor" }; }
     BitFieldValue<bool, unsigned __int32> bRefreshedColorization() { return { this, "APrimalDinoCharacter.bRefreshedColorization" }; }
     BitFieldValue<bool, unsigned __int32> bPoopIsEgg() { return { this, "APrimalDinoCharacter.bPoopIsEgg" }; }
     BitFieldValue<bool, unsigned __int32> bPoopIsDud() { return { this, "APrimalDinoCharacter.bPoopIsDud" }; }
@@ -8276,174 +8169,80 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bWasRidingFalling() { return { this, "APrimalDinoCharacter.bWasRidingFalling" }; }
     BitFieldValue<bool, unsigned __int32> bInitializedForReplicatedBasing() { return { this, "APrimalDinoCharacter.bInitializedForReplicatedBasing" }; }
     BitFieldValue<bool, unsigned __int32> bClientWasTamed() { return { this, "APrimalDinoCharacter.bClientWasTamed" }; }
-    BitFieldValue<bool, unsigned __int32> bFlyerPreventRiderAutoFly() { return { this, "APrimalDinoCharacter.bFlyerPreventRiderAutoFly" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowFlyerLandedRider() { return { this, "APrimalDinoCharacter.bAllowFlyerLandedRider" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventFlyerFlyingRider() { return { this, "APrimalDinoCharacter.bPreventFlyerFlyingRider" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventFlyerCapsuleExpansion() { return { this, "APrimalDinoCharacter.bPreventFlyerCapsuleExpansion" }; }
-    BitFieldValue<bool, unsigned __int32> bIncludeCarryWeightOfBasedPawns() { return { this, "APrimalDinoCharacter.bIncludeCarryWeightOfBasedPawns" }; }
-    BitFieldValue<bool, unsigned __int32> bForceRiderNetworkParent() { return { this, "APrimalDinoCharacter.bForceRiderNetworkParent" }; }
-    BitFieldValue<bool, unsigned __int32> bForcePerfectTame() { return { this, "APrimalDinoCharacter.bForcePerfectTame" }; }
+    BitFieldValue<bool, unsigned __int32> bApplyBoneModifiersIgnoreRefreshBoneTransforms() { return { this, "APrimalDinoCharacter.bApplyBoneModifiersIgnoreRefreshBoneTransforms" }; }
+    BitFieldValue<bool, unsigned __int32> bSetBabyWeaponTraceBlocking() { return { this, "APrimalDinoCharacter.bSetBabyWeaponTraceBlocking" }; }
     BitFieldValue<bool, unsigned __int32> bCanHaveBaby() { return { this, "APrimalDinoCharacter.bCanHaveBaby" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBabyGestation() { return { this, "APrimalDinoCharacter.bUseBabyGestation" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventUnalignedDinoBasing() { return { this, "APrimalDinoCharacter.bPreventUnalignedDinoBasing" }; }
-    BitFieldValue<bool, unsigned __int32> bOverrideLevelMusicIfTamed() { return { this, "APrimalDinoCharacter.bOverrideLevelMusicIfTamed" }; }
     BitFieldValue<bool, unsigned __int32> bReachedMaxStructures() { return { this, "APrimalDinoCharacter.bReachedMaxStructures" }; }
-    BitFieldValue<bool, unsigned __int32> bSupportsSaddleStructures() { return { this, "APrimalDinoCharacter.bSupportsSaddleStructures" }; }
     BitFieldValue<bool, unsigned __int32> bBonesHidden() { return { this, "APrimalDinoCharacter.bBonesHidden" }; }
     BitFieldValue<bool, unsigned __int32> bDelayedAttachement() { return { this, "APrimalDinoCharacter.bDelayedAttachement" }; }
-    BitFieldValue<bool, unsigned __int32> bCanBeRepaired() { return { this, "APrimalDinoCharacter.bCanBeRepaired" }; }
-    BitFieldValue<bool, unsigned __int32> bFlyerDontAutoLandOnDismount() { return { this, "APrimalDinoCharacter.bFlyerDontAutoLandOnDismount" }; }
     BitFieldValue<bool, unsigned __int32> bIsRepairing() { return { this, "APrimalDinoCharacter.bIsRepairing" }; }
     BitFieldValue<bool, unsigned __int32> bIsBaby() { return { this, "APrimalDinoCharacter.bIsBaby" }; }
     BitFieldValue<bool, unsigned __int32> bWasBaby() { return { this, "APrimalDinoCharacter.bWasBaby" }; }
     BitFieldValue<bool, unsigned __int32> bCanUnclaimTame() { return { this, "APrimalDinoCharacter.bCanUnclaimTame" }; }
     BitFieldValue<bool, unsigned __int32> bAllowWildDinoEquipment() { return { this, "APrimalDinoCharacter.bAllowWildDinoEquipment" }; }
-    BitFieldValue<bool, unsigned __int32> bUseTamedVisibleComponents() { return { this, "APrimalDinoCharacter.bUseTamedVisibleComponents" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowDemolish() { return { this, "APrimalDinoCharacter.bAllowDemolish" }; }
     BitFieldValue<bool, unsigned __int32> bUseGang() { return { this, "APrimalDinoCharacter.bUseGang" }; }
-    BitFieldValue<bool, unsigned __int32> bBlueprintDrawFloatingHUD() { return { this, "APrimalDinoCharacter.bBlueprintDrawFloatingHUD" }; }
     BitFieldValue<bool, unsigned __int32> bEggBoosted() { return { this, "APrimalDinoCharacter.bEggBoosted" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPTamedTick() { return { this, "APrimalDinoCharacter.bUseBPTamedTick" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOverrideWantsToRun() { return { this, "APrimalDinoCharacter.bUseBPOverrideWantsToRun" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPPlayDying() { return { this, "APrimalDinoCharacter.bUseBPPlayDying" }; }
     BitFieldValue<bool, unsigned __int32> bSupportsPassengerSeats() { return { this, "APrimalDinoCharacter.bSupportsPassengerSeats" }; }
-    BitFieldValue<bool, unsigned __int32> bAddPassengerSeatMultiUseEntries() { return { this, "APrimalDinoCharacter.bAddPassengerSeatMultiUseEntries" }; }
-    BitFieldValue<bool, unsigned __int32> bUseSaddlePassengerSeatsWhenAvailable() { return { this, "APrimalDinoCharacter.bUseSaddlePassengerSeatsWhenAvailable" }; }
-    BitFieldValue<bool, unsigned __int32> bScaleInsulationByMeleeDamage() { return { this, "APrimalDinoCharacter.bScaleInsulationByMeleeDamage" }; }
-    BitFieldValue<bool, unsigned __int32> bInventoryOnlyAllowCraftingWhenWandering() { return { this, "APrimalDinoCharacter.bInventoryOnlyAllowCraftingWhenWandering" }; }
     BitFieldValue<bool, unsigned __int32> bUseWildRandomScale() { return { this, "APrimalDinoCharacter.bUseWildRandomScale" }; }
-    BitFieldValue<bool, unsigned __int32> bHeldJumpSlowFalling() { return { this, "APrimalDinoCharacter.bHeldJumpSlowFalling" }; }
     BitFieldValue<bool, unsigned __int32> bIsHeldJumpSlowFalling() { return { this, "APrimalDinoCharacter.bIsHeldJumpSlowFalling" }; }
     BitFieldValue<bool, unsigned __int32> bPlayingSlowFallingAnim() { return { this, "APrimalDinoCharacter.bPlayingSlowFallingAnim" }; }
-    BitFieldValue<bool, unsigned __int32> bTriggerBPUnstasis() { return { this, "APrimalDinoCharacter.bTriggerBPUnstasis" }; }
-    BitFieldValue<bool, unsigned __int32> bWildProduceEggDynamically() { return { this, "APrimalDinoCharacter.bWildProduceEggDynamically" }; }
     BitFieldValue<bool, unsigned __int32> bPreventWakingTameFeeding() { return { this, "APrimalDinoCharacter.bPreventWakingTameFeeding" }; }
     BitFieldValue<bool, unsigned __int32> bForceDisablingTaming() { return { this, "APrimalDinoCharacter.bForceDisablingTaming" }; }
-    BitFieldValue<bool, unsigned __int32> bFlyerAllowRidingInCaves() { return { this, "APrimalDinoCharacter.bFlyerAllowRidingInCaves" }; }
-    BitFieldValue<bool, unsigned __int32> bScaleExtraRunningSpeedModifier() { return { this, "APrimalDinoCharacter.bScaleExtraRunningSpeedModifier" }; }
     BitFieldValue<bool, unsigned __int32> bOverrideCrosshairAlpha() { return { this, "APrimalDinoCharacter.bOverrideCrosshairAlpha" }; }
     BitFieldValue<bool, unsigned __int32> bOverrideCrosshairColor() { return { this, "APrimalDinoCharacter.bOverrideCrosshairColor" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetCrosshairLocation() { return { this, "APrimalDinoCharacter.bUseBPGetCrosshairLocation" }; }
-    BitFieldValue<bool, unsigned __int32> bOverrideCrosshairSpread() { return { this, "APrimalDinoCharacter.bOverrideCrosshairSpread" }; }
     BitFieldValue<bool, unsigned __int32> bCenterOffscreenFloatingHUDWidgets() { return { this, "APrimalDinoCharacter.bCenterOffscreenFloatingHUDWidgets" }; }
     BitFieldValue<bool, unsigned __int32> bClampOffscreenFloatingHUDWidgets() { return { this, "APrimalDinoCharacter.bClampOffscreenFloatingHUDWidgets" }; }
     BitFieldValue<bool, unsigned __int32> bUseFixedSpawnLevel() { return { this, "APrimalDinoCharacter.bUseFixedSpawnLevel" }; }
-    BitFieldValue<bool, unsigned __int32> bTreatCrouchInputAsAttack() { return { this, "APrimalDinoCharacter.bTreatCrouchInputAsAttack" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetRiderUnboardLocation() { return { this, "APrimalDinoCharacter.bUseBPGetRiderUnboardLocation" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetRiderUnboardDirection() { return { this, "APrimalDinoCharacter.bUseBPGetRiderUnboardDirection" }; }
     BitFieldValue<bool, unsigned __int32> bUniqueDino() { return { this, "APrimalDinoCharacter.bUniqueDino" }; }
-    BitFieldValue<bool, unsigned __int32> bModifyBasedCamera() { return { this, "APrimalDinoCharacter.bModifyBasedCamera" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnRefreshColorization() { return { this, "APrimalDinoCharacter.bUseBPOnRefreshColorization" }; }
-    BitFieldValue<bool, unsigned __int32> bHideAncestorsButton() { return { this, "APrimalDinoCharacter.bHideAncestorsButton" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_OverrideDinoName() { return { this, "APrimalDinoCharacter.bUseBP_OverrideDinoName" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPDinoTooltipCustomProgressBar() { return { this, "APrimalDinoCharacter.bUseBPDinoTooltipCustomProgressBar" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPDisplayTamedMessage() { return { this, "APrimalDinoCharacter.bUseBPDisplayTamedMessage" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideTamingDescriptionLabel() { return { this, "APrimalDinoCharacter.bUseBPOverrideTamingDescriptionLabel" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanMountOnCharacter() { return { this, "APrimalDinoCharacter.bUseBPCanMountOnCharacter" }; }
     BitFieldValue<bool, unsigned __int32> bIsNursingDino() { return { this, "APrimalDinoCharacter.bIsNursingDino" }; }
     BitFieldValue<bool, unsigned __int32> bIsNursing() { return { this, "APrimalDinoCharacter.bIsNursing" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetRiderSocket() { return { this, "APrimalDinoCharacter.bUseBPGetRiderSocket" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPShowTamingPanel() { return { this, "APrimalDinoCharacter.bUseBPShowTamingPanel" }; }
     BitFieldValue<bool, unsigned __int32> bFlyerPrioritizeAllyMountToCarry() { return { this, "APrimalDinoCharacter.bFlyerPrioritizeAllyMountToCarry" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOverrideMutationLabels() { return { this, "APrimalDinoCharacter.bUseBPOverrideMutationLabels" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventMovementModeChangeForDinoPassengers() { return { this, "APrimalDinoCharacter.bPreventMovementModeChangeForDinoPassengers" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventRiderImmobilization() { return { this, "APrimalDinoCharacter.bPreventRiderImmobilization" }; }
-    BitFieldValue<bool, unsigned __int32> bMeleeSwingDamageBlockedByAllStationaryObjects() { return { this, "APrimalDinoCharacter.bMeleeSwingDamageBlockedByAllStationaryObjects" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPChargingModifyInputAcceleration() { return { this, "APrimalDinoCharacter.bUseBPChargingModifyInputAcceleration" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnRepIsCharging() { return { this, "APrimalDinoCharacter.bUseBPOnRepIsCharging" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPPreventOrderAllowed() { return { this, "APrimalDinoCharacter.bUseBPPreventOrderAllowed" }; }
-    BitFieldValue<bool, unsigned __int32> bPassengerDinosUsePassengerAnim() { return { this, "APrimalDinoCharacter.bPassengerDinosUsePassengerAnim" }; }
-    BitFieldValue<bool, unsigned __int32> bUsesPassengerAnimOnDinos() { return { this, "APrimalDinoCharacter.bUsesPassengerAnimOnDinos" }; }
-    BitFieldValue<bool, unsigned __int32> bOverrideRotationOnCarriedCharacter() { return { this, "APrimalDinoCharacter.bOverrideRotationOnCarriedCharacter" }; }
-    BitFieldValue<bool, unsigned __int32> bAdvancedCarryRelease() { return { this, "APrimalDinoCharacter.bAdvancedCarryRelease" }; }
-    BitFieldValue<bool, unsigned __int32> bForceCarriedPlayerToCheckForWalls() { return { this, "APrimalDinoCharacter.bForceCarriedPlayerToCheckForWalls" }; }
     BitFieldValue<bool, unsigned __int32> bClearRiderOnDinoImmobilized() { return { this, "APrimalDinoCharacter.bClearRiderOnDinoImmobilized" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPIsBasedOnActor() { return { this, "APrimalDinoCharacter.bUseBPIsBasedOnActor" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPModifyControlRotation() { return { this, "APrimalDinoCharacter.bUseBPModifyControlRotation" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnDinoFiredProjectile() { return { this, "APrimalDinoCharacter.bUseBPOnDinoFiredProjectile" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetRidingMultiUseEntries() { return { this, "APrimalDinoCharacter.bUseBPGetRidingMultiUseEntries" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPUnstasisConsumeFood() { return { this, "APrimalDinoCharacter.bUseBPUnstasisConsumeFood" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnDinoStartled() { return { this, "APrimalDinoCharacter.bUseBPOnDinoStartled" }; }
-    BitFieldValue<bool, unsigned __int32> bRemoteDinoConsumesStaminaWhileRunning() { return { this, "APrimalDinoCharacter.bRemoteDinoConsumesStaminaWhileRunning" }; }
     BitFieldValue<bool, unsigned __int32> bIncrementedZoneManagerDirectLink() { return { this, "APrimalDinoCharacter.bIncrementedZoneManagerDirectLink" }; }
     BitFieldValue<bool, unsigned __int32> bSimulateRootMotion() { return { this, "APrimalDinoCharacter.bSimulateRootMotion" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideStencilAllianceForTarget() { return { this, "APrimalDinoCharacter.bUseBPOverrideStencilAllianceForTarget" }; }
     BitFieldValue<bool, unsigned __int32> bIsScout() { return { this, "APrimalDinoCharacter.bIsScout" }; }
-    BitFieldValue<bool, unsigned __int32> bDisableHighQualityAIVolumeLedgeChecking() { return { this, "APrimalDinoCharacter.bDisableHighQualityAIVolumeLedgeChecking" }; }
-    BitFieldValue<bool, unsigned __int32> bDoHighQualityLedgeChecking() { return { this, "APrimalDinoCharacter.bDoHighQualityLedgeChecking" }; }
-    BitFieldValue<bool, unsigned __int32> bOnlyDoStepDamageWhenRunning() { return { this, "APrimalDinoCharacter.bOnlyDoStepDamageWhenRunning" }; }
     BitFieldValue<bool, unsigned __int32> bShouldNotifyClientWhenLanded() { return { this, "APrimalDinoCharacter.bShouldNotifyClientWhenLanded" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventPlatformSaddleMultiFloors() { return { this, "APrimalDinoCharacter.bPreventPlatformSaddleMultiFloors" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventMountedDinoMeshHiding() { return { this, "APrimalDinoCharacter.bPreventMountedDinoMeshHiding" }; }
     BitFieldValue<bool, unsigned __int32> bUsePlayerMountedCarryingDinoAnimation() { return { this, "APrimalDinoCharacter.bUsePlayerMountedCarryingDinoAnimation" }; }
     BitFieldValue<bool, unsigned __int32> bPreventRotationRateModifier() { return { this, "APrimalDinoCharacter.bPreventRotationRateModifier" }; }
     BitFieldValue<bool, unsigned __int32> bStepDamageFoliageOnly() { return { this, "APrimalDinoCharacter.bStepDamageFoliageOnly" }; }
     BitFieldValue<bool, unsigned __int32> bPreventUntamedRun() { return { this, "APrimalDinoCharacter.bPreventUntamedRun" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowTogglingPublicSeating() { return { this, "APrimalDinoCharacter.bAllowTogglingPublicSeating" }; }
     BitFieldValue<bool, unsigned __int32> bAllowPublicSeating() { return { this, "APrimalDinoCharacter.bAllowPublicSeating" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowWaterSurfaceExtraJump() { return { this, "APrimalDinoCharacter.bAllowWaterSurfaceExtraJump" }; }
-    BitFieldValue<bool, unsigned __int32> bUseVelocityForRequestedMoveIfStuck() { return { this, "APrimalDinoCharacter.bUseVelocityForRequestedMoveIfStuck" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPDoAttack() { return { this, "APrimalDinoCharacter.bUseBPDoAttack" }; }
-    BitFieldValue<bool, unsigned __int32> bStepDamageNonFoliageWithoutRunning() { return { this, "APrimalDinoCharacter.bStepDamageNonFoliageWithoutRunning" }; }
-    BitFieldValue<bool, unsigned __int32> bStepDamageAllTargetables() { return { this, "APrimalDinoCharacter.bStepDamageAllTargetables" }; }
-    BitFieldValue<bool, unsigned __int32> bDamageNonFoliageFeetSocketsOnly() { return { this, "APrimalDinoCharacter.bDamageNonFoliageFeetSocketsOnly" }; }
-    BitFieldValue<bool, unsigned __int32> bRiderDontBeBlockedByPawnMesh() { return { this, "APrimalDinoCharacter.bRiderDontBeBlockedByPawnMesh" }; }
-    BitFieldValue<bool, unsigned __int32> bUseExtendedUnstasisCheck() { return { this, "APrimalDinoCharacter.bUseExtendedUnstasisCheck" }; }
     BitFieldValue<bool, unsigned __int32> bTickedStasis() { return { this, "APrimalDinoCharacter.bTickedStasis" }; }
     BitFieldValue<bool, unsigned __int32> bAllowDinoAutoConsumeInventoryFood() { return { this, "APrimalDinoCharacter.bAllowDinoAutoConsumeInventoryFood" }; }
     BitFieldValue<bool, unsigned __int32> bForceNoCharacterStatusComponentTick() { return { this, "APrimalDinoCharacter.bForceNoCharacterStatusComponentTick" }; }
     BitFieldValue<bool, unsigned __int32> bIsRaidDino() { return { this, "APrimalDinoCharacter.bIsRaidDino" }; }
     BitFieldValue<bool, unsigned __int32> bWildIgnoredByAutoTurrets() { return { this, "APrimalDinoCharacter.bWildIgnoredByAutoTurrets" }; }
     BitFieldValue<bool, unsigned __int32> bWildAllowTargetingNeutralStructures() { return { this, "APrimalDinoCharacter.bWildAllowTargetingNeutralStructures" }; }
-    BitFieldValue<bool, unsigned __int32> bDoStepDamageTamedOnly() { return { this, "APrimalDinoCharacter.bDoStepDamageTamedOnly" }; }
-    BitFieldValue<bool, unsigned __int32> bStepDamageNonFoliageTamedOnly() { return { this, "APrimalDinoCharacter.bStepDamageNonFoliageTamedOnly" }; }
     BitFieldValue<bool, unsigned __int32> bDroppedInventoryDeposit() { return { this, "APrimalDinoCharacter.bDroppedInventoryDeposit" }; }
-    BitFieldValue<bool, unsigned __int32> bForceWildDeathInventoryDeposit() { return { this, "APrimalDinoCharacter.bForceWildDeathInventoryDeposit" }; }
     BitFieldValue<bool, unsigned __int32> bIsCarryingCharacter() { return { this, "APrimalDinoCharacter.bIsCarryingCharacter" }; }
     BitFieldValue<bool, unsigned __int32> bIsCarryingPassenger() { return { this, "APrimalDinoCharacter.bIsCarryingPassenger" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanTakePassenger() { return { this, "APrimalDinoCharacter.bUseBPCanTakePassenger" }; }
-    BitFieldValue<bool, unsigned __int32> bForwardPlatformSaddleStructureDamageToDino() { return { this, "APrimalDinoCharacter.bForwardPlatformSaddleStructureDamageToDino" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowTurretTargetOverrideLocations() { return { this, "APrimalDinoCharacter.bAllowTurretTargetOverrideLocations" }; }
+    BitFieldValue<bool, unsigned __int32> bLastDamageWasForwardedFromPlatformStructure() { return { this, "APrimalDinoCharacter.bLastDamageWasForwardedFromPlatformStructure" }; }
+    BitFieldValue<bool, unsigned __int32> bUseMyBabyCuddleFoodTypesAsAdditional() { return { this, "APrimalDinoCharacter.bUseMyBabyCuddleFoodTypesAsAdditional" }; }
     BitFieldValue<bool, unsigned __int32> bIsManualFoodEat() { return { this, "APrimalDinoCharacter.bIsManualFoodEat" }; }
-    BitFieldValue<bool, unsigned __int32> bDontPlayAttackingMusic() { return { this, "APrimalDinoCharacter.bDontPlayAttackingMusic" }; }
-    BitFieldValue<bool, unsigned __int32> bForceIgnoreRagdollHarvesting() { return { this, "APrimalDinoCharacter.bForceIgnoreRagdollHarvesting" }; }
-    BitFieldValue<bool, unsigned __int32> bBPModifyAimOffsetTargetLocation() { return { this, "APrimalDinoCharacter.bBPModifyAimOffsetTargetLocation" }; }
     BitFieldValue<bool, unsigned __int32> bBPModifyAimOffsetNoTarget() { return { this, "APrimalDinoCharacter.bBPModifyAimOffsetNoTarget" }; }
-    BitFieldValue<bool, unsigned __int32> bIsVehicle() { return { this, "APrimalDinoCharacter.bIsVehicle" }; }
     BitFieldValue<bool, unsigned __int32> bDisallowPostNetReplication() { return { this, "APrimalDinoCharacter.bDisallowPostNetReplication" }; }
     BitFieldValue<bool, unsigned __int32> bTakingOff() { return { this, "APrimalDinoCharacter.bTakingOff" }; }
     BitFieldValue<bool, unsigned __int32> bPreventMating() { return { this, "APrimalDinoCharacter.bPreventMating" }; }
-    BitFieldValue<bool, unsigned __int32> bAttackStopsRotation() { return { this, "APrimalDinoCharacter.bAttackStopsRotation" }; }
     BitFieldValue<bool, unsigned __int32> bFlyerDinoAllowBackwardsFlight() { return { this, "APrimalDinoCharacter.bFlyerDinoAllowBackwardsFlight" }; }
     BitFieldValue<bool, unsigned __int32> bFlyerDinoAllowStrafing() { return { this, "APrimalDinoCharacter.bFlyerDinoAllowStrafing" }; }
-    BitFieldValue<bool, unsigned __int32> bIgnoreTargetingLiveUnriddenDinos() { return { this, "APrimalDinoCharacter.bIgnoreTargetingLiveUnriddenDinos" }; }
-    BitFieldValue<bool, unsigned __int32> bSleepedForceCreateInventory() { return { this, "APrimalDinoCharacter.bSleepedForceCreateInventory" }; }
-    BitFieldValue<bool, unsigned __int32> bLocalForceNearbySkelMeshUpdate() { return { this, "APrimalDinoCharacter.bLocalForceNearbySkelMeshUpdate" }; }
-    BitFieldValue<bool, unsigned __int32> bFlyerDisableEnemyTargetingMaxDeltaZ() { return { this, "APrimalDinoCharacter.bFlyerDisableEnemyTargetingMaxDeltaZ" }; }
     BitFieldValue<bool, unsigned __int32> bIsBossDino() { return { this, "APrimalDinoCharacter.bIsBossDino" }; }
     BitFieldValue<bool, unsigned __int32> bTamedAIAllowSpecialAttacks() { return { this, "APrimalDinoCharacter.bTamedAIAllowSpecialAttacks" }; }
-    BitFieldValue<bool, unsigned __int32> bTamedAIToggleSpecialAttacks() { return { this, "APrimalDinoCharacter.bTamedAIToggleSpecialAttacks" }; }
     BitFieldValue<bool, unsigned __int32> bLocalPrimaryAttackPressed() { return { this, "APrimalDinoCharacter.bLocalPrimaryAttackPressed" }; }
-    BitFieldValue<bool, unsigned __int32> bRepeatPrimaryAttack() { return { this, "APrimalDinoCharacter.bRepeatPrimaryAttack" }; }
     BitFieldValue<bool, unsigned __int32> bPreventUploading() { return { this, "APrimalDinoCharacter.bPreventUploading" }; }
     BitFieldValue<bool, unsigned __int32> bPreventHibernation() { return { this, "APrimalDinoCharacter.bPreventHibernation" }; }
     BitFieldValue<bool, unsigned __int32> bRiderMovementLocked() { return { this, "APrimalDinoCharacter.bRiderMovementLocked" }; }
     BitFieldValue<bool, unsigned __int32> bTameTimerSet() { return { this, "APrimalDinoCharacter.bTameTimerSet" }; }
     BitFieldValue<bool, unsigned __int32> bNeutered() { return { this, "APrimalDinoCharacter.bNeutered" }; }
     BitFieldValue<bool, unsigned __int32> bIgnoreAllWhistles() { return { this, "APrimalDinoCharacter.bIgnoreAllWhistles" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPDoHarvestAttack() { return { this, "APrimalDinoCharacter.bUseBPDoHarvestAttack" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPModifyHarvestingQuantity() { return { this, "APrimalDinoCharacter.bUseBPModifyHarvestingQuantity" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPModifyHarvestingWeightsArray() { return { this, "APrimalDinoCharacter.bUseBPModifyHarvestingWeightsArray" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPModifyHarvestDamage() { return { this, "APrimalDinoCharacter.bUseBPModifyHarvestDamage" }; }
     BitFieldValue<bool, unsigned __int32> bHideFloatingHUD() { return { this, "APrimalDinoCharacter.bHideFloatingHUD" }; }
     BitFieldValue<bool, unsigned __int32> bDisableHarvesting() { return { this, "APrimalDinoCharacter.bDisableHarvesting" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPDinoPostBeginPlay() { return { this, "APrimalDinoCharacter.bUseBPDinoPostBeginPlay" }; }
     BitFieldValue<bool, unsigned __int32> bForceAllowTickingThisFrame() { return { this, "APrimalDinoCharacter.bForceAllowTickingThisFrame" }; }
     BitFieldValue<bool, unsigned __int32> bFlyerDontGainImpulseOnSubmerged() { return { this, "APrimalDinoCharacter.bFlyerDontGainImpulseOnSubmerged" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanAutodrag() { return { this, "APrimalDinoCharacter.bUseBPCanAutodrag" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCanDragCharacter() { return { this, "APrimalDinoCharacter.bUseBPCanDragCharacter" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowDraggingWhileFalling() { return { this, "APrimalDinoCharacter.bAllowDraggingWhileFalling" }; }
-    BitFieldValue<bool, unsigned __int32> bSingleplayerFreezePhysicsWhenNoTarget() { return { this, "APrimalDinoCharacter.bSingleplayerFreezePhysicsWhenNoTarget" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventDinoLevelOnDecriptiveName() { return { this, "APrimalDinoCharacter.bPreventDinoLevelOnDecriptiveName" }; }
     BitFieldValue<bool, unsigned __int32> bIsSingleplayer() { return { this, "APrimalDinoCharacter.bIsSingleplayer" }; }
     BitFieldValue<bool, unsigned __int32> bIsCloneDino() { return { this, "APrimalDinoCharacter.bIsCloneDino" }; }
     BitFieldValue<bool, unsigned __int32> bUseAdvancedAnimLerp() { return { this, "APrimalDinoCharacter.bUseAdvancedAnimLerp" }; }
@@ -8453,56 +8252,34 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bAllowsTurretMode() { return { this, "APrimalDinoCharacter.bAllowsTurretMode" }; }
     BitFieldValue<bool, unsigned __int32> bAllowRidingInTurretMode() { return { this, "APrimalDinoCharacter.bAllowRidingInTurretMode" }; }
     BitFieldValue<bool, unsigned __int32> bIsInTurretMode() { return { this, "APrimalDinoCharacter.bIsInTurretMode" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPShouldCancelDoAttack() { return { this, "APrimalDinoCharacter.bUseBPShouldCancelDoAttack" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPModifyDesiredRotation() { return { this, "APrimalDinoCharacter.bUseBPModifyDesiredRotation" }; }
-    BitFieldValue<bool, unsigned __int32> bUseLocalSpaceDesiredRotationWithRider() { return { this, "APrimalDinoCharacter.bUseLocalSpaceDesiredRotationWithRider" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPDesiredRotationIsLocalSpace() { return { this, "APrimalDinoCharacter.bUseBPDesiredRotationIsLocalSpace" }; }
     BitFieldValue<bool, unsigned __int32> bForcedLandingClearRider() { return { this, "APrimalDinoCharacter.bForcedLandingClearRider" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideCameraViewTarget() { return { this, "APrimalDinoCharacter.bUseBPOverrideCameraViewTarget" }; }
-    BitFieldValue<bool, unsigned __int32> bIsRobot() { return { this, "APrimalDinoCharacter.bIsRobot" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_CustomModifier_RotationRate() { return { this, "APrimalDinoCharacter.bUseBP_CustomModifier_RotationRate" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_CustomModifier_MaxSpeed() { return { this, "APrimalDinoCharacter.bUseBP_CustomModifier_MaxSpeed" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_OnStartLandingNotify() { return { this, "APrimalDinoCharacter.bUseBP_OnStartLandingNotify" }; }
     BitFieldValue<bool, unsigned __int32> bIsClearingRider() { return { this, "APrimalDinoCharacter.bIsClearingRider" }; }
-    BitFieldValue<bool, unsigned __int32> bUseAttackForceWalkDistanceMultiplier() { return { this, "APrimalDinoCharacter.bUseAttackForceWalkDistanceMultiplier" }; }
     BitFieldValue<bool, unsigned __int32> bForcePerFrameTicking() { return { this, "APrimalDinoCharacter.bForcePerFrameTicking" }; }
     BitFieldValue<bool, unsigned __int32> bHadStaticBase() { return { this, "APrimalDinoCharacter.bHadStaticBase" }; }
     BitFieldValue<bool, unsigned __int32> bNoKillXP() { return { this, "APrimalDinoCharacter.bNoKillXP" }; }
     BitFieldValue<bool, unsigned __int32> bIgnoreAllyLook() { return { this, "APrimalDinoCharacter.bIgnoreAllyLook" }; }
     BitFieldValue<bool, unsigned __int32> bBabyInitiallyUnclaimed() { return { this, "APrimalDinoCharacter.bBabyInitiallyUnclaimed" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPForceTurretFastTargeting() { return { this, "APrimalDinoCharacter.bUseBPForceTurretFastTargeting" }; }
     BitFieldValue<bool, unsigned __int32> bLastAnyLegOnGround() { return { this, "APrimalDinoCharacter.bLastAnyLegOnGround" }; }
     BitFieldValue<bool, unsigned __int32> bSuppressWakingTameMessage() { return { this, "APrimalDinoCharacter.bSuppressWakingTameMessage" }; }
     BitFieldValue<bool, unsigned __int32> bPreventFlyerLanding() { return { this, "APrimalDinoCharacter.bPreventFlyerLanding" }; }
     BitFieldValue<bool, unsigned __int32> bHasDied() { return { this, "APrimalDinoCharacter.bHasDied" }; }
     BitFieldValue<bool, unsigned __int32> bHasPlayDying() { return { this, "APrimalDinoCharacter.bHasPlayDying" }; }
-    BitFieldValue<bool, unsigned __int32> bDisableCollisionWithDinosWhenFlying() { return { this, "APrimalDinoCharacter.bDisableCollisionWithDinosWhenFlying" }; }
     BitFieldValue<bool, unsigned __int32> bAllowTrapping() { return { this, "APrimalDinoCharacter.bAllowTrapping" }; }
     BitFieldValue<bool, unsigned __int32> bPreventWildTrapping() { return { this, "APrimalDinoCharacter.bPreventWildTrapping" }; }
-    BitFieldValue<bool, unsigned __int32> bIsTrapTamed() { return { this, "APrimalDinoCharacter.bIsTrapTamed" }; }
     BitFieldValue<bool, unsigned __int32> bIgnoreDestroyOnRapidDeath() { return { this, "APrimalDinoCharacter.bIgnoreDestroyOnRapidDeath" }; }
     BitFieldValue<bool, unsigned __int32> bPreventFallingBumpCheck() { return { this, "APrimalDinoCharacter.bPreventFallingBumpCheck" }; }
     BitFieldValue<bool, unsigned __int32> bIsDestroyingDino() { return { this, "APrimalDinoCharacter.bIsDestroyingDino" }; }
-    BitFieldValue<bool, unsigned __int32> bCheckBPAllowClaiming() { return { this, "APrimalDinoCharacter.bCheckBPAllowClaiming" }; }
     BitFieldValue<bool, unsigned __int32> bUseBlueprintExtraBabyScale() { return { this, "APrimalDinoCharacter.bUseBlueprintExtraBabyScale" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventNeuter() { return { this, "APrimalDinoCharacter.bPreventNeuter" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetDragSocketName() { return { this, "APrimalDinoCharacter.bUseBPGetDragSocketName" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetDragSocketDinoName() { return { this, "APrimalDinoCharacter.bUseBPGetDragSocketDinoName" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPGetLookOffsetSocketName() { return { this, "APrimalDinoCharacter.bUseBPGetLookOffsetSocketName" }; }
-    BitFieldValue<bool, unsigned __int32> bTargetEverythingIncludingSameTeamInPVE() { return { this, "APrimalDinoCharacter.bTargetEverythingIncludingSameTeamInPVE" }; }
-    BitFieldValue<bool, unsigned __int32> bForceUsePhysicalFootSurfaceTrace() { return { this, "APrimalDinoCharacter.bForceUsePhysicalFootSurfaceTrace" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_OnPostNetReplication() { return { this, "APrimalDinoCharacter.bUseBP_OnPostNetReplication" }; }
     BitFieldValue<bool, unsigned __int32> bPassiveFlee() { return { this, "APrimalDinoCharacter.bPassiveFlee" }; }
     BitFieldValue<bool, unsigned __int32> bDidAllowTickingTickingThisFrame() { return { this, "APrimalDinoCharacter.bDidAllowTickingTickingThisFrame" }; }
     BitFieldValue<bool, unsigned __int32> bOnlyTargetConscious() { return { this, "APrimalDinoCharacter.bOnlyTargetConscious" }; }
     BitFieldValue<bool, unsigned __int32> bBPManagedFPVViewLocationNoRider() { return { this, "APrimalDinoCharacter.bBPManagedFPVViewLocationNoRider" }; }
-    BitFieldValue<bool, unsigned __int32> bHideSaddleInFPV() { return { this, "APrimalDinoCharacter.bHideSaddleInFPV" }; }
+    BitFieldValue<bool, unsigned __int32> bForceHideSaddle() { return { this, "APrimalDinoCharacter.bForceHideSaddle" }; }
     BitFieldValue<bool, unsigned __int32> bPreventCloning() { return { this, "APrimalDinoCharacter.bPreventCloning" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventStasisOnDedi() { return { this, "APrimalDinoCharacter.bPreventStasisOnDedi" }; }
-    BitFieldValue<bool, unsigned __int32> bAlwaysCheckForFloor() { return { this, "APrimalDinoCharacter.bAlwaysCheckForFloor" }; }
-    BitFieldValue<bool, unsigned __int32> bAlwaysCheckForFalling() { return { this, "APrimalDinoCharacter.bAlwaysCheckForFalling" }; }
-    BitFieldValue<bool, unsigned __int32> bForceAllowCarryWaterDinos() { return { this, "APrimalDinoCharacter.bForceAllowCarryWaterDinos" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBP_AllowWalkableSlopeOverride() { return { this, "APrimalDinoCharacter.bUseBP_AllowWalkableSlopeOverride" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_CanFly() { return { this, "APrimalDinoCharacter.bUseBP_CanFly" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_OverrideBasedCharactersCameraInterpSpeed() { return { this, "APrimalDinoCharacter.bUseBP_OverrideBasedCharactersCameraInterpSpeed" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideFloatingHUDLocation() { return { this, "APrimalDinoCharacter.bUseBPOverrideFloatingHUDLocation" }; }
@@ -8518,8 +8295,6 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bIsMek() { return { this, "APrimalDinoCharacter.bIsMek" }; }
     BitFieldValue<bool, unsigned __int32> bIsEnforcer() { return { this, "APrimalDinoCharacter.bIsEnforcer" }; }
     BitFieldValue<bool, unsigned __int32> bIsExtinctionTitan() { return { this, "APrimalDinoCharacter.bIsExtinctionTitan" }; }
-    BitFieldValue<bool, unsigned __int32> bHasInvisiableSaddle() { return { this, "APrimalDinoCharacter.bHasInvisiableSaddle" }; }
-    BitFieldValue<bool, unsigned __int32> bUseWildDinoMapMultipliers() { return { this, "APrimalDinoCharacter.bUseWildDinoMapMultipliers" }; }
     BitFieldValue<bool, unsigned __int32> bIgnoreFlierRidingRestrictions() { return { this, "APrimalDinoCharacter.bIgnoreFlierRidingRestrictions" }; }
     BitFieldValue<bool, unsigned __int32> bRotatingUpdatesDinoIK() { return { this, "APrimalDinoCharacter.bRotatingUpdatesDinoIK" }; }
     BitFieldValue<bool, unsigned __int32> bUseBP_OverrideRiderCameraCollisionSweep() { return { this, "APrimalDinoCharacter.bUseBP_OverrideRiderCameraCollisionSweep" }; }
@@ -8528,52 +8303,35 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bUsePreciseLaunching() { return { this, "APrimalDinoCharacter.bUsePreciseLaunching" }; }
     BitFieldValue<bool, unsigned __int32> bDidSetupTamed() { return { this, "APrimalDinoCharacter.bDidSetupTamed" }; }
     BitFieldValue<bool, unsigned __int32> bIncrementedNumDinos() { return { this, "APrimalDinoCharacter.bIncrementedNumDinos" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowInvalidTameVersion() { return { this, "APrimalDinoCharacter.bAllowInvalidTameVersion" }; }
-    BitFieldValue<bool, unsigned __int32> bForceAllowPvECarry() { return { this, "APrimalDinoCharacter.bForceAllowPvECarry" }; }
-    BitFieldValue<bool, unsigned __int32> bUnderwaterMating() { return { this, "APrimalDinoCharacter.bUnderwaterMating" }; }
     BitFieldValue<bool, unsigned __int32> bBabyPreventExitingWater() { return { this, "APrimalDinoCharacter.bBabyPreventExitingWater" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCheckSeven() { return { this, "APrimalDinoCharacter.bUseBPCheckSeven" }; }
     BitFieldValue<bool, unsigned __int32> bPreventExportDino() { return { this, "APrimalDinoCharacter.bPreventExportDino" }; }
     BitFieldValue<bool, unsigned __int32> bPreventPassengerFPV() { return { this, "APrimalDinoCharacter.bPreventPassengerFPV" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPOnMountStateChanged() { return { this, "APrimalDinoCharacter.bUseBPOnMountStateChanged" }; }
-    BitFieldValue<bool, unsigned __int32> bHandleUseButtonPressBP() { return { this, "APrimalDinoCharacter.bHandleUseButtonPressBP" }; }
     BitFieldValue<bool, unsigned __int32> bGlideWhenFalling() { return { this, "APrimalDinoCharacter.bGlideWhenFalling" }; }
     BitFieldValue<bool, unsigned __int32> bGlideWhenMounted() { return { this, "APrimalDinoCharacter.bGlideWhenMounted" }; }
     BitFieldValue<bool, unsigned __int32> bForceAllowBackwardsMovement() { return { this, "APrimalDinoCharacter.bForceAllowBackwardsMovement" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventBackwardsWalking() { return { this, "APrimalDinoCharacter.bPreventBackwardsWalking" }; }
-    BitFieldValue<bool, unsigned __int32> bSupplyPlayerMountedCarryAnimation() { return { this, "APrimalDinoCharacter.bSupplyPlayerMountedCarryAnimation" }; }
-    BitFieldValue<bool, unsigned __int32> bForceAllowMountedCarryRunning() { return { this, "APrimalDinoCharacter.bForceAllowMountedCarryRunning" }; }
-    BitFieldValue<bool, unsigned __int32> bCanLatch() { return { this, "APrimalDinoCharacter.bCanLatch" }; }
     BitFieldValue<bool, unsigned __int32> bIsLatched() { return { this, "APrimalDinoCharacter.bIsLatched" }; }
     BitFieldValue<bool, unsigned __int32> bIsLatchedDownward() { return { this, "APrimalDinoCharacter.bIsLatchedDownward" }; }
     BitFieldValue<bool, unsigned __int32> bIsLatching() { return { this, "APrimalDinoCharacter.bIsLatching" }; }
     BitFieldValue<bool, unsigned __int32> bRotateToFaceLatchingObject() { return { this, "APrimalDinoCharacter.bRotateToFaceLatchingObject" }; }
     BitFieldValue<bool, unsigned __int32> bLimitRiderYawOnLatched() { return { this, "APrimalDinoCharacter.bLimitRiderYawOnLatched" }; }
-    BitFieldValue<bool, unsigned __int32> bCanRideLatched() { return { this, "APrimalDinoCharacter.bCanRideLatched" }; }
     BitFieldValue<bool, unsigned __int32> bAllowMountedWeaponry() { return { this, "APrimalDinoCharacter.bAllowMountedWeaponry" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowMountedWeaponryPVE() { return { this, "APrimalDinoCharacter.bAllowMountedWeaponryPVE" }; }
     BitFieldValue<bool, unsigned __int32> bKeepAffinityOnDamageRecievedWakingTame() { return { this, "APrimalDinoCharacter.bKeepAffinityOnDamageRecievedWakingTame" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPFedWakingTameEvent() { return { this, "APrimalDinoCharacter.bUseBPFedWakingTameEvent" }; }
     BitFieldValue<bool, unsigned __int32> bForceRiderDrawCrosshair() { return { this, "APrimalDinoCharacter.bForceRiderDrawCrosshair" }; }
     BitFieldValue<bool, unsigned __int32> bForceDrawHUD() { return { this, "APrimalDinoCharacter.bForceDrawHUD" }; }
     BitFieldValue<bool, unsigned __int32> bForceDrawHUDWithoutRecentlyRendered() { return { this, "APrimalDinoCharacter.bForceDrawHUDWithoutRecentlyRendered" }; }
-    BitFieldValue<bool, unsigned __int32> bHideFloatingName() { return { this, "APrimalDinoCharacter.bHideFloatingName" }; }
     BitFieldValue<bool, unsigned __int32> bCanTargetVehicles() { return { this, "APrimalDinoCharacter.bCanTargetVehicles" }; }
+    BitFieldValue<bool, unsigned __int32> bVehicleAlwaysAllowTargetingByWildDinos() { return { this, "APrimalDinoCharacter.bVehicleAlwaysAllowTargetingByWildDinos" }; }
     BitFieldValue<bool, unsigned __int32> bRidingRequiresTamed() { return { this, "APrimalDinoCharacter.bRidingRequiresTamed" }; }
     BitFieldValue<bool, unsigned __int32> bSuppressDeathNotification() { return { this, "APrimalDinoCharacter.bSuppressDeathNotification" }; }
-    BitFieldValue<bool, unsigned __int32> bUseCustomHealthBarColor() { return { this, "APrimalDinoCharacter.bUseCustomHealthBarColor" }; }
     BitFieldValue<bool, unsigned __int32> bUseOnUpdateMountedDinoMeshHiding() { return { this, "APrimalDinoCharacter.bUseOnUpdateMountedDinoMeshHiding" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPInterceptTurnInputEvents() { return { this, "APrimalDinoCharacter.bUseBPInterceptTurnInputEvents" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPInterceptMoveInputEvents() { return { this, "APrimalDinoCharacter.bUseBPInterceptMoveInputEvents" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPInterceptMoveInputEventsEvenIfZero() { return { this, "APrimalDinoCharacter.bUseBPInterceptMoveInputEventsEvenIfZero" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPAdjustAttackIndex() { return { this, "APrimalDinoCharacter.bUseBPAdjustAttackIndex" }; }
-    BitFieldValue<bool, unsigned __int32> bCheckBPAllowCarryCharacter() { return { this, "APrimalDinoCharacter.bCheckBPAllowCarryCharacter" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOnEndCharging() { return { this, "APrimalDinoCharacter.bUseBPOnEndCharging" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPNotifyMateBoostChanged() { return { this, "APrimalDinoCharacter.bUseBPNotifyMateBoostChanged" }; }
-    BitFieldValue<bool, unsigned __int32> bUseBPCarriedDinoBabyRescaled() { return { this, "APrimalDinoCharacter.bUseBPCarriedDinoBabyRescaled" }; }
-    BitFieldValue<bool, unsigned __int32> bForceAllowBackwardsMovementWithNoRider() { return { this, "APrimalDinoCharacter.bForceAllowBackwardsMovementWithNoRider" }; }
     BitFieldValue<bool, unsigned __int32> bIsCorrupted() { return { this, "APrimalDinoCharacter.bIsCorrupted" }; }
     BitFieldValue<bool, unsigned __int32> bIsHordeDino() { return { this, "APrimalDinoCharacter.bIsHordeDino" }; }
-    BitFieldValue<bool, unsigned __int32> bBPOverrideHealthBarOffset() { return { this, "APrimalDinoCharacter.bBPOverrideHealthBarOffset" }; }
     BitFieldValue<bool, unsigned __int32> bDropWildEggsWithoutMateBoost() { return { this, "APrimalDinoCharacter.bDropWildEggsWithoutMateBoost" }; }
     BitFieldValue<bool, unsigned __int32> bIsTemporaryMissionDino() { return { this, "APrimalDinoCharacter.bIsTemporaryMissionDino" }; }
     BitFieldValue<bool, unsigned __int32> bForcePreventInventoryAccess() { return { this, "APrimalDinoCharacter.bForcePreventInventoryAccess" }; }
@@ -8585,28 +8343,23 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bHasBuffPreventingUploading() { return { this, "APrimalDinoCharacter.bHasBuffPreventingUploading" }; }
     BitFieldValue<bool, unsigned __int32> bDisableHarvestHealthGain() { return { this, "APrimalDinoCharacter.bDisableHarvestHealthGain" }; }
     BitFieldValue<bool, unsigned __int32> bRemainLatchedOnClearRider() { return { this, "APrimalDinoCharacter.bRemainLatchedOnClearRider" }; }
+    BitFieldValue<bool, unsigned __int32> bCallRiderChangeWeaponsOnClient() { return { this, "APrimalDinoCharacter.bCallRiderChangeWeaponsOnClient" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPGetOtherActorToIgnore() { return { this, "APrimalDinoCharacter.bUseBPGetOtherActorToIgnore" }; }
     BitFieldValue<bool, unsigned __int32> bGenderOverrideInSpawn() { return { this, "APrimalDinoCharacter.bGenderOverrideInSpawn" }; }
     BitFieldValue<bool, unsigned __int32> MutagenApplied() { return { this, "APrimalDinoCharacter.MutagenApplied" }; }
     BitFieldValue<bool, unsigned __int32> bAllowWhistleThroughRemoteDino() { return { this, "APrimalDinoCharacter.bAllowWhistleThroughRemoteDino" }; }
     BitFieldValue<bool, unsigned __int32> bForceValidUnstasisCaster() { return { this, "APrimalDinoCharacter.bForceValidUnstasisCaster" }; }
     BitFieldValue<bool, unsigned __int32> bControlledDinoPreventsPlayerInventory() { return { this, "APrimalDinoCharacter.bControlledDinoPreventsPlayerInventory" }; }
-    BitFieldValue<bool, unsigned __int32> bDinoFPVDisableMotionBlur() { return { this, "APrimalDinoCharacter.bDinoFPVDisableMotionBlur" }; }
-    BitFieldValue<bool, unsigned __int32> bPaintingUseSaddle() { return { this, "APrimalDinoCharacter.bPaintingUseSaddle" }; }
     BitFieldValue<bool, unsigned __int32> bPaintingSupportSkins() { return { this, "APrimalDinoCharacter.bPaintingSupportSkins" }; }
-    BitFieldValue<bool, unsigned __int32> bDinoDontOverrideControllerPitch() { return { this, "APrimalDinoCharacter.bDinoDontOverrideControllerPitch" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverridePassengerAdditiveAnim() { return { this, "APrimalDinoCharacter.bUseBPOverridePassengerAdditiveAnim" }; }
     BitFieldValue<bool, unsigned __int32> bReplicatePassengerTPVAim() { return { this, "APrimalDinoCharacter.bReplicatePassengerTPVAim" }; }
     BitFieldValue<bool, unsigned __int32> bForceDisableClientGravitySim() { return { this, "APrimalDinoCharacter.bForceDisableClientGravitySim" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPGetTargetingDesirabilityForTurrets() { return { this, "APrimalDinoCharacter.bUseBPGetTargetingDesirabilityForTurrets" }; }
+    BitFieldValue<bool, unsigned __int32> bWasSpawnedInACaveOrBossArea() { return { this, "APrimalDinoCharacter.bWasSpawnedInACaveOrBossArea" }; }
     BitFieldValue<bool, unsigned __int32> bUseBPOverrideIsSubmergedForWaterTargeting() { return { this, "APrimalDinoCharacter.bUseBPOverrideIsSubmergedForWaterTargeting" }; }
-    BitFieldValue<bool, unsigned __int32> bAllowFlyerDinoSubmerging() { return { this, "APrimalDinoCharacter.bAllowFlyerDinoSubmerging" }; }
-    BitFieldValue<bool, unsigned __int32> bPreventZeroingFlyerPitchWhenSwimming() { return { this, "APrimalDinoCharacter.bPreventZeroingFlyerPitchWhenSwimming" }; }
-    BitFieldValue<bool, unsigned __int32> bRiderDisableAimOffset() { return { this, "APrimalDinoCharacter.bRiderDisableAimOffset" }; }
-    BitFieldValue<bool, unsigned __int32> bDontForceUpdateRateOptimizations() { return { this, "APrimalDinoCharacter.bDontForceUpdateRateOptimizations" }; }
-    BitFieldValue<bool, unsigned __int32> bIsAWildFollowerKnownServerside() { return { this, "APrimalDinoCharacter.bIsAWildFollowerKnownServerside" }; }
-    BitFieldValue<bool, unsigned __int32> AllowWildBabyTaming() { return { this, "APrimalDinoCharacter.AllowWildBabyTaming" }; }
-    BitFieldValue<bool, unsigned __int32> bIsParentWildDino() { return { this, "APrimalDinoCharacter.bIsParentWildDino" }; }
+    BitFieldValue<bool, unsigned __int32> bCreatureIsImmuneToServerSoftTameLimitDestruction() { return { this, "APrimalDinoCharacter.bCreatureIsImmuneToServerSoftTameLimitDestruction" }; }
+    BitFieldValue<bool, unsigned __int32> DestroyedViaSoftTameLimitCountdown() { return { this, "APrimalDinoCharacter.DestroyedViaSoftTameLimitCountdown" }; }
+    BitFieldValue<bool, unsigned __int32> bMaxTamedDinos_SoftTameLimit_IsCharacterCountedTowardsUnderSoftTameLimit() { return { this, "APrimalDinoCharacter.bMaxTamedDinos_SoftTameLimit_IsCharacterCountedTowardsUnderSoftTameLimit" }; }
     BitFieldValue<bool, unsigned __int32> bIgnoreNPCCountVolumes() { return { this, "APrimalDinoCharacter.bIgnoreNPCCountVolumes" }; }
     BitFieldValue<bool, unsigned __int32> bDisablePathfinding() { return { this, "APrimalDinoCharacter.bDisablePathfinding" }; }
     BitFieldValue<bool, unsigned __int32> bDontOverrideToNavMeshStepHeight() { return { this, "APrimalDinoCharacter.bDontOverrideToNavMeshStepHeight" }; }
@@ -8614,8 +8367,36 @@ struct APrimalDinoCharacter : APrimalCharacter
     BitFieldValue<bool, unsigned __int32> bAlwaysUpdateDinoLimbWallAvoidance() { return { this, "APrimalDinoCharacter.bAlwaysUpdateDinoLimbWallAvoidance" }; }
     BitFieldValue<bool, unsigned __int32> bUpdateDinoLimbWallAvoidance() { return { this, "APrimalDinoCharacter.bUpdateDinoLimbWallAvoidance" }; }
     BitFieldValue<bool, unsigned __int32> bCheatPossessed() { return { this, "APrimalDinoCharacter.bCheatPossessed" }; }
-    BitFieldValue<bool, unsigned __int32> bRestrictNonAlliedCarriedPlayerYaw() { return { this, "APrimalDinoCharacter.bRestrictNonAlliedCarriedPlayerYaw" }; }
-    BitFieldValue<bool, unsigned __int32> bCuddleRequestRefreshedField() { return { this, "APrimalDinoCharacter.bCuddleRequestRefreshed" }; }
+    BitFieldValue<bool, unsigned __int32> bForceTickingBehaviorTreeEveryFrame() { return { this, "APrimalDinoCharacter.bForceTickingBehaviorTreeEveryFrame" }; }
+    BitFieldValue<bool, unsigned __int32> bDinoHasBonded() { return { this, "APrimalDinoCharacter.bDinoHasBonded" }; }
+    BitFieldValue<bool, unsigned __int32> bCuddleRequestRefreshed() { return { this, "APrimalDinoCharacter.bCuddleRequestRefreshed" }; }
+    BitFieldValue<bool, unsigned __int32> bHideFloatingName() { return { this, "APrimalDinoCharacter.bHideFloatingName" }; }
+    BitFieldValue<bool, unsigned __int32> bSingleplayerFreezePhysicsWhenNoTarget() { return { this, "APrimalDinoCharacter.bSingleplayerFreezePhysicsWhenNoTarget" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPCanTargetCorpse() { return { this, "APrimalDinoCharacter.bUseBPCanTargetCorpse" }; }
+    BitFieldValue<bool, unsigned __int32> bCheckBuffModifyAimOffsetNoTarget() { return { this, "APrimalDinoCharacter.bCheckBuffModifyAimOffsetNoTarget" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOverrideRiderIndoorsCheckLocation() { return { this, "APrimalDinoCharacter.bUseBPOverrideRiderIndoorsCheckLocation" }; }
+    BitFieldValue<bool, unsigned __int32> bSwimmingWaterDinoMoveLikeFlying() { return { this, "APrimalDinoCharacter.bSwimmingWaterDinoMoveLikeFlying" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPSkipTerrainTraceForCarriedCharacter() { return { this, "APrimalDinoCharacter.bUseBPSkipTerrainTraceForCarriedCharacter" }; }
+    BitFieldValue<bool, unsigned __int32> FlyingMovementModeUseFlyingRunSpeedModifier() { return { this, "APrimalDinoCharacter.FlyingMovementModeUseFlyingRunSpeedModifier" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPNotifyOnBuffAddedToMountChar() { return { this, "APrimalDinoCharacter.bUseBPNotifyOnBuffAddedToMountChar" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowWanderAroundActorWildTameMix() { return { this, "APrimalDinoCharacter.bAllowWanderAroundActorWildTameMix" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPModifyWanderAroundActorLocation() { return { this, "APrimalDinoCharacter.bUseBPModifyWanderAroundActorLocation" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOverrideRiderAccessInventoryInput() { return { this, "APrimalDinoCharacter.bUseBPOverrideRiderAccessInventoryInput" }; }
+    BitFieldValue<bool, unsigned __int32> bUseDescriptiveNameGenderOverrides() { return { this, "APrimalDinoCharacter.bUseDescriptiveNameGenderOverrides" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPGetTamedFollowTarget() { return { this, "APrimalDinoCharacter.bUseBPGetTamedFollowTarget" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPSetTamedFollowTarget() { return { this, "APrimalDinoCharacter.bUseBPSetTamedFollowTarget" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOverrideBasedPlayerAimOffsetYaw() { return { this, "APrimalDinoCharacter.bUseBPOverrideBasedPlayerAimOffsetYaw" }; }
+    BitFieldValue<bool, unsigned __int32> bPreventClearShoulderMountOfDiffTeam() { return { this, "APrimalDinoCharacter.bPreventClearShoulderMountOfDiffTeam" }; }
+    BitFieldValue<bool, unsigned __int32> bPreventForceBabyFlyerLand() { return { this, "APrimalDinoCharacter.bPreventForceBabyFlyerLand" }; }
+    BitFieldValue<bool, unsigned __int32> bTamedAlwaysUseTamedUnsleepAnim() { return { this, "APrimalDinoCharacter.bTamedAlwaysUseTamedUnsleepAnim" }; }
+    BitFieldValue<bool, unsigned __int32> bUseRandomLookAtTarget() { return { this, "APrimalDinoCharacter.bUseRandomLookAtTarget" }; }
+    BitFieldValue<bool, unsigned __int32> bServerForceUpdateDinoGameplayMeshNearPlayer() { return { this, "APrimalDinoCharacter.bServerForceUpdateDinoGameplayMeshNearPlayer" }; }
+    BitFieldValue<bool, unsigned __int32> bForceAllowMountedAimOffset() { return { this, "APrimalDinoCharacter.bForceAllowMountedAimOffset" }; }
+    BitFieldValue<bool, unsigned __int32> bIsWandering() { return { this, "APrimalDinoCharacter.bIsWandering" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowPhysMovement() { return { this, "APrimalDinoCharacter.bAllowPhysMovement" }; }
+    BitFieldValue<bool, unsigned __int32> bWasWanderingEverThrottled() { return { this, "APrimalDinoCharacter.bWasWanderingEverThrottled" }; }
+    BitFieldValue<bool, unsigned __int32> bWasMoving() { return { this, "APrimalDinoCharacter.bWasMoving" }; }
+    BitFieldValue<bool, unsigned __int32> bRandomLookAtTargetDisabled() { return { this, "APrimalDinoCharacter.bRandomLookAtTargetDisabled" }; }
 
     // Functions
 
