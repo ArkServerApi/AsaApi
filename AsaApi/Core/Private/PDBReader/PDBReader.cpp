@@ -354,7 +354,8 @@ namespace API
 
 		for (const auto& filter : filter_set_)
 		{
-			if (input.starts_with(filter))
+			if (input.starts_with(filter)
+				&& !input.starts_with("UE::GC"))
 				return true;
 		}
 

@@ -275,7 +275,7 @@ namespace AsaApi
 			TSubclassOf<UPrimalItem> archetype;
 			archetype.uClass = UVictoryCore::BPLoadClass(bpFstr);
 
-			UPrimalItem* item = UPrimalItem::AddNewItem(&archetype, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true, false);
+			UPrimalItem* item = UPrimalItem::AddNewItem(archetype, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true, false);
 
 			if (!item)
 				return false;
