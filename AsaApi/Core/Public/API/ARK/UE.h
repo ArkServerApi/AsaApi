@@ -158,37 +158,33 @@ public:
 	FORCEINLINE operator T* () const { return Get(); }
 };
 
-template <typename T>
-struct TSoftClassPtr
+struct FTopLevelAssetPath
 {
-private:
+	// Fields
+	FName PackageName;
+	FName AssetName;
 
-public:
+	FName& PackageNameField() { return *GetNativePointerField<FName*>(this, "FTopLevelAssetPath.PackageName"); }
+	FName& AssetNameField() { return *GetNativePointerField<FName*>(this, "FTopLevelAssetPath.AssetName"); }
 
-	FORCEINLINE UClass* Get() { return NativeCall<UClass*, TSoftClassPtr<T>*>(nullptr, "UPrimalAssets.ClassAssetResolve(TSoftClassPtr<UObject>)", this); }
-	FORCEINLINE UClass* operator->() const { return Get(); }
-	FORCEINLINE UClass& operator*() const { return *Get(); }
-	FORCEINLINE operator bool() const { return Get() != nullptr; }
-	FORCEINLINE operator UClass* () const { return Get(); }
-};
+	// Bitfields
 
-template <typename T>
-struct TSoftObjectPtr
-{
-private:
-	FORCEINLINE UObject* RealGet() const { return NativeCall<UObject*, TSoftObjectPtr<T>*>(nullptr, "UPrimalAssets.AssetResolve(TSoftObjectPtr<UObject>)", this); }
-public:
+	// Functions
 
-	FORCEINLINE T* Get() { return (T*)(RealGet()); }
-	FORCEINLINE T* operator->() const { return Get(); }
-	FORCEINLINE T& operator*() const { return *Get(); }
-	FORCEINLINE operator bool() const { return Get() != nullptr; }
-	FORCEINLINE operator T* () const { return Get(); }
+	//void FTopLevelAssetPath(const FString* Path) { NativeCall<void, const FString*>(this, "FTopLevelAssetPath.FTopLevelAssetPath(FString&)", Path); }
+	void AppendString(TStringBuilderBase<wchar_t>* Builder) { NativeCall<void, TStringBuilderBase<wchar_t>*>(this, "FTopLevelAssetPath.AppendString(TStringBuilderBase<wchar_t>&)", Builder); }
+	FString* ToString(FString* result) { return NativeCall<FString*, FString*>(this, "FTopLevelAssetPath.ToString(FString&)", result); }
+	//void ToString(FString* OutString) { NativeCall<void, FString*>(this, "FTopLevelAssetPath.ToString(FString&)", OutString); }
+	bool TrySetPath(TStringView<wchar_t>* Path) { return NativeCall<bool, TStringView<wchar_t>*>(this, "FTopLevelAssetPath.TrySetPath(TStringView<wchar_t>)", Path); }
+	bool ExportTextItem(FString* ValueStr, const FTopLevelAssetPath* DefaultValue, UObject* Parent, int PortFlags, UObject* ExportRootScope) { return NativeCall<bool, FString*, const FTopLevelAssetPath*, UObject*, int, UObject*>(this, "FTopLevelAssetPath.ExportTextItem(FString&,FTopLevelAssetPath&,UObject*,int,UObject*)", ValueStr, DefaultValue, Parent, PortFlags, ExportRootScope); }
+	bool ImportTextItem(const wchar_t** Buffer, int PortFlags, UObject* Parent, FOutputDevice* ErrorText, FArchive* InSerializingArchive) { return NativeCall<bool, const wchar_t**, int, UObject*, FOutputDevice*, FArchive*>(this, "FTopLevelAssetPath.ImportTextItem(wchar_t*&,int,UObject*,FOutputDevice*,FArchive*)", Buffer, PortFlags, Parent, ErrorText, InSerializingArchive); }
 };
 
 struct FSoftObjectPath
 {
 	// Fields
+	FTopLevelAssetPath AssetPath;
+	FString SubPathString;
 
 	FTopLevelAssetPath& AssetPathField() { return *GetNativePointerField<FTopLevelAssetPath*>(this, "FSoftObjectPath.AssetPath"); }
 	FString& SubPathStringField() { return *GetNativePointerField<FString*>(this, "FSoftObjectPath.SubPathString"); }
@@ -228,6 +224,74 @@ struct FSoftObjectPath
 	FName GetAssetPathName()const { return NativeCall<FName>(this, "FSoftObjectPath.GetAssetPathName()"); }
 	UObject* TryLoad(FUObjectSerializeContext* InLoadContext) const { return NativeCall<UObject*, FUObjectSerializeContext*>(this, "FSoftObjectPath.TryLoad(FUObjectSerializeContext*)", InLoadContext); }
 	FString GetLongPackageName()const { return NativeCall<FString>(this, "FSoftObjectPath.GetLongPackageName()"); }
+};
+
+struct FSoftClassPath : FSoftObjectPath
+{
+	// Fields
+
+
+	// Bitfields
+
+
+	// Functions
+
+	UClass* ResolveClass() const { return NativeCall<UClass*>(this, "FSoftClassPath.ResolveClass()"); }
+
+};
+
+template <typename FSoftObjectPath>
+struct TPersistentObjectPtr
+{
+	FWeakObjectPtr WeakPtr;
+	FSoftObjectPath ObjectID;
+};
+
+struct FSoftObjectPtr : TPersistentObjectPtr<FSoftObjectPath> { };
+
+template <typename T>
+struct TSoftClassPtr
+{
+private:
+	FSoftObjectPtr SoftObjectPtr;
+public:
+	TSoftClassPtr(UClass* InClass = nullptr)
+	{
+		if (InClass)
+		{
+			SoftObjectPtr.ObjectID = FSoftObjectPath::GetOrCreateIDForObject(InClass);
+			SoftObjectPtr.WeakPtr = GetWeakReference(InClass);
+		}
+	}
+
+	TSoftClassPtr(const FString& Path)
+	{ 
+		TSubclassOf<UObject> result;
+		NativeCall<TSubclassOf<UObject>*, TSubclassOf<UObject>*, const FString*>(nullptr, "UVictoryCore.StringReferenceToClass(FString&)", &result, &Path);
+
+		SoftObjectPtr.ObjectID = FSoftObjectPath::GetOrCreateIDForObject(result.uClass);
+		SoftObjectPtr.WeakPtr = GetWeakReference(result.uClass);
+	}
+
+	FORCEINLINE UClass* Get() { return NativeCall<UClass*, TSoftClassPtr<T>*>(nullptr, "UPrimalAssets.ClassAssetResolve(TSoftClassPtr<UObject>)", this); }
+	FORCEINLINE UClass* operator->() const { return Get(); }
+	FORCEINLINE UClass& operator*() const { return *Get(); }
+	FORCEINLINE operator bool() const { return Get() != nullptr; }
+	FORCEINLINE operator UClass* () const { return Get(); }
+};
+
+template <typename T>
+struct TSoftObjectPtr
+{
+private:
+	FORCEINLINE UObject* RealGet() const { return NativeCall<UObject*, TSoftObjectPtr<T>*>(nullptr, "UPrimalAssets.AssetResolve(TSoftObjectPtr<UObject>)", this); }
+public:
+
+	FORCEINLINE T* Get() { return (T*)(RealGet()); }
+	FORCEINLINE T* operator->() const { return Get(); }
+	FORCEINLINE T& operator*() const { return *Get(); }
+	FORCEINLINE operator bool() const { return Get() != nullptr; }
+	FORCEINLINE operator T* () const { return Get(); }
 };
 
 struct FItemNetID

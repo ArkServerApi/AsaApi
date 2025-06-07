@@ -526,31 +526,7 @@ struct UGameplayStatics : UBlueprintFunctionLibrary
 	static void OpenLevelBySoftObjectPtr(const UObject* WorldContextObject, const TSoftObjectPtr<UWorld>* Level, bool bAbsolute, FString* Options) { NativeCall<void, const UObject*, const TSoftObjectPtr<UWorld>*, bool, FString*>(nullptr, "UGameplayStatics.OpenLevelBySoftObjectPtr(UObject*,TSoftObjectPtr<UWorld>,bool,FString)", WorldContextObject, Level, bAbsolute, Options); }
 	static FString* GetCurrentLevelName(FString* result, const UObject* WorldContextObject, FName bRemovePrefixString) { return NativeCall<FString*, FString*, const UObject*, FName>(nullptr, "UGameplayStatics.GetCurrentLevelName(UObject*,bool)", result, WorldContextObject, bRemovePrefixString); }
 	static AActor* GetActorOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass) { return NativeCall<AActor*, const UObject*, TSubclassOf<AActor>>(nullptr, "UGameplayStatics.GetActorOfClass(UObject*,TSubclassOf<AActor>)", WorldContextObject, ActorClass); }
-	static void GetAllActorsOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) 
-	{ 
-		auto defaultObject = GetPrivateStaticClass()->GetDefaultObject(true);
-		if (!defaultObject)
-		{
-			return;
-		}
-
-		UFunction* func = defaultObject->FindFunctionChecked(FName("GetAllActorsOfClass", EFindName::FNAME_Find));
-		if (!func)
-		{
-			return;
-		}
-
-		struct Params
-		{
-			const UObject* Param_WorldContextObject;
-			TSubclassOf<AActor> Param_ActorClass;
-			TArray<AActor*, TSizedDefaultAllocator<32>> Param_OutActors;
-		};
-
-		Params parms{ WorldContextObject, ActorClass };
-		defaultObject->ProcessEvent(func, &parms);
-		*OutActors = std::move(parms.Param_OutActors);
-	}
+	static void GetAllActorsOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, TArray<AActor*>* OutActors) { NativeCall<void, const UObject*, TSubclassOf<AActor>*, TArray<AActor*>*>(nullptr, "UGameplayStatics.GetAllActorsOfClass(UObject*,TSubclassOf<AActor>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, &ActorClass, OutActors); }
 	static void GetAllActorsWithInterface(const UObject* WorldContextObject, TSubclassOf<UInterface> Interface, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<UInterface>, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsWithInterface(UObject*,TSubclassOf<UInterface>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, Interface, OutActors); }
 	static void GetAllActorsWithTag(const UObject* WorldContextObject, FName Tag, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, FName, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsWithTag(UObject*,FName,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, Tag, OutActors); }
 	static void GetAllActorsOfClassWithTag(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, FName Tag, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<AActor>, FName, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsOfClassWithTag(UObject*,TSubclassOf<AActor>,FName,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, ActorClass, Tag, OutActors); }
@@ -648,6 +624,9 @@ struct UKismetSystemLibrary
 	//static int GetRenderingMaterialQualityLevel() { return NativeCall<int>(nullptr, "UKismetSystemLibrary.GetRenderingMaterialQualityLevel"); }
 	//static void ShowPlatformSpecificAchievementsScreen(APlayerController* SpecificPlayer) { NativeCall<void, APlayerController*>(nullptr, "UKismetSystemLibrary.ShowPlatformSpecificAchievementsScreen", SpecificPlayer); }
 	static void StaticRegisterNativesUKismetSystemLibrary() { NativeCall<void>(nullptr, "UKismetSystemLibrary.StaticRegisterNativesUKismetSystemLibrary()"); }
+	
+	static FSoftClassPath MakeSoftClassPath(const FString& PathString) { return NativeCall<FSoftClassPath, const FString&>(nullptr, "UKismetSystemLibrary.MakeSoftClassPath(FString&)", PathString); }
+
 };
 
 struct FStringHash
@@ -700,13 +679,13 @@ struct FPaintingKeyValue
 
 struct FARKDinoData
 {
-	UClass* DinoClass;
-	TArray<unsigned char, TSizedDefaultAllocator<32>> DinoData;
+	TArray<unsigned char> DinoData;
+	TArray<FPaintingKeyValue> UniquePaintingIdMap;
+	TArray<FPaintingKeyValue> PaintingRevisionMap;
 	FString DinoNameInMap;
 	FString DinoName;
+	UClass* DinoClass;
 	bool bNetInfoFromClient;
-	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
-	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
 
 	// Fields
 
@@ -2874,27 +2853,6 @@ struct FPointDamageEvent : FDamageEvent
 	int GetTypeID()const { return NativeCall<int>(this, "FPointDamageEvent.GetTypeID()"); }
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPointDamageEvent.StaticStruct()"); }
 	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FPointDamageEvent.IsOfType(int)", InID); }
-};
-
-struct FTopLevelAssetPath
-{
-	// Fields
-
-	FName& PackageNameField() { return *GetNativePointerField<FName*>(this, "FTopLevelAssetPath.PackageName"); }
-	FName& AssetNameField() { return *GetNativePointerField<FName*>(this, "FTopLevelAssetPath.AssetName"); }
-
-	// Bitfields
-
-
-	// Functions
-
-	//void FTopLevelAssetPath(const FString* Path) { NativeCall<void, const FString*>(this, "FTopLevelAssetPath.FTopLevelAssetPath(FString&)", Path); }
-	void AppendString(TStringBuilderBase<wchar_t>* Builder) { NativeCall<void, TStringBuilderBase<wchar_t>*>(this, "FTopLevelAssetPath.AppendString(TStringBuilderBase<wchar_t>&)", Builder); }
-	FString* ToString(FString* result) { return NativeCall<FString*, FString*>(this, "FTopLevelAssetPath.ToString(FString&)", result); }
-	//void ToString(FString* OutString) { NativeCall<void, FString*>(this, "FTopLevelAssetPath.ToString(FString&)", OutString); }
-	bool TrySetPath(TStringView<wchar_t>* Path) { return NativeCall<bool, TStringView<wchar_t>*>(this, "FTopLevelAssetPath.TrySetPath(TStringView<wchar_t>)", Path); }
-	bool ExportTextItem(FString* ValueStr, const FTopLevelAssetPath* DefaultValue, UObject* Parent, int PortFlags, UObject* ExportRootScope) { return NativeCall<bool, FString*, const FTopLevelAssetPath*, UObject*, int, UObject*>(this, "FTopLevelAssetPath.ExportTextItem(FString&,FTopLevelAssetPath&,UObject*,int,UObject*)", ValueStr, DefaultValue, Parent, PortFlags, ExportRootScope); }
-	bool ImportTextItem(const wchar_t** Buffer, int PortFlags, UObject* Parent, FOutputDevice* ErrorText, FArchive* InSerializingArchive) { return NativeCall<bool, const wchar_t**, int, UObject*, FOutputDevice*, FArchive*>(this, "FTopLevelAssetPath.ImportTextItem(wchar_t*&,int,UObject*,FOutputDevice*,FArchive*)", Buffer, PortFlags, Parent, ErrorText, InSerializingArchive); }
 };
 
 struct FUserCosmeticInfo
