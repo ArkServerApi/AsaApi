@@ -2027,20 +2027,20 @@ struct FItemSetup
 
 struct FItemStatInfo
 {
-	unsigned __int32 bUsed : 1;
-	unsigned __int32 bCalculateAsPercent : 1;
-	unsigned __int32 bDisplayAsPercent : 1;
-	unsigned __int32 bRequiresSubmerged : 1;
-	unsigned __int32 bPreventIfSubmerged : 1;
-	unsigned __int32 bHideStatFromTooltip : 1;
-	int DefaultModifierValue;
-	int RandomizerRangeOverride;
 	float RandomizerRangeMultiplier;
 	float TheRandomizerPower;
 	float StateModifierScale;
 	float InitialValueConstant;
 	float RatingValueMultiplier;
 	float AbsoluteMaxValue;
+	int DefaultModifierValue;
+	int RandomizerRangeOverride;
+	unsigned __int32 bUsed : 1;
+	unsigned __int32 bCalculateAsPercent : 1;
+	unsigned __int32 bDisplayAsPercent : 1;
+	unsigned __int32 bRequiresSubmerged : 1;
+	unsigned __int32 bPreventIfSubmerged : 1;
+	unsigned __int32 bHideStatFromTooltip : 1;
 
 	// Fields
 
