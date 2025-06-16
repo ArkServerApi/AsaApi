@@ -666,8 +666,8 @@ struct FPaintingKeyValue
 {
 	// Fields
 
-	int Key;
-	int Value;
+	int& KeyField() { return *GetNativePointerField<int*>(this, "FPaintingKeyValue.Key"); }
+	int& ValueField() { return *GetNativePointerField<int*>(this, "FPaintingKeyValue.Value"); }
 
 	// Bitfields
 
@@ -2573,7 +2573,7 @@ struct FConfigCacheIni
 
 struct FCustomItemByteArray
 {
-	TArray<unsigned char> Bytes;
+	TArray<unsigned char, TSizedDefaultAllocator<32> > Bytes;
 	// Fields
 
 	TArray<unsigned char, TSizedDefaultAllocator<32> >& BytesField() { return *GetNativePointerField<TArray<unsigned char, TSizedDefaultAllocator<32> >*>(this, "FCustomItemByteArray.Bytes"); }
@@ -2588,7 +2588,7 @@ struct FCustomItemByteArray
 
 struct FCustomItemByteArrays
 {
-	TArray<FCustomItemByteArray> ByteArrays;
+	TArray<FCustomItemByteArray, TSizedDefaultAllocator<32>> ByteArrays;
 	// Fields
 
 	TArray<FCustomItemByteArray, TSizedDefaultAllocator<32> >& ByteArraysField() { return *GetNativePointerField<TArray<FCustomItemByteArray, TSizedDefaultAllocator<32> >*>(this, "FCustomItemByteArrays.ByteArrays"); }
@@ -2599,12 +2599,12 @@ struct FCustomItemByteArrays
 	// Functions
 
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemByteArrays.StaticStruct()"); }
-	FCustomItemByteArrays* operator=(const FCustomItemByteArrays* __that) { return NativeCall<FCustomItemByteArrays*, const FCustomItemByteArrays*>(this, "FCustomItemByteArrays.operator=(FCustomItemByteArrays&)", __that); }
+	FCustomItemByteArrays& operator=(const FCustomItemByteArrays* __that) { return NativeCall<FCustomItemByteArrays&, const FCustomItemByteArrays*>(this, "FCustomItemByteArrays.operator=(FCustomItemByteArrays&)", __that); }
 };
 
 struct FCustomItemDoubles
 {
-	TArray<double> Doubles;
+	TArray<double, TSizedDefaultAllocator<32> > Doubles;
 	// Fields
 
 	TArray<double, TSizedDefaultAllocator<32> >& DoublesField() { return *GetNativePointerField<TArray<double, TSizedDefaultAllocator<32> >*>(this, "FCustomItemDoubles.Doubles"); }
@@ -2614,6 +2614,7 @@ struct FCustomItemDoubles
 
 	// Functions
 
+	FCustomItemDoubles& operator=(const FCustomItemDoubles* __that) { return NativeCall<FCustomItemDoubles&, const FCustomItemDoubles*>(this, "FCustomItemDoubles.operator=(FCustomItemDoubles&)", __that); }
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemDoubles.StaticStruct()"); }
 };
 
