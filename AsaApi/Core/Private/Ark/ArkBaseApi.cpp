@@ -59,7 +59,6 @@ namespace API
 			if (!fs::exists(fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache")))
 				fs::create_directory(fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache"));
 
-			const fs::path apiDLL = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/AsaApi.dll");
 			const fs::path apiPDB = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/AsaApi.pdb");
 			const fs::path apiPDBDest = fs::path(exe_path).append("AsaApi.pdb");
 			const fs::path pdbIgnoreFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/pdbignores.txt");
@@ -68,7 +67,6 @@ namespace API
 			const fs::path bitfieldsCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_bitfields.cache");
 			const fs::path offsetsCacheFilePlain = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Cache/cached_offsets.txt");
 			const std::string fileHash = Cache::calculateSHA256(filepath);
-			const std::string apiDLLHash = Cache::calculateSHA256(apiDLL);
 			std::string storedHash = Cache::readFromFile(keyCacheFile);
 			std::unordered_set<std::string> pdbIgnoreSet = Cache::readFileIntoSet(pdbIgnoreFile);
 			const std::string defaultCDNUrl = "https://cdn.pelayori.com/cache/";
@@ -83,7 +81,7 @@ namespace API
 				&& autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) != ""
 				&& (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile)))
 			{
-				const fs::path downloadFile = autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) + fileHash + ".zip?hash=" + apiDLLHash;
+				const fs::path downloadFile = autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) + fileHash + ".zip";
 				const fs::path localFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Cache/" + fileHash + ".zip");
 
 				if (ArkBaseApi::DownloadCacheFiles(downloadFile, localFile))

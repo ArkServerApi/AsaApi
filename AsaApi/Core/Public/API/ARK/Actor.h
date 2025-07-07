@@ -6748,6 +6748,25 @@ struct AShooterCharacter : APrimalCharacter
 
 };
 
+struct UPrimalLocalProfile : UObject {
+    
+    // Fields
+
+    // Bitfields
+    
+    // Functions
+    
+    void AddArkTributeDino(const FARKTributeDino *Dino) { NativeCall<void, const FARKTributeDino *>(this, "UPrimalLocalProfile.AddArkTributeDino(FARKTributeDino&)", Dino); }
+    void AddArkTributeDino(APrimalDinoCharacter *ArkDino) { NativeCall<void, APrimalDinoCharacter *>(this, "UPrimalLocalProfile.AddArkTributeDino(APrimalDinoCharacter*)", ArkDino); }
+    void AddArkTributePlayerData(FArkTributePlayerData *ArkPlayerData) { NativeCall<void, FArkTributePlayerData *>(this, "UPrimalLocalProfile.AddArkTributePlayerData(FArkTributePlayerData)", ArkPlayerData); }
+    void RemoveArkTributeDinoDataAtIndex(int DinoID1, int DinoID2) { NativeCall<void, int, int>(this, "UPrimalLocalProfile.RemoveArkTributeDinoDataAtIndex(int,int)", DinoID1, DinoID2); }
+    void GetArkTributeDinosData(TArray<FARKTributeDino> *outArray) { NativeCall<void, TArray<FARKTributeDino> *>(this, "UPrimalLocalProfile.GetArkTributeDinosData()", outArray); }
+    int GetNumArkTributeDinos() const { return NativeCall<int>(this, "UPrimalLocalProfile.GetNumArkTributeDinos()"); }
+    int GetArkTributeInventoryCount() const { return NativeCall<int>(this, "UPrimalLocalProfile.GetArkTributeInventoryCount()"); }
+    void UpdateArkTributeDino(TArray<unsigned char, TSizedDefaultAllocator<32>> *DinoData, unsigned int DinoID1, unsigned int DinoID2, FString *NameInMap) { NativeCall<void, TArray<unsigned char, TSizedDefaultAllocator<32>> *, unsigned int, unsigned int, FString *>( this, "UPrimalLocalProfile.UpdateArkTributeDino(TArray<unsignedchar,TSizedDefaultAllocator<32>>,unsignedint,unsignedint,FString)", DinoData, DinoID1, DinoID2, NameInMap); }
+
+};
+
 struct UPrimalPlayerData : UObject
 {
     // Fields
