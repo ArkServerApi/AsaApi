@@ -98,7 +98,7 @@ struct UVictoryCore : UVictoryCoreHighest
 	//static bool VTraceIgnoreFoliage(UWorld* theWorld, const UE::Math::TVector<double>* Start, const UE::Math::TVector<double>* End, FHitResult* HitOut, const AActor* ActorToIgnore, ECollisionChannel Channel, int CollisionGroups, bool bReturnPhysMaterial, bool bTraceComplex, const UE::Math::TVector<double>* BoxExtent, FName TraceTag, const AActor* OtherActorToIgnore, TArray<AActor*, TSizedDefaultAllocator<32> >* OtherActorsToIgnore, const UE::Math::TQuat<double>* Rot, const AActor* AnotherActorToIgnore, bool bIgnoreFoliage) { return NativeCall<bool, UWorld*, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*, FHitResult*, const AActor*, ECollisionChannel, int, bool, bool, const UE::Math::TVector<double>*, FName, const AActor*, TArray<AActor*, TSizedDefaultAllocator<32> >*, const UE::Math::TQuat<double>*, const AActor*, bool>(nullptr, "UVictoryCore.VTraceIgnoreFoliage(UWorld*,UE::Math::TVector<double>*,UE::Math::TVector<double>*,FHitResult*,AActor*,ECollisionChannel,int,bool,bool,UE::Math::TVector<double>*,FName,AActor*,TArray<AActor*,TSizedDefaultAllocator<32>>*,UE::Math::TQuat<double>*,AActor*,bool)", theWorld, Start, End, HitOut, ActorToIgnore, Channel, CollisionGroups, bReturnPhysMaterial, bTraceComplex, BoxExtent, TraceTag, OtherActorToIgnore, OtherActorsToIgnore, Rot, AnotherActorToIgnore, bIgnoreFoliage); }
 	static void SetSessionPrefix(const FString* InPrefix) { NativeCall<void, const FString*>(nullptr, "UVictoryCore.SetSessionPrefix(FString&)", InPrefix); }
 	static FColor* GetTeamColor(FColor* result, const int TargetingTeam) { return NativeCall<FColor*, FColor*, const int>(nullptr, "UVictoryCore.GetTeamColor(FColor*,int)", result, TargetingTeam); }
-	static FString* FormatAsTime(FString* result, int InTime, bool UseLeadingZero, bool bForceLeadingZeroHour, bool bShowSeconds) { return NativeCall<FString*, FString*, int, bool, bool, bool>(nullptr, "UVictoryCore.FormatAsTime(FString&,int,bool,bool,bool)", result, InTime, UseLeadingZero, bForceLeadingZeroHour, bShowSeconds); }
+	static FString FormatAsTime(int InTime, bool UseLeadingZero, bool bForceLeadingZeroHour, bool bShowSeconds) { return NativeCall<FString, int, bool, bool, bool>(nullptr, "UVictoryCore.FormatAsTime(int,bool,bool,bool)", InTime, UseLeadingZero, bForceLeadingZeroHour, bShowSeconds); }
 	static FString* FormatAsTimeLong(FString* result, int InTime) { return NativeCall<FString*, FString*, int>(nullptr, "UVictoryCore.FormatAsTimeLong(FString&,int)", result, InTime); }
 	static bool CalculateInterceptPosition(const UE::Math::TVector<double>* StartPosition, const UE::Math::TVector<double>* StartVelocity, float ProjectileVelocity, const UE::Math::TVector<double>* TargetPosition, const UE::Math::TVector<double>* TargetVelocity, UE::Math::TVector<double>* InterceptPosition) { return NativeCall<bool, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*, float, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*, UE::Math::TVector<double>*>(nullptr, "UVictoryCore.CalculateInterceptPosition(UE::Math::TVector<double>*,UE::Math::TVector<double>*,float,UE::Math::TVector<double>*,UE::Math::TVector<double>*,UE::Math::TVector<double>*)", StartPosition, StartVelocity, ProjectileVelocity, TargetPosition, TargetVelocity, InterceptPosition); }
 	static int GetSecondsIntoDay() { return NativeCall<int>(nullptr, "UVictoryCore.GetSecondsIntoDay()"); }
@@ -162,6 +162,7 @@ struct UVictoryCore : UVictoryCoreHighest
 	static void StopMusic() { NativeCall<void>(nullptr, "UVictoryCore.StopMusic()"); }
 	//static bool VTraceAgainstActorExpensive(UObject* WorldContextObject, const UE::Math::TVector<double>* Start, const UE::Math::TVector<double>* End, FHitResult* HitOut, AActor* ActorToTraceAgainst, ECollisionChannel Channel, __int64 CollisionGroups, float SphereRadius, bool bReturnPhysMaterial, bool bTraceComplex, const UE::Math::TVector<double>* BoxExtent, FName TraceTag, bool bSort) { return NativeCall<bool, UObject*, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*, FHitResult*, AActor*, ECollisionChannel, __int64, float, bool, bool, const UE::Math::TVector<double>*, FName, bool>(nullptr, "UVictoryCore.VTraceAgainstActorExpensive(UObject*,UE::Math::TVector<double>*,UE::Math::TVector<double>*,FHitResult*,AActor*,ECollisionChannel,__int64,float,bool,bool,UE::Math::TVector<double>*,FName,bool)", WorldContextObject, Start, End, HitOut, ActorToTraceAgainst, Channel, CollisionGroups, SphereRadius, bReturnPhysMaterial, bTraceComplex, BoxExtent, TraceTag, bSort); }
 	static TSubclassOf<UObject>* StringReferenceToClass(TSubclassOf<UObject>* result, const FString* StringReference) { return NativeCall<TSubclassOf<UObject> *, TSubclassOf<UObject>*, const FString*>(nullptr, "UVictoryCore.StringReferenceToClass(FString&)", result, StringReference); }
+	static FString ClassToStringReference(TSubclassOf<UObject>* ForClass) { return NativeCall<FString, TSubclassOf<UObject>*>(nullptr, "UVictoryCore.ClassToStringReference(TSubclassOf<UObject>)", ForClass); }
 	static void RefreshApplySoundVolumes() { NativeCall<void>(nullptr, "UVictoryCore.RefreshApplySoundVolumes()"); }
 	static void RefreshApplySoundAndMusicVolumes() { NativeCall<void>(nullptr, "UVictoryCore.RefreshApplySoundAndMusicVolumes()"); }
 	static FString* GetTwoLetterISOLanguageName(FString* result) { return NativeCall<FString*, FString*>(nullptr, "UVictoryCore.GetTwoLetterISOLanguageName(FString&)", result); }
@@ -525,7 +526,7 @@ struct UGameplayStatics : UBlueprintFunctionLibrary
 	static void OpenLevelBySoftObjectPtr(const UObject* WorldContextObject, const TSoftObjectPtr<UWorld>* Level, bool bAbsolute, FString* Options) { NativeCall<void, const UObject*, const TSoftObjectPtr<UWorld>*, bool, FString*>(nullptr, "UGameplayStatics.OpenLevelBySoftObjectPtr(UObject*,TSoftObjectPtr<UWorld>,bool,FString)", WorldContextObject, Level, bAbsolute, Options); }
 	static FString* GetCurrentLevelName(FString* result, const UObject* WorldContextObject, FName bRemovePrefixString) { return NativeCall<FString*, FString*, const UObject*, FName>(nullptr, "UGameplayStatics.GetCurrentLevelName(UObject*,bool)", result, WorldContextObject, bRemovePrefixString); }
 	static AActor* GetActorOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass) { return NativeCall<AActor*, const UObject*, TSubclassOf<AActor>>(nullptr, "UGameplayStatics.GetActorOfClass(UObject*,TSubclassOf<AActor>)", WorldContextObject, ActorClass); }
-	static void GetAllActorsOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<AActor>, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsOfClass(UObject*,TSubclassOf<AActor>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, ActorClass, OutActors); }
+	static void GetAllActorsOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, TArray<AActor*>* OutActors) { NativeCall<void, const UObject*, TSubclassOf<AActor>*, TArray<AActor*>*>(nullptr, "UGameplayStatics.GetAllActorsOfClass(UObject*,TSubclassOf<AActor>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, &ActorClass, OutActors); }
 	static void GetAllActorsWithInterface(const UObject* WorldContextObject, TSubclassOf<UInterface> Interface, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<UInterface>, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsWithInterface(UObject*,TSubclassOf<UInterface>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, Interface, OutActors); }
 	static void GetAllActorsWithTag(const UObject* WorldContextObject, FName Tag, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, FName, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsWithTag(UObject*,FName,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, Tag, OutActors); }
 	static void GetAllActorsOfClassWithTag(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, FName Tag, TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const UObject*, TSubclassOf<AActor>, FName, TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsOfClassWithTag(UObject*,TSubclassOf<AActor>,FName,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, ActorClass, Tag, OutActors); }
@@ -623,6 +624,9 @@ struct UKismetSystemLibrary
 	//static int GetRenderingMaterialQualityLevel() { return NativeCall<int>(nullptr, "UKismetSystemLibrary.GetRenderingMaterialQualityLevel"); }
 	//static void ShowPlatformSpecificAchievementsScreen(APlayerController* SpecificPlayer) { NativeCall<void, APlayerController*>(nullptr, "UKismetSystemLibrary.ShowPlatformSpecificAchievementsScreen", SpecificPlayer); }
 	static void StaticRegisterNativesUKismetSystemLibrary() { NativeCall<void>(nullptr, "UKismetSystemLibrary.StaticRegisterNativesUKismetSystemLibrary()"); }
+	
+	static FSoftClassPath MakeSoftClassPath(const FString& PathString) { return NativeCall<FSoftClassPath, const FString&>(nullptr, "UKismetSystemLibrary.MakeSoftClassPath(FString&)", PathString); }
+
 };
 
 struct FStringHash
@@ -675,13 +679,13 @@ struct FPaintingKeyValue
 
 struct FARKDinoData
 {
-	UClass* DinoClass;
-	TArray<unsigned char, TSizedDefaultAllocator<32>> DinoData;
+	TArray<unsigned char> DinoData;
+	TArray<FPaintingKeyValue> UniquePaintingIdMap;
+	TArray<FPaintingKeyValue> PaintingRevisionMap;
 	FString DinoNameInMap;
 	FString DinoName;
+	UClass* DinoClass;
 	bool bNetInfoFromClient;
-	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
-	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
 
 	// Fields
 
@@ -2023,20 +2027,20 @@ struct FItemSetup
 
 struct FItemStatInfo
 {
-	unsigned __int32 bUsed : 1;
-	unsigned __int32 bCalculateAsPercent : 1;
-	unsigned __int32 bDisplayAsPercent : 1;
-	unsigned __int32 bRequiresSubmerged : 1;
-	unsigned __int32 bPreventIfSubmerged : 1;
-	unsigned __int32 bHideStatFromTooltip : 1;
-	int DefaultModifierValue;
-	int RandomizerRangeOverride;
 	float RandomizerRangeMultiplier;
 	float TheRandomizerPower;
 	float StateModifierScale;
 	float InitialValueConstant;
 	float RatingValueMultiplier;
 	float AbsoluteMaxValue;
+	int DefaultModifierValue;
+	int RandomizerRangeOverride;
+	unsigned __int32 bUsed : 1;
+	unsigned __int32 bCalculateAsPercent : 1;
+	unsigned __int32 bDisplayAsPercent : 1;
+	unsigned __int32 bRequiresSubmerged : 1;
+	unsigned __int32 bPreventIfSubmerged : 1;
+	unsigned __int32 bHideStatFromTooltip : 1;
 
 	// Fields
 
@@ -2615,37 +2619,42 @@ struct FCustomItemDoubles
 
 struct FCustomItemData
 {
-	FName CustomDataName;
-	TArray<FString, TSizedDefaultAllocator<32> > CustomDataStrings;
-	TArray<float, TSizedDefaultAllocator<32> > CustomDataFloats;
-	TArray<UObject*, TSizedDefaultAllocator<32> > CustomDataObjects;
-	TArray<UClass*, TSizedDefaultAllocator<32> > CustomDataClasses;
-	TArray<FName, TSizedDefaultAllocator<32> > CustomDataNames;
+
 	FCustomItemByteArrays CustomDataBytes;
 	FCustomItemDoubles CustomDataDoubles;
+	TArray<FString, TSizedDefaultAllocator<32>> CustomDataStrings;
+	TArray<float, TSizedDefaultAllocator<32>> CustomDataFloats;
+	TArray<UObject*, TSizedDefaultAllocator<32>> CustomDataObjects;
+	TArray<UClass*, TSizedDefaultAllocator<32>> CustomDataClasses;
+	TArray<FName, TSizedDefaultAllocator<32>> CustomDataNames;
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> UniquePaintingIdMap;
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32>> PaintingRevisionMap;
+	FName CustomDataName;
+	TArray<TSoftClassPtr<UObject>, TSizedDefaultAllocator<32>> CustomDataSoftClasses;
 
 	// Fields
 
-	FName& CustomDataNameField() { return *GetNativePointerField<FName*>(this, "FCustomItemData.CustomDataName"); }
+	FCustomItemByteArrays& CustomDataBytesField() { return *GetNativePointerField<FCustomItemByteArrays*>(this, "FCustomItemData.CustomDataBytes"); }
+	FCustomItemDoubles& CustomDataDoublesField() { return *GetNativePointerField<FCustomItemDoubles*>(this, "FCustomItemData.CustomDataDoubles"); }
 	TArray<FString, TSizedDefaultAllocator<32> >& CustomDataStringsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataStrings"); }
 	TArray<float, TSizedDefaultAllocator<32> >& CustomDataFloatsField() { return *GetNativePointerField<TArray<float, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataFloats"); }
 	TArray<UObject*, TSizedDefaultAllocator<32> >& CustomDataObjectsField() { return *GetNativePointerField<TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataObjects"); }
 	TArray<UClass*, TSizedDefaultAllocator<32> >& CustomDataClassesField() { return *GetNativePointerField<TArray<UClass*, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataClasses"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& CustomDataNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataNames"); }
-	FCustomItemByteArrays& CustomDataBytesField() { return *GetNativePointerField<FCustomItemByteArrays*>(this, "FCustomItemData.CustomDataBytes"); }
-	FCustomItemDoubles& CustomDataDoublesField() { return *GetNativePointerField<FCustomItemDoubles*>(this, "FCustomItemData.CustomDataDoubles"); }
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& UniquePaintingIdMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.UniquePaintingIdMap"); }
 	TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >& PaintingRevisionMapField() { return *GetNativePointerField<TArray<FPaintingKeyValue, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.PaintingRevisionMap"); }
+	FName& CustomDataNameField() { return *GetNativePointerField<FName*>(this, "FCustomItemData.CustomDataName"); }
+	TArray<TSoftClassPtr<UObject>, TSizedDefaultAllocator<32> >& CustomDataSoftClassesField() { return *GetNativePointerField<TArray<TSoftClassPtr<UObject>, TSizedDefaultAllocator<32> >*>(this, "FCustomItemData.CustomDataSoftClasses"); }
 
 	// Bitfields
 
 
 	// Functions
 
+	bool Serialize(FArchive* Ar) { return NativeCall<bool, FArchive*>(this, "FCustomItemData.Serialize(FArchive&)", Ar); }
+	FCustomItemData& operator=(FCustomItemData* __that) { return NativeCall<FCustomItemData&, FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&&)", __that); }
+	FCustomItemData& operator=(const FCustomItemData* __that) { return NativeCall<FCustomItemData&, const FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&)", __that); }
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemData.StaticStruct()"); }
-	FCustomItemData* operator=(const FCustomItemData* __that) { return NativeCall<FCustomItemData*, const FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&)", __that); }
 };
 
 struct FWeightedObjectList
@@ -2844,27 +2853,6 @@ struct FPointDamageEvent : FDamageEvent
 	int GetTypeID()const { return NativeCall<int>(this, "FPointDamageEvent.GetTypeID()"); }
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPointDamageEvent.StaticStruct()"); }
 	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FPointDamageEvent.IsOfType(int)", InID); }
-};
-
-struct FTopLevelAssetPath
-{
-	// Fields
-
-	FName& PackageNameField() { return *GetNativePointerField<FName*>(this, "FTopLevelAssetPath.PackageName"); }
-	FName& AssetNameField() { return *GetNativePointerField<FName*>(this, "FTopLevelAssetPath.AssetName"); }
-
-	// Bitfields
-
-
-	// Functions
-
-	//void FTopLevelAssetPath(const FString* Path) { NativeCall<void, const FString*>(this, "FTopLevelAssetPath.FTopLevelAssetPath(FString&)", Path); }
-	void AppendString(TStringBuilderBase<wchar_t>* Builder) { NativeCall<void, TStringBuilderBase<wchar_t>*>(this, "FTopLevelAssetPath.AppendString(TStringBuilderBase<wchar_t>&)", Builder); }
-	FString* ToString(FString* result) { return NativeCall<FString*, FString*>(this, "FTopLevelAssetPath.ToString(FString&)", result); }
-	//void ToString(FString* OutString) { NativeCall<void, FString*>(this, "FTopLevelAssetPath.ToString(FString&)", OutString); }
-	bool TrySetPath(TStringView<wchar_t>* Path) { return NativeCall<bool, TStringView<wchar_t>*>(this, "FTopLevelAssetPath.TrySetPath(TStringView<wchar_t>)", Path); }
-	bool ExportTextItem(FString* ValueStr, const FTopLevelAssetPath* DefaultValue, UObject* Parent, int PortFlags, UObject* ExportRootScope) { return NativeCall<bool, FString*, const FTopLevelAssetPath*, UObject*, int, UObject*>(this, "FTopLevelAssetPath.ExportTextItem(FString&,FTopLevelAssetPath&,UObject*,int,UObject*)", ValueStr, DefaultValue, Parent, PortFlags, ExportRootScope); }
-	bool ImportTextItem(const wchar_t** Buffer, int PortFlags, UObject* Parent, FOutputDevice* ErrorText, FArchive* InSerializingArchive) { return NativeCall<bool, const wchar_t**, int, UObject*, FOutputDevice*, FArchive*>(this, "FTopLevelAssetPath.ImportTextItem(wchar_t*&,int,UObject*,FOutputDevice*,FArchive*)", Buffer, PortFlags, Parent, ErrorText, InSerializingArchive); }
 };
 
 struct FUserCosmeticInfo
@@ -3203,4 +3191,27 @@ struct FFunctionParams_NoArrays
 	void CopyFunctionParams(const FFunctionParams_NoArrays* InParams) { NativeCall<void, const FFunctionParams_NoArrays*>(this, "FFunctionParams_NoArrays.CopyFunctionParams(FFunctionParams_NoArrays&)", InParams); }
 	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FFunctionParams_NoArrays.StaticStruct()"); }
 
+};
+
+struct FStructureVariant
+{
+	// Fields
+
+	FString& VariantNameField() { return *GetNativePointerField<FString*>(this, "FStructureVariant.VariantName"); }
+	FName& VariantTagField() { return *GetNativePointerField<FName*>(this, "FStructureVariant.VariantTag"); }
+	bool& bUseBPAllowSwitchToVariantField() { return *GetNativePointerField<bool*>(this, "FStructureVariant.bUseBPAllowSwitchToVariant"); }
+	TSoftObjectPtr<UStaticMesh>& MeshField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "FStructureVariant.Mesh"); }
+	bool& bUseMeshTransformField() { return *GetNativePointerField<bool*>(this, "FStructureVariant.bUseMeshTransform"); }
+	UE::Math::TTransform<double>& MeshTransformField() { return *GetNativePointerField<UE::Math::TTransform<double>*>(this, "FStructureVariant.MeshTransform"); }
+	TSoftObjectPtr<UGeometryCollection>& DestroyedMeshOverrideField() { return *GetNativePointerField<TSoftObjectPtr<UGeometryCollection>*>(this, "FStructureVariant.DestroyedMeshOverride"); }
+	TArray<FDestructionGeoCollectionInfo, TSizedDefaultAllocator<32> >& DestroyedMeshesOverrideField() { return *GetNativePointerField<TArray<FDestructionGeoCollectionInfo, TSizedDefaultAllocator<32> >*>(this, "FStructureVariant.DestroyedMeshesOverride"); }
+	TSoftObjectPtr<UTexture2D>& VariantIconField() { return *GetNativePointerField<TSoftObjectPtr<UTexture2D>*>(this, "FStructureVariant.VariantIcon"); }
+
+	// Bitfields
+
+
+	// Functions
+
+	FStructureVariant& operator=(FStructureVariant* __that) { return NativeCall<FStructureVariant&, FStructureVariant*>(this, "FStructureVariant.operator=(FStructureVariant&&)", __that); }
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FStructureVariant.StaticStruct()"); }
 };
