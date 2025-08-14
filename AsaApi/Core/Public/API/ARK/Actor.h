@@ -2378,7 +2378,7 @@ struct AShooterPlayerState : APlayerState
     void ServerRequestSpawnPointsForDownloadedCharacters(unsigned long PlayerDataID, int IgnoreBedID) { NativeCall<void, unsigned long, int>(this, "AShooterPlayerState.ServerRequestSpawnPointsForDownloadedCharacters(unsigned__int64,int)", PlayerDataID, IgnoreBedID); }
     void ServerRequestChangePlayerData(FPrimalPlayerCharacterConfigStructReplicated* PlayerCharacterConfig) { NativeCall<void, FPrimalPlayerCharacterConfigStructReplicated*>(this, "AShooterPlayerState.ServerRequestChangePlayerData(FPrimalPlayerCharacterConfigStructReplicated)", PlayerCharacterConfig); }
     void ServerTribeRequestNewRallyPoint_Implementation(FTeamPingData* RallyPointData) { NativeCall<void, FTeamPingData*>(this, "AShooterPlayerState.ServerTribeRequestNewRallyPoint_Implementation(FTeamPingData)", RallyPointData); }
-    bool HasEngram(TSubclassOf<UPrimalItem> ItemClass) { return NativeCall<bool, TSubclassOf<UPrimalItem>>(this, "AShooterPlayerState.HasEngram(TSubclassOf<UPrimalItem>)", ItemClass); }
+    bool HasEngram(TSubclassOf<UPrimalItem> ItemClass) { return NativeCall<bool, TSubclassOf<UPrimalItem>&>(this, "AShooterPlayerState.HasEngram(TSubclassOf<UPrimalItem>)", ItemClass); }
     void NotifyPlayerLeft_Implementation(const FString& ThePlayerName) { NativeCall<void, const FString&>(this, "AShooterPlayerState.NotifyPlayerLeft_Implementation(FString&)", ThePlayerName); }
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >& OutLifetimeProps) const { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >&>(this, "AShooterPlayerState.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
     void ClientReceiveSpawnPoints_Implementation(const TArray<FSpawnPointInfo, TSizedDefaultAllocator<32> >& SpawnPointsInfos) { NativeCall<void, const TArray<FSpawnPointInfo, TSizedDefaultAllocator<32> >&>(this, "AShooterPlayerState.ClientReceiveSpawnPoints_Implementation(TArray<FSpawnPointInfo,TSizedDefaultAllocator<32>>&)", SpawnPointsInfos); }
@@ -6748,6 +6748,25 @@ struct AShooterCharacter : APrimalCharacter
 
 };
 
+struct UPrimalLocalProfile : UObject {
+    
+    // Fields
+
+    // Bitfields
+    
+    // Functions
+    
+    void AddArkTributeDino(const FARKTributeDino *Dino) { NativeCall<void, const FARKTributeDino *>(this, "UPrimalLocalProfile.AddArkTributeDino(FARKTributeDino&)", Dino); }
+    void AddArkTributeDino(APrimalDinoCharacter *ArkDino) { NativeCall<void, APrimalDinoCharacter *>(this, "UPrimalLocalProfile.AddArkTributeDino(APrimalDinoCharacter*)", ArkDino); }
+    void AddArkTributePlayerData(FArkTributePlayerData *ArkPlayerData) { NativeCall<void, FArkTributePlayerData *>(this, "UPrimalLocalProfile.AddArkTributePlayerData(FArkTributePlayerData)", ArkPlayerData); }
+    void RemoveArkTributeDinoDataAtIndex(int DinoID1, int DinoID2) { NativeCall<void, int, int>(this, "UPrimalLocalProfile.RemoveArkTributeDinoDataAtIndex(int,int)", DinoID1, DinoID2); }
+    void GetArkTributeDinosData(TArray<FARKTributeDino> *outArray) { NativeCall<void, TArray<FARKTributeDino> *>(this, "UPrimalLocalProfile.GetArkTributeDinosData()", outArray); }
+    int GetNumArkTributeDinos() const { return NativeCall<int>(this, "UPrimalLocalProfile.GetNumArkTributeDinos()"); }
+    int GetArkTributeInventoryCount() const { return NativeCall<int>(this, "UPrimalLocalProfile.GetArkTributeInventoryCount()"); }
+    void UpdateArkTributeDino(TArray<unsigned char, TSizedDefaultAllocator<32>> *DinoData, unsigned int DinoID1, unsigned int DinoID2, FString *NameInMap) { NativeCall<void, TArray<unsigned char, TSizedDefaultAllocator<32>> *, unsigned int, unsigned int, FString *>( this, "UPrimalLocalProfile.UpdateArkTributeDino(TArray<unsignedchar,TSizedDefaultAllocator<32>>,unsignedint,unsignedint,FString)", DinoData, DinoID1, DinoID2, NameInMap); }
+
+};
+
 struct UPrimalPlayerData : UObject
 {
     // Fields
@@ -8468,6 +8487,7 @@ struct APrimalDinoCharacter : APrimalCharacter
     bool SetTurretMode(bool enabled) { return NativeCall<bool, bool>(this, "APrimalDinoCharacter.SetTurretMode(bool)", enabled); }
     void UpdateBabyCuddling(long double NewBabyNextCuddleTime, unsigned __int8 NewBabyCuddleType, TSubclassOf<UPrimalItem> NewBabyCuddleFood) { NativeCall<void, long double, unsigned __int8, TSubclassOf<UPrimalItem>&>(this, "APrimalDinoCharacter.UpdateBabyCuddling(double,unsignedchar,TSubclassOf<UPrimalItem>)", NewBabyNextCuddleTime, NewBabyCuddleType, NewBabyCuddleFood); }
     void UpdateImprintingDetails(const FString* NewImprinterName, const FString* NewImprinterPlayerUniqueNetId) { NativeCall<void, const FString*, const FString*>(this, "APrimalDinoCharacter.UpdateImprintingDetails(FString&,FString&)", NewImprinterName, NewImprinterPlayerUniqueNetId); }
+    void UpdateImprintingDetailsForController(const AShooterPlayerController* controller) { NativeCall<void, const AShooterPlayerController*>(this, "APrimalDinoCharacter.UpdateImprintingDetailsForController(AShooterPlayerController*)", controller); }
     void UpdateImprintingQuality(float NewImprintingQuality) { NativeCall<void, float>(this, "APrimalDinoCharacter.UpdateImprintingQuality(float)", NewImprintingQuality); }
     void UpdateTribeGroupRanks(unsigned __int8 NewTribeGroupPetOrderingRank, unsigned __int8 NewTribeGroupPetRidingRank) { NativeCall<void, unsigned __int8, unsigned __int8>(this, "APrimalDinoCharacter.UpdateTribeGroupRanks(unsignedchar,unsignedchar)", NewTribeGroupPetOrderingRank, NewTribeGroupPetRidingRank); }
     static void StaticRegisterNativesAPrimalDinoCharacter() { NativeCall<void>(nullptr, "APrimalDinoCharacter.StaticRegisterNativesAPrimalDinoCharacter()"); }
