@@ -14,6 +14,8 @@ Discord: https://discord.gg/2uRNp99M9r
 - `\ARK\ShooterGame\Win64\logs\ArkApi.log`
 - `\ARK\ShooterGame\Saved\Logs`
 
+- To compile AsaApi you need the `14.39.33519` platform toolset version
+
 ## Template:
 Community member TheMollusk has provided a template Visual Studio project [here](https://github.com/MolluskARK/ASA-Plugin-Template).
 
