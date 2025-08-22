@@ -40,6 +40,66 @@ struct APrimalBotAIController : APrimalDinoAIController
     //UPrimalBotRidingComponent* GetBotRidingComponent(const APrimalDinoCharacter* Dino) { return NativeCall<UPrimalBotRidingComponent*, const APrimalDinoCharacter*>(this, "APrimalBotAIController.GetBotRidingComponent(APrimalDinoCharacter*)", Dino); }
 };
 
+struct FPrimalBotCharacterSparseClassData : FPrimalDinoCharacterSparseClassData
+{
+    // Fields
+
+    TArray<FLinearColor, TSizedDefaultAllocator<32> >& RandomHairDyeColorsField() { return *GetNativePointerField<TArray<FLinearColor, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.RandomHairDyeColors"); }
+    TArray<FLinearColor, TSizedDefaultAllocator<32> >& RandomHairTipDyeColorsField() { return *GetNativePointerField<TArray<FLinearColor, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.RandomHairTipDyeColors"); }
+    TArray<FLinearColor, TSizedDefaultAllocator<32> >& RandomFacialHairDyeColorsField() { return *GetNativePointerField<TArray<FLinearColor, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.RandomFacialHairDyeColors"); }
+    TArray<FLinearColor, TSizedDefaultAllocator<32> >& RandomFacialHairTipDyeColorsField() { return *GetNativePointerField<TArray<FLinearColor, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.RandomFacialHairTipDyeColors"); }
+    UAnimSequence*& AlternateDinoRidingAnimationField() { return *GetNativePointerField<UAnimSequence**>(this, "FPrimalBotCharacterSparseClassData.AlternateDinoRidingAnimation"); }
+    UAnimSequence*& AlternateDinoRidingMoveAnimationField() { return *GetNativePointerField<UAnimSequence**>(this, "FPrimalBotCharacterSparseClassData.AlternateDinoRidingMoveAnimation"); }
+    TArray<UAnimMontage*, TSizedDefaultAllocator<32> >& AcquiredTargetAnimationsField() { return *GetNativePointerField<TArray<UAnimMontage*, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.AcquiredTargetAnimations"); }
+    float& AcquiredTargetAnimPercentageToPlayField() { return *GetNativePointerField<float*>(this, "FPrimalBotCharacterSparseClassData.AcquiredTargetAnimPercentageToPlay"); }
+    TArray<int, TSizedDefaultAllocator<32> >& NonWeaponAttacksField() { return *GetNativePointerField<TArray<int, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.NonWeaponAttacks"); }
+    int& DefaultEquippedWeaponIndexField() { return *GetNativePointerField<int*>(this, "FPrimalBotCharacterSparseClassData.DefaultEquippedWeaponIndex"); }
+    float& UnequipDelayWhenNotInCombatField() { return *GetNativePointerField<float*>(this, "FPrimalBotCharacterSparseClassData.UnequipDelayWhenNotInCombat"); }
+    float& WeaponSwitchMinTimeField() { return *GetNativePointerField<float*>(this, "FPrimalBotCharacterSparseClassData.WeaponSwitchMinTime"); }
+    FName& WeaponDefaultAttachPointField() { return *GetNativePointerField<FName*>(this, "FPrimalBotCharacterSparseClassData.WeaponDefaultAttachPoint"); }
+    bool& HasMeleeWeaponField() { return *GetNativePointerField<bool*>(this, "FPrimalBotCharacterSparseClassData.HasMeleeWeapon"); }
+    float& MaxShieldBlockDamageField() { return *GetNativePointerField<float*>(this, "FPrimalBotCharacterSparseClassData.MaxShieldBlockDamage"); }
+    float& ShieldBlockDamageRecoveryRateField() { return *GetNativePointerField<float*>(this, "FPrimalBotCharacterSparseClassData.ShieldBlockDamageRecoveryRate"); }
+    float& ShieldBlockDamageTimeToStartRecoveringField() { return *GetNativePointerField<float*>(this, "FPrimalBotCharacterSparseClassData.ShieldBlockDamageTimeToStartRecovering"); }
+    TSoftClassPtr<APrimalBuff>& BuffToGiveOnShieldBlockDamageDepletedField() { return *GetNativePointerField<TSoftClassPtr<APrimalBuff>*>(this, "FPrimalBotCharacterSparseClassData.BuffToGiveOnShieldBlockDamageDepleted"); }
+    TSoftClassPtr<APrimalBuff>& BuffToGiveToDamageCauserOnShieldBlockDamageDepletedField() { return *GetNativePointerField<TSoftClassPtr<APrimalBuff>*>(this, "FPrimalBotCharacterSparseClassData.BuffToGiveToDamageCauserOnShieldBlockDamageDepleted"); }
+    USoundBase*& OnShieldBlockDamageDepletedSoundToPlayField() { return *GetNativePointerField<USoundBase**>(this, "FPrimalBotCharacterSparseClassData.OnShieldBlockDamageDepletedSoundToPlay"); }
+    UAnimSequence*& DefaultShieldAnimationField() { return *GetNativePointerField<UAnimSequence**>(this, "FPrimalBotCharacterSparseClassData.DefaultShieldAnimation"); }
+    UAnimSequence*& ShieldCoverAnimationField() { return *GetNativePointerField<UAnimSequence**>(this, "FPrimalBotCharacterSparseClassData.ShieldCoverAnimation"); }
+    TArray<TSoftClassPtr<APrimalBuff>, TSizedDefaultAllocator<32> >& BuffsPreventBlockingWithShieldField() { return *GetNativePointerField<TArray<TSoftClassPtr<APrimalBuff>, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.BuffsPreventBlockingWithShield"); }
+    TArray<TSoftClassPtr<APrimalDinoCharacter>, TSizedDefaultAllocator<32> >& RideableDinoClassesField() { return *GetNativePointerField<TArray<TSoftClassPtr<APrimalDinoCharacter>, TSizedDefaultAllocator<32> >*>(this, "FPrimalBotCharacterSparseClassData.RideableDinoClasses"); }
+    //TSubclassOf<UAnimInstance>& DefaultAnimBlueprintField() { return *GetNativePointerField<TSubclassOf<UAnimInstance>*>(this, "FPrimalBotCharacterSparseClassData.DefaultAnimBlueprint"); }
+    UAnimSequence*& DefaultDinoRidingAnimationField() { return *GetNativePointerField<UAnimSequence**>(this, "FPrimalBotCharacterSparseClassData.DefaultDinoRidingAnimation"); }
+    UAnimSequence*& DefaultDinoRidingMoveAnimationField() { return *GetNativePointerField<UAnimSequence**>(this, "FPrimalBotCharacterSparseClassData.DefaultDinoRidingMoveAnimation"); }
+    UAnimMontage*& DefaultWeaponEquipAnimationField() { return *GetNativePointerField<UAnimMontage**>(this, "FPrimalBotCharacterSparseClassData.DefaultWeaponEquipAnimation"); }
+    UAnimMontage*& DefaultWeaponUnequipAnimationField() { return *GetNativePointerField<UAnimMontage**>(this, "FPrimalBotCharacterSparseClassData.DefaultWeaponUnequipAnimation"); }
+    int& BotVoiceCollectionIndexField() { return *GetNativePointerField<int*>(this, "FPrimalBotCharacterSparseClassData.BotVoiceCollectionIndex"); }
+
+    // Bitfields
+
+    BitFieldValue<bool, unsigned __int32> bUseBPOverrideColorIDForEquipmentAttachmentField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPOverrideColorIDForEquipmentAttachment" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPGetMinAttackRangeField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPGetMinAttackRange" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPGetMaxAttackRangeField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPGetMaxAttackRange" }; }
+    BitFieldValue<bool, unsigned __int32> bUnequipWeaponWhenNotInCombatField() { return { this, "FPrimalBotCharacterSparseClassData.bUnequipWeaponWhenNotInCombat" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPCanEquipWeaponField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPCanEquipWeapon" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPGetMeleeSocketLocationField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPGetMeleeSocketLocation" }; }
+    BitFieldValue<bool, unsigned __int32> bInstantWeaponOnlyDamageTargetField() { return { this, "FPrimalBotCharacterSparseClassData.bInstantWeaponOnlyDamageTarget" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPFireInstantWeaponField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPFireInstantWeapon" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPOverrideInstantWeaponConfigField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPOverrideInstantWeaponConfig" }; }
+    BitFieldValue<bool, unsigned __int32> bUseMeleeDamageAmountAsBaseInstantDamageField() { return { this, "FPrimalBotCharacterSparseClassData.bUseMeleeDamageAmountAsBaseInstantDamage" }; }
+    BitFieldValue<bool, unsigned __int32> bScaleInstantDamageWithDinoDamageField() { return { this, "FPrimalBotCharacterSparseClassData.bScaleInstantDamageWithDinoDamage" }; }
+    BitFieldValue<bool, unsigned __int32> bDebugInstantWeaponTracesField() { return { this, "FPrimalBotCharacterSparseClassData.bDebugInstantWeaponTraces" }; }
+    BitFieldValue<bool, unsigned __int32> bUseBPCanRideDinoField() { return { this, "FPrimalBotCharacterSparseClassData.bUseBPCanRideDino" }; }
+    BitFieldValue<bool, unsigned __int32> bUsingCustomBotVoiceCollectionField() { return { this, "FPrimalBotCharacterSparseClassData.bUsingCustomBotVoiceCollection" }; }
+    BitFieldValue<bool, unsigned __int32> bUsingRandomBotVoiceCollectionField() { return { this, "FPrimalBotCharacterSparseClassData.bUsingRandomBotVoiceCollection" }; }
+
+    // Functions
+
+    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalBotCharacterSparseClassData.StaticStruct()"); }
+    FPrimalBotCharacterSparseClassData& operator=(const FPrimalBotCharacterSparseClassData* __that) { return NativeCall<FPrimalBotCharacterSparseClassData&, const FPrimalBotCharacterSparseClassData*>(this, "FPrimalBotCharacterSparseClassData.operator=(FPrimalBotCharacterSparseClassData&)", __that); }
+
+};
+
 struct APrimalBotCharacter : APrimalDinoCharacter
 {
     // Fields
@@ -78,7 +138,11 @@ struct APrimalBotCharacter : APrimalDinoCharacter
     float GetMaxAttackRange() { return NativeCall<float>(this, "APrimalBotCharacter.GetMaxAttackRange()"); }
     void InitializeAnimOverrides() { NativeCall<void>(this, "APrimalBotCharacter.InitializeAnimOverrides()"); }
     UAnimSequence* GetBotAnimSequenceOverride(UAnimSequence* AnimSeq) { return NativeCall<UAnimSequence*, UAnimSequence*>(this, "APrimalBotCharacter.GetBotAnimSequenceOverride(UAnimSequence*)", AnimSeq); }
+    FPrimalBotCharacterSparseClassData* GetPrimalBotCharacterSparseClassData(EGetSparseClassDataMethod GetMethod) { return NativeCall<FPrimalBotCharacterSparseClassData*, EGetSparseClassDataMethod>(this, "APrimalBotCharacter.GetPrimalBotCharacterSparseClassData(EGetSparseClassDataMethod)", GetMethod); }
+
+
 };
+
 struct AEmitter : AActor { };
 struct APrimalEmitterSpawnable : AEmitter {};
 struct APrimalBuff : APrimalEmitterSpawnable
@@ -452,7 +516,7 @@ struct APrimalBuff : APrimalEmitterSpawnable
     void ClientReceiveRelatedMissionData_Implementation(AMissionType* InMission, bool InHasRelatedMission) { NativeCall<void, AMissionType*, bool>(this, "APrimalBuff.ClientReceiveRelatedMissionData_Implementation(AMissionType*,bool)", InMission, InHasRelatedMission); }
     void GetHUDElements(APlayerController* ForPC, TArray<FHUDElement, TSizedDefaultAllocator<32> >* OutHUDElements) { NativeCall<void, APlayerController*, TArray<FHUDElement, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff.GetHUDElements(APlayerController*,TArray<FHUDElement,TSizedDefaultAllocator<32>>&)", ForPC, OutHUDElements); }
     static APrimalBuff* StaticAddBuffToSpectatorController(TSubclassOf<APrimalBuff> BuffClass, AShooterPlayerController* SpectatorPlayerController) { return NativeCall<APrimalBuff*, TSubclassOf<APrimalBuff>, AShooterPlayerController*>(nullptr, "APrimalBuff.StaticAddBuffToSpectatorController(TSubclassOf<APrimalBuff>,AShooterPlayerController*)", BuffClass, SpectatorPlayerController); }
-    static APrimalBuff* StaticAddBuff(TSubclassOf<APrimalBuff> BuffClass, APrimalCharacter* ForCharacter, UPrimalItem* AssociatedItem, AActor* DamageCauser, bool bForceOnClient) { return NativeCall<APrimalBuff*, TSubclassOf<APrimalBuff>, APrimalCharacter*, UPrimalItem*, AActor*, bool>(nullptr, "APrimalBuff.StaticAddBuff(TSubclassOf<APrimalBuff>,APrimalCharacter*,UPrimalItem*,AActor*,bool)", BuffClass, ForCharacter, AssociatedItem, DamageCauser, bForceOnClient); }
+    static APrimalBuff* StaticAddBuff(TSubclassOf<APrimalBuff> BuffClass, APrimalCharacter* ForCharacter, UPrimalItem* AssociatedItem, AActor* DamageCauser, bool bForceOnClient) { return NativeCall<APrimalBuff*, TSubclassOf<APrimalBuff>&, APrimalCharacter*, UPrimalItem*, AActor*, bool>(nullptr, "APrimalBuff.StaticAddBuff(TSubclassOf<APrimalBuff>,APrimalCharacter*,UPrimalItem*,AActor*,bool)", BuffClass, ForCharacter, AssociatedItem, DamageCauser, bForceOnClient); }
     bool ExcludePostProcessBlendableMaterial(const UMaterialInterface* BlendableMaterialInterface) { return NativeCall<bool, const UMaterialInterface*>(this, "APrimalBuff.ExcludePostProcessBlendableMaterial(UMaterialInterface*)", BlendableMaterialInterface); }
     void PostProcessModifyBlendableMaterial(const UMaterialInterface* BlendableMaterialInterface, UMaterialInstanceDynamic* MID) { NativeCall<void, const UMaterialInterface*, UMaterialInstanceDynamic*>(this, "APrimalBuff.PostProcessModifyBlendableMaterial(UMaterialInterface*,UMaterialInstanceDynamic*)", BlendableMaterialInterface, MID); }
     bool PreventActorTargeting_Implementation(const AActor* ByActor) { return NativeCall<bool, const AActor*>(this, "APrimalBuff.PreventActorTargeting_Implementation(AActor*)", ByActor); }

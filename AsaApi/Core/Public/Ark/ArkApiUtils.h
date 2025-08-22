@@ -272,10 +272,10 @@ namespace AsaApi
 
 			FString bpFstr(blueprint);
 
-			TSubclassOf<UObject> archetype;
-			UVictoryCore::StringReferenceToClass(&archetype, &bpFstr);
+			TSubclassOf<UPrimalItem> archetype;
+			archetype.uClass = UVictoryCore::BPLoadClass(bpFstr);
 
-			UPrimalItem* item = UPrimalItem::AddNewItem(archetype.uClass, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true);
+			UPrimalItem* item = UPrimalItem::AddNewItem(archetype, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true, false, false);
 
 			if (!item)
 				return false;
@@ -583,8 +583,10 @@ namespace AsaApi
 			if (the_class != nullptr)
 			{
 				FString path;
-				auto the_object = UVictoryCore::GetClassDefaultObject(the_class);
-				the_object->GetPathName(nullptr, &path);
+				TSubclassOf<UObject> subclass;
+				subclass.uClass = the_class;
+				path = UVictoryCore::ClassToStringReference(&subclass);
+
 				if (path.EndsWith("_C"))
 					return "Blueprint'" + path.LeftChop(2) + "'";
 				else
