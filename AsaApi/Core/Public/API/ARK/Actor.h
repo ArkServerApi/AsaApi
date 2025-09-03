@@ -7667,7 +7667,6 @@ struct APrimalDinoCharacter : APrimalCharacter
     float& HUDScaleMultiplierField() { return *GetNativePointerField<float*>(this, "APrimalDinoCharacter.HUDScaleMultiplier"); }
     float& HUDTextScaleMultiplierField() { return *GetNativePointerField<float*>(this, "APrimalDinoCharacter.HUDTextScaleMultiplier"); }
     float& TamedCorpseLifespanField() { return *GetNativePointerField<float*>(this, "APrimalDinoCharacter.TamedCorpseLifespan"); }
-    float& CorpseLifespanNonRelevantField() { return *GetNativePointerField<float*>(this, "APrimalDinoCharacter.CorpseLifespanNonRelevant"); }
     float& MateBoostDamageReceiveMultiplierField() { return *GetNativePointerField<float*>(this, "APrimalDinoCharacter.MateBoostDamageReceiveMultiplier"); }
     float& MateBoostDamageGiveMultiplierField() { return *GetNativePointerField<float*>(this, "APrimalDinoCharacter.MateBoostDamageGiveMultiplier"); }
     float& MateBoostRangeField() { return *GetNativePointerField<float*>(this, "APrimalDinoCharacter.MateBoostRange"); }
