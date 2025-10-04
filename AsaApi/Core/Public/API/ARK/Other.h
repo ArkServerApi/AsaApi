@@ -200,7 +200,7 @@ struct UVictoryCore : UVictoryCoreHighest
 	(UObject* WorldContextObject, UE::Math::TVector<double>* Origin, float Radius, TArray<FOverlappedFoliageElement, TSizedDefaultAllocator<32> >* OutFoliage, bool bVisibleAndActiveOnly, bool bIncludeUsableFoliage, bool bIncludeMeshFoliage, bool bSortByDistance, bool bReverseSort) 
 	{ NativeCall<void, UObject*, UE::Math::TVector<double>*, float, TArray<FOverlappedFoliageElement, TSizedDefaultAllocator<32>>*, bool, bool, bool, bool, bool>(nullptr, "UVictoryCore.ServerSearchFoliage(UObject*,UE::Math::TVector<double>,float,TArray<FOverlappedFoliageElement,TSizedDefaultAllocator<32>>&,bool,bool,bool,bool,bool)",
 		WorldContextObject, Origin, Radius, OutFoliage, bVisibleAndActiveOnly, bIncludeUsableFoliage, bIncludeMeshFoliage, bSortByDistance, bReverseSort); }
-	static FName* GetHitBoneNameFromDamageEvent(FName* result, APrimalCharacter* Character, AController* HitInstigator, const FDamageEvent* DamageEvent, bool bIsPointDamage, const FHitResult* PointHitResult, FName MatchCollisionPresetName) { return NativeCall<FName*, FName*, APrimalCharacter*, AController*, const FDamageEvent*, bool, const FHitResult*, FName>(nullptr, "UVictoryCore.GetHitBoneNameFromDamageEvent(FName*,APrimalCharacter*,AController*,FDamageEvent*,bool,FHitResult*,FName)", result, Character, HitInstigator, DamageEvent, bIsPointDamage, PointHitResult, MatchCollisionPresetName); }
+	static FName* GetHitBoneNameFromDamageEvent(FName* result, APrimalCharacter* Character, AController* HitInstigator, const FDamageEvent* DamageEvent, bool bIsPointDamage, const FHitResult* PointHitResult, FName MatchCollisionPresetName) { return NativeCall<FName*, FName*, APrimalCharacter*, AController*, const FDamageEvent*, bool, const FHitResult*, FName>(nullptr, "UVictoryCore.GetHitBoneNameFromDamageEvent(APrimalCharacter*,AController*,FDamageEvent&,bool,FHitResult&,FName)", result, Character, HitInstigator, DamageEvent, bIsPointDamage, PointHitResult, MatchCollisionPresetName); }
 	static float GetAngleBetweenVectors(const UE::Math::TVector<double>* VectorA, const UE::Math::TVector<double>* VectorB, const UE::Math::TVector<double>* AroundAxis) { return NativeCall<float, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*>(nullptr, "UVictoryCore.GetAngleBetweenVectors(UE::Math::TVector<double>*,UE::Math::TVector<double>*,UE::Math::TVector<double>*)", VectorA, VectorB, AroundAxis); }
 	static float GetAngleBetweenVectorsPure() { return NativeCall<float>(nullptr, "UVictoryCore.GetAngleBetweenVectorsPure()"); }
 	static bool AreRotatorsNearlyEqual(const UE::Math::TRotator<double>* RotatorA, const UE::Math::TRotator<double>* RotatorB, float WithinError) { return NativeCall<bool, const UE::Math::TRotator<double>*, const UE::Math::TRotator<double>*, float>(nullptr, "UVictoryCore.AreRotatorsNearlyEqual(UE::Math::TRotator<double>*,UE::Math::TRotator<double>*,float)", RotatorA, RotatorB, WithinError); }
@@ -939,9 +939,16 @@ struct FBPNetExecParams
 //	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>* OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*>(this, "FDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
 //};
 
+
 struct FDamageEvent
 {
 	// Fields
+	struct FDamageEvent_vtbl* __vftable /*VFT*/;
+	float Impulse;
+	float OriginalDamage;
+	int InstanceBodyIndex;
+	int TypeIndex;
+	TSubclassOf<UDamageType> DamageTypeClass;
 
 	float& ImpulseField() { return *GetNativePointerField<float*>(this, "FDamageEvent.Impulse"); }
 	float& OriginalDamageField() { return *GetNativePointerField<float*>(this, "FDamageEvent.OriginalDamage"); }
@@ -959,6 +966,14 @@ struct FDamageEvent
 	int GetTypeID()const { return NativeCall<int>(this, "FDamageEvent.GetTypeID()"); }
 	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FDamageEvent.IsOfType(int)", InID); }
 
+};
+
+struct /*VFT*/ FDamageEvent_vtbl
+{
+	char pad_0[8];
+	int(__fastcall* GetTypeID)(FDamageEvent*);
+	bool(__fastcall* IsOfType)(FDamageEvent*, int);
+	void(__fastcall* GetBestHitInfo)(FDamageEvent*, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*);
 };
 
 struct FDamageHarvestingEntry
@@ -1063,6 +1078,16 @@ struct FDinoAbilityInfo
 
 struct FDinoAncestorsEntry
 {
+	// Native Fields
+	
+	FString MaleName;
+	unsigned int MaleDinoID1;
+	unsigned int MaleDinoID2;
+	FString FemaleName;
+	unsigned int FemaleDinoID1;
+	unsigned int FemaleDinoID2;
+	 
+	
 	// Fields
 
 	FString& MaleNameField() { return *GetNativePointerField<FString*>(this, "FDinoAncestorsEntry.MaleName"); }
