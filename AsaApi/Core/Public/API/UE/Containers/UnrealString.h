@@ -2273,7 +2273,10 @@ public:
 	UE_NODISCARD static FString FormatAsNumber( int32 InNumber );
 
 	// To allow more efficient memory handling, automatically adds one for the string termination.
-	void Reserve(int32 CharacterCount);
+	FORCEINLINE void Reserve(int32 CharacterCount)
+	{
+		NativeCall<void>(this, "FString.Reserve(int)");
+	}
 
 	/**
 	 * Serializes a string as ANSI char array.

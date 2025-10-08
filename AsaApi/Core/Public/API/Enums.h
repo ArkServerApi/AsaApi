@@ -13229,7 +13229,9 @@ namespace EPrimalEquipmentType
 		Weapon = 0x9,
 		Snapshot = 0xA,
 		Pet = 0xB,
-		MAX = 0xC
+		Cart = 0xC,
+		Gear = 0xD,
+		MAX = 0xE
 	};
 }
 

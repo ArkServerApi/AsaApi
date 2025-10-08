@@ -2561,7 +2561,7 @@ struct AShooterGameMode : APrimalGameMode
 	//void HttpGetDynamicConfigComplete(TSharedPtr<IHttpRequest, 1>* HttpRequest, TSharedPtr<IHttpResponse, 1>* HttpResponse, bool bSucceeded) { NativeCall<void, TSharedPtr<IHttpRequest, 1>*, TSharedPtr<IHttpResponse, 1>*, bool>(this, "AShooterGameMode.HttpGetDynamicConfigComplete(TSharedPtr<IHttpRequest,1>,TSharedPtr<IHttpResponse,1>,bool)", HttpRequest, HttpResponse, bSucceeded); }
 	FString DoGameCommand(const FString& TheCommand) { return NativeCall<FString, const FString&>(this, "AShooterGameMode.DoGameCommand(FString&)", TheCommand); }
 	void LoadWorldFromFileWrapper() { NativeCall<void>(this, "AShooterGameMode.LoadWorldFromFileWrapper()"); }
-	bool AllowTaming(int ForTeam) { return NativeCall<bool, int>(this, "AShooterGameMode.AllowTaming(int)", ForTeam); }
+	bool AllowTaming(int ForTeam, APrimalDinoCharacter* TheDino) { return NativeCall<bool, int, APrimalDinoCharacter*>(this, "AShooterGameMode.AllowTaming(int,APrimalDinoCharacter*)", ForTeam, TheDino); }
 	bool BPIsSpawnpointAllowed_Implementation(APlayerStart* SpawnPoint, AController* Player) const { return NativeCall<bool, APlayerStart*, AController*>(this, "AShooterGameMode.BPIsSpawnpointAllowed_Implementation(APlayerStart*,AController*)", SpawnPoint, Player); }
 	void ForceRepopulateAllHarvestElements(UE::Math::TVector<double> AtPoint, float MaxRangeFromPoint) { NativeCall<void, UE::Math::TVector<double>, float>(this, "AShooterGameMode.ForceRepopulateAllHarvestElements(UE::Math::TVector<double>,float)", AtPoint, MaxRangeFromPoint); }
 	void SetDayCycleSpeed(float speed) { NativeCall<void, float>(this, "AShooterGameMode.SetDayCycleSpeed(float)", speed); }
