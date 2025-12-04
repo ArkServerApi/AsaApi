@@ -53,7 +53,7 @@ struct FStringFormatArg
 	/** Copyable */
 	FStringFormatArg(const FStringFormatArg& RHS)
 	{
-		NativeCall<void, const FStringFormatArg&>(this, "FStringFormatArg.FStringFormatArg(FStringFormatArg&)", RHS);
+		NativeCall<void, const FStringFormatArg&>(this, "FStringFormatArg.FStringFormatArg(wchar_t*)", RHS);
 	}
 	
 private:

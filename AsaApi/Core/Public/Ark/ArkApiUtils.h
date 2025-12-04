@@ -585,7 +585,7 @@ namespace AsaApi
 				FString path;
 				TSubclassOf<UObject> subclass;
 				subclass.uClass = the_class;
-				path = UVictoryCore::ClassToStringReference(&subclass);
+				UVictoryCore::ClassToStringReference(&path, &subclass);
 
 				if (path.EndsWith("_C"))
 					return "Blueprint'" + path.LeftChop(2) + "'";
