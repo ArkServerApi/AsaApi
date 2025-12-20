@@ -32,7 +32,7 @@ namespace API
 		namespace fs = std::filesystem;
 		
 		Log::GetLog()->info("-----------------------------------------------");
-		Log::GetLog()->info("ARK:SA Api V{:.2f}", GetVersion());
+		Log::GetLog()->info("ARK:SA Api V{:.2f} - Beta", GetVersion());
 		Log::GetLog()->info("Brought to you by ArkServerApi");
 		Log::GetLog()->info("https://github.com/orgs/ArkServerApi");
 		Log::GetLog()->info("Website: https://ark-server-api.com");
@@ -99,7 +99,7 @@ namespace API
 				Log::GetLog()->info("Added DLL search directory: {}", std::filesystem::path(w).string());
 			}
 
-			/*if (autoCacheConfig.value("Enable", true)
+			if (autoCacheConfig.value("Enable", true)
 				&& autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) != ""
 				&& (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile)))
 			{
@@ -113,7 +113,7 @@ namespace API
 
 				if (fs::exists(localFile))
 					fs::remove(localFile);
-			}*/
+			}
 
 			if (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile))
 			{
