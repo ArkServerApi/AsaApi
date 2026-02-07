@@ -2029,6 +2029,11 @@ struct FUniqueNetIdRepl : FUniqueNetIdWrapper
     FUniqueNetIdRepl& UniqueIdField() { return *GetNativePointerField<FUniqueNetIdRepl*>(this, "UNetConnection.PlayerId"); }
 };*/
 
+struct UNetDriver : UObject
+{
+    double& ElapsedTimeField() { return *GetNativePointerField<double*>(this, "UNetDriver.ElapsedTime"); }
+};
+
 struct FNetResult
 {
     unsigned __int64 Result;
@@ -3858,7 +3863,7 @@ struct AShooterPlayerController : ABasePlayerController
     void GiveToMe() { NativeCall<void>(this, "AShooterPlayerController.GiveToMe()"); }
     void GiveActorToMe(AActor* anAct, bool bNotifyNetwork) { NativeCall<void, AActor*, bool>(this, "AShooterPlayerController.GiveActorToMe(AActor*,bool)", anAct, bNotifyNetwork); }
     void ServerRequestLevelUp_Implementation(UPrimalCharacterStatusComponent* forStatusComp, EPrimalCharacterStatusValue::Type ValueType) { NativeCall<void, UPrimalCharacterStatusComponent*, EPrimalCharacterStatusValue::Type>(this, "AShooterPlayerController.ServerRequestLevelUp_Implementation(UPrimalCharacterStatusComponent*,EPrimalCharacterStatusValue::Type)", forStatusComp, ValueType); }
-    void AddExperience(float HowMuch, bool fromTribeShare, bool bPreventSharingWithTribe) { NativeCall<void, float, bool, bool>(this, "AShooterPlayerController.AddExperience(float,bool,bool)", HowMuch, fromTribeShare, bPreventSharingWithTribe); }
+    void AddExperience(float HowMuch, bool fromTribeShare, bool bPreventSharingWithTribe, EXPType::Type XPType) { NativeCall<void, float, bool, bool, EXPType::Type>(this, "AShooterPlayerController.AddExperience(float,bool,bool,EXPType::Type)", HowMuch, fromTribeShare, bPreventSharingWithTribe, XPType); }
     void ServerRequestSetPin_Implementation(UObject* forTarget, int PinValue, bool bIsSetting, int TheCustomIndex) { NativeCall<void, UObject*, int, bool, int>(this, "AShooterPlayerController.ServerRequestSetPin_Implementation(UObject*,int,bool,int)", forTarget, PinValue, bIsSetting, TheCustomIndex); }
     void ClientNotifyTribeXP_Implementation(float HowMuch) { NativeCall<void, float>(this, "AShooterPlayerController.ClientNotifyTribeXP_Implementation(float)", HowMuch); }
     void ClientHUDNotificationTypeParams_Implementation(int MessageType, int MessageParam1, int MessageParam2, UObject* ObjectParam1) { NativeCall<void, int, int, int, UObject*>(this, "AShooterPlayerController.ClientHUDNotificationTypeParams_Implementation(int,int,int,UObject*)", MessageType, MessageParam1, MessageParam2, ObjectParam1); }
@@ -5693,7 +5698,8 @@ struct APrimalCharacter : ACharacter
     bool AllowSaving() { return NativeCall<bool>(this, "APrimalCharacter.AllowSaving()"); }
     bool IsWatered() { return NativeCall<bool>(this, "APrimalCharacter.IsWatered()"); }
     void OnDeserializedByGame(EOnDeserializationType::Type DeserializationType) { NativeCall<void, EOnDeserializationType::Type>(this, "APrimalCharacter.OnDeserializedByGame(EOnDeserializationType::Type)", DeserializationType); }
-    int LevelUpPlayerAddedStat(TEnumAsByte<EPrimalCharacterStatusValue::Type> StatToLevel, int NumLevels, AShooterPlayerController* ForPlayer) { return NativeCall<int, TEnumAsByte<EPrimalCharacterStatusValue::Type>, int, AShooterPlayerController*>(this, "APrimalCharacter.LevelUpPlayerAddedStat(TEnumAsByte<EPrimalCharacterStatusValue::Type>,int,AShooterPlayerController*)", StatToLevel, NumLevels, ForPlayer); }
+    int LevelUpPlayerAddedStat(TEnumAsByte<EPrimalCharacterStatusValue::Type> StatToLevel, int NumLevels, AShooterPlayerController* ForPlayer, bool bDontRequirePCForDino) { return NativeCall<int, TEnumAsByte<EPrimalCharacterStatusValue::Type>, int, AShooterPlayerController*, bool>(this, "APrimalCharacter.LevelUpPlayerAddedStat(TEnumAsByte<EPrimalCharacterStatusValue::Type>,int,AShooterPlayerController*,bool)", StatToLevel, NumLevels, ForPlayer, bDontRequirePCForDino); }
+    float GetCurrentStatusValue(EPrimalCharacterStatusValue::Type valueType) { return NativeCall<float, EPrimalCharacterStatusValue::Type>(this, "APrimalCharacter.GetCurrentStatusValue(EPrimalCharacterStatusValue::Type)", valueType); }
     void CheckJumpInput(float DeltaTime) { NativeCall<void, float>(this, "APrimalCharacter.CheckJumpInput(float)", DeltaTime); }
     void ServerTryPoop_Implementation() { NativeCall<void>(this, "APrimalCharacter.ServerTryPoop_Implementation()"); }
     void ClientFailedPoop_Implementation() { NativeCall<void>(this, "APrimalCharacter.ClientFailedPoop_Implementation()"); }
@@ -9446,7 +9452,7 @@ struct AShooterWeapon : AActor
     float GetWeaponDamageMultiplier() { return NativeCall<float>(this, "AShooterWeapon.GetWeaponDamageMultiplier"); }
     void TickMeleeSwing(float DeltaTime) { NativeCall<void, float>(this, "AShooterWeapon.TickMeleeSwing", DeltaTime); }
     void ClientStartMuzzleFX_Implementation() { NativeCall<void>(this, "AShooterWeapon.ClientStartMuzzleFX_Implementation"); }
-    void CosumeMeleeHitDurability(float DurabilityConsumptionMultiplier) { NativeCall<void, float>(this, "AShooterWeapon.CosumeMeleeHitDurability", DurabilityConsumptionMultiplier); }
+    void CosumeMeleeHitDurability(float DurabilityConsumptionMultiplier, bool bFromHittingFoliage) { NativeCall<void, float, bool>(this, "AShooterWeapon.CosumeMeleeHitDurability(float,bool)", DurabilityConsumptionMultiplier, bFromHittingFoliage); }
     void PlayWeaponBreakAnimation_Implementation() { NativeCall<void>(this, "AShooterWeapon.PlayWeaponBreakAnimation_Implementation"); }
     void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "AShooterWeapon.Tick", DeltaSeconds); }
     bool IsFiring() { return NativeCall<bool>(this, "AShooterWeapon.IsFiring"); }
@@ -10569,6 +10575,7 @@ struct ADayCycleManager : AInfo
     float& SkyWeatherSequenceBlend_RainyField() { return *GetNativePointerField<float*>(this, "ADayCycleManager.SkyWeatherSequenceBlend_Rainy"); }
     float& SkyWeatherSequenceBlend_FogField() { return *GetNativePointerField<float*>(this, "ADayCycleManager.SkyWeatherSequenceBlend_Fog"); }
     bool& bLastReplicatedIsRainingField() { return *GetNativePointerField<bool*>(this, "ADayCycleManager.bLastReplicatedIsRaining"); }
+    bool& bIsRainingField() { return *GetNativePointerField<bool*>(this, "ADayCycleManager.bIsRaining"); }
     USoundBase*& Sound_TransitionToMorningField() { return *GetNativePointerField<USoundBase**>(this, "ADayCycleManager.Sound_TransitionToMorning"); }
     USoundBase*& Sound_TransitionToMidDayField() { return *GetNativePointerField<USoundBase**>(this, "ADayCycleManager.Sound_TransitionToMidDay"); }
     USoundBase*& Sound_TransitionToNightField() { return *GetNativePointerField<USoundBase**>(this, "ADayCycleManager.Sound_TransitionToNight"); }

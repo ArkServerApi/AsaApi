@@ -2,6 +2,17 @@
 
 #include "Actor.h"
 
+struct APrimalStructureItemContainer;
+
+struct FPrimalWirelessReferences
+{
+	TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>& WirelessSourcesField() { return *GetNativePointerField<TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>*>(this, "FPrimalWirelessReferences.WirelessSources"); }
+	TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>& WirelessConsumersField() { return *GetNativePointerField<TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>*>(this, "FPrimalWirelessReferences.WirelessConsumers"); }
+
+	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalWirelessReferences.StaticStruct()"); }
+	~FPrimalWirelessReferences() { NativeCall<void>(this, "FPrimalWirelessReferences.~FPrimalWirelessReferences()"); }
+};
+
 struct FPrimalTargetableActorSparseClassData
 {
     // Fields
@@ -774,6 +785,7 @@ struct APrimalStructure : APrimalTargetableActor
     void SetEnabledPrimarySnappedStructureParent(bool bEnabled) { NativeCall<void, bool>(this, "APrimalStructure.SetEnabledPrimarySnappedStructureParent(bool)", bEnabled); }
     static void StaticRegisterNativesAPrimalStructure() { NativeCall<void>(nullptr, "APrimalStructure.StaticRegisterNativesAPrimalStructure()"); }
     static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructure.GetPrivateStaticClass()"); }
+    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructure.StaticClass()"); }
     void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "APrimalStructure.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }
     bool FillVolumetricDispatchesForFluidInteraction(bool bDebugb, bool bTriggerEvents, UActorComponent* interactionComponent, AActor* dispatcher) { return NativeCall<bool, bool, bool, UActorComponent*, AActor*>(this, "APrimalStructure.FillVolumetricDispatchesForFluidInteraction(bool,bool,UActorComponent*,AActor*)", bDebugb, bTriggerEvents, interactionComponent, dispatcher); }
     bool FillVolumetricDispatchesForFoliageInteraction(bool bDebugb, UActorComponent* interactionComponent) { return NativeCall<bool, bool, UActorComponent*>(this, "APrimalStructure.FillVolumetricDispatchesForFoliageInteraction(bool,UActorComponent*)", bDebugb, interactionComponent); }
