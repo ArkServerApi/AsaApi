@@ -6739,7 +6739,7 @@ namespace EComponentMobility
 
 namespace ECollisionChannel_Enum
 {
-	enum Type
+	enum Type : int
 	{
 		ECC_WorldStatic = 0x0,
 		ECC_WorldDynamic = 0x1,
