@@ -643,12 +643,14 @@ namespace API
 		if (FAILED(funcType->findChildren(SymTagFunctionArgType, nullptr, nsNone, &function_args)))
 			return argTypes;
 
-		CComPtr<IDiaSymbol> funcArg;
 		ULONG celt = 0;
 		int paramIndex = 0;
+		IDiaSymbol* rawFuncArg = nullptr;
 
-		while (SUCCEEDED(function_args->Next(1, &funcArg, &celt)) && celt == 1)
+		while (SUCCEEDED(function_args->Next(1, &rawFuncArg, &celt)) && celt == 1)
 		{
+			ScopedDiaType<IDiaSymbol> funcArg(rawFuncArg);
+			rawFuncArg = nullptr;
 			IDiaSymbol* funcArgType = nullptr;
 			if (SUCCEEDED(funcArg->get_type(&funcArgType)) && funcArgType != nullptr)
 			{
