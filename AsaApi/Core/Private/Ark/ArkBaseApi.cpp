@@ -16,7 +16,7 @@
 
 namespace API
 {
-	constexpr float api_version = 1.19f;
+	constexpr float api_version = 1.20f;
 
 	ArkBaseApi::ArkBaseApi()
 		: commands_(std::make_unique<AsaApi::Commands>()),
@@ -117,7 +117,7 @@ namespace API
 
 			if (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile))
 			{
-				Log::GetLog()->info("Cache refresh required this will take 10-20 minutes to complete");
+				Log::GetLog()->info("Cache refresh required this will take a few seconds to complete");
 				pdb_reader.Read(filepath, &offsets_dump, &bitfields_dump, pdbIgnoreSet);
 
 				Log::GetLog()->info("Caching offsets for faster loading next time");

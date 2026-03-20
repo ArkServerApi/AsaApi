@@ -42,7 +42,7 @@ struct FWeakObjectPtr
 	bool IsValid() { return NativeCall<bool>(this, "FWeakObjectPtr.IsValid()"); }
 };
 
-template <typename T>
+template <typename T, typename K = FWeakObjectPtr>
 struct TWeakObjectPtr
 {
 	int ObjectIndex = 0;
@@ -196,7 +196,7 @@ struct FSoftObjectPath
 
 	FString ToString()const { return NativeCall<FString>(this, "FSoftObjectPath.ToString()"); }
 	void ToString(TStringBuilderBase<wchar_t>* Builder) const { NativeCall<void, TStringBuilderBase<wchar_t>*>(this, "FSoftObjectPath.ToString(TStringBuilderBase<wchar_t>&)", Builder); }
-	UObject* ResolveObjectInternal()const { return NativeCall<UObject*>(this, "FSoftObjectPath.ResolveObjectInternal()"); }
+	UObject* ResolveObjectInternal()const { return NativeCall<UObject*>(this, "FSoftObjectPath.ResolveObjectInternal(wchar_t*)"); }
 	bool operator==(const FSoftObjectPath* Other) const { return NativeCall<bool, const FSoftObjectPath*>(this, "FSoftObjectPath.operator==(FSoftObjectPath&)", Other); }
 	FSoftObjectPath& operator=(const FString& Path) { return NativeCall<FSoftObjectPath&, const FString&>(this, "FSoftObjectPath.operator=(FString&)", Path); }
 	FSoftObjectPath& operator=(const FSoftObjectPath* __that) { return NativeCall<FSoftObjectPath&, const FSoftObjectPath*>(this, "FSoftObjectPath.operator=(FSoftObjectPath&)", __that); }
@@ -217,7 +217,8 @@ struct FSoftObjectPath
 	FString GetAssetName()const { return NativeCall<FString>(this, "FSoftObjectPath.GetAssetName()"); }
 	bool PreSavePath(bool* bReportSoftObjectPathRedirects) { return NativeCall<bool, bool*>(this, "FSoftObjectPath.PreSavePath(bool*)", bReportSoftObjectPathRedirects); }
 	bool ImportTextItem(const wchar_t** Buffer, int PortFlags, UObject* Parent, FOutputDevice* ErrorText, FArchive* InSerializingArchive) { return NativeCall<bool, const wchar_t**, int, UObject*, FOutputDevice*, FArchive*>(this, "FSoftObjectPath.ImportTextItem(wchar_t*&,int,UObject*,FOutputDevice*,FArchive*)", Buffer, PortFlags, Parent, ErrorText, InSerializingArchive); }
-	static int GetCurrentTag() { return NativeCall<int>(nullptr, "FSoftObjectPath.GetCurrentTag()"); }
+// 	static int GetCurrentTag() { return NativeCall<int>(nullptr, "FSoftObjectPath.GetCurrentTag()"); }
+// FUNCTION MISSING: FSoftObjectPath.GetCurrentTag()
 	UObject* ResolveObject()const { return NativeCall<UObject*>(this, "FSoftObjectPath.ResolveObject()"); }
 	//FSoftObjectPath<UHLODLayer const >(const TObjectPtr<UHLODLayer const >* InObject) { return NativeCall < FSoftObjectPath<UHLODLayer const, const TObjectPtr<UHLODLayer const >*>(this, "FSoftObjectPath.FSoftObjectPath<UHLODLayer const >(TObjectPtr<UHLODLayer>&)", InObject); }
 	static FSoftObjectPath GetOrCreateIDForObject(const UObject* Object) { return NativeCall<FSoftObjectPath, const UObject*>(nullptr, "FSoftObjectPath.GetOrCreateIDForObject(UObject*)", Object); }
@@ -516,8 +517,8 @@ struct UObjectBaseUtility : UObjectBase
 	//bool IsA<class ULinkerPlaceholderFunction>() { return NativeCall<bool>(this, "UObjectBaseUtility.IsA<class ULinkerPlaceholderFunction>()"); }
 	//bool IsA<class UFunction>() { return NativeCall<bool>(this, "UObjectBaseUtility.IsA<class UFunction>()"); }
 	//bool IsA<class UStruct>() { return NativeCall<bool>(this, "UObjectBaseUtility.IsA<class UStruct>()"); }
-	FPackageFileVersion* GetLinkerUEVersion(FPackageFileVersion* result) { return NativeCall<FPackageFileVersion*, FPackageFileVersion*>(this, "UObjectBaseUtility.GetLinkerUEVersion(FPackageFileVersion*)", result); }
-	static __int64 GetLinkerCustomVersion() { return NativeCall<__int64>(nullptr, "UObjectBaseUtility.GetLinkerCustomVersion()"); }
+	FPackageFileVersion* GetLinkerUEVersion(FPackageFileVersion* result) { return NativeCall<FPackageFileVersion*, FPackageFileVersion*>(this, "UObjectBaseUtility.GetLinkerUEVersion()", result); }
+	static __int64 GetLinkerCustomVersion() { return NativeCall<__int64>(nullptr, "UObjectBaseUtility.GetLinkerCustomVersion(FGuid)"); }
 	//bool IsA<class UField>() { return NativeCall<bool>(this, "UObjectBaseUtility.IsA<class UField>()"); }
 	//UClass* GetTypedOuter<class UClass>() { return NativeCall<UClass*>(this, "UObjectBaseUtility.GetTypedOuter<class UClass>()"); }
 
@@ -527,10 +528,10 @@ struct UObjectBaseUtility : UObjectBase
 
 	//FString* GetFullName(FString* result, const UObject* StopOuter, EObjectFullNameFlags Flags) { return NativeCall<FString*, FString*, const UObject*, EObjectFullNameFlags>(this, "UObjectBaseUtility.GetFullName(FString&,UObject*,EObjectFullNameFlags)", result, StopOuter, Flags); }
 	//void GetFullName(const UObject* StopOuter, FString* ResultString, EObjectFullNameFlags Flags) { NativeCall<void, const UObject*, FString*, EObjectFullNameFlags>(this, "UObjectBaseUtility.GetFullName(UObject*,FString&,EObjectFullNameFlags)", StopOuter, ResultString, Flags); }
-	FString* GetFullGroupName(FString* result, bool bStartWithOuter) { return NativeCall<FString*, FString*, bool>(this, "UObjectBaseUtility.GetFullGroupName(FString&,bool)", result, bStartWithOuter); }
+	FString* GetFullGroupName(FString* result, bool bStartWithOuter) { return NativeCall<FString*, FString*, bool>(this, "UObjectBaseUtility.GetFullGroupName(bool)", result, bStartWithOuter); }
 	UObject* GetOutermostObject() { return NativeCall<UObject*>(this, "UObjectBaseUtility.GetOutermostObject()"); }
 	UPackage* GetPackage() { return NativeCall<UPackage*>(this, "UObjectBaseUtility.GetPackage()"); }
-	bool MarkPackageDirty() { return NativeCall<bool>(this, "UObjectBaseUtility.MarkPackageDirty()"); }
+	bool MarkPackageDirty() { return NativeCall<bool>(this, "UObjectBaseUtility.MarkPackageDirty(bool)"); }
 	//bool IsTemplate(EObjectFlags TemplateTypes) { return NativeCall<bool, EObjectFlags>(this, "UObjectBaseUtility.IsTemplate(EObjectFlags)", TemplateTypes); }
 	UObject* GetTypedOuter(UClass* Target) { return NativeCall<UObject*, UClass*>(this, "UObjectBaseUtility.GetTypedOuter(UClass*)", Target); }
 	bool IsIn(const UObject* SomeOuter) { return NativeCall<bool, const UObject*>(this, "UObjectBaseUtility.IsIn(UObject*)", SomeOuter); }
@@ -570,14 +571,15 @@ struct UObject : UObjectBaseUtility
 
 	  // Functions
 
-	bool ProcessConsoleExec(const wchar_t* Cmd, FOutputDevice* Ar, UObject* Executor) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UObject*>(this, "UObject.ProcessConsoleExec(wchar_t*,FOutputDevice*,UObject*)", Cmd, Ar, Executor); }
-	FString* GetDetailedInfoInternal(FString* result) { return NativeCall<FString*, FString*>(this, "UObject.GetDetailedInfoInternal(FString&)", result); }
+	bool ProcessConsoleExec(const wchar_t* Cmd, FOutputDevice* Ar, UObject* Executor) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UObject*>(this, "UObject.ProcessConsoleExec(wchar_t*,FOutputDevice&,UObject*)", Cmd, Ar, Executor); }
+	FString* GetDetailedInfoInternal(FString* result) { return NativeCall<FString*, FString*>(this, "UObject.GetDetailedInfoInternal()", result); }
 	//void ~UObject() { NativeCall<void>(this, "UObject.~UObject()"); }
 	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UObject.StaticClass()"); }
 	//unsigned __int64 GetResourceSizeBytes(EResourceSizeMode::Type Mode) { return NativeCall<unsigned __int64, EResourceSizeMode::Type>(this, "UObject.GetResourceSizeBytes(EResourceSizeMode::Type)", Mode); }
 	bool AreAllOuterObjectsValid() { return NativeCall<bool>(this, "UObject.AreAllOuterObjectsValid()"); }
 	bool IsInBlueprint() { return NativeCall<bool>(this, "UObject.IsInBlueprint()"); }
-	bool IsBasedOnArchetype(const UObject* const SomeObject) { return NativeCall<bool, const UObject* const>(this, "UObject.IsBasedOnArchetype(UObject*const)", SomeObject); }
+// 	bool IsBasedOnArchetype(const UObject* const SomeObject) { return NativeCall<bool, const UObject* const>(this, "UObject.IsBasedOnArchetype(UObject*const)", SomeObject); }
+// FUNCTION MISSING: UObject.IsBasedOnArchetype(UObject*const)
 	UObject* CreateDefaultSubobject(FName SubobjectFName, UClass* ReturnType, UClass* ClassToCreateByDefault, bool bIsRequired, bool bIsTransient) { return NativeCall<UObject*, FName, UClass*, UClass*, bool, bool>(this, "UObject.CreateDefaultSubobject(FName,UClass*,UClass*,bool,bool)", SubobjectFName, ReturnType, ClassToCreateByDefault, bIsRequired, bIsTransient); }
 	UObject* GetDefaultSubobjectByName(FName ToFind) { return NativeCall<UObject*, FName>(this, "UObject.GetDefaultSubobjectByName(FName)", ToFind); }
 	bool Rename(const wchar_t* InName, UObject* NewOuter, unsigned int Flags) { return NativeCall<bool, const wchar_t*, UObject*, unsigned int>(this, "UObject.Rename(wchar_t*,UObject*,unsignedint)", InName, NewOuter, Flags); }
@@ -586,44 +588,46 @@ struct UObject : UObjectBaseUtility
 	bool NeedsLoadForClient() { return NativeCall<bool>(this, "UObject.NeedsLoadForClient()"); }
 	void BeginDestroy() { NativeCall<void>(this, "UObject.BeginDestroy()"); }
 	void FinishDestroy() { NativeCall<void>(this, "UObject.FinishDestroy()"); }
-	FString* GetDetailedInfo(FString* result) { return NativeCall<FString*, FString*>(this, "UObject.GetDetailedInfo()", result); }
+// 	FString* GetDetailedInfo(FString* result) { return NativeCall<FString*, FString*>(this, "UObject.GetDetailedInfo()", result); }
+// FUNCTION MISSING: UObject.GetDetailedInfo()
 	bool ConditionalBeginDestroy() { return NativeCall<bool>(this, "UObject.ConditionalBeginDestroy()"); }
 	bool ConditionalFinishDestroy() { return NativeCall<bool>(this, "UObject.ConditionalFinishDestroy()"); }
 	void ConditionalPostLoad() { NativeCall<void>(this, "UObject.ConditionalPostLoad()"); }
 	void PostLoadSubobjects(FObjectInstancingGraph* OuterInstanceGraph) { NativeCall<void, FObjectInstancingGraph*>(this, "UObject.PostLoadSubobjects(FObjectInstancingGraph*)", OuterInstanceGraph); }
 	void ConditionalPostLoadSubobjects(FObjectInstancingGraph* OuterInstanceGraph) { NativeCall<void, FObjectInstancingGraph*>(this, "UObject.ConditionalPostLoadSubobjects(FObjectInstancingGraph*)", OuterInstanceGraph); }
 	//void PreSave(FObjectPreSaveContext SaveContext) { NativeCall<void, FObjectPreSaveContext>(this, "UObject.PreSave(FObjectPreSaveContext)", SaveContext); }
-	void GetPreloadDependencies(TArray<UObject*, TSizedDefaultAllocator<32> >* OutDeps) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UObject.GetPreloadDependencies(TArray<UObject*,TSizedDefaultAllocator<32>>*)", OutDeps); }
+	void GetPreloadDependencies(TArray<UObject*, TSizedDefaultAllocator<32> >* OutDeps) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UObject.GetPreloadDependencies(TArray<UObject*,TSizedDefaultAllocator<32>>&)", OutDeps); }
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UObject.Serialize(FStructuredArchiveRecord)", Record); }
-	void SerializeScriptProperties(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UObject.SerializeScriptProperties(FArchive*)", Ar); }
+	void SerializeScriptProperties(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UObject.SerializeScriptProperties(FStructuredArchiveSlot)", Ar); }
 	void SerializeScriptProperties(FStructuredArchiveSlot Slot) { NativeCall<void, FStructuredArchiveSlot>(this, "UObject.SerializeScriptProperties(FStructuredArchiveSlot)", Slot); }
-	void BuildSubobjectMapping(UObject* OtherObject, TMap<UObject*, UObject*, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<UObject*, UObject*, 0> >* ObjectMapping) { NativeCall<void, UObject*, TMap<UObject*, UObject*, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<UObject*, UObject*, 0> >*>(this, "UObject.BuildSubobjectMapping(UObject*,TMap<UObject*,UObject*,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<UObject*,UObject*,0>>*)", OtherObject, ObjectMapping); }
-	void CollectDefaultSubobjects(TArray<UObject*, TSizedDefaultAllocator<32> >* OutSubobjectArray, bool bIncludeNestedSubobjects) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*, bool>(this, "UObject.CollectDefaultSubobjects(TArray<UObject*,TSizedDefaultAllocator<32>>*,bool)", OutSubobjectArray, bIncludeNestedSubobjects); }
+	void BuildSubobjectMapping(UObject* OtherObject, TMap<UObject*, UObject*, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<UObject*, UObject*, 0> >* ObjectMapping) { NativeCall<void, UObject*, TMap<UObject*, UObject*, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<UObject*, UObject*, 0> >*>(this, "UObject.BuildSubobjectMapping(UObject*,TMap<UObject*,UObject*,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<UObject*,UObject*,0>>&)", OtherObject, ObjectMapping); }
+	void CollectDefaultSubobjects(TArray<UObject*, TSizedDefaultAllocator<32> >* OutSubobjectArray, bool bIncludeNestedSubobjects) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*, bool>(this, "UObject.CollectDefaultSubobjects(TArray<UObject*,TSizedDefaultAllocator<32>>&,bool)", OutSubobjectArray, bIncludeNestedSubobjects); }
 	bool CheckDefaultSubobjects(bool bForceCheck) { return NativeCall<bool, bool>(this, "UObject.CheckDefaultSubobjects(bool)", bForceCheck); }
 	bool CheckDefaultSubobjectsInternal() { return NativeCall<bool>(this, "UObject.CheckDefaultSubobjectsInternal()"); }
 	//void GetAssetRegistryTags(TArray<UObject::FAssetRegistryTag, TSizedDefaultAllocator<32> >* OutTags) { NativeCall<void, TArray<UObject::FAssetRegistryTag, TSizedDefaultAllocator<32> >*>(this, "UObject.GetAssetRegistryTags(TArray<UObject::FAssetRegistryTag,TSizedDefaultAllocator<32>>*)", OutTags); }
-	void GetAssetRegistryTags(FAssetData* Out) { NativeCall<void, FAssetData*>(this, "UObject.GetAssetRegistryTags(FAssetData*)", Out); }
-	static const FName* AssetVersePathTagName() { return NativeCall<const FName*>(nullptr, "UObject.AssetVersePathTagName()"); }
-	void GetResourceSizeEx(FResourceSizeEx* CumulativeResourceSize) { NativeCall<void, FResourceSizeEx*>(this, "UObject.GetResourceSizeEx(FResourceSizeEx*)", CumulativeResourceSize); }
+	void GetAssetRegistryTags(FAssetData* Out) { NativeCall<void, FAssetData*>(this, "UObject.GetAssetRegistryTags(TArray<UObject::FAssetRegistryTag,TSizedDefaultAllocator<32>>&)", Out); }
+// 	static const FName* AssetVersePathTagName() { return NativeCall<const FName*>(nullptr, "UObject.AssetVersePathTagName()"); }
+// FUNCTION MISSING: UObject.AssetVersePathTagName()
+	void GetResourceSizeEx(FResourceSizeEx* CumulativeResourceSize) { NativeCall<void, FResourceSizeEx*>(this, "UObject.GetResourceSizeEx(FResourceSizeEx&)", CumulativeResourceSize); }
 	bool IsAsset() { return NativeCall<bool>(this, "UObject.IsAsset()"); }
-	FPrimaryAssetId* GetPrimaryAssetId(FPrimaryAssetId* result) { return NativeCall<FPrimaryAssetId*, FPrimaryAssetId*>(this, "UObject.GetPrimaryAssetId(FPrimaryAssetId*)", result); }
+	FPrimaryAssetId* GetPrimaryAssetId(FPrimaryAssetId* result) { return NativeCall<FPrimaryAssetId*, FPrimaryAssetId*>(this, "UObject.GetPrimaryAssetId()", result); }
 	bool IsLocalizedResource() { return NativeCall<bool>(this, "UObject.IsLocalizedResource()"); }
 	bool IsSafeForRootSet() { return NativeCall<bool>(this, "UObject.IsSafeForRootSet()"); }
 	//void TagSubobjects(EObjectFlags NewFlags) { NativeCall<void, EObjectFlags>(this, "UObject.TagSubobjects(EObjectFlags)", NewFlags); }
-	void LoadConfig(UClass* ConfigClass, const wchar_t* InFilename, unsigned int PropagationFlags, FProperty* PropertyToLoad) { NativeCall<void, UClass*, const wchar_t*, unsigned int, FProperty*>(this, "UObject.LoadConfig(UClass*,wchar_t*,unsignedint,FProperty*)", ConfigClass, InFilename, PropagationFlags, PropertyToLoad); }
+	void LoadConfig(UClass* ConfigClass, const wchar_t* InFilename, unsigned int PropagationFlags, FProperty* PropertyToLoad) { NativeCall<void, UClass*, const wchar_t*, unsigned int, FProperty*>(this, "UObject.LoadConfig(UClass*,wchar_t*,unsignedint,FProperty*,TArray<UE::ConfigAccessTracking::FConfigAccessData,TSizedDefaultAllocator<32>>*)", ConfigClass, InFilename, PropagationFlags, PropertyToLoad); }
 	void SaveConfig(unsigned __int64 Flags, const wchar_t* InFilename, FConfigCacheIni* Config, bool bAllowCopyToDefaultObject) { NativeCall<void, unsigned __int64, const wchar_t*, FConfigCacheIni*, bool>(this, "UObject.SaveConfig(unsigned__int64,wchar_t*,FConfigCacheIni*,bool)", Flags, InFilename, Config, bAllowCopyToDefaultObject); }
-	FString* GetDefaultConfigFilename(FString* result) { return NativeCall<FString*, FString*>(this, "UObject.GetDefaultConfigFilename(FString&)", result); }
+	FString* GetDefaultConfigFilename(FString* result) { return NativeCall<FString*, FString*>(this, "UObject.GetDefaultConfigFilename()", result); }
 	bool IsNameStableForNetworking() { return NativeCall<bool>(this, "UObject.IsNameStableForNetworking()"); }
 	bool IsFullNameStableForNetworking() { return NativeCall<bool>(this, "UObject.IsFullNameStableForNetworking()"); }
 	bool IsSupportedForNetworking() { return NativeCall<bool>(this, "UObject.IsSupportedForNetworking()"); }
-	void LocalizeProperty(UObject* LocBase, TArray<FString, TSizedDefaultAllocator<32> >* PropertyTagChain, FProperty* const BaseProperty, FProperty* const Property, void* const ValueAddress) { NativeCall<void, UObject*, TArray<FString, TSizedDefaultAllocator<32> >*, FProperty* const, FProperty* const, void* const>(this, "UObject.LocalizeProperty(UObject*,TArray<FString,TSizedDefaultAllocator<32>>*,FProperty*const,FProperty*const,void*const)", LocBase, PropertyTagChain, BaseProperty, Property, ValueAddress); }
-	void SkipFunction(FFrame* Stack, void* const Z_Param__Result, UFunction* Function) { NativeCall<void, FFrame*, void* const, UFunction*>(this, "UObject.SkipFunction(FFrame*,void*const,UFunction*)", Stack, Z_Param__Result, Function); }
-	void CallFunction(FFrame* Stack, void* const Z_Param__Result, UFunction* Function) { NativeCall<void, FFrame*, void* const, UFunction*>(this, "UObject.CallFunction(FFrame*,void*const,UFunction*)", Stack, Z_Param__Result, Function); }
-	static void ProcessInternal(UObject* Context, FFrame* Stack, void* const Z_Param__Result) { NativeCall<void, UObject*, FFrame*, void* const>(nullptr, "UObject.ProcessInternal(UObject*,FFrame*,void*const)", Context, Stack, Z_Param__Result); }
-	bool CallFunctionByNameWithArguments(const wchar_t* Str, FOutputDevice* Ar, UObject* Executor, bool bForceCallWithNonExec) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UObject*, bool>(this, "UObject.CallFunctionByNameWithArguments(wchar_t*,FOutputDevice*,UObject*,bool)", Str, Ar, Executor, bForceCallWithNonExec); }
+	void LocalizeProperty(UObject* LocBase, TArray<FString, TSizedDefaultAllocator<32> >* PropertyTagChain, FProperty* const BaseProperty, FProperty* const Property, void* const ValueAddress) { NativeCall<void, UObject*, TArray<FString, TSizedDefaultAllocator<32> >*, FProperty* const, FProperty* const, void* const>(this, "UObject.LocalizeProperty(UObject*,TArray<FString,TSizedDefaultAllocator<32>>&,FProperty*const,FProperty*const,void*const)", LocBase, PropertyTagChain, BaseProperty, Property, ValueAddress); }
+	void SkipFunction(FFrame* Stack, void* const Z_Param__Result, UFunction* Function) { NativeCall<void, FFrame*, void* const, UFunction*>(this, "UObject.SkipFunction(FFrame&,void*const,UFunction*)", Stack, Z_Param__Result, Function); }
+	void CallFunction(FFrame* Stack, void* const Z_Param__Result, UFunction* Function) { NativeCall<void, FFrame*, void* const, UFunction*>(this, "UObject.CallFunction(FFrame&,void*const,UFunction*)", Stack, Z_Param__Result, Function); }
+	static void ProcessInternal(UObject* Context, FFrame* Stack, void* const Z_Param__Result) { NativeCall<void, UObject*, FFrame*, void* const>(nullptr, "UObject.ProcessInternal(UObject*,FFrame&,void*const)", Context, Stack, Z_Param__Result); }
+	bool CallFunctionByNameWithArguments(const wchar_t* Str, FOutputDevice* Ar, UObject* Executor, bool bForceCallWithNonExec) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UObject*, bool>(this, "UObject.CallFunctionByNameWithArguments(wchar_t*,FOutputDevice&,UObject*,bool)", Str, Ar, Executor, bForceCallWithNonExec); }
 	UFunction* FindFunctionChecked(FName InName, EIncludeSuperFlag::Type a3 = EIncludeSuperFlag::IncludeSuper) { return NativeCall<UFunction*, FName, EIncludeSuperFlag::Type>(this, "UObject.FindFunctionChecked(FName)", InName, a3); }
 	void ProcessEvent(UFunction* Function, void* Parms) { NativeCall<void, UFunction*, void*>(this, "UObject.ProcessEvent(UFunction*,void*)", Function, Parms); }
-	void ProcessContextOpcode(FFrame* Stack, void* const Z_Param__Result, bool bCanFailSilently) { NativeCall<void, FFrame*, void* const, bool>(this, "UObject.ProcessContextOpcode(FFrame*,void*const,bool)", Stack, Z_Param__Result, bCanFailSilently); }
+	void ProcessContextOpcode(FFrame* Stack, void* const Z_Param__Result, bool bCanFailSilently) { NativeCall<void, FFrame*, void* const, bool>(this, "UObject.ProcessContextOpcode(FFrame&,void*const,bool)", Stack, Z_Param__Result, bCanFailSilently); }
 	//void execIntZero(FBehaviorTreeSearchData* SearchData, EBTNodeResult::Type* NodeResult) { NativeCall<void, FBehaviorTreeSearchData*, EBTNodeResult::Type*>(this, "UObject.execIntZero(FBehaviorTreeSearchData*,EBTNodeResult::Type*)", SearchData, NodeResult); }
 	UObject* GetArchetype() { return NativeCall<UObject*>(this, "UObject.GetArchetype()"); }
 	bool IsInOrOwnedBy(const UObject* SomeOuter) { return NativeCall<bool, const UObject*>(this, "UObject.IsInOrOwnedBy(UObject*)", SomeOuter); }
@@ -698,7 +702,8 @@ struct UPrimalAssetsBase : UObject
 	// Functions
 
 	static void StaticRegisterNativesUPrimalAssetsBase() { NativeCall<void>(nullptr, "UPrimalAssetsBase.StaticRegisterNativesUPrimalAssetsBase()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAssetsBase.GetPrivateStaticClass()"); }
+// 	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAssetsBase.GetPrivateStaticClass()"); }
+// FUNCTION MISSING: UPrimalAssetsBase.GetPrivateStaticClass()
 	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAssetsBase.StaticClass()"); }
 
 };
@@ -733,9 +738,9 @@ struct UField : UObject
 
 	UClass* GetOwnerClass() { return NativeCall<UClass*>(this, "UField.GetOwnerClass()"); }
 	UStruct* GetOwnerStruct() { return NativeCall<UStruct*>(this, "UField.GetOwnerStruct()"); }
-	FString* GetAuthoredName(FString* result) { return NativeCall<FString*, FString*>(this, "UField.GetAuthoredName(FString&)", result); }
+	FString* GetAuthoredName(FString* result) { return NativeCall<FString*, FString*>(this, "UField.GetAuthoredName()", result); }
 	void PostLoad() { NativeCall<void>(this, "UField.PostLoad()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UField.Serialize(FArchive*)", Ar); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UField.Serialize(FArchive&)", Ar); }
 	void AddCppProperty(FProperty* Property) { NativeCall<void, FProperty*>(this, "UField.AddCppProperty(FProperty*)", Property); }
 	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UField.GetPrivateStaticClass()"); }
 };
@@ -763,32 +768,33 @@ struct UStruct : UField
 
 	bool IsChildOf(const UStruct* SomeBase) { return NativeCall<bool, const UStruct*>(this, "UStruct.IsChildOf(UStruct*)", SomeBase); }
 	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UStruct.StaticClass()"); }
-	void SerializeTaggedProperties(FArchive* Ar, unsigned __int8* Data, UStruct* DefaultsStruct, unsigned __int8* Defaults, const UObject* BreakRecursionIfFullyLoad) { NativeCall<void, FArchive*, unsigned __int8*, UStruct*, unsigned __int8*, const UObject*>(this, "UStruct.SerializeTaggedProperties(FArchive*,unsigned__int8*,UStruct*,unsigned__int8*,UObject*)", Ar, Data, DefaultsStruct, Defaults, BreakRecursionIfFullyLoad); }
-	void SerializeBin(FArchive* Ar, void* Data) { NativeCall<void, FArchive*, void*>(this, "UStruct.SerializeBin(FArchive*,void*)", Ar, Data); }
+	void SerializeTaggedProperties(FArchive* Ar, unsigned __int8* Data, UStruct* DefaultsStruct, unsigned __int8* Defaults, const UObject* BreakRecursionIfFullyLoad) { NativeCall<void, FArchive*, unsigned __int8*, UStruct*, unsigned __int8*, const UObject*>(this, "UStruct.SerializeTaggedProperties(FStructuredArchiveSlot,unsignedchar*,UStruct*,unsignedchar*,UObject*)", Ar, Data, DefaultsStruct, Defaults, BreakRecursionIfFullyLoad); }
+	void SerializeBin(FArchive* Ar, void* Data) { NativeCall<void, FArchive*, void*>(this, "UStruct.SerializeBin(FStructuredArchiveSlot,void*)", Ar, Data); }
 	const wchar_t* GetPrefixCPP() { return NativeCall<const wchar_t*>(this, "UStruct.GetPrefixCPP()"); }
 	//bool IsChildOf<class UClass>() { return NativeCall<bool>(this, "UStruct.IsChildOf<class UClass>()"); }
 	void AddCppProperty(FProperty* Property) { NativeCall<void, FProperty*>(this, "UStruct.AddCppProperty(FProperty*)", Property); }
 	void StaticLink(bool bRelinkExistingProperties) { NativeCall<void, bool>(this, "UStruct.StaticLink(bool)", bRelinkExistingProperties); }
-	void GetPreloadDependencies(TArray<UObject*, TSizedDefaultAllocator<32> >* OutDeps) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UStruct.GetPreloadDependencies(TArray<UObject*,TSizedDefaultAllocator<32>>*)", OutDeps); }
-	void CollectBytecodeReferencedObjects(TArray<UObject*, TSizedDefaultAllocator<32> >* OutReferencedObjects) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UStruct.CollectBytecodeReferencedObjects(TArray<UObject*,TSizedDefaultAllocator<32>>*)", OutReferencedObjects); }
-	void PreloadChildren(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UStruct.PreloadChildren(FArchive*)", Ar); }
-	void Link(FArchive* Ar, bool bRelinkExistingProperties) { NativeCall<void, FArchive*, bool>(this, "UStruct.Link(FArchive*,bool)", Ar, bRelinkExistingProperties); }
+	void GetPreloadDependencies(TArray<UObject*, TSizedDefaultAllocator<32> >* OutDeps) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UStruct.GetPreloadDependencies(TArray<UObject*,TSizedDefaultAllocator<32>>&)", OutDeps); }
+	void CollectBytecodeReferencedObjects(TArray<UObject*, TSizedDefaultAllocator<32> >* OutReferencedObjects) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UStruct.CollectBytecodeReferencedObjects(TArray<UObject*,TSizedDefaultAllocator<32>>&)", OutReferencedObjects); }
+	void PreloadChildren(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UStruct.PreloadChildren(FArchive&)", Ar); }
+	void Link(FArchive* Ar, bool bRelinkExistingProperties) { NativeCall<void, FArchive*, bool>(this, "UStruct.Link(FArchive&,bool)", Ar, bRelinkExistingProperties); }
 	void InitializeStruct(void* InDest, int ArrayDim) { NativeCall<void, void*, int>(this, "UStruct.InitializeStruct(void*,int)", InDest, ArrayDim); }
 	void DestroyStruct(void* Dest, int ArrayDim) { NativeCall<void, void*, int>(this, "UStruct.DestroyStruct(void*,int)", Dest, ArrayDim); }
 	void SerializeBin(FStructuredArchiveSlot Slot, void* Data) { NativeCall<void, FStructuredArchiveSlot, void*>(this, "UStruct.SerializeBin(FStructuredArchiveSlot,void*)", Slot, Data); }
 	void SerializeBinEx(FStructuredArchiveSlot Slot, void* Data, const void* DefaultData, UStruct* DefaultStruct) { NativeCall<void, FStructuredArchiveSlot, void*, const void*, UStruct*>(this, "UStruct.SerializeBinEx(FStructuredArchiveSlot,void*,void*,UStruct*)", Slot, Data, DefaultData, DefaultStruct); }
-	void SerializeTaggedProperties(FStructuredArchiveSlot Slot, unsigned __int8* Data, UStruct* DefaultsStruct, unsigned __int8* Defaults, const UObject* BreakRecursionIfFullyLoad) { NativeCall<void, FStructuredArchiveSlot, unsigned __int8*, UStruct*, unsigned __int8*, const UObject*>(this, "UStruct.SerializeTaggedProperties(FStructuredArchiveSlot,unsigned__int8*,UStruct*,unsigned__int8*,UObject*)", Slot, Data, DefaultsStruct, Defaults, BreakRecursionIfFullyLoad); }
-	void SerializeVersionedTaggedProperties(FStructuredArchiveSlot Slot, unsigned __int8* Data, UStruct* DefaultsStruct, unsigned __int8* Defaults, const UObject* BreakRecursionIfFullyLoad) { NativeCall<void, FStructuredArchiveSlot, unsigned __int8*, UStruct*, unsigned __int8*, const UObject*>(this, "UStruct.SerializeVersionedTaggedProperties(FStructuredArchiveSlot,unsigned__int8*,UStruct*,unsigned__int8*,UObject*)", Slot, Data, DefaultsStruct, Defaults, BreakRecursionIfFullyLoad); }
+	void SerializeTaggedProperties(FStructuredArchiveSlot Slot, unsigned __int8* Data, UStruct* DefaultsStruct, unsigned __int8* Defaults, const UObject* BreakRecursionIfFullyLoad) { NativeCall<void, FStructuredArchiveSlot, unsigned __int8*, UStruct*, unsigned __int8*, const UObject*>(this, "UStruct.SerializeTaggedProperties(FStructuredArchiveSlot,unsignedchar*,UStruct*,unsignedchar*,UObject*)", Slot, Data, DefaultsStruct, Defaults, BreakRecursionIfFullyLoad); }
+	void SerializeVersionedTaggedProperties(FStructuredArchiveSlot Slot, unsigned __int8* Data, UStruct* DefaultsStruct, unsigned __int8* Defaults, const UObject* BreakRecursionIfFullyLoad) { NativeCall<void, FStructuredArchiveSlot, unsigned __int8*, UStruct*, unsigned __int8*, const UObject*>(this, "UStruct.SerializeVersionedTaggedProperties(FStructuredArchiveSlot,unsignedchar*,UStruct*,unsignedchar*,UObject*)", Slot, Data, DefaultsStruct, Defaults, BreakRecursionIfFullyLoad); }
 	void FinishDestroy() { NativeCall<void>(this, "UStruct.FinishDestroy()"); }
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UStruct.Serialize(FStructuredArchiveRecord)", Record); }
-	void SerializeProperties(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UStruct.SerializeProperties(FArchive*)", Ar); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UStruct.Serialize(FArchive*)", Ar); }
+	void SerializeProperties(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UStruct.SerializeProperties(FArchive&)", Ar); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UStruct.Serialize(FStructuredArchiveRecord)", Ar); }
 	void PostLoad() { NativeCall<void>(this, "UStruct.PostLoad()"); }
 	void SetSuperStruct(UStruct* NewSuperStruct) { NativeCall<void, UStruct*>(this, "UStruct.SetSuperStruct(UStruct*)", NewSuperStruct); }
-	FString* PropertyNameToDisplayName(FString* result, FName InName) { return NativeCall<FString*, FString*, FName>(this, "UStruct.PropertyNameToDisplayName(FString&,FName)", result, InName); }
-	FString* GetAuthoredNameForField(FString* result, const UField* Field) { return NativeCall<FString*, FString*, const UField*>(this, "UStruct.GetAuthoredNameForField(FString&,UField*)", result, Field); }
-	FString* GetAuthoredNameForField(FString* result, const FField* Field) { return NativeCall<FString*, FString*, const FField*>(this, "UStruct.GetAuthoredNameForField(FString&,FField*)", result, Field); }
-	EExprToken SerializeExpr(int* iCode, FArchive* Ar) { return NativeCall<EExprToken, int*, FArchive*>(this, "UStruct.SerializeExpr(int*,FArchive*)", iCode, Ar); }
+// 	FString* PropertyNameToDisplayName(FString* result, FName InName) { return NativeCall<FString*, FString*, FName>(this, "UStruct.PropertyNameToDisplayName(FString&,FName)", result, InName); }
+// FUNCTION MISSING: UStruct.PropertyNameToDisplayName(FString&,FName)
+	FString* GetAuthoredNameForField(FString* result, const UField* Field) { return NativeCall<FString*, FString*, const UField*>(this, "UStruct.GetAuthoredNameForField(UField*)", result, Field); }
+	FString* GetAuthoredNameForField(FString* result, const FField* Field) { return NativeCall<FString*, FString*, const FField*>(this, "UStruct.GetAuthoredNameForField(UField*)", result, Field); }
+	EExprToken SerializeExpr(int* iCode, FArchive* Ar) { return NativeCall<EExprToken, int*, FArchive*>(this, "UStruct.SerializeExpr(int&,FArchive&)", iCode, Ar); }
 	FProperty* FindPropertyByName(FName InName) { return NativeCall<FProperty*, FName>(this, "UStruct.FindPropertyByName(FName)", InName); }
 };
 
@@ -834,27 +840,27 @@ struct UClass : UStruct
 
 	UObject* GetDefaultObject(bool bCreateIfNeeded) { return NativeCall<UObject*, bool>(this, "UClass.GetDefaultObject(bool)", bCreateIfNeeded); }
 	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UClass.GetPrivateStaticClass()"); }
-	void SerializeDefaultObject(UObject* Object, FArchive* Ar) { NativeCall<void, UObject*, FArchive*>(this, "UClass.SerializeDefaultObject(UObject*,FArchive*)", Object, Ar); }
+	void SerializeDefaultObject(UObject* Object, FArchive* Ar) { NativeCall<void, UObject*, FArchive*>(this, "UClass.SerializeDefaultObject(UObject*,FStructuredArchiveSlot)", Object, Ar); }
 	void PostLoadDefaultObject(UObject* Object) { NativeCall<void, UObject*>(this, "UClass.PostLoadDefaultObject(UObject*)", Object); }
 	void PostInitProperties() { NativeCall<void>(this, "UClass.PostInitProperties()"); }
 	UObject* GetDefaultSubobjectByName(FName ToFind) { return NativeCall<UObject*, FName>(this, "UClass.GetDefaultSubobjectByName(FName)", ToFind); }
-	static void AddReferencedObjects(UObject* InThis, FReferenceCollector* Collector) { NativeCall<void, UObject*, FReferenceCollector*>(nullptr, "UClass.AddReferencedObjects(UObject*,FReferenceCollector*)", InThis, Collector); }
+	static void AddReferencedObjects(UObject* InThis, FReferenceCollector* Collector) { NativeCall<void, UObject*, FReferenceCollector*>(nullptr, "UClass.AddReferencedObjects(UObject*,FReferenceCollector&)", InThis, Collector); }
 	UObject* CreateDefaultObject() { return NativeCall<UObject*>(this, "UClass.CreateDefaultObject()"); }
 	static FFeedbackContext* GetDefaultPropertiesFeedbackContext() { return NativeCall<FFeedbackContext*>(nullptr, "UClass.GetDefaultPropertiesFeedbackContext()"); }
-	FName* GetDefaultObjectName(FName* result) { return NativeCall<FName*, FName*>(this, "UClass.GetDefaultObjectName(FName*)", result); }
+	FName* GetDefaultObjectName(FName* result) { return NativeCall<FName*, FName*>(this, "UClass.GetDefaultObjectName()", result); }
 	void DeferredRegister(UClass* UClassStaticClass, const wchar_t* PackageName, const wchar_t* Name) { NativeCall<void, UClass*, const wchar_t*, const wchar_t*>(this, "UClass.DeferredRegister(UClass*,wchar_t*,wchar_t*)", UClassStaticClass, PackageName, Name); }
 	bool Rename(const wchar_t* InName, UObject* NewOuter, unsigned int Flags) { return NativeCall<bool, const wchar_t*, UObject*, unsigned int>(this, "UClass.Rename(wchar_t*,UObject*,unsignedint)", InName, NewOuter, Flags); }
 	void Bind() { NativeCall<void>(this, "UClass.Bind()"); }
 	const wchar_t* GetPrefixCPP() { return NativeCall<const wchar_t*>(this, "UClass.GetPrefixCPP()"); }
 	void FinishDestroy() { NativeCall<void>(this, "UClass.FinishDestroy()"); }
 	void PostLoad() { NativeCall<void>(this, "UClass.PostLoad()"); }
-	void GetPreloadDependencies(TArray<UObject*, TSizedDefaultAllocator<32> >* OutDeps) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UClass.GetPreloadDependencies(TArray<UObject*,TSizedDefaultAllocator<32>>*)", OutDeps); }
-	void Link(FArchive* Ar, bool bRelinkExistingProperties) { NativeCall<void, FArchive*, bool>(this, "UClass.Link(FArchive*,bool)", Ar, bRelinkExistingProperties); }
+	void GetPreloadDependencies(TArray<UObject*, TSizedDefaultAllocator<32> >* OutDeps) { NativeCall<void, TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UClass.GetPreloadDependencies(TArray<UObject*,TSizedDefaultAllocator<32>>&)", OutDeps); }
+	void Link(FArchive* Ar, bool bRelinkExistingProperties) { NativeCall<void, FArchive*, bool>(this, "UClass.Link(FArchive&,bool)", Ar, bRelinkExistingProperties); }
 	void SetUpRuntimeReplicationData() { NativeCall<void>(this, "UClass.SetUpRuntimeReplicationData()"); }
 	void ValidateRuntimeReplicationData() { NativeCall<void>(this, "UClass.ValidateRuntimeReplicationData()"); }
 	void SetSuperStruct(UStruct* NewSuperStruct) { NativeCall<void, UStruct*>(this, "UClass.SetSuperStruct(UStruct*)", NewSuperStruct); }
 	bool IsStructTrashed() { return NativeCall<bool>(this, "UClass.IsStructTrashed()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UClass.Serialize(FArchive*)", Ar); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UClass.Serialize(FArchive&)", Ar); }
 	bool ImplementsInterface(const UClass* SomeInterface) { return NativeCall<bool, const UClass*>(this, "UClass.ImplementsInterface(UClass*)", SomeInterface); }
 	void SerializeDefaultObject(UObject* Object, FStructuredArchiveSlot Slot) { NativeCall<void, UObject*, FStructuredArchiveSlot>(this, "UClass.SerializeDefaultObject(UObject*,FStructuredArchiveSlot)", Object, Slot); }
 	void SerializeSparseClassData(FStructuredArchiveSlot Slot) { NativeCall<void, FStructuredArchiveSlot>(this, "UClass.SerializeSparseClassData(FStructuredArchiveSlot)", Slot); }
@@ -869,7 +875,7 @@ struct UClass : UStruct
 	void ClearFunctionMapsCaches() { NativeCall<void>(this, "UClass.ClearFunctionMapsCaches()"); }
 	UFunction* FindFunctionByName(FName InName, EIncludeSuperFlag::Type IncludeSuper) { return NativeCall<UFunction*, FName, EIncludeSuperFlag::Type>(this, "UClass.FindFunctionByName(FName,EIncludeSuperFlag::Type)", InName, IncludeSuper); }
 	static void AssembleReferenceTokenStreams() { NativeCall<void>(nullptr, "UClass.AssembleReferenceTokenStreams()"); }
-	const FString* GetConfigName(const FString* result) { return NativeCall<const FString*, const FString*>(this, "UClass.GetConfigName(FString&)", result); }
+	const FString* GetConfigName(const FString* result) { return NativeCall<const FString*, const FString*>(this, "UClass.GetConfigName()", result); }
 	//static UField* TryFindTypeSlow(UClass* TypeClass, const FString* InPathNameOrShortName, EFindFirstObjectOptions InOptions) { return NativeCall<UField*, UClass*, const FString*, EFindFirstObjectOptions>(nullptr, "UClass.TryFindTypeSlow(UClass*,FString&,EFindFirstObjectOptions)", TypeClass, InPathNameOrShortName, InOptions); }
 	void AssembleReferenceTokenStream(bool bForce) { NativeCall<void, bool>(this, "UClass.AssembleReferenceTokenStream(bool)", bForce); }
 	void AssembleReferenceTokenStreamInternal(bool bForce) { NativeCall<void, bool>(this, "UClass.AssembleReferenceTokenStreamInternal(bool)", bForce); }
@@ -900,21 +906,21 @@ struct FField
 	//bool IsA(const FFieldClass* FieldType) { return NativeCall<bool, const FFieldClass*>(this, "FField.IsA(FFieldClass*)", FieldType); }
 	//bool IsA<class FDoubleProperty>() { return NativeCall<bool>(this, "FField.IsA<class FDoubleProperty>()"); }
 	//bool IsA<class FIntProperty>() { return NativeCall<bool>(this, "FField.IsA<class FIntProperty>()"); }
-	UObject* GetOwner() { return NativeCall<UObject*>(this, "FField.GetOwner<class UObject>()"); }
+	UObject* GetOwner() { return NativeCall<UObject*>(this, "FField.GetOwner<UObject>()"); }
 	//UClass* GetOwnerClass() { return NativeCall<UClass*>(this, "FField.GetOwner<class UClass>()"); }
 	//static FFieldClass* StaticClass() { return NativeCall<FFieldClass*>(nullptr, "FField.StaticClass()"); }
 	UClass* GetOwnerClass() { return NativeCall<UClass*>(this, "FField.GetOwnerClass()"); }
 	UStruct* GetOwnerStruct() { return NativeCall<UStruct*>(this, "FField.GetOwnerStruct()"); }
 	UPackage* GetOutermost() { return NativeCall<UPackage*>(this, "FField.GetOutermost()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "FField.Serialize(FArchive*)", Ar); }
-	void AddReferencedObjects(FReferenceCollector* Collector) { NativeCall<void, FReferenceCollector*>(this, "FField.AddReferencedObjects(FReferenceCollector*)", Collector); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "FField.Serialize(FArchive&)", Ar); }
+	void AddReferencedObjects(FReferenceCollector* Collector) { NativeCall<void, FReferenceCollector*>(this, "FField.AddReferencedObjects(FReferenceCollector&)", Collector); }
 	bool IsNative() { return NativeCall<bool>(this, "FField.IsNative()"); }
 	FLinkerLoad* GetLinker() { return NativeCall<FLinkerLoad*>(this, "FField.GetLinker()"); }
 	void AddCppProperty(FProperty* Property) { NativeCall<void, FProperty*>(this, "FField.AddCppProperty(FProperty*)", Property); }
-	FString* GetPathName(FString* result, const UObject* StopOuter) { return NativeCall<FString*, FString*, const UObject*>(this, "FField.GetPathName(FString&,UObject*)", result, StopOuter); }
-	void GetPathName(const UObject* StopOuter, TStringBuilderBase<wchar_t>* ResultString) { NativeCall<void, const UObject*, TStringBuilderBase<wchar_t>*>(this, "FField.GetPathName(UObject*,TStringBuilderBase<wchar_t>*)", StopOuter, ResultString); }
-	FString* GetFullName(FString* result) { return NativeCall<FString*, FString*>(this, "FField.GetFullName(FString&)", result); }
-	FString* GetAuthoredName(FString* result) { return NativeCall<FString*, FString*>(this, "FField.GetAuthoredName(FString&)", result); }
+	FString* GetPathName(FString* result, const UObject* StopOuter) { return NativeCall<FString*, FString*, const UObject*>(this, "FField.GetPathName(UObject*,TStringBuilderBase<wchar_t>&)", result, StopOuter); }
+	void GetPathName(const UObject* StopOuter, TStringBuilderBase<wchar_t>* ResultString) { NativeCall<void, const UObject*, TStringBuilderBase<wchar_t>*>(this, "FField.GetPathName(UObject*,TStringBuilderBase<wchar_t>&)", StopOuter, ResultString); }
+	FString* GetFullName(FString* result) { return NativeCall<FString*, FString*>(this, "FField.GetFullName()", result); }
+	FString* GetAuthoredName(FString* result) { return NativeCall<FString*, FString*>(this, "FField.GetAuthoredName()", result); }
 	//static FField* Construct(const FName* FieldTypeName, const FFieldVariant* InOwner, const FName* InName, EObjectFlags InFlags) { return NativeCall<FField*, const FName*, const FFieldVariant*, const FName*, EObjectFlags>(nullptr, "FField.Construct(FName*,FFieldVariant*,FName*,EObjectFlags)", FieldTypeName, InOwner, InName, InFlags); }
 };
 
@@ -939,42 +945,46 @@ struct FProperty : FField
 	// Functions
 
 	const wchar_t* ImportText_Direct(const wchar_t* Buffer, void* PropertyPtr, UObject* OwnerObject, int PortFlags, FOutputDevice* ErrorText) { return NativeCall<const wchar_t*, const wchar_t*, void*, UObject*, int, FOutputDevice*>(this, "FProperty.ImportText_Direct(wchar_t*,void*,UObject*,int,FOutputDevice*)", Buffer, PropertyPtr, OwnerObject, PortFlags, ErrorText); }
-	static void operator delete(void* InMem) { NativeCall<void, void*>(nullptr, "FProperty.operator delete(void*)", InMem); }
+// 	static void operator delete(void* InMem) { NativeCall<void, void*>(nullptr, "FProperty.operator delete(void*)", InMem); }
+// FUNCTION MISSING: FProperty.operator delete(void*)
 	const wchar_t* ImportText_Internal(const wchar_t* Buffer, void* ContainerOrPropertyPtr, EPropertyPointerType PointerType, UObject* OwnerObject, int PortFlags, FOutputDevice* ErrorText) { return NativeCall<const wchar_t*, const wchar_t*, void*, EPropertyPointerType, UObject*, int, FOutputDevice*>(this, "FProperty.ImportText_Internal(wchar_t*,void*,EPropertyPointerType,UObject*,int,FOutputDevice*)", Buffer, ContainerOrPropertyPtr, PointerType, OwnerObject, PortFlags, ErrorText); }
-	FString* GetCPPType(FString* result, FString* ExtendedTypeText, unsigned int CPPExportFlags) { return NativeCall<FString*, FString*, FString*, unsigned int>(this, "FProperty.GetCPPType(FString&,FString&,unsignedint)", result, ExtendedTypeText, CPPExportFlags); }
+	FString* GetCPPType(FString* result, FString* ExtendedTypeText, unsigned int CPPExportFlags) { return NativeCall<FString*, FString*, FString*, unsigned int>(this, "FProperty.GetCPPType(FString*,unsignedint)", result, ExtendedTypeText, CPPExportFlags); }
 	bool Identical(const void* A, const void* B, unsigned int PortFlags) { return NativeCall<bool, const void*, const void*, unsigned int>(this, "FProperty.Identical(void*,void*,unsignedint)", A, B, PortFlags); }
 	void SerializeItem(FStructuredArchiveSlot Slot, void* Value, const void* Defaults) { NativeCall<void, FStructuredArchiveSlot, void*, const void*>(this, "FProperty.SerializeItem(FStructuredArchiveSlot,void*,void*)", Slot, Value, Defaults); }
-	FString* GetCPPTypeForwardDeclaration(FString* result) { return NativeCall<FString*, FString*>(this, "FProperty.GetCPPTypeForwardDeclaration(FString&)", result); }
+	FString* GetCPPTypeForwardDeclaration(FString* result) { return NativeCall<FString*, FString*>(this, "FProperty.GetCPPTypeForwardDeclaration()", result); }
 	void ExportText_Internal(FString* ValueStr, const void* PropertyValueOrContainer, EPropertyPointerType PointerType, const void* DefaultValue, UObject* Parent, int PortFlags, UObject* ExportRootScope) { NativeCall<void, FString*, const void*, EPropertyPointerType, const void*, UObject*, int, UObject*>(this, "FProperty.ExportText_Internal(FString&,void*,EPropertyPointerType,void*,UObject*,int,UObject*)", ValueStr, PropertyValueOrContainer, PointerType, DefaultValue, Parent, PortFlags, ExportRootScope); }
-	void ExportTextItem(FString* ValueStr, const void* PropertyValue, const void* DefaultValue, UObject* Parent, int PortFlags, UObject* ExportRootScope) { NativeCall<void, FString*, const void*, const void*, UObject*, int, UObject*>(this, "FProperty.ExportTextItem(FString&,void*,void*,UObject*,int,UObject*)", ValueStr, PropertyValue, DefaultValue, Parent, PortFlags, ExportRootScope); }
-	const wchar_t* ImportText(const wchar_t* Buffer, void* Data, int PortFlags, UObject* OwnerObject, FOutputDevice* ErrorText) { return NativeCall<const wchar_t*, const wchar_t*, void*, int, UObject*, FOutputDevice*>(this, "FProperty.ImportText(wchar_t*,void*,int,UObject*,FOutputDevice*)", Buffer, Data, PortFlags, OwnerObject, ErrorText); }
+// 	void ExportTextItem(FString* ValueStr, const void* PropertyValue, const void* DefaultValue, UObject* Parent, int PortFlags, UObject* ExportRootScope) { NativeCall<void, FString*, const void*, const void*, UObject*, int, UObject*>(this, "FProperty.ExportTextItem(FString&,void*,void*,UObject*,int,UObject*)", ValueStr, PropertyValue, DefaultValue, Parent, PortFlags, ExportRootScope); }
+// FUNCTION MISSING: FProperty.ExportTextItem(FString&,void*,void*,UObject*,int,UObject*)
+// 	const wchar_t* ImportText(const wchar_t* Buffer, void* Data, int PortFlags, UObject* OwnerObject, FOutputDevice* ErrorText) { return NativeCall<const wchar_t*, const wchar_t*, void*, int, UObject*, FOutputDevice*>(this, "FProperty.ImportText(wchar_t*,void*,int,UObject*,FOutputDevice*)", Buffer, Data, PortFlags, OwnerObject, ErrorText); }
+// FUNCTION MISSING: FProperty.ImportText(wchar_t*,void*,int,UObject*,FOutputDevice*)
 	void SerializeBinProperty(FStructuredArchiveSlot Slot, void* Data, int ArrayIdx) { NativeCall<void, FStructuredArchiveSlot, void*, int>(this, "FProperty.SerializeBinProperty(FStructuredArchiveSlot,void*,int)", Slot, Data, ArrayIdx); }
-	int Link(FArchive* Ar) { return NativeCall<int, FArchive*>(this, "FProperty.Link(FArchive*)", Ar); }
+// 	int Link(FArchive* Ar) { return NativeCall<int, FArchive*>(this, "FProperty.Link(FArchive*)", Ar); }
+// FUNCTION MISSING: FProperty.Link(FArchive*)
 	const wchar_t* ImportText_InContainer(const wchar_t* Buffer, void* Container, UObject* OwnerObject, int PortFlags, FOutputDevice* ErrorText) { return NativeCall<const wchar_t*, const wchar_t*, void*, UObject*, int, FOutputDevice*>(this, "FProperty.ImportText_InContainer(wchar_t*,void*,UObject*,int,FOutputDevice*)", Buffer, Container, OwnerObject, PortFlags, ErrorText); }
 	//static FField* Construct(const FFieldVariant* InOwner, const FName* InName, EObjectFlags InFlags) { return NativeCall<FField*, const FFieldVariant*, const FName*, EObjectFlags>(nullptr, "FProperty.Construct(FFieldVariant*,FName*,EObjectFlags)", InOwner, InName, InFlags); }
 	//static FFieldClass* StaticClass() { return NativeCall<FFieldClass*>(nullptr, "FProperty.StaticClass()"); }
 	//static void FProperty() { NativeCall<void>(nullptr, "FProperty.FProperty()"); }
 	//static void FProperty() { NativeCall<void>(nullptr, "FProperty.FProperty()"); }
 	void Init() { NativeCall<void>(this, "FProperty.Init()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "FProperty.Serialize(FArchive*)", Ar); }
-	void PostDuplicate(const FField* InField) { NativeCall<void, const FField*>(this, "FProperty.PostDuplicate(FField*)", InField); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "FProperty.Serialize(FArchive&)", Ar); }
+	void PostDuplicate(const FField* InField) { NativeCall<void, const FField*>(this, "FProperty.PostDuplicate(FField&)", InField); }
 	void CopyCompleteValueFromScriptVM(void* Dest, const void* Src) { NativeCall<void, void*, const void*>(this, "FProperty.CopyCompleteValueFromScriptVM(void*,void*)", Dest, Src); }
 	void CopyCompleteValueToScriptVM_InContainer(void* OutValue, const void* InContainer) { NativeCall<void, void*, const void*>(this, "FProperty.CopyCompleteValueToScriptVM_InContainer(void*,void*)", OutValue, InContainer); }
 	void CopyCompleteValueFromScriptVM_InContainer(void* OutContainer, const void* InValue) { NativeCall<void, void*, const void*>(this, "FProperty.CopyCompleteValueFromScriptVM_InContainer(void*,void*)", OutContainer, InValue); }
 	bool ValidateImportFlags(unsigned int PortFlags, FOutputDevice* ErrorHandler) { return NativeCall<bool, unsigned int, FOutputDevice*>(this, "FProperty.ValidateImportFlags(unsignedint,FOutputDevice*)", PortFlags, ErrorHandler); }
-	FString* GetNameCPP(FString* result) { return NativeCall<FString*, FString*>(this, "FProperty.GetNameCPP(FString&)", result); }
-	FString* GetCPPMacroType(FString* result, FString* ExtendedTypeText) { return NativeCall<FString*, FString*, FString*>(this, "FProperty.GetCPPMacroType(FString&,FString&)", result, ExtendedTypeText); }
+	FString* GetNameCPP(FString* result) { return NativeCall<FString*, FString*>(this, "FProperty.GetNameCPP()", result); }
+	FString* GetCPPMacroType(FString* result, FString* ExtendedTypeText) { return NativeCall<FString*, FString*, FString*>(this, "FProperty.GetCPPMacroType(FString&)", result, ExtendedTypeText); }
 	bool ExportText_Direct(FString* ValueStr, const void* Data, const void* Delta, UObject* Parent, int PortFlags, UObject* ExportRootScope) { return NativeCall<bool, FString*, const void*, const void*, UObject*, int, UObject*>(this, "FProperty.ExportText_Direct(FString&,void*,void*,UObject*,int,UObject*)", ValueStr, Data, Delta, Parent, PortFlags, ExportRootScope); }
-	bool ShouldSerializeValue(FArchive* Ar) { return NativeCall<bool, FArchive*>(this, "FProperty.ShouldSerializeValue(FArchive*)", Ar); }
-	bool NetSerializeItem(FArchive* Ar, UPackageMap* Map, void* Data, TArray<unsigned char, TSizedDefaultAllocator<32> >* MetaData) { return NativeCall<bool, FArchive*, UPackageMap*, void*, TArray<unsigned char, TSizedDefaultAllocator<32> >*>(this, "FProperty.NetSerializeItem(FArchive*,UPackageMap*,void*,TArray<unsignedchar,TSizedDefaultAllocator<32>>*)", Ar, Map, Data, MetaData); }
+	bool ShouldSerializeValue(FArchive* Ar) { return NativeCall<bool, FArchive*>(this, "FProperty.ShouldSerializeValue(FArchive&)", Ar); }
+	bool NetSerializeItem(FArchive* Ar, UPackageMap* Map, void* Data, TArray<unsigned char, TSizedDefaultAllocator<32> >* MetaData) { return NativeCall<bool, FArchive*, UPackageMap*, void*, TArray<unsigned char, TSizedDefaultAllocator<32> >*>(this, "FProperty.NetSerializeItem(FArchive&,UPackageMap*,void*,TArray<unsignedchar,TSizedDefaultAllocator<32>>*)", Ar, Map, Data, MetaData); }
 	bool ShouldPort(unsigned int PortFlags) { return NativeCall<bool, unsigned int>(this, "FProperty.ShouldPort(unsignedint)", PortFlags); }
-	FName* GetID(FName* result) { return NativeCall<FName*, FName*>(this, "FProperty.GetID(FName*)", result); }
+	FName* GetID(FName* result) { return NativeCall<FName*, FName*>(this, "FProperty.GetID()", result); }
 	bool SameType(const FProperty* Other) { return NativeCall<bool, const FProperty*>(this, "FProperty.SameType(FProperty*)", Other); }
 	void* AllocateAndInitializeValue() { return NativeCall<void*>(this, "FProperty.AllocateAndInitializeValue()"); }
 	void DestroyAndFreeValue(void* InMemory) { NativeCall<void, void*>(this, "FProperty.DestroyAndFreeValue(void*)", InMemory); }
 	void* GetValueAddressAtIndex_Direct(const FProperty* Inner, void* InValueAddress, int Index) { return NativeCall<void*, const FProperty*, void*, int>(this, "FProperty.GetValueAddressAtIndex_Direct(FProperty*,void*,int)", Inner, InValueAddress, Index); }
 	//static const wchar_t* ImportSingleProperty(const wchar_t* Str, void* DestData, UStruct* ObjectStruct, UObject* SubobjectOuter, int PortFlags, FOutputDevice* Warn, TArray<FDefinedProperty, TSizedDefaultAllocator<32> >* DefinedProperties) { return NativeCall<const wchar_t*, const wchar_t*, void*, UStruct*, UObject*, int, FOutputDevice*, TArray<FDefinedProperty, TSizedDefaultAllocator<32> >*>(nullptr, "FProperty.ImportSingleProperty(wchar_t*,void*,UStruct*,UObject*,int,FOutputDevice*,TArray<FDefinedProperty,TSizedDefaultAllocator<32>>*)", Str, DestData, ObjectStruct, SubobjectOuter, PortFlags, Warn, DefinedProperties); }
-	static FName* FindRedirectedPropertyName(FName* result, UStruct* ObjectStruct, FName OldName) { return NativeCall<FName*, FName*, UStruct*, FName>(nullptr, "FProperty.FindRedirectedPropertyName(FName*,UStruct*,FName)", result, ObjectStruct, OldName); }
+	static FName* FindRedirectedPropertyName(FName* result, UStruct* ObjectStruct, FName OldName) { return NativeCall<FName*, FName*, UStruct*, FName>(nullptr, "FProperty.FindRedirectedPropertyName(UStruct*,FName)", result, ObjectStruct, OldName); }
 
 	template<typename T>
 	T& Get(UObject* object)
@@ -1022,7 +1032,8 @@ struct UStreamableRenderAsset : UObject
 
 	// Functions
 
-	void ResizeGrow(int OldNum) { NativeCall<void, int>(this, "UStreamableRenderAsset.ResizeGrow(int)", OldNum); }
+// 	void ResizeGrow(int OldNum) { NativeCall<void, int>(this, "UStreamableRenderAsset.ResizeGrow(int)", OldNum); }
+// FUNCTION MISSING: UStreamableRenderAsset.ResizeGrow(int)
 	bool StreamIn(int NewMipCount, bool bHighPrio) { return NativeCall<bool, int, bool>(this, "UStreamableRenderAsset.StreamIn(int,bool)", NewMipCount, bHighPrio); }
 	bool StreamOut(int NewMipCount) { return NativeCall<bool, int>(this, "UStreamableRenderAsset.StreamOut(int)", NewMipCount); }
 	int CalcCumulativeLODSize(int NumLODs) { return NativeCall<int, int>(this, "UStreamableRenderAsset.CalcCumulativeLODSize(int)", NumLODs); }
@@ -1044,8 +1055,10 @@ struct UStreamableRenderAsset : UObject
 	void BeginDestroy() { NativeCall<void>(this, "UStreamableRenderAsset.BeginDestroy()"); }
 	bool IsReadyForFinishDestroy() { return NativeCall<bool>(this, "UStreamableRenderAsset.IsReadyForFinishDestroy()"); }
 	//void FLODStreamingCallbackPayload, class TSizedDefaultAllocator<32 >> () { NativeCall<void>(this, "UStreamableRenderAsset.FLODStreamingCallbackPayload,class TSizedDefaultAllocator<32>>()"); }
-	void RemoveAtSwapImpl(int Index, int Count, bool bAllowShrinking) { NativeCall<void, int, int, bool>(this, "UStreamableRenderAsset.RemoveAtSwapImpl(int,int,bool)", Index, Count, bAllowShrinking); }
-	void RemoveAtImpl(int Index, int Count, bool bAllowShrinking) { NativeCall<void, int, int, bool>(this, "UStreamableRenderAsset.RemoveAtImpl(int,int,bool)", Index, Count, bAllowShrinking); }
+// 	void RemoveAtSwapImpl(int Index, int Count, bool bAllowShrinking) { NativeCall<void, int, int, bool>(this, "UStreamableRenderAsset.RemoveAtSwapImpl(int,int,bool)", Index, Count, bAllowShrinking); }
+// FUNCTION MISSING: UStreamableRenderAsset.RemoveAtSwapImpl(int,int,bool)
+// 	void RemoveAtImpl(int Index, int Count, bool bAllowShrinking) { NativeCall<void, int, int, bool>(this, "UStreamableRenderAsset.RemoveAtImpl(int,int,bool)", Index, Count, bAllowShrinking); }
+// FUNCTION MISSING: UStreamableRenderAsset.RemoveAtImpl(int,int,bool)
 };
 
 struct UTexture : UStreamableRenderAsset
@@ -1088,7 +1101,7 @@ struct UTexture : UStreamableRenderAsset
 	const FTextureResource* GetResource() { return NativeCall<const FTextureResource*>(this, "UTexture.GetResource()"); }
 	//void ~UTexture() { NativeCall<void>(this, "UTexture.~UTexture()"); }
 	void ReleaseResource() { NativeCall<void>(this, "UTexture.ReleaseResource()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UTexture.Serialize(FArchive*)", Ar); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UTexture.Serialize(FStructuredArchiveRecord)", Ar); }
 	void PostLoad() { NativeCall<void>(this, "UTexture.PostLoad()"); }
 	void BeginFinalReleaseResource() { NativeCall<void>(this, "UTexture.BeginFinalReleaseResource()"); }
 	void BeginDestroy() { NativeCall<void>(this, "UTexture.BeginDestroy()"); }
@@ -1109,9 +1122,9 @@ struct UTexture : UStreamableRenderAsset
 	void AddAssetUserData(UAssetUserData* InUserData) { NativeCall<void, UAssetUserData*>(this, "UTexture.AddAssetUserData(UAssetUserData*)", InUserData); }
 	UAssetUserData* GetAssetUserDataOfClass(TSubclassOf<UAssetUserData> InUserDataClass) { return NativeCall<UAssetUserData*, TSubclassOf<UAssetUserData>>(this, "UTexture.GetAssetUserDataOfClass(TSubclassOf<UAssetUserData>)", InUserDataClass); }
 	void RemoveUserDataOfClass(TSubclassOf<UAssetUserData> InUserDataClass) { NativeCall<void, TSubclassOf<UAssetUserData>>(this, "UTexture.RemoveUserDataOfClass(TSubclassOf<UAssetUserData>)", InUserDataClass); }
-	FStreamableRenderResourceState* GetResourcePostInitState(FStreamableRenderResourceState* result, const FTexturePlatformData* PlatformData, bool bAllowStreaming, int MinRequestMipCount, int MaxMipCount, bool bSkipCanBeLoaded) { return NativeCall<FStreamableRenderResourceState*, FStreamableRenderResourceState*, const FTexturePlatformData*, bool, int, int, bool>(this, "UTexture.GetResourcePostInitState(FStreamableRenderResourceState*,FTexturePlatformData*,bool,int,int,bool)", result, PlatformData, bAllowStreaming, MinRequestMipCount, MaxMipCount, bSkipCanBeLoaded); }
-	void GetVirtualTextureBuildSettings(FVirtualTextureBuildSettings* OutSettings) { NativeCall<void, FVirtualTextureBuildSettings*>(this, "UTexture.GetVirtualTextureBuildSettings(FVirtualTextureBuildSettings*)", OutSettings); }
-	void SerializeCookedPlatformData(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UTexture.SerializeCookedPlatformData(FArchive*)", Ar); }
+	FStreamableRenderResourceState* GetResourcePostInitState(FStreamableRenderResourceState* result, const FTexturePlatformData* PlatformData, bool bAllowStreaming, int MinRequestMipCount, int MaxMipCount, bool bSkipCanBeLoaded) { return NativeCall<FStreamableRenderResourceState*, FStreamableRenderResourceState*, const FTexturePlatformData*, bool, int, int, bool>(this, "UTexture.GetResourcePostInitState(FTexturePlatformData*,bool,int,int,bool)", result, PlatformData, bAllowStreaming, MinRequestMipCount, MaxMipCount, bSkipCanBeLoaded); }
+	void GetVirtualTextureBuildSettings(FVirtualTextureBuildSettings* OutSettings) { NativeCall<void, FVirtualTextureBuildSettings*>(this, "UTexture.GetVirtualTextureBuildSettings(FVirtualTextureBuildSettings&)", OutSettings); }
+	void SerializeCookedPlatformData(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UTexture.SerializeCookedPlatformData(FArchive&,bool)", Ar); }
 	unsigned int GetSurfaceArraySize() { return NativeCall<unsigned int>(this, "UTexture.GetSurfaceArraySize()"); }
 	float GetSurfaceDepth() { return NativeCall<float>(this, "UTexture.GetSurfaceDepth()"); }
 	float GetSurfaceHeight() { return NativeCall<float>(this, "UTexture.GetSurfaceHeight()"); }
@@ -1145,20 +1158,20 @@ struct UTexture2D : UTexture
 	//void UTexture2D(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UTexture2D.UTexture2D(FObjectInitializer*)", ObjectInitializer); }
 	FTexturePlatformData** GetRunningPlatformData() { return NativeCall<FTexturePlatformData**>(this, "UTexture2D.GetRunningPlatformData()"); }
 	int GetNumMips() { return NativeCall<int>(this, "UTexture2D.GetNumMips()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UTexture2D.Serialize(FArchive*)", Ar); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UTexture2D.Serialize(FStructuredArchiveRecord)", Ar); }
 	int GetNumResidentMips() { return NativeCall<int>(this, "UTexture2D.GetNumResidentMips()"); }
 	bool IsReadyForAsyncPostLoad() { return NativeCall<bool>(this, "UTexture2D.IsReadyForAsyncPostLoad()"); }
 	//void PreSave(FObjectPreSaveContext ObjectSaveContext) { NativeCall<void, FObjectPreSaveContext>(this, "UTexture2D.PreSave(FObjectPreSaveContext)", ObjectSaveContext); }
 	//void GetAssetRegistryTags(TArray<UObject::FAssetRegistryTag, TSizedDefaultAllocator<32> >* OutTags) { NativeCall<void, TArray<UObject::FAssetRegistryTag, TSizedDefaultAllocator<32> >*>(this, "UTexture2D.GetAssetRegistryTags(TArray<UObject::FAssetRegistryTag,TSizedDefaultAllocator<32>>*)", OutTags); }
 	//void UpdateResource() { NativeCall<void>(this, "UTexture2D.UpdateResource()"); }
 	void BeginDestroy() { NativeCall<void>(this, "UTexture2D.BeginDestroy()"); }
-	FString* GetDesc(FString* result) { return NativeCall<FString*, FString*>(this, "UTexture2D.GetDesc(FString&)", result); }
+	FString* GetDesc(FString* result) { return NativeCall<FString*, FString*>(this, "UTexture2D.GetDesc()", result); }
 	int CalcTextureMemorySize(int MipCount) { return NativeCall<int, int>(this, "UTexture2D.CalcTextureMemorySize(int)", MipCount); }
 	int GetNumMipsAllowed(bool bIgnoreMinResidency) { return NativeCall<int, bool>(this, "UTexture2D.GetNumMipsAllowed(bool)", bIgnoreMinResidency); }
 	//unsigned int CalcTextureMemorySizeEnum(ETextureMipCount Enum) { return NativeCall<unsigned int, ETextureMipCount>(this, "UTexture2D.CalcTextureMemorySizeEnum(ETextureMipCount)", Enum); }
 	//FTextureResource* CreateResource() { return NativeCall<FTextureResource*>(this, "UTexture2D.CreateResource()"); }
 	//EMaterialValueType GetMaterialType() { return NativeCall<EMaterialValueType>(this, "UTexture2D.GetMaterialType()"); }
-	void GetResourceSizeEx(FResourceSizeEx* CumulativeResourceSize) { NativeCall<void, FResourceSizeEx*>(this, "UTexture2D.GetResourceSizeEx(FResourceSizeEx*)", CumulativeResourceSize); }
+	void GetResourceSizeEx(FResourceSizeEx* CumulativeResourceSize) { NativeCall<void, FResourceSizeEx*>(this, "UTexture2D.GetResourceSizeEx(FResourceSizeEx&)", CumulativeResourceSize); }
 	//static UTexture2D* CreateTransient(int InSizeX, int InSizeY, EPixelFormat InFormat, const FName InName) { return NativeCall<UTexture2D*, int, int, EPixelFormat, const FName>(nullptr, "UTexture2D.CreateTransient(int,int,EPixelFormat,FName)", InSizeX, InSizeY, InFormat, InName); }
 	static float GetGlobalMipMapLODBias() { return NativeCall<float>(nullptr, "UTexture2D.GetGlobalMipMapLODBias()"); }
 	void RefreshSamplerStates() { NativeCall<void>(this, "UTexture2D.RefreshSamplerStates()"); }
@@ -1515,16 +1528,16 @@ struct UEngine : UObject
 	void ForceGarbageCollection(bool bForcePurge) { NativeCall<void, bool>(this, "UEngine.ForceGarbageCollection(bool)", bForcePurge); }
 	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UEngine.StaticClass()"); }
 	//UThreadNodeSubsystem* GetEngineSubsystem<class UThreadNodeSubsystem>() { return NativeCall<UThreadNodeSubsystem*>(this, "UEngine.GetEngineSubsystem<class UThreadNodeSubsystem>()"); }
-	FString* GetLastModDownloadText(FString* result) { return NativeCall<FString*, FString*>(this, "UEngine.GetLastModDownloadText(FString&)", result); }
+	FString* GetLastModDownloadText(FString* result) { return NativeCall<FString*, FString*>(this, "UEngine.GetLastModDownloadText()", result); }
 	bool IsInitialized() { return NativeCall<bool>(this, "UEngine.IsInitialized()"); }
-	UWorld* GetWorldFromContextObject(const UObject* Object, bool bChecked) { return NativeCall<UWorld*, const UObject*, bool>(this, "UEngine.GetWorldFromContextObject(UObject*,bool)", Object, bChecked); }
+	UWorld* GetWorldFromContextObject(const UObject* Object, bool bChecked) { return NativeCall<UWorld*, const UObject*, bool>(this, "UEngine.GetWorldFromContextObject(UObject*,EGetWorldErrorMode)", Object, bChecked); }
 	void BroadcastTravelFailure(UWorld* InWorld, ETravelFailure::Type FailureType, const FString* ErrorString) { NativeCall<void, UWorld*, ETravelFailure::Type, const FString*>(this, "UEngine.BroadcastTravelFailure(UWorld*,ETravelFailure::Type,FString&)", InWorld, FailureType, ErrorString); }
 	//USteelShieldSubsystem* GetEngineSubsystem<class USteelShieldSubsystem>() { return NativeCall<USteelShieldSubsystem*>(this, "UEngine.GetEngineSubsystem<class USteelShieldSubsystem>()"); }
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UEngine.Serialize(FStructuredArchiveRecord)", Record); }
 	void LoadMapRedrawViewports() { NativeCall<void>(this, "UEngine.LoadMapRedrawViewports()"); }
 	void Tick(float DeltaSeconds, bool bIdleMode) { NativeCall<void, float, bool>(this, "UEngine.Tick(float,bool)", DeltaSeconds, bIdleMode); }
-	static void AddPerformanceDataConsumer() { NativeCall<void>(nullptr, "UEngine.AddPerformanceDataConsumer()"); }
-	static void RemovePerformanceDataConsumer() { NativeCall<void>(nullptr, "UEngine.RemovePerformanceDataConsumer()"); }
+	static void AddPerformanceDataConsumer() { NativeCall<void>(nullptr, "UEngine.AddPerformanceDataConsumer(TSharedPtr<IPerformanceDataConsumer,1>)"); }
+	static void RemovePerformanceDataConsumer() { NativeCall<void>(nullptr, "UEngine.RemovePerformanceDataConsumer(TSharedPtr<IPerformanceDataConsumer,1>)"); }
 	void StartFPSChart(const FString* Label, bool bRecordPerFrameTimes) { NativeCall<void, const FString*, bool>(this, "UEngine.StartFPSChart(FString&,bool)", Label, bRecordPerFrameTimes); }
 	void StopFPSChart(const FString* InMapName) { NativeCall<void, const FString*>(this, "UEngine.StopFPSChart(FString&)", InMapName); }
 	void BroadcastNetworkLagStateChanged(UWorld* World, UNetDriver* NetDriver, ENetworkLagState::Type LagType) { NativeCall<void, UWorld*, UNetDriver*, ENetworkLagState::Type>(this, "UEngine.BroadcastNetworkLagStateChanged(UWorld*,UNetDriver*,ENetworkLagState::Type)", World, NetDriver, LagType); }
@@ -1532,14 +1545,14 @@ struct UEngine : UObject
 	float GetTimeBetweenGarbageCollectionPasses() { return NativeCall<float>(this, "UEngine.GetTimeBetweenGarbageCollectionPasses()"); }
 	float GetTimeBetweenGarbageCollectionPasses(bool bHasPlayersConnected) { return NativeCall<float, bool>(this, "UEngine.GetTimeBetweenGarbageCollectionPasses(bool)", bHasPlayersConnected); }
 	void ConditionalCollectGarbage() { NativeCall<void>(this, "UEngine.ConditionalCollectGarbage()"); }
-	void PerformGarbageCollectionAndCleanupActors() { NativeCall<void>(this, "UEngine.PerformGarbageCollectionAndCleanupActors()"); }
+	void PerformGarbageCollectionAndCleanupActors() { NativeCall<void>(this, "UEngine.PerformGarbageCollectionAndCleanupActors(bool)"); }
 	void Init(IEngineLoop* InEngineLoop) { NativeCall<void, IEngineLoop*>(this, "UEngine.Init(IEngineLoop*)", InEngineLoop); }
 	void OnExternalUIChange(bool bInIsOpening) { NativeCall<void, bool>(this, "UEngine.OnExternalUIChange(bool)", bInIsOpening); }
 	void ReleaseAudioDeviceManager() { NativeCall<void>(this, "UEngine.ReleaseAudioDeviceManager()"); }
 	void PreExit() { NativeCall<void>(this, "UEngine.PreExit()"); }
 	void ShutdownHMD() { NativeCall<void>(this, "UEngine.ShutdownHMD()"); }
 	void TickDeferredCommands() { NativeCall<void>(this, "UEngine.TickDeferredCommands()"); }
-	long double CorrectNegativeTimeDelta(long double DeltaRealTime) { return NativeCall<long double, long double>(this, "UEngine.CorrectNegativeTimeDelta(longdouble)", DeltaRealTime); }
+	long double CorrectNegativeTimeDelta(long double DeltaRealTime) { return NativeCall<long double, long double>(this, "UEngine.CorrectNegativeTimeDelta(double)", DeltaRealTime); }
 	void UpdateTimeAndHandleMaxTickRate() { NativeCall<void>(this, "UEngine.UpdateTimeAndHandleMaxTickRate()"); }
 	bool SetCustomTimeStep(struct UEngineCustomTimeStep* InCustomTimeStep) { return NativeCall<bool, UEngineCustomTimeStep*>(this, "UEngine.SetCustomTimeStep(UEngineCustomTimeStep*)", InCustomTimeStep); }
 	bool SetTimecodeProvider(struct UTimecodeProvider* InTimecodeProvider) { return NativeCall<bool, UTimecodeProvider*>(this, "UEngine.SetTimecodeProvider(UTimecodeProvider*)", InTimecodeProvider); }
@@ -1548,25 +1561,28 @@ struct UEngine : UObject
 	void InitializeObjectReferences() { NativeCall<void>(this, "UEngine.InitializeObjectReferences()"); }
 	void InitializePortalServices() { NativeCall<void>(this, "UEngine.InitializePortalServices()"); }
 	void FinishDestroy() { NativeCall<void>(this, "UEngine.FinishDestroy()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UEngine.Serialize(FArchive*)", Ar); }
-	static void AddReferencedObjects(UObject* InThis, FReferenceCollector* Collector) { NativeCall<void, UObject*, FReferenceCollector*>(nullptr, "UEngine.AddReferencedObjects(UObject*,FReferenceCollector*)", InThis, Collector); }
-	struct FAudioDeviceHandle* GetMainAudioDevice(FAudioDeviceHandle* result) { return NativeCall<FAudioDeviceHandle*, FAudioDeviceHandle*>(this, "UEngine.GetMainAudioDevice(FAudioDeviceHandle*)", result); }
+	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UEngine.Serialize(FStructuredArchiveRecord)", Ar); }
+	static void AddReferencedObjects(UObject* InThis, FReferenceCollector* Collector) { NativeCall<void, UObject*, FReferenceCollector*>(nullptr, "UEngine.AddReferencedObjects(UObject*,FReferenceCollector&)", InThis, Collector); }
+	struct FAudioDeviceHandle* GetMainAudioDevice(FAudioDeviceHandle* result) { return NativeCall<FAudioDeviceHandle*, FAudioDeviceHandle*>(this, "UEngine.GetMainAudioDevice()", result); }
 	void InitializeAudioDeviceManager() { NativeCall<void>(this, "UEngine.InitializeAudioDeviceManager()"); }
 	bool UseSound() { return NativeCall<bool>(this, "UEngine.UseSound()"); }
 	bool InitializeHMDDevice() { return NativeCall<bool>(this, "UEngine.InitializeHMDDevice()"); }
 	bool InitializeEyeTrackingDevice() { return NativeCall<bool>(this, "UEngine.InitializeEyeTrackingDevice()"); }
 	void RecordHMDAnalytics() { NativeCall<void>(this, "UEngine.RecordHMDAnalytics()"); }
-	bool IsSplitScreen(UWorld* InWorld) { return NativeCall<bool, UWorld*>(this, "UEngine.IsSplitScreen(UWorld*)", InWorld); }
+// 	bool IsSplitScreen(UWorld* InWorld) { return NativeCall<bool, UWorld*>(this, "UEngine.IsSplitScreen(UWorld*)", InWorld); }
+// FUNCTION MISSING: UEngine.IsSplitScreen(UWorld*)
 	bool HasMultipleLocalPlayers(UWorld* InWorld) { return NativeCall<bool, UWorld*>(this, "UEngine.HasMultipleLocalPlayers(UWorld*)", InWorld); }
 	ULocalPlayer* GetLocalPlayerFromControllerId(const struct UGameViewportClient* InViewport, const int ControllerId) { return NativeCall<ULocalPlayer*, const UGameViewportClient*, const int>(this, "UEngine.GetLocalPlayerFromControllerId(UGameViewportClient*,int)", InViewport, ControllerId); }
 	ULocalPlayer* GetLocalPlayerFromControllerId(UWorld* InWorld, const int ControllerId) { return NativeCall<ULocalPlayer*, UWorld*, const int>(this, "UEngine.GetLocalPlayerFromControllerId(UWorld*,int)", InWorld, ControllerId); }
 	ULocalPlayer* GetLocalPlayerFromInputDevice(const UGameViewportClient* InViewport, const FInputDeviceId InputDevice) { return NativeCall<ULocalPlayer*, const UGameViewportClient*, const FInputDeviceId>(this, "UEngine.GetLocalPlayerFromInputDevice(UGameViewportClient*,FInputDeviceId)", InViewport, InputDevice); }
 	APlayerController* GetFirstLocalPlayerController(const UWorld* InWorld) { return NativeCall<APlayerController*, const UWorld*>(this, "UEngine.GetFirstLocalPlayerController(UWorld*)", InWorld); }
-	void GetAllLocalPlayerControllers(TArray<APlayerController*, TSizedDefaultAllocator<32> >* PlayerList) { NativeCall<void, TArray<APlayerController*, TSizedDefaultAllocator<32> >*>(this, "UEngine.GetAllLocalPlayerControllers(TArray<APlayerController*,TSizedDefaultAllocator<32>>*)", PlayerList); }
-	bool Exec(UWorld* InWorld, const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, UWorld*, const wchar_t*, FOutputDevice*>(this, "UEngine.Exec(UWorld*,wchar_t*,FOutputDevice*)", InWorld, Cmd, Ar); }
-	bool HandleCeCommand(UWorld* InWorld, const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, UWorld*, const wchar_t*, FOutputDevice*>(this, "UEngine.HandleCeCommand(UWorld*,wchar_t*,FOutputDevice*)", InWorld, Cmd, Ar); }
-	bool HandleDumpTicksCommand(UWorld* InWorld, const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, UWorld*, const wchar_t*, FOutputDevice*>(this, "UEngine.HandleDumpTicksCommand(UWorld*,wchar_t*,FOutputDevice*)", InWorld, Cmd, Ar); }
-	bool HandleGammaCommand(const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, const wchar_t*, FOutputDevice*>(this, "UEngine.HandleGammaCommand(wchar_t*,FOutputDevice*)", Cmd, Ar); }
+	void GetAllLocalPlayerControllers(TArray<APlayerController*, TSizedDefaultAllocator<32> >* PlayerList) { NativeCall<void, TArray<APlayerController*, TSizedDefaultAllocator<32> >*>(this, "UEngine.GetAllLocalPlayerControllers(TArray<APlayerController*,TSizedDefaultAllocator<32>>&)", PlayerList); }
+	bool Exec(UWorld* InWorld, const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, UWorld*, const wchar_t*, FOutputDevice*>(this, "UEngine.Exec(UWorld*,wchar_t*,FOutputDevice&)", InWorld, Cmd, Ar); }
+	bool HandleCeCommand(UWorld* InWorld, const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, UWorld*, const wchar_t*, FOutputDevice*>(this, "UEngine.HandleCeCommand(UWorld*,wchar_t*,FOutputDevice&)", InWorld, Cmd, Ar); }
+// 	bool HandleDumpTicksCommand(UWorld* InWorld, const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, UWorld*, const wchar_t*, FOutputDevice*>(this, "UEngine.HandleDumpTicksCommand(UWorld*,wchar_t*,FOutputDevice*)", InWorld, Cmd, Ar); }
+// FUNCTION MISSING: UEngine.HandleDumpTicksCommand(UWorld*,wchar_t*,FOutputDevice*)
+// 	bool HandleGammaCommand(const wchar_t* Cmd, FOutputDevice* Ar) { return NativeCall<bool, const wchar_t*, FOutputDevice*>(this, "UEngine.HandleGammaCommand(wchar_t*,FOutputDevice*)", Cmd, Ar); }
+// FUNCTION MISSING: UEngine.HandleGammaCommand(wchar_t*,FOutputDevice*)
 	void OnLostFocusPause(bool EnablePause) { NativeCall<void, bool>(this, "UEngine.OnLostFocusPause(bool)", EnablePause); }
 	void InitializeRunningAverageDeltaTime() { NativeCall<void>(this, "UEngine.InitializeRunningAverageDeltaTime()"); }
 	void UpdateRunningAverageDeltaTime(float DeltaTime, bool bAllowFrameRateSmoothing) { NativeCall<void, float, bool>(this, "UEngine.UpdateRunningAverageDeltaTime(float,bool)", DeltaTime, bAllowFrameRateSmoothing); }
@@ -1594,27 +1610,27 @@ struct UEngine : UObject
 	void HandleNetworkFailure_NotifyGameInstance(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType) { NativeCall<void, UWorld*, UNetDriver*, ENetworkFailure::Type>(this, "UEngine.HandleNetworkFailure_NotifyGameInstance(UWorld*,UNetDriver*,ENetworkFailure::Type)", World, NetDriver, FailureType); }
 	void HandleTravelFailure_NotifyGameInstance(UWorld* World, ETravelFailure::Type FailureType) { NativeCall<void, UWorld*, ETravelFailure::Type>(this, "UEngine.HandleTravelFailure_NotifyGameInstance(UWorld*,ETravelFailure::Type)", World, FailureType); }
 	void SpawnServerActors(UWorld* World) { NativeCall<void, UWorld*>(this, "UEngine.SpawnServerActors(UWorld*)", World); }
-	bool HandleOpenCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleOpenCommand(wchar_t*,FOutputDevice*,UWorld*)", Cmd, Ar, InWorld); }
-	bool HandleTravelCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleTravelCommand(wchar_t*,FOutputDevice*,UWorld*)", Cmd, Ar, InWorld); }
-	bool HandleStreamMapCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleStreamMapCommand(wchar_t*,FOutputDevice*,UWorld*)", Cmd, Ar, InWorld); }
-	bool HandleServerTravelCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleServerTravelCommand(wchar_t*,FOutputDevice*,UWorld*)", Cmd, Ar, InWorld); }
-	bool HandleDisconnectCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleDisconnectCommand(wchar_t*,FOutputDevice*,UWorld*)", Cmd, Ar, InWorld); }
+	bool HandleOpenCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleOpenCommand(wchar_t*,FOutputDevice&,UWorld*)", Cmd, Ar, InWorld); }
+	bool HandleTravelCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleTravelCommand(wchar_t*,FOutputDevice&,UWorld*)", Cmd, Ar, InWorld); }
+	bool HandleStreamMapCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleStreamMapCommand(wchar_t*,FOutputDevice&,UWorld*)", Cmd, Ar, InWorld); }
+	bool HandleServerTravelCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleServerTravelCommand(wchar_t*,FOutputDevice&,UWorld*)", Cmd, Ar, InWorld); }
+	bool HandleDisconnectCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleDisconnectCommand(wchar_t*,FOutputDevice&,UWorld*)", Cmd, Ar, InWorld); }
 	void HandleDisconnect(UWorld* InWorld, UNetDriver* NetDriver) { NativeCall<void, UWorld*, UNetDriver*>(this, "UEngine.HandleDisconnect(UWorld*,UNetDriver*)", InWorld, NetDriver); }
-	bool HandleReconnectCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleReconnectCommand(wchar_t*,FOutputDevice*,UWorld*)", Cmd, Ar, InWorld); }
+	bool HandleReconnectCommand(const wchar_t* Cmd, FOutputDevice* Ar, UWorld* InWorld) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UWorld*>(this, "UEngine.HandleReconnectCommand(wchar_t*,FOutputDevice&,UWorld*)", Cmd, Ar, InWorld); }
 	bool MakeSureMapNameIsValid(FString* InOutMapName) { return NativeCall<bool, FString*>(this, "UEngine.MakeSureMapNameIsValid(FString&)", InOutMapName); }
 	//void SetClientTravel(UWorld* InWorld, const wchar_t* NextURL, ETravelType InTravelType) { NativeCall<void, UWorld*, const wchar_t*, ETravelType>(this, "UEngine.SetClientTravel(UWorld*,wchar_t*,ETravelType)", InWorld, NextURL, InTravelType); }
 	void CancelPending(UNetDriver* PendingNetGameDriver) { NativeCall<void, UNetDriver*>(this, "UEngine.CancelPending(UNetDriver*)", PendingNetGameDriver); }
-	void CancelPending(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.CancelPending(FWorldContext*)", Context); }
+	void CancelPending(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.CancelPending(UWorld*,UPendingNetGame*)", Context); }
 	void CancelPending(UWorld* InWorld, UPendingNetGame* NewPendingNetGame) { NativeCall<void, UWorld*, UPendingNetGame*>(this, "UEngine.CancelPending(UWorld*,UPendingNetGame*)", InWorld, NewPendingNetGame); }
 	void CancelAllPending() { NativeCall<void>(this, "UEngine.CancelAllPending()"); }
-	void BrowseToDefaultMap(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.BrowseToDefaultMap(FWorldContext*)", Context); }
-	void HandleBrowseToDefaultMapFailure(FWorldContext* Context, const FString* TextURL, const FString* Error) { NativeCall<void, FWorldContext*, const FString*, const FString*>(this, "UEngine.HandleBrowseToDefaultMapFailure(FWorldContext*,FString&,FString&)", Context, TextURL, Error); }
-	void TickWorldTravel(FWorldContext* Context, float DeltaSeconds) { NativeCall<void, FWorldContext*, float>(this, "UEngine.TickWorldTravel(FWorldContext*,float)", Context, DeltaSeconds); }
-	static char LoadMap() { return NativeCall<char>(nullptr, "UEngine.LoadMap()"); }
-	void CleanupPackagesToFullyLoad(FWorldContext* Context, EFullyLoadPackageType FullyLoadType, const FString* Tag) { NativeCall<void, FWorldContext*, EFullyLoadPackageType, const FString*>(this, "UEngine.CleanupPackagesToFullyLoad(FWorldContext*,EFullyLoadPackageType,FString&)", Context, FullyLoadType, Tag); }
-	void CancelPendingMapChange(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.CancelPendingMapChange(FWorldContext*)", Context); }
+	void BrowseToDefaultMap(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.BrowseToDefaultMap(FWorldContext&)", Context); }
+	void HandleBrowseToDefaultMapFailure(FWorldContext* Context, const FString* TextURL, const FString* Error) { NativeCall<void, FWorldContext*, const FString*, const FString*>(this, "UEngine.HandleBrowseToDefaultMapFailure(FWorldContext&,FString&,FString&)", Context, TextURL, Error); }
+	void TickWorldTravel(FWorldContext* Context, float DeltaSeconds) { NativeCall<void, FWorldContext*, float>(this, "UEngine.TickWorldTravel(FWorldContext&,float)", Context, DeltaSeconds); }
+	static char LoadMap() { return NativeCall<char>(nullptr, "UEngine.LoadMap(FWorldContext&,FURL,UPendingNetGame*,FString&)"); }
+	void CleanupPackagesToFullyLoad(FWorldContext* Context, EFullyLoadPackageType FullyLoadType, const FString* Tag) { NativeCall<void, FWorldContext*, EFullyLoadPackageType, const FString*>(this, "UEngine.CleanupPackagesToFullyLoad(FWorldContext&,EFullyLoadPackageType,FString&)", Context, FullyLoadType, Tag); }
+	void CancelPendingMapChange(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.CancelPendingMapChange(FWorldContext&)", Context); }
 	void ClearDebugDisplayProperties() { NativeCall<void>(this, "UEngine.ClearDebugDisplayProperties()"); }
-	void MovePendingLevel(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.MovePendingLevel(FWorldContext*)", Context); }
+	void MovePendingLevel(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.MovePendingLevel(FWorldContext&)", Context); }
 	void LoadPackagesFully(UWorld* InWorld, EFullyLoadPackageType FullyLoadType, const FString* Tag) { NativeCall<void, UWorld*, EFullyLoadPackageType, const FString*>(this, "UEngine.LoadPackagesFully(UWorld*,EFullyLoadPackageType,FString&)", InWorld, FullyLoadType, Tag); }
 	FWorldContext* CreateNewWorldContext(EWorldType::Type WorldType) { return NativeCall<FWorldContext*, EWorldType::Type>(this, "UEngine.CreateNewWorldContext(EWorldType::Type)", WorldType); }
 	FWorldContext* GetWorldContextFromWorld(const UWorld* InWorld) { return NativeCall<FWorldContext*, const UWorld*>(this, "UEngine.GetWorldContextFromWorld(UWorld*)", InWorld); }
@@ -1622,15 +1638,16 @@ struct UEngine : UObject
 	void DestroyWorldContext(UWorld* InWorld) { NativeCall<void, UWorld*>(this, "UEngine.DestroyWorldContext(UWorld*)", InWorld); }
 	bool IsWorldDuplicate(const UWorld* const InWorld) { return NativeCall<bool, const UWorld* const>(this, "UEngine.IsWorldDuplicate(UWorld*const)", InWorld); }
 	void CheckAndHandleStaleWorldObjectReferences(FWorldContext* WorldContext) { NativeCall<void, FWorldContext*>(this, "UEngine.CheckAndHandleStaleWorldObjectReferences(FWorldContext*)", WorldContext); }
-	static wchar_t*** FindAndPrintStaleReferencesToObjects() { return NativeCall<wchar_t***>(nullptr, "UEngine.FindAndPrintStaleReferencesToObjects()"); }
-	bool PrepareMapChange(FWorldContext* Context, const TArray<FName, TSizedDefaultAllocator<32> >* LevelNames) { return NativeCall<bool, FWorldContext*, const TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UEngine.PrepareMapChange(FWorldContext*,TArray<FName,TSizedDefaultAllocator<32>>*)", Context, LevelNames); }
-	void ConditionalCommitMapChange(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.ConditionalCommitMapChange(FWorldContext*)", Context); }
-	bool CommitMapChange(FWorldContext* Context) { return NativeCall<bool, FWorldContext*>(this, "UEngine.CommitMapChange(FWorldContext*)", Context); }
+// 	static wchar_t*** FindAndPrintStaleReferencesToObjects() { return NativeCall<wchar_t***>(nullptr, "UEngine.FindAndPrintStaleReferencesToObjects()"); }
+// FUNCTION MISSING: UEngine.FindAndPrintStaleReferencesToObjects()
+	bool PrepareMapChange(FWorldContext* Context, const TArray<FName, TSizedDefaultAllocator<32> >* LevelNames) { return NativeCall<bool, FWorldContext*, const TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UEngine.PrepareMapChange(FWorldContext&,TArray<FName,TSizedDefaultAllocator<32>>&)", Context, LevelNames); }
+	void ConditionalCommitMapChange(FWorldContext* Context) { NativeCall<void, FWorldContext*>(this, "UEngine.ConditionalCommitMapChange(FWorldContext&)", Context); }
+	bool CommitMapChange(FWorldContext* Context) { return NativeCall<bool, FWorldContext*>(this, "UEngine.CommitMapChange(FWorldContext&)", Context); }
 	FSeamlessTravelHandler* SeamlessTravelHandlerForWorld(UWorld* World) { return NativeCall<FSeamlessTravelHandler*, UWorld*>(this, "UEngine.SeamlessTravelHandlerForWorld(UWorld*)", World); }
 	struct FURL* LastURLFromWorld(UWorld* World) { return NativeCall<FURL*, UWorld*>(this, "UEngine.LastURLFromWorld(UWorld*)", World); }
 	void CreateGameUserSettings() { NativeCall<void>(this, "UEngine.CreateGameUserSettings()"); }
 	UGameUserSettings* GetGameUserSettings() { return NativeCall<UGameUserSettings*>(this, "UEngine.GetGameUserSettings()"); }
-	static void CopyPropertiesForUnrelatedObjects() { NativeCall<void>(nullptr, "UEngine.CopyPropertiesForUnrelatedObjects()"); }
+	static void CopyPropertiesForUnrelatedObjects() { NativeCall<void>(nullptr, "UEngine.CopyPropertiesForUnrelatedObjects(UObject*,UObject*,UEngine::FCopyPropertiesForUnrelatedObjectsParams)"); }
 	int GetGlobalFunctionCallspace(UFunction* Function, UObject* FunctionTarget, FFrame* Stack) { return NativeCall<int, UFunction*, UObject*, FFrame*>(this, "UEngine.GetGlobalFunctionCallspace(UFunction*,UObject*,FFrame*)", Function, FunctionTarget, Stack); }
 	//void ExecEngineStat(UWorld* World, FCommonViewportClient* ViewportClient, const wchar_t* InName) { NativeCall<void, UWorld*, FCommonViewportClient*, const wchar_t*>(this, "UEngine.ExecEngineStat(UWorld*,FCommonViewportClient*,wchar_t*)", World, ViewportClient, InName); }
 	//void SetEngineStat(UWorld* World, FCommonViewportClient* ViewportClient, const FString* InName, const bool bShow) { NativeCall<void, UWorld*, FCommonViewportClient*, const FString*, const bool>(this, "UEngine.SetEngineStat(UWorld*,FCommonViewportClient*,FString&,bool)", World, ViewportClient, InName, bShow); }
@@ -1653,7 +1670,7 @@ struct UEngine : UObject
 	//int RenderStatFrameCounter(UWorld* World, FViewport* Viewport, FCanvas* Canvas, int X, int Y, const UE::Math::TVector<double>* ViewLocation, const UE::Math::TRotator<double>* ViewRotation) { return NativeCall<int, UWorld*, FViewport*, FCanvas*, int, int, const UE::Math::TVector<double>*, const UE::Math::TRotator<double>*>(this, "UEngine.RenderStatFrameCounter(UWorld*,FViewport*,FCanvas*,int,int,UE::Math::TVector<double>*,UE::Math::TRotator<double>*)", World, Viewport, Canvas, X, Y, ViewLocation, ViewRotation); }
 	//void FEngineStatFuncs(UEngine::FEngineStatFuncs* __that) { NativeCall<void, UEngine::FEngineStatFuncs*>(this, "UEngine.FEngineStatFuncs(UEngine::FEngineStatFuncs*)", __that); }
 	//static void FEngineStatFuncs() { NativeCall<void>(nullptr, "UEngine.FEngineStatFuncs()"); }
-	struct UContentBundleEngineSubsystem* GetEngineSubsystem() { return NativeCall<UContentBundleEngineSubsystem*>(this, "UEngine.GetEngineSubsystem<class UContentBundleEngineSubsystem>()"); }
+	struct UContentBundleEngineSubsystem* GetEngineSubsystem() { return NativeCall<UContentBundleEngineSubsystem*>(this, "UEngine.GetEngineSubsystem<UThreadNodeSubsystem>()"); }
 };
 
 /*
