@@ -8,6 +8,7 @@
 #include "Tools.h"
 
 #include "../IBaseApi.h"
+#include "../Hooks.h"
 #include <Timer.h>
 #include "../Ark/ApiUtils.h"
 
@@ -195,6 +196,10 @@ namespace API
 
 		API::Timer::Get().UnloadTimersFromModule(FString(full_dll_path).Replace(L"/", L"\\"));
 		dynamic_cast<AsaApi::ApiUtils&>(*API::game_api->GetApiUtils()).RemoveMessagingManagerInternal(FString(full_dll_path).Replace(L"/", L"\\"));
+
+		// Remove all hooks registered by this plugin before freeing its memory,
+		// so no live hook target points into the unloaded DLL image.
+		dynamic_cast<API::Hooks&>(*API::game_api->GetHooks()).DisableAllHooksFromModule((*iter)->h_module);
 
 		const BOOL result = FreeLibrary((*iter)->h_module);
 		if (result == 0)

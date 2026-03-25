@@ -5,6 +5,7 @@
     "SaveWorldBeforePluginReload": true,
     "AttachToParent": true,
     "DefaultMessaging": "Default",
+    "ExtendedDebug": false,
     "DeleteOldLogs": {
       "Enable": true,
       "MaxAge": 24

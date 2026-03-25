@@ -7,26 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsaApi", "AsaApi\AsaApi.vcx
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Lethal|x64 = Lethal|x64
-		Lethal|x86 = Lethal|x86
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-		Wooly|x64 = Wooly|x64
-		Wooly|x86 = Wooly|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1586E56E-B700-4F77-814E-A0150454949B}.Lethal|x64.ActiveCfg = Lethal|x64
-		{1586E56E-B700-4F77-814E-A0150454949B}.Lethal|x64.Build.0 = Lethal|x64
-		{1586E56E-B700-4F77-814E-A0150454949B}.Lethal|x86.ActiveCfg = Lethal|Win32
-		{1586E56E-B700-4F77-814E-A0150454949B}.Lethal|x86.Build.0 = Lethal|Win32
 		{1586E56E-B700-4F77-814E-A0150454949B}.Release|x64.ActiveCfg = Release|x64
 		{1586E56E-B700-4F77-814E-A0150454949B}.Release|x64.Build.0 = Release|x64
-		{1586E56E-B700-4F77-814E-A0150454949B}.Release|x86.ActiveCfg = Release|Win32
-		{1586E56E-B700-4F77-814E-A0150454949B}.Release|x86.Build.0 = Release|Win32
-		{1586E56E-B700-4F77-814E-A0150454949B}.Wooly|x64.ActiveCfg = Wooly|x64
-		{1586E56E-B700-4F77-814E-A0150454949B}.Wooly|x64.Build.0 = Wooly|x64
-		{1586E56E-B700-4F77-814E-A0150454949B}.Wooly|x86.ActiveCfg = Wooly|Win32
-		{1586E56E-B700-4F77-814E-A0150454949B}.Wooly|x86.Build.0 = Wooly|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
