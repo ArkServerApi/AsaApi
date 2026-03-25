@@ -36,7 +36,10 @@ namespace
 				HANDLE hThread = OpenThread(THREAD_SUSPEND_RESUME | THREAD_GET_CONTEXT | THREAD_SET_CONTEXT,
 					FALSE, te.th32ThreadID);
 				if (hThread)
+				{
 					DetourUpdateThread(hThread);
+					CloseHandle(hThread);
+				}
 				
 			} while (Thread32Next(hSnap, &te));
 		}
@@ -128,15 +131,20 @@ namespace API
 			return false;
 		}
 
-		std::lock_guard installLock(g_hookInstallMutex);
+		std::unique_lock installLock(g_hookInstallMutex);
+		g_rebuildDone.wait(installLock, [&]
+			{
+				return !rebuilding_.count(func_name);
+			});
 
 		auto& hook_vector = all_hooks_[func_name];
-
 		*original = target;
 
 		bool ok = RunTransaction([&]()
 		{
-			DetourAttach(original, detour);
+			const LONG attachErr = DetourAttach(original, detour);
+			if (attachErr != NO_ERROR)
+				Log::GetLog()->error("[{}] DetourAttach failed for {} (err={})", ModuleName(hOwner), func_name, attachErr);
 		});
 
 		if (!ok)
@@ -216,7 +224,11 @@ namespace API
 			bool ok = RunTransaction([&]()
 			{
 				for (const auto& h : hook_vector)
-					DetourDetach(h->original, h->detour);
+				{
+					const LONG detachErr = DetourDetach(h->original, h->detour);
+					if (detachErr != NO_ERROR)
+						Log::GetLog()->error("[{}] DetourDetach failed for {} (err={})", ModuleName(removedHook->hOwnerModule), func_name, detachErr);
+				}
 			});
 
 			if (!ok)
