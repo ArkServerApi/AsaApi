@@ -28,7 +28,6 @@ namespace API
 		void DisableAllHooksFromModule(HMODULE hModule);
 
 	private:
-
 		struct Hook
 		{
 			Hook(LPVOID target, LPVOID detour, LPVOID* original, HMODULE hOwner)
@@ -46,6 +45,10 @@ namespace API
 
 		bool SetHookInternalImpl(const std::string& func_name, LPVOID detour,
 			LPVOID* original, HMODULE hOwnerOverride);
+
+		// Called only during chain rebuild — skips the rebuilding_ guard
+		bool SetHookInternalImplNoWait(const std::string& func_name, LPVOID detour,
+			LPVOID* original, HMODULE hOwner);
 
 		std::unordered_map<std::string, std::vector<std::shared_ptr<Hook>>> all_hooks_;
 		std::unordered_set<std::string> rebuilding_;

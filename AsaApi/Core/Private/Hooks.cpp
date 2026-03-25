@@ -130,12 +130,18 @@ namespace API
 
 		std::unique_lock installLock(g_hookInstallMutex);
 		g_rebuildDone.wait(installLock, [&]
-			{
-				return !rebuilding_.count(func_name);
-			});
+		{
+			return !rebuilding_.count(func_name);
+		});
 
+		return SetHookInternalImplNoWait(func_name, detour, original, hOwner);
+	}
+
+	bool Hooks::SetHookInternalImplNoWait(const std::string& func_name, LPVOID detour,
+		LPVOID* original, HMODULE hOwner)
+	{
 		auto& hook_vector = all_hooks_[func_name];
-		*original = target;
+		*original = Offsets::Get().GetAddress(func_name);
 
 		bool ok = RunTransaction([&]()
 		{
@@ -154,7 +160,7 @@ namespace API
 		if (extended_debug_)
 			Log::GetLog()->info("[{}] Hook installed for {} (trampoline=0x{:X})", ModuleName(hOwner), func_name, reinterpret_cast<ULONG_PTR>(*original));
 
-		hook_vector.push_back(std::make_shared<Hook>(target, detour, original, hOwner));
+		hook_vector.push_back(std::make_shared<Hook>(Offsets::Get().GetAddress(func_name), detour, original, hOwner));
 		return true;
 	}
 
@@ -249,7 +255,7 @@ namespace API
 		std::size_t reinstalled = 0;
 		for (const auto& h : survivors)
 		{
-			if (SetHookInternalImpl(func_name, h->detour, h->original, h->hOwnerModule))
+			if (SetHookInternalImplNoWait(func_name, h->detour, h->original, h->hOwnerModule))
 				++reinstalled;
 			else
 				Log::GetLog()->error("[{}] Failed to reinstall hook for {} during chain rebuild", ModuleName(h->hOwnerModule), func_name);
