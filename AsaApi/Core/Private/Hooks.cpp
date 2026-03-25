@@ -36,10 +36,7 @@ namespace
 				HANDLE hThread = OpenThread(THREAD_SUSPEND_RESUME | THREAD_GET_CONTEXT | THREAD_SET_CONTEXT,
 					FALSE, te.th32ThreadID);
 				if (hThread)
-				{
 					DetourUpdateThread(hThread);
-					CloseHandle(hThread);
-				}
 				
 			} while (Thread32Next(hSnap, &te));
 		}
