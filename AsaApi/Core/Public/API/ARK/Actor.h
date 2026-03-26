@@ -7214,6 +7214,7 @@ struct FPrimalDinoCharacterSparseClassData : FPrimalCharacterSparseClassData
     UE::Math::TVector<double>& CosmeticRiderOffsetRange_MinField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FPrimalDinoCharacterSparseClassData.CosmeticRiderOffsetRange_Min"); }
     UE::Math::TVector<double>& CosmeticRiderOffsetRange_MaxField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "FPrimalDinoCharacterSparseClassData.CosmeticRiderOffsetRange_Max"); }
     float& AddToCarryDragWeight_CartMultiField() { return *GetNativePointerField<float*>(this, "FPrimalDinoCharacterSparseClassData.AddToCarryDragWeight_CartMulti"); }
+    TSoftClassPtr<APrimalDinoCharacter>& GestationBabyDinoClassOverrideField() { return *GetNativePointerField<TSoftClassPtr<APrimalDinoCharacter>*>(this, "FPrimalDinoCharacterSparseClassData.GestationBabyDinoClassOverride"); }
 
     // Bitfields
 
@@ -8473,6 +8474,7 @@ struct APrimalDinoCharacter : APrimalCharacter
 
     // Functions
 
+    bool BPExtractEmbryo(struct APlayerController* ForPC, struct UPrimalItem** EmbryoItem, struct TSoftClassPtr<UPrimalItem>* FallbackGenericEmbryoItemTemplate) { return NativeCall<bool, struct APlayerController*, struct UPrimalItem**, struct TSoftClassPtr<UPrimalItem>*>(this, "APrimalDinoCharacter.BPExtractEmbryo(APlayerController*,UPrimalItem*&,TSoftClassPtr<UPrimalItem>)", ForPC, EmbryoItem, FallbackGenericEmbryoItemTemplate); }
     void OnDinoStartled(UAnimMontage* StartledAnimPlayed, bool bFromAIController) { NativeCall<void, UAnimMontage*, bool>(this, "APrimalDinoCharacter.OnDinoStartled(UAnimMontage*,bool)", StartledAnimPlayed, bFromAIController); }
     bool IsCorruptedDino() { return NativeCall<bool>(this, "APrimalDinoCharacter.IsCorruptedDino()"); }
     float GetBabyAge() { return NativeCall<float>(this, "APrimalDinoCharacter.GetBabyAge()"); }
