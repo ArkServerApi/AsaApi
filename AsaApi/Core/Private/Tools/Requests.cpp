@@ -122,7 +122,7 @@ namespace API
 
 		if (connectionTimeout > 0L)
 			session->setConnectTimeout(Poco::Timespan(connectionTimeout, 0L));
-		if (connectionTimeout > 0L)
+		if (receiveTimeout > 0L)
 			session->setReceiveTimeout(Poco::Timespan(receiveTimeout, 0L));
 		if (sendTimeout > 0L)
 			session->setSendTimeout(Poco::Timespan(sendTimeout, 0L));
