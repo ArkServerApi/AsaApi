@@ -822,7 +822,7 @@ struct UPrimalItem : UObject
     void AddToArkTributeInvenroty(UPrimalInventoryComponent* toInventory, bool bFromLoad) { NativeCall<void, UPrimalInventoryComponent*, bool>(this, "UPrimalItem.AddToArkTributeInvenroty(UPrimalInventoryComponent*,bool)", toInventory, bFromLoad); }
     int GetMaximumAdditionalCrafting(UPrimalInventoryComponent* forComp, AShooterPlayerController* PC) { return NativeCall<int, UPrimalInventoryComponent*, AShooterPlayerController*>(this, "UPrimalItem.GetMaximumAdditionalCrafting(UPrimalInventoryComponent*,AShooterPlayerController*)", forComp, PC); }
     bool CanShowNotificationItem() { return NativeCall<bool>(this, "UPrimalItem.CanShowNotificationItem()"); }
-    bool IsItemSkin() { return NativeCall<bool>(this, "UPrimalItem.IsItemSkin(bool)"); }
+    bool IsItemSkin(bool bCheckCosmeticTabCondition) { return NativeCall<bool, bool>(this, "UPrimalItem.IsItemSkin(bool)", bCheckCosmeticTabCondition); }
     void InventoryLoadedFromSaveGame() { NativeCall<void>(this, "UPrimalItem.InventoryLoadedFromSaveGame()"); }
     bool CheckForInventoryDupes() { return NativeCall<bool>(this, "UPrimalItem.CheckForInventoryDupes()"); }
     void CalcRecipeStats() { NativeCall<void>(this, "UPrimalItem.CalcRecipeStats()"); }
