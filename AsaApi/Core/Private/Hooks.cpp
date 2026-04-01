@@ -79,7 +79,6 @@ namespace
 		if (err != NO_ERROR)
 		{
 			Log::GetLog()->error("DetourTransactionCommit failed (err={})", err);
-			DetourTransactionAbort();
 			return false;
 		}
 		return true;
@@ -141,7 +140,11 @@ namespace API
 		LPVOID* original, HMODULE hOwner)
 	{
 		auto& hook_vector = all_hooks_[func_name];
-		*original = Offsets::Get().GetAddress(func_name);
+
+		LPVOID target = Offsets::Get().GetAddress(func_name);
+		LPVOID new_target = hook_vector.empty()
+			? target
+			: hook_vector.back()->detour;
 
 		bool ok = RunTransaction([&]()
 		{
