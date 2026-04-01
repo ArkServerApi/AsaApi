@@ -144,7 +144,7 @@ namespace API
 		LPVOID target = Offsets::Get().GetAddress(func_name);
 		LPVOID new_target = hook_vector.empty()
 			? target
-			: hook_vector.back()->detour;
+			: hook_vector.back()->original;
 
 		bool ok = RunTransaction([&]()
 		{
