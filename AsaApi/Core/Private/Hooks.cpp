@@ -37,7 +37,7 @@ namespace
 					FALSE, te.th32ThreadID);
 				if (hThread)
 					DetourUpdateThread(hThread);
-				
+
 			} while (Thread32Next(hSnap, &te));
 		}
 		CloseHandle(hSnap);
@@ -129,9 +129,9 @@ namespace API
 
 		std::unique_lock installLock(g_hookInstallMutex);
 		g_rebuildDone.wait(installLock, [&]
-		{
-			return !rebuilding_.count(func_name);
-		});
+			{
+				return !rebuilding_.count(func_name);
+			});
 
 		return SetHookInternalImplNoWait(func_name, detour, original, hOwner);
 	}
@@ -147,11 +147,11 @@ namespace API
 			: hook_vector.back()->original;
 
 		bool ok = RunTransaction([&]()
-		{
-			const LONG attachErr = DetourAttach(original, detour);
-			if (attachErr != NO_ERROR)
-				Log::GetLog()->error("[{}] DetourAttach failed for {} (err={})", ModuleName(hOwner), func_name, attachErr);
-		});
+			{
+				const LONG attachErr = DetourAttach(&new_target, detour);
+				if (attachErr != NO_ERROR)
+					Log::GetLog()->error("[{}] DetourAttach failed for {} (err={})", ModuleName(hOwner), func_name, attachErr);
+			});
 
 		if (!ok)
 		{
@@ -159,6 +159,8 @@ namespace API
 			*original = nullptr;
 			return false;
 		}
+
+		*original = new_target;
 
 		if (extended_debug_)
 			Log::GetLog()->info("[{}] Hook installed for {} (trampoline=0x{:X})", ModuleName(hOwner), func_name, reinterpret_cast<ULONG_PTR>(*original));
@@ -177,26 +179,26 @@ namespace API
 		}
 
 		const auto makeChainSnapshot = [](const std::vector<std::shared_ptr<Hook>>& vec) -> std::string
-		{
-			if (vec.empty())
-				return "0 hooks: <empty>";
-
-			std::string s = std::to_string(vec.size()) + " hooks: ";
-			for (std::size_t i = 0; i < vec.size(); ++i)
 			{
-				char buf[24];
-				std::snprintf(buf, sizeof(buf), "0x%llX",
-					static_cast<unsigned long long>(reinterpret_cast<ULONG_PTR>(vec[i]->detour)));
-				s += '[';
-				s += ModuleName(vec[i]->hOwnerModule);
-				s += '(';
-				s += buf;
-				s += ")]";
-				if (i + 1 < vec.size())
-					s += " -> ";
-			}
-			return s;
-		};
+				if (vec.empty())
+					return "0 hooks: <empty>";
+
+				std::string s = std::to_string(vec.size()) + " hooks: ";
+				for (std::size_t i = 0; i < vec.size(); ++i)
+				{
+					char buf[24];
+					std::snprintf(buf, sizeof(buf), "0x%llX",
+						static_cast<unsigned long long>(reinterpret_cast<ULONG_PTR>(vec[i]->detour)));
+					s += '[';
+					s += ModuleName(vec[i]->hOwnerModule);
+					s += '(';
+					s += buf;
+					s += ")]";
+					if (i + 1 < vec.size())
+						s += " -> ";
+				}
+				return s;
+			};
 
 		std::shared_ptr<Hook> removedHook;
 		std::vector<std::shared_ptr<Hook>> survivors;
@@ -228,14 +230,14 @@ namespace API
 			rebuilding_.insert(func_name);
 
 			bool ok = RunTransaction([&]()
-			{
-				for (const auto& h : hook_vector)
 				{
-					const LONG detachErr = DetourDetach(h->original, h->detour);
-					if (detachErr != NO_ERROR)
-						Log::GetLog()->error("[{}] DetourDetach failed for {} (err={})", ModuleName(removedHook->hOwnerModule), func_name, detachErr);
-				}
-			});
+					for (const auto& h : hook_vector)
+					{
+						const LONG detachErr = DetourDetach(h->original, h->detour);
+						if (detachErr != NO_ERROR)
+							Log::GetLog()->error("[{}] DetourDetach failed for {} (err={})", ModuleName(removedHook->hOwnerModule), func_name, detachErr);
+					}
+				});
 
 			if (!ok)
 			{
