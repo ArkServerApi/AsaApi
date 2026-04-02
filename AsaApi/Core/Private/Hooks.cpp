@@ -35,8 +35,19 @@ namespace
 
 				HANDLE hThread = OpenThread(THREAD_SUSPEND_RESUME | THREAD_GET_CONTEXT | THREAD_SET_CONTEXT,
 					FALSE, te.th32ThreadID);
-				if (hThread)
-					DetourUpdateThread(hThread);
+				if (!hThread)
+					continue;
+
+				// Pre-test suspendability and skip threads we can't suspend.
+				const DWORD suspendCount = SuspendThread(hThread);
+				if (suspendCount == (DWORD)-1)
+				{
+					CloseHandle(hThread);
+					continue;
+				}
+				ResumeThread(hThread);
+
+				DetourUpdateThread(hThread);
 
 			} while (Thread32Next(hSnap, &te));
 		}
@@ -73,7 +84,13 @@ namespace
 
 		UpdateAllThreads();
 
-		fn();
+		const bool attachOk = fn();
+
+		if (!attachOk)
+		{
+			DetourTransactionAbort();
+			return false;
+		}
 
 		const LONG err = DetourTransactionCommit();
 		if (err != NO_ERROR)
@@ -144,13 +161,17 @@ namespace API
 		LPVOID target = Offsets::Get().GetAddress(func_name);
 		LPVOID new_target = hook_vector.empty()
 			? target
-			: hook_vector.back()->original;
+			: *hook_vector.back()->original;
 
-		bool ok = RunTransaction([&]()
+		bool ok = RunTransaction([&]() -> bool
 			{
 				const LONG attachErr = DetourAttach(&new_target, detour);
 				if (attachErr != NO_ERROR)
+				{
 					Log::GetLog()->error("[{}] DetourAttach failed for {} (err={})", ModuleName(hOwner), func_name, attachErr);
+					return false;
+				}
+				return true;
 			});
 
 		if (!ok)
@@ -229,14 +250,19 @@ namespace API
 
 			rebuilding_.insert(func_name);
 
-			bool ok = RunTransaction([&]()
+			bool ok = RunTransaction([&]() -> bool
 				{
+					bool allOk = true;
 					for (const auto& h : hook_vector)
 					{
 						const LONG detachErr = DetourDetach(h->original, h->detour);
 						if (detachErr != NO_ERROR)
+						{
 							Log::GetLog()->error("[{}] DetourDetach failed for {} (err={})", ModuleName(removedHook->hOwnerModule), func_name, detachErr);
+							allOk = false;
+						}
 					}
+					return allOk;
 				});
 
 			if (!ok)
