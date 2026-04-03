@@ -50,6 +50,8 @@ namespace API
 		std::string GetResponse(Poco::Net::HTTPClientSession* session, Poco::Net::HTTPResponse& response);
 		std::unordered_map<std::string, std::string> GetResponseHeaders(Poco::Net::HTTPResponse& response);
 
+		void LogRequestError(const std::string& url, const Poco::Exception& exc);
+
 		void Update();
 	private:
 		using CallbackVariant = std::variant<
@@ -69,25 +71,25 @@ namespace API
 	};
 
 	Requests::Requests()
-		: pimpl{ std::make_unique<impl>() } 
-	{		
+		: pimpl{ std::make_unique<impl>() }
+	{
 		const nlohmann::json config = dynamic_cast<ArkBaseApi&>(*game_api).GetConfig();
 		suppress_errors = config.value("SuppressHttpErrors", false);
 
 		Poco::Net::initializeSSL();
 		Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> ptrCert = new Poco::Net::RejectCertificateHandler(false);
-		
+
 		Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::TLS_CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_NONE, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
 
 		Poco::Net::SSLManager::instance().initializeClient(0, ptrCert, ptrContext);
 
-		game_api->GetCommands()->AddOnTickCallback("RequestsUpdate", std::bind(&impl::Update, this->pimpl.get())); 
+		game_api->GetCommands()->AddOnTickCallback("RequestsUpdate", std::bind(&impl::Update, this->pimpl.get()));
 	}
 
-	Requests::~Requests() 
-	{ 
+	Requests::~Requests()
+	{
 		Poco::Net::uninitializeSSL();
-		game_api->GetCommands()->RemoveOnTickCallback("RequestsUpdate"); 
+		game_api->GetCommands()->RemoveOnTickCallback("RequestsUpdate");
 	}
 
 	Requests& Requests::Get()
@@ -106,6 +108,21 @@ namespace API
 	{
 		std::lock_guard<std::mutex> Guard(RequestMutex_);
 		RequestsVec_.push_back({ callback, success, result, headers });
+	}
+
+	void Requests::impl::LogRequestError(const std::string& url, const Poco::Exception& exc)
+	{
+		std::string host;
+		try
+		{
+			host = Poco::URI(url).getHost();
+		}
+		catch (...)
+		{
+			host = "<unknown host>";
+		}
+
+		Log::GetLog()->error("HTTP request to '{}' failed: {}", host, exc.displayText());
 	}
 
 	Poco::Net::HTTPRequest Requests::impl::ConstructRequest(const std::string& url, Poco::Net::HTTPClientSession*& session,
@@ -201,7 +218,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -254,7 +271,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -295,7 +312,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -347,7 +364,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -389,7 +406,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -445,7 +462,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -502,7 +519,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -542,36 +559,36 @@ namespace API
 		const std::string& patch_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
 		std::thread([this, url, callback, patch_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-		{
-			std::string Result = "";
-			Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-			Poco::Net::HTTPClientSession* session = nullptr;
-
-			try
 			{
-				Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH, connectionTimeout, receiveTimeout, sendTimeout);
+				std::string Result = "";
+				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+				Poco::Net::HTTPClientSession* session = nullptr;
 
-				request.setContentType("application/x-www-form-urlencoded");
-				request.setContentLength(patch_data.length());
+				try
+				{
+					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH, connectionTimeout, receiveTimeout, sendTimeout);
 
-				std::ostream& OutputStream = session->sendRequest(request);
-				OutputStream << patch_data;
+					request.setContentType("application/x-www-form-urlencoded");
+					request.setContentLength(patch_data.length());
 
-				Result = pimpl->GetResponse(session, response);
+					std::ostream& OutputStream = session->sendRequest(request);
+					OutputStream << patch_data;
+
+					Result = pimpl->GetResponse(session, response);
+				}
+				catch (const Poco::Exception& exc)
+				{
+					if (!suppress_errors)
+						pimpl->LogRequestError(url, exc);
+				}
+
+				const bool success = (int)response.getStatus() >= 200
+					&& (int)response.getStatus() < 300;
+
+				pimpl->WriteRequest(callback, success, Result);
+				delete session;
+				session = nullptr;
 			}
-			catch (const Poco::Exception& exc)
-			{
-				if (!suppress_errors)
-					Log::GetLog()->error(exc.displayText());
-			}
-
-			const bool success = (int)response.getStatus() >= 200
-				&& (int)response.getStatus() < 300;
-
-			pimpl->WriteRequest(callback, success, Result);
-			delete session;
-			session = nullptr;
-		}
 		).detach();
 
 		return true;
@@ -587,36 +604,36 @@ namespace API
 		const std::string& patch_data, const std::string& content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
 		std::thread([this, url, callback, patch_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout]
-		{
-			std::string Result = "";
-			Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-			Poco::Net::HTTPClientSession* session = nullptr;
-
-			try
 			{
-				Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH, connectionTimeout, receiveTimeout, sendTimeout);
+				std::string Result = "";
+				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+				Poco::Net::HTTPClientSession* session = nullptr;
 
-				request.setContentType(content_type);
-				request.setContentLength(patch_data.length());
+				try
+				{
+					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH, connectionTimeout, receiveTimeout, sendTimeout);
 
-				std::ostream& OutputStream = session->sendRequest(request);
-				OutputStream << patch_data;
+					request.setContentType(content_type);
+					request.setContentLength(patch_data.length());
 
-				Result = pimpl->GetResponse(session, response);
+					std::ostream& OutputStream = session->sendRequest(request);
+					OutputStream << patch_data;
+
+					Result = pimpl->GetResponse(session, response);
+				}
+				catch (const Poco::Exception& exc)
+				{
+					if (!suppress_errors)
+						pimpl->LogRequestError(url, exc);
+				}
+
+				const bool success = (int)response.getStatus() >= 200
+					&& (int)response.getStatus() < 300;
+
+				pimpl->WriteRequest(callback, success, Result);
+				delete session;
+				session = nullptr;
 			}
-			catch (const Poco::Exception& exc)
-			{
-				if (!suppress_errors)
-					Log::GetLog()->error(exc.displayText());
-			}
-
-			const bool success = (int)response.getStatus() >= 200
-				&& (int)response.getStatus() < 300;
-
-			pimpl->WriteRequest(callback, success, Result);
-			delete session;
-			session = nullptr;
-		}
 		).detach();
 
 		return true;
@@ -647,7 +664,7 @@ namespace API
 				catch (const Poco::Exception& exc)
 				{
 					if (!suppress_errors)
-						Log::GetLog()->error(exc.displayText());
+						pimpl->LogRequestError(url, exc);
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -685,7 +702,7 @@ namespace API
 		catch (const Poco::Exception& exc)
 		{
 			if (!suppress_errors)
-				Log::GetLog()->error(exc.displayText());
+				pimpl->LogRequestError(url, exc);
 		}
 
 		Result.statusCode = (int)response.getStatus();
@@ -749,7 +766,10 @@ namespace API
 		}
 		catch (const Poco::Exception& exc)
 		{
-			Log::GetLog()->error(exc.displayText());
+			std::string host;
+			try { host = Poco::URI(url).getHost(); }
+			catch (...) { host = "<unknown host>"; }
+			Log::GetLog()->error("HTTP request to '{}' failed: {}", host, exc.displayText());
 
 			delete session;
 			session = nullptr;
@@ -761,25 +781,25 @@ namespace API
 		return true;
 	}
 
-    void Requests::impl::Update()
-    {
-        if (RequestsVec_.empty())
-            return;
+	void Requests::impl::Update()
+	{
+		if (RequestsVec_.empty())
+			return;
 
-        RequestMutex_.lock();
-        std::vector<RequestData> requests_temp = std::move(RequestsVec_);
-        RequestMutex_.unlock();
+		RequestMutex_.lock();
+		std::vector<RequestData> requests_temp = std::move(RequestsVec_);
+		RequestMutex_.unlock();
 
-        for (const auto& request : requests_temp)
+		for (const auto& request : requests_temp)
 		{
-            std::visit([&](auto&& callback) 
-			{
-                using T = std::decay_t<decltype(callback)>;
-                if constexpr (std::is_same_v<T, std::function<void(bool, std::string)>>)
-                    callback(request.success, request.result);
-                else if constexpr (std::is_same_v<T, std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>>)
-                    callback(request.success, request.result, request.headers);
-            }, request.callback);
-        }
-    }
+			std::visit([&](auto&& callback)
+				{
+					using T = std::decay_t<decltype(callback)>;
+					if constexpr (std::is_same_v<T, std::function<void(bool, std::string)>>)
+						callback(request.success, request.result);
+					else if constexpr (std::is_same_v<T, std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>>)
+						callback(request.success, request.result, request.headers);
+				}, request.callback);
+		}
+	}
 } // namespace API
