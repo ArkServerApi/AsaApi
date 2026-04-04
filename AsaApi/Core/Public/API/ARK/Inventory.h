@@ -806,8 +806,8 @@ struct UPrimalItem : UObject
     bool IsOwnerInWater() { return NativeCall<bool>(this, "UPrimalItem.IsOwnerInWater()"); }
     bool IsOwnerInNoPainWater() { return NativeCall<bool>(this, "UPrimalItem.IsOwnerInNoPainWater()"); }
     bool AllowRemoteAddToInventory(UPrimalInventoryComponent* invComp, AShooterPlayerController* ByPC, bool bRequestedByPlayer) { return NativeCall<bool, UPrimalInventoryComponent*, AShooterPlayerController*, bool>(this, "UPrimalItem.AllowRemoteAddToInventory(UPrimalInventoryComponent*,AShooterPlayerController*,bool)", invComp, ByPC, bRequestedByPlayer); }
-    bool CanDrop() { return NativeCall<bool>(this, "UPrimalItem.CanDrop()"); }
-    void PickupAlertDinos(AActor* groundItem) { NativeCall<void, AActor*>(this, "UPrimalItem.PickupAlertDinos(AActor*)", groundItem); }
+	bool CanDrop(bool bForDropInWorld) { return NativeCall<bool, bool>(this, "UPrimalItem.CanDrop(bool)", bForDropInWorld); }
+	void PickupAlertDinos(AActor* groundItem) { NativeCall<void, AActor*>(this, "UPrimalItem.PickupAlertDinos(AActor*)", groundItem); }
     void GetItemAttachmentInfos(AActor* OwnerActor) { NativeCall<void, AActor*>(this, "UPrimalItem.GetItemAttachmentInfos(AActor*,bool)", OwnerActor); }
     void SetAttachedMeshesMaterialScalarParamValue(FName ParamName, float Value) { NativeCall<void, FName, float>(this, "UPrimalItem.SetAttachedMeshesMaterialScalarParamValue(FName,float)", ParamName, Value); }
     bool CanUseWithItemSource(UPrimalItem* DestinationItem) { return NativeCall<bool, UPrimalItem*>(this, "UPrimalItem.CanUseWithItemSource(UPrimalItem*)", DestinationItem); }
