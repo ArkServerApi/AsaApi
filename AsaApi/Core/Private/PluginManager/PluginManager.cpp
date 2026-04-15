@@ -164,7 +164,8 @@ namespace API
 		return loaded_plugins_.emplace_back(std::make_shared<Plugin>(h_module, plugin_name, plugin_info["FullName"],
 			plugin_info["Description"], plugin_info["Version"],
 			plugin_info["MinApiVersion"],
-			plugin_info["Dependencies"]));
+			plugin_info["Dependencies"],
+			plugin_info.value("SupportsHotReload", true)));
 	}
 
 	void PluginManager::UnloadPlugin(const std::string& plugin_name) noexcept(false)
@@ -216,6 +217,7 @@ namespace API
 		}
 
 		loaded_plugins_.erase(remove(loaded_plugins_.begin(), loaded_plugins_.end(), *iter), loaded_plugins_.end());
+		hot_reload_warned_plugins_.erase(plugin_name);
 	}
 
 	nlohmann::json PluginManager::ReadPluginInfo(const std::string& plugin_name)
@@ -240,6 +242,7 @@ namespace API
 			plugin_info_result["Version"] = plugin_info.value("Version", 1.00f);
 			plugin_info_result["MinApiVersion"] = plugin_info.value("MinApiVersion", .0f);
 			plugin_info_result["Dependencies"] = plugin_info.value("Dependencies", std::vector<std::string>{});
+			plugin_info_result["SupportsHotReload"] = plugin_info.value("SupportsHotReload", true);
 		}
 		catch (const std::exception& error)
 		{
@@ -323,8 +326,22 @@ namespace API
 			const std::string plugin_file_path = plugin_folder + filename + ".dll";
 			const std::string new_plugin_file_path = plugin_folder + filename + ".dll.ArkApi";
 
-			if (fs::exists(new_plugin_file_path) && FindPlugin(filename) != loaded_plugins_.end())
+			const auto plugin_iter = FindPlugin(filename);
+			if (fs::exists(new_plugin_file_path) && plugin_iter != loaded_plugins_.end())
 			{
+				// Reads the loaded plugin's flag, not the pending .dll.ArkApi update
+				if (!(*plugin_iter)->supports_hot_reload)
+				{
+					if (hot_reload_warned_plugins_.insert(filename).second)
+					{
+						Log::GetLog()->warn(
+							"Plugin '{}' has SupportsHotReload=false. "
+							"Update pending - restart the server to apply {}.dll.ArkApi.",
+							filename, filename);
+					}
+					continue;
+				}
+
 #ifndef ATLAS_GAME // not on ATLAS
 				// Save the world in case the unload/load procedure causes crash
 				if (save_world)
