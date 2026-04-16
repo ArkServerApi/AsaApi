@@ -233,57 +233,10 @@ namespace API
 		return true;
 	}
 
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& post_data, std::vector<std::string> headers)
-	{
-		return CreatePostRequest(url, callback, post_data, headers, 0L, 0L, 0L);
-	}
-
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 		const std::string& post_data, std::vector<std::string> headers)
 	{
 		return CreatePostRequest(url, callback, post_data, headers, 0L, 0L, 0L);
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType("application/x-www-form-urlencoded");
-					request.setContentLength(post_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << post_data;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
 	}
 
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
@@ -325,12 +278,6 @@ namespace API
 		).detach();
 
 		return true;
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback, const std::string& post_data, const std::string& content_type, std::vector<std::string> headers)
-	{
-		return CreatePostRequest(url, callback, post_data, content_type, headers, 0L, 0L, 0L);
 	}
 
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback, const std::string& post_data, const std::string& content_type, std::vector<std::string> headers)
@@ -338,47 +285,6 @@ namespace API
 		return CreatePostRequest(url, callback, post_data, content_type, headers, 0L, 0L, 0L);
 	}
 
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers,
-		long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType(content_type);
-					request.setContentLength(post_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << post_data;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers,
 		long connectionTimeout, long receiveTimeout, long sendTimeout)
@@ -413,62 +319,6 @@ namespace API
 					&& (int)response.getStatus() < 300;
 
 				pimpl->WriteRequest(callback, success, Result, responseHeaders);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::vector<std::string>& post_ids,
-		const std::vector<std::string>& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		if (post_ids.size() != post_data.size())
-			return false;
-
-		std::thread([this, url, callback, post_ids, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					std::string body;
-
-					for (size_t i = 0; i < post_ids.size(); ++i)
-					{
-						const std::string& id = post_ids[i];
-						const std::string& data = post_data[i];
-
-						body += fmt::format("{}={}&", Poco::UTF8::escape(id), Poco::UTF8::escape(data));
-					}
-
-					body.pop_back(); // Remove last '&'
-
-					request.setContentType("application/x-www-form-urlencoded");
-					request.setContentLength(body.size());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << body;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
 				delete session;
 				session = nullptr;
 			}
@@ -532,14 +382,6 @@ namespace API
 		).detach();
 
 		return true;
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::vector<std::string>& post_ids,
-		const std::vector<std::string>& post_data, std::vector<std::string> headers)
-	{
-		return CreatePostRequest(url, callback, post_ids, post_data, headers, 0L, 0L, 0L);
 	}
 
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
