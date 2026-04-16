@@ -11,6 +11,7 @@
 #include "../Hooks.h"
 #include <Timer.h>
 #include "../Ark/ApiUtils.h"
+#include "Requests.h"
 
 namespace API
 {
@@ -199,6 +200,9 @@ namespace API
 		{
 			pfn_unload();
 		}
+
+		// Cleans up all pending callbacks to prevent a server crash due to stale invocations after the plugin is unloaded.
+		API::Requests::Get().UnregisterCallbacksForModule((*iter)->h_module);
 
 		API::Timer::Get().UnloadTimersFromModule(FString(full_dll_path).Replace(L"/", L"\\"));
 		dynamic_cast<AsaApi::ApiUtils&>(*API::game_api->GetApiUtils()).RemoveMessagingManagerInternal(FString(full_dll_path).Replace(L"/", L"\\"));
