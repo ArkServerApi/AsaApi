@@ -53,6 +53,15 @@ namespace API
     		return std::nullopt;
 		}
 
+		std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)> DeprecatedCallbackAdapter(std::function<void(bool, std::string)> callback2Args)
+		{
+			auto callback3Args = [cb = std::move(callback2Args)](bool success, std::string result, std::unordered_map<std::string, std::string> /* Unused response headers */){
+				cb(success, std::move(result));				
+			};
+
+			return callback3Args;
+		}		
+
 		using CallbackVariant = std::variant<std::function<void(bool, std::string)>, std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>>;
 	}  // namespace
 	
@@ -232,8 +241,8 @@ namespace API
     void Requests::impl::UnregisterCallbacksForModule(HMODULE pluginModule)
 	{
 		std::lock_guard<std::mutex> Guard(CallbackMutex_);
-        size_t removed = std::erase_if(CallbacksMap_, [pluginModule](const auto& owner) {
-			return owner.second.pluginModule == pluginModule;
+        size_t removed = std::erase_if(CallbacksMap_, [pluginModule](const auto& entry) {
+			return entry.second.pluginModule == pluginModule;
         });
 
 		if (removed > 0) {
@@ -431,7 +440,6 @@ namespace API
 		return true;
 	}
 
-	// NOTE: forwards to LaunchPost (default content_type "application/x-www-form-urlencoded", no timeouts)
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 		const std::string& post_data, std::vector<std::string> headers)
 	{
@@ -444,7 +452,6 @@ namespace API
 		return pimpl->LaunchPost(url, callback, post_data, "application/x-www-form-urlencoded", headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
 	}
 
-	// NOTE: forwards to LaunchPost (explicit content_type, no timeouts)
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback, const std::string& post_data, const std::string& content_type, std::vector<std::string> headers)
 	{
         auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
@@ -456,7 +463,6 @@ namespace API
 		return pimpl->LaunchPost(url, callback, post_data, content_type, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
 	}
 
-	// NOTE: forwards to LaunchPost (default content_type "application/x-www-form-urlencoded", with timeouts)
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 		const std::string& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
@@ -469,7 +475,6 @@ namespace API
 		return pimpl->LaunchPost(url, callback, post_data, "application/x-www-form-urlencoded", headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
 	}
 
-	// NOTE: forwards to LaunchPost (explicit content_type, with timeouts)
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers,
 		long connectionTimeout, long receiveTimeout, long sendTimeout)
@@ -483,7 +488,6 @@ namespace API
 		return pimpl->LaunchPost(url, callback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
 	}
 	
-	// NOTE: forwards to LaunchPostForm (no timeouts)
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 		const std::vector<std::string>& post_ids,
 		const std::vector<std::string>& post_data, std::vector<std::string> headers)
@@ -502,7 +506,6 @@ namespace API
 		return pimpl->LaunchPostForm(url, callback, post_ids, post_data, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
 	}
 
-	// NOTE: forwards to LaunchPostForm (with timeouts)
 	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
 		const std::vector<std::string>& post_ids,
 		const std::vector<std::string>& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
@@ -557,7 +560,6 @@ namespace API
 		return true;
 	}
 	
-	// NOTE: forwards to LaunchPatch (default content_type "application/x-www-form-urlencoded", no timeouts)
 	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, std::vector<std::string> headers)
 	{
         auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
@@ -569,7 +571,6 @@ namespace API
 		return pimpl->LaunchPatch(url, callback, patch_data, "application/x-www-form-urlencoded", headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
 	}
 
-	// NOTE: forwards to LaunchPatch (explicit content_type, no timeouts)
 	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, const std::string &content_type, std::vector<std::string> headers)
 	{
         auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
@@ -581,7 +582,6 @@ namespace API
 		return pimpl->LaunchPatch(url, callback, patch_data, content_type, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
 	}
 
-	// NOTE: forwards to LaunchPatch (default content_type "application/x-www-form-urlencoded", with timeouts)
 	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
         auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
@@ -593,7 +593,6 @@ namespace API
 		return pimpl->LaunchPatch(url, callback, patch_data, "application/x-www-form-urlencoded", headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);	
 	}
 
-	// NOTE: forwards to LaunchPatch (explicit content_type, with timeouts)
 	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
         auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
@@ -636,7 +635,6 @@ namespace API
 		return true;
 	}
 
-	// NOTE: forwards to LaunchDelete (no timeouts)
 	bool Requests::CreateDeleteRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, std::vector<std::string> headers)
 	{
         auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
@@ -648,7 +646,6 @@ namespace API
 		return pimpl->LaunchDelete(url, callback, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
 	}
 
-	// NOTE: forwards to LaunchDelete (with timeouts)
 	bool Requests::CreateDeleteRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
         auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
@@ -658,6 +655,96 @@ namespace API
         }
 
 		return pimpl->LaunchDelete(url, callback, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);	
+	}
+
+	// ! --- DEPRECATED ---
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, std::vector<std::string> headers)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, "application/x-www-form-urlencoded", headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, "application/x-www-form-urlencoded", headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, const std::string &content_type, std::vector<std::string> headers)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, content_type, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+			
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::vector<std::string> &post_ids, const std::vector<std::string> &post_data, std::vector<std::string> headers)
+	{
+		if (post_ids.size() != post_data.size()) {
+			Log::GetLog()->error( "Mismatched post_ids and post_data sizes in CreatePostRequest. Request cancelled.");
+			return false;
+		}
+		
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPostForm(url, adaptedCallback, post_ids, post_data, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::vector<std::string> &post_ids, const std::vector<std::string> &post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+		if (post_ids.size() != post_data.size()) {
+			Log::GetLog()->error( "Mismatched post_ids and post_data sizes in CreatePostRequest. Request cancelled.");
+			return false;
+		}
+
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPostForm(url, adaptedCallback, post_ids, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
 	}
 
 	// --- UTILITY ---
@@ -740,7 +827,7 @@ namespace API
 		
 		for (auto& request : requests_temp) {
 			if (request.callbackId == 0) {
-				Log::GetLog()->critical("Received HTTP response with invalid callback ID 0. This is not supposed to happen. Report this to a maintainer. The response will be discarded and callback will not be invoked.");
+				Log::GetLog()->critical("Received HTTP response with invalid callback ID 0. This is not supposed to happen. Report this to a maintainer. The response will be discarded and the callback will not be invoked.");
 				continue;
 			}
 			
