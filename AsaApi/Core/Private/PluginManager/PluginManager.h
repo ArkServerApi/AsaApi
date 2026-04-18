@@ -3,6 +3,7 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <memory>
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -16,14 +17,16 @@ namespace API
 	struct Plugin
 	{
 		Plugin(HINSTANCE h_module, std::string name, std::string full_name,
-		       std::string description, float version, float min_api_version, std::vector<std::string> dependencies)
+		       std::string description, float version, float min_api_version,
+		       std::vector<std::string> dependencies, bool prevent_unloading)
 			: h_module(h_module),
 			  name(std::move(name)),
 			  full_name(std::move(full_name)),
 			  description(std::move(description)),
 			  version(version),
 			  min_api_version(min_api_version),
-			  dependencies(std::move(dependencies))
+			  dependencies(std::move(dependencies)),
+			  prevent_unloading(prevent_unloading)
 		{
 		}
 
@@ -34,6 +37,7 @@ namespace API
 		float version;
 		float min_api_version;
 		std::vector<std::string> dependencies;
+		bool prevent_unloading;
 	};
 
 	class PluginManager
@@ -100,6 +104,7 @@ namespace API
 		int reload_sleep_seconds_{5};
 		bool save_world_before_reload_{true};
 		time_t next_reload_check_{5};
+		std::set<std::string> prevent_unload_warned_plugins_;
 
 		std::unordered_map<std::string, DLL_DIRECTORY_COOKIE> dll_dir_cookies_{};
 		bool dll_search_initialized_{ false };
