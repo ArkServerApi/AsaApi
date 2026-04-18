@@ -18,7 +18,7 @@ namespace API
 	{
 		Plugin(HINSTANCE h_module, std::string name, std::string full_name,
 		       std::string description, float version, float min_api_version,
-		       std::vector<std::string> dependencies, bool supports_hot_reload)
+		       std::vector<std::string> dependencies, bool prevent_unloading)
 			: h_module(h_module),
 			  name(std::move(name)),
 			  full_name(std::move(full_name)),
@@ -26,7 +26,7 @@ namespace API
 			  version(version),
 			  min_api_version(min_api_version),
 			  dependencies(std::move(dependencies)),
-			  supports_hot_reload(supports_hot_reload)
+			  prevent_unloading(prevent_unloading)
 		{
 		}
 
@@ -37,7 +37,7 @@ namespace API
 		float version;
 		float min_api_version;
 		std::vector<std::string> dependencies;
-		bool supports_hot_reload;
+		bool prevent_unloading;
 	};
 
 	class PluginManager
@@ -104,7 +104,7 @@ namespace API
 		int reload_sleep_seconds_{5};
 		bool save_world_before_reload_{true};
 		time_t next_reload_check_{5};
-		std::set<std::string> hot_reload_warned_plugins_;
+		std::set<std::string> prevent_unload_warned_plugins_;
 
 		std::unordered_map<std::string, DLL_DIRECTORY_COOKIE> dll_dir_cookies_{};
 		bool dll_search_initialized_{ false };
