@@ -1,19 +1,23 @@
-#pragma once
 #define WIN32_LEAN_AND_MEAN
 #pragma warning(push)
 #pragma warning(disable: 4191)
 #pragma warning(disable : 4996)
+
 #include <Requests.h>
-
 #include "../IBaseApi.h"
+#include "../Ark/ArkBaseApi.h"
 
-#include <sstream>
-
+#include <atomic>
+#include <fstream>
+#include <intrin.h>
 #include <mutex>
+#include <optional>
+#include <sstream>
+#include <unordered_map>
+#include <variant>
 
 #include "json.hpp"
 
-#include "fstream"
 #include "Poco/StreamCopier.h"
 #include "Poco/URI.h"
 #include "Poco/Exception.h"
@@ -33,42 +37,75 @@
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPResponse.h"
 #include "Poco/Timespan.h"
-#include "../Ark/ArkBaseApi.h"
-#include <variant>
 
 namespace API
 {
+	namespace {
+		std::optional<HMODULE> TryGetModuleHandleFromAddress(void *address) 
+		{
+    		HMODULE HModule = nullptr;
+			
+			if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | 	GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)address, &HModule)) 
+			{
+        	return HModule;
+			}
+
+    		return std::nullopt;
+		}
+
+		std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)> DeprecatedCallbackAdapter(std::function<void(bool, std::string)> callback2Args)
+		{
+			auto callback3Args = [cb = std::move(callback2Args)](bool success, std::string result, std::unordered_map<std::string, std::string> /* Unused response headers */){
+				cb(success, std::move(result));				
+			};
+
+			return callback3Args;
+		}		
+
+		using CallbackVariant = std::variant<std::function<void(bool, std::string)>, std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>>;
+	}  // namespace
+	
 	class Requests::impl
 	{
-	public:
-		void WriteRequest(std::function<void(bool, std::string)> callback, bool success, std::string result);
-		void WriteRequest(std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)> callback, bool success, std::string result, std::unordered_map<std::string, std::string> headers);
-
-		Poco::Net::HTTPRequest ConstructRequest(const std::string& url, Poco::Net::HTTPClientSession*& session,
-			const std::vector<std::string>& headers, const std::string& request_type, long connectionTimeout, long receiveTimeout, long sendTimeout);
-
-		std::string GetResponse(Poco::Net::HTTPClientSession* session, Poco::Net::HTTPResponse& response);
-		std::unordered_map<std::string, std::string> GetResponseHeaders(Poco::Net::HTTPResponse& response);
-
+		public:
+		uint64_t RegisterCallback(CallbackVariant callback, HMODULE callingPlugin);
+    	void EnqueueResult(std::string result, std::unordered_map<std::string, std::string> headers, uint64_t id, bool success);
+    	void EnqueueResult(std::string result, uint64_t id, bool success);
+		void UnregisterCallbacksForModule(HMODULE pluginModule);
+		
+    	bool LaunchGet(const std::string& url, const std::function<void(bool, std::string)>& callback, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule);
+    	bool LaunchPost(const std::string &url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)> &callback, const std::string &post_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule);
+    	bool LaunchPostForm(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback, const std::vector<std::string>& post_ids, const std::vector<std::string>& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule);
+    	bool LaunchPatch(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule);
+    	bool LaunchDelete(const std::string &url, const std::function<void(bool, std::string)> &callback, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule);
+		
+		Poco::Net::HTTPRequest ConstructRequest(const std::string& url, Poco::Net::HTTPClientSession*& session, const std::vector<std::string>& headers, const std::string& request_type, long connectionTimeout, long receiveTimeout, long sendTimeout);
+		std::string GetResponse(Poco::Net::HTTPClientSession* session, Poco::Net::HTTPResponse& response); std::unordered_map<std::string, std::string> GetResponseHeaders(Poco::Net::HTTPResponse& response);
 		void LogRequestError(const std::string& url, const Poco::Exception& exc);
-
+			
 		void Update();
-	private:
-		using CallbackVariant = std::variant<
-			std::function<void(bool, std::string)>,
-			std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>
-		>;
-		struct RequestData
-		{
-			CallbackVariant callback;
+		private:
+		struct RequestData {
 			bool success;
 			std::string result;
 			std::unordered_map<std::string, std::string> headers = std::unordered_map<std::string, std::string>();
+			uint64_t callbackId;
 		};
 
+		struct CallbackEntry {
+			CallbackVariant callback;
+		    HMODULE pluginModule;
+		};
+	
+
+    	std::unordered_map<uint64_t, CallbackEntry> CallbacksMap_;
 		std::vector<RequestData> RequestsVec_;
 		std::mutex RequestMutex_;
+		std::mutex CallbackMutex_;
+    	std::atomic<uint64_t> NextId_{1}; // 0 is an internal sentinel
 	};
+
+	// --- PIMPL ---
 
 	Requests::Requests()
 		: pimpl{ std::make_unique<impl>() }
@@ -96,18 +133,6 @@ namespace API
 	{
 		static Requests instance;
 		return instance;
-	}
-
-	void Requests::impl::WriteRequest(std::function<void(bool, std::string)> callback, bool success, std::string result)
-	{
-		std::lock_guard<std::mutex> Guard(RequestMutex_);
-		RequestsVec_.push_back({ callback, success, result });
-	}
-
-	void Requests::impl::WriteRequest(std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)> callback, bool success, std::string result, std::unordered_map<std::string, std::string> headers)
-	{
-		std::lock_guard<std::mutex> Guard(RequestMutex_);
-		RequestsVec_.push_back({ callback, success, result, headers });
 	}
 
 	void Requests::impl::LogRequestError(const std::string& url, const Poco::Exception& exc)
@@ -193,490 +218,96 @@ namespace API
 		return headers;
 	}
 
-	bool Requests::CreateGetRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		std::vector<std::string> headers)
+	void Requests::impl::EnqueueResult(std::string result, uint64_t callbackId, bool success) 
 	{
-		return CreateGetRequest(url, callback, headers, 0L, 0L, 0L);
+		std::lock_guard<std::mutex> Guard(RequestMutex_);
+	    RequestsVec_.push_back({success, std::move(result), {}, callbackId});
 	}
 
-	bool Requests::CreateGetRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	void Requests::impl::EnqueueResult(std::string result, std::unordered_map<std::string, std::string> headers, uint64_t callbackId, bool success) 
 	{
-		std::thread([this, url, callback, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
+		std::lock_guard<std::mutex> Guard(RequestMutex_);
+		RequestsVec_.push_back({success, std::move(result), std::move(headers), callbackId});
+	}
 
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_GET, connectionTimeout, receiveTimeout, sendTimeout);
+	uint64_t Requests::impl::RegisterCallback(CallbackVariant callback, HMODULE pluginModule)
+	{
+		std::lock_guard<std::mutex> Guard(CallbackMutex_);
+		const uint64_t callbackId = NextId_.fetch_add(1);
+		CallbacksMap_.emplace(callbackId, CallbackEntry{std::move(callback), pluginModule});
+		return callbackId;
+	}
 
-					session->sendRequest(request);
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
+    void Requests::impl::UnregisterCallbacksForModule(HMODULE pluginModule)
+	{
+		std::lock_guard<std::mutex> Guard(CallbackMutex_);
+        size_t removed = std::erase_if(CallbacksMap_, [pluginModule](const auto& entry) {
+			return entry.second.pluginModule == pluginModule;
+        });
 
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
+		if (removed > 0) {
+			Log::GetLog()->debug("Drained {} pending HTTP request callbacks.", removed);
+		}
+	}
 
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
+	void Requests::UnregisterCallbacksForModule(HMODULE pluginModule)
+	{
+	    pimpl->UnregisterCallbacksForModule(pluginModule);
+	}
+
+    // --- GET REQUESTS ---
+
+    bool Requests::impl::LaunchGet(const std::string& url, const std::function<void(bool, std::string)>& callback, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule)
+	{
+		const uint64_t callbackId = RegisterCallback(callback, pluginModule);
+
+    	std::thread([this, url, headers, connectionTimeout, receiveTimeout, sendTimeout, suppressErrors, callbackId] {
+    	    std::string Result = "";
+    	    Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+    	    Poco::Net::HTTPClientSession *session = nullptr;
+
+    	    try {
+    	        Poco::Net::HTTPRequest &&request =
+    	            ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_GET, 	connectionTimeout, receiveTimeout, sendTimeout);
+
+    	        session->sendRequest(request);
+    	        Result = GetResponse(session, response);
+    	    } catch (const Poco::Exception &exc) {
+    	        if (!suppressErrors) LogRequestError(url, exc);
+    	    }
+
+    	    const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
+
+    	    EnqueueResult(std::move(Result), callbackId, success);
+    	    delete session;
+    	    session = nullptr;
+    	}).detach();
 
 		return true;
 	}
 
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& post_data, std::vector<std::string> headers)
+	bool Requests::CreateGetRequest(const std::string& url, const std::function<void(bool, std::string)>& callback, std::vector<std::string> headers)
 	{
-		return CreatePostRequest(url, callback, post_data, headers, 0L, 0L, 0L);
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+	    if (!HModuleOpt) {
+	        Log::GetLog()->error(
+	            "Failed to get module handle for caller of CreateGetRequest. Request cancelled. Error code: {}", GetLastError());
+	        return false;
+	    }
+
+		return pimpl->LaunchGet(url, callback, headers, 0, 0, 0, suppress_errors, *HModuleOpt);
 	}
 
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
-		const std::string& post_data, std::vector<std::string> headers)
+	bool Requests::CreateGetRequest(const std::string& url, const std::function<void(bool, std::string)>& callback, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
 	{
-		return CreatePostRequest(url, callback, post_data, headers, 0L, 0L, 0L);
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType("application/x-www-form-urlencoded");
-					request.setContentLength(post_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << post_data;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
-		const std::string& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				std::unordered_map<std::string, std::string> responseHeaders;
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType("application/x-www-form-urlencoded");
-					request.setContentLength(post_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << post_data;
-
-					Result = pimpl->GetResponse(session, response);
-					responseHeaders = pimpl->GetResponseHeaders(response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result, responseHeaders);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback, const std::string& post_data, const std::string& content_type, std::vector<std::string> headers)
-	{
-		return CreatePostRequest(url, callback, post_data, content_type, headers, 0L, 0L, 0L);
-	}
-
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback, const std::string& post_data, const std::string& content_type, std::vector<std::string> headers)
-	{
-		return CreatePostRequest(url, callback, post_data, content_type, headers, 0L, 0L, 0L);
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers,
-		long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType(content_type);
-					request.setContentLength(post_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << post_data;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
-		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers,
-		long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				std::unordered_map<std::string, std::string> responseHeaders;
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType(content_type);
-					request.setContentLength(post_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << post_data;
-
-					Result = pimpl->GetResponse(session, response);
-					responseHeaders = pimpl->GetResponseHeaders(response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result, responseHeaders);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::vector<std::string>& post_ids,
-		const std::vector<std::string>& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		if (post_ids.size() != post_data.size())
-			return false;
-
-		std::thread([this, url, callback, post_ids, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					std::string body;
-
-					for (size_t i = 0; i < post_ids.size(); ++i)
-					{
-						const std::string& id = post_ids[i];
-						const std::string& data = post_data[i];
-
-						body += fmt::format("{}={}&", Poco::UTF8::escape(id), Poco::UTF8::escape(data));
-					}
-
-					body.pop_back(); // Remove last '&'
-
-					request.setContentType("application/x-www-form-urlencoded");
-					request.setContentLength(body.size());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << body;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
-		const std::vector<std::string>& post_ids,
-		const std::vector<std::string>& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		if (post_ids.size() != post_data.size())
-			return false;
-
-		std::thread([this, url, callback, post_ids, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				std::unordered_map<std::string, std::string> responseHeaders;
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
-
-					std::string body;
-
-					for (size_t i = 0; i < post_ids.size(); ++i)
-					{
-						const std::string& id = post_ids[i];
-						const std::string& data = post_data[i];
-
-						body += fmt::format("{}={}&", Poco::UTF8::escape(id), Poco::UTF8::escape(data));
-					}
-
-					body.pop_back(); // Remove last '&'
-
-					request.setContentType("application/x-www-form-urlencoded");
-					request.setContentLength(body.size());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << body;
-
-					Result = pimpl->GetResponse(session, response);
-					responseHeaders = pimpl->GetResponseHeaders(response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result, responseHeaders);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	[[deprecated]]
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::vector<std::string>& post_ids,
-		const std::vector<std::string>& post_data, std::vector<std::string> headers)
-	{
-		return CreatePostRequest(url, callback, post_ids, post_data, headers, 0L, 0L, 0L);
-	}
-
-	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
-		const std::vector<std::string>& post_ids,
-		const std::vector<std::string>& post_data, std::vector<std::string> headers)
-	{
-		return CreatePostRequest(url, callback, post_ids, post_data, headers, 0L, 0L, 0L);
-	}
-
-	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& patch_data, std::vector<std::string> headers)
-	{
-		return CreatePatchRequest(url, callback, patch_data, headers, 0L, 0L, 0L);
-	}
-
-	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& patch_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, patch_data, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType("application/x-www-form-urlencoded");
-					request.setContentLength(patch_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << patch_data;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& patch_data, const std::string& content_type, std::vector<std::string> headers)
-	{
-		return CreatePatchRequest(url, callback, patch_data, content_type, headers, 0L, 0L, 0L);
-	}
-
-	bool Requests::CreatePatchRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		const std::string& patch_data, const std::string& content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, patch_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH, connectionTimeout, receiveTimeout, sendTimeout);
-
-					request.setContentType(content_type);
-					request.setContentLength(patch_data.length());
-
-					std::ostream& OutputStream = session->sendRequest(request);
-					OutputStream << patch_data;
-
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
-	}
-
-	bool Requests::CreateDeleteRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		std::vector<std::string> headers)
-	{
-		return CreateDeleteRequest(url, callback, headers, 0L, 0L, 0L);
-	}
-
-	bool Requests::CreateDeleteRequest(const std::string& url, const std::function<void(bool, std::string)>& callback,
-		std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
-	{
-		std::thread([this, url, callback, headers, connectionTimeout, receiveTimeout, sendTimeout]
-			{
-				std::string Result = "";
-				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-				Poco::Net::HTTPClientSession* session = nullptr;
-
-				try
-				{
-					Poco::Net::HTTPRequest&& request = pimpl->ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_DELETE, connectionTimeout, receiveTimeout, sendTimeout);
-
-					session->sendRequest(request);
-					Result = pimpl->GetResponse(session, response);
-				}
-				catch (const Poco::Exception& exc)
-				{
-					if (!suppress_errors)
-						pimpl->LogRequestError(url, exc);
-				}
-
-				const bool success = (int)response.getStatus() >= 200
-					&& (int)response.getStatus() < 300;
-
-				pimpl->WriteRequest(callback, success, Result);
-				delete session;
-				session = nullptr;
-			}
-		).detach();
-
-		return true;
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+	    if (!HModuleOpt) {
+	        Log::GetLog()->error(
+	            "Failed to get module handle for caller of CreateGetRequest. Request cancelled. Error code: {}", GetLastError());
+	        return false;
+	    }
+
+		return pimpl->LaunchGet(url, callback, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
 	}
 
 	Requests::RequestSyncData Requests::CreateGetRequestSync(const std::string& url,
@@ -714,6 +345,409 @@ namespace API
 
 		return Result;
 	}
+
+	// --- POST REQUESTS ---
+
+	bool Requests::impl::LaunchPost(const std::string &url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)> &callback, const std::string &post_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule) 
+	{
+		const uint64_t callbackId = RegisterCallback(callback, pluginModule);
+
+    	std::thread(
+    	    [this, url, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout, 	suppressErrors, callbackId] {
+    	    std::string Result = "";
+    	    std::unordered_map<std::string, std::string> responseHeaders;
+    	    Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+    	    Poco::Net::HTTPClientSession *session = nullptr;
+
+    		try {
+    		    Poco::Net::HTTPRequest &&request =
+    		        ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, 	connectionTimeout, receiveTimeout, sendTimeout);
+					
+    		    request.setContentType(content_type);
+    		    request.setContentLength(post_data.length());
+					
+    		    std::ostream & OutputStream = session->sendRequest(request);
+    		    OutputStream << post_data;
+					
+    		    Result          = GetResponse(session, response);
+    		    responseHeaders = GetResponseHeaders(response);
+    		} catch (const Poco::Exception &exc) {
+    		    if (!suppressErrors) LogRequestError(url, exc);
+    		}
+		
+    		const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
+		
+    		EnqueueResult(std::move(Result), std::move(responseHeaders), callbackId, success);
+    		delete session;
+    		session = nullptr;
+    	}).detach();
+
+		return true;
+	}
+
+	bool Requests::impl::LaunchPostForm(const std::string &url, const std::function<void(bool,std::string, std::unordered_map<std::string, std::string>)> &callback, const std::vector<std::string> &post_ids, const std::vector<std::string> &post_data,std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout,bool suppressErrors, HMODULE pluginModule) 
+	{
+		const uint64_t callbackId = RegisterCallback(callback, pluginModule);
+
+		std::thread([this, url, post_ids, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout, suppressErrors, callbackId] {
+				std::string Result = "";
+				std::unordered_map<std::string, std::string> responseHeaders;
+				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+				Poco::Net::HTTPClientSession* session = nullptr;
+
+				try
+				{
+					Poco::Net::HTTPRequest&& request = ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_POST, connectionTimeout, receiveTimeout, sendTimeout);
+
+					std::string body = "";
+
+					for (size_t i = 0; i < post_ids.size(); ++i)
+					{
+						const std::string& id = post_ids[i];
+						const std::string& data = post_data[i];
+
+						body += fmt::format("{}={}&", Poco::UTF8::escape(id), Poco::UTF8::escape(data));
+					}
+
+					if (!body.empty()) {
+						body.pop_back(); // Remove last '&'
+					}
+
+					request.setContentType("application/x-www-form-urlencoded");
+					request.setContentLength(body.size());
+
+					std::ostream& OutputStream = session->sendRequest(request);
+					OutputStream << body;
+
+					Result = GetResponse(session, response);
+					responseHeaders = GetResponseHeaders(response);
+				}
+				catch (const Poco::Exception& exc)
+				{
+					if (!suppressErrors)
+						LogRequestError(url, exc);
+				}
+
+				const bool success = (int)response.getStatus() >= 200
+					&& (int)response.getStatus() < 300;
+
+				EnqueueResult(std::move(Result), std::move(responseHeaders), callbackId, success);
+				delete session;
+				session = nullptr;
+			}
+		).detach();
+
+		return true;
+	}
+
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
+		const std::string& post_data, std::vector<std::string> headers)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPost(url, callback, post_data, "application/x-www-form-urlencoded", headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback, const std::string& post_data, const std::string& content_type, std::vector<std::string> headers)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPost(url, callback, post_data, content_type, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
+		const std::string& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPost(url, callback, post_data, "application/x-www-form-urlencoded", headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
+		const std::string& post_data, const std::string& content_type, std::vector<std::string> headers,
+		long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPost(url, callback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
+	}
+	
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
+		const std::vector<std::string>& post_ids,
+		const std::vector<std::string>& post_data, std::vector<std::string> headers)
+	{
+		if (post_ids.size() != post_data.size()) {
+			Log::GetLog()->error( "Mismatched post_ids and post_data sizes in CreatePostRequest. Request cancelled.");
+			return false;
+		}
+
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPostForm(url, callback, post_ids, post_data, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
+	}
+
+	bool Requests::CreatePostRequest(const std::string& url, const std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>& callback,
+		const std::vector<std::string>& post_ids,
+		const std::vector<std::string>& post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+		if (post_ids.size() != post_data.size()) {
+			Log::GetLog()->error( "Mismatched post_ids and post_data sizes in CreatePostRequest. Request cancelled.");
+			return false;
+		}
+
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPostForm(url, callback, post_ids, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);	
+	}
+
+	// --- PATCH REQUESTS ---
+
+	bool Requests::impl::LaunchPatch(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule) {
+		const uint64_t callbackId = RegisterCallback(callback, pluginModule);
+
+	    std::thread([this, url, patch_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout, suppressErrors, callbackId] {
+	        std::string Result = "";
+	        Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+	        Poco::Net::HTTPClientSession *session = nullptr;
+
+	        try {
+	            Poco::Net::HTTPRequest &&request =
+	                ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_PATCH, 	connectionTimeout,
+	                                        receiveTimeout, sendTimeout);
+
+	            request.setContentType(content_type);
+	            request.setContentLength(patch_data.length());
+
+	            std::ostream &OutputStream = session->sendRequest(request);
+	            OutputStream << patch_data;
+
+	            Result = GetResponse(session, response);
+	        } catch (const Poco::Exception &exc) {
+	            if (!suppressErrors) LogRequestError(url, exc);
+	        }
+
+	        const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
+
+	        EnqueueResult(std::move(Result), callbackId, success);
+	        delete session;
+	        session = nullptr;
+	    }).detach();
+
+		return true;
+	}
+	
+	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, std::vector<std::string> headers)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePatchRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPatch(url, callback, patch_data, "application/x-www-form-urlencoded", headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
+	}
+
+	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, const std::string &content_type, std::vector<std::string> headers)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePatchRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPatch(url, callback, patch_data, content_type, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
+	}
+
+	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePatchRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPatch(url, callback, patch_data, "application/x-www-form-urlencoded", headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);	
+	}
+
+	bool Requests::CreatePatchRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &patch_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreatePatchRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchPatch(url, callback, patch_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);	
+	}
+
+	// --- DELETE REQUESTS ---
+
+	bool Requests::impl::LaunchDelete(const std::string &url, const std::function<void(bool, std::string)> &callback, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout, bool suppressErrors, HMODULE pluginModule)
+	{
+		const uint64_t callbackId = RegisterCallback(callback, pluginModule);
+
+	    std::thread([this, url, headers, connectionTimeout, receiveTimeout, sendTimeout, suppressErrors, callbackId] {
+	        std::string Result = "";
+	        Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+	        Poco::Net::HTTPClientSession *session = nullptr;
+
+	        try {
+	            Poco::Net::HTTPRequest &&request =
+	                ConstructRequest(url, session, headers, Poco::Net::HTTPRequest::HTTP_DELETE, connectionTimeout, receiveTimeout, sendTimeout);
+
+	            session->sendRequest(request);
+	            Result = GetResponse(session, response);
+	        } catch (const Poco::Exception &exc) {
+	            if (!suppressErrors) LogRequestError(url, exc);
+	        }
+
+	        const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
+
+	        EnqueueResult(std::move(Result), callbackId, success);
+	        delete session;
+	        session = nullptr;
+	    }).detach();		
+
+		return true;
+	}
+
+	bool Requests::CreateDeleteRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, std::vector<std::string> headers)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreateDeleteRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchDelete(url, callback, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);	
+	}
+
+	bool Requests::CreateDeleteRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+        auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of CreateDeleteRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		return pimpl->LaunchDelete(url, callback, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);	
+	}
+
+	// ! --- DEPRECATED ---
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, std::vector<std::string> headers)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, "application/x-www-form-urlencoded", headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, "application/x-www-form-urlencoded", headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, const std::string &content_type, std::vector<std::string> headers)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, content_type, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+			
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::string &post_data, const std::string &content_type, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPost(url, adaptedCallback, post_data, content_type, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::vector<std::string> &post_ids, const std::vector<std::string> &post_data, std::vector<std::string> headers)
+	{
+		if (post_ids.size() != post_data.size()) {
+			Log::GetLog()->error( "Mismatched post_ids and post_data sizes in CreatePostRequest. Request cancelled.");
+			return false;
+		}
+		
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPostForm(url, adaptedCallback, post_ids, post_data, headers, 0L, 0L, 0L, suppress_errors, *HModuleOpt);
+	}
+
+	bool Requests::CreatePostRequest(const std::string &url, const std::function<void(bool, std::string)> &callback, const std::vector<std::string> &post_ids, const std::vector<std::string> &post_data, std::vector<std::string> headers, long connectionTimeout, long receiveTimeout, long sendTimeout)
+	{
+		if (post_ids.size() != post_data.size()) {
+			Log::GetLog()->error( "Mismatched post_ids and post_data sizes in CreatePostRequest. Request cancelled.");
+			return false;
+		}
+
+		auto HModuleOpt = TryGetModuleHandleFromAddress(_ReturnAddress());
+        if (!HModuleOpt) {
+            Log::GetLog()->error( "Failed to get module handle for caller of deprecated CreatePostRequest. Request cancelled. Error code: {}", GetLastError());
+            return false;
+        }
+
+		auto adaptedCallback = DeprecatedCallbackAdapter(callback);
+
+		return pimpl->LaunchPostForm(url, adaptedCallback, post_ids, post_data, headers, connectionTimeout, receiveTimeout, sendTimeout, suppress_errors, *HModuleOpt);
+	}
+
+	// --- UTILITY ---
 
 	bool Requests::DownloadFile(const std::string& url, const std::string& localPath, std::vector<std::string> headers)
 	{
@@ -781,25 +815,49 @@ namespace API
 		return true;
 	}
 
-	void Requests::impl::Update()
-	{
-		if (RequestsVec_.empty())
-			return;
-
-		RequestMutex_.lock();
-		std::vector<RequestData> requests_temp = std::move(RequestsVec_);
-		RequestMutex_.unlock();
-
-		for (const auto& request : requests_temp)
+	void Requests::impl::Update() {
+		std::vector<RequestData> requests_temp;
 		{
-			std::visit([&](auto&& callback)
-				{
-					using T = std::decay_t<decltype(callback)>;
-					if constexpr (std::is_same_v<T, std::function<void(bool, std::string)>>)
-						callback(request.success, request.result);
-					else if constexpr (std::is_same_v<T, std::function<void(bool, std::string, std::unordered_map<std::string, std::string>)>>)
-						callback(request.success, request.result, request.headers);
-				}, request.callback);
+			std::lock_guard<std::mutex> lock(RequestMutex_);
+			if (RequestsVec_.empty()) {
+				return;
+			}
+			requests_temp = std::move(RequestsVec_);
+		}
+		
+		for (auto& request : requests_temp) {
+			if (request.callbackId == 0) {
+				Log::GetLog()->critical("Received HTTP response with invalid callback ID 0. This is not supposed to happen. Report this to a maintainer. The response will be discarded and the callback will not be invoked.");
+				continue;
+			}
+			
+			CallbackVariant callback;
+			{
+				std::lock_guard<std::mutex> lock(CallbackMutex_);
+				auto it = CallbacksMap_.find(request.callbackId);
+				
+				if (it == CallbacksMap_.end()) {
+					Log::GetLog()->debug("Received HTTP response for unknown request ID {}. This likely means the owning plugin was unloaded before the response was received. The callback will not be invoked.", request.callbackId);
+					continue;
+				}
+			
+				callback = std::move(it->second.callback);
+				CallbacksMap_.erase(it);
+			}
+			
+			// Safe to invoke unlocked: `PluginManager::UnloadPlugin` runs on the game thread, same as Update().
+			// Caveat: self-unload from inside a callback is unsupported.
+			std::visit([&](auto&& cb) {
+				using T = std::decay_t<decltype(cb)>;
+				
+				if constexpr (std::is_same_v<T, std::function<void(bool, std::string)>>){
+					cb(request.success, std::move(request.result));
+				} else if constexpr (std::is_same_v<T, std::function<void(bool, std::string,std::unordered_map<std::string, std::string>)>>) {
+					cb(request.success, std::move(request.result), std::move(request.headers));
+				}
+				
+			}, callback); 
 		}
 	}
+
 } // namespace API
