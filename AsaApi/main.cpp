@@ -128,3 +128,14 @@ extern "C" ARK_API void InitApi()
 {
 	Init();
 }
+
+BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
+{
+	if (ul_reason_for_call == DLL_PROCESS_DETACH)
+	{
+		API::game_api.release();
+	}
+
+	return 1;
+}
+
