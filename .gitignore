@@ -290,3 +290,5 @@ __pycache__/
 /out/build/x64-Debug
 /AsaApi/vcpkg_installed
 /out_lib
+/lookup_offsets.py
+/replace_offsets.py

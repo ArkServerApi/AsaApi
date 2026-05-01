@@ -29,7 +29,6 @@ TSpar
 TType
 TUn
 TWeak
-UE.
 UScr
 oo2
 std::
@@ -42,7 +41,6 @@ cpp
 Vulkan
 USynth
 UUI
-UE:
 TkDOP
 TStatic
 TSlateBaseNamedArgs
@@ -98,7 +96,6 @@ vraudio
 openvdb
 ispc
 gte
-cfcore
 boost
 aws
 asn1

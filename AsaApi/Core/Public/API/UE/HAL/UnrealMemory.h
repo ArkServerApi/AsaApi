@@ -217,9 +217,9 @@ struct FMemory
 	//static void* Realloc(void* Original, SIZE_T Count, uint32 Alignment = DEFAULT_ALIGNMENT);
 	static void* Realloc(void* Original, SIZE_T Size, uint32 Alignment = DEFAULT_ALIGNMENT)
 	{
-		if(!Original)
+		if (!Original)
 			return Malloc(Size);
-		return NativeCall<void*, void*, unsigned __int64>(nullptr, "FMemory.Realloc(void*,unsigned__int64,unsignedint)", Original, Size);
+		return NativeCall<void*, void*, unsigned __int64, unsigned int>(nullptr, "FMemory.Realloc(void*,unsigned__int64,unsignedint)", Original, Size, Alignment);
 	}
 	//static void Free(void* Original);
 	static void Free(void* Original) 
