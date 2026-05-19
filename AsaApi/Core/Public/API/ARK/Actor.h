@@ -13581,3 +13581,128 @@ struct FUnreplicatedEggData
     static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FUnreplicatedEggData.StaticStruct()"); }
 
 };
+
+struct FCreatureGeneTraitSpawnInfo
+{
+    // Fields
+
+    float& SpawnRateProbabilityField() { return *GetNativePointerField<float*>(this, "FCreatureGeneTraitSpawnInfo.SpawnRateProbability"); }
+    TArray<float, TSizedDefaultAllocator<32> >& GeneTraitTierChanceProbabilityOverrideField() { return *GetNativePointerField<TArray<float, TSizedDefaultAllocator<32> >*>(this, "FCreatureGeneTraitSpawnInfo.GeneTraitTierChanceProbabilityOverride"); }
+
+    // Bitfields
+
+
+    // Functions
+
+    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCreatureGeneTraitSpawnInfo.StaticStruct()"); }
+
+};
+
+struct FCreatureSpawnGeneTraits_Specifications
+{
+    // Fields
+
+    TMap<FName, FCreatureGeneTraitSpawnInfo, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, FCreatureGeneTraitSpawnInfo, 0> >& OverrideDefaultGeneTraitSpawnInfoField() { return *GetNativePointerField<TMap<FName, FCreatureGeneTraitSpawnInfo, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, FCreatureGeneTraitSpawnInfo, 0> >*>(this, "FCreatureSpawnGeneTraits_Specifications.OverrideDefaultGeneTraitSpawnInfo"); }
+    TArray<float, TSizedDefaultAllocator<32> >& OverrideDefaultLiklihoodToSpawnWithCountOfTraitsField() { return *GetNativePointerField<TArray<float, TSizedDefaultAllocator<32> >*>(this, "FCreatureSpawnGeneTraits_Specifications.OverrideDefaultLiklihoodToSpawnWithCountOfTraits"); }
+    int& OverrideMaxNumberOfTotalGeneTraitsAllowedOnThisCreatureField() { return *GetNativePointerField<int*>(this, "FCreatureSpawnGeneTraits_Specifications.OverrideMaxNumberOfTotalGeneTraitsAllowedOnThisCreature"); }
+
+    // Bitfields
+
+
+    // Functions
+
+    FCreatureSpawnGeneTraits_Specifications& operator=(const struct FCreatureSpawnGeneTraits_Specifications* __that) { return NativeCall<FCreatureSpawnGeneTraits_Specifications&, const struct FCreatureSpawnGeneTraits_Specifications*>(this, "FCreatureSpawnGeneTraits_Specifications.operator=(FCreatureSpawnGeneTraits_Specifications&)", __that); }
+    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCreatureSpawnGeneTraits_Specifications.StaticStruct()"); }
+
+};
+
+struct FGeneTraitSpecification
+{
+    // Fields
+
+    FCreatureSpawnGeneTraits_Specifications& DefaultCreatureSpawnGeneTraits_SpecificationsField() { return *GetNativePointerField<FCreatureSpawnGeneTraits_Specifications*>(this, "FGeneTraitSpecification.DefaultCreatureSpawnGeneTraits_Specifications"); }
+    TMap<FName, FCreatureSpawnGeneTraits_Specifications, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, FCreatureSpawnGeneTraits_Specifications, 0> >& OverwrittenPerCreatureSpawnGeneTraits_SpecificationsField() { return *GetNativePointerField<TMap<FName, FCreatureSpawnGeneTraits_Specifications, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, FCreatureSpawnGeneTraits_Specifications, 0> >*>(this, "FGeneTraitSpecification.OverwrittenPerCreatureSpawnGeneTraits_Specifications"); }
+
+    // Bitfields
+
+
+    // Functions
+
+    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FGeneTraitSpecification.StaticStruct()"); }
+
+};
+
+
+struct FGeneTraitSkipCodeChecksStruct
+{
+    // Fields
+
+    FName& TraitNameField() { return *GetNativePointerField<FName*>(this, "FGeneTraitSkipCodeChecksStruct.TraitName"); }
+    bool& ThisTraitWeConfirmedHasNoSpecialConditionsBeyondThrallCheckField() { return *GetNativePointerField<bool*>(this, "FGeneTraitSkipCodeChecksStruct.ThisTraitWeConfirmedHasNoSpecialConditionsBeyondThrallCheck"); }
+
+    // Bitfields
+
+
+    // Functions
+
+    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FGeneTraitSkipCodeChecksStruct.StaticStruct()"); }
+
+};
+
+
+struct UGeneTraitDefinitions : UObject
+{
+    // Fields
+
+    TMap<FName, TSubclassOf<UObject>, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, TSubclassOf<UObject>, 0> >& GeneTraits_GeneTraitDefinitionsField() { return *GetNativePointerField<TMap<FName, TSubclassOf<UObject>, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, TSubclassOf<UObject>, 0> >*>(this, "UGeneTraitDefinitions.GeneTraits_GeneTraitDefinitions"); }
+    FGeneTraitSpecification& GeneTraits_SpecificationsField() { return *GetNativePointerField<FGeneTraitSpecification*>(this, "UGeneTraitDefinitions.GeneTraits_Specifications"); }
+    TArray<FName, TSizedDefaultAllocator<32> >& GeneTraits_Specifications_NonHumansField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UGeneTraitDefinitions.GeneTraits_Specifications_NonHumans"); }
+    TArray<FName, TSizedDefaultAllocator<32> >& GeneTraits_Specifications_ThrallsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UGeneTraitDefinitions.GeneTraits_Specifications_Thralls"); }
+    TArray<FGeneTraitSkipCodeChecksStruct, TSizedDefaultAllocator<32> >& GeneTraits_SkipCodeChecksStruct_NonHumansField() { return *GetNativePointerField<TArray<FGeneTraitSkipCodeChecksStruct, TSizedDefaultAllocator<32> >*>(this, "UGeneTraitDefinitions.GeneTraits_SkipCodeChecksStruct_NonHumans"); }
+    TArray<FGeneTraitSkipCodeChecksStruct, TSizedDefaultAllocator<32> >& GeneTraits_SkipCodeChecksStruct_ThrallsField() { return *GetNativePointerField<TArray<FGeneTraitSkipCodeChecksStruct, TSizedDefaultAllocator<32> >*>(this, "UGeneTraitDefinitions.GeneTraits_SkipCodeChecksStruct_Thralls"); }
+    TArray<float, TSizedDefaultAllocator<32> >& DefaultGeneTraitTierChanceProbabilityField() { return *GetNativePointerField<TArray<float, TSizedDefaultAllocator<32> >*>(this, "UGeneTraitDefinitions.DefaultGeneTraitTierChanceProbability"); }
+    bool& ThisIsACustomFileAndWillAttemptToFindThisCreaturesGeneTraitListingInTheDefaultBPField() { return *GetNativePointerField<bool*>(this, "UGeneTraitDefinitions.ThisIsACustomFileAndWillAttemptToFindThisCreaturesGeneTraitListingInTheDefaultBP"); }
+    bool& ThisIsACustomFileAndWillNOTOverrideTheDefaultGeneTraitListingForWhenACreatureIsntFoundInEitherFileField() { return *GetNativePointerField<bool*>(this, "UGeneTraitDefinitions.ThisIsACustomFileAndWillNOTOverrideTheDefaultGeneTraitListingForWhenACreatureIsntFoundInEitherFile"); }
+
+    // Bitfields
+
+
+    // Functions
+
+    bool GeneTraits_AddRandomSpawnGeneTraitToThisCreature_Implementation(struct UObject* TargetToEvaluate, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_AddRandomSpawnGeneTraitToThisCreature_Implementation(UObject*,FString&)", TargetToEvaluate, FailReasonString); }
+    bool GeneTraits_GetCreatureSpawnGeneTraits_GeneTraitDefinitions(struct UObject* TargetToEvaluate, struct FCreatureSpawnGeneTraits_Specifications* ReturnStruc, class FString* FailReasonStringt) { return NativeCall<bool, struct UObject*, struct FCreatureSpawnGeneTraits_Specifications*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_GetCreatureSpawnGeneTraits_GeneTraitDefinitions(UObject*,FCreatureSpawnGeneTraits_Specifications&,FString&)", TargetToEvaluate, ReturnStruc, FailReasonStringt); }
+    bool GeneTraits_AreGeneTraitsEnabled_Implementation(struct UObject* WorldContextObject) { return NativeCall<bool, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_AreGeneTraitsEnabled_Implementation(UObject*)", WorldContextObject); }
+    bool GeneTraits_AddRandomSpawnGeneTraitToEgg_Implementation(TSubclassOf<UPrimalItem> EggItemClass, class TArray<FName, TSizedDefaultAllocator<32> >* OutEggDinoGeneTraits, class FString* FailReasonString, struct UObject* WorldContextObject) { return NativeCall<bool, struct TSubclassOf<UPrimalItem>*, class TArray<FName, TSizedDefaultAllocator<32> >*, class FString*, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_AddRandomSpawnGeneTraitToEgg_Implementation(TSubclassOf<UPrimalItem>,TArray<FName,TSizedDefaultAllocator<32>>&,FString&,UObject*)", &EggItemClass, OutEggDinoGeneTraits, FailReasonString, WorldContextObject); }
+    static void StaticRegisterNativesUGeneTraitDefinitions() { NativeCall<void>(nullptr, "UGeneTraitDefinitions.StaticRegisterNativesUGeneTraitDefinitions()"); }
+    bool GeneTraits_CanTraitExistOnThisCreature_Implementation(struct UObject* TargetToEvaluate, FName TraitName, const class TMap<FName, int, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, int, 0> >* ExistingCountOfEachTraitNotIncludingIt, bool IsCreatureUnderMaxTotalTraitLimit, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, const class TMap<FName, int, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, int, 0> >*, bool, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_CanTraitExistOnThisCreature_Implementation(UObject*,FName,TMap<FName,int,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FName,int,0>>&,bool,FString&)", TargetToEvaluate, TraitName, ExistingCountOfEachTraitNotIncludingIt, IsCreatureUnderMaxTotalTraitLimit, FailReasonString); }
+    static bool CumulativeAdjustFloatValueFromCharacterTraits(FName DataName, struct FFunctionParams_NoArrays* InData, struct FFunctionParams_NoArrays* OutData) { return NativeCall<bool, FName, struct FFunctionParams_NoArrays*, struct FFunctionParams_NoArrays*>(nullptr, "UGeneTraitDefinitions.CumulativeAdjustFloatValueFromCharacterTraits(FName,FFunctionParams_NoArrays,FFunctionParams_NoArrays&)", DataName, InData, OutData); }
+    bool GeneTraits_AddRandomSpawnGeneTrait_SkipCode_NonHuman(struct UObject* TargetToEvaluate) { return NativeCall<bool, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_AddRandomSpawnGeneTrait_SkipCode_NonHuman(UObject*)", TargetToEvaluate); }
+    bool GeneTraits_RemoveInstanceOfGeneTraitIfItExists_Implementation(struct UObject* TargetToEvaluate, FName TraitName, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_RemoveInstanceOfGeneTraitIfItExists_Implementation(UObject*,FName,FString&)", TargetToEvaluate, TraitName, FailReasonString); }
+    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGeneTraitDefinitions.StaticClass()"); }
+    bool BPGetCustomBlueprintData_Implementation(FName DataName, struct FFunctionParams_NoArrays* InData, struct FFunctionParams_NoArrays* OutData) { return NativeCall<bool, FName, struct FFunctionParams_NoArrays*, struct FFunctionParams_NoArrays*>(this, "UGeneTraitDefinitions.BPGetCustomBlueprintData_Implementation(FName,FFunctionParams_NoArrays,FFunctionParams_NoArrays&)", DataName, InData, OutData); }
+    int GeneTraits_GetMaxAllowedTraitsForThisCreature_Implementation(struct UObject* TargetToEvaluate) { return NativeCall<int, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_GetMaxAllowedTraitsForThisCreature_Implementation(UObject*)", TargetToEvaluate); }
+    TSubclassOf<UObject>* GeneTraits_GetDefinitionForThisTrait_Implementation(TSubclassOf<UObject>* result, FName TraitName, TSubclassOf<UObject> CreatureClass, class FString* FailReasonString) { return NativeCall<TSubclassOf<UObject>*, TSubclassOf<UObject>*, FName, struct TSubclassOf<UObject>*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_GetDefinitionForThisTrait_Implementation(FName,TSubclassOf<UObject>,FString&)", result, TraitName, &CreatureClass, FailReasonString); }
+    bool GeneTraits_CanTraitBeAdded_Implementation(struct UObject* TargetToEvaluate, FName TraitName, class FString* FailReasonString, bool IsReplace) { return NativeCall<bool, struct UObject*, FName, class FString*, bool>(this, "UGeneTraitDefinitions.GeneTraits_CanTraitBeAdded_Implementation(UObject*,FName,FString&,bool)", TargetToEvaluate, TraitName, FailReasonString, IsReplace); }
+    bool GeneTraits_ValidateGeneTraits(struct UObject* TargetToEvaluate, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_ValidateGeneTraits(UObject*,FString&)", TargetToEvaluate, FailReasonString); }
+    bool GeneTraits_AreGeneTraitsEnabled(struct UObject* WorldContextObject) { return NativeCall<bool, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_AreGeneTraitsEnabled(UObject*)", WorldContextObject); }
+    int GeneTraits_GetRandomNumberOfTraitsToBeAddedToThisCreatureOnSpawn(struct UObject* TargetToEvaluate) { return NativeCall<int, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_GetRandomNumberOfTraitsToBeAddedToThisCreatureOnSpawn(UObject*)", TargetToEvaluate); }
+    bool GeneTraits_AddRandomSpawnGeneTraitToEgg(TSubclassOf<UPrimalItem> EggItemClass, class TArray<FName, TSizedDefaultAllocator<32> >* OutEggDinoGeneTraits, class FString* FailReasonString, struct UObject* WorldContextObject) { return NativeCall<bool, struct TSubclassOf<UPrimalItem>*, class TArray<FName, TSizedDefaultAllocator<32> >*, class FString*, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_AddRandomSpawnGeneTraitToEgg(TSubclassOf<UPrimalItem>,TArray<FName,TSizedDefaultAllocator<32>>&,FString&,UObject*)", &EggItemClass, OutEggDinoGeneTraits, FailReasonString, WorldContextObject); }
+    int GeneTraits_GetCountOfGeneTraitStacksThisCreatureHas_Implementation(struct UObject* TargetToEvaluate, FName TraitName) { return NativeCall<int, struct UObject*, FName>(this, "UGeneTraitDefinitions.GeneTraits_GetCountOfGeneTraitStacksThisCreatureHas_Implementation(UObject*,FName)", TargetToEvaluate, TraitName); }
+    bool GeneTraits_GetCreatureSpawnGeneTraits_GeneTraitDefinitions_Implementation(struct UObject* TargetToEvaluate, struct FCreatureSpawnGeneTraits_Specifications* ReturnStruct, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, struct FCreatureSpawnGeneTraits_Specifications*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_GetCreatureSpawnGeneTraits_GeneTraitDefinitions_Implementation(UObject*,FCreatureSpawnGeneTraits_Specifications&,FString&)", TargetToEvaluate, ReturnStruct, FailReasonString); }
+    int GeneTraits_GetMaxAllowedTraitsForThisCreature(struct UObject* TargetToEvaluate) { return NativeCall<int, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_GetMaxAllowedTraitsForThisCreature(UObject*)", TargetToEvaluate); }
+    bool GeneTraits_RemoveInstanceOfGeneTraitIfItExists(struct UObject* TargetToEvaluate, FName TraitName, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_RemoveInstanceOfGeneTraitIfItExists(UObject*,FName,FString&)", TargetToEvaluate, TraitName, FailReasonString); }
+    FName GeneTraits_GetRandomSpawnGeneTraitForCreature_Implementation(struct UObject* Creature, class FString* FailReasonString) { return NativeCall<FName, struct UObject*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_GetRandomSpawnGeneTraitForCreature_Implementation(UObject*,FString&)", Creature, FailReasonString); }
+    bool GeneTraits_ValidateGeneTraits_Implementation(struct UObject* TargetToEvaluate, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_ValidateGeneTraits_Implementation(UObject*,FString&)", TargetToEvaluate, FailReasonString); }
+    bool GeneTraits_AddInstanceOfGeneTraitIfPossible_Implementation(struct UObject* TargetToEvaluate, FName TraitName, int TraitTier, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, int, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_AddInstanceOfGeneTraitIfPossible_Implementation(UObject*,FName,int,FString&)", TargetToEvaluate, TraitName, TraitTier, FailReasonString); }
+    bool GeneTraits_CanTraitExistOnThisCreature(struct UObject* TargetToEvaluate, FName TraitName, const class TMap<FName, int, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, int, 0> >* ExistingCountOfEachTraitNotIncludingIt, bool IsCreatureUnderMaxTotalTraitLimit, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, const class TMap<FName, int, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, int, 0> >*, bool, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_CanTraitExistOnThisCreature(UObject*,FName,TMap<FName,int,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FName,int,0>>&,bool,FString&)", TargetToEvaluate, TraitName, ExistingCountOfEachTraitNotIncludingIt, IsCreatureUnderMaxTotalTraitLimit, FailReasonString); }
+    bool GeneTraits_AddRandomSpawnGeneTraitToThisCreature(struct UObject* TargetToEvaluate, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_AddRandomSpawnGeneTraitToThisCreature(UObject*,FString&)", TargetToEvaluate, FailReasonString); }
+    int GeneTraits_GetRandomNumberOfTraitsToBeAddedToThisCreatureOnSpawn_Implementation(struct UObject* TargetToEvaluate) { return NativeCall<int, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_GetRandomNumberOfTraitsToBeAddedToThisCreatureOnSpawn_Implementation(UObject*)", TargetToEvaluate); }
+    bool GeneTraits_CanTraitBeAdded(struct UObject* TargetToEvaluate, FName TraitName, class FString* FailReasonString, bool IsReplace) { return NativeCall<bool, struct UObject*, FName, class FString*, bool>(this, "UGeneTraitDefinitions.GeneTraits_CanTraitBeAdded(UObject*,FName,FString&,bool)", TargetToEvaluate, TraitName, FailReasonString, IsReplace); }
+    int GeneTraits_GetCountOfGeneTraitStacksThisCreatureHas(struct UObject* TargetToEvaluate, FName TraitName) { return NativeCall<int, struct UObject*, FName>(this, "UGeneTraitDefinitions.GeneTraits_GetCountOfGeneTraitStacksThisCreatureHas(UObject*,FName)", TargetToEvaluate, TraitName); }
+    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UGeneTraitDefinitions.GetPrivateStaticClass()"); }
+    bool BPGetCustomBlueprintData(FName DataName, struct FFunctionParams_NoArrays* InData, struct FFunctionParams_NoArrays* OutData) { return NativeCall<bool, FName, struct FFunctionParams_NoArrays*, struct FFunctionParams_NoArrays*>(this, "UGeneTraitDefinitions.BPGetCustomBlueprintData(FName,FFunctionParams_NoArrays,FFunctionParams_NoArrays&)", DataName, InData, OutData); }
+    bool GeneTraits_AddInstanceOfGeneTraitIfPossible(struct UObject* TargetToEvaluate, FName TraitName, int TraitTier, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, int, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_AddInstanceOfGeneTraitIfPossible(UObject*,FName,int,FString&)", TargetToEvaluate, TraitName, TraitTier, FailReasonString); }
+    static FName GeneTraits_SplitGeneTraitFNameAndTier(FName TraitName, int* TraitTierRank) { return NativeCall<FName, FName, int*>(nullptr, "UGeneTraitDefinitions.GeneTraits_SplitGeneTraitFNameAndTier(FName,int&)", TraitName, TraitTierRank); }
+    bool GeneTraits_AddRandomSpawnGeneTrait_SkipCode_Thralls(struct UObject* TargetToEvaluate) { return NativeCall<bool, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_AddRandomSpawnGeneTrait_SkipCode_Thralls(UObject*)", TargetToEvaluate); }
+
+};
