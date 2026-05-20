@@ -113,6 +113,7 @@ struct AShooterGameState : AGameState
 	bool& bIsServerRunningOnConsoleField() { return *GetNativePointerField<bool*>(this, "AShooterGameState.bIsServerRunningOnConsole"); }
 	bool& bIsArkDownloadsAllowedField() { return *GetNativePointerField<bool*>(this, "AShooterGameState.bIsArkDownloadsAllowed"); }
 	bool& bServerHardcoreField() { return *GetNativePointerField<bool*>(this, "AShooterGameState.bServerHardcore"); }
+	bool& bServerPVEField() { return *GetNativePointerField<bool*>(this, "AShooterGameState.bServerPVE"); }
 	bool& bAutoPvEField() { return *GetNativePointerField<bool*>(this, "AShooterGameState.bAutoPvE"); }
 	bool& bServerForceNoHUDField() { return *GetNativePointerField<bool*>(this, "AShooterGameState.bServerForceNoHUD"); }
 	bool& bMapPlayerLocationField() { return *GetNativePointerField<bool*>(this, "AShooterGameState.bMapPlayerLocation"); }
