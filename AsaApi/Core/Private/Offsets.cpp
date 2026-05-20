@@ -1,5 +1,71 @@
 #include "Offsets.h"
 #include "Logger/Logger.h"
+#include <Psapi.h>
+#pragma comment(lib, "Psapi.lib")
+
+namespace
+{
+	std::string ModuleName(HMODULE hModule)
+	{
+		if (!hModule)
+			return "<unknown>";
+
+		char path[MAX_PATH]{};
+		if (!GetModuleFileNameA(hModule, path, MAX_PATH))
+			return "<unknown>";
+
+		const std::string full(path);
+		const auto slash = full.find_last_of("\\/");
+		std::string name = (slash != std::string::npos) ? full.substr(slash + 1) : full;
+
+		const auto dot = name.rfind('.');
+		if (dot != std::string::npos)
+			name.erase(dot);
+
+		return name;
+	}
+
+	std::string GetCallingModuleName()
+	{
+		constexpr int maxFrames = 32;
+		void* stack[maxFrames]{};
+
+		const USHORT frames = CaptureStackBackTrace(1, maxFrames, stack, nullptr);
+
+		HMODULE self = nullptr;
+		GetModuleHandleExA(
+			GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+			reinterpret_cast<LPCSTR>(&GetCallingModuleName),
+			&self);
+
+		constexpr int maxStackDepth = 2;
+		int stackDepth = 0;
+
+		for (USHORT i = 0; i < frames; ++i)
+		{
+			HMODULE module = nullptr;
+			if (!GetModuleHandleExA(
+				GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+				reinterpret_cast<LPCSTR>(stack[i]),
+				&module))
+			{
+				continue;
+			}
+
+			if (module == self)
+			{
+				if (++stackDepth > maxStackDepth)
+					return ModuleName(self);
+				continue;
+			}
+
+			if (stackDepth > 0)
+				return ModuleName(module);
+		}
+
+		return stackDepth > 0 ? ModuleName(self) : "<unknown>";
+	}
+} // namespace
 
 namespace API
 {
@@ -18,12 +84,12 @@ namespace API
 		const auto end_section = first_section + section_count;
 
 		const auto data_section_header = std::find_if(first_section, end_section, [](_IMAGE_SECTION_HEADER hdr)
-		{
-			auto name = std::string(reinterpret_cast<char*>(hdr.Name), 8);
-			name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
+			{
+				auto name = std::string(reinterpret_cast<char*>(hdr.Name), 8);
+				name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
 
-			return name == ".data";
-		});
+				return name == ".data";
+			});
 
 		if (data_section_header == end_section)
 		{
@@ -41,7 +107,7 @@ namespace API
 	}
 
 	void Offsets::Init(std::unordered_map<std::string, intptr_t>&& offsets_dump,
-	                   std::unordered_map<std::string, BitField>&& bitfields_dump)
+		std::unordered_map<std::string, BitField>&& bitfields_dump)
 	{
 		offsets_dump_.swap(offsets_dump);
 		bitfields_dump_.swap(bitfields_dump);
@@ -51,7 +117,7 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of {}.", name);
+			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
 			Log::GetLog()->flush();
 			Sleep(10000);
 			throw;
@@ -64,7 +130,7 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of {}.", name);
+			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
 			Log::GetLog()->flush();
 			Sleep(10000);
 			throw;
@@ -77,7 +143,7 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of {}.", name);
+			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
 			Log::GetLog()->flush();
 			Sleep(10000);
 			throw;
@@ -100,7 +166,7 @@ namespace API
 	{
 		if (!bitfields_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the bitfield address of {}.", name);
+			Log::GetLog()->critical("Failed to get the bitfield address of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
 			Log::GetLog()->flush();
 			Sleep(10000);
 			throw;

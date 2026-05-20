@@ -388,7 +388,7 @@ namespace AsaApi
 		*/
 		static FORCEINLINE FVector GetPosition(APlayerController* player_controller)
 		{
-			return player_controller != nullptr && player_controller->PawnField() != nullptr ? player_controller->PawnField()->RootComponentField()->RelativeLocationField() : FVector{0, 0, 0};
+			return player_controller != nullptr && player_controller->PawnField() != nullptr ? player_controller->PawnField()->GetLocation() : FVector{0, 0, 0};
 		}
 
 		/**
