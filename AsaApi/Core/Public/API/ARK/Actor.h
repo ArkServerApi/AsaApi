@@ -1868,7 +1868,7 @@ struct ABiomeZoneVolume : AVolume
 	float EggGetOverrideIntervalBetweenUnstasisChances(APrimalDinoCharacter* aChar) { return NativeCall<float, APrimalDinoCharacter*>(this, "ABiomeZoneVolume.EggGetOverrideIntervalBetweenUnstasisChances(APrimalDinoCharacter*)", aChar); }
 	float EggOverrideChanceToSpawn(APrimalDinoCharacter* aChar) { return NativeCall<float, APrimalDinoCharacter*>(this, "ABiomeZoneVolume.EggOverrideChanceToSpawn(APrimalDinoCharacter*)", aChar); }
 	static bool IsPointUnderwater(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint, bool bFastPath, float MinimumWaterHeight, bool bIgnoreVacuumStructures, bool bIgnorePainCausingVolumes, float AdditionalZOffsetWhenOnOcean, float CheckForVolumesRadius) { return NativeCall<bool, UWorld*, UE::Math::TVector<double>*, bool, float, bool, bool, float, float>(nullptr, "ABiomeZoneVolume.IsPointUnderwater(UWorld*,UE::Math::TVector<double>,bool,float,bool,bool,float,float)", ForWorld, AtPoint, bFastPath, MinimumWaterHeight, bIgnoreVacuumStructures, bIgnorePainCausingVolumes, AdditionalZOffsetWhenOnOcean, CheckForVolumesRadius); }
-	static APhysicsVolume* GetWaterVolumeAtPoint(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint, bool bFastPath, float MinimumWaterHeight, bool bIgnoreVacuumStructures, bool bIgnorePainCausingVolumes) { return NativeCall<APhysicsVolume*, UWorld*, UE::Math::TVector<double>*, bool, float, bool, bool>(nullptr, "ABiomeZoneVolume.GetWaterVolumeAtPoint(UWorld*,UE::Math::TVector<double>,bool,float,bool,bool)", ForWorld, AtPoint, bFastPath, MinimumWaterHeight, bIgnoreVacuumStructures, bIgnorePainCausingVolumes); }
+	static APhysicsVolume* GetWaterVolumeAtPoint(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint, bool bFastPath, float MinimumWaterHeight, bool bIgnoreVacuumStructures, bool bIgnorePainCausingVolumes, float MinimumWaterDepth, float MaximumWaterDepth) { return NativeCall<APhysicsVolume*, UWorld*, UE::Math::TVector<double>*, bool, float, bool, bool, float, float>(nullptr, "ABiomeZoneVolume.GetWaterVolumeAtPoint(UWorld*,UE::Math::TVector<double>,bool,float,bool,bool,float,float)", ForWorld, AtPoint, bFastPath, MinimumWaterHeight, bIgnoreVacuumStructures, bIgnorePainCausingVolumes, MinimumWaterDepth, MaximumWaterDepth); }
 	static __int64 IsPointInVacuumBase(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint) { return NativeCall<__int64, UWorld*, UE::Math::TVector<double>*>(nullptr, "ABiomeZoneVolume.IsPointInVacuumBase(UWorld*,UE::Math::TVector<double>)", ForWorld, AtPoint); }
 	static AActor* GetPhysicsVolumeAtLocation(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint, bool bFastPath) { return NativeCall<AActor*, UWorld*, UE::Math::TVector<double>*, bool>(nullptr, "ABiomeZoneVolume.GetPhysicsVolumeAtLocation(UWorld*,UE::Math::TVector<double>,bool)", ForWorld, AtPoint, bFastPath); }
 };
@@ -6386,7 +6386,11 @@ struct AShooterCharacter : APrimalCharacter
 	BitFieldValue<bool, unsigned __int32> bPossessionDontUnsleep() { return { this, "AShooterCharacter.bPossessionDontUnsleep" }; }
 	BitFieldValue<bool, unsigned __int32> bLastViewingInventory() { return { this, "AShooterCharacter.bLastViewingInventory" }; }
 	BitFieldValue<bool, unsigned __int32> bPlayedSpawnIntro() { return { this, "AShooterCharacter.bPlayedSpawnIntro" }; }
-	BitFieldValue<bool, unsigned __int32> bWasSubmerged() { return { this, "AShooterCharacter.bWasSubmerged" }; }
+	// "AShooterCharacter.bWasSubmerged" is not present in the current build. The live field is
+	// APrimalCharacter.bReplicatedIsSubmerged (AShooterCharacter inherits from APrimalCharacter).
+	BitFieldValue<bool, unsigned __int32> bReplicatedIsSubmerged() { return { this, "APrimalCharacter.bReplicatedIsSubmerged" }; }
+	[[deprecated("bWasSubmerged does not exist in the current ARK build; use bReplicatedIsSubmerged()")]]
+	BitFieldValue<bool, unsigned __int32> bWasSubmerged() { return { this, "APrimalCharacter.bReplicatedIsSubmerged" }; }
 	BitFieldValue<bool, unsigned __int32> bCheckPushedThroughWallsWasSeatingStructure() { return { this, "AShooterCharacter.bCheckPushedThroughWallsWasSeatingStructure" }; }
 	BitFieldValue<bool, unsigned __int32> bGaveInitialItems() { return { this, "AShooterCharacter.bGaveInitialItems" }; }
 	BitFieldValue<bool, unsigned __int32> bReceivedGenesisSeasonPassItems() { return { this, "AShooterCharacter.bReceivedGenesisSeasonPassItems" }; }
