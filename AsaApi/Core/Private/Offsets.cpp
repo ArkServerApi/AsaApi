@@ -131,7 +131,8 @@ namespace API
 		{
 			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
 			Log::GetLog()->flush();
-			Sleep(10000);
+			// NOTE: no Sleep() here. This runs on the game thread; sleeping stalls the whole
+			// server (watchdogs see an ~10s hang and restart it). Log and throw instead.
 			throw;
 		}
 
@@ -148,7 +149,7 @@ namespace API
 				return nullptr;
 			else
 			{
-				Sleep(10000);
+				// NOTE: no Sleep() here -- this is the game thread.
 				throw;
 			}
 		}
@@ -166,7 +167,7 @@ namespace API
 				return nullptr;
 			else
 			{
-				Sleep(10000);
+				// NOTE: no Sleep() here -- this is the game thread.
 				throw;
 			}
 		}
@@ -188,10 +189,23 @@ namespace API
 	{
 		if (!bitfields_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the bitfield address of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
-			Log::GetLog()->flush();
-			Sleep(10000);
-			throw;
+			// A missing bitfield must not take the server down. Warn once, then hand back a
+			// bitfield backed by a dummy byte, which reads as false. No Sleep() -- this is the
+			// game thread.
+			static std::unordered_map<std::string, bool> warned;
+			static unsigned long long dummy_storage = 0;
+			if (!warned.contains(name))
+			{
+				warned[name] = true;
+				Log::GetLog()->error("Bitfield '{}' does not exist in this ARK build (requested by plugin: {}). Returning false.", name, GetCallingModuleName());
+				Log::GetLog()->flush();
+			}
+			auto safe = BitField();
+			safe.bit_position = 0;
+			safe.length = 1;
+			safe.num_bits = 1;
+			safe.offset = reinterpret_cast<DWORD64>(&dummy_storage);
+			return safe;
 		}
 
 		const auto bf = bitfields_dump_[name];
