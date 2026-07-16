@@ -2727,7 +2727,7 @@ struct AShooterGameMode : APrimalGameMode
 	FTribeData const GetTribeData(unsigned long TribeID) { return NativeCall<FTribeData const, unsigned long>(this, "AShooterGameMode.GetTribeData(unsigned__int64)", TribeID); }
 	int GetNumberOfLivePlayersOnTribe(const FString& TribeName) { return NativeCall<int, const FString&>(this, "AShooterGameMode.GetNumberOfLivePlayersOnTribe(FString&)", TribeName); }
 	bool GetBoolOption(const FString& Options, const FString& ParseString, bool CurrentValue) { return NativeCall<bool, const FString&, const FString&, bool>(this, "AShooterGameMode.GetBoolOption(FString&,FString&,bool)", Options, ParseString, CurrentValue); }
-	void Logout(AController* Exiting) { NativeCall<void, AController*>(this, "AShooterGameMode.Logout(AController*)", Exiting); }
+	void OnLogout(AController* Exiting) { NativeCall<void, AController*>(this, "AShooterGameMode.OnLogout(AController*)", Exiting); }
 	bool PlayerCanRestart_Implementation(APlayerController* Player) { return NativeCall<bool, APlayerController*>(this, "AShooterGameMode.PlayerCanRestart_Implementation(APlayerController*)", Player); }
 	static UClass* StaticClass() { return GetPrivateStaticClass(); }
 	void LoadedWorld() { NativeCall<void>(this, "AShooterGameMode.LoadedWorld()"); }

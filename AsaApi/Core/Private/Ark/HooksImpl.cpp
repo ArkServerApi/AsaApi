@@ -38,7 +38,7 @@ namespace AsaApi
 	DECLARE_HOOK(AShooterGameMode_BeginPlay, void, AShooterGameMode*);
 	DECLARE_HOOK(URCONServer_Init, bool, URCONServer*, FString*, unsigned int, UShooterCheatManager*);
 	DECLARE_HOOK(AShooterPlayerController_OnPossess, void, AShooterPlayerController*, APawn*);
-	DECLARE_HOOK(AShooterGameMode_Logout, void, AShooterGameMode*, AController*);
+	DECLARE_HOOK(AShooterGameMode_OnLogout, void, AShooterGameMode*, AController*);
 	DECLARE_HOOK(UShooterCheatManager_Broadcast, void, UShooterCheatManager*, FString*);
 	DECLARE_HOOK(AShooterGameMode_HandleNewPlayer_Implementation, bool, AShooterGameMode*, AShooterPlayerController*, UPrimalPlayerData*, AShooterCharacter*, bool);
 
@@ -55,7 +55,7 @@ namespace AsaApi
 		hooks->SetHook("AShooterGameMode.BeginPlay()", &Hook_AShooterGameMode_BeginPlay, &AShooterGameMode_BeginPlay_original);
 		hooks->SetHook("URCONServer.Init(FString,int,UShooterCheatManager*)", &Hook_URCONServer_Init, &URCONServer_Init_original);
 		hooks->SetHook("AShooterPlayerController.OnPossess(APawn*)", &Hook_AShooterPlayerController_OnPossess, &AShooterPlayerController_OnPossess_original);
-		hooks->SetHook("AShooterGameMode.Logout(AController*)", &Hook_AShooterGameMode_Logout, &AShooterGameMode_Logout_original);
+		hooks->SetHook("AShooterGameMode.OnLogout(AController*)", &Hook_AShooterGameMode_OnLogout, &AShooterGameMode_OnLogout_original);
 		hooks->SetHook("UShooterCheatManager.Broadcast(FString&)", &Hook_UShooterCheatManager_Broadcast, &UShooterCheatManager_Broadcast_original);
 		hooks->SetHook("AShooterGameMode.HandleNewPlayer_Implementation(AShooterPlayerController*,UPrimalPlayerData*,AShooterCharacter*,bool)", &Hook_AShooterGameMode_HandleNewPlayer_Implementation, &AShooterGameMode_HandleNewPlayer_Implementation_original);
 
@@ -242,12 +242,12 @@ namespace AsaApi
 		AShooterPlayerController_OnPossess_original(_this, inPawn);
 	}
 
-	void  Hook_AShooterGameMode_Logout(AShooterGameMode* _this, AController* Exiting)
+	void  Hook_AShooterGameMode_OnLogout(AShooterGameMode* _this, AController* Exiting)
 	{
 		AShooterPlayerController* Exiting_SPC = static_cast<AShooterPlayerController*>(Exiting);
 		dynamic_cast<ApiUtils&>(*API::game_api->GetApiUtils()).RemovePlayerController(Exiting_SPC);
 
-		AShooterGameMode_Logout_original(_this, Exiting);
+		AShooterGameMode_OnLogout_original(_this, Exiting);
 	}
 
 	void Hook_UShooterCheatManager_Broadcast(UShooterCheatManager* _this, FString* msg)
