@@ -5466,7 +5466,7 @@ struct APrimalCharacter : ACharacter
 	void BeginPlay() { NativeCall<void>(this, "APrimalCharacter.BeginPlay()"); }
 	void FellOutOfWorld(const UDamageType* dmgType) { NativeCall<void, const UDamageType*>(this, "APrimalCharacter.FellOutOfWorld(UDamageType&)", dmgType); }
 	void Suicide() { NativeCall<void>(this, "APrimalCharacter.Suicide()"); }
-	bool IsDead() { return NativeCall<bool>(this, "APrimalCharacter.IsDead()"); }
+	bool IsDead() { return IsDeadOrDying(); }
 	void InventoryItemUsed(UObject* InventoryItemObject) { NativeCall<void, UObject*>(this, "APrimalCharacter.InventoryItemUsed(UObject*)", InventoryItemObject); }
 	void AdjustDamage(float* Damage, const FDamageEvent* DamageEvent, AController* EventInstigator, AActor* DamageCauser) { NativeCall<void, float*, const FDamageEvent*, AController*, AActor*>(this, "APrimalCharacter.AdjustDamage(float&,FDamageEvent&,AController*,AActor*)", Damage, DamageEvent, EventInstigator, DamageCauser); }
 	bool CanBeTargetedBy(const ITargetableInterface* Attacker) { return NativeCall<bool, const ITargetableInterface*>(this, "APrimalCharacter.CanBeTargetedBy(ITargetableInterface*)", Attacker); }
