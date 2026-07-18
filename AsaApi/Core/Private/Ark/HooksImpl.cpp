@@ -62,7 +62,7 @@ namespace AsaApi
 		Log::GetLog()->info("Initialized hooks\n");
 	}
 
-	std::uint32_t GenerateServerId()
+	std::uint32_t GenerateServerId(uint32_t originalFallbackNumber)
 	{
 		constexpr std::uint32_t MinId = 100'000'000;
 		constexpr std::uint64_t IdCount = 900'000'000ULL;
@@ -81,7 +81,7 @@ namespace AsaApi
 			);
 
 			if (!BCRYPT_SUCCESS(status))
-				throw std::runtime_error("Failed while generating server ID");
+				return originalFallbackNumber; // Fallback to the original number if random generation fails
 
 			if (static_cast<std::uint64_t>(randomValue) < AcceptLimit)
 				return MinId + static_cast<std::uint32_t>(static_cast<std::uint64_t>(randomValue) % IdCount);
@@ -126,7 +126,7 @@ namespace AsaApi
 			if (bp.Equals("Blueprint'/Script/ShooterGame.PrimalPersistentWorldData'"))
 			{
 				if (actor->TargetingTeamField() == 0)
-					actor->TargetingTeamField() = GenerateServerId();
+					actor->TargetingTeamField() = GenerateServerId(a_shooter_game_mode->ServerIDField()); // Use the original ServerIDField as a fallback if random generation fails
 
 				a_shooter_game_mode->MyServerIdField() = FString(std::to_string(actor->TargetingTeamField()));
 				a_shooter_game_mode->ServerIDField() = actor->TargetingTeamField();
