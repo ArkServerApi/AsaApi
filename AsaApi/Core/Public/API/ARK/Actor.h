@@ -970,8 +970,9 @@ struct UPrimitiveComponent : USceneComponent
 	float GetClosestPointOnCollision(const UE::Math::TVector<double>* Point, UE::Math::TVector<double>* OutPointOnBody, FName BoneName) { return NativeCall<float, const UE::Math::TVector<double>*, UE::Math::TVector<double>*, FName>(this, "UPrimitiveComponent.GetClosestPointOnCollision(UE::Math::TVector<double>&,UE::Math::TVector<double>&,FName)", Point, OutPointOnBody, BoneName); }
 	bool IsSimulatingPhysics(FName BoneName) { return NativeCall<bool, FName>(this, "UPrimitiveComponent.IsSimulatingPhysics(FName)", BoneName); }
 	void SetCollisionObjectType(ECollisionChannel Channel) { NativeCall<void, ECollisionChannel>(this, "UPrimitiveComponent.SetCollisionObjectType(ECollisionChannel)", Channel); }
-	void SetCollisionResponseToChannel(ECollisionChannel Channel, ECollisionResponse NewResponse) { NativeCall<void, ECollisionChannel, ECollisionResponse>(this, "UPrimitiveComponent.SetCollisionResponseToChannel(ECollisionChannel,ECollisionResponse)", Channel, NewResponse); }
-	void SetCollisionResponseToAllChannels(ECollisionResponse NewResponse) { NativeCall<void, ECollisionResponse>(this, "UPrimitiveComponent.SetCollisionResponseToAllChannels(ECollisionResponse)", NewResponse); }
+	void SetCollisionResponseToChannelEx(ECollisionChannel Channel, ECollisionResponse NewResponse, bool updateOverlaps) { NativeCall<void, ECollisionChannel, ECollisionResponse, bool>(this, "UPrimitiveComponent.SetCollisionResponseToChannelEx(ECollisionChannel,ECollisionResponse,bool)", Channel, NewResponse, updateOverlaps); }
+	//void SetCollisionResponseToChannel(ECollisionChannel Channel, ECollisionResponse NewResponse) { NativeCall<void, ECollisionChannel, ECollisionResponse>(this, "UPrimitiveComponent.SetCollisionResponseToChannel(ECollisionChannel,ECollisionResponse)", Channel, NewResponse); }
+	//void SetCollisionResponseToAllChannels(ECollisionResponse NewResponse) { NativeCall<void, ECollisionResponse>(this, "UPrimitiveComponent.SetCollisionResponseToAllChannels(ECollisionResponse)", NewResponse); }
 	//void SetCollisionResponseToChannels(const FCollisionResponseContainer* NewReponses) { NativeCall<void, const FCollisionResponseContainer*>(this, "UPrimitiveComponent.SetCollisionResponseToChannels(FCollisionResponseContainer&)", NewReponses); }
 	void SetCollisionEnabled(ECollisionEnabled::Type NewType) { NativeCall<void, ECollisionEnabled::Type>(this, "UPrimitiveComponent.SetCollisionEnabled(ECollisionEnabled::Type)", NewType); }
 	void SetCollisionProfileName(FName InCollisionProfileName, bool bUpdateOverlaps) { NativeCall<void, FName, bool>(this, "UPrimitiveComponent.SetCollisionProfileName(FName,bool)", InCollisionProfileName, bUpdateOverlaps); }
@@ -6545,7 +6546,8 @@ struct AShooterCharacter : APrimalCharacter
 	float GetCarryingSocketYaw(bool RefreshBones) { return NativeCall<float, bool>(this, "AShooterCharacter.GetCarryingSocketYaw(bool)", RefreshBones); }
 	bool CanBeCarried(APrimalCharacter* ByCarrier) { return NativeCall<bool, APrimalCharacter*>(this, "AShooterCharacter.CanBeCarried(APrimalCharacter*)", ByCarrier); }
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "AShooterCharacter.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
-	bool IsTargeting() { return NativeCall<bool>(this, "AShooterCharacter.IsTargeting()"); }
+	//Deprecated
+	//bool IsTargeting() { return NativeCall<bool>(this, "AShooterCharacter.IsTargeting()"); }
 	bool IsFirstPerson() { return NativeCall<bool>(this, "AShooterCharacter.IsFirstPerson()"); }
 	bool IsFirstPersonCamera() { return NativeCall<bool>(this, "AShooterCharacter.IsFirstPersonCamera()"); }
 	void SetActorHiddenInGame(bool bNewHidden) { NativeCall<void, bool>(this, "AShooterCharacter.SetActorHiddenInGame(bool)", bNewHidden); }
@@ -8571,7 +8573,7 @@ struct APrimalDinoCharacter : APrimalCharacter
 	bool CanRide(AShooterCharacter* byPawn, unsigned __int8* bOutHasSaddle, unsigned __int8* bOutCanRideOtherThanSaddle, bool bDontCheckDistance) { return NativeCall<bool, AShooterCharacter*, unsigned __int8*, unsigned __int8*, bool>(this, "APrimalDinoCharacter.CanRide(AShooterCharacter*,unsignedchar*,unsignedchar*,bool,bool)", byPawn, bOutHasSaddle, bOutCanRideOtherThanSaddle, bDontCheckDistance); }
 	bool CanCryo(AShooterPlayerController* ForPC) { return NativeCall<bool, AShooterPlayerController*>(this, "APrimalDinoCharacter.CanCryo(AShooterPlayerController*)", ForPC); }
 	void OnCryo(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "APrimalDinoCharacter.OnCryo(AShooterPlayerController*)", ForPC); }
-	void OnUncryo(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "APrimalDinoCharacter.OnUncryo(AShooterPlayerController*)", ForPC); }
+	//void OnUncryo(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "APrimalDinoCharacter.OnUncryo(AShooterPlayerController*)", ForPC); }
 	void Multi_OnCryo_Implementation(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "APrimalDinoCharacter.Multi_OnCryo_Implementation(AShooterPlayerController*)", ForPC); }
 	void StasisingCharacter() { NativeCall<void>(this, "APrimalDinoCharacter.StasisingCharacter()"); }
 	void Stasis() { NativeCall<void>(this, "APrimalDinoCharacter.Stasis()"); }

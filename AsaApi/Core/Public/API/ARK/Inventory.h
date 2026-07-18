@@ -1082,6 +1082,7 @@ struct UPrimalInventoryComponent : UActorComponent
 	BitFieldValue<bool, unsigned __int32> bNotNearWirelessCrafting() { return { this, "UPrimalInventoryComponent.bNotNearWirelessCrafting" }; }
 
 	// Functions
+	APrimalStructureItemContainer* BPDropInventoryDeposit_Get(double DestroyAtTime, int OverrideMaxItemsDropped, bool bOverrideDepositLocation, UE::Math::TVector<double> DepositLocationOverride, bool bIgnoreEquippedItems, TSubclassOf<APrimalStructureItemContainer> OverrideInventoryDepositClass) { return NativeCall<APrimalStructureItemContainer*, double, int, bool, UE::Math::TVector<double>, bool, TSubclassOf<APrimalStructureItemContainer>>(this, "UPrimalInventoryComponent.BPDropInventoryDeposit_Get(double,int,bool,UE::Math::TVector<double>,bool,TSubclassOf<APrimalStructureItemContainer>)", DestroyAtTime, OverrideMaxItemsDropped, bOverrideDepositLocation, DepositLocationOverride, bIgnoreEquippedItems, OverrideInventoryDepositClass); }
 
 	bool BPAllowAddInventoryItem(UPrimalItem* Item, int RequestedQuantity, bool bOnlyAddAll) { return NativeCall<bool, UPrimalItem*, int, bool>(this, "UPrimalInventoryComponent.BPAllowAddInventoryItem(UPrimalItem*,int,bool)", Item, RequestedQuantity, bOnlyAddAll); }
 	bool BPCustomRemoteInventoryAllowAddItems(AShooterPlayerController* PC, UPrimalItem* anItem, int anItemQuantityOverride, bool bRequestedByPlayer) { return NativeCall<bool, AShooterPlayerController*, UPrimalItem*, int, bool>(this, "UPrimalInventoryComponent.BPCustomRemoteInventoryAllowAddItems(AShooterPlayerController*,UPrimalItem*,int,bool)", PC, anItem, anItemQuantityOverride, bRequestedByPlayer); }
@@ -1433,6 +1434,7 @@ struct UPrimalCharacterStatusComponent : UActorComponent
 	TArray<float, TSizedDefaultAllocator<32> >& LevelUpStatWeightOverridesField() { return *GetNativePointerField<TArray<float, TSizedDefaultAllocator<32> >*>(this, "UPrimalCharacterStatusComponent.LevelUpStatWeightOverrides"); }
 	float BPGetMaxStatusValue(EPrimalCharacterStatusValue::Type valueType) const { return NativeCall<float, EPrimalCharacterStatusValue::Type>(this, "UPrimalCharacterStatusComponent.BPGetMaxStatusValue(EPrimalCharacterStatusValue::Type)", valueType); }
 	float BPGetCurrentStatusValue(EPrimalCharacterStatusValue::Type valueType) const { return NativeCall<float, EPrimalCharacterStatusValue::Type>(this, "UPrimalCharacterStatusComponent.BPGetCurrentStatusValue(EPrimalCharacterStatusValue::Type)", valueType); }
+	int GetNumLevelUpsAvailable() { return NativeCall<int>(this, "UPrimalCharacterStatusComponent.GetNumLevelUpsAvailable()"); }
 
 	// Bitfields
 

@@ -658,9 +658,8 @@ namespace API
 			}
 			else if (entryName == "cached_offsets.txt")
 			{
-				if (plainOffsetsSeen)
-					return failExtraction();
-				plainOffsetsSeen = true;
+				outputFile = stagingDirectory / "cached_offsets.txt";
+				entrySeen = &plainOffsetsSeen;
 			}
 			else
 			{
