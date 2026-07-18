@@ -62,6 +62,32 @@ namespace AsaApi
 		Log::GetLog()->info("Initialized hooks\n");
 	}
 
+	std::uint32_t GenerateServerId()
+	{
+		constexpr std::uint32_t MinId = 100'000'000;
+		constexpr std::uint64_t IdCount = 900'000'000ULL;
+		constexpr std::uint64_t RandomValueCount = 1ULL << 32;
+		constexpr std::uint64_t AcceptLimit = (RandomValueCount / IdCount) * IdCount;
+
+		while (true)
+		{
+			std::uint32_t randomValue = 0;
+
+			const NTSTATUS status = BCryptGenRandom(
+				nullptr,
+				reinterpret_cast<PUCHAR>(&randomValue),
+				sizeof(randomValue),
+				BCRYPT_USE_SYSTEM_PREFERRED_RNG
+			);
+
+			if (!BCRYPT_SUCCESS(status))
+				throw std::runtime_error("Failed while generating server ID");
+
+			if (static_cast<std::uint64_t>(randomValue) < AcceptLimit)
+				return MinId + static_cast<std::uint32_t>(static_cast<std::uint64_t>(randomValue) % IdCount);
+		}
+	}
+
 	// Hooks
 
 	void Hook_UEngine_Init(DWORD64 _this, DWORD64 InEngineLoop)
@@ -100,11 +126,11 @@ namespace AsaApi
 			if (bp.Equals("Blueprint'/Script/ShooterGame.PrimalPersistentWorldData'"))
 			{
 				if (actor->TargetingTeamField() == 0)
-					actor->TargetingTeamField() = a_shooter_game_mode->ServerIDField();
-				
+					actor->TargetingTeamField() = GenerateServerId();
+
 				a_shooter_game_mode->MyServerIdField() = FString(std::to_string(actor->TargetingTeamField()));
 				a_shooter_game_mode->ServerIDField() = actor->TargetingTeamField();
-				Log::GetLog()->info("SERVER ID: {}", a_shooter_game_mode->ServerIDField());
+				Log::GetLog()->info("SERVER ID: {}", actor->TargetingTeamField());
 
 				break;
 			}
@@ -130,7 +156,7 @@ namespace AsaApi
 
 		if (command_executed || prevent_default)
 			return;
-		
+
 		AShooterPlayerController_ServerSendChatMessage_Impl_original(player_controller, message, mode, senderPlatform);
 	}
 
@@ -161,17 +187,17 @@ namespace AsaApi
 		Commands* command = dynamic_cast<Commands*>(API::game_api->GetCommands().get());
 		if (command)
 			command->CheckOnTimerCallbacks();
-		
+
 		API::PluginManager::DetectPluginChangesTimerCallback(); // We call this here to avoid UnknownModule crashes
 
 		AGameState_DefaultTimer_original(_this);
 	}
 
-    void Hook_AShooterGameMode_BeginPlay(AShooterGameMode* _AShooterGameMode)
-    {
-        AShooterGameMode_BeginPlay_original(_AShooterGameMode);
-        dynamic_cast<ApiUtils&>(*API::game_api->GetApiUtils()).SetStatus(ServerStatus::Ready);
-        
+	void Hook_AShooterGameMode_BeginPlay(AShooterGameMode* _AShooterGameMode)
+	{
+		AShooterGameMode_BeginPlay_original(_AShooterGameMode);
+		dynamic_cast<ApiUtils&>(*API::game_api->GetApiUtils()).SetStatus(ServerStatus::Ready);
+
 		std::uint64_t mask = 0;
 
 		LPWSTR* argv;
@@ -226,7 +252,7 @@ namespace AsaApi
 			SetProcessAffinityMask(GetCurrentProcess(), mask);
 			Log::GetLog()->info("Set process affinity mask to 0x{:016X}", mask);
 		}
-    }
+	}
 
 	bool Hook_URCONServer_Init(URCONServer* _this, FString* Password, unsigned int InPort, UShooterCheatManager* SCheatManager)
 	{
