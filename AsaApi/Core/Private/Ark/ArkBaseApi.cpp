@@ -231,7 +231,7 @@ namespace API
 		}
 	}
 
-	constexpr float api_version = 2.01f;
+	constexpr float api_version = 2.02f;
 
 	ArkBaseApi::ArkBaseApi()
 		: commands_(std::make_unique<AsaApi::Commands>()),
