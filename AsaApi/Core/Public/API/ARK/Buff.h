@@ -95,7 +95,7 @@ struct FPrimalBotCharacterSparseClassData : FPrimalDinoCharacterSparseClassData
 
     // Functions
 
-    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalBotCharacterSparseClassData.StaticStruct()"); }
+    static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalBotCharacterSparseClassData>(); }
     FPrimalBotCharacterSparseClassData& operator=(const FPrimalBotCharacterSparseClassData* __that) { return NativeCall<FPrimalBotCharacterSparseClassData&, const FPrimalBotCharacterSparseClassData*>(this, "FPrimalBotCharacterSparseClassData.operator=(FPrimalBotCharacterSparseClassData&)", __that); }
 
 };
@@ -138,7 +138,10 @@ struct APrimalBotCharacter : APrimalDinoCharacter
     float GetMaxAttackRange() { return NativeCall<float>(this, "APrimalBotCharacter.GetMaxAttackRange()"); }
     void InitializeAnimOverrides() { NativeCall<void>(this, "APrimalBotCharacter.InitializeAnimOverrides()"); }
     UAnimSequence* GetBotAnimSequenceOverride(UAnimSequence* AnimSeq) { return NativeCall<UAnimSequence*, UAnimSequence*>(this, "APrimalBotCharacter.GetBotAnimSequenceOverride(UAnimSequence*)", AnimSeq); }
-    FPrimalBotCharacterSparseClassData* GetPrimalBotCharacterSparseClassData(EGetSparseClassDataMethod GetMethod) { return NativeCall<FPrimalBotCharacterSparseClassData*, EGetSparseClassDataMethod>(this, "APrimalBotCharacter.GetPrimalBotCharacterSparseClassData(EGetSparseClassDataMethod)", GetMethod); }
+    FPrimalBotCharacterSparseClassData* GetPrimalBotCharacterSparseClassData(EGetSparseClassDataMethod GetMethod)
+    {
+        return (FPrimalBotCharacterSparseClassData*)this->ClassPrivateField()->GetSparseClassData(GetMethod);
+    }
 
 
 };

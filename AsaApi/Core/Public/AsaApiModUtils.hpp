@@ -51,7 +51,7 @@ namespace AsaApiModUtils
 
 		if (GetSingleton() != nullptr)
 		{
-			Singleton->ProcessEvent(Singleton->FindFunctionChecked(FName("DrawDebugLine")), &params);
+			Singleton->ProcessEvent(Singleton->ClassPrivateField()->FindFunctionByName(FName("DrawDebugLine"), EIncludeSuperFlag::IncludeSuper), &params);
 		}
 	}
 
@@ -74,7 +74,7 @@ namespace AsaApiModUtils
 
 		if (GetSingleton() != nullptr)
 		{
-			Singleton->ProcessEvent(Singleton->FindFunctionChecked(FName("DrawSphere")), &sentParams);
+			Singleton->ProcessEvent(Singleton->ClassPrivateField()->FindFunctionByName(FName("DrawSphere"), EIncludeSuperFlag::IncludeSuper), &sentParams);
 			return GetWeakReference(sentParams.SphereActor);
 		}
 
@@ -101,7 +101,7 @@ namespace AsaApiModUtils
 
 		if (GetSingleton() != nullptr)
 		{
-			Singleton->ProcessEvent(Singleton->FindFunctionChecked(FName("AddNotification")), &notification);
+			Singleton->ProcessEvent(Singleton->ClassPrivateField()->FindFunctionByName(FName("AddNotification"), EIncludeSuperFlag::IncludeSuper), &notification);
 			return notification.NotificationId;
 		}
 

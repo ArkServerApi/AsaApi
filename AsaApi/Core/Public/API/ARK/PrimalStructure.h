@@ -9,7 +9,7 @@ struct FPrimalWirelessReferences
 	TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>& WirelessSourcesField() { return *GetNativePointerField<TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>*>(this, "FPrimalWirelessReferences.WirelessSources"); }
 	TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>& WirelessConsumersField() { return *GetNativePointerField<TSet<APrimalStructureItemContainer*, DefaultKeyFuncs<APrimalStructureItemContainer*, 0>, FDefaultSetAllocator>*>(this, "FPrimalWirelessReferences.WirelessConsumers"); }
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalWirelessReferences.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalWirelessReferences>(); }
 	~FPrimalWirelessReferences() { NativeCall<void>(this, "FPrimalWirelessReferences.~FPrimalWirelessReferences()"); }
 };
 
@@ -45,7 +45,7 @@ struct FPrimalTargetableActorSparseClassData
     // Functions
 
     FPrimalTargetableActorSparseClassData& operator=(const FPrimalTargetableActorSparseClassData* __that) { return NativeCall<FPrimalTargetableActorSparseClassData&, const FPrimalTargetableActorSparseClassData*>(this, "FPrimalTargetableActorSparseClassData.operator=(FPrimalTargetableActorSparseClassData&)", __that); }
-    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalTargetableActorSparseClassData.StaticStruct()"); }
+    static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalTargetableActorSparseClassData>(); }
 
 };
 
@@ -350,7 +350,7 @@ struct FPrimalStructureSparseClassData : FPrimalTargetableActorSparseClassData
     // Functions
 
     FPrimalStructureSparseClassData& operator=(const FPrimalStructureSparseClassData* __that) { return NativeCall<FPrimalStructureSparseClassData&, const FPrimalStructureSparseClassData*>(this, "FPrimalStructureSparseClassData.operator=(FPrimalStructureSparseClassData&)", __that); }
-    static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalStructureSparseClassData.StaticStruct()"); }
+    static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalStructureSparseClassData>(); }
 
 };
 
@@ -785,7 +785,7 @@ struct APrimalStructure : APrimalTargetableActor
     void SetEnabledPrimarySnappedStructureParent(bool bEnabled) { NativeCall<void, bool>(this, "APrimalStructure.SetEnabledPrimarySnappedStructureParent(bool)", bEnabled); }
     static void StaticRegisterNativesAPrimalStructure() { NativeCall<void>(nullptr, "APrimalStructure.StaticRegisterNativesAPrimalStructure()"); }
     static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructure.GetPrivateStaticClass()"); }
-    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructure.StaticClass()"); }
+    static UClass* StaticClass() { return GetPrivateStaticClass(); }
     void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "APrimalStructure.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }
     bool FillVolumetricDispatchesForFluidInteraction(bool bDebugb, bool bTriggerEvents, UActorComponent* interactionComponent, AActor* dispatcher) { return NativeCall<bool, bool, bool, UActorComponent*, AActor*>(this, "APrimalStructure.FillVolumetricDispatchesForFluidInteraction(bool,bool,UActorComponent*,AActor*)", bDebugb, bTriggerEvents, interactionComponent, dispatcher); }
     bool FillVolumetricDispatchesForFoliageInteraction(bool bDebugb, UActorComponent* interactionComponent) { return NativeCall<bool, bool, UActorComponent*>(this, "APrimalStructure.FillVolumetricDispatchesForFoliageInteraction(bool,UActorComponent*)", bDebugb, interactionComponent); }
@@ -950,7 +950,7 @@ struct APrimalStructure : APrimalTargetableActor
     void ClearStructureLinks(APlayerController* ForPC) { NativeCall<void, APlayerController*>(this, "APrimalStructure.ClearStructureLinks(APlayerController*)", ForPC); }
     bool CanAttachToExosuit_Implementation(AShooterPlayerController* ForPC) { return NativeCall<bool, AShooterPlayerController*>(this, "APrimalStructure.CanAttachToExosuit_Implementation(AShooterPlayerController*)", ForPC); }
     bool CanBeStoredByExosuit_Implementation(AShooterPlayerController* ForPC) { return NativeCall<bool, AShooterPlayerController*>(this, "APrimalStructure.CanBeStoredByExosuit_Implementation(AShooterPlayerController*)", ForPC); }
-    void PickupStructureAndDependingLinkedStructures(APlayerController* ForPC, bool IsFirstPickup) { NativeCall<void, APlayerController*, bool>(this, "APrimalStructure.PickupStructureAndDependingLinkedStructures(APlayerController*,bool)", ForPC, IsFirstPickup); }
+    void PickupStructureAndDependingLinkedStructures(APlayerController* ForPC, bool IsFirstPickup, UPrimalInventoryComponent* OverrideInventory) { NativeCall<void, APlayerController*, bool, UPrimalInventoryComponent*>(this, "APrimalStructure.PickupStructureAndDependingLinkedStructures(APlayerController*,bool,UPrimalInventoryComponent*)", ForPC, IsFirstPickup, OverrideInventory); }
     //void DemolishStructureAndDependingLinkedStructures(APlayerController* ForPC, TMap<TSubclassOf<UPrimalItem>, int, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<TSubclassOf<UPrimalItem>, int, 0> >* CollectedResources, bool IsFirst, bool bUseResourceMap) { NativeCall<void, APlayerController*, TMap<TSubclassOf<UPrimalItem>, int, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<TSubclassOf<UPrimalItem>, int, 0> >*, bool, bool>(this, "APrimalStructure.DemolishStructureAndDependingLinkedStructures(APlayerController*,TMap<TSubclassOf<UPrimalItem>,int,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<TSubclassOf<UPrimalItem>,int,0>>&,bool,bool)", ForPC, CollectedResources, IsFirst, bUseResourceMap); }
     TArray<APrimalStructure*, TSizedDefaultAllocator<32> >* PreviewCulledStructures(TArray<APrimalStructure*, TSizedDefaultAllocator<32> >* result, TArray<APrimalStructure*, TSizedDefaultAllocator<32> >* InOutStructuresOnFloors) { return NativeCall<TArray<APrimalStructure*, TSizedDefaultAllocator<32> >*, TArray<APrimalStructure*, TSizedDefaultAllocator<32> >*, TArray<APrimalStructure*, TSizedDefaultAllocator<32> >*>(this, "APrimalStructure.PreviewCulledStructures(TArray<APrimalStructure*,TSizedDefaultAllocator<32>>&)", result, InOutStructuresOnFloors); }
     void GatherStructuresPlacedOnFloor(APrimalStructure* ForStructure, TArray<APrimalStructure*, TSizedDefaultAllocator<32> >* StructuresOnFloors) { NativeCall<void, APrimalStructure*, TArray<APrimalStructure*, TSizedDefaultAllocator<32> >*>(this, "APrimalStructure.GatherStructuresPlacedOnFloor(APrimalStructure*,TArray<APrimalStructure*,TSizedDefaultAllocator<32>>&)", ForStructure, StructuresOnFloors); }
@@ -980,8 +980,11 @@ struct APrimalStructure : APrimalTargetableActor
     void GetWindSourceComponents(TArray<UActorComponent*, TSizedDefaultAllocator<32> >* Components, int includePriorityGreaterThan, bool bIsFirstPerson) { NativeCall<void, TArray<UActorComponent*, TSizedDefaultAllocator<32> >*, int, bool>(this, "APrimalStructure.GetWindSourceComponents(TArray<UActorComponent*,TSizedDefaultAllocator<32>>&,int,bool)", Components, includePriorityGreaterThan, bIsFirstPerson); }
     bool ShouldPerformMeshingCheck(bool bIsFinalPlacement) { return NativeCall<bool, bool>(this, "APrimalStructure.ShouldPerformMeshingCheck(bool)", bIsFinalPlacement); }
     AActor* GetBasedOnDinoAsActor(bool bUseReplicatedData, bool bOnlyConsciousDino) { return NativeCall<AActor*, bool, bool>(this, "APrimalStructure.GetBasedOnDinoAsActor(bool,bool)", bUseReplicatedData, bOnlyConsciousDino); }
-    TSubclassOf<UPrimalItem> GetConsumesPrimalItem() { return this->GetPrimalStructureSparseClassData(EGetSparseClassDataMethod::ArchetypeIfNull)->ConsumesPrimalItemField(); }
-    FPrimalStructureSparseClassData* GetPrimalStructureSparseClassData(EGetSparseClassDataMethod GetMethod) { return NativeCall<FPrimalStructureSparseClassData*, EGetSparseClassDataMethod>(this, "APrimalStructure.GetPrimalStructureSparseClassData(EGetSparseClassDataMethod)", GetMethod); }
+    TSubclassOf<UPrimalItem> GetConsumesPrimalItem() { return this->GetPrimalStructureSparseClassData()->ConsumesPrimalItemField(); }
+    FPrimalStructureSparseClassData* GetPrimalStructureSparseClassData()
+    {
+        return (FPrimalStructureSparseClassData*)this->ClassPrivateField()->GetSparseClassData(EGetSparseClassDataMethod::CreateIfNull);
+    }
 };
 
 struct APrimalStructureBearTrap : APrimalStructure
@@ -1233,8 +1236,9 @@ struct APrimalStructureItemContainer : APrimalStructure
 
     // Functions
 
+    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureItemContainer.GetPrivateStaticClass()"); }
     bool IsPowered() { return NativeCall<bool>(this, "APrimalStructureItemContainer.IsPowered()"); }
-    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureItemContainer.StaticClass()"); }
+    static UClass* StaticClass() { return GetPrivateStaticClass(); }
     bool BPApplyPinCode(AShooterPlayerController* ForPC, int appledPinCode, bool bIsSetting, int TheCustomIndex) { return NativeCall<bool, AShooterPlayerController*, int, bool, int>(this, "APrimalStructureItemContainer.BPApplyPinCode(AShooterPlayerController*,int,bool,int)", ForPC, appledPinCode, bIsSetting, TheCustomIndex); }
     void NetUpdateBoxName(const FString* NewName) { NativeCall<void, const FString*>(this, "APrimalStructureItemContainer.NetUpdateBoxName(FString&)", NewName); }
     void OnContainerRenamed() { NativeCall<void>(this, "APrimalStructureItemContainer.OnContainerRenamed()"); }
@@ -2328,7 +2332,8 @@ struct APrimalStructureTribeFlag : APrimalStructure
 
     // Functions
 
-    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureTribeFlag.StaticClass()"); }
+    static UClass* StaticClass() { return GetPrivateStaticClass(); }
+    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureTribeFlag.GetPrivateStaticClass()"); }
     void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "APrimalStructureTribeFlag.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }
     bool AllowColoringBy(APlayerController* ForPC, UObject* anItem) { return NativeCall<bool, APlayerController*, UObject*>(this, "APrimalStructureTribeFlag.AllowColoringBy(APlayerController*,UObject*)", ForPC, anItem); }
     void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "APrimalStructureTribeFlag.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
@@ -2496,7 +2501,7 @@ struct APrimalStructureTurret : APrimalStructureItemContainer
     // Functions
 
     static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureTurret.GetPrivateStaticClass()"); }
-    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureTurret.StaticClass()"); }
+    static UClass* StaticClass() { return GetPrivateStaticClass(); }
     static void StaticRegisterNativesAPrimalStructureTurret() { NativeCall<void>(nullptr, "APrimalStructureTurret.StaticRegisterNativesAPrimalStructureTurret()"); }
     void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "APrimalStructureTurret.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }
     void DrawHUD(AShooterHUD* HUD) { NativeCall<void, AShooterHUD*>(this, "APrimalStructureTurret.DrawHUD(AShooterHUD*)", HUD); }
@@ -2764,7 +2769,7 @@ struct APrimalStructureUnderwaterBase : APrimalStructureItemContainer
 
     // Functions
 
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureUnderwaterBase.GetPrivateStaticClass()"); }
+    static UClass* GetPrivateStaticClass() { return static_cast<UClass*>(Globals::StaticFindObject(UClass::GetPrivateStaticClass(), nullptr, TEXT("/Script/ShooterGame.PrimalStructureUnderwaterBase"), false)); }
     void SetPortholeState(int index, int NewState) { NativeCall<void, int, int>(this, "APrimalStructureUnderwaterBase.SetPortholeState(int,int)", index, NewState); }
     static void StaticRegisterNativesAPrimalStructureUnderwaterBase() { NativeCall<void>(nullptr, "APrimalStructureUnderwaterBase.StaticRegisterNativesAPrimalStructureUnderwaterBase()"); }
     void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "APrimalStructureUnderwaterBase.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }

@@ -35,6 +35,7 @@ namespace API
 
 		DWORD64 module_base_;
 		DWORD64 data_base_;
+		bool hooks_do_not_throw_ = false;
 
 		std::unordered_map<std::string, intptr_t> offsets_dump_;
 		std::unordered_map<std::string, BitField> bitfields_dump_;

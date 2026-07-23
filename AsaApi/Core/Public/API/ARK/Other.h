@@ -42,13 +42,17 @@ struct UVictoryCoreHighest : UObject
 {
 	// Fields
 
-
 	  // Bitfields
-
 
 	  // Functions
 
 	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UVictoryCoreHighest.StaticClass()"); }
+};
+
+struct FMaxItemQuantityOverride
+{
+	int MaxItemQuantity;
+	bool bIgnoreMultiplier;
 };
 
 struct FTrackedActorOverallContainer
@@ -59,11 +63,9 @@ struct FTrackedActorOverallContainer
 
 	// Bitfields
 
-
 	// Functions
 
-	UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTrackedActorOverallContainer.StaticStruct()"); }
-
+	UScriptStruct* StaticStruct() { return FindScriptStruct<FTrackedActorOverallContainer>(); }
 };
 
 struct UFoliageBaseType : UObject
@@ -76,14 +78,12 @@ struct UFoliageBaseType : UObject
 
 	// Bitfields
 
-
 	// Functions
 
 	TArray<TObjectPtr<UMaterialInterface>, TSizedDefaultAllocator<32> > getOverrideMaterials() { return NativeCall<TArray<TObjectPtr<UMaterialInterface>, TSizedDefaultAllocator<32> >>(this, "UFoliageBaseType.getOverrideMaterials()"); }
 	UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UFoliageBaseType.GetPrivateStaticClass()"); }
 	void StaticRegisterNativesUFoliageBaseType() { NativeCall<void>(nullptr, "UFoliageBaseType.StaticRegisterNativesUFoliageBaseType()"); }
 	UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFoliageBaseType.StaticClass()"); }
-
 };
 
 struct FSortingTask
@@ -99,11 +99,9 @@ struct FSortingTask
 
 	// Bitfields
 
-
 	// Functions
 
-	UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FSortingTask.StaticStruct()"); }
-
+	UScriptStruct* StaticStruct() { return FindScriptStruct<FSortingTask>(); }
 };
 
 struct FContainerTasks
@@ -115,11 +113,9 @@ struct FContainerTasks
 
 	// Bitfields
 
-
 	// Functions
 
-	UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FContainerTasks.StaticStruct()"); }
-
+	UScriptStruct* StaticStruct() { return FindScriptStruct<FContainerTasks>(); }
 };
 
 struct FLootTableEntry
@@ -137,11 +133,9 @@ struct FLootTableEntry
 
 	// Bitfields
 
-
 	// Functions
 
-	UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FLootTableEntry.StaticStruct()"); }
-
+	UScriptStruct* StaticStruct() { return FindScriptStruct<FLootTableEntry>(); }
 };
 
 struct FDateTime
@@ -151,7 +145,6 @@ struct FDateTime
 	long Ticks;
 
 	// Bitfields
-
 
 	// Functions
 
@@ -182,16 +175,13 @@ struct FDateTime
 	__int64 ToUnixTimestamp()const { return NativeCall<__int64>(this, "FDateTime.ToUnixTimestamp()"); }
 	static FDateTime Now() { return NativeCall<FDateTime>(nullptr, "FDateTime.Now()"); }
 	int GetDay()const { return NativeCall<int>(this, "FDateTime.GetDay()"); }
-
 };
 
 struct UVictoryCore : UVictoryCoreHighest
 {
 	// Fields
 
-
 	// Bitfields
-
 
 	// Functions
 
@@ -609,7 +599,7 @@ struct UVictoryCore : UVictoryCoreHighest
 	static double GetNetworkTimeInSeconds(struct UObject* WorldContextObject) { return NativeCall<double, struct UObject*>(nullptr, "UVictoryCore.GetNetworkTimeInSeconds(UObject*)", WorldContextObject); }
 	static UE::Math::TVector<double>* RotateDirToTargetWithAngleLimits(UE::Math::TVector<double>* result, const struct UE::Math::TVector<double>* RotateDir, const struct UE::Math::TVector<double>* TowardsDir, UE::Math::TRotator<double>* WithAngleLimits, bool bForceZeroRoll) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const struct UE::Math::TVector<double>*, const struct UE::Math::TVector<double>*, UE::Math::TRotator<double>*, bool>(nullptr, "UVictoryCore.RotateDirToTargetWithAngleLimits(UE::Math::TVector<double>&,UE::Math::TVector<double>&,UE::Math::TRotator<double>,bool)", result, RotateDir, TowardsDir, WithAngleLimits, bForceZeroRoll); }
 	static void ApplyEnvironmentalInteractionExplosion_Universal(struct UObject* WorldContextObject, UE::Math::TVector<double>* Location, float ExplosionRadius, float FluidSimSplashStrength, struct UNiagaraSystem* FluidSimSplashTemplateOverride) { NativeCall<void, struct UObject*, UE::Math::TVector<double>*, float, float, struct UNiagaraSystem*>(nullptr, "UVictoryCore.ApplyEnvironmentalInteractionExplosion_Universal(UObject*,UE::Math::TVector<double>,float,float,UNiagaraSystem*)", WorldContextObject, Location, ExplosionRadius, FluidSimSplashStrength, FluidSimSplashTemplateOverride); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UVictoryCore.StaticClass()"); }
+	static UClass* StaticClass() { return GetPrivateStaticClass(); }
 	static float ComponentGetBoundsSphereRadius(struct UPrimitiveComponent* Comp) { return NativeCall<float, struct UPrimitiveComponent*>(nullptr, "UVictoryCore.ComponentGetBoundsSphereRadius(UPrimitiveComponent*)", Comp); }
 	static FString* ConsumeBonusItemCode(FString* result) { return NativeCall<FString*, FString*>(nullptr, "UVictoryCore.ConsumeBonusItemCode()", result); }
 	static void MulticastDrawDebugPoint(struct AActor* ReplicatedActor, UE::Math::TVector<double>* Position, float Size, FLinearColor* PointColor, float Duration) { NativeCall<void, struct AActor*, UE::Math::TVector<double>*, float, FLinearColor*, float>(nullptr, "UVictoryCore.MulticastDrawDebugPoint(AActor*,UE::Math::TVector<double>,float,FLinearColor,float)", ReplicatedActor, Position, Size, PointColor, Duration); }
@@ -846,7 +836,7 @@ struct UVictoryCore : UVictoryCoreHighest
 	static void VisualLog_LineSegment(struct AActor* Actor, class FString* Message, bool bIsError, UE::Math::TVector<double>* Start, UE::Math::TVector<double>* End, FLinearColor* Color, float Thickness, bool bAlsoPrintMessage) { NativeCall<void, struct AActor*, class FString*, bool, UE::Math::TVector<double>*, UE::Math::TVector<double>*, FLinearColor*, float, bool>(nullptr, "UVictoryCore.VisualLog_LineSegment(AActor*,FString,bool,UE::Math::TVector<double>,UE::Math::TVector<double>,FLinearColor,float,bool)", Actor, Message, bIsError, Start, End, Color, Thickness, bAlsoPrintMessage); }
 	static bool IsEngramGroupAllowed(AShooterPlayerController* forPC, int EngramGroup) { return NativeCall<bool, AShooterPlayerController*, int>(nullptr, "UVictoryCore.IsEngramGroupAllowed(AShooterPlayerController*,int)", forPC, EngramGroup); }
 	static void OpenStorePageForDLC() { NativeCall<void>(nullptr, "UVictoryCore.OpenStorePageForDLC()"); }
-	static TArray<AActor*, TSizedDefaultAllocator<32> >* SortActorsByDistance(TArray<AActor*, TSizedDefaultAllocator<32> >* result, const UE::Math::TVector<double>* fromLoc, const TArray<AActor*, TSizedDefaultAllocator<32> >* actors) { return NativeCall<TArray<AActor*, TSizedDefaultAllocator<32> >*, TArray<AActor*, TSizedDefaultAllocator<32> >*, const UE::Math::TVector<double>*, const TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UVictoryCore.SortActorsByDistance(TArray<AActor*,TSizedDefaultAllocator<32>>*,UE::Math::TVector<double>*,TArray<AActor*,TSizedDefaultAllocator<32>>*)", result, fromLoc, actors); }
+	static TArray<AActor*, TSizedDefaultAllocator<32> >* SortActorsByDistance(TArray<AActor*, TSizedDefaultAllocator<32> >* result, const UE::Math::TVector<double>* fromLoc, const TArray<AActor*, TSizedDefaultAllocator<32> >* actors) { return NativeCall<TArray<AActor*, TSizedDefaultAllocator<32> >* , TArray<AActor*, TSizedDefaultAllocator<32> >*, const UE::Math::TVector<double>*, const TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UVictoryCore.SortActorsByDistance(UE::Math::TVector<double>&,TArray<AActor*,TSizedDefaultAllocator<32>>&)", result, fromLoc, actors); }
 	static void PlayMusic() { NativeCall<void>(nullptr, "UVictoryCore.PlayMusic()"); }
 	static void StopMusic() { NativeCall<void>(nullptr, "UVictoryCore.StopMusic()"); }
 	//static bool VTraceAgainstActorExpensive(UObject* WorldContextObject, const UE::Math::TVector<double>* Start, const UE::Math::TVector<double>* End, FHitResult* HitOut, AActor* ActorToTraceAgainst, ECollisionChannel Channel, __int64 CollisionGroups, float SphereRadius, bool bReturnPhysMaterial, bool bTraceComplex, const UE::Math::TVector<double>* BoxExtent, FName TraceTag, bool bSort) { return NativeCall<bool, UObject*, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*, FHitResult*, AActor*, ECollisionChannel, __int64, float, bool, bool, const UE::Math::TVector<double>*, FName, bool>(nullptr, "UVictoryCore.VTraceAgainstActorExpensive(UObject*,UE::Math::TVector<double>*,UE::Math::TVector<double>*,FHitResult*,AActor*,ECollisionChannel,__int64,float,bool,bool,UE::Math::TVector<double>*,FName,bool)", WorldContextObject, Start, End, HitOut, ActorToTraceAgainst, Channel, CollisionGroups, SphereRadius, bReturnPhysMaterial, bTraceComplex, BoxExtent, TraceTag, bSort); }
@@ -931,9 +921,8 @@ struct FTribeRankGroup
 
 // 	FTribeRankGroup& operator=(const FTribeRankGroup* __that) { return NativeCall<FTribeRankGroup&, const FTribeRankGroup*>(this, "FTribeRankGroup.operator=(FTribeRankGroup&)", __that); }
 // FUNCTION MISSING: FTribeRankGroup.operator=(FTribeRankGroup&)
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTribeRankGroup.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FTribeRankGroup>(); }
 	void ValidateSettings() { NativeCall<void>(this, "FTribeRankGroup.ValidateSettings()"); }
-
 };
 
 struct FTribeWar
@@ -951,7 +940,6 @@ struct FTribeWar
 
 	// Bitfields
 
-
 	// Functions
 
 	bool HasWarStarted(UWorld* ForWorld) { return NativeCall<bool, UWorld*>(this, "FTribeWar.HasWarStarted(UWorld*)", ForWorld); }
@@ -959,9 +947,7 @@ struct FTribeWar
 	FString GetWarTimeString(int DayNumber, float DayTime) { return NativeCall<FString, int, float>(this, "FTribeWar.GetWarTimeString(int,float)", DayNumber, DayTime); }
 	bool IsCurrentlyActive(UWorld* ForWorld) const { return NativeCall<bool, UWorld*>(this, "FTribeWar.IsCurrentlyActive(UWorld*)", ForWorld); }
 	bool IsTribeWarOn(UWorld* ForWorld) const { return NativeCall<bool, UWorld*>(this, "FTribeWar.IsTribeWarOn(UWorld*)", ForWorld); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTribeWar.StaticStruct()"); }
-
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FTribeWar>(); }
 };
 struct FTribeAlliance
 {
@@ -975,11 +961,9 @@ struct FTribeAlliance
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTribeAlliance.StaticStruct()"); }
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FTribeAlliance>(); }
 };
 
 struct FCustomTrackedActorInfo
@@ -1080,7 +1064,6 @@ struct FTribeData
 
 	// Bitfields
 
-
 	// Functions
 
 	FTribeData& operator=(FTribeData* __that) { return NativeCall<FTribeData&, FTribeData*>(this, "FTribeData.operator=(FTribeData&&)", __that); }
@@ -1096,7 +1079,7 @@ struct FTribeData
 	void RefreshTribeWars(UWorld* ForWorld) { NativeCall<void, UWorld*>(this, "FTribeData.RefreshTribeWars(UWorld*)", ForWorld); }
 	float GetTribeNameChangeCooldownTime(UObject* WorldContextObject) const { return NativeCall<float, UObject*>(this, "FTribeData.GetTribeNameChangeCooldownTime(UObject*)", WorldContextObject); }
 	int GetDefaultRankGroupIndex() { return NativeCall<int>(this, "FTribeData.GetDefaultRankGroupIndex()"); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTribeData.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FTribeData>(); }
 	void CopyFrom(const FTribeData* Source, ETribeDataExclude ExcludeFilter) { NativeCall<void, const FTribeData*, ETribeDataExclude>(this, "FTribeData.CopyFrom(FTribeData&,ETribeDataExclude)", Source, ExcludeFilter); }
 	int GetBestRankGroupForRank(int Rank) const { return NativeCall<int, int>(this, "FTribeData.GetBestRankGroupForRank(int)", Rank); }
 	bool IsTribeAlliedWith(unsigned int OtherTribeID) { return NativeCall<bool, unsigned int>(this, "FTribeData.IsTribeAlliedWith(unsignedint)", OtherTribeID); }
@@ -1106,7 +1089,6 @@ struct FTribeData
 
 struct UBlueprintFunctionLibrary
 {
-
 };
 
 struct UGameplayStatics : UBlueprintFunctionLibrary
@@ -1127,7 +1109,6 @@ struct UGameplayStatics : UBlueprintFunctionLibrary
 	bool& bAcceptClosestOnNoSolutionsField() { return *GetNativePointerField<bool*>(this, "UGameplayStatics.bAcceptClosestOnNoSolutions"); }
 
 	// Bitfields
-
 
 	// Functions
 
@@ -1177,7 +1158,7 @@ struct UGameplayStatics : UBlueprintFunctionLibrary
 	static bool FindCollisionUV(const struct FHitResult* Hit, int UVChannel, struct UE::Math::TVector2<double>* UV) { return NativeCall<bool, const struct FHitResult*, int, struct UE::Math::TVector2<double>*>(nullptr, "UGameplayStatics.FindCollisionUV(FHitResult&,int,UE::Math::TVector2<double>&)", Hit, UVChannel, UV); }
 	static bool ApplyRadialDamage(const struct UObject* WorldContextObject, float BaseDamage, const struct UE::Math::TVector<double>* Origin, float DamageRadius, struct TSubclassOf<UDamageType>* DamageTypeClass, const class TArray<AActor*, TSizedDefaultAllocator<32> >* IgnoreActors, struct AActor* DamageCauser, struct AController* InstigatedByController, bool bDoFullDamage, ECollisionChannel DamagePreventionChannel, float Impulse) { return NativeCall<bool, const struct UObject*, float, const struct UE::Math::TVector<double>*, float, struct TSubclassOf<UDamageType>*, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, struct AActor*, struct AController*, bool, ECollisionChannel, float>(nullptr, "UGameplayStatics.ApplyRadialDamage(UObject*,float,UE::Math::TVector<double>&,float,TSubclassOf<UDamageType>,TArray<AActor*,TSizedDefaultAllocator<32>>&,AActor*,AController*,bool,ECollisionChannel,float)", WorldContextObject, BaseDamage, Origin, DamageRadius, DamageTypeClass, IgnoreActors, DamageCauser, InstigatedByController, bDoFullDamage, DamagePreventionChannel, Impulse); }
 	static float ApplyPointDamage(struct AActor* DamagedActor, float BaseDamage, const struct UE::Math::TVector<double>* HitFromDirection, const struct FHitResult* HitInfo, struct AController* EventInstigator, struct AActor* DamageCauser, struct TSubclassOf<UDamageType>* DamageTypeClass, float Impulse, bool bForceCollisionCheck, ECollisionChannel ForceCollisionCheckTraceChannel, float OriginalDamageOverride) { return NativeCall<float, struct AActor*, float, const struct UE::Math::TVector<double>*, const struct FHitResult*, struct AController*, struct AActor*, struct TSubclassOf<UDamageType>*, float, bool, ECollisionChannel, float>(nullptr, "UGameplayStatics.ApplyPointDamage(AActor*,float,UE::Math::TVector<double>&,FHitResult&,AController*,AActor*,TSubclassOf<UDamageType>,float,bool,ECollisionChannel,float)", DamagedActor, BaseDamage, HitFromDirection, HitInfo, EventInstigator, DamageCauser, DamageTypeClass, Impulse, bForceCollisionCheck, ForceCollisionCheckTraceChannel, OriginalDamageOverride); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGameplayStatics.StaticClass()"); }
+	static UClass* StaticClass() { return GetPrivateStaticClass(); }
 	static bool SuggestProjectileVelocity_CustomArc(const struct UObject* WorldContextObject, struct UE::Math::TVector<double>* OutLaunchVelocity, UE::Math::TVector<double>* StartPos, UE::Math::TVector<double>* EndPos, float OverrideGravityZ, float ArcParam) { return NativeCall<bool, const struct UObject*, struct UE::Math::TVector<double>*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, float, float>(nullptr, "UGameplayStatics.SuggestProjectileVelocity_CustomArc(UObject*,UE::Math::TVector<double>&,UE::Math::TVector<double>,UE::Math::TVector<double>,float,float)", WorldContextObject, OutLaunchVelocity, StartPos, EndPos, OverrideGravityZ, ArcParam); }
 	static UGameInstance* GetGameInstance(const struct UObject* WorldContextObject) { return NativeCall<UGameInstance*, const struct UObject*>(nullptr, "UGameplayStatics.GetGameInstance(UObject*)", WorldContextObject); }
 	static APlayerState* GetPlayerStateFromUniqueNetId(const struct UObject* WorldContextObject, const struct FUniqueNetIdRepl* UniqueId) { return NativeCall<APlayerState*, const struct UObject*, const struct FUniqueNetIdRepl*>(nullptr, "UGameplayStatics.GetPlayerStateFromUniqueNetId(UObject*,FUniqueNetIdRepl&)", WorldContextObject, UniqueId); }
@@ -1186,7 +1167,7 @@ struct UGameplayStatics : UBlueprintFunctionLibrary
 	static UAudioComponent* SpawnSoundAttached(struct USoundBase* Sound, struct USceneComponent* AttachToComponent, FName AttachPointName, UE::Math::TVector<double>* Location, UE::Math::TRotator<double>* Rotation, EAttachLocation::Type LocationType, bool bStopWhenAttachedToDestroyed, float VolumeMultiplier, float PitchMultiplier, float StartTime, struct USoundAttenuation* AttenuationSettings, struct USoundConcurrency* ConcurrencySettings, bool bAutoDestroy, bool bAlwaysPlay) { return NativeCall<UAudioComponent*, struct USoundBase*, struct USceneComponent*, FName, UE::Math::TVector<double>*, UE::Math::TRotator<double>*, EAttachLocation::Type, bool, float, float, float, struct USoundAttenuation*, struct USoundConcurrency*, bool, bool>(nullptr, "UGameplayStatics.SpawnSoundAttached(USoundBase*,USceneComponent*,FName,UE::Math::TVector<double>,UE::Math::TRotator<double>,EAttachLocation::Type,bool,float,float,float,USoundAttenuation*,USoundConcurrency*,bool,bool)", Sound, AttachToComponent, AttachPointName, Location, Rotation, LocationType, bStopWhenAttachedToDestroyed, VolumeMultiplier, PitchMultiplier, StartTime, AttenuationSettings, ConcurrencySettings, bAutoDestroy, bAlwaysPlay); }
 	static void GetAllActorsOfClass(const struct UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, class TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { NativeCall<void, const struct UObject*, struct TSubclassOf<AActor>*, class TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UGameplayStatics.GetAllActorsOfClass(UObject*,TSubclassOf<AActor>,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, &ActorClass, OutActors); }
 	static AActor* FinishSpawningActor(struct AActor* Actor, const struct UE::Math::TTransform<double>* SpawnTransform, ESpawnActorScaleMethod TransformScaleMethod) { return NativeCall<AActor*, struct AActor*, const struct UE::Math::TTransform<double>*, ESpawnActorScaleMethod>(nullptr, "UGameplayStatics.FinishSpawningActor(AActor*,UE::Math::TTransform<double>&,ESpawnActorScaleMethod)", Actor, SpawnTransform, TransformScaleMethod); }
-	static void GetAllActorsOfClassInTribe(const struct UObject* WorldContextObject, struct TSubclassOf<AActor>* ActorClass, class TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors, int TribeID) { NativeCall<void, const struct UObject*, struct TSubclassOf<AActor>*, class TArray<AActor*, TSizedDefaultAllocator<32> >*, int>(nullptr, "UGameplayStatics.GetAllActorsOfClassInTribe(UObject*,TSubclassOf<AActor>,TArray<AActor*,TSizedDefaultAllocator<32>>&,int)", WorldContextObject, ActorClass, OutActors, TribeID); }
+	static void GetAllActorsOfClassInTribe(const struct UObject* WorldContextObject, TSubclassOf<AActor> ActorClass, class TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors, int TribeID) { NativeCall<void, const struct UObject*, struct TSubclassOf<AActor>*, class TArray<AActor*, TSizedDefaultAllocator<32> >*, int>(nullptr, "UGameplayStatics.GetAllActorsOfClassInTribe(UObject*,TSubclassOf<AActor>,TArray<AActor*,TSizedDefaultAllocator<32>>&,int)", WorldContextObject, &ActorClass, OutActors, TribeID); }
 	static int GetIntOption(const class FString* Options, const class FString* Key, int DefaultValue) { return NativeCall<int, const class FString*, const class FString*, int>(nullptr, "UGameplayStatics.GetIntOption(FString&,FString&,int)", Options, Key, DefaultValue); }
 	static bool ApplyRadialDamageIgnoreDamageActors_V2(const struct UObject* WorldContextObject, float BaseDamage, const struct UE::Math::TVector<double>* Origin, float DamageRadius, struct TSubclassOf<UDamageType>* DamageTypeClass, const class TArray<AActor*, TSizedDefaultAllocator<32> >* IgnoreActors, const class TArray<AActor*, TSizedDefaultAllocator<32> >* IgnoreDamageActors, struct AActor* DamageCauser, struct AController* InstigatedByController, bool bDoFullDamage, ECollisionChannel DamagePreventionChannel, float Impulse, float FallOff, bool IgnoreRetValIfOnlyFoliageHit) { return NativeCall<bool, const struct UObject*, float, const struct UE::Math::TVector<double>*, float, struct TSubclassOf<UDamageType>*, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, struct AActor*, struct AController*, bool, ECollisionChannel, float, float, bool>(nullptr, "UGameplayStatics.ApplyRadialDamageIgnoreDamageActors_V2(UObject*,float,UE::Math::TVector<double>&,float,TSubclassOf<UDamageType>,TArray<AActor*,TSizedDefaultAllocator<32>>&,TArray<AActor*,TSizedDefaultAllocator<32>>&,AActor*,AController*,bool,ECollisionChannel,float,float,bool)", WorldContextObject, BaseDamage, Origin, DamageRadius, DamageTypeClass, IgnoreActors, IgnoreDamageActors, DamageCauser, InstigatedByController, bDoFullDamage, DamagePreventionChannel, Impulse, FallOff, IgnoreRetValIfOnlyFoliageHit); }
 	static APlayerController* GetPlayerControllerFromID(const struct UObject* WorldContextObject, int ControllerID) { return NativeCall<APlayerController*, const struct UObject*, int>(nullptr, "UGameplayStatics.GetPlayerControllerFromID(UObject*,int)", WorldContextObject, ControllerID); }
@@ -1203,7 +1184,6 @@ struct UGameplayStatics : UBlueprintFunctionLibrary
 	static UParticleSystemComponent* SpawnEmitterAtLocation(const struct UObject* WorldContextObject, struct UParticleSystem* EmitterTemplate, UE::Math::TVector<double>* SpawnLocation, UE::Math::TRotator<double>* SpawnRotation, UE::Math::TVector<double>* SpawnScale, bool bAutoDestroy, EPSCPoolMethod PoolingMethod, bool bAutoActivateSystem, bool bDontSpawnOutOfView, float DontSpawnOutOfViewCheckRadius, bool bAllowSpawnLoopingFX, float OverrideSecondsBeforeInactive, struct AActor* ParticleSpaceBaseInstigator) { return NativeCall<UParticleSystemComponent*, const struct UObject*, struct UParticleSystem*, UE::Math::TVector<double>*, UE::Math::TRotator<double>*, UE::Math::TVector<double>*, bool, EPSCPoolMethod, bool, bool, float, bool, float, struct AActor*>(nullptr, "UGameplayStatics.SpawnEmitterAtLocation(UObject*,UParticleSystem*,UE::Math::TVector<double>,UE::Math::TRotator<double>,UE::Math::TVector<double>,bool,EPSCPoolMethod,bool,bool,float,bool,float,AActor*)", WorldContextObject, EmitterTemplate, SpawnLocation, SpawnRotation, SpawnScale, bAutoDestroy, PoolingMethod, bAutoActivateSystem, bDontSpawnOutOfView, DontSpawnOutOfViewCheckRadius, bAllowSpawnLoopingFX, OverrideSecondsBeforeInactive, ParticleSpaceBaseInstigator); }
 	static UParticleSystemComponent* SpawnEmitterAtLocation(const struct UObject* WorldContextObject, struct UParticleSystem* EmitterTemplate, UE::Math::TVector<double>* SpawnLocation, UE::Math::TRotator<double>* SpawnRotation, bool bAutoDestroy, EPSCPoolMethod PoolingMethod, bool bAutoActivateSystem, bool bDontSpawnOutOfView, float DontSpawnOutOfViewCheckRadius, bool bAllowSpawnLoopingFX) { return NativeCall<UParticleSystemComponent*, const struct UObject*, struct UParticleSystem*, UE::Math::TVector<double>*, UE::Math::TRotator<double>*, bool, EPSCPoolMethod, bool, bool, float, bool>(nullptr, "UGameplayStatics.SpawnEmitterAtLocation(UObject*,UParticleSystem*,UE::Math::TVector<double>,UE::Math::TRotator<double>,bool,EPSCPoolMethod,bool,bool,float,bool)", WorldContextObject, EmitterTemplate, SpawnLocation, SpawnRotation, bAutoDestroy, PoolingMethod, bAutoActivateSystem, bDontSpawnOutOfView, DontSpawnOutOfViewCheckRadius, bAllowSpawnLoopingFX); }
 	static UAudioComponent* SpawnSoundAtLocation(const struct UObject* WorldContextObject, struct USoundBase* Sound, UE::Math::TVector<double>* Location, UE::Math::TRotator<double>* Rotation, float VolumeMultiplier, float PitchMultiplier, float StartTime, struct USoundAttenuation* AttenuationSettings, struct USoundConcurrency* ConcurrencySettings, bool bAutoDestroy) { return NativeCall<UAudioComponent*, const struct UObject*, struct USoundBase*, UE::Math::TVector<double>*, UE::Math::TRotator<double>*, float, float, float, struct USoundAttenuation*, struct USoundConcurrency*, bool>(nullptr, "UGameplayStatics.SpawnSoundAtLocation(UObject*,USoundBase*,UE::Math::TVector<double>,UE::Math::TRotator<double>,float,float,float,USoundAttenuation*,USoundConcurrency*,bool)", WorldContextObject, Sound, Location, Rotation, VolumeMultiplier, PitchMultiplier, StartTime, AttenuationSettings, ConcurrencySettings, bAutoDestroy); }
-
 };
 
 struct FTimerHandle
@@ -1214,13 +1194,11 @@ struct FTimerHandle
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FTimerHandle.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FTimerHandle>(); }
 	void Invalidate() { NativeCall<void>(this, "FTimerHandle.Invalidate()"); }
 	bool IsValid()const { return NativeCall<bool>(this, "FTimerHandle.IsValid()"); }
-
 };
 
 struct FBaseComponentReference
@@ -1233,12 +1211,10 @@ struct FBaseComponentReference
 
 	// Bitfields
 
-
 	// Functions
 
 	UActorComponent* ExtractComponent(struct AActor* SearchActor) const { return NativeCall<UActorComponent*, struct AActor*>(this, "FBaseComponentReference.ExtractComponent(AActor*)", SearchActor); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FBaseComponentReference.StaticStruct()"); }
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FBaseComponentReference>(); }
 };
 
 struct FSoftComponentReference : FBaseComponentReference
@@ -1249,22 +1225,18 @@ struct FSoftComponentReference : FBaseComponentReference
 
 	// Bitfields
 
-
 	// Functions
 
 	bool SerializeFromMismatchedTag(const struct FPropertyTag* Tag, FStructuredArchiveSlot Slot) { return NativeCall<bool, const struct FPropertyTag*, FStructuredArchiveSlot>(this, "FSoftComponentReference.SerializeFromMismatchedTag(FPropertyTag&,FStructuredArchiveSlot)", Tag, Slot); }
 	UActorComponent* GetComponent(struct AActor* OwningActor) const { return NativeCall<UActorComponent*, struct AActor*>(this, "FSoftComponentReference.GetComponent(AActor*)", OwningActor); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FSoftComponentReference.StaticStruct()"); }
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FSoftComponentReference>(); }
 };
 
 struct UKismetSystemLibrary : UBlueprintFunctionLibrary
 {
 	// Fields
 
-
 	// Bitfields
-
 
 	// Functions
 
@@ -1336,7 +1308,7 @@ struct UKismetSystemLibrary : UBlueprintFunctionLibrary
 	static bool LineTraceMultiByProfile(const struct UObject* WorldContextObject, UE::Math::TVector<double>* Start, UE::Math::TVector<double>* End, FName ProfileName, bool bTraceComplex, const class TArray<AActor*, TSizedDefaultAllocator<32> >* ActorsToIgnore, EDrawDebugTrace::Type DrawDebugType, class TArray<FHitResult, TSizedDefaultAllocator<32> >* OutHits, bool bIgnoreSelf, FLinearColor* TraceColor, FLinearColor* TraceHitColor, float DrawTime) { return NativeCall<bool, const struct UObject*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, FName, bool, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, EDrawDebugTrace::Type, class TArray<FHitResult, TSizedDefaultAllocator<32> >*, bool, FLinearColor*, FLinearColor*, float>(nullptr, "UKismetSystemLibrary.LineTraceMultiByProfile(UObject*,UE::Math::TVector<double>,UE::Math::TVector<double>,FName,bool,TArray<AActor*,TSizedDefaultAllocator<32>>&,EDrawDebugTrace::Type,TArray<FHitResult,TSizedDefaultAllocator<32>>&,bool,FLinearColor,FLinearColor,float)", WorldContextObject, Start, End, ProfileName, bTraceComplex, ActorsToIgnore, DrawDebugType, OutHits, bIgnoreSelf, TraceColor, TraceHitColor, DrawTime); }
 	static bool BoxOverlapActors(const struct UObject* WorldContextObject, UE::Math::TVector<double>* BoxPos, UE::Math::TVector<double>* BoxExtent, const class TArray<TEnumAsByte<enum EObjectTypeQuery>, TSizedDefaultAllocator<32> >* ObjectTypes, struct UClass* ActorClassFilter, const class TArray<AActor*, TSizedDefaultAllocator<32> >* ActorsToIgnore, class TArray<AActor*, TSizedDefaultAllocator<32> >* OutActors) { return NativeCall<bool, const struct UObject*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, const class TArray<TEnumAsByte<enum EObjectTypeQuery>, TSizedDefaultAllocator<32> >*, struct UClass*, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, class TArray<AActor*, TSizedDefaultAllocator<32> >*>(nullptr, "UKismetSystemLibrary.BoxOverlapActors(UObject*,UE::Math::TVector<double>,UE::Math::TVector<double>,TArray<TEnumAsByte<EObjectTypeQuery>,TSizedDefaultAllocator<32>>&,UClass*,TArray<AActor*,TSizedDefaultAllocator<32>>&,TArray<AActor*,TSizedDefaultAllocator<32>>&)", WorldContextObject, BoxPos, BoxExtent, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors); }
 	static bool CapsuleTraceSingleForObjects(const struct UObject* WorldContextObject, UE::Math::TVector<double>* Start, UE::Math::TVector<double>* End, float Radius, float HalfHeight, const class TArray<TEnumAsByte<enum EObjectTypeQuery>, TSizedDefaultAllocator<32> >* ObjectTypes, bool bTraceComplex, const class TArray<AActor*, TSizedDefaultAllocator<32> >* ActorsToIgnore, EDrawDebugTrace::Type DrawDebugType, struct FHitResult* OutHit, bool bIgnoreSelf, FLinearColor* TraceColor, FLinearColor* TraceHitColor, float DrawTime) { return NativeCall<bool, const struct UObject*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, float, float, const class TArray<TEnumAsByte<enum EObjectTypeQuery>, TSizedDefaultAllocator<32> >*, bool, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, EDrawDebugTrace::Type, struct FHitResult*, bool, FLinearColor*, FLinearColor*, float>(nullptr, "UKismetSystemLibrary.CapsuleTraceSingleForObjects(UObject*,UE::Math::TVector<double>,UE::Math::TVector<double>,float,float,TArray<TEnumAsByte<EObjectTypeQuery>,TSizedDefaultAllocator<32>>&,bool,TArray<AActor*,TSizedDefaultAllocator<32>>&,EDrawDebugTrace::Type,FHitResult&,bool,FLinearColor,FLinearColor,float)", WorldContextObject, Start, End, Radius, HalfHeight, ObjectTypes, bTraceComplex, ActorsToIgnore, DrawDebugType, OutHit, bIgnoreSelf, TraceColor, TraceHitColor, DrawTime); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UKismetSystemLibrary.StaticClass()"); }
+	static UClass* StaticClass() { return GetPrivateStaticClass(); }
 	static void DrawDebugCapsuleWithExtents(struct UObject* WorldContextObject, UE::Math::TVector<double>* Top, UE::Math::TVector<double>* Bottom, float Radius, FLinearColor* Color, float LifeTime, bool bPersistent) { NativeCall<void, struct UObject*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, float, FLinearColor*, float, bool>(nullptr, "UKismetSystemLibrary.DrawDebugCapsuleWithExtents(UObject*,UE::Math::TVector<double>,UE::Math::TVector<double>,float,FLinearColor,float,bool)", WorldContextObject, Top, Bottom, Radius, Color, LifeTime, bPersistent); }
 	static bool BoxTraceSingleByProfile(const struct UObject* WorldContextObject, UE::Math::TVector<double>* Start, UE::Math::TVector<double>* End, UE::Math::TVector<double>* HalfSize, UE::Math::TRotator<double>* Orientation, FName ProfileName, bool bTraceComplex, const class TArray<AActor*, TSizedDefaultAllocator<32> >* ActorsToIgnore, EDrawDebugTrace::Type DrawDebugType, struct FHitResult* OutHit, bool bIgnoreSelf, FLinearColor* TraceColor, FLinearColor* TraceHitColor, float DrawTime) { return NativeCall<bool, const struct UObject*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, UE::Math::TRotator<double>*, FName, bool, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, EDrawDebugTrace::Type, struct FHitResult*, bool, FLinearColor*, FLinearColor*, float>(nullptr, "UKismetSystemLibrary.BoxTraceSingleByProfile(UObject*,UE::Math::TVector<double>,UE::Math::TVector<double>,UE::Math::TVector<double>,UE::Math::TRotator<double>,FName,bool,TArray<AActor*,TSizedDefaultAllocator<32>>&,EDrawDebugTrace::Type,FHitResult&,bool,FLinearColor,FLinearColor,float)", WorldContextObject, Start, End, HalfSize, Orientation, ProfileName, bTraceComplex, ActorsToIgnore, DrawDebugType, OutHit, bIgnoreSelf, TraceColor, TraceHitColor, DrawTime); }
 	static void DrawDebugBox(const struct UObject* WorldContextObject, UE::Math::TVector<double>* Center, UE::Math::TVector<double>* Extent, FLinearColor* Color, UE::Math::TRotator<double>* Rotation, float LifeTime, float Thickness, bool bPersistent) { NativeCall<void, const struct UObject*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, FLinearColor*, UE::Math::TRotator<double>*, float, float, bool>(nullptr, "UKismetSystemLibrary.DrawDebugBox(UObject*,UE::Math::TVector<double>,UE::Math::TVector<double>,FLinearColor,UE::Math::TRotator<double>,float,float,bool)", WorldContextObject, Center, Extent, Color, Rotation, LifeTime, Thickness, bPersistent); }
@@ -1354,7 +1326,6 @@ struct UKismetSystemLibrary : UBlueprintFunctionLibrary
 	static FSoftClassPath* MakeSoftClassPath(FSoftClassPath* result, const class FString* PathString) { return NativeCall<FSoftClassPath*, FSoftClassPath*, const class FString*>(nullptr, "UKismetSystemLibrary.MakeSoftClassPath(FString&)", result, PathString); }
 	static bool BoxTraceSingle(const struct UObject* WorldContextObject, UE::Math::TVector<double>* Start, UE::Math::TVector<double>* End, UE::Math::TVector<double>* HalfSize, UE::Math::TRotator<double>* Orientation, ETraceTypeQuery TraceChannel, bool bTraceComplex, const class TArray<AActor*, TSizedDefaultAllocator<32> >* ActorsToIgnore, EDrawDebugTrace::Type DrawDebugType, struct FHitResult* OutHit, bool bIgnoreSelf, FLinearColor* TraceColor, FLinearColor* TraceHitColor, float DrawTime) { return NativeCall<bool, const struct UObject*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, UE::Math::TVector<double>*, UE::Math::TRotator<double>*, ETraceTypeQuery, bool, const class TArray<AActor*, TSizedDefaultAllocator<32> >*, EDrawDebugTrace::Type, struct FHitResult*, bool, FLinearColor*, FLinearColor*, float>(nullptr, "UKismetSystemLibrary.BoxTraceSingle(UObject*,UE::Math::TVector<double>,UE::Math::TVector<double>,UE::Math::TVector<double>,UE::Math::TRotator<double>,ETraceTypeQuery,bool,TArray<AActor*,TSizedDefaultAllocator<32>>&,EDrawDebugTrace::Type,FHitResult&,bool,FLinearColor,FLinearColor,float)", WorldContextObject, Start, End, HalfSize, Orientation, TraceChannel, bTraceComplex, ActorsToIgnore, DrawDebugType, OutHit, bIgnoreSelf, TraceColor, TraceHitColor, DrawTime); }
 	static float K2_GetTimerElapsedTimeDelegate(struct FTimerDynamicDelegate* Delegate) { return NativeCall<float, struct FTimerDynamicDelegate*>(nullptr, "UKismetSystemLibrary.K2_GetTimerElapsedTimeDelegate(FTimerDynamicDelegate)", Delegate); }
-
 };
 
 struct FStringHash
@@ -1385,9 +1356,7 @@ struct BattleyePlayerInfo
 
 	// Bitfields
 
-
 	// Functions
-
 };
 
 struct FPaintingKeyValue
@@ -1399,10 +1368,9 @@ struct FPaintingKeyValue
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPaintingKeyValue.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPaintingKeyValue>(); }
 };
 
 struct FARKDinoData
@@ -1427,10 +1395,9 @@ struct FARKDinoData
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FARKDinoData.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FARKDinoData>(); }
 	bool NetSerialize(FArchive* Ar, UPackageMap* Map, bool& bOutSuccess) { return NativeCall<bool, FArchive*, UPackageMap*, bool&>(this, "FARKDinoData.NetSerialize(FArchive&,UPackageMap*,bool&)", Ar, Map, bOutSuccess); }
 };
 
@@ -1449,11 +1416,10 @@ struct FARKTributeData
 	unsigned int& DataID2Field() { return *GetNativePointerField<unsigned int*>(this, "FARKTributeData.DataID2"); }
 
 	// Bitfields
-	
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FARKTributeData.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FARKTributeData>(); }
 };
 
 struct FARKTributeDino
@@ -1472,10 +1438,9 @@ struct FARKTributeDino
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FARKTributeDino.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FARKTributeDino>(); }
 	FARKTributeDino* operator=(const FARKTributeDino* __that) { return NativeCall<FARKTributeDino*, const FARKTributeDino*>(this, "FARKTributeDino.operator=(FARKTributeDino&)", __that); }
 	FARKTributeDino* operator=(FARKTributeDino* __that) { return NativeCall<FARKTributeDino*, FARKTributeDino*>(this, "FARKTributeDino.operator=(FARKTributeDino&)", __that); }
 };
@@ -1494,10 +1459,9 @@ struct FARKTributeDinoListing
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FARKTributeDinoListing.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FARKTributeDinoListing>(); }
 };
 
 struct FAddressInfoResult
@@ -1512,9 +1476,7 @@ struct FAddressInfoResult
 
 	// Bitfields
 
-
 	// Functions
-
 };
 
 struct FAddressInfoResultData
@@ -1529,9 +1491,7 @@ struct FAddressInfoResultData
 
 	// Bitfields
 
-
 	// Functions
-
 };
 
 struct FAdminPlayerDataInfo
@@ -1545,10 +1505,9 @@ struct FAdminPlayerDataInfo
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FAdminPlayerDataInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FAdminPlayerDataInfo>(); }
 };
 
 struct FAggroEntry
@@ -1561,9 +1520,7 @@ struct FAggroEntry
 
 	// Bitfields
 
-
 	// Functions
-
 };
 
 struct FAliveNameAndLocation
@@ -1578,10 +1535,9 @@ struct FAliveNameAndLocation
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FAliveNameAndLocation.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FAliveNameAndLocation>(); }
 };
 
 struct FAlivePlayerDataInfo
@@ -1596,10 +1552,9 @@ struct FAlivePlayerDataInfo
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FAlivePlayerDataInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FAlivePlayerDataInfo>(); }
 };
 
 struct FBPNetExecParams
@@ -1621,10 +1576,9 @@ struct FBPNetExecParams
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FBPNetExecParams.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FBPNetExecParams>(); }
 };
 
 //struct FDamageEvent_vtbl
@@ -1644,7 +1598,6 @@ struct FBPNetExecParams
 //	int TypeIndex;
 //	TSubclassOf<UDamageType> DamageTypeClass;
 //};
-
 
 //struct FDamageEvent
 //{
@@ -1667,7 +1620,6 @@ struct FBPNetExecParams
 //	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>* OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*>(this, "FDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
 //};
 
-
 struct FDamageEvent
 {
 	// Fields
@@ -1686,14 +1638,12 @@ struct FDamageEvent
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDamageEvent.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDamageEvent>(); }
 	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>& OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>&>(this, "FDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
 	int GetTypeID()const { return NativeCall<int>(this, "FDamageEvent.GetTypeID()"); }
 	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FDamageEvent.IsOfType(int)", InID); }
-
 };
 
 struct /*VFT*/ FDamageEvent_vtbl
@@ -1721,7 +1671,7 @@ struct FDamageHarvestingEntry
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDamageHarvestingEntry.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDamageHarvestingEntry>(); }
 };
 
 struct FDamagePrimalCharacterStatusValueModifier
@@ -1750,7 +1700,7 @@ struct FDamagePrimalCharacterStatusValueModifier
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDamagePrimalCharacterStatusValueModifier.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDamagePrimalCharacterStatusValueModifier>(); }
 };
 
 struct FDamageTypeAdjuster
@@ -1770,7 +1720,7 @@ struct FDamageTypeAdjuster
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDamageTypeAdjuster.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDamageTypeAdjuster>(); }
 };
 
 struct FDinoAbilities
@@ -1782,10 +1732,9 @@ struct FDinoAbilities
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoAbilities.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoAbilities>(); }
 };
 
 struct FDinoAbilityInfo
@@ -1798,24 +1747,22 @@ struct FDinoAbilityInfo
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoAbilityInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoAbilityInfo>(); }
 };
 
 struct FDinoAncestorsEntry
 {
 	// Native Fields
-	
+
 	FString MaleName;
 	unsigned int MaleDinoID1;
 	unsigned int MaleDinoID2;
 	FString FemaleName;
 	unsigned int FemaleDinoID1;
 	unsigned int FemaleDinoID2;
-	 
-	
+
 	// Fields
 
 	FString& MaleNameField() { return *GetNativePointerField<FString*>(this, "FDinoAncestorsEntry.MaleName"); }
@@ -1827,10 +1774,9 @@ struct FDinoAncestorsEntry
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoAncestorsEntry.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoAncestorsEntry>(); }
 };
 
 struct FDinoAncestorsEntryBlueprint
@@ -1846,10 +1792,9 @@ struct FDinoAncestorsEntryBlueprint
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoAncestorsEntryBlueprint.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoAncestorsEntryBlueprint>(); }
 };
 
 struct FDinoAttackInfo
@@ -1954,7 +1899,7 @@ struct FDinoAttackInfo
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoAttackInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoAttackInfo>(); }
 	FDinoAttackInfo* operator=(const FDinoAttackInfo* __that) { return NativeCall<FDinoAttackInfo*, const FDinoAttackInfo*>(this, "FDinoAttackInfo.operator=(FDinoAttackInfo&)", __that); }
 	FDinoAttackInfo* operator=(FDinoAttackInfo* __that) { return NativeCall<FDinoAttackInfo*, FDinoAttackInfo*>(this, "FDinoAttackInfo.operator=(FDinoAttackInfo&)", __that); }
 };
@@ -1970,10 +1915,9 @@ struct FDinoBabySetup
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoBabySetup.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoBabySetup>(); }
 };
 
 struct FDinoBaseLevelWeightEntry
@@ -1990,10 +1934,9 @@ struct FDinoBaseLevelWeightEntry
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoBaseLevelWeightEntry.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoBaseLevelWeightEntry>(); }
 };
 
 struct FDinoClassCount
@@ -2010,10 +1953,9 @@ struct FDinoClassCount
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoClassCount.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoClassCount>(); }
 };
 
 struct FDinoClassCountStruct
@@ -2030,10 +1972,9 @@ struct FDinoClassCountStruct
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoClassCountStruct.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoClassCountStruct>(); }
 };
 
 struct FDinoDownloadData
@@ -2045,10 +1986,9 @@ struct FDinoDownloadData
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoDownloadData.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoDownloadData>(); }
 };
 
 struct FDinoExtraDefaultItemList
@@ -2061,10 +2001,9 @@ struct FDinoExtraDefaultItemList
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoExtraDefaultItemList.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoExtraDefaultItemList>(); }
 };
 
 struct FDinoFoodEffectivenessMultipliers
@@ -2083,10 +2022,9 @@ struct FDinoFoodEffectivenessMultipliers
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoFoodEffectivenessMultipliers.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoFoodEffectivenessMultipliers>(); }
 };
 
 struct FDinoKey
@@ -2098,9 +2036,7 @@ struct FDinoKey
 
 	// Bitfields
 
-
 	// Functions
-
 };
 
 struct FDinoMapMarkerInfo
@@ -2116,10 +2052,9 @@ struct FDinoMapMarkerInfo
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoMapMarkerInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoMapMarkerInfo>(); }
 };
 
 struct FDinoOrderGroup
@@ -2132,10 +2067,9 @@ struct FDinoOrderGroup
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoOrderGroup.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoOrderGroup>(); }
 	FDinoOrderGroup* operator=(const FDinoOrderGroup* __that) { return NativeCall<FDinoOrderGroup*, const FDinoOrderGroup*>(this, "FDinoOrderGroup.operator=(FDinoOrderGroup&)", __that); }
 };
 
@@ -2149,10 +2083,9 @@ struct FDinoOrderID
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoOrderID.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoOrderID>(); }
 };
 
 struct FDinoSaddleStruct
@@ -2165,10 +2098,9 @@ struct FDinoSaddleStruct
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoSaddleStruct.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoSaddleStruct>(); }
 };
 
 struct FDinoSetup
@@ -2205,15 +2137,15 @@ struct FDinoSetup
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoSetup.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoSetup>(); }
 	FDinoSetup* operator=(const FDinoSetup* __that) { return NativeCall<FDinoSetup*, const FDinoSetup*>(this, "FDinoSetup.operator=(FDinoSetup&)", __that); }
 	FDinoSetup* operator=(FDinoSetup* __that) { return NativeCall<FDinoSetup*, FDinoSetup*>(this, "FDinoSetup.operator=(FDinoSetup&)", __that); }
-// 	void SetBaseLevels(EPrimalCharacterStatusValue::Type StatusType, int Value) { NativeCall<void, EPrimalCharacterStatusValue::Type, int>(this, "FDinoSetup.SetBaseLevels(EPrimalCharacterStatusValue::Type,int)", StatusType, Value); }
-// FUNCTION MISSING: FDinoSetup.SetBaseLevels(EPrimalCharacterStatusValue::Type,int)
-// 	void SetConstantSaddleQuality(float Quality) { NativeCall<void, float>(this, "FDinoSetup.SetConstantSaddleQuality(float)", Quality); }
-// FUNCTION MISSING: FDinoSetup.SetConstantSaddleQuality(float)
-// 	void SetPlayerAddedLevels(EPrimalCharacterStatusValue::Type StatusType, int Value) { NativeCall<void, EPrimalCharacterStatusValue::Type, int>(this, "FDinoSetup.SetPlayerAddedLevels(EPrimalCharacterStatusValue::Type,int)", StatusType, Value); }
-// FUNCTION MISSING: FDinoSetup.SetPlayerAddedLevels(EPrimalCharacterStatusValue::Type,int)
+	// 	void SetBaseLevels(EPrimalCharacterStatusValue::Type StatusType, int Value) { NativeCall<void, EPrimalCharacterStatusValue::Type, int>(this, "FDinoSetup.SetBaseLevels(EPrimalCharacterStatusValue::Type,int)", StatusType, Value); }
+	// FUNCTION MISSING: FDinoSetup.SetBaseLevels(EPrimalCharacterStatusValue::Type,int)
+	// 	void SetConstantSaddleQuality(float Quality) { NativeCall<void, float>(this, "FDinoSetup.SetConstantSaddleQuality(float)", Quality); }
+	// FUNCTION MISSING: FDinoSetup.SetConstantSaddleQuality(float)
+	// 	void SetPlayerAddedLevels(EPrimalCharacterStatusValue::Type StatusType, int Value) { NativeCall<void, EPrimalCharacterStatusValue::Type, int>(this, "FDinoSetup.SetPlayerAddedLevels(EPrimalCharacterStatusValue::Type,int)", StatusType, Value); }
+	// FUNCTION MISSING: FDinoSetup.SetPlayerAddedLevels(EPrimalCharacterStatusValue::Type,int)
 };
 
 struct FDinoSetupGroup
@@ -2227,10 +2159,9 @@ struct FDinoSetupGroup
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoSetupGroup.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoSetupGroup>(); }
 	FDinoSetupGroup* operator=(const FDinoSetupGroup* __that) { return NativeCall<FDinoSetupGroup*, const FDinoSetupGroup*>(this, "FDinoSetupGroup.operator=(FDinoSetupGroup&)", __that); }
 	FDinoSetupGroup* operator=(FDinoSetupGroup* __that) { return NativeCall<FDinoSetupGroup*, FDinoSetupGroup*>(this, "FDinoSetupGroup.operator=(FDinoSetupGroup&)", __that); }
 };
@@ -2245,10 +2176,9 @@ struct FDinoSpawnWeightMultiplier
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FDinoSpawnWeightMultiplier.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FDinoSpawnWeightMultiplier>(); }
 };
 
 struct FEngramCustomFolder
@@ -2260,10 +2190,9 @@ struct FEngramCustomFolder
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FEngramCustomFolder.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FEngramCustomFolder>(); }
 };
 
 struct FEngramEntries
@@ -2274,10 +2203,9 @@ struct FEngramEntries
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FEngramEntries.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FEngramEntries>(); }
 };
 
 struct FEngramEntryAutoUnlock
@@ -2289,10 +2217,9 @@ struct FEngramEntryAutoUnlock
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FEngramEntryAutoUnlock.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FEngramEntryAutoUnlock>(); }
 };
 
 struct FEngramEntryOverride
@@ -2306,10 +2233,9 @@ struct FEngramEntryOverride
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FEngramEntryOverride.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FEngramEntryOverride>(); }
 };
 
 struct FEngramsSetSoftReferenceMapping
@@ -2320,10 +2246,9 @@ struct FEngramsSetSoftReferenceMapping
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FEngramsSetSoftReferenceMapping.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FEngramsSetSoftReferenceMapping>(); }
 };
 
 struct FFrame : FOutputDevice
@@ -2347,7 +2272,6 @@ struct FFrame : FOutputDevice
 
 	// Bitfields
 
-
 	// Functions
 
 	void StepExplicitProperty(void* const Result, FProperty* Property) { NativeCall<void, void* const, FProperty*>(this, "FFrame.StepExplicitProperty(void*const,FProperty*)", Result, Property); }
@@ -2367,9 +2291,7 @@ struct FFuncParms
 
 	// Bitfields
 
-
 	// Functions
-
 };
 
 struct FFunctionCaller
@@ -2380,10 +2302,9 @@ struct FFunctionCaller
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FFunctionCaller.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FFunctionCaller>(); }
 };
 
 struct FActorInstanceHandle
@@ -2451,7 +2372,7 @@ struct FHitResult
 
 // 	static FHitResult* GetReversedHit(FHitResult* result, const FHitResult* Hit) { return NativeCall<FHitResult*, FHitResult*, const FHitResult*>(nullptr, "FHitResult.GetReversedHit(FHitResult&)", result, Hit); }
 // FUNCTION MISSING: FHitResult.GetReversedHit(FHitResult&)
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FHitResult.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FHitResult>(); }
 	bool NetSerialize(FArchive* Ar, UPackageMap* Map, bool* bOutSuccess) { return NativeCall<bool, FArchive*, UPackageMap*, bool*>(this, "FHitResult.NetSerialize(FArchive&,UPackageMap*,bool&)", Ar, Map, bOutSuccess); }
 };
 
@@ -2478,10 +2399,9 @@ struct FHordeCrateDifficultyLevel
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FHordeCrateDifficultyLevel.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FHordeCrateDifficultyLevel>(); }
 };
 
 struct FHordeCrateEvent
@@ -2495,10 +2415,9 @@ struct FHordeCrateEvent
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FHordeCrateEvent.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FHordeCrateEvent>(); }
 };
 
 struct FHordeCrateNPCGroup
@@ -2513,10 +2432,9 @@ struct FHordeCrateNPCGroup
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FHordeCrateNPCGroup.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FHordeCrateNPCGroup>(); }
 };
 
 struct FHordeCrateWave
@@ -2530,10 +2448,9 @@ struct FHordeCrateWave
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FHordeCrateWave.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FHordeCrateWave>(); }
 };
 
 struct FItemAttachmentInfo
@@ -2569,7 +2486,7 @@ struct FItemAttachmentInfo
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemAttachmentInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemAttachmentInfo>(); }
 };
 
 struct FItemCount
@@ -2584,7 +2501,6 @@ struct FItemCount
 	int& SlotField() { return *GetNativePointerField<int*>(this, "FItemCount.Slot"); }
 
 	// Bitfields
-
 
 	// Functions
 
@@ -2603,10 +2519,9 @@ struct FItemCraftQueueEntry
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemCraftQueueEntry.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemCraftQueueEntry>(); }
 };
 
 struct FItemCraftingConsumptionReplenishment
@@ -2618,10 +2533,9 @@ struct FItemCraftingConsumptionReplenishment
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemCraftingConsumptionReplenishment.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemCraftingConsumptionReplenishment>(); }
 };
 
 struct FItemCraftingCostOverride
@@ -2633,10 +2547,9 @@ struct FItemCraftingCostOverride
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemCraftingCostOverride.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemCraftingCostOverride>(); }
 };
 
 struct FItemInfo
@@ -2652,7 +2565,6 @@ struct FItemInfo
 	BitFieldValue<bool, unsigned __int32> bIsLastChild() { return { this, "FItemInfo.bIsLastChild" }; }
 
 	// Functions
-
 };
 
 struct FItemMaxItemQuantityOverride
@@ -2664,10 +2576,9 @@ struct FItemMaxItemQuantityOverride
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemMaxItemQuantityOverride.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemMaxItemQuantityOverride>(); }
 };
 
 struct FItemMultiplier
@@ -2679,10 +2590,9 @@ struct FItemMultiplier
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemMultiplier.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemMultiplier>(); }
 };
 
 struct FItemNetInfo
@@ -2755,7 +2665,7 @@ struct FItemNetInfo
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemNetInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemNetInfo>(); }
 	FItemNetInfo* operator=(FItemNetInfo* __that) { return NativeCall<FItemNetInfo*, FItemNetInfo*>(this, "FItemNetInfo.operator=(FItemNetInfo&)", __that); }
 	FItemNetInfo* operator=(const FItemNetInfo* __that) { return NativeCall<FItemNetInfo*, const FItemNetInfo*>(this, "FItemNetInfo.operator=(FItemNetInfo&)", __that); }
 	bool NetSerialize(FArchive* Ar, UPackageMap* Map, bool* bOutSuccess) { return NativeCall<bool, FArchive*, UPackageMap*, bool*>(this, "FItemNetInfo.NetSerialize(FArchive&,UPackageMap*,bool&)", Ar, Map, bOutSuccess); }
@@ -2779,7 +2689,7 @@ struct FItemSetup
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemSetup.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemSetup>(); }
 };
 
 struct FItemStatInfo
@@ -2821,7 +2731,7 @@ struct FItemStatInfo
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemStatInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemStatInfo>(); }
 	float GetItemStatModifier(unsigned __int16 ItemStatValue) { return NativeCall<float, unsigned __int16>(this, "FItemStatInfo.GetItemStatModifier(unsignedshort)", ItemStatValue); }
 	unsigned __int16 GetRandomValue(float QualityLevel, float MinRandomQuality, float* outRandonMultiplier) { return NativeCall<unsigned __int16, float, float, float*>(this, "FItemStatInfo.GetRandomValue(float,float,float*)", QualityLevel, MinRandomQuality, outRandonMultiplier); }
 };
@@ -2838,10 +2748,9 @@ struct FItemToDinoStatParams
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FItemToDinoStatParams.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FItemToDinoStatParams>(); }
 };
 
 struct FMultiUseEntry
@@ -2889,7 +2798,7 @@ struct FMultiUseEntry
 	// Functions
 
 	void operator=(const FMultiUseEntry* InVal) { NativeCall<void, const FMultiUseEntry*>(this, "FMultiUseEntry.operator=(FMultiUseEntry&)", InVal); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FMultiUseEntry.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FMultiUseEntry>(); }
 };
 
 struct FMultiUseWheelOption
@@ -2901,10 +2810,9 @@ struct FMultiUseWheelOption
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FMultiUseWheelOption.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FMultiUseWheelOption>(); }
 };
 
 struct FNetExecParams
@@ -2918,10 +2826,9 @@ struct FNetExecParams
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FNetExecParams.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FNetExecParams>(); }
 };
 
 struct FPointOfInterestData
@@ -2981,9 +2888,9 @@ struct FPointOfInterestData
 	// Functions
 
 	FPointOfInterestData* operator=(const FPointOfInterestData* __that) { return NativeCall<FPointOfInterestData*, const FPointOfInterestData*>(this, "FPointOfInterestData.operator=(FPointOfInterestData&)", __that); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPointOfInterestData.StaticStruct()"); }
-// 	bool IsPointInitialized() { return NativeCall<bool>(this, "FPointOfInterestData.IsPointInitialized()"); }
-// FUNCTION MISSING: FPointOfInterestData.IsPointInitialized()
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPointOfInterestData>(); }
+	// 	bool IsPointInitialized() { return NativeCall<bool>(this, "FPointOfInterestData.IsPointInitialized()"); }
+	// FUNCTION MISSING: FPointOfInterestData.IsPointInitialized()
 };
 
 struct FPointOfInterestData_ForCompanion
@@ -2995,9 +2902,8 @@ struct FPointOfInterestData_ForCompanion
 
 	// Bitfields
 
-
 	// Functions
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPointOfInterestData_ForCompanion.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPointOfInterestData_ForCompanion>(); }
 };
 
 struct FPrimalCharacterStatusStateDefinition
@@ -3017,10 +2923,9 @@ struct FPrimalCharacterStatusStateDefinition
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalCharacterStatusStateDefinition.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalCharacterStatusStateDefinition>(); }
 };
 
 struct FPrimalCharacterStatusStateThresholds
@@ -3034,10 +2939,9 @@ struct FPrimalCharacterStatusStateThresholds
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalCharacterStatusStateThresholds.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalCharacterStatusStateThresholds>(); }
 };
 
 struct FPrimalCharacterStatusValueDefinition
@@ -3050,10 +2954,9 @@ struct FPrimalCharacterStatusValueDefinition
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalCharacterStatusValueDefinition.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalCharacterStatusValueDefinition>(); }
 };
 
 struct FPrimalCharacterStatusValueModifier
@@ -3072,10 +2975,9 @@ struct FPrimalCharacterStatusValueModifier
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalCharacterStatusValueModifier.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalCharacterStatusValueModifier>(); }
 };
 
 struct FPrimalItemDefinition
@@ -3088,10 +2990,9 @@ struct FPrimalItemDefinition
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalItemDefinition.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalItemDefinition>(); }
 };
 
 struct FPrimalItemQuality
@@ -3107,10 +3008,9 @@ struct FPrimalItemQuality
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalItemQuality.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalItemQuality>(); }
 };
 
 struct FPrimalItemStatDefinition
@@ -3122,10 +3022,9 @@ struct FPrimalItemStatDefinition
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalItemStatDefinition.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalItemStatDefinition>(); }
 };
 
 struct FPrimalMapMarkerEntryData
@@ -3141,10 +3040,9 @@ struct FPrimalMapMarkerEntryData
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalMapMarkerEntryData.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalMapMarkerEntryData>(); }
 };
 
 struct FPrimalPersistentCharacterStatsStruct
@@ -3173,18 +3071,17 @@ struct FPrimalPersistentCharacterStatsStruct
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalPersistentCharacterStatsStruct.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalPersistentCharacterStatsStruct>(); }
 	FPrimalPersistentCharacterStatsStruct* operator=(const FPrimalPersistentCharacterStatsStruct* __that) { return NativeCall<FPrimalPersistentCharacterStatsStruct*, const FPrimalPersistentCharacterStatsStruct*>(this, "FPrimalPersistentCharacterStatsStruct.operator=(FPrimalPersistentCharacterStatsStruct&)", __that); }
 	//void FPrimalPersistentCharacterStatsStruct() { NativeCall<void>(this, "FPrimalPersistentCharacterStatsStruct.FPrimalPersistentCharacterStatsStruct()"); }
 	//void ~FPrimalPersistentCharacterStatsStruct() { NativeCall<void>(this, "FPrimalPersistentCharacterStatsStruct.~FPrimalPersistentCharacterStatsStruct()"); }
 	//void FPrimalPersistentCharacterStatsStruct(const FPrimalPersistentCharacterStatsStruct * __that) { NativeCall<void, const FPrimalPersistentCharacterStatsStruct*>(this, "FPrimalPersistentCharacterStatsStruct.FPrimalPersistentCharacterStatsStruct(FPrimalPersistentCharacterStatsStruct&)", __that); }
 	bool IsPerMapExplorerNoteUnlocked(int ExplorerNoteIndex) { return NativeCall<bool, int>(this, "FPrimalPersistentCharacterStatsStruct.IsPerMapExplorerNoteUnlocked(int)", ExplorerNoteIndex); }
 	bool IsEmoteUnlocked(FName EmoteName) { return NativeCall<bool, FName>(this, "FPrimalPersistentCharacterStatsStruct.IsEmoteUnlocked(FName)", EmoteName); }
-// 	void UnlockEmote(FName EmoteName) { NativeCall<void, FName>(this, "FPrimalPersistentCharacterStatsStruct.UnlockEmote(FName)", EmoteName); }
-// FUNCTION MISSING: FPrimalPersistentCharacterStatsStruct.UnlockEmote(FName)
+	// 	void UnlockEmote(FName EmoteName) { NativeCall<void, FName>(this, "FPrimalPersistentCharacterStatsStruct.UnlockEmote(FName)", EmoteName); }
+	// FUNCTION MISSING: FPrimalPersistentCharacterStatsStruct.UnlockEmote(FName)
 	void ApplyToPrimalCharacter(APrimalCharacter* aChar, AShooterPlayerController* forPC, bool bIgnoreStats) { NativeCall<void, APrimalCharacter*, AShooterPlayerController*, bool>(this, "FPrimalPersistentCharacterStatsStruct.ApplyToPrimalCharacter(APrimalCharacter*,AShooterPlayerController*,bool)", aChar, forPC, bIgnoreStats); }
 	void GiveEngramsToPlayerState(APrimalCharacter* aChar, AShooterPlayerController* forPC) { NativeCall<void, APrimalCharacter*, AShooterPlayerController*>(this, "FPrimalPersistentCharacterStatsStruct.GiveEngramsToPlayerState(APrimalCharacter*,AShooterPlayerController*)", aChar, forPC); }
 };
@@ -3215,7 +3112,7 @@ struct FPrimalPlayerCharacterConfigStruct
 	//void FPrimalPlayerCharacterConfigStruct(const FPrimalPlayerCharacterConfigStruct* __that) { NativeCall<void, const FPrimalPlayerCharacterConfigStruct*>(this, "FPrimalPlayerCharacterConfigStruct.FPrimalPlayerCharacterConfigStruct(FPrimalPlayerCharacterConfigStruct&)", __that); }
 	FPrimalPlayerCharacterConfigStruct* operator=(const FPrimalPlayerCharacterConfigStruct* __that) { return NativeCall<FPrimalPlayerCharacterConfigStruct*, const FPrimalPlayerCharacterConfigStruct*>(this, "FPrimalPlayerCharacterConfigStruct.operator=(FPrimalPlayerCharacterConfigStruct&)", __that); }
 	//void FPrimalPlayerCharacterConfigStruct() { NativeCall<void>(this, "FPrimalPlayerCharacterConfigStruct.FPrimalPlayerCharacterConfigStruct()"); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalPlayerCharacterConfigStruct.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalPlayerCharacterConfigStruct>(); }
 	//void FPrimalPlayerCharacterConfigStruct(FPrimalPlayerCharacterConfigStruct* __that) { NativeCall<void, FPrimalPlayerCharacterConfigStruct*>(this, "FPrimalPlayerCharacterConfigStruct.FPrimalPlayerCharacterConfigStruct(FPrimalPlayerCharacterConfigStruct&)", __that); }
 	FPrimalPlayerCharacterConfigStruct* operator=(FPrimalPlayerCharacterConfigStruct* __that) { return NativeCall<FPrimalPlayerCharacterConfigStruct*, FPrimalPlayerCharacterConfigStruct*>(this, "FPrimalPlayerCharacterConfigStruct.operator=(FPrimalPlayerCharacterConfigStruct&)", __that); }
 };
@@ -3260,7 +3157,7 @@ struct FPrimalPlayerDataStruct
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPrimalPlayerDataStruct.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPrimalPlayerDataStruct>(); }
 	FPrimalPlayerDataStruct* operator=(const FPrimalPlayerDataStruct* __that) { return NativeCall<FPrimalPlayerDataStruct*, const FPrimalPlayerDataStruct*>(this, "FPrimalPlayerDataStruct.operator=(FPrimalPlayerDataStruct&)", __that); }
 };
 
@@ -3275,7 +3172,6 @@ struct FConfigCacheIni
 
 	// Bitfields
 
-
 	// Functions
 
 // 	bool AreFileOperationsDisabled() { return NativeCall<bool>(this, "FConfigCacheIni.AreFileOperationsDisabled()"); }
@@ -3283,14 +3179,14 @@ struct FConfigCacheIni
 	int GetIntOrDefault(const wchar_t* Section, const wchar_t* Key, const int DefaultValue, const FString* Filename) { return NativeCall<int, const wchar_t*, const wchar_t*, const int, const FString*>(this, "FConfigCacheIni.GetIntOrDefault(wchar_t*,wchar_t*,int,FString&)", Section, Key, DefaultValue, Filename); }
 	FConfigFile* FindConfigFile(const FString* Filename) { return NativeCall<FConfigFile*, const FString*>(this, "FConfigCacheIni.FindConfigFile(FString&)", Filename); }
 	FConfigFile* Find(const FString* Filename) { return NativeCall<FConfigFile*, const FString*>(this, "FConfigCacheIni.Find(FString&)", Filename); }
-// 	FConfigFile* FindConfigFileWithBaseName(FName BaseName) { return NativeCall<FConfigFile*, FName>(this, "FConfigCacheIni.FindConfigFileWithBaseName(FName)", BaseName); }
-// FUNCTION MISSING: FConfigCacheIni.FindConfigFileWithBaseName(FName)
+	// 	FConfigFile* FindConfigFileWithBaseName(FName BaseName) { return NativeCall<FConfigFile*, FName>(this, "FConfigCacheIni.FindConfigFileWithBaseName(FName)", BaseName); }
+	// FUNCTION MISSING: FConfigCacheIni.FindConfigFileWithBaseName(FName)
 	TArray<FString, TSizedDefaultAllocator<32> >* GetFilenames(TArray<FString, TSizedDefaultAllocator<32> >* result) { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> >*, TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FConfigCacheIni.GetFilenames()", result); }
 	void Flush(bool bRemoveFromCache, const FString* Filename) { NativeCall<void, bool, const FString*>(this, "FConfigCacheIni.Flush(bool,FString&,bool)", bRemoveFromCache, Filename); }
-// 	void Parse1ToNSectionOfNames(const wchar_t* Section, const wchar_t* KeyOne, const wchar_t* KeyN, TMap<FName, TArray<FName, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, TArray<FName, TSizedDefaultAllocator<32> >, 0> >* OutMap, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, const wchar_t*, TMap<FName, TArray<FName, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, TArray<FName, TSizedDefaultAllocator<32> >, 0> >*, const FString*>(this, "FConfigCacheIni.Parse1ToNSectionOfNames(wchar_t*,wchar_t*,wchar_t*,TMap<FName,TArray<FName,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FName,TArray<FName,TSizedDefaultAllocator<32>>,0>>&,FString&)", Section, KeyOne, KeyN, OutMap, Filename); }
-// FUNCTION MISSING: FConfigCacheIni.Parse1ToNSectionOfNames(wchar_t*,wchar_t*,wchar_t*,TMap<FName,TArray<FName,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FName,TArray<FName,TSizedDefaultAllocator<32>>,0>>&,FString&)
-// 	void Parse1ToNSectionOfStrings(const wchar_t* Section, const wchar_t* KeyOne, const wchar_t* KeyN, TMap<FString, TArray<FString, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FString, TArray<FString, TSizedDefaultAllocator<32> >, 0> >* OutMap, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, const wchar_t*, TMap<FString, TArray<FString, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FString, TArray<FString, TSizedDefaultAllocator<32> >, 0> >*, const FString*>(this, "FConfigCacheIni.Parse1ToNSectionOfStrings(wchar_t*,wchar_t*,wchar_t*,TMap<FString,TArray<FString,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FString,TArray<FString,TSizedDefaultAllocator<32>>,0>>&,FString&)", Section, KeyOne, KeyN, OutMap, Filename); }
-// FUNCTION MISSING: FConfigCacheIni.Parse1ToNSectionOfStrings(wchar_t*,wchar_t*,wchar_t*,TMap<FString,TArray<FString,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FString,TArray<FString,TSizedDefaultAllocator<32>>,0>>&,FString&)
+	// 	void Parse1ToNSectionOfNames(const wchar_t* Section, const wchar_t* KeyOne, const wchar_t* KeyN, TMap<FName, TArray<FName, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, TArray<FName, TSizedDefaultAllocator<32> >, 0> >* OutMap, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, const wchar_t*, TMap<FName, TArray<FName, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FName, TArray<FName, TSizedDefaultAllocator<32> >, 0> >*, const FString*>(this, "FConfigCacheIni.Parse1ToNSectionOfNames(wchar_t*,wchar_t*,wchar_t*,TMap<FName,TArray<FName,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FName,TArray<FName,TSizedDefaultAllocator<32>>,0>>&,FString&)", Section, KeyOne, KeyN, OutMap, Filename); }
+	// FUNCTION MISSING: FConfigCacheIni.Parse1ToNSectionOfNames(wchar_t*,wchar_t*,wchar_t*,TMap<FName,TArray<FName,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FName,TArray<FName,TSizedDefaultAllocator<32>>,0>>&,FString&)
+	// 	void Parse1ToNSectionOfStrings(const wchar_t* Section, const wchar_t* KeyOne, const wchar_t* KeyN, TMap<FString, TArray<FString, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FString, TArray<FString, TSizedDefaultAllocator<32> >, 0> >* OutMap, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, const wchar_t*, TMap<FString, TArray<FString, TSizedDefaultAllocator<32> >, FDefaultSetAllocator, TDefaultMapHashableKeyFuncs<FString, TArray<FString, TSizedDefaultAllocator<32> >, 0> >*, const FString*>(this, "FConfigCacheIni.Parse1ToNSectionOfStrings(wchar_t*,wchar_t*,wchar_t*,TMap<FString,TArray<FString,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FString,TArray<FString,TSizedDefaultAllocator<32>>,0>>&,FString&)", Section, KeyOne, KeyN, OutMap, Filename); }
+	// FUNCTION MISSING: FConfigCacheIni.Parse1ToNSectionOfStrings(wchar_t*,wchar_t*,wchar_t*,TMap<FString,TArray<FString,TSizedDefaultAllocator<32>>,FDefaultSetAllocator,TDefaultMapHashableKeyFuncs<FString,TArray<FString,TSizedDefaultAllocator<32>>,0>>&,FString&)
 	void LoadFile(const FString* Filename, const FConfigFile* Fallback, const wchar_t* PlatformString) { NativeCall<void, const FString*, const FConfigFile*, const wchar_t*>(this, "FConfigCacheIni.LoadFile(FString&,FConfigFile*,wchar_t*)", Filename, Fallback, PlatformString); }
 	void UnloadFile(const FString* Filename) { NativeCall<void, const FString*>(this, "FConfigCacheIni.UnloadFile(FString&)", Filename); }
 	bool GetString(const wchar_t* Section, const wchar_t* Key, FString* Value, const FString* Filename) { return NativeCall<bool, const wchar_t*, const wchar_t*, FString*, const FString*>(this, "FConfigCacheIni.GetString(wchar_t*,wchar_t*,FString&,FString&)", Section, Key, Value, Filename); }
@@ -3300,8 +3196,8 @@ struct FConfigCacheIni
 	void SetString(const wchar_t* Section, const wchar_t* Key, const wchar_t* Value, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, const wchar_t*, const FString*>(this, "FConfigCacheIni.SetString(wchar_t*,wchar_t*,wchar_t*,FString&)", Section, Key, Value, Filename); }
 	bool RemoveKey(const wchar_t* Section, const wchar_t* Key, const FString* Filename) { return NativeCall<bool, const wchar_t*, const wchar_t*, const FString*>(this, "FConfigCacheIni.RemoveKey(wchar_t*,wchar_t*,FString&)", Section, Key, Filename); }
 	bool EmptySection(const wchar_t* Section, const FString* Filename) { return NativeCall<bool, const wchar_t*, const FString*>(this, "FConfigCacheIni.EmptySection(wchar_t*,FString&)", Section, Filename); }
-// 	FString* GetConfigFilename(FString* result, const wchar_t* BaseIniName) { return NativeCall<FString*, FString*, const wchar_t*>(this, "FConfigCacheIni.GetConfigFilename(wchar_t*)", result, BaseIniName); }
-// FUNCTION MISSING: FConfigCacheIni.GetConfigFilename(wchar_t*)
+	// 	FString* GetConfigFilename(FString* result, const wchar_t* BaseIniName) { return NativeCall<FString*, FString*, const wchar_t*>(this, "FConfigCacheIni.GetConfigFilename(wchar_t*)", result, BaseIniName); }
+	// FUNCTION MISSING: FConfigCacheIni.GetConfigFilename(wchar_t*)
 	bool GetSectionNames(const FString* Filename, TArray<FString, TSizedDefaultAllocator<32> >* out_SectionNames) { return NativeCall<bool, const FString*, TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FConfigCacheIni.GetSectionNames(FString&,TArray<FString,TSizedDefaultAllocator<32>>&)", Filename, out_SectionNames); }
 	bool GetPerObjectConfigSections(const FString* Filename, const FString* SearchClass, TArray<FString, TSizedDefaultAllocator<32> >* out_SectionNames) { return NativeCall<bool, const FString*, const FString*, TArray<FString, TSizedDefaultAllocator<32> >*>(this, "FConfigCacheIni.GetPerObjectConfigSections(FString&,FString&,TArray<FString,TSizedDefaultAllocator<32>>&,int)", Filename, SearchClass, out_SectionNames); }
 	void Dump(FOutputDevice* Ar, const wchar_t* BaseIniName) { NativeCall<void, FOutputDevice*, const wchar_t*>(this, "FConfigCacheIni.Dump(FOutputDevice&,wchar_t*)", Ar, BaseIniName); }
@@ -3315,12 +3211,12 @@ struct FConfigCacheIni
 	void SetInt(const wchar_t* Section, const wchar_t* Key, int Value, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, int, const FString*>(this, "FConfigCacheIni.SetInt(wchar_t*,wchar_t*,int,FString&)", Section, Key, Value, Filename); }
 	void SetFloat(const wchar_t* Section, const wchar_t* Key, float Value, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, float, const FString*>(this, "FConfigCacheIni.SetFloat(wchar_t*,wchar_t*,float,FString&)", Section, Key, Value, Filename); }
 	void SetBool(const wchar_t* Section, const wchar_t* Key, bool Value, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, bool, const FString*>(this, "FConfigCacheIni.SetBool(wchar_t*,wchar_t*,bool,FString&)", Section, Key, Value, Filename); }
-// 	void SetVector(const wchar_t* Section, const wchar_t* Key, UE::Math::TVector<double>* Value, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, UE::Math::TVector<double>*, const FString*>(this, "FConfigCacheIni.SetVector(wchar_t*,wchar_t*,UE::Math::TVector<double>,FString&)", Section, Key, Value, Filename); }
-// FUNCTION MISSING: FConfigCacheIni.SetVector(wchar_t*,wchar_t*,UE::Math::TVector<double>,FString&)
-// 	void ShowMemoryUsage(FOutputDevice* Ar) { NativeCall<void, FOutputDevice*>(this, "FConfigCacheIni.ShowMemoryUsage(FOutputDevice&)", Ar); }
-// FUNCTION MISSING: FConfigCacheIni.ShowMemoryUsage(FOutputDevice&)
-// 	unsigned __int64 GetMaxMemoryUsage() { return NativeCall<unsigned __int64>(this, "FConfigCacheIni.GetMaxMemoryUsage()"); }
-// FUNCTION MISSING: FConfigCacheIni.GetMaxMemoryUsage()
+	// 	void SetVector(const wchar_t* Section, const wchar_t* Key, UE::Math::TVector<double>* Value, const FString* Filename) { NativeCall<void, const wchar_t*, const wchar_t*, UE::Math::TVector<double>*, const FString*>(this, "FConfigCacheIni.SetVector(wchar_t*,wchar_t*,UE::Math::TVector<double>,FString&)", Section, Key, Value, Filename); }
+	// FUNCTION MISSING: FConfigCacheIni.SetVector(wchar_t*,wchar_t*,UE::Math::TVector<double>,FString&)
+	// 	void ShowMemoryUsage(FOutputDevice* Ar) { NativeCall<void, FOutputDevice*>(this, "FConfigCacheIni.ShowMemoryUsage(FOutputDevice&)", Ar); }
+	// FUNCTION MISSING: FConfigCacheIni.ShowMemoryUsage(FOutputDevice&)
+	// 	unsigned __int64 GetMaxMemoryUsage() { return NativeCall<unsigned __int64>(this, "FConfigCacheIni.GetMaxMemoryUsage()"); }
+	// FUNCTION MISSING: FConfigCacheIni.GetMaxMemoryUsage()
 	bool ForEachEntry(const TDelegate<void __cdecl(wchar_t const*, wchar_t const*), FDefaultDelegateUserPolicy>* Visitor, const wchar_t* Section, const FString* Filename) { return NativeCall<bool, const TDelegate<void __cdecl(wchar_t const*, wchar_t const*), FDefaultDelegateUserPolicy>*, const wchar_t*, const FString*>(this, "FConfigCacheIni.ForEachEntry(TDelegate<void__cdecl(wchar_t*,wchar_t*)", Visitor, Section, Filename); }
 	static FString* GetDestIniFilename(FString* result, const wchar_t* BaseIniName, const wchar_t* PlatformName, const wchar_t* GeneratedConfigDir) { return NativeCall<FString*, FString*, const wchar_t*, const wchar_t*, const wchar_t*>(nullptr, "FConfigCacheIni.GetDestIniFilename(wchar_t*,wchar_t*,wchar_t*)", result, BaseIniName, PlatformName, GeneratedConfigDir); }
 	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "FConfigCacheIni.Serialize(FArchive&)", Ar); }
@@ -3331,8 +3227,8 @@ struct FConfigCacheIni
 	static const FString* GetCustomConfigString() { return NativeCall<const FString*>(nullptr, "FConfigCacheIni.GetCustomConfigString()"); }
 	static bool LoadGlobalIniFile(FString* OutFinalIniFilename, const wchar_t* BaseIniName, const wchar_t* Platform, bool bForceReload, bool bRequireDefaultIni, bool bAllowGeneratedIniWhenCooked, bool bAllowRemoteConfig, const wchar_t* GeneratedConfigDir, FConfigCacheIni* ConfigSystem) { return NativeCall<bool, FString*, const wchar_t*, const wchar_t*, bool, bool, bool, bool, const wchar_t*, FConfigCacheIni*>(nullptr, "FConfigCacheIni.LoadGlobalIniFile(FString&,wchar_t*,wchar_t*,bool,bool,bool,bool,wchar_t*,FConfigCacheIni*)", OutFinalIniFilename, BaseIniName, Platform, bForceReload, bRequireDefaultIni, bAllowGeneratedIniWhenCooked, bAllowRemoteConfig, GeneratedConfigDir, ConfigSystem); }
 	static bool LoadLocalIniFile(FConfigFile* ConfigFile, const wchar_t* IniName, bool bIsBaseIniName, const wchar_t* Platform, bool bForceReload) { return NativeCall<bool, FConfigFile*, const wchar_t*, bool, const wchar_t*, bool>(nullptr, "FConfigCacheIni.LoadLocalIniFile(FConfigFile&,wchar_t*,bool,wchar_t*,bool)", ConfigFile, IniName, bIsBaseIniName, Platform, bForceReload); }
-// 	static FConfigFile* FindPlatformConfig(const wchar_t* IniName, const wchar_t* Platform) { return NativeCall<FConfigFile*, const wchar_t*, const wchar_t*>(nullptr, "FConfigCacheIni.FindPlatformConfig(wchar_t*,wchar_t*)", IniName, Platform); }
-// FUNCTION MISSING: FConfigCacheIni.FindPlatformConfig(wchar_t*,wchar_t*)
+	// 	static FConfigFile* FindPlatformConfig(const wchar_t* IniName, const wchar_t* Platform) { return NativeCall<FConfigFile*, const wchar_t*, const wchar_t*>(nullptr, "FConfigCacheIni.FindPlatformConfig(wchar_t*,wchar_t*)", IniName, Platform); }
+	// FUNCTION MISSING: FConfigCacheIni.FindPlatformConfig(wchar_t*,wchar_t*)
 	static FConfigFile* FindOrLoadPlatformConfig(FConfigFile* LocalFile, const wchar_t* IniName, const wchar_t* Platform) { return NativeCall<FConfigFile*, FConfigFile*, const wchar_t*, const wchar_t*>(nullptr, "FConfigCacheIni.FindOrLoadPlatformConfig(FConfigFile&,wchar_t*,wchar_t*)", LocalFile, IniName, Platform); }
 	//static void LoadConsoleVariablesFromINI(void(__fastcall*)(void*) a1) { NativeCall<void, void(__fastcall*)(void*)>(nullptr, "FConfigCacheIni.LoadConsoleVariablesFromINI()", a1); }
 	int Remove(const FString* Filename) { return NativeCall<int, const FString*>(this, "FConfigCacheIni.Remove(FString&)", Filename); }
@@ -3348,10 +3244,9 @@ struct FCustomItemByteArray
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemByteArray.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FCustomItemByteArray>(); }
 };
 
 struct FCustomItemByteArrays
@@ -3363,10 +3258,9 @@ struct FCustomItemByteArrays
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemByteArrays.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FCustomItemByteArrays>(); }
 	FCustomItemByteArrays* operator=(const FCustomItemByteArrays* __that) { return NativeCall<FCustomItemByteArrays*, const FCustomItemByteArrays*>(this, "FCustomItemByteArrays.operator=(FCustomItemByteArrays&)", __that); }
 };
 
@@ -3379,15 +3273,13 @@ struct FCustomItemDoubles
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemDoubles.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FCustomItemDoubles>(); }
 };
 
 struct FCustomItemData
 {
-
 	FCustomItemByteArrays CustomDataBytes;
 	FCustomItemDoubles CustomDataDoubles;
 	TArray<FString, TSizedDefaultAllocator<32>> CustomDataStrings;
@@ -3416,13 +3308,12 @@ struct FCustomItemData
 
 	// Bitfields
 
-
 	// Functions
 
 	bool Serialize(FArchive* Ar) { return NativeCall<bool, FArchive*>(this, "FCustomItemData.Serialize(FArchive&)", Ar); }
 	FCustomItemData& operator=(FCustomItemData* __that) { return NativeCall<FCustomItemData&, FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&&)", __that); }
 	FCustomItemData& operator=(const FCustomItemData* __that) { return NativeCall<FCustomItemData&, const FCustomItemData*>(this, "FCustomItemData.operator=(FCustomItemData&)", __that); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCustomItemData.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FCustomItemData>(); }
 };
 
 struct FWeightedObjectList
@@ -3434,10 +3325,9 @@ struct FWeightedObjectList
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FWeightedObjectList.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FWeightedObjectList>(); }
 	UObject* GetRandomObject() { return NativeCall<UObject*>(this, "FWeightedObjectList.GetRandomObject()"); }
 };
 
@@ -3445,13 +3335,11 @@ struct FVector_NetQuantize : UE::Math::TVector<double>
 {
 	// Fields
 
-
 	  // Bitfields
-
 
 	  // Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FVector_NetQuantize.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FVector_NetQuantize>(); }
 	bool NetSerialize(FArchive* Ar, UPackageMap* Map, bool* bOutSuccess) { return NativeCall<bool, FArchive*, UPackageMap*, bool*>(this, "FVector_NetQuantize.NetSerialize(FArchive&,UPackageMap*,bool&)", Ar, Map, bOutSuccess); }
 };
 
@@ -3485,7 +3373,7 @@ struct FUseItemAddCharacterStatusValue
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FUseItemAddCharacterStatusValue.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FUseItemAddCharacterStatusValue>(); }
 };
 
 struct FUniqueNetId
@@ -3495,7 +3383,6 @@ struct FUniqueNetId
 	//FUniqueNetId_vtbl*& __vftableField() { return *GetNativePointerField<FUniqueNetId_vtbl**>(this, "FUniqueNetId.__vftable"); }
 
 	// Bitfields
-
 
 	// Functions
 
@@ -3512,7 +3399,6 @@ struct FUniqueNetIdString : FUniqueNetId
 
 	// Bitfields
 
-
 	// Functions
 
 	unsigned char const* GetBytes()const { return NativeCall<unsigned char const*>(this, "FUniqueNetIdString.GetBytes()"); }
@@ -3523,7 +3409,6 @@ struct FUniqueNetIdString : FUniqueNetId
 	unsigned int GetTypeHash()const { return NativeCall<unsigned int>(this, "FUniqueNetIdString.GetTypeHash()"); }
 	FString ToDebugString()const { return NativeCall<FString>(this, "FUniqueNetIdString.ToDebugString()"); }
 	//static TSharedRef<FUniqueNetIdString const> Create(const FString& InUniqueNetId, FName InType) { return NativeCall<TSharedRef<FUniqueNetIdString const>, const FString&, FName>(this, "FUniqueNetIdString.Create(FString&,FName)", InUniqueNetId, InType); }
-
 };
 
 struct FUniqueNetIdEOS : FUniqueNetId
@@ -3535,7 +3420,6 @@ struct FUniqueNetIdEOS : FUniqueNetId
 	int& DataBytesSizeField() { return *GetNativePointerField<int*>(this, "FUniqueNetIdEOS.DataBytesSize"); }
 
 	// Bitfields
-
 
 	// Functions
 
@@ -3560,10 +3444,9 @@ struct FCharacterAndControllerPair
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FCharacterAndControllerPair.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FCharacterAndControllerPair>(); }
 };
 
 struct FRadialDamageParams
@@ -3578,10 +3461,9 @@ struct FRadialDamageParams
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FRadialDamageParams.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FRadialDamageParams>(); }
 };
 
 struct FRadialDamageEvent : FDamageEvent
@@ -3594,14 +3476,12 @@ struct FRadialDamageEvent : FDamageEvent
 
 	// Bitfields
 
-
 	// Functions
 
 	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>& OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>&>(this, "FRadialDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
 	int GetTypeID()const { return NativeCall<int>(this, "FRadialDamageEvent.GetTypeID()"); }
 	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FRadialDamageEvent.IsOfType(int)", InID); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FRadialDamageEvent.StaticStruct()"); }
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FRadialDamageEvent>(); }
 };
 
 struct FPointDamageEvent : FDamageEvent
@@ -3614,12 +3494,11 @@ struct FPointDamageEvent : FDamageEvent
 
 	// Bitfields
 
-
 	// Functions
 
 	void GetBestHitInfo(const AActor* HitActor, const AActor* HitInstigator, FHitResult* OutHitInfo, UE::Math::TVector<double>* OutImpulseDir) { NativeCall<void, const AActor*, const AActor*, FHitResult*, UE::Math::TVector<double>*>(this, "FPointDamageEvent.GetBestHitInfo(AActor*,AActor*,FHitResult&,UE::Math::TVector<double>&)", HitActor, HitInstigator, OutHitInfo, OutImpulseDir); }
 	int GetTypeID()const { return NativeCall<int>(this, "FPointDamageEvent.GetTypeID()"); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPointDamageEvent.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPointDamageEvent>(); }
 	bool IsOfType(int InID) const { return NativeCall<bool, int>(this, "FPointDamageEvent.IsOfType(int)", InID); }
 };
 
@@ -3631,10 +3510,9 @@ struct FUserCosmeticInfo
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FUserCosmeticInfo.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FUserCosmeticInfo>(); }
 };
 
 struct IMemoryReadStream
@@ -3645,21 +3523,17 @@ struct IMemoryReadStream
 
 	// Bitfields
 
-
 	// Functions
 
 	void EnsureReadNonBlocking() { NativeCall<void>(this, "IMemoryReadStream.EnsureReadNonBlocking()"); }
 	void CopyTo(void* Buffer, long InOffset, long InSize) { NativeCall<void, void*, long, long>(this, "IMemoryReadStream.CopyTo(void*,__int64,__int64)", Buffer, InOffset, InSize); }
-
 };
 
 struct FCompression
 {
 	// Fields
 
-
 	// Bitfields
-
 
 	// Functions
 
@@ -3669,7 +3543,6 @@ struct FCompression
 	static bool UncompressMemory(FName FormatName, void* UncompressedBuffer, int UncompressedSize, const void* CompressedBuffer, int CompressedSize, ECompressionFlags Flags, int CompressionData) { return NativeCall<bool, FName, void*, int, const void*, int, ECompressionFlags, int>(nullptr, "FCompression.UncompressMemory(FName,void*,__int64,void*,__int64,ECompressionFlags,unsigned__int64)", FormatName, UncompressedBuffer, UncompressedSize, CompressedBuffer, CompressedSize, Flags, CompressionData); }
 	static int CompressMemoryBound(FName FormatName, int UncompressedSize, ECompressionFlags Flags, int CompressionData) { return NativeCall<int, FName, int, ECompressionFlags, int>(nullptr, "FCompression.CompressMemoryBound(FName,int,ECompressionFlags,int)", FormatName, UncompressedSize, Flags, CompressionData); }
 	//static ICompressionFormat* GetCompressionFormat(FName FormatName, bool bErrorOnFailure) { return NativeCall<ICompressionFormat*, FName, bool>(nullptr, "FCompression.GetCompressionFormat(FName,bool)", FormatName, bErrorOnFailure); }
-
 };
 
 struct FOverlappedFoliageElement
@@ -3691,8 +3564,7 @@ struct FOverlappedFoliageElement
 
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FOverlappedFoliageElement.StaticStruct()"); }
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FOverlappedFoliageElement>(); }
 };
 
 struct FPlacementData
@@ -3720,11 +3592,9 @@ struct FPlacementData
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FPlacementData.StaticStruct()"); }
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FPlacementData>(); }
 };
 
 struct FPaths
@@ -3764,7 +3634,6 @@ struct FPaths
 
 	// Bitfields
 
-
 	// Functions
 
 	static FString EngineVersionAgnosticUserDir() { return NativeCall<FString>(nullptr, "FPaths.EngineVersionAgnosticUserDir()"); }
@@ -3784,8 +3653,8 @@ struct FPaths
 	static FString ShaderWorkingDir() { return NativeCall<FString>(nullptr, "FPaths.ShaderWorkingDir()"); }
 	static void Split(const FString& InPath, FString& PathPart, FString& FilenamePart, FString& ExtensionPart) { NativeCall<void, const FString&, FString&, FString&, FString&>(nullptr, "FPaths.Split(FString&,FString&,FString&,FString&)", InPath, PathPart, FilenamePart, ExtensionPart); }
 	static FString ProjectIntermediateDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectIntermediateDir()"); }
-// 	static FString EnginePlatformExtensionsDir() { return NativeCall<FString>(nullptr, "FPaths.EnginePlatformExtensionsDir()"); }
-// FUNCTION MISSING: FPaths.EnginePlatformExtensionsDir()
+	// 	static FString EnginePlatformExtensionsDir() { return NativeCall<FString>(nullptr, "FPaths.EnginePlatformExtensionsDir()"); }
+	// FUNCTION MISSING: FPaths.EnginePlatformExtensionsDir()
 	static TArray<FString, TSizedDefaultAllocator<32> > const& GetToolTipLocalizationPaths() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetToolTipLocalizationPaths()"); }
 	static FString GameUserDeveloperDir() { return NativeCall<FString>(nullptr, "FPaths.GameUserDeveloperDir()"); }
 	static FString EnterpriseDir() { return NativeCall<FString>(nullptr, "FPaths.EnterpriseDir()"); }
@@ -3827,8 +3696,8 @@ struct FPaths
 	static FString const& CustomUserDirArgument() { return NativeCall<FString const&>(nullptr, "FPaths.CustomUserDirArgument()"); }
 	static FString RootDir() { return NativeCall<FString>(nullptr, "FPaths.RootDir()"); }
 	static FString BugItDir() { return NativeCall<FString>(nullptr, "FPaths.BugItDir()"); }
-// 	static FString ProjectPlatformExtensionsDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectPlatformExtensionsDir()"); }
-// FUNCTION MISSING: FPaths.ProjectPlatformExtensionsDir()
+	// 	static FString ProjectPlatformExtensionsDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectPlatformExtensionsDir()"); }
+	// FUNCTION MISSING: FPaths.ProjectPlatformExtensionsDir()
 	static void MakeStandardFilename(FString& InPath) { NativeCall<void, FString&>(nullptr, "FPaths.MakeStandardFilename(FString&)", InPath); }
 	static FString CreateTempFilename(const wchar_t* Path, const wchar_t* Prefix, const wchar_t* Extension) { return NativeCall<FString, const wchar_t*, const wchar_t*, const wchar_t*>(nullptr, "FPaths.CreateTempFilename(wchar_t*,wchar_t*,wchar_t*)", Path, Prefix, Extension); }
 	static TArray<FString, TSizedDefaultAllocator<32> > const& GetGameLocalizationPaths() { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> > const&>(nullptr, "FPaths.GetGameLocalizationPaths()"); }
@@ -3868,7 +3737,6 @@ struct FPaths
 	static FString ConvertRelativePathToFull(const FString& InPath) { return NativeCall<FString, const FString&>(nullptr, "FPaths.ConvertRelativePathToFull(FString&)", InPath); }
 	static FString ProjectModsDir() { return NativeCall<FString>(nullptr, "FPaths.ProjectModsDir()"); }
 	static FString AutomationDir() { return NativeCall<FString>(nullptr, "FPaths.AutomationDir()"); }
-
 };
 
 struct FJustInTimeTexture2D
@@ -3882,14 +3750,13 @@ struct FJustInTimeTexture2D
 
 	// Bitfields
 
-
 	// Functions
 
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FJustInTimeTexture2D.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FJustInTimeTexture2D>(); }
 	FJustInTimeTexture2D& operator=(const FJustInTimeTexture2D* ThatTexture) { return NativeCall<FJustInTimeTexture2D&, const FJustInTimeTexture2D*>(this, "FJustInTimeTexture2D.operator=(FJustInTimeTexture2D&)", ThatTexture); }
 	FJustInTimeTexture2D& operator=(UTexture2D* ThatTexture) { return NativeCall<FJustInTimeTexture2D&, UTexture2D*>(this, "FJustInTimeTexture2D.operator=(UTexture2D*)", ThatTexture); }
-// 	void OnPostLoad(UTexture2D** ppTextureToPotentiallyJIT) { NativeCall<void, UTexture2D**>(this, "FJustInTimeTexture2D.OnPostLoad(UTexture2D**)", ppTextureToPotentiallyJIT); }
-// FUNCTION MISSING: FJustInTimeTexture2D.OnPostLoad(UTexture2D**)
+	// 	void OnPostLoad(UTexture2D** ppTextureToPotentiallyJIT) { NativeCall<void, UTexture2D**>(this, "FJustInTimeTexture2D.OnPostLoad(UTexture2D**)", ppTextureToPotentiallyJIT); }
+	// FUNCTION MISSING: FJustInTimeTexture2D.OnPostLoad(UTexture2D**)
 	UTexture2D* GetTexture(const UObject* pOwner) const { return NativeCall<UTexture2D*, const UObject*>(this, "FJustInTimeTexture2D.GetTexture(UObject*)", pOwner); }
 };
 
@@ -3954,14 +3821,12 @@ struct FFunctionParams_NoArrays
 
 	// Bitfields
 
-
 	// Functions
 
 	FFunctionParams_NoArrays& operator=(FFunctionParams_NoArrays* __that) { return NativeCall<FFunctionParams_NoArrays&, FFunctionParams_NoArrays*>(this, "FFunctionParams_NoArrays.operator=(FFunctionParams_NoArrays&&)", __that); }
 	FFunctionParams_NoArrays& operator=(const FFunctionParams_NoArrays* __that) { return NativeCall<FFunctionParams_NoArrays&, const FFunctionParams_NoArrays*>(this, "FFunctionParams_NoArrays.operator=(FFunctionParams_NoArrays&)", __that); }
 	void CopyFunctionParams(const FFunctionParams_NoArrays* InParams) { NativeCall<void, const FFunctionParams_NoArrays*>(this, "FFunctionParams_NoArrays.CopyFunctionParams(FFunctionParams_NoArrays&)", InParams); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FFunctionParams_NoArrays.StaticStruct()"); }
-
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FFunctionParams_NoArrays>(); }
 };
 
 struct FStructureVariant
@@ -3980,9 +3845,8 @@ struct FStructureVariant
 
 	// Bitfields
 
-
 	// Functions
 
 	FStructureVariant& operator=(FStructureVariant* __that) { return NativeCall<FStructureVariant&, FStructureVariant*>(this, "FStructureVariant.operator=(FStructureVariant&&)", __that); }
-	static UScriptStruct* StaticStruct() { return NativeCall<UScriptStruct*>(nullptr, "FStructureVariant.StaticStruct()"); }
+	static UScriptStruct* StaticStruct() { return FindScriptStruct<FStructureVariant>(); }
 };

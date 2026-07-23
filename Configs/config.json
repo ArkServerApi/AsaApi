@@ -12,8 +12,14 @@
     },
     "AutomaticCacheDownload": {
       "Enable": true,
-      "DownloadCacheURL": "https://cdn.pelayori.com/cache/"
+      "DownloadCacheURL": "https://cdn.pelayori.com/cache/",
+      "DownloadCacheURLs": [
+        "https://cdn.pelayori.com/cache/",
+        "https://cdn.shadowhunter.co.za/cache/",
+        "https://cdn.shadowhunter-systems.co.za/cache/"
+      ]
     },
-    "SuppressHttpErrors": false
+    "SuppressHttpErrors": false,
+    "HooksDoNotThrow": false
   }
 }

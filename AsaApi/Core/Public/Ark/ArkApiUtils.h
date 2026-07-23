@@ -22,33 +22,33 @@ namespace AsaApi
 	public:
 		virtual ~IApiUtils() = default;
 		/**
-		* \brief Returns a pointer to UWorld
-		*/
+		 * \brief Returns a pointer to UWorld
+		 */
 		virtual UWorld* GetWorld() const = 0;
 
 		/**
-		* \brief Returns a pointer to AShooterGameMode
-		*/
+		 * \brief Returns a pointer to AShooterGameMode
+		 */
 		virtual AShooterGameMode* GetShooterGameMode() const = 0;
 
 		/**
-		* \brief Returns the current server status
-		*/
+		 * \brief Returns the current server status
+		 */
 		virtual ServerStatus GetStatus() const = 0;
 
 		/**
-		* \brief Returns a point to URCON CheatManager
-		*/
+		 * \brief Returns a point to URCON CheatManager
+		 */
 		virtual UShooterCheatManager* GetCheatManager() const = 0;
 		/**
-		* \brief Sends server message to the specific player. Using fmt::format.
-		* \tparam T Either a a char or wchar_t
-		* \tparam Args Optional arguments types
-		* \param player_controller Player
-		* \param msg_color Message color
-		* \param msg Message
-		* \param args Optional arguments
-		*/
+		 * \brief Sends server message to the specific player. Using fmt::format.
+		 * \tparam T Either a a char or wchar_t
+		 * \tparam Args Optional arguments types
+		 * \param player_controller Player
+		 * \param msg_color Message color
+		 * \param msg Message
+		 * \param args Optional arguments
+		 */
 		template <typename T, typename... Args>
 		FORCEINLINE void SendServerMessage(AShooterPlayerController* player_controller, FLinearColor msg_color, const T* msg, Args&&... args)
 		{
@@ -56,17 +56,17 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Sends notification (on-screen message) to the specific player. Using fmt::format.
-		* \tparam T Either a a char or wchar_t
-		* \tparam Args Optional arguments types
-		* \param player_controller Player
-		* \param color Message color
-		* \param display_scale Size of text
-		* \param display_time Display time
-		* \param icon Message icon (optional)
-		* \param msg Message
-		* \param args Optional arguments
-		*/
+		 * \brief Sends notification (on-screen message) to the specific player. Using fmt::format.
+		 * \tparam T Either a a char or wchar_t
+		 * \tparam Args Optional arguments types
+		 * \param player_controller Player
+		 * \param color Message color
+		 * \param display_scale Size of text
+		 * \param display_time Display time
+		 * \param icon Message icon (optional)
+		 * \param msg Message
+		 * \param args Optional arguments
+		 */
 		template <typename T, typename... Args>
 		FORCEINLINE void SendNotification(AShooterPlayerController* player_controller, FLinearColor color, float display_scale,
 			float display_time, UTexture2D* icon, const T* msg, Args&&... args)
@@ -91,13 +91,13 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Sends server message to all players. Using fmt::format.
-		* \tparam T Either a a char or wchar_t
-		* \tparam Args Optional arguments types
-		* \param msg_color Message color
-		* \param msg Message
-		* \param args Optional arguments
-		*/
+		 * \brief Sends server message to all players. Using fmt::format.
+		 * \tparam T Either a a char or wchar_t
+		 * \tparam Args Optional arguments types
+		 * \param msg_color Message color
+		 * \param msg Message
+		 * \param args Optional arguments
+		 */
 		template <typename T, typename... Args>
 		FORCEINLINE void SendServerMessageToAll(FLinearColor msg_color, const T* msg, Args&&... args)
 		{
@@ -105,16 +105,16 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Sends notification (on-screen message) to all players. Using fmt::format.
-		* \tparam T Either a a char or wchar_t
-		* \tparam Args Optional arguments types
-		* \param color Message color
-		* \param display_scale Size of text
-		* \param display_time Display time
-		* \param icon Message icon (optional)
-		* \param msg Message
-		* \param args Optional arguments
-		*/
+		 * \brief Sends notification (on-screen message) to all players. Using fmt::format.
+		 * \tparam T Either a a char or wchar_t
+		 * \tparam Args Optional arguments types
+		 * \param color Message color
+		 * \param display_scale Size of text
+		 * \param display_time Display time
+		 * \param icon Message icon (optional)
+		 * \param msg Message
+		 * \param args Optional arguments
+		 */
 		template <typename T, typename... Args>
 		FORCEINLINE void SendNotificationToAll(FLinearColor color, float display_scale,
 			float display_time, UTexture2D* icon, const T* msg, Args&&... args)
@@ -123,13 +123,13 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Sends chat message to all players. Using fmt::format.
-		* \tparam T Either a a char or wchar_t
-		* \tparam Args Optional arguments types
-		* \param sender_name Name of the sender
-		* \param msg Message
-		* \param args Optional arguments
-		*/
+		 * \brief Sends chat message to all players. Using fmt::format.
+		 * \tparam T Either a a char or wchar_t
+		 * \tparam Args Optional arguments types
+		 * \param sender_name Name of the sender
+		 * \param msg Message
+		 * \param args Optional arguments
+		 */
 		template <typename T, typename... Args>
 		FORCEINLINE void SendChatMessageToAll(const FString& sender_name, const T* msg, Args&&... args)
 		{
@@ -142,7 +142,7 @@ namespace AsaApi
 		static FORCEINLINE FString GetEOSIDFromController(AController* controller)
 		{
 			FString eos_id = "";
-			
+
 			AShooterPlayerController* playerController = static_cast<AShooterPlayerController*>(controller);
 			if (playerController != nullptr)
 				playerController->GetUniqueNetIdAsString(&eos_id);
@@ -175,10 +175,10 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Finds player controller from the given player character
-		* \param character Player character
-		* \return Pointer to AShooterPlayerController
-		*/
+		 * \brief Finds player controller from the given player character
+		 * \param character Player character
+		 * \return Pointer to AShooterPlayerController
+		 */
 		FORCEINLINE AShooterPlayerController* FindControllerFromCharacter(AShooterCharacter* character) const
 		{
 			AShooterPlayerController* result = nullptr;
@@ -190,12 +190,12 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Finds all matching players from the given character name
-		* \param character_name Character name
-		* \param search Type Defaulted To ESearchCase::Type::IgnoreCase
-		* \param full_match Will match the full length of the string if true
-		* \return Array of AShooterPlayerController*
-		*/
+		 * \brief Finds all matching players from the given character name
+		 * \param character_name Character name
+		 * \param search Type Defaulted To ESearchCase::Type::IgnoreCase
+		 * \param full_match Will match the full length of the string if true
+		 * \return Array of AShooterPlayerController*
+		 */
 		FORCEINLINE TArray<AShooterPlayerController*> FindPlayerFromCharacterName(const FString& character_name,
 			ESearchCase::Type search,
 			bool full_match) const
@@ -218,9 +218,9 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Returns the character name of player
-		* \param player_controller Player
-		*/
+		 * \brief Returns the character name of player
+		 * \param player_controller Player
+		 */
 		static FORCEINLINE FString GetCharacterName(AShooterPlayerController* player_controller)
 		{
 			if (player_controller != nullptr)
@@ -234,12 +234,18 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Returns the steam name of player
-		* \param player_controller Player
-		*/
+		 * \brief Returns the steam name of player
+		 * \param player_controller Player
+		 */
 		static FORCEINLINE FString GetSteamName(AController* player_controller)
 		{
-			return player_controller != nullptr ? player_controller->PlayerStateField()->PlayerNamePrivateField() : "";
+			if (player_controller == nullptr)
+				return "";
+
+			if (player_controller->PlayerStateField().Get() == nullptr)
+				return "";
+
+			return player_controller->PlayerStateField().Get()->PlayerNamePrivateField();
 		}
 
 		/**
@@ -275,12 +281,13 @@ namespace AsaApi
 			TSubclassOf<UPrimalItem> archetype;
 			archetype.uClass = UVictoryCore::BPLoadClass(bpFstr);
 
-			UPrimalItem* item = UPrimalItem::AddNewItem(archetype, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true, false, false);
+			UPrimalItem* item = UPrimalItem::AddNewItem(archetype, nullptr, false, false, item_quality, false, amount, force_blueprint, 0, false, nullptr, 0, 0, 0, true, false, false, false, GetWorld());
 
 			if (!item)
 				return false;
 
 			FItemNetInfo* info = AllocateStruct<FItemNetInfo>();
+			if (!info) return false;
 
 			item->GetItemNetInfo(info, false);
 
@@ -360,9 +367,9 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Returns true if character is riding a dino, false otherwise
-		* \param player_controller Player
-		*/
+		 * \brief Returns true if character is riding a dino, false otherwise
+		 * \param player_controller Player
+		 */
 		static FORCEINLINE bool IsRidingDino(AShooterPlayerController* player_controller)
 		{
 			return player_controller != nullptr && player_controller->GetPlayerCharacter() != nullptr
@@ -370,10 +377,10 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Returns the dino the character is riding
-		* \param player_controller Player
-		* \return APrimalDinoCharacter*
-		*/
+		 * \brief Returns the dino the character is riding
+		 * \param player_controller Player
+		 * \return APrimalDinoCharacter*
+		 */
 		static FORCEINLINE APrimalDinoCharacter* GetRidingDino(AShooterPlayerController* player_controller)
 		{
 			return player_controller != nullptr && player_controller->GetPlayerCharacter() != nullptr
@@ -382,22 +389,22 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Returns the position of a player
-		* \param player_controller Player
-		* \return FVector
-		*/
+		 * \brief Returns the position of a player
+		 * \param player_controller Player
+		 * \return FVector
+		 */
 		static FORCEINLINE FVector GetPosition(APlayerController* player_controller)
 		{
 			return player_controller != nullptr && player_controller->PawnField() != nullptr ? player_controller->PawnField()->GetLocation() : FVector{0, 0, 0};
 		}
 
 		/**
-		* \brief Teleport one player to another
-		* \param me Player
-		* \param him Other Player
-		* \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
-		* \param max_dist Is the max distance the characters can be away from each other -1 is disabled
-		*/
+		 * \brief Teleport one player to another
+		 * \param me Player
+		 * \param him Other Player
+		 * \param check_for_dino If set true prevents players teleporting with dino's or teleporting to a player on a dino
+		 * \param max_dist Is the max distance the characters can be away from each other -1 is disabled
+		 */
 		static FORCEINLINE std::optional<FString> TeleportToPlayer(AShooterPlayerController* me, AShooterPlayerController* him,
 			bool check_for_dino, float max_dist)
 		{
@@ -432,14 +439,14 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Teleports player to the given position
-		* \param player_controller Player
-		* \param pos New position
-		*/
+		 * \brief Teleports player to the given position
+		 * \param player_controller Player
+		 * \param pos New position
+		 */
 		static FORCEINLINE bool TeleportToPos(AShooterPlayerController* player_controller, const FVector& pos)
 		{
 			if (player_controller != nullptr && !IsPlayerDead(player_controller))
-			{				
+			{
 				player_controller->SetPlayerPos((float)pos.X, (float)pos.Y, (float)pos.Z);
 				return true;
 			}
@@ -448,9 +455,9 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Counts a specific items quantity
-		* \param player_controller Player
-		* \param item_name The name of the item you want to count the quantity of
+		 * \brief Counts a specific items quantity
+		 * \param player_controller Player
+		 * \param item_name The name of the item you want to count the quantity of
 		 * \return On success, the function returns amount of items player has. Returns -1 if the function has failed.
 		 */
 		static FORCEINLINE int GetInventoryItemCount(AShooterPlayerController* player_controller, const FString& item_name)
@@ -571,7 +578,7 @@ namespace AsaApi
 				FString path_name = GetClassBlueprint(object->ClassPrivateField());
 				return path_name.Replace(L"Default__", L"", ESearchCase::CaseSensitive);
 			}
-				
+
 			return FString("");
 		}
 
@@ -599,16 +606,16 @@ namespace AsaApi
 
 
 		/**
-		* \brief Get Shooter Game State
-		*/
+		 * \brief Get Shooter Game State
+		 */
 		FORCEINLINE AShooterGameState* GetGameState()
 		{
 			return static_cast<AShooterGameState*>(GetWorld()->GameStateField().Get());
 		}
 
 		/**
-		* \brief Get UShooterCheatManager* of player controller
-		*/
+		 * \brief Get UShooterCheatManager* of player controller
+		 */
 		static FORCEINLINE UShooterCheatManager* GetCheatManagerByPC(AShooterPlayerController* SPC)
 		{
 			if (!SPC) return nullptr;
@@ -624,8 +631,8 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Get Tribe ID of player controller
-		*/
+		 * \brief Get Tribe ID of player controller
+		 */
 		static FORCEINLINE int GetTribeID(AShooterPlayerController* player_controller)
 		{
 			int team = 0;
@@ -639,8 +646,8 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Get Tribe ID of character
-		*/
+		 * \brief Get Tribe ID of character
+		 */
 		static FORCEINLINE int GetTribeID(AShooterCharacter* player_character)
 		{
 			int team = 0;
@@ -654,8 +661,8 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Returns pointer to Primal Game Data
-		*/
+		 * \brief Returns pointer to Primal Game Data
+		 */
 		FORCEINLINE UPrimalGameData* GetGameData()
 		{
 			UPrimalGlobals* singleton = static_cast<UPrimalGlobals*>(Globals::GEngine()()->GameSingletonField().Get());
@@ -663,8 +670,8 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Gets all actors in radius at location
-		*/
+		 * \brief Gets all actors in radius at location
+		 */
 		FORCEINLINE TArray<AActor*> GetAllActorsInRange(FVector location, float radius, EServerOctreeGroup::Type ActorType)
 		{
 			TArray<AActor*> out_actors;
@@ -675,8 +682,8 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Gets all actors in radius at location, with ignore actors
-		*/
+		 * \brief Gets all actors in radius at location, with ignore actors
+		 */
 		FORCEINLINE TArray<AActor*> GetAllActorsInRange(FVector location, float radius, EServerOctreeGroup::Type ActorType, TArray<AActor*> ignores)
 		{
 			TArray<AActor*> out_actors;
@@ -690,8 +697,8 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Converts FVector into coords that are displayed when you view the ingame map
-		*/
+		 * \brief Converts FVector into coords that are displayed when you view the ingame map
+		 */
 		FORCEINLINE MapCoords FVectorToCoords(FVector actor_position)
 		{
 			MapCoords coords;
@@ -710,6 +717,8 @@ namespace AsaApi
 			else
 			{
 				const int FMapDataSize = GetStructSize<FMapData>();
+				if (FMapDataSize <= 0) return coords;
+
 				for (int i = 0; i < minimap_data->MinimapDataField().Num(); i++)
 				{
 					FMapData* data = minimap_data->MinimapDataField().GetData() + (i * FMapDataSize);
@@ -727,6 +736,8 @@ namespace AsaApi
 				}
 			}
 
+			if (!map_data) return coords;
+
 			double xAlpha = (actor_position.X - map_data->OriginMaxField().X) / (map_data->OriginMinField().X - map_data->OriginMaxField().X);
 			double yAlpha = (actor_position.Y - map_data->OriginMaxField().Y) / (map_data->OriginMinField().Y - map_data->OriginMaxField().Y);
 
@@ -736,9 +747,9 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief obtains the steam ID of an attacker, meant to be used in hooks such as TakeDamage
-		* \param tribe_check if set to true will return NULL if the target is from the same tribe as the attacker
-		*/
+		 * \brief obtains the steam ID of an attacker, meant to be used in hooks such as TakeDamage
+		 * \param tribe_check if set to true will return NULL if the target is from the same tribe as the attacker
+		 */
 		FORCEINLINE const FString GetAttackerEOSID(AActor* target, AController* killer, AActor* damage_causer, bool tribe_check = true)
 		{
 			FString eos_id = "";
@@ -755,25 +766,25 @@ namespace AsaApi
 					eos_id = GetEOSIDForPlayerID(explosive->ConstructorPlayerDataIDField());
 				}
 			}
-			
+
 			return eos_id;
 		}
 
 		/**
 		 * \brief Create a new object of T, with the correct size
-		 * \tparam T struct type. Must have ScriptStruct defined
+		 * \tparam T struct type.
 		 * \return Pointer to T
 		 */
 		template <class T>
 		static FORCEINLINE T* AllocateStruct()
 		{
-			UScriptStruct* ss = T::StaticStruct();
+			UScriptStruct* ss = FindScriptStruct<T>();
 			if (!ss)
 				return nullptr;
 
 			uint32 alignment = static_cast<uint32>(ss->MinAlignmentField());
 			alignment = FMath::RoundUpToPowerOfTwo(FMath::Max<uint32>(alignment, 1u));
-			
+
 			const uint32 unalignedSize = static_cast<uint32>(ss->PropertiesSizeField());
 			if (unalignedSize == 0u)
 				return nullptr;
@@ -800,17 +811,17 @@ namespace AsaApi
 			if (!obj)
 				return;
 
-			if (UScriptStruct* ss = T::StaticStruct())
+			if (UScriptStruct* ss = FindScriptStruct<T>())
 				ss->DestroyStruct(obj, 1);
 
 			FMemory::Free(obj);
 		}
 
 		/**
-		* \brief Runs a command that is not logged anywhere
-		* \param _this Player controller
-		* \param Command Command to run
-		*/
+		 * \brief Runs a command that is not logged anywhere
+		 * \param _this Player controller
+		 * \param Command Command to run
+		 */
 		void RunHiddenCommand(AShooterPlayerController* _this, FString* Command)
 		{
 			FString result;
@@ -820,19 +831,19 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Gets the current messaging manager for the plugin, without casting
-		* \return MessagingManager
-		*/
+		 * \brief Gets the current messaging manager for the plugin, without casting
+		 * \return MessagingManager
+		 */
 		FORCEINLINE std::shared_ptr<MessagingManager> GetMessagingManager() const
 		{
 			return GetMessagingManagerInternal(GetDllName());
 		}
 
 		/**
-		* \brief Gets the current messaging manager for the plugin
-		* \tparam T MessagingManager type
-		* \return MessagingManager as T
-		*/
+		 * \brief Gets the current messaging manager for the plugin
+		 * \tparam T MessagingManager type
+		 * \return MessagingManager as T
+		 */
 		template <class T>
 		FORCEINLINE std::shared_ptr<T> GetMessagingManagerCasted() const
 		{
@@ -841,9 +852,9 @@ namespace AsaApi
 		}
 
 		/**
-		* \brief Sets the messaging manager for the current plugin
-		* \tparam T MessagingManager type
-		*/
+		 * \brief Sets the messaging manager for the current plugin
+		 * \tparam T MessagingManager type
+		 */
 		template <class T>
 		void SetMessagingManager()
 		{

@@ -7,14 +7,24 @@
 #include "../IBaseApi.h"
 #include "../Ark/ArkBaseApi.h"
 
+#include <array>
 #include <atomic>
+#include <chrono>
+#include <exception>
 #include <fstream>
 #include <intrin.h>
+#include <memory>
 #include <mutex>
 #include <optional>
 #include <sstream>
+#include <thread>
 #include <unordered_map>
 #include <variant>
+#include <wincrypt.h>
+
+#include <openssl/err.h>
+#include <openssl/ssl.h>
+#include <openssl/x509.h>
 
 #include "json.hpp"
 
@@ -22,7 +32,9 @@
 #include "Poco/URI.h"
 #include "Poco/Exception.h"
 #include "Poco/SharedPtr.h"
+#include "Poco/String.h"
 #include "Poco/Net/SSLManager.h"
+#include "Poco/Net/NetSSL.h"
 #include <Poco/Net/InvalidCertificateHandler.h>
 #include <Poco/Net/RejectCertificateHandler.h>
 #include "Poco/Net/HTTPSClientSession.h"
@@ -41,13 +53,214 @@
 namespace API
 {
 	namespace {
+		constexpr std::size_t MaxUtilityRedirects = 5;
+
+		std::size_t AddWindowsRootStoreToContext(SSL_CTX* sslContext, DWORD storeLocation)
+		{
+			HCERTSTORE certificateStore = CertOpenStore(
+				CERT_STORE_PROV_SYSTEM_W,
+				0,
+				0,
+				storeLocation | CERT_STORE_OPEN_EXISTING_FLAG | CERT_STORE_READONLY_FLAG,
+				L"ROOT");
+			if (certificateStore == nullptr)
+				return 0;
+
+			X509_STORE* opensslStore = SSL_CTX_get_cert_store(sslContext);
+			std::size_t certificatesAdded = 0;
+			PCCERT_CONTEXT certificate = nullptr;
+			while ((certificate = CertEnumCertificatesInStore(certificateStore, certificate)) != nullptr)
+			{
+				const unsigned char* encodedCertificate = certificate->pbCertEncoded;
+				X509* opensslCertificate = d2i_X509(
+					nullptr, &encodedCertificate, static_cast<long>(certificate->cbCertEncoded));
+				if (opensslCertificate == nullptr)
+				{
+					ERR_clear_error();
+					continue;
+				}
+
+				if (X509_STORE_add_cert(opensslStore, opensslCertificate) == 1)
+					++certificatesAdded;
+				else
+					ERR_clear_error(); // Duplicate roots are expected across Windows stores.
+				X509_free(opensslCertificate);
+			}
+
+			CertCloseStore(certificateStore, 0);
+			return certificatesAdded;
+		}
+
+		void LoadWindowsTrustedRoots(SSL_CTX* sslContext)
+		{
+			const std::size_t rootsLoaded =
+				AddWindowsRootStoreToContext(sslContext, CERT_SYSTEM_STORE_LOCAL_MACHINE)
+				+ AddWindowsRootStoreToContext(sslContext, CERT_SYSTEM_STORE_CURRENT_USER);
+			if (rootsLoaded == 0)
+				throw std::runtime_error("Unable to load trusted certificates from the Windows ROOT stores");
+		}
+
+		class SSLRuntime final
+		{
+		public:
+			SSLRuntime()
+			{
+				Poco::Net::initializeSSL();
+			}
+
+			~SSLRuntime()
+			{
+				Poco::Net::uninitializeSSL();
+			}
+
+			SSLRuntime(const SSLRuntime&) = delete;
+			SSLRuntime& operator=(const SSLRuntime&) = delete;
+		};
+
+		class VerifiedTLSContext final
+		{
+		public:
+			VerifiedTLSContext()
+			{
+				Poco::Net::Context::Params params;
+				params.verificationMode = Poco::Net::Context::VERIFY_STRICT;
+				params.loadDefaultCAs = false;
+
+				context_ = new Poco::Net::Context(Poco::Net::Context::TLS_CLIENT_USE, params);
+				LoadWindowsTrustedRoots(context_->sslContext());
+				Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> certificateHandler =
+					new Poco::Net::RejectCertificateHandler(false);
+				context_->setInvalidCertificateHandler(certificateHandler);
+			}
+
+			Poco::Net::Context::Ptr GetContext() const
+			{
+				return context_;
+			}
+
+			VerifiedTLSContext(const VerifiedTLSContext&) = delete;
+			VerifiedTLSContext& operator=(const VerifiedTLSContext&) = delete;
+
+		private:
+			// Members are destroyed in reverse order, so the context is released before SSL is uninitialized.
+			SSLRuntime sslRuntime_;
+			Poco::Net::Context::Ptr context_;
+		};
+
+		Poco::Net::Context::Ptr GetVerifiedTLSContext()
+		{
+			static VerifiedTLSContext verifiedContext;
+			return verifiedContext.GetContext();
+		}
+
+		bool IsHTTPS(const Poco::URI& uri)
+		{
+			return Poco::icompare(uri.getScheme(), "https") == 0;
+		}
+
+		bool IsSupportedHTTPURI(const Poco::URI& uri)
+		{
+			return !uri.getHost().empty()
+				&& (IsHTTPS(uri) || Poco::icompare(uri.getScheme(), "http") == 0);
+		}
+
+		bool IsRedirectStatus(Poco::Net::HTTPResponse::HTTPStatus status)
+		{
+			return status == Poco::Net::HTTPResponse::HTTP_MOVED_PERMANENTLY
+				|| status == Poco::Net::HTTPResponse::HTTP_FOUND
+				|| status == Poco::Net::HTTPResponse::HTTP_SEE_OTHER
+				|| status == Poco::Net::HTTPResponse::HTTP_TEMPORARY_REDIRECT
+				|| status == Poco::Net::HTTPResponse::HTTP_PERMANENT_REDIRECT;
+		}
+
+		bool IsSameOrigin(const Poco::URI& lhs, const Poco::URI& rhs)
+		{
+			return Poco::icompare(lhs.getScheme(), rhs.getScheme()) == 0
+				&& Poco::icompare(lhs.getHost(), rhs.getHost()) == 0
+				&& lhs.getPort() == rhs.getPort();
+		}
+
+		bool IsSensitiveHeader(const std::string& name)
+		{
+			return Poco::icompare(name, "Authorization") == 0
+				|| Poco::icompare(name, "Proxy-Authorization") == 0
+				|| Poco::icompare(name, "Cookie") == 0
+				|| Poco::icompare(name, "Cookie2") == 0
+				|| Poco::icompare(name, "Host") == 0;
+		}
+
+		void AddRequestHeaders(Poco::Net::HTTPRequest& request, const std::vector<std::string>& headers,
+			bool allowSensitiveHeaders)
+		{
+			for (const auto& header : headers)
+			{
+				const auto separator = header.find(':');
+				if (separator == std::string::npos || separator == 0)
+					continue;
+
+				const std::string name = Poco::trim(header.substr(0, separator));
+				if (name.empty() || (!allowSensitiveHeaders && IsSensitiveHeader(name)))
+					continue;
+
+				request.add(name, Poco::trim(header.substr(separator + 1)));
+			}
+		}
+
+		std::unique_ptr<Poco::Net::HTTPClientSession> CreateUtilitySession(const Poco::URI& uri)
+		{
+			std::unique_ptr<Poco::Net::HTTPClientSession> session;
+			if (IsHTTPS(uri))
+			{
+				session = std::make_unique<Poco::Net::HTTPSClientSession>(
+					uri.getHost(), uri.getPort(), GetVerifiedTLSContext());
+			}
+			else
+			{
+				session = std::make_unique<Poco::Net::HTTPClientSession>(uri.getHost(), uri.getPort());
+			}
+
+			session->setConnectTimeout(Poco::Timespan(15, 0));
+			session->setReceiveTimeout(Poco::Timespan(60, 0));
+			session->setSendTimeout(Poco::Timespan(15, 0));
+			return session;
+		}
+
+		std::string GetRequestTarget(const Poco::URI& uri)
+		{
+			const std::string target = uri.getPathAndQuery();
+			return target.empty() ? "/" : target;
+		}
+
+		bool ResolveRedirect(const Poco::URI& currentUri, const std::string& location, Poco::URI& nextUri)
+		{
+			if (location.empty())
+				return false;
+
+			nextUri = currentUri;
+			nextUri.resolve(location);
+
+			if (!IsSupportedHTTPURI(nextUri))
+				return false;
+
+			// Never allow a secure request to be downgraded by a redirect.
+			return !IsHTTPS(currentUri) || IsHTTPS(nextUri);
+		}
+
 		std::optional<HMODULE> TryGetModuleHandleFromAddress(void *address) 
 		{
     		HMODULE HModule = nullptr;
 			
-			if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | 	GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)address, &HModule)) 
+			if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | 	GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)address, &HModule))
 			{
-        	return HModule;
+        		return HModule;
+			}
+
+			MEMORY_BASIC_INFORMATION mbi{};
+			if (VirtualQuery(address, &mbi, sizeof(mbi)) == sizeof(mbi)
+				&& mbi.State == MEM_COMMIT
+				&& mbi.AllocationBase != nullptr)
+			{
+				return reinterpret_cast<HMODULE>(mbi.AllocationBase);
 			}
 
     		return std::nullopt;
@@ -749,70 +962,240 @@ namespace API
 
 	// --- UTILITY ---
 
-	bool Requests::DownloadFile(const std::string& url, const std::string& localPath, std::vector<std::string> headers)
+	bool Requests::GetFileLastModified(const std::string& url, std::string& lastModified)
 	{
-		Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
-		Poco::Net::HTTPClientSession* session = nullptr;
+		lastModified.clear();
 
 		try
 		{
-			Poco::Net::initializeSSL();
-			Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> ptrCert = new Poco::Net::RejectCertificateHandler(false);
-
-			Poco::Net::Context::Ptr ptrContext = new Poco::Net::Context(Poco::Net::Context::TLS_CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_NONE, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
-
-			Poco::Net::SSLManager::instance().initializeClient(0, ptrCert, ptrContext);
-
-			Poco::URI uri(url);
-
-			const std::string& path(uri.getPathAndQuery());
-
-			if (uri.getScheme() == "https")
-				session = new Poco::Net::HTTPSClientSession(uri.getHost(), uri.getPort());
-			else
-				session = new Poco::Net::HTTPClientSession(uri.getHost(), uri.getPort());
-
-			Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, path, Poco::Net::HTTPMessage::HTTP_1_1);
-
-			session->sendRequest(request);
-			std::istream& rs = session->receiveResponse(response);
-			if (response.getStatus() == Poco::Net::HTTPResponse::HTTP_OK)
+			Poco::URI currentUri(url);
+			if (!IsSupportedHTTPURI(currentUri))
 			{
-				std::ofstream outFile(localPath, std::ios::binary);
-				if (!outFile)
+				Log::GetLog()->error("HTTP HEAD request rejected an unsupported or invalid URL");
+				return false;
+			}
+
+			const auto requestDeadline = std::chrono::steady_clock::now() + std::chrono::minutes(1);
+			for (std::size_t redirectCount = 0;; ++redirectCount)
+			{
+				if (std::chrono::steady_clock::now() >= requestDeadline)
 				{
-					Log::GetLog()->error("Writing the file '{}' failed", localPath);
-					delete session;
-					session = nullptr;
+					throw Poco::TimeoutException("HTTP HEAD request exceeded the time limit");
+				}
+
+				auto session = CreateUtilitySession(currentUri);
+				session->setConnectTimeout(Poco::Timespan(15, 0));
+				session->setReceiveTimeout(Poco::Timespan(15, 0));
+				Poco::Net::HTTPRequest request(
+					Poco::Net::HTTPRequest::HTTP_HEAD, GetRequestTarget(currentUri), Poco::Net::HTTPMessage::HTTP_1_1);
+				session->sendRequest(request);
+
+				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+				std::istream& responseStream = session->receiveResponse(response);
+
+				if (IsRedirectStatus(response.getStatus()))
+				{
+					if (redirectCount >= MaxUtilityRedirects || !response.has("Location"))
+					{
+						Log::GetLog()->error("HTTP HEAD request to '{}' exceeded the redirect limit or omitted Location",
+							currentUri.getHost());
+						return false;
+					}
+
+					Poco::URI nextUri;
+					if (!ResolveRedirect(currentUri, response.get("Location"), nextUri))
+					{
+						Log::GetLog()->error("HTTP HEAD request to '{}' received an unsafe redirect", currentUri.getHost());
+						return false;
+					}
+
+					currentUri = nextUri;
+					continue;
+				}
+
+				if (response.getStatus() < 200 || response.getStatus() >= 300 || !response.has("Last-Modified"))
+					return false;
+
+				lastModified = response.get("Last-Modified");
+				return true;
+			}
+		}
+		catch (const Poco::Exception&)
+		{
+			throw;
+		}
+		catch (const std::exception& exc)
+		{
+			Log::GetLog()->error("HTTP HEAD request failed: {}", exc.what());
+			return false;
+		}
+	}
+
+	bool Requests::DownloadFile(
+		const std::string& url,
+		const std::string& localPath,
+		std::vector<std::string> headers)
+	{
+		return DownloadFile(url, localPath, std::move(headers), 0);
+	}
+
+	bool Requests::DownloadFile(
+		const std::string& url,
+		const std::string& localPath,
+		std::vector<std::string> headers,
+		std::uint64_t maximumBytes)
+	{
+		std::string ignoredLastModified;
+		return DownloadFile(url, localPath, std::move(headers), maximumBytes, ignoredLastModified);
+	}
+
+	bool Requests::DownloadFile(
+		const std::string& url,
+		const std::string& localPath,
+		std::vector<std::string> headers,
+		std::uint64_t maximumBytes,
+		std::string& lastModified)
+	{
+		lastModified.clear();
+
+		try
+		{
+			Poco::URI currentUri(url);
+			if (!IsSupportedHTTPURI(currentUri))
+			{
+				Log::GetLog()->error("HTTP download rejected an unsupported or invalid URL");
+				return false;
+			}
+
+			bool allowSensitiveHeaders = true;
+			const auto downloadDeadline = std::chrono::steady_clock::now() + std::chrono::minutes(10);
+			for (std::size_t redirectCount = 0;; ++redirectCount)
+			{
+				if (std::chrono::steady_clock::now() >= downloadDeadline)
+					throw Poco::TimeoutException("HTTP download exceeded the time limit");
+
+				auto session = CreateUtilitySession(currentUri);
+				Poco::Net::HTTPRequest request(
+					Poco::Net::HTTPRequest::HTTP_GET, GetRequestTarget(currentUri), Poco::Net::HTTPMessage::HTTP_1_1);
+				AddRequestHeaders(request, headers, allowSensitiveHeaders);
+				session->sendRequest(request);
+
+				Poco::Net::HTTPResponse response(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+				std::istream& responseStream = session->receiveResponse(response);
+
+				if (IsRedirectStatus(response.getStatus()))
+				{
+					if (redirectCount >= MaxUtilityRedirects || !response.has("Location"))
+					{
+						Log::GetLog()->error("HTTP download from '{}' exceeded the redirect limit or omitted Location",
+							currentUri.getHost());
+						return false;
+					}
+
+					Poco::URI nextUri;
+					if (!ResolveRedirect(currentUri, response.get("Location"), nextUri))
+					{
+						Log::GetLog()->error("HTTP download from '{}' received an unsafe redirect", currentUri.getHost());
+						return false;
+					}
+
+					if (!IsSameOrigin(currentUri, nextUri))
+						allowSensitiveHeaders = false;
+
+					currentUri = nextUri;
+					continue;
+				}
+
+				if (response.getStatus() != Poco::Net::HTTPResponse::HTTP_OK)
+					return false;
+				const std::string responseLastModified = response.has("Last-Modified")
+					? response.get("Last-Modified")
+					: std::string{};
+
+				const Poco::Int64 contentLength = response.getContentLength64();
+				if (maximumBytes > 0 && contentLength >= 0
+					&& static_cast<std::uint64_t>(contentLength) > maximumBytes)
+				{
+					Log::GetLog()->error("HTTP download from '{}' exceeds the configured size limit", currentUri.getHost());
 					return false;
 				}
 
-				Poco::StreamCopier::copyStream(rs, outFile);
-			}
-			else
-			{
-				Poco::NullOutputStream null;
-				Poco::StreamCopier::copyStream(rs, null);
-				delete session;
-				session = nullptr;
-				return false;
+				std::ofstream outFile(localPath, std::ios::binary | std::ios::trunc);
+				if (!outFile)
+				{
+					Log::GetLog()->error("Writing the file '{}' failed", localPath);
+					return false;
+				}
+
+				std::array<char, 64 * 1024> copyBuffer{};
+				std::uint64_t bytesWritten = 0;
+				while (responseStream)
+				{
+					if (std::chrono::steady_clock::now() >= downloadDeadline)
+					{
+						throw Poco::TimeoutException("HTTP download exceeded the time limit");
+					}
+
+					const int firstByte = responseStream.get();
+					if (firstByte == std::char_traits<char>::eof())
+						break;
+					if (std::chrono::steady_clock::now() >= downloadDeadline)
+						throw Poco::TimeoutException("HTTP download exceeded the time limit");
+
+					copyBuffer[0] = static_cast<char>(firstByte);
+					std::streamsize bytesRead = 1;
+					const std::streamsize bufferedBytes = responseStream.rdbuf()->in_avail();
+					if (bufferedBytes > 0)
+					{
+						const std::streamsize maximumAdditionalBytes =
+							static_cast<std::streamsize>(copyBuffer.size() - 1);
+						const std::streamsize additionalBytes =
+							bufferedBytes < maximumAdditionalBytes ? bufferedBytes : maximumAdditionalBytes;
+						responseStream.read(copyBuffer.data() + 1, additionalBytes);
+						bytesRead += responseStream.gcount();
+					}
+
+					const std::uint64_t chunkSize = static_cast<std::uint64_t>(bytesRead);
+					if (maximumBytes > 0 && (bytesWritten > maximumBytes || chunkSize > maximumBytes - bytesWritten))
+					{
+						Log::GetLog()->error("HTTP download from '{}' exceeded the configured size limit", currentUri.getHost());
+						return false;
+					}
+
+					outFile.write(copyBuffer.data(), bytesRead);
+					if (!outFile)
+						return false;
+					bytesWritten += chunkSize;
+				}
+
+				if (responseStream.bad())
+					return false;
+				if (contentLength >= 0 && bytesWritten != static_cast<std::uint64_t>(contentLength))
+				{
+					Log::GetLog()->error("HTTP download from '{}' ended before Content-Length bytes were received",
+						currentUri.getHost());
+					return false;
+				}
+				outFile.close();
+				if (!outFile)
+				{
+					Log::GetLog()->error("Writing the file '{}' failed", localPath);
+					return false;
+				}
+
+				lastModified = responseLastModified;
+				return true;
 			}
 		}
-		catch (const Poco::Exception& exc)
+		catch (const Poco::Exception&)
 		{
-			std::string host;
-			try { host = Poco::URI(url).getHost(); }
-			catch (...) { host = "<unknown host>"; }
-			Log::GetLog()->error("HTTP request to '{}' failed: {}", host, exc.displayText());
-
-			delete session;
-			session = nullptr;
+			throw;
+		}
+		catch (const std::exception& exc)
+		{
+			Log::GetLog()->error("HTTP download failed: {}", exc.what());
 			return false;
 		}
-
-		delete session;
-		session = nullptr;
-		return true;
 	}
 
 	void Requests::impl::Update() {

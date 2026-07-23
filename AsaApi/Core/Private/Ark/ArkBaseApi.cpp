@@ -1,5 +1,4 @@
 #include "ArkBaseApi.h"
-#include "..\Private\PDBReader\PDBReader.h"
 #include "..\PluginManager\PluginManager.h"
 #include "..\Private\Offsets.h"
 #include "..\Private\Cache.h"
@@ -9,14 +8,231 @@
 #include <Logger/Logger.h>
 #include "HooksImpl.h"
 #include "ApiUtils.h"
+#include <algorithm>
+#include <cctype>
 #include <filesystem>
+#include <fstream>
+#include <optional>
+#include <random>
+#include <vector>
 #include "Requests.h"
-#include <minizip/unzip.h>
+#include <Poco/Exception.h>
 #include <Windows.h>
+#include <minizip/unzip.h>
+#include <minizip/iowin32.h>
 
 namespace API
 {
-	constexpr float api_version = 1.22f;
+	namespace
+	{
+		constexpr std::size_t cache_metadata_version = 1;
+		constexpr std::size_t usable_cache_retry_attempts = 3;
+
+		struct CacheMetadata
+		{
+			std::string executableHash;
+			std::string lastModified;
+			std::string cacheDirectory;
+		};
+
+		struct LocalCacheState
+		{
+			std::optional<CacheMetadata> metadata;
+			std::filesystem::path cacheDirectory;
+			std::filesystem::path offsetsFile;
+			std::filesystem::path bitfieldsFile;
+			bool filesValid = false;
+			bool usable = false;
+		};
+
+		std::string Trim(std::string value)
+		{
+			const auto isNotWhitespace = [](unsigned char character)
+			{
+				return !std::isspace(character);
+			};
+
+			value.erase(value.begin(), std::find_if(value.begin(), value.end(), isNotWhitespace));
+			value.erase(std::find_if(value.rbegin(), value.rend(), isNotWhitespace).base(), value.end());
+			return value;
+		}
+
+		bool NormalizeSha256(std::string& value)
+		{
+			value = Trim(std::move(value));
+			if (value.size() != 64)
+				return false;
+
+			for (char& character : value)
+			{
+				const bool isDigit = character >= '0' && character <= '9';
+				const bool isLowerHex = character >= 'a' && character <= 'f';
+				const bool isUpperHex = character >= 'A' && character <= 'F';
+				if (!isDigit && !isLowerHex && !isUpperHex)
+					return false;
+
+				if (isUpperHex)
+					character = static_cast<char>(character - 'A' + 'a');
+			}
+
+			return true;
+		}
+
+		bool IsSafeGenerationDirectory(const std::string& value)
+		{
+			const std::filesystem::path relativePath(value);
+			if (relativePath.empty() || relativePath.is_absolute() || relativePath.has_root_name()
+				|| relativePath.has_root_directory() || relativePath.parent_path() != std::filesystem::path("generations"))
+			{
+				return false;
+			}
+
+			const std::string directoryName = relativePath.filename().string();
+			const std::size_t firstSeparator = directoryName.find('-');
+			const std::size_t secondSeparator = directoryName.find('-', firstSeparator + 1);
+			const std::size_t thirdSeparator = directoryName.find('-', secondSeparator + 1);
+			if (firstSeparator != 64 || secondSeparator == std::string::npos || thirdSeparator == std::string::npos
+				|| directoryName.find('-', thirdSeparator + 1) != std::string::npos)
+			{
+				return false;
+			}
+
+			std::string hash = directoryName.substr(0, firstSeparator);
+			const auto isDecimal = [](const std::string& part)
+			{
+				return !part.empty() && std::all_of(part.begin(), part.end(), [](unsigned char character)
+				{
+					return std::isdigit(character) != 0;
+				});
+			};
+
+			return NormalizeSha256(hash)
+				&& isDecimal(directoryName.substr(firstSeparator + 1, secondSeparator - firstSeparator - 1))
+				&& isDecimal(directoryName.substr(secondSeparator + 1, thirdSeparator - secondSeparator - 1))
+				&& isDecimal(directoryName.substr(thirdSeparator + 1));
+		}
+
+		std::optional<CacheMetadata> ParseCacheMetadata(const std::string& content)
+		{
+			try
+			{
+				const nlohmann::json metadataJson = nlohmann::json::parse(content);
+				if (metadataJson.is_object()
+					&& metadataJson.value("version", 0U) == cache_metadata_version)
+				{
+					CacheMetadata metadata{
+						metadataJson.value("executable_hash", std::string{}),
+						metadataJson.value("last_modified", std::string{}),
+						metadataJson.value("cache_directory", std::string{})
+					};
+
+					if (NormalizeSha256(metadata.executableHash)
+						&& (metadata.cacheDirectory.empty() || IsSafeGenerationDirectory(metadata.cacheDirectory)))
+					{
+						return metadata;
+					}
+				}
+			}
+			catch (const nlohmann::json::exception&)
+			{
+				// Raw hashes are accepted only when they match the current executable. Historical PDB hashes will not match.
+			}
+
+			std::string legacyHash = content;
+			if (NormalizeSha256(legacyHash))
+				return CacheMetadata{ std::move(legacyHash), {}, {} };
+
+			return std::nullopt;
+		}
+
+		std::string SerializeCacheMetadata(const CacheMetadata& metadata)
+		{
+			return nlohmann::json{
+				{ "version", cache_metadata_version },
+				{ "executable_hash", metadata.executableHash },
+				{ "last_modified", metadata.lastModified },
+				{ "cache_directory", metadata.cacheDirectory }
+			}.dump();
+		}
+
+		LocalCacheState InspectLocalCache(
+			const std::filesystem::path& cacheRoot,
+			const std::filesystem::path& keyCacheFile,
+			const std::string& executableHash)
+		{
+			LocalCacheState state;
+			state.cacheDirectory = cacheRoot;
+			state.metadata = ParseCacheMetadata(Cache::readFromFile(keyCacheFile));
+			if (!state.metadata || state.metadata->executableHash != executableHash)
+				return state;
+
+			if (!state.metadata->cacheDirectory.empty())
+				state.cacheDirectory /= std::filesystem::path(state.metadata->cacheDirectory);
+
+			state.offsetsFile = state.cacheDirectory / "cached_offsets.cache";
+			state.bitfieldsFile = state.cacheDirectory / "cached_bitfields.cache";
+			state.filesValid = Cache::validateSerializedMap<intptr_t>(state.offsetsFile)
+				&& Cache::validateSerializedMap<BitField>(state.bitfieldsFile);
+			state.usable = state.filesValid;
+			return state;
+		}
+
+		void RemoveFileNoThrow(const std::filesystem::path& path)
+		{
+			std::error_code error;
+			std::filesystem::remove(path, error);
+		}
+
+		void RemoveDirectoryNoThrow(const std::filesystem::path& path)
+		{
+			std::error_code error;
+			std::filesystem::remove_all(path, error);
+		}
+
+		bool FlushFileToDisk(const std::filesystem::path& path)
+		{
+			HANDLE fileHandle = CreateFileW(
+				path.c_str(),
+				GENERIC_WRITE,
+				FILE_SHARE_READ,
+				nullptr,
+				OPEN_EXISTING,
+				FILE_ATTRIBUTE_NORMAL,
+				nullptr);
+			if (fileHandle == INVALID_HANDLE_VALUE)
+				return false;
+
+			const bool succeeded = FlushFileBuffers(fileHandle) != FALSE;
+			CloseHandle(fileHandle);
+			return succeeded;
+		}
+
+		void CleanupOldCacheGenerations(
+			const std::filesystem::path& cacheRoot,
+			const std::filesystem::path& selectedCacheDirectory)
+		{
+			const std::filesystem::path generationsDirectory = cacheRoot / "generations";
+			const std::filesystem::path normalizedSelected = selectedCacheDirectory.lexically_normal();
+			std::error_code iteratorError;
+			for (std::filesystem::directory_iterator iterator(generationsDirectory, iteratorError), end;
+				!iteratorError && iterator != end; iterator.increment(iteratorError))
+			{
+				std::error_code statusError;
+				const auto status = iterator->symlink_status(statusError);
+				const std::string relativeName = "generations/" + iterator->path().filename().string();
+				if (statusError || status.type() != std::filesystem::file_type::directory
+					|| !IsSafeGenerationDirectory(relativeName))
+				{
+					continue;
+				}
+
+				if (iterator->path().lexically_normal() != normalizedSelected)
+					RemoveDirectoryNoThrow(iterator->path());
+			}
+		}
+	}
+
+	constexpr float api_version = 2.02f;
 
 	ArkBaseApi::ArkBaseApi()
 		: commands_(std::make_unique<AsaApi::Commands>()),
@@ -38,39 +254,35 @@ namespace API
 		Log::GetLog()->info("Website: https://ark-server-api.com");
 		Log::GetLog()->info("Loading...\n");
 
-		PdbReader pdb_reader;
-
 		std::unordered_map<std::string, intptr_t> offsets_dump;
 		std::unordered_map<std::string, BitField> bitfields_dump;
+		std::optional<CacheMetadata> pendingCacheMetadata;
+		fs::path pendingKeyCacheFile;
+		fs::path pendingCacheDirectory;
+		fs::path activeCacheRoot;
+		fs::path activeCacheDirectory;
 
 		try
 		{
 			TCHAR buffer[MAX_PATH];
-			GetModuleFileName(NULL, buffer, sizeof(buffer));
+			const DWORD executablePathLength = GetModuleFileName(nullptr, buffer, static_cast<DWORD>(std::size(buffer)));
+			if (executablePathLength == 0 || executablePathLength >= std::size(buffer))
+				throw std::runtime_error("Unable to resolve the server executable path");
+
 			fs::path exe_path = std::filesystem::path(buffer).parent_path();
+			const fs::path executableFile = exe_path / "ArkAscendedServer.exe";
+			const fs::path arkApiDir = exe_path / ArkBaseApi::GetApiName();
+			const fs::path cacheRoot = arkApiDir / "Cache";
+			const fs::path keyCacheFile = cacheRoot / "cached_key.cache";
 
-			const fs::path filepath = fs::path(exe_path).append("ArkAscendedServer.pdb");
+			fs::create_directories(arkApiDir / "Plugins");
+			fs::create_directories(cacheRoot);
 
-			if (!fs::exists(fs::path(exe_path).append(ArkBaseApi::GetApiName())))
-				fs::create_directory(fs::path(exe_path).append(ArkBaseApi::GetApiName()));
+			const std::string fileHash = Cache::calculateSHA256(executableFile);
+			if (fileHash.empty())
+				return false;
 
-			if (!fs::exists(fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Plugins")))
-				fs::create_directory(fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Plugins"));
-
-			if (!fs::exists(fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache")))
-				fs::create_directory(fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache"));
-
-			const fs::path pdbIgnoreFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/pdbignores.txt");
-			const fs::path keyCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_key.cache");
-			const fs::path offsetsCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_offsets.cache");
-			const fs::path bitfieldsCacheFile = fs::path(exe_path).append(ArkBaseApi::GetApiName()+"/Cache/cached_bitfields.cache");
-			const fs::path offsetsCacheFilePlain = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Cache/cached_offsets.txt");
-			const std::string fileHash = Cache::calculateSHA256(filepath);
-			std::string storedHash = Cache::readFromFile(keyCacheFile);
-			std::unordered_set<std::string> pdbIgnoreSet = Cache::readFileIntoSet(pdbIgnoreFile);
 			const std::string defaultCDNUrl = "https://cdn.pelayori.com/cache/";
-
-			const fs::path arkApiDir = fs::path(exe_path).append(ArkBaseApi::GetApiName());
 
 			const DWORD dllFlags = LOAD_LIBRARY_SEARCH_APPLICATION_DIR |
 				LOAD_LIBRARY_SEARCH_DEFAULT_DIRS |
@@ -99,54 +311,249 @@ namespace API
 				Log::GetLog()->info("Added DLL search directory: {}", std::filesystem::path(w).string());
 			}
 
-			if (autoCacheConfig.value("Enable", true)
-				&& autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) != ""
-				&& (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile)))
+			const bool automaticCacheDownloadEnabled = autoCacheConfig.value("Enable", true);
+			std::string cacheDownloadUrl = autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl);
+			if (!cacheDownloadUrl.empty() && cacheDownloadUrl.back() != '/')
+				cacheDownloadUrl.push_back('/');
+			std::vector<std::string> cacheDownloadUrls = autoCacheConfig.value("DownloadCacheURLs", std::vector<std::string>{
+				"https://cdn.pelayori.com/cache/",
+				"https://cdn.shadowhunter.co.za/cache/",
+				"https://cdn.shadowhunter-systems.co.za/cache/"
+			});
+			for (std::string& url : cacheDownloadUrls)
 			{
-				const fs::path downloadFile = autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl) + fileHash + ".zip";
-				const fs::path localFile = fs::path(exe_path).append(ArkBaseApi::GetApiName() + "/Cache/" + fileHash + ".zip");
+				if (!url.empty() && url.back() != '/')
+					url.push_back('/');
+			}
+			cacheDownloadUrls.erase(std::remove(cacheDownloadUrls.begin(), cacheDownloadUrls.end(), cacheDownloadUrl), cacheDownloadUrls.end());
+			cacheDownloadUrls.insert(cacheDownloadUrls.begin(), cacheDownloadUrl);
 
-				if (ArkBaseApi::DownloadCacheFiles(downloadFile, localFile))
-					storedHash = Cache::readFromFile(keyCacheFile);
+			const auto retrySeed = static_cast<std::mt19937::result_type>(GetTickCount64())
+				^ static_cast<std::mt19937::result_type>(GetCurrentProcessId());
+			std::mt19937 randomGenerator(retrySeed);
+			std::uniform_int_distribution<DWORD> retryDelaySeconds(30, 60);
+
+			for (;;)
+			{
+				if (!pendingCacheDirectory.empty())
+					RemoveDirectoryNoThrow(pendingCacheDirectory);
+				pendingCacheMetadata.reset();
+				pendingKeyCacheFile.clear();
+				pendingCacheDirectory.clear();
+				LocalCacheState selectedCache;
+				if (automaticCacheDownloadEnabled && !cacheDownloadUrl.empty())
+				{
+					const std::string archiveName = fileHash + ".zip";
+					const fs::path localFile = cacheRoot / archiveName;
+					std::size_t failuresWithUsableCache = 0;
+					LocalCacheState localCache;
+					bool localCacheInspected = false;
+
+					for (;;)
+					{
+						if (!localCacheInspected || !localCache.usable)
+						{
+							Log::GetLog()->info("Checking for a verified local cache for {}", archiveName);
+							localCache = InspectLocalCache(cacheRoot, keyCacheFile, fileHash);
+							localCacheInspected = true;
+							CleanupOldCacheGenerations(cacheRoot, localCache.cacheDirectory);
+
+							if (localCache.usable)
+								Log::GetLog()->info("A verified local cache matches the current executable");
+							else
+								Log::GetLog()->info("No verified local cache matches the current executable");
+						}
+
+						std::string remoteTimestamp;
+						bool remoteTimestampAvailable = false;
+						bool shouldDownload = !localCache.usable;
+						int firstDownloadUrlIndex = 0;
+						if (localCache.usable)
+						{
+							Log::GetLog()->info(
+								"Checking {} for an updated cache archive (attempt {}/{})",
+								archiveName,
+								failuresWithUsableCache + 1,
+								usable_cache_retry_attempts);
+							for (int i = 0; i < cacheDownloadUrls.size(); i++)
+							{
+								firstDownloadUrlIndex = i;
+								try
+								{
+									remoteTimestampAvailable = Requests::GetFileLastModified(cacheDownloadUrls[i] + archiveName, remoteTimestamp);
+									break;
+								}
+								catch (const Poco::Exception& error)
+								{
+									Log::GetLog()->warn("Cache connection to {} failed: {}{}", cacheDownloadUrls[i], error.displayText(), i == (cacheDownloadUrls.size() - 1) ? "" : ". Retrying with another URL...");
+								}
+							}
+							if (remoteTimestampAvailable
+								&& localCache.metadata->lastModified == remoteTimestamp)
+							{
+								Log::GetLog()->info("The verified local cache is current");
+								selectedCache = std::move(localCache);
+								break;
+							}
+
+							if (!remoteTimestampAvailable)
+								Log::GetLog()->warn("Unable to check {} for updates", archiveName);
+							shouldDownload = remoteTimestampAvailable;
+						}
+
+						bool cacheAcquired = false;
+						if (shouldDownload)
+						{
+							Log::GetLog()->info("Downloading cache archive {}", archiveName);
+							for (int i = firstDownloadUrlIndex; i < cacheDownloadUrls.size(); i++)
+							{
+								fs::path extractedCacheDirectory;
+								std::string downloadedTimestamp;
+								try
+								{
+									if (!ArkBaseApi::DownloadCacheFiles(cacheDownloadUrls[i] + archiveName, localFile, extractedCacheDirectory, downloadedTimestamp))
+										break;
+								}
+								catch (const Poco::Exception& error)
+								{
+									Log::GetLog()->warn("Cache download from {} failed: {}{}", cacheDownloadUrls[i], error.displayText(), i == (cacheDownloadUrls.size() - 1) ? "" : ". Retrying with another URL...");
+									remoteTimestampAvailable = false;
+									continue;
+								}
+
+								std::error_code relativePathError;
+								const fs::path relativeCacheDirectory = fs::relative(
+									extractedCacheDirectory, cacheRoot, relativePathError);
+								const std::string relativeCacheDirectoryString = relativeCacheDirectory.generic_string();
+								const CacheMetadata newMetadata{
+									fileHash,
+									!downloadedTimestamp.empty()
+										? downloadedTimestamp
+										: (remoteTimestampAvailable ? remoteTimestamp : std::string{}),
+									relativeCacheDirectoryString
+								};
+
+								if (!relativePathError && IsSafeGenerationDirectory(relativeCacheDirectoryString))
+								{
+									selectedCache.metadata = newMetadata;
+									selectedCache.cacheDirectory = extractedCacheDirectory;
+									selectedCache.offsetsFile = extractedCacheDirectory / "cached_offsets.cache";
+									selectedCache.bitfieldsFile = extractedCacheDirectory / "cached_bitfields.cache";
+									selectedCache.filesValid = true;
+									selectedCache.usable = true;
+									pendingCacheMetadata = newMetadata;
+									pendingKeyCacheFile = keyCacheFile;
+									pendingCacheDirectory = extractedCacheDirectory;
+									cacheAcquired = true;
+								}
+
+								if (!cacheAcquired)
+									RemoveDirectoryNoThrow(extractedCacheDirectory);
+								break;
+							}
+						}
+
+						RemoveFileNoThrow(localFile);
+						if (cacheAcquired)
+							break;
+
+						if (localCache.usable)
+						{
+							++failuresWithUsableCache;
+							if (failuresWithUsableCache >= usable_cache_retry_attempts)
+							{
+								Log::GetLog()->warn(
+									"Cache refresh failed after {} attempts. Continuing with the verified local cache.",
+									failuresWithUsableCache);
+								selectedCache = std::move(localCache);
+								break;
+							}
+						}
+						else
+						{
+							failuresWithUsableCache = 0;
+							localCacheInspected = false;
+						}
+
+						const DWORD retryDelay = retryDelaySeconds(randomGenerator);
+						Log::GetLog()->warn(
+							"Cache archive {} is unavailable or invalid. Retrying in {} seconds.",
+							archiveName,
+							retryDelay);
+						Sleep(retryDelay * 1000);
+					}
+				}
 				else
-					Log::GetLog()->warn("Ooops you are early, the cache has not finished cooking yet! Cache files usually take 10 minutes to be ready after an update. If more time has passed please contact developers.");
+				{
+					for (;;)
+					{
+						selectedCache = InspectLocalCache(cacheRoot, keyCacheFile, fileHash);
+						if (selectedCache.usable)
+							break;
 
-				if (fs::exists(localFile))
-					fs::remove(localFile);
-			}
+						const DWORD retryDelay = retryDelaySeconds(randomGenerator);
+						Log::GetLog()->critical(
+							"Automatic cache download is disabled and no verified cache matches this executable. "
+							"Checking again in {} seconds.",
+							retryDelay);
+						Sleep(retryDelay * 1000);
+					}
+				}
 
-			if (fileHash != storedHash || !fs::exists(offsetsCacheFile) || !fs::exists(bitfieldsCacheFile))
-			{
-				Log::GetLog()->info("Cache refresh required this will take a few seconds to complete");
-				pdb_reader.Read(filepath, &offsets_dump, &bitfields_dump, pdbIgnoreSet);
-
-				Log::GetLog()->info("Caching offsets for faster loading next time");
-				Cache::serializeMap(offsets_dump, offsetsCacheFile);
-
-				Log::GetLog()->info("Caching bitfields for faster loading next time");
-				Cache::serializeMap(bitfields_dump, bitfieldsCacheFile);
-				Cache::saveToFile(keyCacheFile, fileHash);
-				Cache::saveToFilePlain(offsetsCacheFilePlain, offsets_dump);
-			}
-			else
-			{
-				Log::GetLog()->info("Cache is still valid loading existing cache");
 				Log::GetLog()->info("Reading cached offsets");
-				offsets_dump = Cache::deserializeMap<intptr_t>(offsetsCacheFile);
+				offsets_dump = Cache::deserializeMap<intptr_t>(selectedCache.offsetsFile);
 
 				Log::GetLog()->info("Reading cached bitfields");
-				bitfields_dump = Cache::deserializeMap<BitField>(bitfieldsCacheFile);
+				bitfields_dump = Cache::deserializeMap<BitField>(selectedCache.bitfieldsFile);
+
+				if (!offsets_dump.empty() && !bitfields_dump.empty())
+				{
+					activeCacheRoot = cacheRoot;
+					activeCacheDirectory = selectedCache.cacheDirectory;
+					break;
+				}
+
+				offsets_dump.clear();
+				bitfields_dump.clear();
+				const DWORD retryDelay = retryDelaySeconds(randomGenerator);
+				Log::GetLog()->critical(
+					"The selected cache became unreadable. Returning to cache acquisition in {} seconds.", retryDelay);
+				Sleep(retryDelay * 1000);
 			}
 		}
 		catch (const std::exception& error)
 		{
-			Log::GetLog()->critical("Failed to read pdb - {}", error.what());
+			if (!pendingCacheDirectory.empty())
+				RemoveDirectoryNoThrow(pendingCacheDirectory);
+			Log::GetLog()->critical("Failed to initialize cache - {}", error.what());
 			return false;
 		}
 
 		Offsets::Get().Init(move(offsets_dump), move(bitfields_dump));
 		Sleep(10);
 		AsaApi::InitHooks();
+
+		bool cacheMetadataCommitted = true;
+		if (pendingCacheMetadata)
+		{
+			cacheMetadataCommitted = Cache::saveToFile(
+				pendingKeyCacheFile, SerializeCacheMetadata(*pendingCacheMetadata));
+			if (!cacheMetadataCommitted)
+			{
+				RemoveDirectoryNoThrow(pendingCacheDirectory);
+				pendingCacheDirectory.clear();
+				Log::GetLog()->error(
+					"The new cache loaded successfully, but its metadata could not be committed. "
+					"Existing cache metadata was left unchanged, so acquisition will be retried on the next startup.");
+			}
+			else
+			{
+				pendingCacheDirectory.clear();
+			}
+		}
+
+		if (cacheMetadataCommitted)
+			CleanupOldCacheGenerations(activeCacheRoot, activeCacheDirectory);
 		Log::GetLog()->info("API was successfully loaded");
 		Log::GetLog()->info("-----------------------------------------------\n");
 
@@ -167,89 +574,204 @@ namespace API
 		return config;
 	}
 
-	bool ArkBaseApi::DownloadCacheFiles(const std::filesystem::path downloadFile, const std::filesystem::path localFile)
+	bool ArkBaseApi::DownloadCacheFiles(
+		const std::filesystem::path downloadFile,
+		const std::filesystem::path localFile,
+		std::filesystem::path& extractedCacheDirectory,
+		std::string& downloadedTimestamp)
 	{
-		if (API::Requests::DownloadFile(downloadFile.string(), localFile.string()))
-		{
-			std::string outputFolder = localFile.parent_path().string();
-			unzFile zf = unzOpen(localFile.string().c_str());
-			if (zf == nullptr)
-				return false;
-
-			unz_global_info globalInfo;
-			if (unzGetGlobalInfo(zf, &globalInfo) != UNZ_OK)
-			{
-				unzClose(zf);
-				return false;
-			}
-
-			char readBuffer[8192];
-
-			for (uLong i = 0; i < globalInfo.number_entry; ++i)
-			{
-				unz_file_info fileInfo;
-				char filename[256];
-				if (unzGetCurrentFileInfo(zf, &fileInfo, filename, sizeof(filename), NULL, 0, NULL, 0) != UNZ_OK)
-				{
-					unzClose(zf);
-					return false;
-				}
-
-				const size_t filenameLength = strlen(filename);
-				if (filename[filenameLength - 1] == '/')
-					continue;
-				else
-				{
-					if (unzOpenCurrentFile(zf) != UNZ_OK)
-					{
-						unzClose(zf);
-						return false;
-					}
-
-					std::string fullPath = outputFolder + "/" + filename;
-					std::ofstream out(fullPath, std::ios::binary);
-
-					if (!out) 
-					{
-						unzCloseCurrentFile(zf);
-						unzClose(zf);
-						return false;
-					}
-
-					int bytesRead;
-					do {
-						bytesRead = unzReadCurrentFile(zf, readBuffer, sizeof(readBuffer));
-						if (bytesRead < 0) 
-						{
-							unzCloseCurrentFile(zf);
-							unzClose(zf);
-							return false;
-						}
-
-						if (bytesRead > 0)
-							out.write(readBuffer, bytesRead);
-					} while (bytesRead > 0);
-
-					unzCloseCurrentFile(zf);
-					out.close();
-				}
-
-				if ((i + 1) < globalInfo.number_entry)
-				{
-					if (unzGoToNextFile(zf) != UNZ_OK)
-					{
-						unzClose(zf);
-						return false;
-					}
-				}
-			}
-
-			unzClose(zf);
-		}
-		else
+		namespace fs = std::filesystem;
+		extractedCacheDirectory.clear();
+		downloadedTimestamp.clear();
+		constexpr std::uint64_t maximumArchiveDownloadSize = 768ULL * 1024ULL * 1024ULL;
+		if (!API::Requests::DownloadFile(
+			downloadFile.string(), localFile.string(), {}, maximumArchiveDownloadSize, downloadedTimestamp))
 			return false;
 
+		const fs::path cacheRoot = localFile.parent_path();
+		const fs::path generationsDirectory = cacheRoot / "generations";
+		std::error_code directoryError;
+		fs::create_directories(generationsDirectory, directoryError);
+		if (directoryError)
+		{
+			Log::GetLog()->error("Unable to create cache generation directory: {}", directoryError.message());
+			return false;
+		}
+
+		fs::path stagingDirectory;
+		const std::string generationPrefix = localFile.stem().string() + "-"
+			+ std::to_string(GetCurrentProcessId()) + "-" + std::to_string(GetTickCount64());
+		for (unsigned int suffix = 0; suffix < 100; ++suffix)
+		{
+			const fs::path candidate = generationsDirectory / (generationPrefix + "-" + std::to_string(suffix));
+			std::error_code createError;
+			if (fs::create_directory(candidate, createError))
+			{
+				stagingDirectory = candidate;
+				break;
+			}
+			if (createError)
+				break;
+		}
+
+		if (stagingDirectory.empty())
+		{
+			Log::GetLog()->error("Unable to create a unique cache staging directory");
+			return false;
+		}
+
+		zlib_filefunc64_def fileFunctions{};
+		fill_win32_filefunc64W(&fileFunctions);
+		unzFile archive = unzOpen2_64(localFile.c_str(), &fileFunctions);
+		bool currentFileOpen = false;
+		auto failExtraction = [&]()
+		{
+			if (currentFileOpen)
+				unzCloseCurrentFile(archive);
+			if (archive != nullptr)
+				unzClose(archive);
+			RemoveDirectoryNoThrow(stagingDirectory);
+			return false;
+		};
+
+		if (archive == nullptr)
+			return failExtraction();
+
+		unz_global_info64 globalInfo{};
+		if (unzGetGlobalInfo64(archive, &globalInfo) != UNZ_OK || globalInfo.number_entry < 2
+			|| globalInfo.number_entry > 4
+			|| unzGoToFirstFile(archive) != UNZ_OK)
+		{
+			return failExtraction();
+		}
+
+		bool offsetsSeen = false;
+		bool bitfieldsSeen = false;
+		bool keySeen = false;
+		bool plainOffsetsSeen = false;
+		char readBuffer[8192];
+		constexpr ZPOS64_T maximumCacheEntrySize = 512ULL * 1024ULL * 1024ULL;
+		constexpr ZPOS64_T maximumTotalCacheSize = 768ULL * 1024ULL * 1024ULL;
+		ZPOS64_T totalCacheSize = 0;
+
+		for (ZPOS64_T index = 0; index < globalInfo.number_entry; ++index)
+		{
+			unz_file_info64 fileInfo{};
+			if (unzGetCurrentFileInfo64(archive, &fileInfo, nullptr, 0, nullptr, 0, nullptr, 0) != UNZ_OK
+				|| fileInfo.size_filename == 0 || fileInfo.size_filename > 1024)
+			{
+				return failExtraction();
+			}
+
+			std::vector<char> filenameBuffer(static_cast<std::size_t>(fileInfo.size_filename) + 1, '\0');
+			if (unzGetCurrentFileInfo64(
+				archive, &fileInfo, filenameBuffer.data(), static_cast<uLong>(filenameBuffer.size()),
+				nullptr, 0, nullptr, 0) != UNZ_OK)
+			{
+				return failExtraction();
+			}
+
+			const std::string entryName(filenameBuffer.data(), static_cast<std::size_t>(fileInfo.size_filename));
+			if (entryName.find('\0') != std::string::npos)
+				return failExtraction();
+
+			fs::path outputFile;
+			bool* entrySeen = nullptr;
+			if (entryName == "cached_offsets.cache")
+			{
+				outputFile = stagingDirectory / "cached_offsets.cache";
+				entrySeen = &offsetsSeen;
+			}
+			else if (entryName == "cached_bitfields.cache")
+			{
+				outputFile = stagingDirectory / "cached_bitfields.cache";
+				entrySeen = &bitfieldsSeen;
+			}
+			else if (entryName == "cached_key.cache")
+			{
+				if (keySeen)
+					return failExtraction();
+				keySeen = true;
+			}
+			else if (entryName == "cached_offsets.txt")
+			{
+				outputFile = stagingDirectory / "cached_offsets.txt";
+				entrySeen = &plainOffsetsSeen;
+			}
+			else
+			{
+				Log::GetLog()->error("Rejected unexpected cache archive entry: {}", entryName);
+				return failExtraction();
+			}
+
+			if (entrySeen != nullptr)
+			{
+				if (*entrySeen || fileInfo.uncompressed_size == 0
+					|| fileInfo.uncompressed_size > maximumCacheEntrySize
+					|| totalCacheSize > maximumTotalCacheSize - fileInfo.uncompressed_size)
+				{
+					return failExtraction();
+				}
+				*entrySeen = true;
+				totalCacheSize += fileInfo.uncompressed_size;
+
+				if (unzOpenCurrentFile(archive) != UNZ_OK)
+					return failExtraction();
+				currentFileOpen = true;
+
+				std::ofstream output(outputFile, std::ios::binary | std::ios::trunc);
+				if (!output.is_open())
+					return failExtraction();
+
+				ZPOS64_T bytesWritten = 0;
+				bool readSucceeded = true;
+				for (;;)
+				{
+					const int bytesRead = unzReadCurrentFile(archive, readBuffer, sizeof(readBuffer));
+					if (bytesRead < 0)
+					{
+						readSucceeded = false;
+						break;
+					}
+					if (bytesRead == 0)
+						break;
+
+					output.write(readBuffer, bytesRead);
+					if (!output)
+					{
+						readSucceeded = false;
+						break;
+					}
+					bytesWritten += static_cast<ZPOS64_T>(bytesRead);
+				}
+
+				output.flush();
+				const bool outputSucceeded = output.good();
+				output.close();
+				const int closeResult = unzCloseCurrentFile(archive);
+				currentFileOpen = false;
+				if (!readSucceeded || !outputSucceeded || !output || closeResult != UNZ_OK
+					|| bytesWritten != fileInfo.uncompressed_size || !FlushFileToDisk(outputFile))
+				{
+					return failExtraction();
+				}
+			}
+
+			if ((index + 1) < globalInfo.number_entry && unzGoToNextFile(archive) != UNZ_OK)
+				return failExtraction();
+		}
+
+		const int archiveCloseResult = unzClose(archive);
+		archive = nullptr;
+		if (archiveCloseResult != UNZ_OK || !offsetsSeen || !bitfieldsSeen
+			|| !Cache::validateSerializedMap<intptr_t>(stagingDirectory / "cached_offsets.cache")
+			|| !Cache::validateSerializedMap<BitField>(stagingDirectory / "cached_bitfields.cache"))
+		{
+			return failExtraction();
+		}
+
 		Log::GetLog()->info("Cache files downloaded and processed successfully");
+		extractedCacheDirectory = stagingDirectory;
 		return true;
 	}
 

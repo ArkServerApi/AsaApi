@@ -2966,7 +2966,7 @@ private:
 			AllocatorResizeAllocation(ArrayNum, ArrayMax);
 		}
 	}
-	FORCENOINLINE void ResizeForCopy(SizeType NewMax, SizeType PrevMax)
+	FORCEINLINE void ResizeForCopy(SizeType NewMax, SizeType PrevMax)
 	{
 		if (NewMax)
 		{

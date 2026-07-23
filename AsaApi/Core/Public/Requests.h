@@ -309,7 +309,28 @@ namespace API
 		 * \param headers Optional HTTP headers to include in the download request
 		 * \return `true` if the file was successfully downloaded, `false` otherwise
 		 */
-		static bool DownloadFile(const std::string& url, const std::string& localPath, std::vector<std::string> headers = {});
+		static bool DownloadFile(
+			const std::string& url,
+			const std::string& localPath,
+			std::vector<std::string> headers = {});
+
+		static bool DownloadFile(
+			const std::string& url,
+			const std::string& localPath,
+			std::vector<std::string> headers,
+			std::uint64_t maximumBytes);
+
+		static bool DownloadFile(
+			const std::string& url,
+			const std::string& localPath,
+			std::vector<std::string> headers,
+			std::uint64_t maximumBytes,
+			std::string& lastModified);
+
+		/**
+		 * \brief Sends a HEAD request and returns the RFC 1123 Last-Modified header.
+		 */
+		ARK_API static bool GetFileLastModified(const std::string& url, std::string& lastModified);
 
 		// ! --- DEPRECATED ---
 		// NOTE: These functions are deprecated. They are intentionally left in place to maintain backward compatibility 

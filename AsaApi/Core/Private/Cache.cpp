@@ -2,6 +2,7 @@
 
 #include "Cache.h"
 
+#include <array>
 #include <unordered_map>
 #include <string>
 #include <cstdint>
@@ -18,14 +19,6 @@ namespace Cache
 			return "";
 		}
 
-		const auto fileSize = std::filesystem::file_size(filename);
-		std::vector<char> buffer(fileSize);
-
-		if (!file.read(buffer.data(), fileSize)) {
-			Log::GetLog()->error("Error reading file for SHA-256 calculation: " + filename.string());
-			return "";
-		}
-
 		std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mdctx(EVP_MD_CTX_new(), &EVP_MD_CTX_free);
 		if (mdctx == nullptr) {
 			Log::GetLog()->error("Error creating EVP_MD_CTX");
@@ -37,8 +30,21 @@ namespace Cache
 			return "";
 		}
 
-		if (EVP_DigestUpdate(mdctx.get(), buffer.data(), fileSize) != 1) {
-			Log::GetLog()->error("Error updating SHA-256 context");
+		std::array<char, 64 * 1024> buffer{};
+		while (file)
+		{
+			file.read(buffer.data(), static_cast<std::streamsize>(buffer.size()));
+			const std::streamsize bytesRead = file.gcount();
+			if (bytesRead > 0 && EVP_DigestUpdate(mdctx.get(), buffer.data(), static_cast<std::size_t>(bytesRead)) != 1)
+			{
+				Log::GetLog()->error("Error updating SHA-256 context");
+				return "";
+			}
+		}
+
+		if (!file.eof())
+		{
+			Log::GetLog()->error("Error reading file for SHA-256 calculation: " + filename.string());
 			return "";
 		}
 
@@ -60,16 +66,71 @@ namespace Cache
 		return result;
 	}
 
-	void saveToFile(const std::filesystem::path& filename, const std::string& content)
+	bool saveToFile(const std::filesystem::path& filename, const std::string& content)
 	{
-		std::ofstream file(filename, std::ios::binary | std::ios::trunc);
-		if (file.is_open()) {
-			file.write(content.data(), content.size());
-			file.close();
-			return;
+		std::filesystem::path temporaryFile = filename;
+		temporaryFile += ".tmp";
+
+		std::error_code error;
+		std::filesystem::remove(temporaryFile, error);
+
+		std::ofstream file(temporaryFile, std::ios::binary | std::ios::trunc);
+		if (!file.is_open())
+		{
+			Log::GetLog()->error("Error opening file for writing: " + temporaryFile.string());
+			return false;
 		}
 
-		Log::GetLog()->error("Error opening file for writing: " + filename.string());
+		file.write(content.data(), static_cast<std::streamsize>(content.size()));
+		file.flush();
+		file.close();
+		const bool writeSucceeded = !file.fail();
+
+		if (!writeSucceeded)
+		{
+			Log::GetLog()->error("Error writing file: " + temporaryFile.string());
+			std::filesystem::remove(temporaryFile, error);
+			return false;
+		}
+
+		HANDLE temporaryFileHandle = CreateFileW(
+			temporaryFile.c_str(),
+			GENERIC_WRITE,
+			FILE_SHARE_READ,
+			nullptr,
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL,
+			nullptr);
+		if (temporaryFileHandle == INVALID_HANDLE_VALUE)
+		{
+			Log::GetLog()->error("Error opening temporary metadata for flushing: " + temporaryFile.string());
+			std::filesystem::remove(temporaryFile, error);
+			return false;
+		}
+
+		const bool flushSucceeded = FlushFileBuffers(temporaryFileHandle) != FALSE;
+		const DWORD flushError = flushSucceeded ? ERROR_SUCCESS : GetLastError();
+		CloseHandle(temporaryFileHandle);
+		if (!flushSucceeded)
+		{
+			Log::GetLog()->error(
+				"Error flushing temporary metadata: " + temporaryFile.string() + " (" + std::to_string(flushError) + ")");
+			std::filesystem::remove(temporaryFile, error);
+			return false;
+		}
+
+		if (!MoveFileExW(
+			temporaryFile.c_str(),
+			filename.c_str(),
+			MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH))
+		{
+			Log::GetLog()->error(
+				"Error replacing file: " + filename.string() + " (" + std::to_string(GetLastError()) + ")");
+			std::filesystem::remove(temporaryFile, error);
+			return false;
+		}
+
+		return true;
 	}
 
 	std::string readFromFile(const std::filesystem::path& filename)
@@ -80,7 +141,8 @@ namespace Cache
 			file.seekg(0, std::ios::end);
 			content.resize(file.tellg());
 			file.seekg(0, std::ios::beg);
-			file.read(&content[0], content.size());
+			if (!content.empty())
+				file.read(content.data(), static_cast<std::streamsize>(content.size()));
 			return content;
 		}
 

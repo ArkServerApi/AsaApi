@@ -25,7 +25,11 @@ namespace API
 
 		nlohmann::json GetConfig();
 	private:
-		bool DownloadCacheFiles(const std::filesystem::path downloadFile, const std::filesystem::path localFile);
+		bool DownloadCacheFiles(
+			const std::filesystem::path downloadFile,
+			const std::filesystem::path localFile,
+			std::filesystem::path& extractedCacheDirectory,
+			std::string& downloadedTimestamp);
 
 		// Callbacks
 		static FString LoadPlugin(FString* cmd);

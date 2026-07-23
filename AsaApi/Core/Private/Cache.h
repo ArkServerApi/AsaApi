@@ -12,9 +12,63 @@ namespace Cache
 {
 	std::string calculateSHA256(const std::filesystem::path& filename);
 
-	void saveToFile(const std::filesystem::path& filename, const std::string& content);
+	bool saveToFile(const std::filesystem::path& filename, const std::string& content);
 
 	std::string readFromFile(const std::filesystem::path& filename);
+
+	template <typename T>
+	bool validateSerializedMap(const std::filesystem::path& filename)
+	{
+		std::error_code error;
+		if (!std::filesystem::is_regular_file(filename, error) || error)
+			return false;
+
+		const auto fileSize = std::filesystem::file_size(filename, error);
+		if (error || fileSize == 0)
+			return false;
+
+		std::ifstream file(filename, std::ios::binary);
+		if (!file.is_open())
+			return false;
+
+		constexpr std::uintmax_t maxKeySize = 1024 * 1024;
+		constexpr std::size_t maxEntryCount = 5'000'000;
+		std::uintmax_t bytesRemaining = fileSize;
+		std::size_t entryCount = 0;
+		std::unordered_set<std::string> keys;
+
+		while (bytesRemaining > 0)
+		{
+			if (bytesRemaining < sizeof(std::size_t))
+				return false;
+
+			std::size_t keySize = 0;
+			if (!file.read(reinterpret_cast<char*>(&keySize), sizeof(keySize)))
+				return false;
+			bytesRemaining -= sizeof(keySize);
+
+			if (keySize == 0 || keySize > maxKeySize || keySize > bytesRemaining)
+				return false;
+			bytesRemaining -= keySize;
+
+			if (bytesRemaining < sizeof(T))
+				return false;
+
+			std::string key(keySize, '\0');
+			if (!file.read(key.data(), static_cast<std::streamsize>(keySize)) || !keys.emplace(std::move(key)).second)
+				return false;
+
+			T value{};
+			if (!file.read(reinterpret_cast<char*>(&value), sizeof(T)))
+				return false;
+			bytesRemaining -= sizeof(T);
+			++entryCount;
+			if (entryCount > maxEntryCount)
+				return false;
+		}
+
+		return entryCount > 0;
+	}
 
 	template <typename T>
 	void serializeMap(const std::unordered_map<std::string, T>& data, const std::filesystem::path& filename)
@@ -41,41 +95,60 @@ namespace Cache
 	std::unordered_map<std::string, T> deserializeMap(const std::filesystem::path& filename)
 	{
 		std::unordered_map<std::string, T> data;
-		data.reserve(std::filesystem::file_size(filename) / sizeof(T));
-
-		if (!std::filesystem::exists(filename))
+		std::error_code error;
+		if (!std::filesystem::is_regular_file(filename, error) || error)
 		{
-			Log::GetLog()->error("File does not exist: " + filename.string());
+			Log::GetLog()->error("Cache map is missing or invalid: " + filename.string());
+			return data;
+		}
+
+		const auto fileSize = std::filesystem::file_size(filename, error);
+		if (error || fileSize == 0)
+		{
+			Log::GetLog()->error("Cache map is empty or unreadable: " + filename.string());
 			return data;
 		}
 
 		std::ifstream file(filename, std::ios::binary);
-		if (!file.is_open()) {
-			Log::GetLog()->error("Error opening file for writing: " + filename.string());
+		if (!file.is_open())
+		{
+			Log::GetLog()->error("Error opening cache map for reading: " + filename.string());
 			return data;
 		}
 
-		while (file) {
-			std::size_t keySize;
-			if (file.read(reinterpret_cast<char*>(&keySize), sizeof(keySize))) {
-				std::string key;
-				key.resize(keySize);
-				if (file.read(&key[0], keySize)) {
-					T value;
-					if (file.read(reinterpret_cast<char*>(&value), sizeof(T))) {
-						data[key] = value;
-					}
-					else {
-						Log::GetLog()->error("Error reading value");
-					}
-				}
-				else {
-					Log::GetLog()->error("Error reading key");
-				}
-			}
+		constexpr std::uintmax_t maxKeySize = 1024 * 1024;
+		constexpr std::size_t maxEntryCount = 5'000'000;
+		std::uintmax_t bytesRemaining = fileSize;
+		while (bytesRemaining > 0)
+		{
+			if (bytesRemaining < sizeof(std::size_t))
+				return {};
+
+			std::size_t keySize = 0;
+			if (!file.read(reinterpret_cast<char*>(&keySize), sizeof(keySize)))
+				return {};
+			bytesRemaining -= sizeof(keySize);
+			if (keySize == 0 || keySize > maxKeySize || keySize > bytesRemaining)
+				return {};
+			bytesRemaining -= keySize;
+			if (bytesRemaining < sizeof(T))
+				return {};
+
+			std::string key(keySize, '\0');
+			if (!file.read(key.data(), static_cast<std::streamsize>(keySize)))
+				return {};
+
+			T value{};
+			if (!file.read(reinterpret_cast<char*>(&value), sizeof(T)))
+				return {};
+			bytesRemaining -= sizeof(T);
+
+			if (!data.emplace(std::move(key), value).second)
+				return {};
+			if (data.size() > maxEntryCount)
+				return {};
 		}
 
-		file.close();
 		return data;
 	}
 

@@ -26,6 +26,12 @@
  */
 struct FGenericPlatformMath
 {
+	// Local type-safe constant matching UE_SMALL_NUMBER definition, declared to avoid header dependency on UnrealMathUtility.h.
+	static constexpr float SmallNumber = 1.e-8f;
+
+	// Local type-safe constant matching UE_DOUBLE_SMALL_NUMBER definition, declared to avoid header dependency on UnrealMathUtility.h.
+	static constexpr double DoubleSmallNumber = 1.e-8;
+
 	// load half (F16) to float
 	//https://gist.github.com/rygorous/2156668
 	static FORCEINLINE float LoadHalf(const uint16* Ptr)
@@ -504,10 +510,33 @@ struct FGenericPlatformMath
 	 *
 	 * This is forced to *NOT* inline so that divisions by constant Y does not get optimized in to an inverse scalar multiply,
 	 * which is not consistent with the intent nor with the vectorized version.
+	 * 
+	 * Note: Direct CRT fabsf/fabs is used instead of Abs() or FMath::Abs() to prevent 
+	 * early implicit template instantiation of Abs<T> before its specialization, 
+	 * as well as to avoid incomplete type issues with FMath.
 	 */
 
-	static FORCENOINLINE float Fmod(float X, float Y);
-	static FORCENOINLINE double Fmod(double X, double Y);
+	static FORCENOINLINE float Fmod(float X, float Y)
+	{
+		const float AbsY = fabsf(Y);
+		if (AbsY <= SmallNumber) // Note: this constant should match that used by VectorMod() implementations
+		{
+			return 0.0;
+		}
+
+		return fmodf(X, Y);
+	}
+
+	static FORCENOINLINE double Fmod(double X, double Y)
+	{
+		const double AbsY = fabs(Y);
+		if (AbsY <= DoubleSmallNumber) // Note: this constant should match that used by VectorMod() implementations
+		{
+			return 0.0;
+		}
+
+		return fmod(X, Y);
+	}
 	RESOLVE_FLOAT_AMBIGUITY_2_ARGS(Fmod);
 
 	static FORCEINLINE float Sin( float Value ) { return sinf(Value); }
