@@ -980,8 +980,7 @@ namespace API
 			{
 				if (std::chrono::steady_clock::now() >= requestDeadline)
 				{
-					Log::GetLog()->error("HTTP HEAD request exceeded the time limit");
-					return false;
+					throw Poco::TimeoutException("HTTP HEAD request exceeded the time limit");
 				}
 
 				auto session = CreateUtilitySession(currentUri);
@@ -1021,13 +1020,9 @@ namespace API
 				return true;
 			}
 		}
-		catch (const Poco::Exception& exc)
+		catch (const Poco::Exception&)
 		{
-			std::string host;
-			try { host = Poco::URI(url).getHost(); }
-			catch (...) { host = "<unknown host>"; }
-			Log::GetLog()->error("HTTP HEAD request to '{}' failed: {}", host, exc.displayText());
-			return false;
+			throw;
 		}
 		catch (const std::exception& exc)
 		{
@@ -1077,7 +1072,7 @@ namespace API
 			for (std::size_t redirectCount = 0;; ++redirectCount)
 			{
 				if (std::chrono::steady_clock::now() >= downloadDeadline)
-					return false;
+					throw Poco::TimeoutException("HTTP download exceeded the time limit");
 
 				auto session = CreateUtilitySession(currentUri);
 				Poco::Net::HTTPRequest request(
@@ -1138,15 +1133,14 @@ namespace API
 				{
 					if (std::chrono::steady_clock::now() >= downloadDeadline)
 					{
-						Log::GetLog()->error("HTTP download from '{}' exceeded the time limit", currentUri.getHost());
-						return false;
+						throw Poco::TimeoutException("HTTP download exceeded the time limit");
 					}
 
 					const int firstByte = responseStream.get();
 					if (firstByte == std::char_traits<char>::eof())
 						break;
 					if (std::chrono::steady_clock::now() >= downloadDeadline)
-						return false;
+						throw Poco::TimeoutException("HTTP download exceeded the time limit");
 
 					copyBuffer[0] = static_cast<char>(firstByte);
 					std::streamsize bytesRead = 1;
@@ -1193,13 +1187,9 @@ namespace API
 				return true;
 			}
 		}
-		catch (const Poco::Exception& exc)
+		catch (const Poco::Exception&)
 		{
-			std::string host;
-			try { host = Poco::URI(url).getHost(); }
-			catch (...) { host = "<unknown host>"; }
-			Log::GetLog()->error("HTTP request to '{}' failed: {}", host, exc.displayText());
-			return false;
+			throw;
 		}
 		catch (const std::exception& exc)
 		{

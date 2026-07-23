@@ -16,6 +16,7 @@
 #include <random>
 #include <vector>
 #include "Requests.h"
+#include <Poco/Exception.h>
 #include <Windows.h>
 #include <minizip/unzip.h>
 #include <minizip/iowin32.h>
@@ -314,6 +315,18 @@ namespace API
 			std::string cacheDownloadUrl = autoCacheConfig.value("DownloadCacheURL", defaultCDNUrl);
 			if (!cacheDownloadUrl.empty() && cacheDownloadUrl.back() != '/')
 				cacheDownloadUrl.push_back('/');
+			std::vector<std::string> cacheDownloadUrls = autoCacheConfig.value("DownloadCacheURLs", std::vector<std::string>{
+				"https://cdn.pelayori.com/cache/",
+				"https://cdn.shadowhunter.co.za/cache/",
+				"https://cdn.shadowhunter-systems.co.za/cache/"
+			});
+			for (std::string& url : cacheDownloadUrls)
+			{
+				if (!url.empty() && url.back() != '/')
+					url.push_back('/');
+			}
+			cacheDownloadUrls.erase(std::remove(cacheDownloadUrls.begin(), cacheDownloadUrls.end(), cacheDownloadUrl), cacheDownloadUrls.end());
+			cacheDownloadUrls.insert(cacheDownloadUrls.begin(), cacheDownloadUrl);
 
 			const auto retrySeed = static_cast<std::mt19937::result_type>(GetTickCount64())
 				^ static_cast<std::mt19937::result_type>(GetCurrentProcessId());
@@ -331,7 +344,6 @@ namespace API
 				if (automaticCacheDownloadEnabled && !cacheDownloadUrl.empty())
 				{
 					const std::string archiveName = fileHash + ".zip";
-					const std::string downloadFile = cacheDownloadUrl + archiveName;
 					const fs::path localFile = cacheRoot / archiveName;
 					std::size_t failuresWithUsableCache = 0;
 					LocalCacheState localCache;
@@ -355,6 +367,7 @@ namespace API
 						std::string remoteTimestamp;
 						bool remoteTimestampAvailable = false;
 						bool shouldDownload = !localCache.usable;
+						int firstDownloadUrlIndex = 0;
 						if (localCache.usable)
 						{
 							Log::GetLog()->info(
@@ -362,7 +375,19 @@ namespace API
 								archiveName,
 								failuresWithUsableCache + 1,
 								usable_cache_retry_attempts);
-							remoteTimestampAvailable = Requests::GetFileLastModified(downloadFile, remoteTimestamp);
+							for (int i = 0; i < cacheDownloadUrls.size(); i++)
+							{
+								firstDownloadUrlIndex = i;
+								try
+								{
+									remoteTimestampAvailable = Requests::GetFileLastModified(cacheDownloadUrls[i] + archiveName, remoteTimestamp);
+									break;
+								}
+								catch (const Poco::Exception& error)
+								{
+									Log::GetLog()->warn("Cache connection to {} failed: {}{}", cacheDownloadUrls[i], error.displayText(), i == (cacheDownloadUrls.size() - 1) ? "" : ". Retrying with another URL...");
+								}
+							}
 							if (remoteTimestampAvailable
 								&& localCache.metadata->lastModified == remoteTimestamp)
 							{
@@ -380,11 +405,22 @@ namespace API
 						if (shouldDownload)
 						{
 							Log::GetLog()->info("Downloading cache archive {}", archiveName);
-							fs::path extractedCacheDirectory;
-							std::string downloadedTimestamp;
-							if (ArkBaseApi::DownloadCacheFiles(
-								downloadFile, localFile, extractedCacheDirectory, downloadedTimestamp))
+							for (int i = firstDownloadUrlIndex; i < cacheDownloadUrls.size(); i++)
 							{
+								fs::path extractedCacheDirectory;
+								std::string downloadedTimestamp;
+								try
+								{
+									if (!ArkBaseApi::DownloadCacheFiles(cacheDownloadUrls[i] + archiveName, localFile, extractedCacheDirectory, downloadedTimestamp))
+										break;
+								}
+								catch (const Poco::Exception& error)
+								{
+									Log::GetLog()->warn("Cache download from {} failed: {}{}", cacheDownloadUrls[i], error.displayText(), i == (cacheDownloadUrls.size() - 1) ? "" : ". Retrying with another URL...");
+									remoteTimestampAvailable = false;
+									continue;
+								}
+
 								std::error_code relativePathError;
 								const fs::path relativeCacheDirectory = fs::relative(
 									extractedCacheDirectory, cacheRoot, relativePathError);
@@ -413,6 +449,7 @@ namespace API
 
 								if (!cacheAcquired)
 									RemoveDirectoryNoThrow(extractedCacheDirectory);
+								break;
 							}
 						}
 
