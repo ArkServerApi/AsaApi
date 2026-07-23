@@ -49,6 +49,12 @@ struct UVictoryCoreHighest : UObject
 	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UVictoryCoreHighest.StaticClass()"); }
 };
 
+struct FMaxItemQuantityOverride
+{
+	int MaxItemQuantity;
+	bool bIgnoreMultiplier;
+};
+
 struct FTrackedActorOverallContainer
 {
 	// Fields

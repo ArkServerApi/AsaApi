@@ -42,8 +42,7 @@ struct FPrimalChatMessage {
 		SenderIcon(nullptr),
 		UserId(""),
 		senderPlatform((unsigned char)1)
-	{
-	}
+	{}
 	//     FPrimalChatMessage* operator=(FPrimalChatMessage* __that) { return NativeCall<FPrimalChatMessage*, FPrimalChatMessage*>(this, "FPrimalChatMessage.operator=(FPrimalChatMessage&)", __that); }
 	// FUNCTION MISSING: FPrimalChatMessage.operator=(FPrimalChatMessage&)
 };
@@ -3562,6 +3561,8 @@ struct AShooterPlayerController : ABasePlayerController
 	void ClientShowPaintingUI(UObject* ObjectToPaint) { NativeCall<void, UObject*>(this, "AShooterPlayerController.ClientShowPaintingUI(UObject*)", ObjectToPaint); }
 	void ClientUnlockAchievement(const FString* AchievementID, bool savePlayerData) { NativeCall<void, const FString*, bool>(this, "AShooterPlayerController.ClientUnlockAchievement(FString&,bool)", AchievementID, savePlayerData); }
 	void ClientUnlockExplorerNote(int ExplorerNoteIndex, const bool forceShowExplorerNoteUI, bool savePlayerData) { NativeCall<void, int, const bool, bool>(this, "AShooterPlayerController.ClientUnlockExplorerNote(int,bool,bool)", ExplorerNoteIndex, forceShowExplorerNoteUI, savePlayerData); }
+	void ClientUnlockExplorerNote_V2(int ExplorerNoteIndex, const bool forceShowExplorerNoteUI, bool savePlayerData, bool actuallyForceShowExplorerNoteEvenWhenAlreadyUnlockedLocally) { NativeCall<void, int, const bool, bool, bool>(this, "AShooterPlayerController.ClientUnlockExplorerNote_V2(int,bool,bool,bool)", ExplorerNoteIndex, forceShowExplorerNoteUI, savePlayerData, actuallyForceShowExplorerNoteEvenWhenAlreadyUnlockedLocally); }
+	void ClientUnlockExplorerNote_V2_Implementation(int ExplorerNoteIndex, const bool forceShowExplorerNoteUI, bool savePlayerData, bool actuallyForceShowExplorerNoteEvenWhenAlreadyUnlockedLocally) { NativeCall<void, int, const bool, bool, bool>(this, "AShooterPlayerController.ClientUnlockExplorerNote_V2_Implementation(int,bool,bool,bool)", ExplorerNoteIndex, forceShowExplorerNoteUI, savePlayerData, actuallyForceShowExplorerNoteEvenWhenAlreadyUnlockedLocally); }
 	void ClientUpdateInventoryCraftQueue(UPrimalInventoryComponent* forInventory, const TArray<FItemCraftQueueEntry, TSizedDefaultAllocator<32> >* CraftQueueEntries) { NativeCall<void, UPrimalInventoryComponent*, const TArray<FItemCraftQueueEntry, TSizedDefaultAllocator<32> >*>(this, "AShooterPlayerController.ClientUpdateInventoryCraftQueue(UPrimalInventoryComponent*,TArray<FItemCraftQueueEntry,TSizedDefaultAllocator<32>>&)", forInventory, CraftQueueEntries); }
 	void IncrementStat(EPrimalGDKStat::Type StatToIncrement) { NativeCall<void, EPrimalGDKStat::Type>(this, "AShooterPlayerController.IncrementStat(EPrimalGDKStat::Type)", StatToIncrement); }
 	void MarkDinoListEntryWidgetFavoritePlayer(int ID) { NativeCall<void, int>(this, "AShooterPlayerController.MarkDinoListEntryWidgetFavoritePlayer(int)", ID); }
@@ -4964,6 +4965,7 @@ struct APrimalCharacter : ACharacter
 	float& ServerTargetCarriedYawField() { return *GetNativePointerField<float*>(this, "APrimalCharacter.ServerTargetCarriedYaw"); }
 	USoundBase*& NetDynamicMusicSoundField() { return *GetNativePointerField<USoundBase**>(this, "APrimalCharacter.NetDynamicMusicSound"); }
 	TWeakObjectPtr<APrimalDinoCharacter>& MountedDinoField() { return *GetNativePointerField<TWeakObjectPtr<APrimalDinoCharacter>*>(this, "APrimalCharacter.MountedDino"); }
+	TWeakObjectPtr<APrimalDinoCharacter>& SecondaryMountedDinoField() { return *GetNativePointerField<TWeakObjectPtr<APrimalDinoCharacter>*>(this, "APrimalCharacter.SecondaryMountedDino"); }
 	long double& MountedDinoTimeField() { return *GetNativePointerField<long double*>(this, "APrimalCharacter.MountedDinoTime"); }
 	TWeakObjectPtr<APrimalDinoCharacter>& PreviousMountedDinoField() { return *GetNativePointerField<TWeakObjectPtr<APrimalDinoCharacter>*>(this, "APrimalCharacter.PreviousMountedDino"); }
 	UE::Math::TVector<double>& LastForceFallCheckBaseLocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalCharacter.LastForceFallCheckBaseLocation"); }
@@ -10097,8 +10099,7 @@ struct FActorSpawnParameters
 		, SpawnCollisionHandlingOverride{ 0 }
 		, TransformScaleMethod(ESpawnActorScaleMethod::MultiplyWithRoot)
 		, ObjectFlags(EObjectFlags::RF_Transactional)
-	{
-	}
+	{}
 };
 
 struct ASaveGameActor : AActor

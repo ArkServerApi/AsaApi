@@ -359,7 +359,7 @@ struct FLocRot;
 struct FMassTeleportData {};
 struct FMatineeActorFinished;
 struct FMatineeActorStopped;
-struct FMaxItemQuantityOverride {};
+struct FMaxItemQuantityOverride;
 struct FMaxStatScaler;
 struct FMeleeHitInfo;
 struct FMemoryArchive;
