@@ -624,6 +624,21 @@ FORCEINLINE bool TRotator<T>::Equals(const TRotator<T>& R, T Tolerance) const
 }
 
 template<typename T>
+FORCEINLINE TVector<T> TRotator<T>::Vector() const
+{
+	// Remove winding and clamp to [-360, 360]
+	const T PitchNoWinding = FMath::Fmod(Pitch, (T)360.0);
+	const T YawNoWinding = FMath::Fmod(Yaw, (T)360.0);
+
+	T CP, SP, CY, SY;
+	FMath::SinCos(&SP, &CP, FMath::DegreesToRadians(PitchNoWinding));
+	FMath::SinCos(&SY, &CY, FMath::DegreesToRadians(YawNoWinding));
+	UE::Math::TVector<T> V = UE::Math::TVector<T>(CP * CY, CP * SY, SP);
+
+	return V;
+}
+
+template<typename T>
 FORCEINLINE TRotator<T> TRotator<T>::Add( T DeltaPitch, T DeltaYaw, T DeltaRoll )
 {
 	Yaw   += DeltaYaw;
