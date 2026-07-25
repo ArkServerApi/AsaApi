@@ -4446,7 +4446,7 @@ struct APawn : AActor
 	void SetCanAffectNavigationGeneration(bool bNewValue, bool bForceUpdate) { NativeCall<void, bool, bool>(this, "APawn.SetCanAffectNavigationGeneration(bool,bool)", bNewValue, bForceUpdate); }
 	bool CanBeBaseForCharacter(APawn* Pawn) { return NativeCall<bool, APawn*>(this, "APawn.CanBeBaseForCharacter(APawn*)", Pawn); }
 	bool IsLocallyControlled() { return NativeCall<bool>(this, "APawn.IsLocallyControlled()"); }
-	bool IsPlayerControlled() { return NativeCall<bool>(this, "APawn.IsPlayerControlled()"); }
+	bool IsPlayerControlled() { bool bPlayerControlled;  ProcessEvent(ClassField()->FindFunctionByName("IsPlayerControlled", EIncludeSuperFlag::IncludeSuper), &bPlayerControlled); return bPlayerControlled; }
 	bool IsBotControlled() { return NativeCall<bool>(this, "APawn.IsBotControlled()"); }
 	bool ReachedDesiredRotation() { return NativeCall<bool>(this, "APawn.ReachedDesiredRotation()"); }
 	float GetDefaultHalfHeight() { return NativeCall<float>(this, "APawn.GetDefaultHalfHeight()"); }
