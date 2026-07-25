@@ -1941,7 +1941,7 @@ struct APrimalTargetableActor : AActor
 	void PostInitializeComponents() { NativeCall<void>(this, "APrimalTargetableActor.PostInitializeComponents()"); }
 	void BeginPlay() { NativeCall<void>(this, "APrimalTargetableActor.BeginPlay()"); }
 	void FellOutOfWorld(const UDamageType* dmgType) { NativeCall<void, const UDamageType*>(this, "APrimalTargetableActor.FellOutOfWorld(UDamageType&)", dmgType); }
-	bool IsDead() { return NativeCall<bool>(this, "APrimalTargetableActor.IsDead()"); }
+	bool IsDead() { bool bDead;  ProcessEvent(ClassField()->FindFunctionByName("IsDead", EIncludeSuperFlag::IncludeSuper), &bDead); return bDead; }
 	void AdjustDamage(float* Damage, const FDamageEvent* DamageEvent, AController* EventInstigator, AActor* DamageCauser) { NativeCall<void, float*, const FDamageEvent*, AController*, AActor*>(this, "APrimalTargetableActor.AdjustDamage(float&,FDamageEvent&,AController*,AActor*)", Damage, DamageEvent, EventInstigator, DamageCauser); }
 	void TestAdjustDamage(float* Damage, const FDamageEvent* DamageEvent, AController* EventInstigator, AActor* DamageCauser) { NativeCall<void, float*, const FDamageEvent*, AController*, AActor*>(this, "APrimalTargetableActor.TestAdjustDamage(float&,FDamageEvent&,AController*,AActor*)", Damage, DamageEvent, EventInstigator, DamageCauser); }
 	float TakeDamage(float Damage, const FDamageEvent* DamageEvent, AController* EventInstigator, AActor* DamageCauser) { return NativeCall<float, float, const FDamageEvent*, AController*, AActor*>(this, "APrimalTargetableActor.TakeDamage(float,FDamageEvent&,AController*,AActor*)", Damage, DamageEvent, EventInstigator, DamageCauser); }
