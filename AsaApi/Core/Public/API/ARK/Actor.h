@@ -3753,7 +3753,7 @@ struct AShooterPlayerController : ABasePlayerController
 	void InitInputSystem() { NativeCall<void>(this, "AShooterPlayerController.InitInputSystem()"); }
 	void AddCheats(bool bForce) { NativeCall<void, bool>(this, "AShooterPlayerController.AddCheats(bool)", bForce); }
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "AShooterPlayerController.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
-	void EnemyInVisible(bool Invisible) { NativeCall<void, bool>(this, "AShooterPlayerController.EnemyInVisible(bool)", Invisible); }
+	//void EnemyInVisible(bool Invisible) { NativeCall<void, bool>(this, "AShooterPlayerController.EnemyInVisible(bool)", Invisible); }
 	void ServerRemovePassenger_Implementation() { NativeCall<void>(this, "AShooterPlayerController.ServerRemovePassenger_Implementation()"); }
 	void ClientTeamMessage_Implementation(APlayerState* SenderPlayerState, const FString* S, FName Type, float MsgLifeTime) { NativeCall<void, APlayerState*, const FString*, FName, float>(this, "AShooterPlayerController.ClientTeamMessage_Implementation(APlayerState*,FString&,FName,float)", SenderPlayerState, S, Type, MsgLifeTime); }
 	AShooterHUD* GetShooterHUD() { return NativeCall<AShooterHUD*>(this, "AShooterPlayerController.GetShooterHUD()"); }
@@ -5618,7 +5618,7 @@ struct APrimalCharacter : ACharacter
 	void StartForceSkelUpdate(float ForTime, bool bForceUpdateMesh, bool bServerOnly) { NativeCall<void, float, bool, bool>(this, "APrimalCharacter.StartForceSkelUpdate(float,bool,bool,bool)", ForTime, bForceUpdateMesh, bServerOnly); }
 	void EndForceSkelUpdate() { NativeCall<void>(this, "APrimalCharacter.EndForceSkelUpdate()"); }
 	void ForceMeshRelevant(float Duration) { NativeCall<void, float>(this, "APrimalCharacter.ForceMeshRelevant(float)", Duration); }
-	bool IsConscious() { return NativeCall<bool>(this, "APrimalCharacter.IsConscious()"); }
+	bool IsConscious() { return !bIsDead()() && !bIsSleeping()(); }
 	bool IsEncumbered() { return NativeCall<bool>(this, "APrimalCharacter.IsEncumbered()"); }
 	void Stasis() { NativeCall<void>(this, "APrimalCharacter.Stasis()"); }
 	void CheckBasedOnDino() { NativeCall<void>(this, "APrimalCharacter.CheckBasedOnDino()"); }
