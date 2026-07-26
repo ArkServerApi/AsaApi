@@ -9894,8 +9894,7 @@ struct APrimalDinoCharacter : APrimalCharacter
 
 	bool BPExtractEmbryo(struct APlayerController* ForPC, struct UPrimalItem** EmbryoItem, struct TSoftClassPtr<UPrimalItem>* FallbackGenericEmbryoItemTemplate) { return NativeCall<bool, struct APlayerController*, struct UPrimalItem**, struct TSoftClassPtr<UPrimalItem>*>(this, "APrimalDinoCharacter.BPExtractEmbryo(APlayerController*,UPrimalItem*&,TSoftClassPtr<UPrimalItem>)", ForPC, EmbryoItem, FallbackGenericEmbryoItemTemplate); }
 	void OnDinoStartled(UAnimMontage* StartledAnimPlayed, bool bFromAIController) { NativeCall<void, UAnimMontage*, bool>(this, "APrimalDinoCharacter.OnDinoStartled(UAnimMontage*,bool)", StartledAnimPlayed, bFromAIController); }
-	// bool IsCorruptedDino() { return NativeCall<bool>(this, "APrimalDinoCharacter.IsCorruptedDino()"); }
-	// FUNCTION MISSING: APrimalDinoCharacter.IsCorruptedDino()
+	bool IsCorruptedDino() { return bIsCorrupted()(); }
 	// float GetBabyAge() { return NativeCall<float>(this, "APrimalDinoCharacter.GetBabyAge()"); }
 	// FUNCTION MISSING: APrimalDinoCharacter.GetBabyAge()
 	// bool DontForceUpdateRateOptimizations() { return NativeCall<bool>(this, "APrimalDinoCharacter.DontForceUpdateRateOptimizations()"); }
