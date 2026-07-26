@@ -156,27 +156,40 @@ struct UPrimalItem : UObject
 {
 	// Fields
 
-	TSoftObjectPtr<USkeletalMesh>& CostumeDinoSaddleOverrideMeshField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "UPrimalItem.CostumeDinoSaddleOverrideMesh"); }
-	TSoftObjectPtr<USkeletalMesh>& CostumeDinoSaddleOverrideTorchMeshField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "UPrimalItem.CostumeDinoSaddleOverrideTorchMesh"); }
-	float& DinoAutoHealingThresholdPercentField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DinoAutoHealingThresholdPercent"); }
-	float& DinoAutoHealingUseTimeIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DinoAutoHealingUseTimeInterval"); }
-	int& ArkTributeVersionField() { return *GetNativePointerField<int*>(this, "UPrimalItem.ArkTributeVersion"); }
+	// TSoftObjectPtr<USkeletalMesh>& CostumeDinoSaddleOverrideMeshField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "UPrimalItem.CostumeDinoSaddleOverrideMesh"); }
+	// FIELD MISSING: UPrimalItem.CostumeDinoSaddleOverrideMesh
+	// TSoftObjectPtr<USkeletalMesh>& CostumeDinoSaddleOverrideTorchMeshField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "UPrimalItem.CostumeDinoSaddleOverrideTorchMesh"); }
+	// FIELD MISSING: UPrimalItem.CostumeDinoSaddleOverrideTorchMesh
+	// float& DinoAutoHealingThresholdPercentField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DinoAutoHealingThresholdPercent"); }
+	// FIELD MISSING: UPrimalItem.DinoAutoHealingThresholdPercent
+	// float& DinoAutoHealingUseTimeIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DinoAutoHealingUseTimeInterval"); }
+	// FIELD MISSING: UPrimalItem.DinoAutoHealingUseTimeInterval
+	// int& ArkTributeVersionField() { return *GetNativePointerField<int*>(this, "UPrimalItem.ArkTributeVersion"); }
+	// FIELD MISSING: UPrimalItem.ArkTributeVersion
 	TArray<TSoftClassPtr<AActor>, TSizedDefaultAllocator<32> >& EquipRequiresExplicitOwnerClassesField() { return *GetNativePointerField<TArray<TSoftClassPtr<AActor>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.EquipRequiresExplicitOwnerClasses"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& EquipRequiresExplicitOwnerTagsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.EquipRequiresExplicitOwnerTags"); }
 	TSoftClassPtr<APrimalBuff>& BuffToGiveOwnerWhenEquippedField() { return *GetNativePointerField<TSoftClassPtr<APrimalBuff>*>(this, "UPrimalItem.BuffToGiveOwnerWhenEquipped"); }
 	FString& BuffToGiveOwnerWhenEquipped_BlueprintPathField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.BuffToGiveOwnerWhenEquipped_BlueprintPath"); }
 	unsigned int& ExpirationTimeUTCField() { return *GetNativePointerField<unsigned int*>(this, "UPrimalItem.ExpirationTimeUTC"); }
-	FString& AbstractItemCraftingDescriptionField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.AbstractItemCraftingDescription"); }
+	// FString& AbstractItemCraftingDescriptionField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.AbstractItemCraftingDescription"); }
+	// FIELD MISSING: UPrimalItem.AbstractItemCraftingDescription
 	TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& ItemSkinUseOnItemClassesField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.ItemSkinUseOnItemClasses"); }
 	TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& AllowClassesToBeUsedAsParentSkinField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.AllowClassesToBeUsedAsParentSkin"); }
 	TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& ItemSkinPreventOnItemClassesField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.ItemSkinPreventOnItemClasses"); }
-	USoundBase*& ItemBrokenSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.ItemBrokenSound"); }
-	USoundCue*& UseItemSoundField() { return *GetNativePointerField<USoundCue**>(this, "UPrimalItem.UseItemSound"); }
-	USoundBase*& EquipSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.EquipSound"); }
-	USoundBase*& UnEquipSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.UnEquipSound"); }
-	USoundBase*& UsedOnOtherItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.UsedOnOtherItemSound"); }
-	USoundBase*& RemovedFromOtherItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.RemovedFromOtherItemSound"); }
-	float& RandomChanceToBeBlueprintField() { return *GetNativePointerField<float*>(this, "UPrimalItem.RandomChanceToBeBlueprint"); }
+	// USoundBase*& ItemBrokenSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.ItemBrokenSound"); }
+	// FIELD MISSING: UPrimalItem.ItemBrokenSound
+	// USoundCue*& UseItemSoundField() { return *GetNativePointerField<USoundCue**>(this, "UPrimalItem.UseItemSound"); }
+	// FIELD MISSING: UPrimalItem.UseItemSound
+	// USoundBase*& EquipSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.EquipSound"); }
+	// FIELD MISSING: UPrimalItem.EquipSound
+	// USoundBase*& UnEquipSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.UnEquipSound"); }
+	// FIELD MISSING: UPrimalItem.UnEquipSound
+	// USoundBase*& UsedOnOtherItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.UsedOnOtherItemSound"); }
+	// FIELD MISSING: UPrimalItem.UsedOnOtherItemSound
+	// USoundBase*& RemovedFromOtherItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.RemovedFromOtherItemSound"); }
+	// FIELD MISSING: UPrimalItem.RemovedFromOtherItemSound
+	// float& RandomChanceToBeBlueprintField() { return *GetNativePointerField<float*>(this, "UPrimalItem.RandomChanceToBeBlueprint"); }
+	// FIELD MISSING: UPrimalItem.RandomChanceToBeBlueprint
 	TArray<FActorClassAttachmentInfo, TSizedDefaultAllocator<32> >& ActorClassAttachmentInfosField() { return *GetNativePointerField<TArray<FActorClassAttachmentInfo, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.ActorClassAttachmentInfos"); }
 	TArray<FItemAttachmentInfo, TSizedDefaultAllocator<32> >*& ItemAttachmentInfosField() { return *GetNativePointerField<TArray<FItemAttachmentInfo, TSizedDefaultAllocator<32> >**>(this, "UPrimalItem.ItemAttachmentInfos"); }
 	TArray<FItemAttachmentInfo, TSizedDefaultAllocator<32> >& DynamicItemAttachmentInfosField() { return *GetNativePointerField<TArray<FItemAttachmentInfo, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.DynamicItemAttachmentInfos"); }
@@ -184,24 +197,41 @@ struct UPrimalItem : UObject
 	TEnumAsByte<enum EPrimalItemType::Type>& MyItemTypeField() { return *GetNativePointerField<TEnumAsByte<enum EPrimalItemType::Type>*>(this, "UPrimalItem.MyItemType"); }
 	TEnumAsByte<enum EPrimalConsumableType::Type>& MyConsumableTypeField() { return *GetNativePointerField<TEnumAsByte<enum EPrimalConsumableType::Type>*>(this, "UPrimalItem.MyConsumableType"); }
 	TEnumAsByte<enum EPrimalEquipmentType::Type>& MyEquipmentTypeField() { return *GetNativePointerField<TEnumAsByte<enum EPrimalEquipmentType::Type>*>(this, "UPrimalItem.MyEquipmentType"); }
-	int& ExtraItemCategoryFlagsField() { return *GetNativePointerField<int*>(this, "UPrimalItem.ExtraItemCategoryFlags"); }
-	float& ItemIconScaleField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ItemIconScale"); }
-	UE::Math::TVector<double>& BlockingShieldFPVTranslationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.BlockingShieldFPVTranslation"); }
-	UE::Math::TRotator<double>& BlockingShieldFPVRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "UPrimalItem.BlockingShieldFPVRotation"); }
-	float& ShieldBlockDamagePercentageField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ShieldBlockDamagePercentage"); }
-	float& ShieldDamageToDurabilityRatioField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ShieldDamageToDurabilityRatio"); }
-	UAnimMontage*& PlayAnimationOnUseField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.PlayAnimationOnUse"); }
-	UAnimMontage*& ShowAnimationMaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.ShowAnimationMale"); }
-	UAnimMontage*& ShowAnimationFemaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.ShowAnimationFemale"); }
-	UAnimMontage*& HideAnimationMaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.HideAnimationMale"); }
-	UAnimMontage*& HideAnimationFemaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.HideAnimationFemale"); }
-	int& CraftingMinLevelRequirementField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingMinLevelRequirement"); }
-	float& CraftingCooldownIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CraftingCooldownInterval"); }
-	TSoftClassPtr<AActor>& CraftingActorToSpawnField() { return *GetNativePointerField<TSoftClassPtr<AActor>*>(this, "UPrimalItem.CraftingActorToSpawn"); }
+	// int& ExtraItemCategoryFlagsField() { return *GetNativePointerField<int*>(this, "UPrimalItem.ExtraItemCategoryFlags"); }
+	// FIELD MISSING: UPrimalItem.ExtraItemCategoryFlags
+	// float& ItemIconScaleField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ItemIconScale"); }
+	// FIELD MISSING: UPrimalItem.ItemIconScale
+	// UE::Math::TVector<double>& BlockingShieldFPVTranslationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.BlockingShieldFPVTranslation"); }
+	// FIELD MISSING: UPrimalItem.BlockingShieldFPVTranslation
+	// UE::Math::TRotator<double>& BlockingShieldFPVRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "UPrimalItem.BlockingShieldFPVRotation"); }
+	// FIELD MISSING: UPrimalItem.BlockingShieldFPVRotation
+	// float& ShieldBlockDamagePercentageField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ShieldBlockDamagePercentage"); }
+	// FIELD MISSING: UPrimalItem.ShieldBlockDamagePercentage
+	// float& ShieldDamageToDurabilityRatioField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ShieldDamageToDurabilityRatio"); }
+	// FIELD MISSING: UPrimalItem.ShieldDamageToDurabilityRatio
+	// UAnimMontage*& PlayAnimationOnUseField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.PlayAnimationOnUse"); }
+	// FIELD MISSING: UPrimalItem.PlayAnimationOnUse
+	// UAnimMontage*& ShowAnimationMaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.ShowAnimationMale"); }
+	// FIELD MISSING: UPrimalItem.ShowAnimationMale
+	// UAnimMontage*& ShowAnimationFemaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.ShowAnimationFemale"); }
+	// FIELD MISSING: UPrimalItem.ShowAnimationFemale
+	// UAnimMontage*& HideAnimationMaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.HideAnimationMale"); }
+	// FIELD MISSING: UPrimalItem.HideAnimationMale
+	// UAnimMontage*& HideAnimationFemaleField() { return *GetNativePointerField<UAnimMontage**>(this, "UPrimalItem.HideAnimationFemale"); }
+	// FIELD MISSING: UPrimalItem.HideAnimationFemale
+	// int& CraftingMinLevelRequirementField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingMinLevelRequirement"); }
+	// FIELD MISSING: UPrimalItem.CraftingMinLevelRequirement
+	// float& CraftingCooldownIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CraftingCooldownInterval"); }
+	// FIELD MISSING: UPrimalItem.CraftingCooldownInterval
+	// TSoftClassPtr<AActor>& CraftingActorToSpawnField() { return *GetNativePointerField<TSoftClassPtr<AActor>*>(this, "UPrimalItem.CraftingActorToSpawn"); }
+	// FIELD MISSING: UPrimalItem.CraftingActorToSpawn
 	UTexture2D*& BlueprintBackgroundOverrideTextureField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.BlueprintBackgroundOverrideTexture"); }
-	FString& CraftItemButtonStringOverrideField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.CraftItemButtonStringOverride"); }
-	TSoftClassPtr<AActor>& UseSpawnActorClassField() { return *GetNativePointerField<TSoftClassPtr<AActor>*>(this, "UPrimalItem.UseSpawnActorClass"); }
-	UE::Math::TVector<double>& UseSpawnActorLocOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.UseSpawnActorLocOffset"); }
+	// FString& CraftItemButtonStringOverrideField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.CraftItemButtonStringOverride"); }
+	// FIELD MISSING: UPrimalItem.CraftItemButtonStringOverride
+	// TSoftClassPtr<AActor>& UseSpawnActorClassField() { return *GetNativePointerField<TSoftClassPtr<AActor>*>(this, "UPrimalItem.UseSpawnActorClass"); }
+	// FIELD MISSING: UPrimalItem.UseSpawnActorClass
+	// UE::Math::TVector<double>& UseSpawnActorLocOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.UseSpawnActorLocOffset"); }
+	// FIELD MISSING: UPrimalItem.UseSpawnActorLocOffset
 	int& SlotIndexField() { return *GetNativePointerField<int*>(this, "UPrimalItem.SlotIndex"); }
 	FItemNetID& ItemIDField() { return *GetNativePointerField<FItemNetID*>(this, "UPrimalItem.ItemID"); }
 	int& ItemCustomDataField() { return *GetNativePointerField<int*>(this, "UPrimalItem.ItemCustomData"); }
@@ -218,55 +248,83 @@ struct UPrimalItem : UObject
 	long double& NextCraftCompletionTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.NextCraftCompletionTime"); }
 	TWeakObjectPtr<UPrimalInventoryComponent>& OwnerInventoryField() { return *GetNativePointerField<TWeakObjectPtr<UPrimalInventoryComponent>*>(this, "UPrimalItem.OwnerInventory"); }
 	TSubclassOf<UPrimalItem>& SupportDragOntoItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.SupportDragOntoItemClass"); }
-	TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& SupportDragOntoItemClassesField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.SupportDragOntoItemClasses"); }
+	// TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& SupportDragOntoItemClassesField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.SupportDragOntoItemClasses"); }
+	// FIELD MISSING: UPrimalItem.SupportDragOntoItemClasses
 	TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >& SkinWeaponTemplatesField() { return *GetNativePointerField<TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.SkinWeaponTemplates"); }
 	TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& SupportAmmoItemForWeaponSkinField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.SupportAmmoItemForWeaponSkin"); }
 	TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >& SkinWeaponTemplatesForAmmoField() { return *GetNativePointerField<TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.SkinWeaponTemplatesForAmmo"); }
 	TSoftClassPtr<AShooterWeapon>& AmmoSupportDragOntoWeaponItemWeaponTemplateField() { return *GetNativePointerField<TSoftClassPtr<AShooterWeapon>*>(this, "UPrimalItem.AmmoSupportDragOntoWeaponItemWeaponTemplate"); }
-	TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >& AmmoSupportDragOntoWeaponItemWeaponTemplatesField() { return *GetNativePointerField<TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.AmmoSupportDragOntoWeaponItemWeaponTemplates"); }
+	// TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >& AmmoSupportDragOntoWeaponItemWeaponTemplatesField() { return *GetNativePointerField<TArray<TSoftClassPtr<AShooterWeapon>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.AmmoSupportDragOntoWeaponItemWeaponTemplates"); }
+	// FIELD MISSING: UPrimalItem.AmmoSupportDragOntoWeaponItemWeaponTemplates
 	TArray<FUseItemAddCharacterStatusValue, TSizedDefaultAllocator<32> >& UseItemAddCharacterStatusValuesField() { return *GetNativePointerField<TArray<FUseItemAddCharacterStatusValue, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.UseItemAddCharacterStatusValues"); }
-	float& Ingredient_WeightIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_WeightIncreasePerQuantity"); }
-	float& Ingredient_FoodIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_FoodIncreasePerQuantity"); }
-	float& Ingredient_HealthIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_HealthIncreasePerQuantity"); }
-	float& Ingredient_WaterIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_WaterIncreasePerQuantity"); }
-	float& Ingredient_StaminaIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_StaminaIncreasePerQuantity"); }
+	// float& Ingredient_WeightIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_WeightIncreasePerQuantity"); }
+	// FIELD MISSING: UPrimalItem.Ingredient_WeightIncreasePerQuantity
+	// float& Ingredient_FoodIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_FoodIncreasePerQuantity"); }
+	// FIELD MISSING: UPrimalItem.Ingredient_FoodIncreasePerQuantity
+	// float& Ingredient_HealthIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_HealthIncreasePerQuantity"); }
+	// FIELD MISSING: UPrimalItem.Ingredient_HealthIncreasePerQuantity
+	// float& Ingredient_WaterIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_WaterIncreasePerQuantity"); }
+	// FIELD MISSING: UPrimalItem.Ingredient_WaterIncreasePerQuantity
+	// float& Ingredient_StaminaIncreasePerQuantityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.Ingredient_StaminaIncreasePerQuantity"); }
+	// FIELD MISSING: UPrimalItem.Ingredient_StaminaIncreasePerQuantity
 	FString& DescriptiveNameBaseField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.DescriptiveNameBase"); }
 	FString& ItemDescriptionField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.ItemDescription"); }
 	FString& DurabilityStringShortField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.DurabilityStringShort"); }
 	FString& DurabilityStringField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.DurabilityString"); }
-	FString& CustomRepairTextField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.CustomRepairText"); }
+	// FString& CustomRepairTextField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.CustomRepairText"); }
+	// FIELD MISSING: UPrimalItem.CustomRepairText
 	float& DroppedItemLifeSpanOverrideField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DroppedItemLifeSpanOverride"); }
 	UE::Math::TVector<double>& DroppedItemCenterLocationOffsetOverrideField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.DroppedItemCenterLocationOffsetOverride"); }
-	TSoftObjectPtr<UStaticMesh>& DroppedMeshOverrideField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "UPrimalItem.DroppedMeshOverride"); }
-	UMaterialInterface*& DroppedMeshMaterialOverrideField() { return *GetNativePointerField<UMaterialInterface**>(this, "UPrimalItem.DroppedMeshMaterialOverride"); }
+	// TSoftObjectPtr<UStaticMesh>& DroppedMeshOverrideField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "UPrimalItem.DroppedMeshOverride"); }
+	// FIELD MISSING: UPrimalItem.DroppedMeshOverride
+	// UMaterialInterface*& DroppedMeshMaterialOverrideField() { return *GetNativePointerField<UMaterialInterface**>(this, "UPrimalItem.DroppedMeshMaterialOverride"); }
+	// FIELD MISSING: UPrimalItem.DroppedMeshMaterialOverride
 	UE::Math::TVector<double>& DroppedMeshOverrideScale3DField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.DroppedMeshOverrideScale3D"); }
-	TSubclassOf<UPrimalItem>& SpoilingItemField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.SpoilingItem"); }
+	// TSubclassOf<UPrimalItem>& SpoilingItemField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.SpoilingItem"); }
+	// FIELD MISSING: UPrimalItem.SpoilingItem
 	TArray<TSoftClassPtr<AActor>, TSizedDefaultAllocator<32> >& UseRequiresOwnerActorClassesField() { return *GetNativePointerField<TArray<TSoftClassPtr<AActor>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.UseRequiresOwnerActorClasses"); }
-	TSubclassOf<UPrimalItem>& PreservingItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.PreservingItemClass"); }
-	float& PreservingItemSpoilingTimeMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreservingItemSpoilingTimeMultiplier"); }
+	// TSubclassOf<UPrimalItem>& PreservingItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.PreservingItemClass"); }
+	// FIELD MISSING: UPrimalItem.PreservingItemClass
+	// float& PreservingItemSpoilingTimeMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreservingItemSpoilingTimeMultiplier"); }
+	// FIELD MISSING: UPrimalItem.PreservingItemSpoilingTimeMultiplier
 	float& SpoilingTimeField() { return *GetNativePointerField<float*>(this, "UPrimalItem.SpoilingTime"); }
-	int& CraftingConsumesDurabilityField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingConsumesDurability"); }
-	float& RepairResourceRequirementMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.RepairResourceRequirementMultiplier"); }
+	// int& CraftingConsumesDurabilityField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingConsumesDurability"); }
+	// FIELD MISSING: UPrimalItem.CraftingConsumesDurability
+	// float& RepairResourceRequirementMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.RepairResourceRequirementMultiplier"); }
+	// FIELD MISSING: UPrimalItem.RepairResourceRequirementMultiplier
 	float& BaseItemWeightField() { return *GetNativePointerField<float*>(this, "UPrimalItem.BaseItemWeight"); }
-	float& DurabilityIncreaseMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityIncreaseMultiplier"); }
+	// float& DurabilityIncreaseMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityIncreaseMultiplier"); }
+	// FIELD MISSING: UPrimalItem.DurabilityIncreaseMultiplier
 	float& NewItemDurabilityOverrideField() { return *GetNativePointerField<float*>(this, "UPrimalItem.NewItemDurabilityOverride"); }
-	float& DurabilityDecreaseMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityDecreaseMultiplier"); }
-	float& UseDecreaseDurabilityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseDecreaseDurability"); }
-	float& AutoDurabilityDecreaseIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AutoDurabilityDecreaseInterval"); }
-	float& AutoDecreaseMinDurabilityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AutoDecreaseMinDurability"); }
+	// float& DurabilityDecreaseMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityDecreaseMultiplier"); }
+	// FIELD MISSING: UPrimalItem.DurabilityDecreaseMultiplier
+	// float& UseDecreaseDurabilityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseDecreaseDurability"); }
+	// FIELD MISSING: UPrimalItem.UseDecreaseDurability
+	// float& AutoDurabilityDecreaseIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AutoDurabilityDecreaseInterval"); }
+	// FIELD MISSING: UPrimalItem.AutoDurabilityDecreaseInterval
+	// float& AutoDecreaseMinDurabilityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AutoDecreaseMinDurability"); }
+	// FIELD MISSING: UPrimalItem.AutoDecreaseMinDurability
 	float& AutoDecreaseDurabilityAmountPerIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AutoDecreaseDurabilityAmountPerInterval"); }
-	float& UseDecreaseDurabilityMinField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseDecreaseDurabilityMin"); }
-	float& UseMinDurabilityRequirementField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseMinDurabilityRequirement"); }
+	// float& UseDecreaseDurabilityMinField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseDecreaseDurabilityMin"); }
+	// FIELD MISSING: UPrimalItem.UseDecreaseDurabilityMin
+	// float& UseMinDurabilityRequirementField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseMinDurabilityRequirement"); }
+	// FIELD MISSING: UPrimalItem.UseMinDurabilityRequirement
 	float& ResourceRarityField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ResourceRarity"); }
 	float& BlueprintTimeToCraftField() { return *GetNativePointerField<float*>(this, "UPrimalItem.BlueprintTimeToCraft"); }
-	float& MinBlueprintTimeToCraftField() { return *GetNativePointerField<float*>(this, "UPrimalItem.MinBlueprintTimeToCraft"); }
-	float& BlueprintWeightField() { return *GetNativePointerField<float*>(this, "UPrimalItem.BlueprintWeight"); }
-	float& MinimumUseIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.MinimumUseInterval"); }
-	float& TimeForFullRepairField() { return *GetNativePointerField<float*>(this, "UPrimalItem.TimeForFullRepair"); }
+	// float& MinBlueprintTimeToCraftField() { return *GetNativePointerField<float*>(this, "UPrimalItem.MinBlueprintTimeToCraft"); }
+	// FIELD MISSING: UPrimalItem.MinBlueprintTimeToCraft
+	// float& BlueprintWeightField() { return *GetNativePointerField<float*>(this, "UPrimalItem.BlueprintWeight"); }
+	// FIELD MISSING: UPrimalItem.BlueprintWeight
+	// float& MinimumUseIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.MinimumUseInterval"); }
+	// FIELD MISSING: UPrimalItem.MinimumUseInterval
+	// float& TimeForFullRepairField() { return *GetNativePointerField<float*>(this, "UPrimalItem.TimeForFullRepair"); }
+	// FIELD MISSING: UPrimalItem.TimeForFullRepair
 	float& BaseCraftingXPField() { return *GetNativePointerField<float*>(this, "UPrimalItem.BaseCraftingXP"); }
-	float& BaseRepairingXPField() { return *GetNativePointerField<float*>(this, "UPrimalItem.BaseRepairingXP"); }
+	// float& BaseRepairingXPField() { return *GetNativePointerField<float*>(this, "UPrimalItem.BaseRepairingXP"); }
+	// FIELD MISSING: UPrimalItem.BaseRepairingXP
 	TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >& BaseCraftingResourceRequirementsField() { return *GetNativePointerField<TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.BaseCraftingResourceRequirements"); }
-	TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >& OverrideRepairingRequirementsField() { return *GetNativePointerField<TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.OverrideRepairingRequirements"); }
+	// TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >& OverrideRepairingRequirementsField() { return *GetNativePointerField<TArray<FCraftingResourceRequirement, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.OverrideRepairingRequirements"); }
+	// FIELD MISSING: UPrimalItem.OverrideRepairingRequirements
 	FieldArray<FItemStatInfo, 8> ItemStatInfosField() { return { this, "UPrimalItem.ItemStatInfos" }; }
 	FieldArray<unsigned __int16, 8> ItemStatValuesField() { return { this, "UPrimalItem.ItemStatValues" }; }
 	int& WeaponClipAmmoField() { return *GetNativePointerField<int*>(this, "UPrimalItem.WeaponClipAmmo"); }
@@ -282,7 +340,8 @@ struct UPrimalItem : UObject
 	FJustInTimeTexture2D& ItemIconJITField() { return *GetNativePointerField<FJustInTimeTexture2D*>(this, "UPrimalItem.ItemIconJIT"); }
 	UTexture2D*& AlternateItemIconBelowDurabilityField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.AlternateItemIconBelowDurability"); }
 	float& AlternateItemIconBelowDurabilityValueField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AlternateItemIconBelowDurabilityValue"); }
-	float& DurabilityNotifyThresholdValueField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityNotifyThresholdValue"); }
+	// float& DurabilityNotifyThresholdValueField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DurabilityNotifyThresholdValue"); }
+	// FIELD MISSING: UPrimalItem.DurabilityNotifyThresholdValue
 	UMaterialInterface*& ItemIconMaterialParentField() { return *GetNativePointerField<UMaterialInterface**>(this, "UPrimalItem.ItemIconMaterialParent"); }
 	FieldArray<__int16, 6> ItemColorIDField() { return { this, "UPrimalItem.ItemColorID" }; }
 	FieldArray<__int16, 6> PreSkinItemColorIDField() { return { this, "UPrimalItem.PreSkinItemColorID" }; }
@@ -298,16 +357,25 @@ struct UPrimalItem : UObject
 	TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >& StructuresToBuildField() { return *GetNativePointerField<TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.StructuresToBuild"); }
 	TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >& CachedStructuresToBuildField() { return *GetNativePointerField<TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CachedStructuresToBuild"); }
 	int& StructureToBuildIndexField() { return *GetNativePointerField<int*>(this, "UPrimalItem.StructureToBuildIndex"); }
-	TSubclassOf<UPrimalItem>& GiveItemWhenUsedField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.GiveItemWhenUsed"); }
+	// TSubclassOf<UPrimalItem>& GiveItemWhenUsedField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.GiveItemWhenUsed"); }
+	// FIELD MISSING: UPrimalItem.GiveItemWhenUsed
 	TArray<TSoftClassPtr<UPrimalInventoryComponent>, TSizedDefaultAllocator<32> >& CraftingRequiresInventoryComponentField() { return *GetNativePointerField<TArray<TSoftClassPtr<UPrimalInventoryComponent>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CraftingRequiresInventoryComponent"); }
-	TSoftClassPtr<ADroppedItem>& DroppedItemTemplateOverrideField() { return *GetNativePointerField<TSoftClassPtr<ADroppedItem>*>(this, "UPrimalItem.DroppedItemTemplateOverride"); }
-	TSoftClassPtr<ADroppedItem>& DroppedItemTemplateForSecondryActionField() { return *GetNativePointerField<TSoftClassPtr<ADroppedItem>*>(this, "UPrimalItem.DroppedItemTemplateForSecondryAction"); }
-	TSoftClassPtr<APrimalBuff>& BuffToGiveOwnerCharacterField() { return *GetNativePointerField<TSoftClassPtr<APrimalBuff>*>(this, "UPrimalItem.BuffToGiveOwnerCharacter"); }
-	UE::Math::TRotator<double>& PreviewCameraRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "UPrimalItem.PreviewCameraRotation"); }
-	UE::Math::TVector<double>& PreviewCameraPivotOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.PreviewCameraPivotOffset"); }
-	float& PreviewCameraDistanceScaleFactorField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreviewCameraDistanceScaleFactor"); }
-	float& PreviewCameraDefaultZoomMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreviewCameraDefaultZoomMultiplier"); }
-	float& PreviewCameraMaxZoomMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreviewCameraMaxZoomMultiplier"); }
+	// TSoftClassPtr<ADroppedItem>& DroppedItemTemplateOverrideField() { return *GetNativePointerField<TSoftClassPtr<ADroppedItem>*>(this, "UPrimalItem.DroppedItemTemplateOverride"); }
+	// FIELD MISSING: UPrimalItem.DroppedItemTemplateOverride
+	// TSoftClassPtr<ADroppedItem>& DroppedItemTemplateForSecondryActionField() { return *GetNativePointerField<TSoftClassPtr<ADroppedItem>*>(this, "UPrimalItem.DroppedItemTemplateForSecondryAction"); }
+	// FIELD MISSING: UPrimalItem.DroppedItemTemplateForSecondryAction
+	// TSoftClassPtr<APrimalBuff>& BuffToGiveOwnerCharacterField() { return *GetNativePointerField<TSoftClassPtr<APrimalBuff>*>(this, "UPrimalItem.BuffToGiveOwnerCharacter"); }
+	// FIELD MISSING: UPrimalItem.BuffToGiveOwnerCharacter
+	// UE::Math::TRotator<double>& PreviewCameraRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "UPrimalItem.PreviewCameraRotation"); }
+	// FIELD MISSING: UPrimalItem.PreviewCameraRotation
+	// UE::Math::TVector<double>& PreviewCameraPivotOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.PreviewCameraPivotOffset"); }
+	// FIELD MISSING: UPrimalItem.PreviewCameraPivotOffset
+	// float& PreviewCameraDistanceScaleFactorField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreviewCameraDistanceScaleFactor"); }
+	// FIELD MISSING: UPrimalItem.PreviewCameraDistanceScaleFactor
+	// float& PreviewCameraDefaultZoomMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreviewCameraDefaultZoomMultiplier"); }
+	// FIELD MISSING: UPrimalItem.PreviewCameraDefaultZoomMultiplier
+	// float& PreviewCameraMaxZoomMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.PreviewCameraMaxZoomMultiplier"); }
+	// FIELD MISSING: UPrimalItem.PreviewCameraMaxZoomMultiplier
 	FName& PlayerMeshTextureMaskParamNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.PlayerMeshTextureMaskParamName"); }
 	UTexture2D*& PlayerMeshTextureMaskField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.PlayerMeshTextureMask"); }
 	UTexture2D*& PlayerMeshNoItemDefaultTextureMaskField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.PlayerMeshNoItemDefaultTextureMask"); }
@@ -322,7 +390,8 @@ struct UPrimalItem : UObject
 	long double& LastAutoDurabilityDecreaseTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.LastAutoDurabilityDecreaseTime"); }
 	long double& LastUseTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.LastUseTime"); }
 	long double& LastLocalUseTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.LastLocalUseTime"); }
-	int& MaxCustomItemDescriptionLengthField() { return *GetNativePointerField<int*>(this, "UPrimalItem.MaxCustomItemDescriptionLength"); }
+	// int& MaxCustomItemDescriptionLengthField() { return *GetNativePointerField<int*>(this, "UPrimalItem.MaxCustomItemDescriptionLength"); }
+	// FIELD MISSING: UPrimalItem.MaxCustomItemDescriptionLength
 	int& TempSlotIndexField() { return *GetNativePointerField<int*>(this, "UPrimalItem.TempSlotIndex"); }
 	int& LastSlotIndexField() { return *GetNativePointerField<int*>(this, "UPrimalItem.LastSlotIndex"); }
 	TWeakObjectPtr<AShooterWeapon>& AssociatedWeaponField() { return *GetNativePointerField<TWeakObjectPtr<AShooterWeapon>*>(this, "UPrimalItem.AssociatedWeapon"); }
@@ -330,45 +399,73 @@ struct UPrimalItem : UObject
 	UPrimalItem*& SkinnedOntoItemField() { return *GetNativePointerField<UPrimalItem**>(this, "UPrimalItem.SkinnedOntoItem"); }
 	TArray<TSoftClassPtr<UPrimalItem>, TSizedDefaultAllocator<32> >& WheelItemsAmmoField() { return *GetNativePointerField<TArray<TSoftClassPtr<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.WheelItemsAmmo"); }
 	TWeakObjectPtr<AShooterCharacter>& LastOwnerPlayerField() { return *GetNativePointerField<TWeakObjectPtr<AShooterCharacter>*>(this, "UPrimalItem.LastOwnerPlayer"); }
-	TArray<FCropItemPhaseData, TSizedDefaultAllocator<32> >& CropPhasesDataField() { return *GetNativePointerField<TArray<FCropItemPhaseData, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CropPhasesData"); }
-	float& CropGrowingFertilizerConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropGrowingFertilizerConsumptionRate"); }
-	float& CropMaxFruitFertilizerConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropMaxFruitFertilizerConsumptionRate"); }
-	float& CropGrowingWaterConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropGrowingWaterConsumptionRate"); }
-	float& CropMaxFruitWaterConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropMaxFruitWaterConsumptionRate"); }
+	// TArray<FCropItemPhaseData, TSizedDefaultAllocator<32> >& CropPhasesDataField() { return *GetNativePointerField<TArray<FCropItemPhaseData, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CropPhasesData"); }
+	// FIELD MISSING: UPrimalItem.CropPhasesData
+	// float& CropGrowingFertilizerConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropGrowingFertilizerConsumptionRate"); }
+	// FIELD MISSING: UPrimalItem.CropGrowingFertilizerConsumptionRate
+	// float& CropMaxFruitFertilizerConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropMaxFruitFertilizerConsumptionRate"); }
+	// FIELD MISSING: UPrimalItem.CropMaxFruitFertilizerConsumptionRate
+	// float& CropGrowingWaterConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropGrowingWaterConsumptionRate"); }
+	// FIELD MISSING: UPrimalItem.CropGrowingWaterConsumptionRate
+	// float& CropMaxFruitWaterConsumptionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropMaxFruitWaterConsumptionRate"); }
+	// FIELD MISSING: UPrimalItem.CropMaxFruitWaterConsumptionRate
 	int& CropMaxFruitsField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CropMaxFruits"); }
-	float& CropNoFertilizerOrWaterCacheReductionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropNoFertilizerOrWaterCacheReductionRate"); }
-	float& FertilizerEffectivenessMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.FertilizerEffectivenessMultiplier"); }
-	float& EggAlertDinosAggroAmountField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggAlertDinosAggroAmount"); }
+	// float& CropNoFertilizerOrWaterCacheReductionRateField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CropNoFertilizerOrWaterCacheReductionRate"); }
+	// FIELD MISSING: UPrimalItem.CropNoFertilizerOrWaterCacheReductionRate
+	// float& FertilizerEffectivenessMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.FertilizerEffectivenessMultiplier"); }
+	// FIELD MISSING: UPrimalItem.FertilizerEffectivenessMultiplier
+	// float& EggAlertDinosAggroAmountField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggAlertDinosAggroAmount"); }
+	// FIELD MISSING: UPrimalItem.EggAlertDinosAggroAmount
 	float& EggAlertDinosAggroRadiusField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggAlertDinosAggroRadius"); }
-	TArray<FName, TSizedDefaultAllocator<32> >& EggAlertDinosAggroTagsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.EggAlertDinosAggroTags"); }
-	float& EggAlertDinosForcedAggroTimeField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggAlertDinosForcedAggroTime"); }
-	float& EggMaximumDistanceFromOriginalDropToAlertDinosField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggMaximumDistanceFromOriginalDropToAlertDinos"); }
-	TSubclassOf<UPrimalItem>& BrokenGiveItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.BrokenGiveItemClass"); }
-	float& ClearColorDurabilityThresholdField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ClearColorDurabilityThreshold"); }
-	TSubclassOf<UPrimalItem>& ItemClassToUseAsInitialCustomDataField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.ItemClassToUseAsInitialCustomData"); }
+	// TArray<FName, TSizedDefaultAllocator<32> >& EggAlertDinosAggroTagsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.EggAlertDinosAggroTags"); }
+	// FIELD MISSING: UPrimalItem.EggAlertDinosAggroTags
+	// float& EggAlertDinosForcedAggroTimeField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggAlertDinosForcedAggroTime"); }
+	// FIELD MISSING: UPrimalItem.EggAlertDinosForcedAggroTime
+	// float& EggMaximumDistanceFromOriginalDropToAlertDinosField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggMaximumDistanceFromOriginalDropToAlertDinos"); }
+	// FIELD MISSING: UPrimalItem.EggMaximumDistanceFromOriginalDropToAlertDinos
+	// TSubclassOf<UPrimalItem>& BrokenGiveItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.BrokenGiveItemClass"); }
+	// FIELD MISSING: UPrimalItem.BrokenGiveItemClass
+	// float& ClearColorDurabilityThresholdField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ClearColorDurabilityThreshold"); }
+	// FIELD MISSING: UPrimalItem.ClearColorDurabilityThreshold
+	// TSubclassOf<UPrimalItem>& ItemClassToUseAsInitialCustomDataField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.ItemClassToUseAsInitialCustomData"); }
+	// FIELD MISSING: UPrimalItem.ItemClassToUseAsInitialCustomData
 	UE::Math::TVector<double>& OriginalItemDropLocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.OriginalItemDropLocation"); }
-	FLinearColor& DurabilityBarColorForegroundField() { return *GetNativePointerField<FLinearColor*>(this, "UPrimalItem.DurabilityBarColorForeground"); }
-	FLinearColor& DurabilityBarColorBackgroundField() { return *GetNativePointerField<FLinearColor*>(this, "UPrimalItem.DurabilityBarColorBackground"); }
-	TSubclassOf<UPrimalItem>& OverrideCooldownTimeItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.OverrideCooldownTimeItemClass"); }
-	float& MinDurabilityForCraftingResourceField() { return *GetNativePointerField<float*>(this, "UPrimalItem.MinDurabilityForCraftingResource"); }
-	float& ResourceRequirementIncreaseRatingPowerField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ResourceRequirementIncreaseRatingPower"); }
-	float& ResourceRequirementRatingScaleField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ResourceRequirementRatingScale"); }
-	float& ResourceRequirementRatingIncreasePercentageField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ResourceRequirementRatingIncreasePercentage"); }
+	// FLinearColor& DurabilityBarColorForegroundField() { return *GetNativePointerField<FLinearColor*>(this, "UPrimalItem.DurabilityBarColorForeground"); }
+	// FIELD MISSING: UPrimalItem.DurabilityBarColorForeground
+	// FLinearColor& DurabilityBarColorBackgroundField() { return *GetNativePointerField<FLinearColor*>(this, "UPrimalItem.DurabilityBarColorBackground"); }
+	// FIELD MISSING: UPrimalItem.DurabilityBarColorBackground
+	// TSubclassOf<UPrimalItem>& OverrideCooldownTimeItemClassField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.OverrideCooldownTimeItemClass"); }
+	// FIELD MISSING: UPrimalItem.OverrideCooldownTimeItemClass
+	// float& MinDurabilityForCraftingResourceField() { return *GetNativePointerField<float*>(this, "UPrimalItem.MinDurabilityForCraftingResource"); }
+	// FIELD MISSING: UPrimalItem.MinDurabilityForCraftingResource
+	// float& ResourceRequirementIncreaseRatingPowerField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ResourceRequirementIncreaseRatingPower"); }
+	// FIELD MISSING: UPrimalItem.ResourceRequirementIncreaseRatingPower
+	// float& ResourceRequirementRatingScaleField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ResourceRequirementRatingScale"); }
+	// FIELD MISSING: UPrimalItem.ResourceRequirementRatingScale
+	// float& ResourceRequirementRatingIncreasePercentageField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ResourceRequirementRatingIncreasePercentage"); }
+	// FIELD MISSING: UPrimalItem.ResourceRequirementRatingIncreasePercentage
 	long double& NextSpoilingTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.NextSpoilingTime"); }
 	long double& LastSpoilingTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.LastSpoilingTime"); }
 	TArray<FString, TSizedDefaultAllocator<32> >& DefaultFolderPathsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.DefaultFolderPaths"); }
-	FString& ItemRatingStringField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.ItemRatingString"); }
-	FName& DefaultWeaponMeshNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.DefaultWeaponMeshName"); }
+	// FString& ItemRatingStringField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.ItemRatingString"); }
+	// FIELD MISSING: UPrimalItem.ItemRatingString
+	// FName& DefaultWeaponMeshNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.DefaultWeaponMeshName"); }
+	// FIELD MISSING: UPrimalItem.DefaultWeaponMeshName
 	int& LastCalculatedTotalAmmoInvUpdatedFrameField() { return *GetNativePointerField<int*>(this, "UPrimalItem.LastCalculatedTotalAmmoInvUpdatedFrame"); }
 	int& WeaponTotalAmmoField() { return *GetNativePointerField<int*>(this, "UPrimalItem.WeaponTotalAmmo"); }
-	TSubclassOf<UPrimalItem>& EngramRequirementItemClassOverrideField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.EngramRequirementItemClassOverride"); }
+	// TSubclassOf<UPrimalItem>& EngramRequirementItemClassOverrideField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.EngramRequirementItemClassOverride"); }
+	// FIELD MISSING: UPrimalItem.EngramRequirementItemClassOverride
 	TArray<unsigned short, TSizedDefaultAllocator<32> >& CraftingResourceRequirementsField() { return *GetNativePointerField<TArray<unsigned short, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CraftingResourceRequirements"); }
-	USoundBase*& ExtraThrowItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.ExtraThrowItemSound"); }
-	bool& bForceNotificationItemCombatModeField() { return *GetNativePointerField<bool*>(this, "UPrimalItem.bForceNotificationItemCombatMode"); }
-	UE::Math::TVector<double>& SpawnOnWaterEncroachmentBoxExtentField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.SpawnOnWaterEncroachmentBoxExtent"); }
+	// USoundBase*& ExtraThrowItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.ExtraThrowItemSound"); }
+	// FIELD MISSING: UPrimalItem.ExtraThrowItemSound
+	// bool& bForceNotificationItemCombatModeField() { return *GetNativePointerField<bool*>(this, "UPrimalItem.bForceNotificationItemCombatMode"); }
+	// FIELD MISSING: UPrimalItem.bForceNotificationItemCombatMode
+	// UE::Math::TVector<double>& SpawnOnWaterEncroachmentBoxExtentField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.SpawnOnWaterEncroachmentBoxExtent"); }
+	// FIELD MISSING: UPrimalItem.SpawnOnWaterEncroachmentBoxExtent
 	TArray<TSoftClassPtr<AActor>, TSizedDefaultAllocator<32> >& OnlyUsableOnSpecificClassesField() { return *GetNativePointerField<TArray<TSoftClassPtr<AActor>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.OnlyUsableOnSpecificClasses"); }
 	TArray<FSaddlePassengerSeatDefinition, TSizedDefaultAllocator<32> >& SaddlePassengerSeatsField() { return *GetNativePointerField<TArray<FSaddlePassengerSeatDefinition, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.SaddlePassengerSeats"); }
-	FName& SaddleOverrideRiderSocketNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.SaddleOverrideRiderSocketName"); }
+	// FName& SaddleOverrideRiderSocketNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.SaddleOverrideRiderSocketName"); }
+	// FIELD MISSING: UPrimalItem.SaddleOverrideRiderSocketName
 	TSoftClassPtr<APrimalDinoCharacter>& EggDinoClassToSpawnField() { return *GetNativePointerField<TSoftClassPtr<APrimalDinoCharacter>*>(this, "UPrimalItem.EggDinoClassToSpawn"); }
 	FieldArray<unsigned __int8, 12> EggNumberOfLevelUpPointsAppliedField() { return { this, "UPrimalItem.EggNumberOfLevelUpPointsApplied" }; }
 	FieldArray<unsigned __int8, 12> EggNumberMutationsAppliedField() { return { this, "UPrimalItem.EggNumberMutationsApplied" }; }
@@ -380,22 +477,34 @@ struct UPrimalItem : UObject
 	float& EggMinTemperatureField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggMinTemperature"); }
 	float& EggMaxTemperatureField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggMaxTemperature"); }
 	float& EggDroppedInvalidTempLoseItemRatingSpeedField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EggDroppedInvalidTempLoseItemRatingSpeed"); }
-	USoundBase*& ShieldHitSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.ShieldHitSound"); }
-	float& RecipeCraftingSkillScaleField() { return *GetNativePointerField<float*>(this, "UPrimalItem.RecipeCraftingSkillScale"); }
+	// USoundBase*& ShieldHitSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.ShieldHitSound"); }
+	// FIELD MISSING: UPrimalItem.ShieldHitSound
+	// float& RecipeCraftingSkillScaleField() { return *GetNativePointerField<float*>(this, "UPrimalItem.RecipeCraftingSkillScale"); }
+	// FIELD MISSING: UPrimalItem.RecipeCraftingSkillScale
 	int& CustomItemIDField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CustomItemID"); }
 	float& AddDinoTargetingRangeField() { return *GetNativePointerField<float*>(this, "UPrimalItem.AddDinoTargetingRange"); }
-	float& DamageTorpidityArmorRatingField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DamageTorpidityArmorRating"); }
-	float& IndirectTorpidityArmorRatingField() { return *GetNativePointerField<float*>(this, "UPrimalItem.IndirectTorpidityArmorRating"); }
-	TSoftClassPtr<APrimalEmitterSpawnable>& UseParticleEffectField() { return *GetNativePointerField<TSoftClassPtr<APrimalEmitterSpawnable>*>(this, "UPrimalItem.UseParticleEffect"); }
-	FName& UseParticleEffectSocketNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.UseParticleEffectSocketName"); }
-	float& UseGiveDinoTameAffinityPercentField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseGiveDinoTameAffinityPercent"); }
+	// float& DamageTorpidityArmorRatingField() { return *GetNativePointerField<float*>(this, "UPrimalItem.DamageTorpidityArmorRating"); }
+	// FIELD MISSING: UPrimalItem.DamageTorpidityArmorRating
+	// float& IndirectTorpidityArmorRatingField() { return *GetNativePointerField<float*>(this, "UPrimalItem.IndirectTorpidityArmorRating"); }
+	// FIELD MISSING: UPrimalItem.IndirectTorpidityArmorRating
+	// TSoftClassPtr<APrimalEmitterSpawnable>& UseParticleEffectField() { return *GetNativePointerField<TSoftClassPtr<APrimalEmitterSpawnable>*>(this, "UPrimalItem.UseParticleEffect"); }
+	// FIELD MISSING: UPrimalItem.UseParticleEffect
+	// FName& UseParticleEffectSocketNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.UseParticleEffectSocketName"); }
+	// FIELD MISSING: UPrimalItem.UseParticleEffectSocketName
+	// float& UseGiveDinoTameAffinityPercentField() { return *GetNativePointerField<float*>(this, "UPrimalItem.UseGiveDinoTameAffinityPercent"); }
+	// FIELD MISSING: UPrimalItem.UseGiveDinoTameAffinityPercent
 	TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& CraftingAdditionalItemsToGiveField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CraftingAdditionalItemsToGive"); }
 	int& LastValidItemVersionField() { return *GetNativePointerField<int*>(this, "UPrimalItem.LastValidItemVersion"); }
-	float& GlobalTameAffinityMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.GlobalTameAffinityMultiplier"); }
-	int& CraftingGiveItemCountField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingGiveItemCount"); }
-	int& CraftingGivesItemQuantityOverrideField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingGivesItemQuantityOverride"); }
-	USoundBase*& UseItemOnItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.UseItemOnItemSound"); }
-	FName& UseUnlocksEmoteNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.UseUnlocksEmoteName"); }
+	// float& GlobalTameAffinityMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.GlobalTameAffinityMultiplier"); }
+	// FIELD MISSING: UPrimalItem.GlobalTameAffinityMultiplier
+	// int& CraftingGiveItemCountField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingGiveItemCount"); }
+	// FIELD MISSING: UPrimalItem.CraftingGiveItemCount
+	// int& CraftingGivesItemQuantityOverrideField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CraftingGivesItemQuantityOverride"); }
+	// FIELD MISSING: UPrimalItem.CraftingGivesItemQuantityOverride
+	// USoundBase*& UseItemOnItemSoundField() { return *GetNativePointerField<USoundBase**>(this, "UPrimalItem.UseItemOnItemSound"); }
+	// FIELD MISSING: UPrimalItem.UseItemOnItemSound
+	// FName& UseUnlocksEmoteNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.UseUnlocksEmoteName"); }
+	// FIELD MISSING: UPrimalItem.UseUnlocksEmoteName
 	long double& ClusterSpoilingTimeUTCField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.ClusterSpoilingTimeUTC"); }
 	TArray<FDinoAncestorsEntry, TSizedDefaultAllocator<32> >& EggDinoAncestorsField() { return *GetNativePointerField<TArray<FDinoAncestorsEntry, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.EggDinoAncestors"); }
 	TArray<FDinoAncestorsEntry, TSizedDefaultAllocator<32> >& EggDinoAncestorsMaleField() { return *GetNativePointerField<TArray<FDinoAncestorsEntry, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.EggDinoAncestorsMale"); }
@@ -403,20 +512,28 @@ struct UPrimalItem : UObject
 	int& EggRandomMutationsMaleField() { return *GetNativePointerField<int*>(this, "UPrimalItem.EggRandomMutationsMale"); }
 	TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& EquippingRequiresEngramsField() { return *GetNativePointerField<TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.EquippingRequiresEngrams"); }
 	TArray<FCustomItemData, TSizedDefaultAllocator<32> >& CustomItemDatasField() { return *GetNativePointerField<TArray<FCustomItemData, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CustomItemDatas"); }
-	FString& OverrideUseStringField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.OverrideUseString"); }
-	TSubclassOf<UPrimalItem>& SendToClientClassOverrideField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.SendToClientClassOverride"); }
+	// FString& OverrideUseStringField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.OverrideUseString"); }
+	// FIELD MISSING: UPrimalItem.OverrideUseString
+	// TSubclassOf<UPrimalItem>& SendToClientClassOverrideField() { return *GetNativePointerField<TSubclassOf<UPrimalItem>*>(this, "UPrimalItem.SendToClientClassOverride"); }
+	// FIELD MISSING: UPrimalItem.SendToClientClassOverride
 	FString& CrafterCharacterNameField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.CrafterCharacterName"); }
 	FString& CrafterTribeNameField() { return *GetNativePointerField<FString*>(this, "UPrimalItem.CrafterTribeName"); }
 	float& CraftedSkillBonusField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CraftedSkillBonus"); }
-	float& CraftingSkillQualityMultiplierMinField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CraftingSkillQualityMultiplierMin"); }
-	float& CraftingSkillQualityMultiplierMaxField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CraftingSkillQualityMultiplierMax"); }
-	float& SinglePlayerCraftingSpeedMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.SinglePlayerCraftingSpeedMultiplier"); }
-	int& NoLevelEngramSortingPriorityField() { return *GetNativePointerField<int*>(this, "UPrimalItem.NoLevelEngramSortingPriority"); }
+	// float& CraftingSkillQualityMultiplierMinField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CraftingSkillQualityMultiplierMin"); }
+	// FIELD MISSING: UPrimalItem.CraftingSkillQualityMultiplierMin
+	// float& CraftingSkillQualityMultiplierMaxField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CraftingSkillQualityMultiplierMax"); }
+	// FIELD MISSING: UPrimalItem.CraftingSkillQualityMultiplierMax
+	// float& SinglePlayerCraftingSpeedMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.SinglePlayerCraftingSpeedMultiplier"); }
+	// FIELD MISSING: UPrimalItem.SinglePlayerCraftingSpeedMultiplier
+	// int& NoLevelEngramSortingPriorityField() { return *GetNativePointerField<int*>(this, "UPrimalItem.NoLevelEngramSortingPriority"); }
+	// FIELD MISSING: UPrimalItem.NoLevelEngramSortingPriority
 	int& CustomFlagsField() { return *GetNativePointerField<int*>(this, "UPrimalItem.CustomFlags"); }
 	FName& CustomTagField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.CustomTag"); }
-	float& EquippedReduceDurabilityIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EquippedReduceDurabilityInterval"); }
+	// float& EquippedReduceDurabilityIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EquippedReduceDurabilityInterval"); }
+	// FIELD MISSING: UPrimalItem.EquippedReduceDurabilityInterval
 	long double& LastEquippedReduceDurabilityTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.LastEquippedReduceDurabilityTime"); }
-	float& EquippedReduceDurabilityPerIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EquippedReduceDurabilityPerInterval"); }
+	// float& EquippedReduceDurabilityPerIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalItem.EquippedReduceDurabilityPerInterval"); }
+	// FIELD MISSING: UPrimalItem.EquippedReduceDurabilityPerInterval
 	float& ItemStatClampsMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalItem.ItemStatClampsMultiplier"); }
 	float& MaxDurabiltiyOverrideField() { return *GetNativePointerField<float*>(this, "UPrimalItem.MaxDurabiltiyOverride"); }
 	long double& LastItemAdditionTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalItem.LastItemAdditionTime"); }
@@ -426,18 +543,29 @@ struct UPrimalItem : UObject
 	UMaterialInterface*& NetDroppedMeshMaterialOverrideField() { return *GetNativePointerField<UMaterialInterface**>(this, "UPrimalItem.NetDroppedMeshMaterialOverride"); }
 	UE::Math::TVector<double>& NetDroppedMeshOverrideScale3DField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalItem.NetDroppedMeshOverrideScale3D"); }
 	FSlateBrush& WidgetCustomBrokenOverlayStyleBrushField() { return *GetNativePointerField<FSlateBrush*>(this, "UPrimalItem.WidgetCustomBrokenOverlayStyleBrush"); }
-	FColor& CustomBrokenBorderColorField() { return *GetNativePointerField<FColor*>(this, "UPrimalItem.CustomBrokenBorderColor"); }
-	TSoftObjectPtr<USkeletalMesh>& DyePreviewMeshOverrideSKField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "UPrimalItem.DyePreviewMeshOverrideSK"); }
-	TSoftObjectPtr<UStaticMesh>& DyePreviewMeshOverrideSMField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "UPrimalItem.DyePreviewMeshOverrideSM"); }
+	// FColor& CustomBrokenBorderColorField() { return *GetNativePointerField<FColor*>(this, "UPrimalItem.CustomBrokenBorderColor"); }
+	// FIELD MISSING: UPrimalItem.CustomBrokenBorderColor
+	// TSoftObjectPtr<USkeletalMesh>& DyePreviewMeshOverrideSKField() { return *GetNativePointerField<TSoftObjectPtr<USkeletalMesh>*>(this, "UPrimalItem.DyePreviewMeshOverrideSK"); }
+	// FIELD MISSING: UPrimalItem.DyePreviewMeshOverrideSK
+	// TSoftObjectPtr<UStaticMesh>& DyePreviewMeshOverrideSMField() { return *GetNativePointerField<TSoftObjectPtr<UStaticMesh>*>(this, "UPrimalItem.DyePreviewMeshOverrideSM"); }
+	// FIELD MISSING: UPrimalItem.DyePreviewMeshOverrideSM
 	UTexture2D*& AccessoryActivatedIconOverrideField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalItem.AccessoryActivatedIconOverride"); }
-	TSubclassOf<UUserWidget>& CustomItemTooltipOverrideField() { return *GetNativePointerField<TSubclassOf<UUserWidget>*>(this, "UPrimalItem.CustomItemTooltipOverride"); }
-	bool& bUseBPPreventUploadField() { return *GetNativePointerField<bool*>(this, "UPrimalItem.bUseBPPreventUpload"); }
-	FName& EquippingCosmeticRequiresUnlockedEmoteNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.EquippingCosmeticRequiresUnlockedEmoteName"); }
-	float& CustomInventoryWidgetTextVerticalOffsetField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CustomInventoryWidgetTextVerticalOffset"); }
-	TArray<FName, TSizedDefaultAllocator<32> >& TopLevelCustomContextMenuOptionsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.TopLevelCustomContextMenuOptions"); }
-	TArray<FCustomContextSubmenu, TSizedDefaultAllocator<32> >& CustomContextSubMenusField() { return *GetNativePointerField<TArray<FCustomContextSubmenu, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CustomContextSubMenus"); }
-	TArray<FCustomContextMenuData, TSizedDefaultAllocator<32> >& CustomContextOptionDataField() { return *GetNativePointerField<TArray<FCustomContextMenuData, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CustomContextOptionData"); }
-	bool& bUseBPOnLocalUseField() { return *GetNativePointerField<bool*>(this, "UPrimalItem.bUseBPOnLocalUse"); }
+	// TSubclassOf<UUserWidget>& CustomItemTooltipOverrideField() { return *GetNativePointerField<TSubclassOf<UUserWidget>*>(this, "UPrimalItem.CustomItemTooltipOverride"); }
+	// FIELD MISSING: UPrimalItem.CustomItemTooltipOverride
+	// bool& bUseBPPreventUploadField() { return *GetNativePointerField<bool*>(this, "UPrimalItem.bUseBPPreventUpload"); }
+	// FIELD MISSING: UPrimalItem.bUseBPPreventUpload
+	// FName& EquippingCosmeticRequiresUnlockedEmoteNameField() { return *GetNativePointerField<FName*>(this, "UPrimalItem.EquippingCosmeticRequiresUnlockedEmoteName"); }
+	// FIELD MISSING: UPrimalItem.EquippingCosmeticRequiresUnlockedEmoteName
+	// float& CustomInventoryWidgetTextVerticalOffsetField() { return *GetNativePointerField<float*>(this, "UPrimalItem.CustomInventoryWidgetTextVerticalOffset"); }
+	// FIELD MISSING: UPrimalItem.CustomInventoryWidgetTextVerticalOffset
+	// TArray<FName, TSizedDefaultAllocator<32> >& TopLevelCustomContextMenuOptionsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.TopLevelCustomContextMenuOptions"); }
+	// FIELD MISSING: UPrimalItem.TopLevelCustomContextMenuOptions
+	// TArray<FCustomContextSubmenu, TSizedDefaultAllocator<32> >& CustomContextSubMenusField() { return *GetNativePointerField<TArray<FCustomContextSubmenu, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CustomContextSubMenus"); }
+	// FIELD MISSING: UPrimalItem.CustomContextSubMenus
+	// TArray<FCustomContextMenuData, TSizedDefaultAllocator<32> >& CustomContextOptionDataField() { return *GetNativePointerField<TArray<FCustomContextMenuData, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.CustomContextOptionData"); }
+	// FIELD MISSING: UPrimalItem.CustomContextOptionData
+	// bool& bUseBPOnLocalUseField() { return *GetNativePointerField<bool*>(this, "UPrimalItem.bUseBPOnLocalUse"); }
+	// FIELD MISSING: UPrimalItem.bUseBPOnLocalUse
 	unsigned int& AssociatedDinoID1Field() { return *GetNativePointerField<unsigned int*>(this, "UPrimalItem.AssociatedDinoID1"); }
 	unsigned int& AssociatedDinoID2Field() { return *GetNativePointerField<unsigned int*>(this, "UPrimalItem.AssociatedDinoID2"); }
 	unsigned char& ItemQualityIndexField() { return *GetNativePointerField<unsigned char*>(this, "UPrimalItem.ItemQualityIndex"); }
@@ -513,7 +641,8 @@ struct UPrimalItem : UObject
 	BitFieldValue<bool, unsigned __int32> bUseOnItemSetIndexAsDestinationItemCustomData() { return { this, "UPrimalItem.bUseOnItemSetIndexAsDestinationItemCustomData" }; }
 	BitFieldValue<bool, unsigned __int32> bSupportDragOntoOtherItem() { return { this, "UPrimalItem.bSupportDragOntoOtherItem" }; }
 	BitFieldValue<bool, unsigned __int32> bIsItemSkin() { return { this, "UPrimalItem.bIsItemSkin" }; }
-	BitFieldValue<bool, unsigned __int32> bIsCustomCosmeticDisplayField() { return { this, "UPrimalItem.bIsCustomCosmeticDisplay" }; }
+	// BitFieldValue<bool, unsigned __int32> bIsCustomCosmeticDisplayField() { return { this, "UPrimalItem.bIsCustomCosmeticDisplay" }; }
+	// BITFIELD MISSING: UPrimalItem.bIsCustomCosmeticDisplay
 	BitFieldValue<bool, unsigned __int32> bPreventOnSkinTab() { return { this, "UPrimalItem.bPreventOnSkinTab" }; }
 	BitFieldValue<bool, unsigned __int32> bDontResetAttachmentIfNotUpdatingItem() { return { this, "UPrimalItem.bDontResetAttachmentIfNotUpdatingItem" }; }
 	BitFieldValue<bool, unsigned __int32> bItemSkinIgnoreSkinIcon() { return { this, "UPrimalItem.bItemSkinIgnoreSkinIcon" }; }
@@ -524,10 +653,14 @@ struct UPrimalItem : UObject
 	BitFieldValue<bool, unsigned __int32> bCopyDurabilityIntoSpoiledItem() { return { this, "UPrimalItem.bCopyDurabilityIntoSpoiledItem" }; }
 	BitFieldValue<bool, unsigned __int32> bCraftedRequestCustomItemDescription() { return { this, "UPrimalItem.bCraftedRequestCustomItemDescription" }; }
 	BitFieldValue<bool, unsigned __int32> bForceAllowCustomItemDescription() { return { this, "UPrimalItem.bForceAllowCustomItemDescription" }; }
-	BitFieldValue<bool, unsigned __int32> bInitializedItem() { return { this, "UPrimalItem.bInitializedItem" }; }
-	BitFieldValue<bool, unsigned __int32> bIsDroppedItem() { return { this, "UPrimalItem.bIsDroppedItem" }; }
-	BitFieldValue<bool, unsigned __int32> bEggIsTooCold() { return { this, "UPrimalItem.bEggIsTooCold" }; }
-	BitFieldValue<bool, unsigned __int32> bEggIsTooHot() { return { this, "UPrimalItem.bEggIsTooHot" }; }
+	// BitFieldValue<bool, unsigned __int32> bInitializedItem() { return { this, "UPrimalItem.bInitializedItem" }; }
+	// BITFIELD MISSING: UPrimalItem.bInitializedItem
+	// BitFieldValue<bool, unsigned __int32> bIsDroppedItem() { return { this, "UPrimalItem.bIsDroppedItem" }; }
+	// BITFIELD MISSING: UPrimalItem.bIsDroppedItem
+	// BitFieldValue<bool, unsigned __int32> bEggIsTooCold() { return { this, "UPrimalItem.bEggIsTooCold" }; }
+	// BITFIELD MISSING: UPrimalItem.bEggIsTooCold
+	// BitFieldValue<bool, unsigned __int32> bEggIsTooHot() { return { this, "UPrimalItem.bEggIsTooHot" }; }
+	// BITFIELD MISSING: UPrimalItem.bEggIsTooHot
 	BitFieldValue<bool, unsigned __int32> bUseBPPreventUseOntoItem() { return { this, "UPrimalItem.bUseBPPreventUseOntoItem" }; }
 	BitFieldValue<bool, unsigned __int32> bSkinDisableWhenSubmerged() { return { this, "UPrimalItem.bSkinDisableWhenSubmerged" }; }
 	BitFieldValue<bool, unsigned __int32> bIsAbstractItem() { return { this, "UPrimalItem.bIsAbstractItem" }; }
@@ -548,7 +681,8 @@ struct UPrimalItem : UObject
 	BitFieldValue<bool, unsigned __int32> bIsCookingIngredient() { return { this, "UPrimalItem.bIsCookingIngredient" }; }
 	BitFieldValue<bool, unsigned __int32> bDragClearDyedItem() { return { this, "UPrimalItem.bDragClearDyedItem" }; }
 	BitFieldValue<bool, unsigned __int32> bDeprecateItem() { return { this, "UPrimalItem.bDeprecateItem" }; }
-	BitFieldValue<bool, unsigned __int32> bInitializedRecipeStats() { return { this, "UPrimalItem.bInitializedRecipeStats" }; }
+	// BitFieldValue<bool, unsigned __int32> bInitializedRecipeStats() { return { this, "UPrimalItem.bInitializedRecipeStats" }; }
+	// BITFIELD MISSING: UPrimalItem.bInitializedRecipeStats
 	BitFieldValue<bool, unsigned __int32> bItemSkinKeepOriginalWeaponTemplate() { return { this, "UPrimalItem.bItemSkinKeepOriginalWeaponTemplate" }; }
 	BitFieldValue<bool, unsigned __int32> bItemSkinKeepOriginalIcon() { return { this, "UPrimalItem.bItemSkinKeepOriginalIcon" }; }
 	BitFieldValue<bool, unsigned __int32> bItemSkinReceiveOwnerEquippedBlueprintEvents() { return { this, "UPrimalItem.bItemSkinReceiveOwnerEquippedBlueprintEvents" }; }
@@ -644,7 +778,8 @@ struct UPrimalItem : UObject
 	BitFieldValue<bool, unsigned __int32> bPreventOnFullEquippedSuitHUD() { return { this, "UPrimalItem.bPreventOnFullEquippedSuitHUD" }; }
 	BitFieldValue<bool, unsigned __int32> bNonBlockingShield() { return { this, "UPrimalItem.bNonBlockingShield" }; }
 	BitFieldValue<bool, unsigned __int32> bNetInfoFromClient() { return { this, "UPrimalItem.bNetInfoFromClient" }; }
-	BitFieldValue<bool, unsigned __int32> bAddedToWorldItemMap() { return { this, "UPrimalItem.bAddedToWorldItemMap" }; }
+	// BitFieldValue<bool, unsigned __int32> bAddedToWorldItemMap() { return { this, "UPrimalItem.bAddedToWorldItemMap" }; }
+	// BITFIELD MISSING: UPrimalItem.bAddedToWorldItemMap
 	BitFieldValue<bool, unsigned __int32> bDisableItemUITooltip() { return { this, "UPrimalItem.bDisableItemUITooltip" }; }
 	BitFieldValue<bool, unsigned __int32> bPreventDepositDropping() { return { this, "UPrimalItem.bPreventDepositDropping" }; }
 	BitFieldValue<bool, unsigned __int32> bForceAllowSkinColorization() { return { this, "UPrimalItem.bForceAllowSkinColorization" }; }
@@ -674,12 +809,15 @@ struct UPrimalItem : UObject
 	void RemovedSkinFromItem(UPrimalItem* FromOwnerItem, bool bIsFirstTime) { NativeCall<void, UPrimalItem*, bool>(this, "UPrimalItem.RemovedSkinFromItem(UPrimalItem*,bool)", FromOwnerItem, bIsFirstTime); }
 	void SelectedCustomContextMenuItem(const FName* ContextItem, AShooterPlayerController* ForPC) { NativeCall<void, const FName*, AShooterPlayerController*>(this, "UPrimalItem.SelectedCustomContextMenuItem(FName&,AShooterPlayerController*)", ContextItem, ForPC); }
 	void SlottedTick(float DeltaSeconds) { NativeCall<void, float>(this, "UPrimalItem.SlottedTick(float)", DeltaSeconds); }
-	static void StaticRegisterNativesUPrimalItem() { NativeCall<void>(nullptr, "UPrimalItem.StaticRegisterNativesUPrimalItem()"); }
+	// static void StaticRegisterNativesUPrimalItem() { NativeCall<void>(nullptr, "UPrimalItem.StaticRegisterNativesUPrimalItem()"); }
+	// FUNCTION MISSING: UPrimalItem.StaticRegisterNativesUPrimalItem()
 	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalItem.StaticClass()"); }
-	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalItem.Serialize(FStructuredArchiveRecord)", Record); }
+	// void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalItem.Serialize(FStructuredArchiveRecord)", Record); }
+	// FUNCTION MISSING: UPrimalItem.Serialize(FStructuredArchiveRecord)
 	UWorld* GetWorld() { return NativeCall<UWorld*>(this, "UPrimalItem.GetWorld()"); }
 	FItemNetInfo* GetItemNetInfo(FItemNetInfo* result, bool bIsForSendingToClient) { return NativeCall<FItemNetInfo*, FItemNetInfo*, bool>(this, "UPrimalItem.GetItemNetInfo(bool)", result, bIsForSendingToClient); }
-	void InitFromNetInfo(const FItemNetInfo* theInfo) { NativeCall<void, const FItemNetInfo*>(this, "UPrimalItem.InitFromNetInfo(FItemNetInfo&)", theInfo); }
+	// void InitFromNetInfo(const FItemNetInfo* theInfo) { NativeCall<void, const FItemNetInfo*>(this, "UPrimalItem.InitFromNetInfo(FItemNetInfo&)", theInfo); }
+	// FUNCTION MISSING: UPrimalItem.InitFromNetInfo(FItemNetInfo&)
 	UWorld* GetWorldHelper(UObject* WorldContextObject) { return NativeCall<UWorld*, UObject*>(this, "UPrimalItem.GetWorldHelper(UObject*)", WorldContextObject); }
 	int GetMaxItemQuantity(UObject* WorldContextObject) { return NativeCall<int, UObject*>(this, "UPrimalItem.GetMaxItemQuantity(UObject*)", WorldContextObject); }
 	void AddItemDurability(float durabilityToAdd, bool bNotifyClientForEquippedItems) { NativeCall<void, float, bool>(this, "UPrimalItem.AddItemDurability(float,bool)", durabilityToAdd, bNotifyClientForEquippedItems); }
@@ -695,7 +833,8 @@ struct UPrimalItem : UObject
 	static UPrimalItem* CreateItemFromNetInfo(const FItemNetInfo* newItemInfo) { return NativeCall<UPrimalItem*, const FItemNetInfo*>(nullptr, "UPrimalItem.CreateItemFromNetInfo(FItemNetInfo&)", newItemInfo); }
 	FString* GetItemName(FString* result, bool bIncludeQuantity, bool bShortName, AShooterPlayerController* ForPC) { return NativeCall<FString*, FString*, bool, bool, AShooterPlayerController*>(this, "UPrimalItem.GetItemName(bool,bool,AShooterPlayerController*)", result, bIncludeQuantity, bShortName, ForPC); }
 	FLinearColor* GetItemQualityColor(FLinearColor* result) { return NativeCall<FLinearColor*, FLinearColor*>(this, "UPrimalItem.GetItemQualityColor()", result); }
-	FString* GetItemDescription(FString* result, bool bGetLongDescription, AShooterPlayerController* ForPC) { return NativeCall<FString*, FString*, bool, AShooterPlayerController*>(this, "UPrimalItem.GetItemDescription(bool,AShooterPlayerController*)", result, bGetLongDescription, ForPC); }
+	// FString* GetItemDescription(FString* result, bool bGetLongDescription, AShooterPlayerController* ForPC) { return NativeCall<FString*, FString*, bool, AShooterPlayerController*>(this, "UPrimalItem.GetItemDescription(bool,AShooterPlayerController*)", result, bGetLongDescription, ForPC); }
+	// FUNCTION MISSING: UPrimalItem.GetItemDescription(bool,AShooterPlayerController*)
 	UTexture2D* GetItemIcon(AShooterPlayerController* ForPC) { return NativeCall<UTexture2D*, AShooterPlayerController*>(this, "UPrimalItem.GetItemIcon(AShooterPlayerController*)", ForPC); }
 	void EquippedItem() { NativeCall<void>(this, "UPrimalItem.EquippedItem()"); }
 	void EquipAnimationFinished() { NativeCall<void>(this, "UPrimalItem.EquipAnimationFinished()"); }
@@ -703,7 +842,8 @@ struct UPrimalItem : UObject
 	void UpdatedItem(bool ResetUploadTime, bool DontHaveClientRefreshAttachmentsAfterUpdatingItem) { NativeCall<void, bool, bool>(this, "UPrimalItem.UpdatedItem(bool,bool)", ResetUploadTime, DontHaveClientRefreshAttachmentsAfterUpdatingItem); }
 	void RefreshAttachments(bool bRefreshDefaultAttachments, bool isShieldSpecificRefresh, bool bIsFromUpdateItem) { NativeCall<void, bool, bool, bool>(this, "UPrimalItem.RefreshAttachments(bool,bool,bool)", bRefreshDefaultAttachments, isShieldSpecificRefresh, bIsFromUpdateItem); }
 	void AddAttachments(AActor* UseOtherActor, bool bDontRemoveBeforeAttaching, USkeletalMeshComponent* Saddle, bool bRefreshDefaultAttachments, bool isShieldSpecificRefresh, bool bIsFromUpdateItem) { NativeCall<void, AActor*, bool, USkeletalMeshComponent*, bool, bool, bool>(this, "UPrimalItem.AddAttachments(AActor*,bool,USkeletalMeshComponent*,bool,bool,bool)", UseOtherActor, bDontRemoveBeforeAttaching, Saddle, bRefreshDefaultAttachments, isShieldSpecificRefresh, bIsFromUpdateItem); }
-	void ApplyColorsToMesh(UMeshComponent* mComp) { NativeCall<void, UMeshComponent*>(this, "UPrimalItem.ApplyColorsToMesh(UMeshComponent*)", mComp); }
+	// void ApplyColorsToMesh(UMeshComponent* mComp) { NativeCall<void, UMeshComponent*>(this, "UPrimalItem.ApplyColorsToMesh(UMeshComponent*)", mComp); }
+	// FUNCTION MISSING: UPrimalItem.ApplyColorsToMesh(UMeshComponent*)
 	void SetFirstPersonMasterPoseComponent(USkeletalMeshComponent* NewMasterPoseComponent) { NativeCall<void, USkeletalMeshComponent*>(this, "UPrimalItem.SetFirstPersonMasterPoseComponent(USkeletalMeshComponent*)", NewMasterPoseComponent); }
 	void SetOwnerNoSee(bool bNoSee, bool bForceHideFirstPerson) { NativeCall<void, bool, bool>(this, "UPrimalItem.SetOwnerNoSee(bool,bool)", bNoSee, bForceHideFirstPerson); }
 	void RemoveAttachments(AActor* UseOtherActor, bool bRefreshDefaultAttachments, bool isShieldSpecificRefresh) { NativeCall<void, AActor*, bool, bool>(this, "UPrimalItem.RemoveAttachments(AActor*,bool,bool)", UseOtherActor, bRefreshDefaultAttachments, isShieldSpecificRefresh); }
@@ -717,7 +857,8 @@ struct UPrimalItem : UObject
 	void RemoveFromSlot(bool bForce, bool bFastInventory) { NativeCall<void, bool, bool>(this, "UPrimalItem.RemoveFromSlot(bool,bool)", bForce, bFastInventory); }
 	bool AllowSlotting(UPrimalInventoryComponent* toInventory, bool bForce) { return NativeCall<bool, UPrimalInventoryComponent*, bool>(this, "UPrimalItem.AllowSlotting(UPrimalInventoryComponent*,bool)", toInventory, bForce); }
 	bool IsBroken() { return NativeCall<bool>(this, "UPrimalItem.IsBroken()"); }
-	int GetExplicitEntryIndexType(bool bGetBaseValue) { return NativeCall<int, bool>(this, "UPrimalItem.GetExplicitEntryIndexType(bool)", bGetBaseValue); }
+	// int GetExplicitEntryIndexType(bool bGetBaseValue) { return NativeCall<int, bool>(this, "UPrimalItem.GetExplicitEntryIndexType(bool)", bGetBaseValue); }
+	// FUNCTION MISSING: UPrimalItem.GetExplicitEntryIndexType(bool)
 	float GetUseItemAddCharacterStatusValue(EPrimalCharacterStatusValue::Type valueType) { return NativeCall<float, EPrimalCharacterStatusValue::Type>(this, "UPrimalItem.GetUseItemAddCharacterStatusValue(EPrimalCharacterStatusValue::Type)", valueType); }
 	APhysicsVolume* GetLocationPhysicsVolume(const UE::Math::TVector<double>* Location) { return NativeCall<APhysicsVolume*, const UE::Math::TVector<double>*>(this, "UPrimalItem.GetLocationPhysicsVolume(UE::Math::TVector<double>&)", Location); }
 	void Use(bool bOverridePlayerInput) { NativeCall<void, bool>(this, "UPrimalItem.Use(bool)", bOverridePlayerInput); }
@@ -727,11 +868,15 @@ struct UPrimalItem : UObject
 	FString* GetInventoryIconDisplayText_Implementation(FString* result) { return NativeCall<FString*, FString*>(this, "UPrimalItem.GetInventoryIconDisplayText_Implementation()", result); }
 	bool CanUse(bool bIgnoreCooldown) { return NativeCall<bool, bool>(this, "UPrimalItem.CanUse(bool)", bIgnoreCooldown); }
 	void LocalUse(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalItem.LocalUse(AShooterPlayerController*)", ForPC); }
-	void LocalUseAfterHold(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalItem.LocalUseAfterHold(AShooterPlayerController*)", ForPC); }
-	void LocalUseStartHold(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalItem.LocalUseStartHold(AShooterPlayerController*)", ForPC); }
-	void LocalUseItemRelease(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalItem.LocalUseItemRelease(AShooterPlayerController*)", ForPC); }
+	// void LocalUseAfterHold(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalItem.LocalUseAfterHold(AShooterPlayerController*)", ForPC); }
+	// FUNCTION MISSING: UPrimalItem.LocalUseAfterHold(AShooterPlayerController*)
+	// void LocalUseStartHold(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalItem.LocalUseStartHold(AShooterPlayerController*)", ForPC); }
+	// FUNCTION MISSING: UPrimalItem.LocalUseStartHold(AShooterPlayerController*)
+	// void LocalUseItemRelease(AShooterPlayerController* ForPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalItem.LocalUseItemRelease(AShooterPlayerController*)", ForPC); }
+	// FUNCTION MISSING: UPrimalItem.LocalUseItemRelease(AShooterPlayerController*)
 	void UnequipWeapon(bool bDelayedUnequip) { NativeCall<void, bool>(this, "UPrimalItem.UnequipWeapon(bool)", bDelayedUnequip); }
-	FString* GetEntryDescription(FString* result) { return NativeCall<FString*, FString*>(this, "UPrimalItem.GetEntryDescription()", result); }
+	// FString* GetEntryDescription(FString* result) { return NativeCall<FString*, FString*>(this, "UPrimalItem.GetEntryDescription()", result); }
+	// FUNCTION MISSING: UPrimalItem.GetEntryDescription()
 	void AddedToInventory(__int16 a2) { NativeCall<void, __int16>(this, "UPrimalItem.AddedToInventory()", a2); }
 	void ClampStats(UPrimalInventoryComponent* inventory) { NativeCall<void, UPrimalInventoryComponent*>(this, "UPrimalItem.ClampStats(UPrimalInventoryComponent*)", inventory); }
 	void ClampItemRating(UPrimalInventoryComponent* inventory) { NativeCall<void, UPrimalInventoryComponent*>(this, "UPrimalItem.ClampItemRating(UPrimalInventoryComponent*)", inventory); }
@@ -758,14 +903,18 @@ struct UPrimalItem : UObject
 	bool CheckForRepairResources(UPrimalInventoryComponent* invComp, float Percent, APlayerController* PC) { return NativeCall<bool, UPrimalInventoryComponent*, float, APlayerController*>(this, "UPrimalItem.CheckForRepairResources(UPrimalInventoryComponent*,float,APlayerController*)", invComp, Percent, PC); }
 	void ConsumeResourcesForRepair(UPrimalInventoryComponent* invComp, float Percent, APlayerController* PC) { NativeCall<void, UPrimalInventoryComponent*, float, APlayerController*>(this, "UPrimalItem.ConsumeResourcesForRepair(UPrimalInventoryComponent*,float,APlayerController*)", invComp, Percent, PC); }
 	FString* GetCraftingRequirementsString(FString* result, UPrimalInventoryComponent* compareInventoryComp, bool bMinimalVersion) { return NativeCall<FString*, FString*, UPrimalInventoryComponent*, bool>(this, "UPrimalItem.GetCraftingRequirementsString(UPrimalInventoryComponent*,bool)", result, compareInventoryComp, bMinimalVersion); }
-	bool MeetRepairingRequirements(UPrimalInventoryComponent* compareInventoryComp, bool bIsForCraftQueueAddition, bool bForceUpdateWirelessResources) { return NativeCall<bool, UPrimalInventoryComponent*, bool, bool>(this, "UPrimalItem.MeetRepairingRequirements(UPrimalInventoryComponent*,bool,bool)", compareInventoryComp, bIsForCraftQueueAddition, bForceUpdateWirelessResources); }
+	// bool MeetRepairingRequirements(UPrimalInventoryComponent* compareInventoryComp, bool bIsForCraftQueueAddition, bool bForceUpdateWirelessResources) { return NativeCall<bool, UPrimalInventoryComponent*, bool, bool>(this, "UPrimalItem.MeetRepairingRequirements(UPrimalInventoryComponent*,bool,bool)", compareInventoryComp, bIsForCraftQueueAddition, bForceUpdateWirelessResources); }
+	// FUNCTION MISSING: UPrimalItem.MeetRepairingRequirements(UPrimalInventoryComponent*,bool,bool)
 	FString* GetRepairingRequirementsString(FString* result, UPrimalInventoryComponent* compareInventoryComp, bool bUseBaseRequirements, float OverrideRepairPercent, APlayerController* OwningPlayer) { return NativeCall<FString*, FString*, UPrimalInventoryComponent*, bool, float, APlayerController*>(this, "UPrimalItem.GetRepairingRequirementsString(UPrimalInventoryComponent*,bool,float,APlayerController*)", result, compareInventoryComp, bUseBaseRequirements, OverrideRepairPercent, OwningPlayer); }
-	__int64 IterateRepairingRequirements(std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>* lambda, UPrimalInventoryComponent* compareInventoryComp, bool bUseBaseRequirements, float OverrideRepairPercent, APlayerController* OwningPlayer) { return NativeCall<__int64, std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>*, UPrimalInventoryComponent*, bool, float, APlayerController*>(this, "UPrimalItem.IterateRepairingRequirements(std::function<void__cdecl(UPrimalItem&,int,int,int,bool)", lambda, compareInventoryComp, bUseBaseRequirements, OverrideRepairPercent, OwningPlayer); }
-	__int64 IterateCraftingRequirements(std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>* lambda, UPrimalInventoryComponent* compareInventoryComp, APlayerController* OwningPlayer) { return NativeCall<__int64, std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>*, UPrimalInventoryComponent*, APlayerController*>(this, "UPrimalItem.IterateCraftingRequirements(std::function<void__cdecl(UPrimalItem&,int,int,int,bool)", lambda, compareInventoryComp, OwningPlayer); }
+	// __int64 IterateRepairingRequirements(std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>* lambda, UPrimalInventoryComponent* compareInventoryComp, bool bUseBaseRequirements, float OverrideRepairPercent, APlayerController* OwningPlayer) { return NativeCall<__int64, std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>*, UPrimalInventoryComponent*, bool, float, APlayerController*>(this, "UPrimalItem.IterateRepairingRequirements(std::function<void__cdecl(UPrimalItem&,int,int,int,bool)", lambda, compareInventoryComp, bUseBaseRequirements, OverrideRepairPercent, OwningPlayer); }
+	// FUNCTION MISSING: UPrimalItem.IterateRepairingRequirements(std::function<void__cdecl(UPrimalItem&,int,int,int,bool)
+	// __int64 IterateCraftingRequirements(std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>* lambda, UPrimalInventoryComponent* compareInventoryComp, APlayerController* OwningPlayer) { return NativeCall<__int64, std::function<void __cdecl(UPrimalItem&, int, int, int, bool)>*, UPrimalInventoryComponent*, APlayerController*>(this, "UPrimalItem.IterateCraftingRequirements(std::function<void__cdecl(UPrimalItem&,int,int,int,bool)", lambda, compareInventoryComp, OwningPlayer); }
+	// FUNCTION MISSING: UPrimalItem.IterateCraftingRequirements(std::function<void__cdecl(UPrimalItem&,int,int,int,bool)
 	float GetItemStatModifier(EPrimalItemStat::Type statType) { return NativeCall<float, EPrimalItemStat::Type>(this, "UPrimalItem.GetItemStatModifier(EPrimalItemStat::Type)", statType); }
 	FString* GetItemStatString(FString* result, int statType) { return NativeCall<FString*, FString*, int>(this, "UPrimalItem.GetItemStatString(EPrimalItemStat::Type)", result, statType); }
 	bool UsesDurability() { return NativeCall<bool>(this, "UPrimalItem.UsesDurability()"); }
-	bool CanRepair(bool bIgnoreInventoryRequirement) { return NativeCall<bool, bool>(this, "UPrimalItem.CanRepair(bool)", bIgnoreInventoryRequirement); }
+	// bool CanRepair(bool bIgnoreInventoryRequirement) { return NativeCall<bool, bool>(this, "UPrimalItem.CanRepair(bool)", bIgnoreInventoryRequirement); }
+	// FUNCTION MISSING: UPrimalItem.CanRepair(bool)
 	bool CanRepairInInventory(UPrimalInventoryComponent* invComp) { return NativeCall<bool, UPrimalInventoryComponent*>(this, "UPrimalItem.CanRepairInInventory(UPrimalInventoryComponent&)", invComp); }
 	float GetDurabilityPercentage() { return NativeCall<float>(this, "UPrimalItem.GetDurabilityPercentage()"); }
 	float GetMaxDurability() { return NativeCall<float>(this, "UPrimalItem.GetMaxDurability()"); }
@@ -781,7 +930,8 @@ struct UPrimalItem : UObject
 	float GetCraftingPercent() { return NativeCall<float>(this, "UPrimalItem.GetCraftingPercent()"); }
 	float GetRepairingPercent() { return NativeCall<float>(this, "UPrimalItem.GetRepairingPercent()"); }
 	void SetQuantity(int NewQuantity, bool ShowHUDNotification) { NativeCall<void, int, bool>(this, "UPrimalItem.SetQuantity(int,bool)", NewQuantity, ShowHUDNotification); }
-	void RepairItem(bool bIgnoreInventoryRequirement, float UseNextRepairPercentage, float RepairSpeedMultiplier) { NativeCall<void, bool, float, float>(this, "UPrimalItem.RepairItem(bool,float,float)", bIgnoreInventoryRequirement, UseNextRepairPercentage, RepairSpeedMultiplier); }
+	// void RepairItem(bool bIgnoreInventoryRequirement, float UseNextRepairPercentage, float RepairSpeedMultiplier) { NativeCall<void, bool, float, float>(this, "UPrimalItem.RepairItem(bool,float,float)", bIgnoreInventoryRequirement, UseNextRepairPercentage, RepairSpeedMultiplier); }
+	// FUNCTION MISSING: UPrimalItem.RepairItem(bool,float,float)
 	void FinishRepairing() { NativeCall<void>(this, "UPrimalItem.FinishRepairing()"); }
 	void Used(UPrimalItem* DestinationItem, int AdditionalData) { NativeCall<void, UPrimalItem*, int>(this, "UPrimalItem.Used(UPrimalItem*,int)", DestinationItem, AdditionalData); }
 	void RemoveWeaponAccessory() { NativeCall<void>(this, "UPrimalItem.RemoveWeaponAccessory()"); }
@@ -811,7 +961,8 @@ struct UPrimalItem : UObject
 	bool CanUseWithItemSource(UPrimalItem* DestinationItem) { return NativeCall<bool, UPrimalItem*>(this, "UPrimalItem.CanUseWithItemSource(UPrimalItem*)", DestinationItem); }
 	bool IsDyed() { return NativeCall<bool>(this, "UPrimalItem.IsDyed()"); }
 	bool CanUseWithItemDestination(UPrimalItem* SourceItem) { return NativeCall<bool, UPrimalItem*>(this, "UPrimalItem.CanUseWithItemDestination(UPrimalItem*)", SourceItem); }
-	bool UseItemOntoItem(UPrimalItem* DestinationItem, int AdditionalData) { return NativeCall<bool, UPrimalItem*, int>(this, "UPrimalItem.UseItemOntoItem(UPrimalItem*,int)", DestinationItem, AdditionalData); }
+	// bool UseItemOntoItem(UPrimalItem* DestinationItem, int AdditionalData) { return NativeCall<bool, UPrimalItem*, int>(this, "UPrimalItem.UseItemOntoItem(UPrimalItem*,int)", DestinationItem, AdditionalData); }
+	// FUNCTION MISSING: UPrimalItem.UseItemOntoItem(UPrimalItem*,int)
 	void LocalUseItemOntoItem(AShooterPlayerController* ForPC, UPrimalItem* DestinationItem) { NativeCall<void, AShooterPlayerController*, UPrimalItem*>(this, "UPrimalItem.LocalUseItemOntoItem(AShooterPlayerController*,UPrimalItem*)", ForPC, DestinationItem); }
 	FString* GetPrimaryColorName(FString* result) { return NativeCall<FString*, FString*>(this, "UPrimalItem.GetPrimaryColorName()", result); }
 	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UPrimalItem.Serialize(FArchive&)", Ar); }
@@ -835,15 +986,18 @@ struct UPrimalItem : UObject
 	float GetEggHatchTimeRemaining(UWorld* theWorld, float additionalMultiplier) { return NativeCall<float, UWorld*, float>(this, "UPrimalItem.GetEggHatchTimeRemaining(UWorld*,float)", theWorld, additionalMultiplier); }
 	bool IsReadyToUpload(UWorld* theWorld) { return NativeCall<bool, UWorld*>(this, "UPrimalItem.IsReadyToUpload(UWorld*)", theWorld); }
 	float GetTimeUntilUploadAllowed(UWorld* theWorld) { return NativeCall<float, UWorld*>(this, "UPrimalItem.GetTimeUntilUploadAllowed(UWorld*)", theWorld); }
-	void ClientHandleItemNetExecCommand(FName CommandName, const FBPNetExecParams* ExecParams, AShooterPlayerController* ForPC) { NativeCall<void, FName, const FBPNetExecParams*, AShooterPlayerController*>(this, "UPrimalItem.ClientHandleItemNetExecCommand(FName,FBPNetExecParams&,AShooterPlayerController*)", CommandName, ExecParams, ForPC); }
-	void ServerHandleItemNetExecCommand(AShooterPlayerController* ForPC, FName CommandName, const FBPNetExecParams* ExecParams) { NativeCall<void, AShooterPlayerController*, FName, const FBPNetExecParams*>(this, "UPrimalItem.ServerHandleItemNetExecCommand(AShooterPlayerController*,FName,FBPNetExecParams&)", ForPC, CommandName, ExecParams); }
+	// void ClientHandleItemNetExecCommand(FName CommandName, const FBPNetExecParams* ExecParams, AShooterPlayerController* ForPC) { NativeCall<void, FName, const FBPNetExecParams*, AShooterPlayerController*>(this, "UPrimalItem.ClientHandleItemNetExecCommand(FName,FBPNetExecParams&,AShooterPlayerController*)", CommandName, ExecParams, ForPC); }
+	// FUNCTION MISSING: UPrimalItem.ClientHandleItemNetExecCommand(FName,FBPNetExecParams&,AShooterPlayerController*)
+	// void ServerHandleItemNetExecCommand(AShooterPlayerController* ForPC, FName CommandName, const FBPNetExecParams* ExecParams) { NativeCall<void, AShooterPlayerController*, FName, const FBPNetExecParams*>(this, "UPrimalItem.ServerHandleItemNetExecCommand(AShooterPlayerController*,FName,FBPNetExecParams&)", ForPC, CommandName, ExecParams); }
+	// FUNCTION MISSING: UPrimalItem.ServerHandleItemNetExecCommand(AShooterPlayerController*,FName,FBPNetExecParams&)
 	void ServerSendItemExecCommandToPlayer(AShooterPlayerController* ToPC, FName CommandName, const FBPNetExecParams* ExecParams, bool bIsReliable, bool bForceSendToLocalPlayer, bool bIgnoreRelevancy) { NativeCall<void, AShooterPlayerController*, FName, const FBPNetExecParams*, bool, bool, bool>(this, "UPrimalItem.ServerSendItemExecCommandToPlayer(AShooterPlayerController*,FName,FBPNetExecParams&,bool,bool,bool)", ToPC, CommandName, ExecParams, bIsReliable, bForceSendToLocalPlayer, bIgnoreRelevancy); }
 	void ServerSendItemExecCommandToEveryone(FName CommandName, const FBPNetExecParams* ExecParams, bool bIsReliable, bool bForceSendToLocalPlayer, bool bIgnoreRelevancy) { NativeCall<void, FName, const FBPNetExecParams*, bool, bool, bool>(this, "UPrimalItem.ServerSendItemExecCommandToEveryone(FName,FBPNetExecParams&,bool,bool,bool)", CommandName, ExecParams, bIsReliable, bForceSendToLocalPlayer, bIgnoreRelevancy); }
 	float HandleShieldDamageBlocking_Implementation(AShooterCharacter* ForShooterCharacter, float DamageIn, const FDamageEvent* DamageEvent) { return NativeCall<float, AShooterCharacter*, float, const FDamageEvent*>(this, "UPrimalItem.HandleShieldDamageBlocking_Implementation(AShooterCharacter*,float,FDamageEvent&,AController*,AActor*,UE::Math::TVector<double>)", ForShooterCharacter, DamageIn, DamageEvent); }
 	TSubclassOf<AShooterProjectile>* BPOverrideProjectileType_Implementation(TSubclassOf<AShooterProjectile>* result) { return NativeCall<TSubclassOf<AShooterProjectile> *, TSubclassOf<AShooterProjectile>*>(this, "UPrimalItem.BPOverrideProjectileType_Implementation()", result); }
 	void BeginDestroy() { NativeCall<void>(this, "UPrimalItem.BeginDestroy()"); }
 	static TArray<FCustomItemData, TSizedDefaultAllocator<32> >* MergeCustomItemDatas(TArray<FCustomItemData, TSizedDefaultAllocator<32> >* result, const TArray<FCustomItemData, TSizedDefaultAllocator<32> >* DataSet1, const TArray<FCustomItemData, TSizedDefaultAllocator<32> >* DataSet2) { return NativeCall<TArray<FCustomItemData, TSizedDefaultAllocator<32> >*, TArray<FCustomItemData, TSizedDefaultAllocator<32> >*, const TArray<FCustomItemData, TSizedDefaultAllocator<32> >*, const TArray<FCustomItemData, TSizedDefaultAllocator<32> >*>(nullptr, "UPrimalItem.MergeCustomItemDatas(TArray<FCustomItemData,TSizedDefaultAllocator<32>>&,TArray<FCustomItemData,TSizedDefaultAllocator<32>>&)", result, DataSet1, DataSet2); }
-	void OnVersionChange(bool* doDestroy, UWorld* World, AShooterGameMode* gameMode) { NativeCall<void, bool*, UWorld*, AShooterGameMode*>(this, "UPrimalItem.OnVersionChange(bool&,UWorld*,AShooterGameMode*)", doDestroy, World, gameMode); }
+	// void OnVersionChange(bool* doDestroy, UWorld* World, AShooterGameMode* gameMode) { NativeCall<void, bool*, UWorld*, AShooterGameMode*>(this, "UPrimalItem.OnVersionChange(bool&,UWorld*,AShooterGameMode*)", doDestroy, World, gameMode); }
+	// FUNCTION MISSING: UPrimalItem.OnVersionChange(bool&,UWorld*,AShooterGameMode*)
 	void AnimNotifyCustomState_Begin(FName CustomEventName, USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration, const UAnimNotifyState* AnimNotifyObject) { NativeCall<void, FName, USkeletalMeshComponent*, UAnimSequenceBase*, float, const UAnimNotifyState*>(this, "UPrimalItem.AnimNotifyCustomState_Begin(FName,USkeletalMeshComponent*,UAnimSequenceBase*,float,UAnimNotifyState*)", CustomEventName, MeshComp, Animation, TotalDuration, AnimNotifyObject); }
 	void AnimNotifyCustomState_End(FName CustomEventName, USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const UAnimNotifyState* AnimNotifyObject) { NativeCall<void, FName, USkeletalMeshComponent*, UAnimSequenceBase*, const UAnimNotifyState*>(this, "UPrimalItem.AnimNotifyCustomState_End(FName,USkeletalMeshComponent*,UAnimSequenceBase*,UAnimNotifyState*)", CustomEventName, MeshComp, Animation, AnimNotifyObject); }
 	void AnimNotifyCustomEvent(FName CustomEventName, USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const UAnimNotify* AnimNotifyObject) { NativeCall<void, FName, USkeletalMeshComponent*, UAnimSequenceBase*, const UAnimNotify*>(this, "UPrimalItem.AnimNotifyCustomEvent(FName,USkeletalMeshComponent*,UAnimSequenceBase*,UAnimNotify*)", CustomEventName, MeshComp, Animation, AnimNotifyObject); }
@@ -854,7 +1008,8 @@ struct UPrimalItem : UObject
 	FLinearColor* GetColorForItemColorIDFromDyeList(FLinearColor* result, int SetNum, int ID) { return NativeCall<FLinearColor*, FLinearColor*, int, int>(this, "UPrimalItem.GetColorForItemColorIDFromDyeList(int,int)", result, SetNum, ID); }
 	const TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >* GetAllStructuresToBuild() { return NativeCall<const TArray<TSoftClassPtr<APrimalStructure>, TSizedDefaultAllocator<32> >*>(this, "UPrimalItem.GetAllStructuresToBuild()"); }
 	void ConsumeCraftingResources(TArray<FCustomItemData, TSizedDefaultAllocator<32> >* ItemDataOutBuffer, float* ItemDurabilityUsed) { NativeCall<void, TArray<FCustomItemData, TSizedDefaultAllocator<32> >*, float*>(this, "UPrimalItem.ConsumeCraftingResources(TArray<FCustomItemData,TSizedDefaultAllocator<32>>*,float*)", ItemDataOutBuffer, ItemDurabilityUsed); }
-	void ConsumeRepairingResources(float RepairPercent) { NativeCall<void, float>(this, "UPrimalItem.ConsumeRepairingResources(float)", RepairPercent); }
+	// void ConsumeRepairingResources(float RepairPercent) { NativeCall<void, float>(this, "UPrimalItem.ConsumeRepairingResources(float)", RepairPercent); }
+	// FUNCTION MISSING: UPrimalItem.ConsumeRepairingResources(float)
 	FPrimalItemSparseClassData* GetPrimalItemSparseClassData(EGetSparseClassDataMethod GetMethod)
 	{
 		return (FPrimalItemSparseClassData*)this->ClassPrivateField()->GetSparseClassData(GetMethod);
@@ -927,7 +1082,8 @@ struct UPrimalInventoryComponent : UActorComponent
 	TArray<UPrimalItem*, TSizedDefaultAllocator<32> >& CraftingItemsField() { return *GetNativePointerField<TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.CraftingItems"); }
 	int& DisplayDefaultItemInventoryCountField() { return *GetNativePointerField<int*>(this, "UPrimalInventoryComponent.DisplayDefaultItemInventoryCount"); }
 	//TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >& LastUsedItemClassesField() { return *GetNativePointerField<//TArray<TSubclassOf<UPrimalItem>, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.LastUsedItemClasses"); }
-	TArray<double, TSizedDefaultAllocator<32> >& LastUsedItemTimesField() { return *GetNativePointerField<TArray<double, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.LastUsedItemTimes"); }
+	// TArray<double, TSizedDefaultAllocator<32> >& LastUsedItemTimesField() { return *GetNativePointerField<TArray<double, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.LastUsedItemTimes"); }
+	// FIELD MISSING: UPrimalInventoryComponent.LastUsedItemTimes
 	int& InvUpdatedFrameField() { return *GetNativePointerField<int*>(this, "UPrimalInventoryComponent.InvUpdatedFrame"); }
 	long double& LastRefreshCheckItemTimeField() { return *GetNativePointerField<long double*>(this, "UPrimalInventoryComponent.LastRefreshCheckItemTime"); }
 	FItemNetID& NextItemSpoilingIDField() { return *GetNativePointerField<FItemNetID*>(this, "UPrimalInventoryComponent.NextItemSpoilingID"); }
@@ -1030,8 +1186,10 @@ struct UPrimalInventoryComponent : UActorComponent
 	BitFieldValue<bool, unsigned __int32> bIgnoreMaxInventoryItems() { return { this, "UPrimalInventoryComponent.bIgnoreMaxInventoryItems" }; }
 	BitFieldValue<bool, unsigned __int32> bIsSecondaryInventory() { return { this, "UPrimalInventoryComponent.bIsSecondaryInventory" }; }
 	BitFieldValue<bool, unsigned __int32> bRemoteOnlyAllowBlueprintsOrItemClasses() { return { this, "UPrimalInventoryComponent.bRemoteOnlyAllowBlueprintsOrItemClasses" }; }
-	BitFieldValue<bool, unsigned __int32> bPreventSendingData() { return { this, "UPrimalInventoryComponent.bPreventSendingData" }; }
-	BitFieldValue<bool, unsigned __int32> bSupressInventoryItemNetworking() { return { this, "UPrimalInventoryComponent.bSupressInventoryItemNetworking" }; }
+	// BitFieldValue<bool, unsigned __int32> bPreventSendingData() { return { this, "UPrimalInventoryComponent.bPreventSendingData" }; }
+	// BITFIELD MISSING: UPrimalInventoryComponent.bPreventSendingData
+	// BitFieldValue<bool, unsigned __int32> bSupressInventoryItemNetworking() { return { this, "UPrimalInventoryComponent.bSupressInventoryItemNetworking" }; }
+	// BITFIELD MISSING: UPrimalInventoryComponent.bSupressInventoryItemNetworking
 	BitFieldValue<bool, unsigned __int32> bPreventInventoryViewTrace() { return { this, "UPrimalInventoryComponent.bPreventInventoryViewTrace" }; }
 	BitFieldValue<bool, unsigned __int32> bSpawnActorOnTopOfStructure() { return { this, "UPrimalInventoryComponent.bSpawnActorOnTopOfStructure" }; }
 	BitFieldValue<bool, unsigned __int32> bDropPhysicalInventoryDeposit() { return { this, "UPrimalInventoryComponent.bDropPhysicalInventoryDeposit" }; }
@@ -1068,9 +1226,12 @@ struct UPrimalInventoryComponent : UActorComponent
 	BitFieldValue<bool, unsigned __int32> bAllDefaultInventoryIsEngrams() { return { this, "UPrimalInventoryComponent.bAllDefaultInventoryIsEngrams" }; }
 	BitFieldValue<bool, unsigned __int32> bUseBPCanGrindItems() { return { this, "UPrimalInventoryComponent.bUseBPCanGrindItems" }; }
 	BitFieldValue<bool, unsigned __int32> bGrinderCanGrindAll() { return { this, "UPrimalInventoryComponent.bGrinderCanGrindAll" }; }
-	BitFieldValue<bool, unsigned __int32> bInitializedDefaultInventory() { return { this, "UPrimalInventoryComponent.bInitializedDefaultInventory" }; }
-	BitFieldValue<bool, unsigned __int32> bGetDataListEntriesOnlyRootItems() { return { this, "UPrimalInventoryComponent.bGetDataListEntriesOnlyRootItems" }; }
-	BitFieldValue<bool, unsigned __int32> bConfigOverriden() { return { this, "UPrimalInventoryComponent.bConfigOverriden" }; }
+	// BitFieldValue<bool, unsigned __int32> bInitializedDefaultInventory() { return { this, "UPrimalInventoryComponent.bInitializedDefaultInventory" }; }
+	// BITFIELD MISSING: UPrimalInventoryComponent.bInitializedDefaultInventory
+	// BitFieldValue<bool, unsigned __int32> bGetDataListEntriesOnlyRootItems() { return { this, "UPrimalInventoryComponent.bGetDataListEntriesOnlyRootItems" }; }
+	// BITFIELD MISSING: UPrimalInventoryComponent.bGetDataListEntriesOnlyRootItems
+	// BitFieldValue<bool, unsigned __int32> bConfigOverriden() { return { this, "UPrimalInventoryComponent.bConfigOverriden" }; }
+	// BITFIELD MISSING: UPrimalInventoryComponent.bConfigOverriden
 	BitFieldValue<bool, unsigned __int32> bHideTributeUploadDinosPanel() { return { this, "UPrimalInventoryComponent.bHideTributeUploadDinosPanel" }; }
 	BitFieldValue<bool, unsigned __int32> bIgnoreDLCEquipRestrictions() { return { this, "UPrimalInventoryComponent.bIgnoreDLCEquipRestrictions" }; }
 	BitFieldValue<bool, unsigned __int32> bIgnoreEngramEquipRestrictions() { return { this, "UPrimalInventoryComponent.bIgnoreEngramEquipRestrictions" }; }
@@ -1087,7 +1248,8 @@ struct UPrimalInventoryComponent : UActorComponent
 	bool BPAllowAddInventoryItem(UPrimalItem* Item, int RequestedQuantity, bool bOnlyAddAll) { return NativeCall<bool, UPrimalItem*, int, bool>(this, "UPrimalInventoryComponent.BPAllowAddInventoryItem(UPrimalItem*,int,bool)", Item, RequestedQuantity, bOnlyAddAll); }
 	bool BPCustomRemoteInventoryAllowAddItems(AShooterPlayerController* PC, UPrimalItem* anItem, int anItemQuantityOverride, bool bRequestedByPlayer) { return NativeCall<bool, AShooterPlayerController*, UPrimalItem*, int, bool>(this, "UPrimalInventoryComponent.BPCustomRemoteInventoryAllowAddItems(AShooterPlayerController*,UPrimalItem*,int,bool)", PC, anItem, anItemQuantityOverride, bRequestedByPlayer); }
 	bool BPCustomRemoteInventoryAllowRemoveItems(AShooterPlayerController* PC, UPrimalItem* anItemToTransfer, int requestedQuantity, bool bRequestedByPlayer, bool bRequestDropping) { return NativeCall<bool, AShooterPlayerController*, UPrimalItem*, int, bool, bool>(this, "UPrimalInventoryComponent.BPCustomRemoteInventoryAllowRemoveItems(AShooterPlayerController*,UPrimalItem*,int,bool,bool)", PC, anItemToTransfer, requestedQuantity, bRequestedByPlayer, bRequestDropping); }
-	bool BPRemoteInventoryAllowCrafting(AShooterPlayerController* PC) { return NativeCall<bool, AShooterPlayerController*>(this, "UPrimalInventoryComponent.BPRemoteInventoryAllowCrafting(AShooterPlayerController*)", PC); }
+	// bool BPRemoteInventoryAllowCrafting(AShooterPlayerController* PC) { return NativeCall<bool, AShooterPlayerController*>(this, "UPrimalInventoryComponent.BPRemoteInventoryAllowCrafting(AShooterPlayerController*)", PC); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.BPRemoteInventoryAllowCrafting(AShooterPlayerController*)
 	void BPRequestedInventoryItems(AShooterPlayerController* forPC) { NativeCall<void, AShooterPlayerController*>(this, "UPrimalInventoryComponent.BPRequestedInventoryItems(AShooterPlayerController*)", forPC); }
 	bool CanGrindItems(const AShooterPlayerController* PC) { return NativeCall<bool, const AShooterPlayerController*>(this, "UPrimalInventoryComponent.CanGrindItems(AShooterPlayerController*)", PC); }
 	void ClientItemMessageNotification(FItemNetID ItemID, EPrimalItemMessage::Type ItemMessageType) { NativeCall<void, FItemNetID, EPrimalItemMessage::Type>(this, "UPrimalInventoryComponent.ClientItemMessageNotification(FItemNetID,EPrimalItemMessage::Type)", ItemID, ItemMessageType); }
@@ -1101,9 +1263,11 @@ struct UPrimalInventoryComponent : UActorComponent
 	void UpdateTribeGroupInventoryRank(unsigned __int8 NewRank) { NativeCall<void, unsigned __int8>(this, "UPrimalInventoryComponent.UpdateTribeGroupInventoryRank(unsignedchar)", NewRank); }
 	static void StaticRegisterNativesUPrimalInventoryComponent() { NativeCall<void>(nullptr, "UPrimalInventoryComponent.StaticRegisterNativesUPrimalInventoryComponent()"); }
 	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalInventoryComponent.GetPrivateStaticClass()"); }
-	void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }
+	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)
 	//void ~UPrimalInventoryComponent() { NativeCall<void>(this, "UPrimalInventoryComponent.~UPrimalInventoryComponent()"); }
-	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalInventoryComponent.Serialize(FStructuredArchiveRecord)", Record); }
+	// void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalInventoryComponent.Serialize(FStructuredArchiveRecord)", Record); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.Serialize(FStructuredArchiveRecord)
 	//void UPrimalInventoryComponent(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UPrimalInventoryComponent.UPrimalInventoryComponent(FObjectInitializer*)", ObjectInitializer); }
 	void OnRegister() { NativeCall<void>(this, "UPrimalInventoryComponent.OnRegister()"); }
 	bool AllowEquippingItemType(EPrimalEquipmentType::Type equipmentType) { return NativeCall<bool, EPrimalEquipmentType::Type>(this, "UPrimalInventoryComponent.AllowEquippingItemType(EPrimalEquipmentType::Type)", equipmentType); }
@@ -1112,7 +1276,8 @@ struct UPrimalInventoryComponent : UActorComponent
 	bool CheckFullInventoryConditionForItem(UPrimalItem* anItem) { return NativeCall<bool, UPrimalItem*>(this, "UPrimalInventoryComponent.CheckFullInventoryConditionForItem(UPrimalItem*)", anItem); }
 	bool AllowAddInventoryItem(UPrimalItem* anItem, int* requestedQuantity, bool OnlyAddAll, bool bCheckMaxInventoryItems) { return NativeCall<bool, UPrimalItem*, int*, bool, bool>(this, "UPrimalInventoryComponent.AllowAddInventoryItem(UPrimalItem*,int*,bool,bool)", anItem, requestedQuantity, OnlyAddAll, bCheckMaxInventoryItems); }
 	UPrimalItem* AddItem(const FItemNetInfo* theItemInfo, bool bEquipItem, bool bAddToSlot, bool bDontStack, FItemNetID* InventoryInsertAfterItemID, bool bShowHUDNotification, bool bDontRecalcSpoilingTime, bool bForceIncompleteStacking, AShooterCharacter* OwnerPlayer, bool bIgnoreAbsoluteMaxInventory, bool bInsertAtItemIDIndexInstead, bool doVersionCheck, bool DontHaveClientRefreshAttachmentsAfterUpdatingItem, bool bDontProgressMilestones, bool bDontBroadcastItemUpdateEvents) { return NativeCall<UPrimalItem*, const FItemNetInfo*, bool, bool, bool, FItemNetID*, bool, bool, bool, AShooterCharacter*, bool, bool, bool, bool, bool, bool>(this, "UPrimalInventoryComponent.AddItem(FItemNetInfo&,bool,bool,bool,FItemNetID*,bool,bool,bool,AShooterCharacter*,bool,bool,bool,bool,bool,bool)", theItemInfo, bEquipItem, bAddToSlot, bDontStack, InventoryInsertAfterItemID, bShowHUDNotification, bDontRecalcSpoilingTime, bForceIncompleteStacking, OwnerPlayer, bIgnoreAbsoluteMaxInventory, bInsertAtItemIDIndexInstead, doVersionCheck, DontHaveClientRefreshAttachmentsAfterUpdatingItem, bDontProgressMilestones, bDontBroadcastItemUpdateEvents); }
-	void NotifyItemAdded(UPrimalItem* theItem, bool bEquippedItem) { NativeCall<void, UPrimalItem*, bool>(this, "UPrimalInventoryComponent.NotifyItemAdded(UPrimalItem*,bool)", theItem, bEquippedItem); }
+	// void NotifyItemAdded(UPrimalItem* theItem, bool bEquippedItem) { NativeCall<void, UPrimalItem*, bool>(this, "UPrimalInventoryComponent.NotifyItemAdded(UPrimalItem*,bool)", theItem, bEquippedItem); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.NotifyItemAdded(UPrimalItem*,bool)
 	void UpdateSlotMagicNumber() { NativeCall<void>(this, "UPrimalInventoryComponent.UpdateSlotMagicNumber()"); }
 	void NotifyItemRemoved(UPrimalItem* theItem) { NativeCall<void, UPrimalItem*>(this, "UPrimalInventoryComponent.NotifyItemRemoved(UPrimalItem*,bool)", theItem); }
 	void RemoveItemSpoilingTimer(UPrimalItem* theItem) { NativeCall<void, UPrimalItem*>(this, "UPrimalInventoryComponent.RemoveItemSpoilingTimer(UPrimalItem*)", theItem); }
@@ -1151,7 +1316,8 @@ struct UPrimalInventoryComponent : UActorComponent
 	void OnComponentDestroyed(bool bDestroyingHierarchy) { NativeCall<void, bool>(this, "UPrimalInventoryComponent.OnComponentDestroyed(bool)", bDestroyingHierarchy); }
 	static void GetCustomFolderItems() { NativeCall<void>(nullptr, "UPrimalInventoryComponent.GetCustomFolderItems(FString,TArray<IDataListEntryInterface*,TSizedDefaultAllocator<32>>*,int)"); }
 	static void SwapCustomFolder() { NativeCall<void>(nullptr, "UPrimalInventoryComponent.SwapCustomFolder(FString,FString,int)"); }
-	bool AddToFolders(TArray<FString, TSizedDefaultAllocator<32> >* FoldersFound, UPrimalItem* anItem) { return NativeCall<bool, TArray<FString, TSizedDefaultAllocator<32> >*, UPrimalItem*>(this, "UPrimalInventoryComponent.AddToFolders(TArray<FString,TSizedDefaultAllocator<32>>*,UPrimalItem*,bool)", FoldersFound, anItem); }
+	// bool AddToFolders(TArray<FString, TSizedDefaultAllocator<32> >* FoldersFound, UPrimalItem* anItem) { return NativeCall<bool, TArray<FString, TSizedDefaultAllocator<32> >*, UPrimalItem*>(this, "UPrimalInventoryComponent.AddToFolders(TArray<FString,TSizedDefaultAllocator<32>>*,UPrimalItem*,bool)", FoldersFound, anItem); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.AddToFolders(TArray<FString,TSizedDefaultAllocator<32>>*,UPrimalItem*,bool)
 	void GetDataListEntries(TArray<IDataListEntryInterface*, TSizedDefaultAllocator<32> >* OutDataListEntries, int DataListType, bool bCreateFolders, char FolderLevel, TArray<FString, TSizedDefaultAllocator<32> >* FoldersFound, UObject* ForObject, const wchar_t* CustomFolderFilter, char SortType, const wchar_t* NameFilter, bool includeSkins, bool onlySkins, bool bSkinSelectorMode) { NativeCall<void, TArray<IDataListEntryInterface*, TSizedDefaultAllocator<32> >*, int, bool, char, TArray<FString, TSizedDefaultAllocator<32> >*, UObject*, const wchar_t*, char, const wchar_t*, bool, bool, bool>(this, "UPrimalInventoryComponent.GetDataListEntries(TArray<IDataListEntryInterface*,TSizedDefaultAllocator<32>>&,int,bool,signedchar,TArray<FString,TSizedDefaultAllocator<32>>*,UObject*,wchar_t*,signedchar,wchar_t*,bool,bool,bool,signedchar)", OutDataListEntries, DataListType, bCreateFolders, FolderLevel, FoldersFound, ForObject, CustomFolderFilter, SortType, NameFilter, includeSkins, onlySkins, bSkinSelectorMode); }
 	FString* GetInventoryName(FString* result, bool bIsEquipped, bool shortDesc) { return NativeCall<FString*, FString*, bool, bool>(this, "UPrimalInventoryComponent.GetInventoryName(bool,bool)", result, bIsEquipped, shortDesc); }
 	int GetFirstUnoccupiedSlot(AShooterPlayerState* forPlayerState, UPrimalItem* forItem) { return NativeCall<int, AShooterPlayerState*, UPrimalItem*>(this, "UPrimalInventoryComponent.GetFirstUnoccupiedSlot(AShooterPlayerState*,UPrimalItem*)", forPlayerState, forItem); }
@@ -1182,12 +1348,14 @@ struct UPrimalInventoryComponent : UActorComponent
 	void TickCraftQueue(float DeltaTime, AShooterGameState* theGameState) { NativeCall<void, float, AShooterGameState*>(this, "UPrimalInventoryComponent.TickCraftQueue(float,AShooterGameState*)", DeltaTime, theGameState); }
 	float GetCraftingSpeed() { return NativeCall<float>(this, "UPrimalInventoryComponent.GetCraftingSpeed()"); }
 	AShooterHUD* GetLocalOwnerHUD() { return NativeCall<AShooterHUD*>(this, "UPrimalInventoryComponent.GetLocalOwnerHUD()"); }
-	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
+	// void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)
 	bool IsLocal() { return NativeCall<bool>(this, "UPrimalInventoryComponent.IsLocal()"); }
 	bool IsLocalToPlayer(AShooterPlayerController* ForPC) { return NativeCall<bool, AShooterPlayerController*>(this, "UPrimalInventoryComponent.IsLocalToPlayer(AShooterPlayerController*)", ForPC); }
 	int GetMaxInventoryItems(bool bIgnoreHiddenDefaultInventory) { return NativeCall<int, bool>(this, "UPrimalInventoryComponent.GetMaxInventoryItems(bool)", bIgnoreHiddenDefaultInventory); }
 	int GetCurrentNumInventoryItems() { return NativeCall<int>(this, "UPrimalInventoryComponent.GetCurrentNumInventoryItems()"); }
-	void Unstasised() { NativeCall<void>(this, "UPrimalInventoryComponent.Unstasised()"); }
+	// void Unstasised() { NativeCall<void>(this, "UPrimalInventoryComponent.Unstasised()"); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.Unstasised()
 	void CheckForAutoCraftBlueprints() { NativeCall<void>(this, "UPrimalInventoryComponent.CheckForAutoCraftBlueprints()"); }
 	bool IsCraftingAllowed(UPrimalItem* anItem) { return NativeCall<bool, UPrimalItem*>(this, "UPrimalInventoryComponent.IsCraftingAllowed(UPrimalItem*)", anItem); }
 	void SetCraftingEnabled(bool bEnable) { NativeCall<void, bool>(this, "UPrimalInventoryComponent.SetCraftingEnabled(bool)", bEnable); }
@@ -1195,7 +1363,8 @@ struct UPrimalInventoryComponent : UActorComponent
 	float GetInventoryWeight() { return NativeCall<float>(this, "UPrimalInventoryComponent.GetInventoryWeight()"); }
 	void ServerSplitItemStack_Implementation(FItemNetID ItemID, int AmountToSplit) { NativeCall<void, FItemNetID, int>(this, "UPrimalInventoryComponent.ServerSplitItemStack_Implementation(FItemNetID,int)", ItemID, AmountToSplit); }
 	void ServerMergeItemStack_Implementation(FItemNetID ItemID) { NativeCall<void, FItemNetID>(this, "UPrimalInventoryComponent.ServerMergeItemStack_Implementation(FItemNetID)", ItemID); }
-	void OnGrindItem() { NativeCall<void>(this, "UPrimalInventoryComponent.OnGrindItem()"); }
+	// void OnGrindItem() { NativeCall<void>(this, "UPrimalInventoryComponent.OnGrindItem()"); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.OnGrindItem()
 	void ServerForceMergeItemStack_Implementation(FItemNetID Item1ID, FItemNetID Item2ID) { NativeCall<void, FItemNetID, FItemNetID>(this, "UPrimalInventoryComponent.ServerForceMergeItemStack_Implementation(FItemNetID,FItemNetID)", Item1ID, Item2ID); }
 	void RemoteAddItemToCustomFolder(const FString* CFolderName, int InventoryCompType, FItemNetID ItemId) { NativeCall<void, const FString*, int, FItemNetID>(this, "UPrimalInventoryComponent.RemoteAddItemToCustomFolder(FString&,int,FItemNetID)", CFolderName, InventoryCompType, ItemId); }
 	UPrimalItem* FindInventoryStackableItemCompareQuantity(TSubclassOf<UPrimalItem> ItemClass, bool bFindLeastQuantity, UPrimalItem* StacksWithAndIgnoreItem) { return NativeCall<UPrimalItem*, TSubclassOf<UPrimalItem>, bool, UPrimalItem*>(this, "UPrimalInventoryComponent.FindInventoryStackableItemCompareQuantity(TSubclassOf<UPrimalItem>,bool,UPrimalItem*)", ItemClass, bFindLeastQuantity, StacksWithAndIgnoreItem); }
@@ -1234,35 +1403,43 @@ struct UPrimalInventoryComponent : UActorComponent
 	bool ServerAddFromArkTributeInventory(FItemNetID* itemID, int Quantity) { return NativeCall<bool, FItemNetID*, int>(this, "UPrimalInventoryComponent.ServerAddFromArkTributeInventory(FItemNetID&,int)", itemID, Quantity); }
 	void RequestAddArkTributeItem(const FItemNetInfo* theItemInfo, bool bFromLoad) { NativeCall<void, const FItemNetInfo*, bool>(this, "UPrimalInventoryComponent.RequestAddArkTributeItem(FItemNetInfo&,bool)", theItemInfo, bFromLoad); }
 	void AddArkTributeItem(const FItemNetInfo* theItemInfo, bool bFromLoad) { NativeCall<void, const FItemNetInfo*, bool>(this, "UPrimalInventoryComponent.AddArkTributeItem(FItemNetInfo&,bool)", theItemInfo, bFromLoad); }
-	void LoadArkTriuteItems(const TArray<FItemNetInfo, TSizedDefaultAllocator<32> >* ItemInfos, bool bClear, bool bFinalBatch) { NativeCall<void, const TArray<FItemNetInfo, TSizedDefaultAllocator<32> >*, bool, bool>(this, "UPrimalInventoryComponent.LoadArkTriuteItems(TArray<FItemNetInfo,TSizedDefaultAllocator<32>>&,bool,bool)", ItemInfos, bClear, bFinalBatch); }
-	void NotifyItemQuantityUpdated(UPrimalItem* anItem, int amount) { NativeCall<void, UPrimalItem*, int>(this, "UPrimalInventoryComponent.NotifyItemQuantityUpdated(UPrimalItem*,int)", anItem, amount); }
+	// void LoadArkTriuteItems(const TArray<FItemNetInfo, TSizedDefaultAllocator<32> >* ItemInfos, bool bClear, bool bFinalBatch) { NativeCall<void, const TArray<FItemNetInfo, TSizedDefaultAllocator<32> >*, bool, bool>(this, "UPrimalInventoryComponent.LoadArkTriuteItems(TArray<FItemNetInfo,TSizedDefaultAllocator<32>>&,bool,bool)", ItemInfos, bClear, bFinalBatch); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.LoadArkTriuteItems(TArray<FItemNetInfo,TSizedDefaultAllocator<32>>&,bool,bool)
+	// void NotifyItemQuantityUpdated(UPrimalItem* anItem, int amount) { NativeCall<void, UPrimalItem*, int>(this, "UPrimalInventoryComponent.NotifyItemQuantityUpdated(UPrimalItem*,int)", anItem, amount); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.NotifyItemQuantityUpdated(UPrimalItem*,int)
 	bool IsServerCustomFolder(int InventoryCompType) { return NativeCall<bool, int>(this, "UPrimalInventoryComponent.IsServerCustomFolder(int)", InventoryCompType); }
 	static void AddCustomFolder() { NativeCall<void>(nullptr, "UPrimalInventoryComponent.AddCustomFolder(FString,int)"); }
 	static void RemoveCustomFolder() { NativeCall<void>(nullptr, "UPrimalInventoryComponent.RemoveCustomFolder(AShooterPlayerController*,FString,int)"); }
 	TArray<FString, TSizedDefaultAllocator<32> >* GetCustomFolders(TArray<FString, TSizedDefaultAllocator<32> >* result, int InventoryCompType) { return NativeCall<TArray<FString, TSizedDefaultAllocator<32> >*, TArray<FString, TSizedDefaultAllocator<32> >*, int>(this, "UPrimalInventoryComponent.GetCustomFolders(int)", result, InventoryCompType); }
 	static void DeleteItemFromCustomFolder() { NativeCall<void>(nullptr, "UPrimalInventoryComponent.DeleteItemFromCustomFolder(AShooterPlayerController*,FString,FItemNetID,int)"); }
 	float GetItemWeightMultiplier(UPrimalItem* anItem) { return NativeCall<float, UPrimalItem*>(this, "UPrimalInventoryComponent.GetItemWeightMultiplier(UPrimalItem*)", anItem); }
-	void UpdateTribeGroupInventoryRank_Implementation(unsigned __int8 NewRank) { NativeCall<void, unsigned __int8>(this, "UPrimalInventoryComponent.UpdateTribeGroupInventoryRank_Implementation(unsigned__int8)", NewRank); }
-	void BPDropInventoryDeposit(long double DestroyAtTime, int OverrideMaxItemsDropped, bool bOverrideCacheLocation, UE::Math::TVector<double>* CacheLocationOverride, bool bIgnoreEquippedItems, TSubclassOf<APrimalStructureItemContainer> OverrideInventoryDepositClass) { NativeCall<void, long double, int, bool, UE::Math::TVector<double>*, bool, TSubclassOf<APrimalStructureItemContainer>>(this, "UPrimalInventoryComponent.BPDropInventoryDeposit(double,int,bool,UE::Math::TVector<double>,bool,TSubclassOf<APrimalStructureItemContainer>)", DestroyAtTime, OverrideMaxItemsDropped, bOverrideCacheLocation, CacheLocationOverride, bIgnoreEquippedItems, OverrideInventoryDepositClass); };
+	// void UpdateTribeGroupInventoryRank_Implementation(unsigned __int8 NewRank) { NativeCall<void, unsigned __int8>(this, "UPrimalInventoryComponent.UpdateTribeGroupInventoryRank_Implementation(unsigned__int8)", NewRank); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.UpdateTribeGroupInventoryRank_Implementation(unsigned__int8)
+	// void BPDropInventoryDeposit(long double DestroyAtTime, int OverrideMaxItemsDropped, bool bOverrideCacheLocation, UE::Math::TVector<double>* CacheLocationOverride, bool bIgnoreEquippedItems, TSubclassOf<APrimalStructureItemContainer> OverrideInventoryDepositClass) { NativeCall<void, long double, int, bool, UE::Math::TVector<double>*, bool, TSubclassOf<APrimalStructureItemContainer>>(this, "UPrimalInventoryComponent.BPDropInventoryDeposit(double,int,bool,UE::Math::TVector<double>,bool,TSubclassOf<APrimalStructureItemContainer>)", DestroyAtTime, OverrideMaxItemsDropped, bOverrideCacheLocation, CacheLocationOverride, bIgnoreEquippedItems, OverrideInventoryDepositClass); };
+	// FUNCTION MISSING: UPrimalInventoryComponent.BPDropInventoryDeposit(double,int,bool,UE::Math::TVector<double>,bool,TSubclassOf<APrimalStructureItemContainer>)
 	float OverrideItemMinimumUseInterval(const UPrimalItem* theItem) { return NativeCall<float, const UPrimalItem*>(this, "UPrimalInventoryComponent.OverrideItemMinimumUseInterval(UPrimalItem*)", theItem); }
 	UPrimalItem* AddItemObject(UPrimalItem* anItem) { return NativeCall<UPrimalItem*, UPrimalItem*>(this, "UPrimalInventoryComponent.AddItemObject(UPrimalItem*)", anItem); }
 	UPrimalItem* AddItemObjectEx(UPrimalItem* anItem, bool bEquipItem, bool bAddToSlot, bool bDontStack, bool bShowHUDNotification, bool bDontRecalcSpoilingTime, bool bForceIncompleteStacking, AShooterCharacter* OwnerPlayer, bool bClampStats, UPrimalItem* InsertAfterItem, bool bInsertAtItemInstead) { return NativeCall<UPrimalItem*, UPrimalItem*, bool, bool, bool, bool, bool, bool, AShooterCharacter*, bool, UPrimalItem*, bool>(this, "UPrimalInventoryComponent.AddItemObjectEx(UPrimalItem*,bool,bool,bool,bool,bool,bool,AShooterCharacter*,bool,UPrimalItem*,bool)", anItem, bEquipItem, bAddToSlot, bDontStack, bShowHUDNotification, bDontRecalcSpoilingTime, bForceIncompleteStacking, OwnerPlayer, bClampStats, InsertAfterItem, bInsertAtItemInstead); }
 	void OnComponentCreated() { NativeCall<void>(this, "UPrimalInventoryComponent.OnComponentCreated()"); }
-	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UPrimalInventoryComponent.Serialize(FStructuredArchiveRecord)", Ar); }
+	// void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UPrimalInventoryComponent.Serialize(FStructuredArchiveRecord)", Ar); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.Serialize(FStructuredArchiveRecord)
 	bool IsAtMaxInventoryItems() { return NativeCall<bool>(this, "UPrimalInventoryComponent.IsAtMaxInventoryItems()"); }
 	void TransferAllItemsToInventory(UPrimalInventoryComponent* ToInventory) { NativeCall<void, UPrimalInventoryComponent*>(this, "UPrimalInventoryComponent.TransferAllItemsToInventory(UPrimalInventoryComponent*)", ToInventory); }
-	void InventoryCustomFilter_Implementation(const TArray<UPrimalItem*, TSizedDefaultAllocator<32> >* UnfilteredItemsList, TArray<UPrimalItem*, TSizedDefaultAllocator<32> >* FilteredItemsList) { NativeCall<void, const TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*, TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.InventoryCustomFilter_Implementation(TArray<UPrimalItem*,TSizedDefaultAllocator<32>>&,TArray<UPrimalItem*,TSizedDefaultAllocator<32>>&)", UnfilteredItemsList, FilteredItemsList); }
+	// void InventoryCustomFilter_Implementation(const TArray<UPrimalItem*, TSizedDefaultAllocator<32> >* UnfilteredItemsList, TArray<UPrimalItem*, TSizedDefaultAllocator<32> >* FilteredItemsList) { NativeCall<void, const TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*, TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.InventoryCustomFilter_Implementation(TArray<UPrimalItem*,TSizedDefaultAllocator<32>>&,TArray<UPrimalItem*,TSizedDefaultAllocator<32>>&)", UnfilteredItemsList, FilteredItemsList); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.InventoryCustomFilter_Implementation(TArray<UPrimalItem*,TSizedDefaultAllocator<32>>&,TArray<UPrimalItem*,TSizedDefaultAllocator<32>>&)
 	void ServerSelectedCustomItemAction(const FItemNetID* itemID, const FName* SelectedOption, AShooterPlayerController* ForPC) { NativeCall<void, const FItemNetID*, const FName*, AShooterPlayerController*>(this, "UPrimalInventoryComponent.ServerSelectedCustomItemAction(FItemNetID&,FName&,AShooterPlayerController*)", itemID, SelectedOption, ForPC); }
 	bool IsOnCraftRequestCooldown() { return NativeCall<bool>(this, "UPrimalInventoryComponent.IsOnCraftRequestCooldown()"); }
 	APrimalStructureItemContainer* BPCreateDropItemInventoryEmpty(long double DestroyAtTime, TSubclassOf<APrimalStructureItemContainer> OverrideInventoryDepositClass, APrimalStructureItemContainer* CopyStructureValues, AActor* GroundIgnoreActor, int DeadPlayerID, float DropInventoryOnGroundTraceDistance, bool bOverrideDepositLocation, const UE::Math::TVector<double>* DepositLocationOverride) { return NativeCall<APrimalStructureItemContainer*, long double, TSubclassOf<APrimalStructureItemContainer>, APrimalStructureItemContainer*, AActor*, int, float, bool, const UE::Math::TVector<double>*>(this, "UPrimalInventoryComponent.BPCreateDropItemInventoryEmpty(double,TSubclassOf<APrimalStructureItemContainer>,APrimalStructureItemContainer*,AActor*,int,float,bool,UE::Math::TVector<double>&)", DestroyAtTime, OverrideInventoryDepositClass, CopyStructureValues, GroundIgnoreActor, DeadPlayerID, DropInventoryOnGroundTraceDistance, bOverrideDepositLocation, DepositLocationOverride); }
 	UPrimalItem* GetLastItemSlot() { return NativeCall<UPrimalItem*>(this, "UPrimalInventoryComponent.GetLastItemSlot()"); }
 	UPrimalWirelessExchangeData* IsValidWirelessConnection(UPrimalInventoryComponent* OtherInv, UPrimalWirelessExchangeData* MyExchange) { return NativeCall<UPrimalWirelessExchangeData*, UPrimalInventoryComponent*, UPrimalWirelessExchangeData*>(this, "UPrimalInventoryComponent.IsValidWirelessConnection(UPrimalInventoryComponent*,UPrimalWirelessExchangeData*)", OtherInv, MyExchange); }
 	bool UsesWirelessCrafting(UPrimalItem* ItemToCraft, APlayerController* PC) { return NativeCall<bool, UPrimalItem*, APlayerController*>(this, "UPrimalInventoryComponent.UsesWirelessCrafting(UPrimalItem*,APlayerController*)", ItemToCraft, PC); }
-	int GetWirelessItemQty(TSubclassOf<UPrimalItem> ItemTemplate, bool bRequireExactClassMatch) { return NativeCall<int, TSubclassOf<UPrimalItem>, bool>(this, "UPrimalInventoryComponent.GetWirelessItemQty(TSubclassOf<UPrimalItem>,bool)", ItemTemplate, bRequireExactClassMatch); }
+	// int GetWirelessItemQty(TSubclassOf<UPrimalItem> ItemTemplate, bool bRequireExactClassMatch) { return NativeCall<int, TSubclassOf<UPrimalItem>, bool>(this, "UPrimalInventoryComponent.GetWirelessItemQty(TSubclassOf<UPrimalItem>,bool)", ItemTemplate, bRequireExactClassMatch); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.GetWirelessItemQty(TSubclassOf<UPrimalItem>,bool)
 	bool CanAccessWirelessResources(UPrimalInventoryComponent* OtherInv) { return NativeCall<bool, UPrimalInventoryComponent*>(this, "UPrimalInventoryComponent.CanAccessWirelessResources(UPrimalInventoryComponent*)", OtherInv); }
 	void MulticastUpdateNearbyWirelessCrafting_Implementation() { NativeCall<void>(this, "UPrimalInventoryComponent.MulticastUpdateNearbyWirelessCrafting_Implementation()"); }
 	void UpdateWirelessResources(bool bForceUpdate, bool DontTrace) { NativeCall<void, bool, bool>(this, "UPrimalInventoryComponent.UpdateWirelessResources(bool,bool)", bForceUpdate, DontTrace); }
-	int ConsumeWirelessResources(TSubclassOf<UPrimalItem> ItemTemplate, int Qty, bool bRequireExactClassMatch) { return NativeCall<int, TSubclassOf<UPrimalItem>, int, bool>(this, "UPrimalInventoryComponent.ConsumeWirelessResources(TSubclassOf<UPrimalItem>,int,bool)", ItemTemplate, Qty, bRequireExactClassMatch); }
+	// int ConsumeWirelessResources(TSubclassOf<UPrimalItem> ItemTemplate, int Qty, bool bRequireExactClassMatch) { return NativeCall<int, TSubclassOf<UPrimalItem>, int, bool>(this, "UPrimalInventoryComponent.ConsumeWirelessResources(TSubclassOf<UPrimalItem>,int,bool)", ItemTemplate, Qty, bRequireExactClassMatch); }
+	// FUNCTION MISSING: UPrimalInventoryComponent.ConsumeWirelessResources(TSubclassOf<UPrimalItem>,int,bool)
 	int GetEmptySlotCount(bool bIsVanityItem) { return NativeCall<int, bool>(this, "UPrimalInventoryComponent.GetEmptySlotCount(bool)", bIsVanityItem); }
 	int GetNumOfDefaultItemsBlacklisted() { return NativeCall<int>(this, "UPrimalInventoryComponent.GetNumOfDefaultItemsBlacklisted()"); }
 };
@@ -1458,7 +1635,8 @@ struct UPrimalCharacterStatusComponent : UActorComponent
 	BitFieldValue<bool, unsigned __int32> bIgnoreStatusSpeedModifierIfSwimming() { return { this, "UPrimalCharacterStatusComponent.bIgnoreStatusSpeedModifierIfSwimming" }; }
 	BitFieldValue<bool, unsigned __int32> bPreventJump() { return { this, "UPrimalCharacterStatusComponent.bPreventJump" }; }
 	BitFieldValue<bool, unsigned __int32> bInitializedBaseLevelMaxStatusValues() { return { this, "UPrimalCharacterStatusComponent.bInitializedBaseLevelMaxStatusValues" }; }
-	BitFieldValue<bool, unsigned __int32> bInitializedMe() { return { this, "UPrimalCharacterStatusComponent.bInitializedMe" }; }
+	// BitFieldValue<bool, unsigned __int32> bInitializedMe() { return { this, "UPrimalCharacterStatusComponent.bInitializedMe" }; }
+	// BITFIELD MISSING: UPrimalCharacterStatusComponent.bInitializedMe
 	BitFieldValue<bool, unsigned __int32> bServerFirstInitialized() { return { this, "UPrimalCharacterStatusComponent.bServerFirstInitialized" }; }
 	BitFieldValue<bool, unsigned __int32> bRunningUseDefaultSpeed() { return { this, "UPrimalCharacterStatusComponent.bRunningUseDefaultSpeed" }; }
 	BitFieldValue<bool, unsigned __int32> bNeverAllowXP() { return { this, "UPrimalCharacterStatusComponent.bNeverAllowXP" }; }
@@ -1473,13 +1651,16 @@ struct UPrimalCharacterStatusComponent : UActorComponent
 	BitFieldValue<bool, unsigned __int32> bDontUseSpeedMultipleAsSpeed() { return { this, "UPrimalCharacterStatusComponent.bDontUseSpeedMultipleAsSpeed" }; }
 	BitFieldValue<bool, unsigned __int32> bForceGainOxygen() { return { this, "UPrimalCharacterStatusComponent.bForceGainOxygen" }; }
 	BitFieldValue<bool, unsigned __int32> bFreezeStatusValues() { return { this, "UPrimalCharacterStatusComponent.bFreezeStatusValues" }; }
-	BitFieldValue<bool, unsigned __int32> bTicked() { return { this, "UPrimalCharacterStatusComponent.bTicked" }; }
+	// BitFieldValue<bool, unsigned __int32> bTicked() { return { this, "UPrimalCharacterStatusComponent.bTicked" }; }
+	// BITFIELD MISSING: UPrimalCharacterStatusComponent.bTicked
 	BitFieldValue<bool, unsigned __int32> bUseBPModifyMaxLevel() { return { this, "UPrimalCharacterStatusComponent.bUseBPModifyMaxLevel" }; }
 	BitFieldValue<bool, unsigned __int32> bNoStaminaRecoveryWhenStarving() { return { this, "UPrimalCharacterStatusComponent.bNoStaminaRecoveryWhenStarving" }; }
 	BitFieldValue<bool, unsigned __int32> bApplyingStatusValueModifiers() { return { this, "UPrimalCharacterStatusComponent.bApplyingStatusValueModifiers" }; }
 	BitFieldValue<bool, unsigned __int32> bDontScaleMeleeDamage() { return { this, "UPrimalCharacterStatusComponent.bDontScaleMeleeDamage" }; }
-	BitFieldValue<bool, unsigned __int32> bInfiniteWeight() { return { this, "UPrimalCharacterStatusComponent.bInfiniteWeight" }; }
-	BitFieldValue<bool, unsigned __int32> bUseLevelUpStatWeightOverrides() { return { this, "UPrimalCharacterStatusComponent.bUseLevelUpStatWeightOverrides" }; }
+	// BitFieldValue<bool, unsigned __int32> bInfiniteWeight() { return { this, "UPrimalCharacterStatusComponent.bInfiniteWeight" }; }
+	// BITFIELD MISSING: UPrimalCharacterStatusComponent.bInfiniteWeight
+	// BitFieldValue<bool, unsigned __int32> bUseLevelUpStatWeightOverrides() { return { this, "UPrimalCharacterStatusComponent.bUseLevelUpStatWeightOverrides" }; }
+	// BITFIELD MISSING: UPrimalCharacterStatusComponent.bUseLevelUpStatWeightOverrides
 
 	// Functions
 
@@ -1487,10 +1668,12 @@ struct UPrimalCharacterStatusComponent : UActorComponent
 	int BPModifyMaxLevel(int InMaxLevel) { return NativeCall<int, int>(this, "UPrimalCharacterStatusComponent.BPModifyMaxLevel(int)", InMaxLevel); }
 	void ClientSyncMaxStatusValues(const TArray<float, TSizedDefaultAllocator<32> >* NetMaxStatusValues, const TArray<float, TSizedDefaultAllocator<32> >* NetBaseMaxStatusValues) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >*, const TArray<float, TSizedDefaultAllocator<32> >*>(this, "UPrimalCharacterStatusComponent.ClientSyncMaxStatusValues(TArray<float,TSizedDefaultAllocator<32>>&,TArray<float,TSizedDefaultAllocator<32>>&)", NetMaxStatusValues, NetBaseMaxStatusValues); }
 	void NetSyncMaxStatusValues(const TArray<float, TSizedDefaultAllocator<32> >* NetMaxStatusValues, const TArray<float, TSizedDefaultAllocator<32> >* NetBaseMaxStatusValues) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >*, const TArray<float, TSizedDefaultAllocator<32> >*>(this, "UPrimalCharacterStatusComponent.NetSyncMaxStatusValues(TArray<float,TSizedDefaultAllocator<32>>&,TArray<float,TSizedDefaultAllocator<32>>&)", NetMaxStatusValues, NetBaseMaxStatusValues); }
-	static void StaticRegisterNativesUPrimalCharacterStatusComponent() { NativeCall<void>(nullptr, "UPrimalCharacterStatusComponent.StaticRegisterNativesUPrimalCharacterStatusComponent()"); }
+	// static void StaticRegisterNativesUPrimalCharacterStatusComponent() { NativeCall<void>(nullptr, "UPrimalCharacterStatusComponent.StaticRegisterNativesUPrimalCharacterStatusComponent()"); }
+	// FUNCTION MISSING: UPrimalCharacterStatusComponent.StaticRegisterNativesUPrimalCharacterStatusComponent()
 	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalCharacterStatusComponent.GetPrivateStaticClass()"); }
 	void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps) { NativeCall<void, const TArray<FRepRecord, TSizedDefaultAllocator<32> >*>(this, "UPrimalCharacterStatusComponent.ValidateGeneratedRepEnums(TArray<FRepRecord,TSizedDefaultAllocator<32>>&)", ClassReps); }
-	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalCharacterStatusComponent.Serialize(FStructuredArchiveRecord)", Record); }
+	// void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalCharacterStatusComponent.Serialize(FStructuredArchiveRecord)", Record); }
+	// FUNCTION MISSING: UPrimalCharacterStatusComponent.Serialize(FStructuredArchiveRecord)
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "UPrimalCharacterStatusComponent.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
 	void InitializeComponent() { NativeCall<void>(this, "UPrimalCharacterStatusComponent.InitializeComponent()"); }
 	void RemoveStatusValueModifierByIndex(int Index) { NativeCall<void, int>(this, "UPrimalCharacterStatusComponent.RemoveStatusValueModifierByIndex(int)", Index); }
@@ -1550,7 +1733,8 @@ struct UPrimalCharacterStatusComponent : UActorComponent
 	void RescaleAllStats() { NativeCall<void>(this, "UPrimalCharacterStatusComponent.RescaleAllStats()"); }
 	UPrimalCharacterStatusComponent* GetDefaultCharacterStatusComponent() { return NativeCall<UPrimalCharacterStatusComponent*>(this, "UPrimalCharacterStatusComponent.GetDefaultCharacterStatusComponent()"); }
 	FString* GetDebugString(FString* result) { return NativeCall<FString*, FString*>(this, "UPrimalCharacterStatusComponent.GetDebugString()", result); }
-	void ServerApplyMutagen(bool bHasAncestors) { NativeCall<void, bool>(this, "UPrimalCharacterStatusComponent.ServerApplyMutagen(bool)", bHasAncestors); }
+	// void ServerApplyMutagen(bool bHasAncestors) { NativeCall<void, bool>(this, "UPrimalCharacterStatusComponent.ServerApplyMutagen(bool)", bHasAncestors); }
+	// FUNCTION MISSING: UPrimalCharacterStatusComponent.ServerApplyMutagen(bool)
 	void ServerForceUpdateMaxStatValues() { NativeCall<void>(this, "UPrimalCharacterStatusComponent.ServerForceUpdateMaxStatValues()"); }
 	float GetDinoStatDistributionAgainstMax(EPrimalCharacterStatusValue::Type valueType, bool bTamedPoints, bool bCheckLevel, bool bIncludeMaxTamingEffLevels) { return NativeCall<float, EPrimalCharacterStatusValue::Type, bool, bool, bool>(this, "UPrimalCharacterStatusComponent.GetDinoStatDistributionAgainstMax(EPrimalCharacterStatusValue::Type,bool,bool,bool)", valueType, bTamedPoints, bCheckLevel, bIncludeMaxTamingEffLevels); }
 };
@@ -1591,9 +1775,12 @@ struct UPrimalEngramEntry : UObject
 	bool MeetsEngramRequirements(AShooterPlayerState* aPlayerState, bool bOnlyCheckLevel, bool bDontCheckEngramPreRequirements) { return NativeCall<bool, AShooterPlayerState*, bool, bool>(this, "UPrimalEngramEntry.MeetsEngramRequirements(AShooterPlayerState*,bool,bool)", aPlayerState, bOnlyCheckLevel, bDontCheckEngramPreRequirements); }
 	//void GetAllChainedPreReqs(AShooterPlayerState* aPlayerState, TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >& TestedEntries) { NativeCall<void, AShooterPlayerState*, TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >&>(this, "UPrimalEngramEntry.GetAllChainedPreReqs(AShooterPlayerState*,TArray<TSubclassOf<UPrimalEngramEntry>,TSizedDefaultAllocator<32>>&)", aPlayerState, TestedEntries); }
 	//int GetChainRequiredEngramPoints(TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >& TestedEntries) { return NativeCall<int, TArray<TSubclassOf<UPrimalEngramEntry>, TSizedDefaultAllocator<32> >&>(this, "UPrimalEngramEntry.GetChainRequiredEngramPoints(TArray<TSubclassOf<UPrimalEngramEntry>,TSizedDefaultAllocator<32>>&)", TestedEntries); }
-	bool GetDownscaleWrappedTextToFit() { return NativeCall<bool>(this, "UPrimalEngramEntry.GetDownscaleWrappedTextToFit()"); }
+	// bool GetDownscaleWrappedTextToFit() { return NativeCall<bool>(this, "UPrimalEngramEntry.GetDownscaleWrappedTextToFit()"); }
+	// FUNCTION MISSING: UPrimalEngramEntry.GetDownscaleWrappedTextToFit()
 	bool MeetsEngramChainRequirements(AShooterPlayerState* aPlayerState) { return NativeCall<bool, AShooterPlayerState*>(this, "UPrimalEngramEntry.MeetsEngramChainRequirements(AShooterPlayerState*)", aPlayerState); }
-	UObject* _getUObject()const { return NativeCall<UObject*>(this, "UPrimalEngramEntry._getUObject()"); }
+	// UObject* _getUObject()const { return NativeCall<UObject*>(this, "UPrimalEngramEntry._getUObject()"); }
+	// FUNCTION MISSING: UPrimalEngramEntry._getUObject()
 	void ClearHiddenEngramRequirements() { NativeCall<void>(this, "UPrimalEngramEntry.ClearHiddenEngramRequirements()"); }
-	UObject* GetObject() { return NativeCall<UObject*>(this, "UPrimalEngramEntry.GetObject()"); }
+	// UObject* GetObject() { return NativeCall<UObject*>(this, "UPrimalEngramEntry.GetObject()"); }
+	// FUNCTION MISSING: UPrimalEngramEntry.GetObject()
 };
