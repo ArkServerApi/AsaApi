@@ -2,8 +2,10 @@
 #include "Logger/Logger.h"
 #include <Psapi.h>
 #pragma comment(lib, "Psapi.lib")
+#include <filesystem>
 #include <fstream>
 #include <json.hpp>
+#include <string.h>
 #include <Tools.h>
 
 namespace
@@ -28,21 +30,36 @@ namespace
 		return name;
 	}
 
-	std::string GetCallingModuleName()
+	bool PathPartEquals(const std::filesystem::path& part, const std::string& expected)
 	{
-		constexpr int maxFrames = 32;
+		return _stricmp(part.string().c_str(), expected.c_str()) == 0;
+	}
+
+	bool IsPluginModule(HMODULE hModule)
+	{
+		if (!hModule)
+			return false;
+
+		char path[MAX_PATH]{};
+		if (!GetModuleFileNameA(hModule, path, MAX_PATH))
+			return false;
+
+		const std::filesystem::path modulePath(path);
+		const std::filesystem::path pluginDir = modulePath.parent_path();
+
+		// a plugin still inside Plugin_Init is not in loaded_plugins_ yet, so match on the path instead
+		return PathPartEquals(modulePath.stem(), pluginDir.filename().string())
+			&& PathPartEquals(pluginDir.parent_path().filename(), "Plugins");
+	}
+
+	std::string DescribeOffsetRequester()
+	{
+		constexpr int maxFrames = 64;
 		void* stack[maxFrames]{};
 
 		const USHORT frames = CaptureStackBackTrace(1, maxFrames, stack, nullptr);
 
-		HMODULE self = nullptr;
-		GetModuleHandleExA(
-			GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-			reinterpret_cast<LPCSTR>(&GetCallingModuleName),
-			&self);
-
-		constexpr int maxStackDepth = 2;
-		int stackDepth = 0;
+		bool resolvedAny = false;
 
 		for (USHORT i = 0; i < frames; ++i)
 		{
@@ -55,18 +72,16 @@ namespace
 				continue;
 			}
 
-			if (module == self)
-			{
-				if (++stackDepth > maxStackDepth)
-					return ModuleName(self);
-				continue;
-			}
+			resolvedAny = true;
 
-			if (stackDepth > 0)
-				return ModuleName(module);
+			if (IsPluginModule(module))
+				return "plugin " + ModuleName(module);
 		}
 
-		return stackDepth > 0 ? ModuleName(self) : "<unknown>";
+		if (!resolvedAny)
+			return "<unknown>";
+
+		return "AsaApi itself (no plugin on the call stack)";
 	}
 } // namespace
 
@@ -129,7 +144,7 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
+			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
 			Log::GetLog()->flush();
 			Sleep(10000);
 			throw;
@@ -142,7 +157,7 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
+			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
 			Log::GetLog()->flush();
 			if (hooks_do_not_throw_)
 				return nullptr;
@@ -160,7 +175,7 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
+			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
 			Log::GetLog()->flush();
 			if (hooks_do_not_throw_)
 				return nullptr;
@@ -188,7 +203,7 @@ namespace API
 	{
 		if (!bitfields_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the bitfield address of '{}'.\nRequested by plugin: {}", name, GetCallingModuleName());
+			Log::GetLog()->critical("Failed to get the bitfield address of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
 			Log::GetLog()->flush();
 			Sleep(10000);
 			throw;
