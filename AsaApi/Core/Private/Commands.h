@@ -44,18 +44,22 @@ namespace AsaApi
 		void CheckOnTimerCallbacks();
 		bool CheckOnChatMessageCallbacks(AShooterPlayerController* player_controller, FString* message, int mode, int platform, bool spam_check, bool command_executed);
 
+		void RemoveAllCommandsFromModule(HMODULE h_module);
+
 	private:
 		template <typename T>
 		struct Command
 		{
-			Command(FString command, std::function<T> callback)
+			Command(FString command, std::function<T> callback, HMODULE h_module)
 				: command(std::move(command)),
-				callback(std::move(callback))
+				callback(std::move(callback)),
+				h_module(h_module)
 			{
 			}
 
 			FString command;
 			std::function<T> callback;
+			HMODULE h_module;
 		};
 
 		using ChatCommand = Command<void(AShooterPlayerController*, FString*, int, int)>;
@@ -85,6 +89,23 @@ namespace AsaApi
 			return false;
 		}
 
+		template <typename T>
+		void RemoveCommandsFromModule(std::vector<std::shared_ptr<T>>& commands, HMODULE h_module)
+		{
+			for (const auto& data : commands)
+			{
+				// released here because a snapshot taken by a Check* loop can outlive FreeLibrary
+				if (data && data->h_module == h_module)
+					data->callback = nullptr;
+			}
+
+			commands.erase(std::remove_if(commands.begin(), commands.end(),
+				[h_module](const std::shared_ptr<T>& data) -> bool
+				{
+					return !data || data->h_module == h_module;
+				}), commands.end());
+		}
+
 		template <typename T, typename... Args>
 		bool CheckCommands(const FString& message, const std::vector<std::shared_ptr<T>>& commands, Args&&... args)
 		{
@@ -97,10 +118,11 @@ namespace AsaApi
 			}
 
 			const FString command_text = parsed[0];
+			const auto tmp_commands = commands;
 
-			for (const auto& command : commands)
+			for (const auto& command : tmp_commands)
 			{
-				if (command_text.Compare(command->command, ESearchCase::IgnoreCase) == 0)
+				if (command && command->callback && command_text.Compare(command->command, ESearchCase::IgnoreCase) == 0)
 				{
 					command->callback(std::forward<Args>(args)...);
 

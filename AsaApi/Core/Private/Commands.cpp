@@ -1,39 +1,55 @@
 #include "Commands.h"
 
+#include <intrin.h>
+
 #include "IBaseApi.h"
+
+namespace
+{
+	HMODULE ModuleFromAddress(void* address)
+	{
+		HMODULE h_module = nullptr;
+		GetModuleHandleExA(
+			GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+			static_cast<LPCSTR>(address),
+			&h_module);
+
+		return h_module;
+	}
+}
 
 namespace AsaApi
 {
 	void Commands::AddChatCommand(const FString& command,
 		const std::function<void(AShooterPlayerController*, FString*, int, int)>&callback)
 	{
-		chat_commands_.push_back(std::make_shared<ChatCommand>(command, callback));
+		chat_commands_.push_back(std::make_shared<ChatCommand>(command, callback, ModuleFromAddress(_ReturnAddress())));
 	}
 
 	void Commands::AddConsoleCommand(const FString& command,
 		const std::function<void(APlayerController*, FString*, bool)>& callback)
 	{
-		console_commands_.push_back(std::make_shared<ConsoleCommand>(command, callback));
+		console_commands_.push_back(std::make_shared<ConsoleCommand>(command, callback, ModuleFromAddress(_ReturnAddress())));
 	}
 
 	void Commands::AddRconCommand(const FString& command, const std::function<void(RCONClientConnection*, RCONPacket*, UWorld*)>& callback)
 	{
-		rcon_commands_.push_back(std::make_shared<RconCommand>(command, callback));
+		rcon_commands_.push_back(std::make_shared<RconCommand>(command, callback, ModuleFromAddress(_ReturnAddress())));
 	}
 
 	void Commands::AddOnTickCallback(const FString& id, const std::function<void(float)>& callback)
 	{
-		on_tick_callbacks_.push_back(std::make_shared<OnTickCallback>(id, callback));
+		on_tick_callbacks_.push_back(std::make_shared<OnTickCallback>(id, callback, ModuleFromAddress(_ReturnAddress())));
 	}
 
 	void Commands::AddOnTimerCallback(const FString& id, const std::function<void()>& callback)
 	{
-		on_timer_callbacks_.push_back(std::make_shared<OnTimerCallback>(id, callback));
+		on_timer_callbacks_.push_back(std::make_shared<OnTimerCallback>(id, callback, ModuleFromAddress(_ReturnAddress())));
 	}
 
 	void Commands::AddOnChatMessageCallback(const FString& id, const std::function<bool(AShooterPlayerController*, FString*, int, int, bool, bool)>& callback)
 	{
-		on_chat_message_callbacks_.push_back(std::make_shared<OnChatMessageCallback>(id, callback));
+		on_chat_message_callbacks_.push_back(std::make_shared<OnChatMessageCallback>(id, callback, ModuleFromAddress(_ReturnAddress())));
 	}
 
 	bool Commands::RemoveChatCommand(const FString& command)
@@ -88,7 +104,7 @@ namespace AsaApi
 		const auto tmp_tick_callbacks = on_tick_callbacks_;
 		for (const auto& data : tmp_tick_callbacks)
 		{
-			if (data)
+			if (data && data->callback)
 			{
 				data->callback(delta_seconds);
 			}
@@ -100,7 +116,7 @@ namespace AsaApi
 		const auto tmp_timer_callbacks = on_timer_callbacks_;
 		for (const auto& data : tmp_timer_callbacks)
 		{
-			if (data)
+			if (data && data->callback)
 			{
 				data->callback();
 			}
@@ -120,10 +136,26 @@ namespace AsaApi
 		bool prevent_default = false;
 		for (const auto& data : tmp_chat_callbacks)
 		{
-			prevent_default |= data->callback(player_controller, message, mode, platform, spam_check, command_executed);
+			if (data && data->callback)
+			{
+				prevent_default |= data->callback(player_controller, message, mode, platform, spam_check, command_executed);
+			}
 		}
 
 		return prevent_default;
+	}
+
+	void Commands::RemoveAllCommandsFromModule(HMODULE h_module)
+	{
+		if (!h_module)
+			return;
+
+		RemoveCommandsFromModule(chat_commands_, h_module);
+		RemoveCommandsFromModule(console_commands_, h_module);
+		RemoveCommandsFromModule(rcon_commands_, h_module);
+		RemoveCommandsFromModule(on_tick_callbacks_, h_module);
+		RemoveCommandsFromModule(on_timer_callbacks_, h_module);
+		RemoveCommandsFromModule(on_chat_message_callbacks_, h_module);
 	}
 
 	// Free function
