@@ -6416,6 +6416,7 @@ struct APrimalCharacter : ACharacter
 	void Unstasis() { NativeCall<void>(this, "APrimalCharacter.Unstasis()"); }
 	void OnVoiceTalkingStateChanged(bool isTalking, bool InbIsMuted) { NativeCall<void, bool, bool>(this, "APrimalCharacter.OnVoiceTalkingStateChanged(bool,bool)", isTalking, InbIsMuted); }
 	bool AllowFallDamage(const FHitResult* HitResult, float FallDamageAmount, bool CustomFallDamage) { return NativeCall<bool, const FHitResult*, float, bool>(this, "APrimalCharacter.AllowFallDamage(FHitResult&,float,bool)", HitResult, FallDamageAmount, CustomFallDamage); }
+	// Use MyCharacterStatusComponentField() instead
 	// UPrimalCharacterStatusComponent* GetCharacterStatusComponent() { return NativeCall<UPrimalCharacterStatusComponent*>(this, "APrimalCharacter.GetCharacterStatusComponent()"); }
 	// FUNCTION MISSING: APrimalCharacter.GetCharacterStatusComponent()
 	void DrawLocalPlayerHUD(AShooterHUD* HUD) { NativeCall<void, AShooterHUD*>(this, "APrimalCharacter.DrawLocalPlayerHUD(AShooterHUD*)", HUD); }
