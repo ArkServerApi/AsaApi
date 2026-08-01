@@ -5625,7 +5625,8 @@ struct APrimalCharacter : ACharacter
 	void Unstasis() { NativeCall<void>(this, "APrimalCharacter.Unstasis()"); }
 	void OnVoiceTalkingStateChanged(bool isTalking, bool InbIsMuted) { NativeCall<void, bool, bool>(this, "APrimalCharacter.OnVoiceTalkingStateChanged(bool,bool)", isTalking, InbIsMuted); }
 	bool AllowFallDamage(const FHitResult* HitResult, float FallDamageAmount, bool CustomFallDamage) { return NativeCall<bool, const FHitResult*, float, bool>(this, "APrimalCharacter.AllowFallDamage(FHitResult&,float,bool)", HitResult, FallDamageAmount, CustomFallDamage); }
-	UPrimalCharacterStatusComponent* GetCharacterStatusComponent() { return NativeCall<UPrimalCharacterStatusComponent*>(this, "APrimalCharacter.GetCharacterStatusComponent()"); }
+	// Deprecated (Use MyInventoryComponent()->GetCharacterStatusComponent() instead)
+	//UPrimalCharacterStatusComponent* GetCharacterStatusComponent() { return NativeCall<UPrimalCharacterStatusComponent*>(this, "APrimalCharacter.GetCharacterStatusComponent()"); }
 	void DrawLocalPlayerHUD(AShooterHUD* HUD) { NativeCall<void, AShooterHUD*>(this, "APrimalCharacter.DrawLocalPlayerHUD(AShooterHUD*)", HUD); }
 	bool IsInStatusState(EPrimalCharacterStatusState::Type StatusStateType) { return NativeCall<bool, EPrimalCharacterStatusState::Type>(this, "APrimalCharacter.IsInStatusState(EPrimalCharacterStatusState::Type)", StatusStateType); }
 	float GetMaxSpeedModifier() { return NativeCall<float>(this, "APrimalCharacter.GetMaxSpeedModifier()"); }
@@ -5745,8 +5746,10 @@ struct APrimalCharacter : ACharacter
 	void OnAttachedToCharacter() { NativeCall<void>(this, "APrimalCharacter.OnAttachedToCharacter()"); }
 	void OnDetachedFromCharacter(APrimalCharacter* aCharacter, int OverrideDirection) { NativeCall<void, APrimalCharacter*, int>(this, "APrimalCharacter.OnDetachedFromCharacter(APrimalCharacter*,int)", aCharacter, OverrideDirection); }
 	void ClearMountedDino(bool fromMountedDino) { NativeCall<void, bool>(this, "APrimalCharacter.ClearMountedDino(bool)", fromMountedDino); }
-	bool DinoMountOnMe(APrimalDinoCharacter* dinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalCharacter.DinoMountOnMe(APrimalDinoCharacter*)", dinoCharacter); }
-	bool CanMountOnMe(APrimalDinoCharacter* dinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalCharacter.CanMountOnMe(APrimalDinoCharacter*)", dinoCharacter); }
+	// Deprecated
+	//bool DinoMountOnMe(APrimalDinoCharacter* dinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalCharacter.DinoMountOnMe(APrimalDinoCharacter*)", dinoCharacter); }
+	// Deprecated
+	//bool CanMountOnMe(APrimalDinoCharacter* dinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalCharacter.CanMountOnMe(APrimalDinoCharacter*)", dinoCharacter); }
 	bool HasCryoSickness() { return NativeCall<bool>(this, "APrimalCharacter.HasCryoSickness()"); }
 	float GetDragWeight(APrimalCharacter* ForDragger) { return NativeCall<float, APrimalCharacter*>(this, "APrimalCharacter.GetDragWeight(APrimalCharacter*)", ForDragger); }
 	void SetBase(UPrimitiveComponent* NewBaseComponent, const FName BoneName, bool bNotifyPawn) { NativeCall<void, UPrimitiveComponent*, const FName, bool>(this, "APrimalCharacter.SetBase(UPrimitiveComponent*,FName,bool)", NewBaseComponent, BoneName, bNotifyPawn); }
@@ -8491,7 +8494,8 @@ struct APrimalDinoCharacter : APrimalCharacter
 	float GetBabyAge() { return NativeCall<float>(this, "APrimalDinoCharacter.GetBabyAge()"); }
 	bool DontForceUpdateRateOptimizations() { return NativeCall<bool>(this, "APrimalDinoCharacter.DontForceUpdateRateOptimizations()"); }
 	float GetXPMultiplier() { return NativeCall<float>(this, "APrimalDinoCharacter.GetXPMultiplier()"); }
-	bool IsBossDino() { return NativeCall<bool>(this, "APrimalDinoCharacter.IsBossDino()"); }
+	// Deprecated
+	//bool IsBossDino() { return NativeCall<bool>(this, "APrimalDinoCharacter.IsBossDino()"); }
 	bool UseHighQualityMovement() { return NativeCall<bool>(this, "APrimalDinoCharacter.UseHighQualityMovement()"); }
 	bool AllowPushOthers() { return NativeCall<bool>(this, "APrimalDinoCharacter.AllowPushOthers()"); }
 	bool FlyingUseHighQualityCollision() { return NativeCall<bool>(this, "APrimalDinoCharacter.FlyingUseHighQualityCollision()"); }
@@ -8684,7 +8688,8 @@ struct APrimalDinoCharacter : APrimalCharacter
 	void TempDampenInputAcceleration() { NativeCall<void>(this, "APrimalDinoCharacter.TempDampenInputAcceleration()"); }
 	bool ModifyInputAcceleration(UE::Math::TVector<double>* InputAcceleration) { return NativeCall<bool, UE::Math::TVector<double>*>(this, "APrimalDinoCharacter.ModifyInputAcceleration(UE::Math::TVector<double>&)", InputAcceleration); }
 	float GetMaxSpeedModifier() { return NativeCall<float>(this, "APrimalDinoCharacter.GetMaxSpeedModifier()"); }
-	bool IsBaby() { return NativeCall<bool>(this, "APrimalDinoCharacter.IsBaby()"); }
+	// Deprecated
+	//bool IsBaby() { return NativeCall<bool>(this, "APrimalDinoCharacter.IsBaby()"); }
 	float GetSpeedModifier() { return NativeCall<float>(this, "APrimalDinoCharacter.GetSpeedModifier()"); }
 	float GetRotationRateModifier() { return NativeCall<float>(this, "APrimalDinoCharacter.GetRotationRateModifier()"); }
 	bool IsFleeing() { return NativeCall<bool>(this, "APrimalDinoCharacter.IsFleeing()"); }
@@ -8830,7 +8835,8 @@ struct APrimalDinoCharacter : APrimalCharacter
 	void SetMountCharacter(APrimalCharacter* aCharacter) { NativeCall<void, APrimalCharacter*>(this, "APrimalDinoCharacter.SetMountCharacter(APrimalCharacter*)", aCharacter); }
 	void StartForceSkelUpdate(float ForTime, bool bForceUpdateMesh, bool bServerOnly) { NativeCall<void, float, bool, bool>(this, "APrimalDinoCharacter.StartForceSkelUpdate(float,bool,bool,bool)", ForTime, bForceUpdateMesh, bServerOnly); }
 	void ClearMountCharacter(bool bFromMountCharacter) { NativeCall<void, bool>(this, "APrimalDinoCharacter.ClearMountCharacter(bool)", bFromMountCharacter); }
-	bool CanMount(APrimalCharacter* aCharacter) { return NativeCall<bool, APrimalCharacter*>(this, "APrimalDinoCharacter.CanMount(APrimalCharacter*)", aCharacter); }
+	// Deprecated
+	//bool CanMount(APrimalCharacter* aCharacter) { return NativeCall<bool, APrimalCharacter*>(this, "APrimalDinoCharacter.CanMount(APrimalCharacter*)", aCharacter); }
 	static APrimalDinoCharacter* SpawnDino(UWorld* World, TSubclassOf<APrimalDinoCharacter> DinoClass, UE::Math::TVector<double> SpawnLoc, UE::Math::TRotator<double> SpawnRot, float LevelMultiplier, int ExtraLevelOffset, bool AddLevelOffsetBeforeMultiplier, bool bOverrideBaseNPCLevel, int BaseLevelOverrideValue, bool bNPCDontWander, float NPCAIRangeMultiplier, int NPCAbsoluteBaseLevel, bool bSpawnWithoutCapsuleOffset, bool shouldGender, bool makeFemale) { return NativeCall<APrimalDinoCharacter*, UWorld*, TSubclassOf<APrimalDinoCharacter>&, UE::Math::TVector<double>, UE::Math::TRotator<double>, float, int, bool, bool, int, bool, float, int, bool, bool, bool>(nullptr, "APrimalDinoCharacter.SpawnDino(UWorld*,TSubclassOf<APrimalDinoCharacter>,UE::Math::TVector<double>,UE::Math::TRotator<double>,float,int,bool,bool,int,bool,float,int,bool,bool,bool)", World, DinoClass, SpawnLoc, SpawnRot, LevelMultiplier, ExtraLevelOffset, AddLevelOffsetBeforeMultiplier, bOverrideBaseNPCLevel, BaseLevelOverrideValue, bNPCDontWander, NPCAIRangeMultiplier, NPCAbsoluteBaseLevel, bSpawnWithoutCapsuleOffset, shouldGender, makeFemale); }
 	void UpdateNextAllowedMatingTime(long double fromTime) { NativeCall<void, long double>(this, "APrimalDinoCharacter.UpdateNextAllowedMatingTime(double)", fromTime); }
 	void InitDownloadedTamedDino(AShooterPlayerController* TamerController, int AltTeam) { NativeCall<void, AShooterPlayerController*, int>(this, "APrimalDinoCharacter.InitDownloadedTamedDino(AShooterPlayerController*,int,bool)", TamerController, AltTeam); }
