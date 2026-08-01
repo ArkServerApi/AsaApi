@@ -5746,7 +5746,8 @@ struct APrimalCharacter : ACharacter
 	void OnAttachedToCharacter() { NativeCall<void>(this, "APrimalCharacter.OnAttachedToCharacter()"); }
 	void OnDetachedFromCharacter(APrimalCharacter* aCharacter, int OverrideDirection) { NativeCall<void, APrimalCharacter*, int>(this, "APrimalCharacter.OnDetachedFromCharacter(APrimalCharacter*,int)", aCharacter, OverrideDirection); }
 	void ClearMountedDino(bool fromMountedDino) { NativeCall<void, bool>(this, "APrimalCharacter.ClearMountedDino(bool)", fromMountedDino); }
-	bool DinoMountOnMe(APrimalDinoCharacter* dinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalCharacter.DinoMountOnMe(APrimalDinoCharacter*)", dinoCharacter); }
+	// Deprecated
+	//bool DinoMountOnMe(APrimalDinoCharacter* dinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalCharacter.DinoMountOnMe(APrimalDinoCharacter*)", dinoCharacter); }
 	// Deprecated
 	//bool CanMountOnMe(APrimalDinoCharacter* dinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalCharacter.CanMountOnMe(APrimalDinoCharacter*)", dinoCharacter); }
 	bool HasCryoSickness() { return NativeCall<bool>(this, "APrimalCharacter.HasCryoSickness()"); }
