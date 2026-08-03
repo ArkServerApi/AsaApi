@@ -4502,7 +4502,8 @@ struct AShooterPlayerController : ABasePlayerController
 	//     bool HasSameRadioFrequency(AShooterPlayerController* OtherPC, unsigned int* SharedFrequency) { return NativeCall<bool, AShooterPlayerController*, unsigned int*>(this, "AShooterPlayerController.HasSameRadioFrequency(AShooterPlayerController*,unsignedint&)", OtherPC, SharedFrequency); }
 	// FUNCTION MISSING: AShooterPlayerController.HasSameRadioFrequency(AShooterPlayerController*,unsignedint&)
 	void SetVoiceChatFilterType(int filterType) { NativeCall<void, int>(this, "AShooterPlayerController.SetVoiceChatFilterType(int)", filterType); }
-	void ToggleSpeaking(bool bSpeaking) { NativeCall<void, bool>(this, "AShooterPlayerController.ToggleSpeaking(bool)", bSpeaking); }
+	// void ToggleSpeaking(bool bSpeaking) { NativeCall<void, bool>(this, "AShooterPlayerController.ToggleSpeaking(bool)", bSpeaking); }
+	// FUNCTION MISSING: AShooterPlayerController.ToggleSpeaking(bool)
 	void ForceUnstasisAtLocation(UE::Math::TVector<double>* AtLocation) { NativeCall<void, UE::Math::TVector<double>*>(this, "AShooterPlayerController.ForceUnstasisAtLocation(UE::Math::TVector<double>)", AtLocation); }
 	void SpawnActorSpread(const FString* blueprintPath, float spawnDistance, float spawnYOffset, float ZOffset, int NumberActors, float SpreadAmount) { NativeCall<void, const FString*, float, float, float, int, float>(this, "AShooterPlayerController.SpawnActorSpread(FString&,float,float,float,int,float)", blueprintPath, spawnDistance, spawnYOffset, ZOffset, NumberActors, SpreadAmount); }
 	void GetActorEyesViewPoint(UE::Math::TVector<double>* out_Location, UE::Math::TRotator<double>* out_Rotation) { NativeCall<void, UE::Math::TVector<double>*, UE::Math::TRotator<double>*>(this, "AShooterPlayerController.GetActorEyesViewPoint(UE::Math::TVector<double>&,UE::Math::TRotator<double>&)", out_Location, out_Rotation); }
@@ -11658,7 +11659,8 @@ struct UShooterCheatManager : UCheatManager
 	//     void SetPerfCheck(int PerfCheckLocation) { NativeCall<void, int>(this, "UShooterCheatManager.SetPerfCheck(int)", PerfCheckLocation); }
 	// FUNCTION MISSING: UShooterCheatManager.SetPerfCheck(int)
 	static void TP() { NativeCall<void>(nullptr, "UShooterCheatManager.TP(FString)"); }
-	void TPCoords(float lat, float lon, float z) { NativeCall<void, float, float, float>(this, "UShooterCheatManager.TPCoords(float,float,float)", lat, lon, z); }
+	// void TPCoords(float lat, float lon, float z) { NativeCall<void, float, float, float>(this, "UShooterCheatManager.TPCoords(float,float,float)", lat, lon, z); }
+	// FUNCTION MISSING: UShooterCheatManager.TPCoords(float,float,float)
 	// void ToggleLocation() { NativeCall<void>(this, "UShooterCheatManager.ToggleLocation()"); }
 	// FUNCTION MISSING: UShooterCheatManager.ToggleLocation()
 	void DumpConfig() { NativeCall<void>(this, "UShooterCheatManager.DumpConfig()"); }
