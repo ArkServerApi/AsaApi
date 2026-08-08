@@ -437,7 +437,7 @@ namespace API
 		std::unique_lock installLock(g_hookInstallMutex);
 		g_rebuildDone.wait(installLock, [&]
 			{
-				return !rebuilding_.count(func_name);
+				return !rebuilding_.count(target); // Now checking by memory address
 			});
 
 		return SetHookInternalImplNoWait(func_name, detour, original, hOwner);
@@ -446,7 +446,13 @@ namespace API
 	bool Hooks::SetHookInternalImplNoWait(const std::string& func_name, LPVOID detour,
 		LPVOID* original, HMODULE hOwner)
 	{
-		auto& hook_vector = all_hooks_[func_name];
+		LPVOID target = Offsets::Get().GetAddress(func_name);
+
+		// If this is the first time we hook this address, save the name for logging
+		if (all_hooks_names_.find(target) == all_hooks_names_.end())
+			all_hooks_names_[target] = func_name;
+
+		auto& hook_vector = all_hooks_[target]; // Map lookup by memory address
 		TransactionContext transaction;
 		LONG attachErr = NO_ERROR;
 		bool ok = false;
@@ -455,7 +461,7 @@ namespace API
 		{
 			transaction.Reset();
 			transaction.attempts = static_cast<std::size_t>(attempt + 1);
-			*original = Offsets::Get().GetAddress(func_name);
+			*original = target;
 
 			bool attachSucceeded = true;
 			attachErr = NO_ERROR;
@@ -479,7 +485,7 @@ namespace API
 				Log::GetLog()->error("[{}] Hook failed for {} (chain depth: {}, DetourAttach err={}, {})", ModuleName(hOwner), func_name, hook_vector.size(), attachErr, DescribeTransactionFailure(transaction));
 			else
 				Log::GetLog()->error("[{}] Hook failed for {} (chain depth: {}, {})", ModuleName(hOwner), func_name, hook_vector.size(), DescribeTransactionFailure(transaction));
-			
+
 			*original = nullptr;
 			return false;
 		}
@@ -487,7 +493,7 @@ namespace API
 		if (extended_debug_)
 			Log::GetLog()->info("[{}] Hook installed for {} (trampoline=0x{:X})", ModuleName(hOwner), func_name, reinterpret_cast<ULONG_PTR>(*original));
 
-		hook_vector.push_back(std::make_shared<Hook>(Offsets::Get().GetAddress(func_name), detour, original, hOwner));
+		hook_vector.push_back(std::make_shared<Hook>(target, detour, original, hOwner));
 		return true;
 	}
 
@@ -529,7 +535,7 @@ namespace API
 		{
 			std::unique_lock installLock(g_hookInstallMutex);
 
-			if (rebuilding_.count(func_name))
+			if (rebuilding_.count(target))
 			{
 				if (extended_debug_)
 					Log::GetLog()->warn("DisableHook called for {} while a rebuild is already in progress - ignoring to prevent chain corruption", func_name);
@@ -537,7 +543,7 @@ namespace API
 				return false;
 			}
 
-			auto& hook_vector = all_hooks_[func_name];
+			auto& hook_vector = all_hooks_[target];
 
 			const auto iter = std::find_if(hook_vector.begin(), hook_vector.end(),
 				[detour](const std::shared_ptr<Hook>& h) { return h->detour == detour; });
@@ -550,7 +556,7 @@ namespace API
 			if (extended_debug_)
 				Log::GetLog()->info("[{}] DisableHook: removing hook for {} | chain before: {}", ModuleName(removedHook->hOwnerModule), func_name, makeChainSnapshot(hook_vector));
 
-			rebuilding_.insert(func_name);
+			rebuilding_.insert(target); // Lock by address
 			TransactionContext transaction;
 			LONG detachErr = NO_ERROR;
 			bool ok = false;
@@ -588,7 +594,7 @@ namespace API
 			if (!ok)
 			{
 				Log::GetLog()->error("[{}] DisableHook transaction failed for {} ({})", ModuleName(removedHook->hOwnerModule), func_name, DescribeTransactionFailure(transaction));
-				rebuilding_.erase(func_name);
+				rebuilding_.erase(target);
 				g_rebuildDone.notify_all();
 				return false;
 			}
@@ -608,6 +614,7 @@ namespace API
 		std::size_t reinstalled = 0;
 		for (const auto& h : survivors)
 		{
+			// Reinstall using string name so it finds the correct map entries
 			if (SetHookInternalImplNoWait(func_name, h->detour, h->original, h->hOwnerModule))
 				++reinstalled;
 			else
@@ -621,9 +628,9 @@ namespace API
 				Log::GetLog()->error("DisableHook chain rebuild for {} is incomplete: expected {} survivors, reinstalled {}", func_name, survivors.size(), reinstalled);
 
 			if (extended_debug_)
-				Log::GetLog()->info("[{}] DisableHook: rebuild complete for {} | chain after: {}", ModuleName(removedHook->hOwnerModule), func_name, makeChainSnapshot(all_hooks_[func_name]));
+				Log::GetLog()->info("[{}] DisableHook: rebuild complete for {} | chain after: {}", ModuleName(removedHook->hOwnerModule), func_name, makeChainSnapshot(all_hooks_[target]));
 
-			rebuilding_.erase(func_name);
+			rebuilding_.erase(target); // Unlock by address
 		}
 
 		g_rebuildDone.notify_all();
@@ -635,36 +642,38 @@ namespace API
 	{
 		if (!hModule) return;
 
-		std::vector<std::pair<std::string, LPVOID>> toDisable;
+		std::vector<std::pair<LPVOID, LPVOID>> toDisable; // Swapped from string to LPVOID
 		{
 			std::lock_guard snapLock(g_hookInstallMutex);
-			for (const auto& [func_name, hook_vec] : all_hooks_)
+			for (const auto& [target, hook_vec] : all_hooks_)
 			{
 				for (const auto& h : hook_vec)
 				{
 					if (h->hOwnerModule == hModule)
-						toDisable.emplace_back(func_name, h->detour);
+						toDisable.emplace_back(target, h->detour);
 				}
 			}
 		}
 
 		const std::string modName = ModuleName(hModule);
 
-		for (const auto& [func_name, det] : toDisable)
+		for (const auto& [target, det] : toDisable)
 		{
+			const std::string& canonical_name = all_hooks_names_[target];
+
 			if (extended_debug_)
-				Log::GetLog()->info("[{}] Auto-disabling hook for {} (module unloading)", modName, func_name);
+				Log::GetLog()->info("[{}] Auto-disabling hook for {} (module unloading)", modName, canonical_name);
 
 			for (int attempt = 0; attempt < kMaxRetries; ++attempt)
 			{
-				if (DisableHook(func_name, det))
+				if (DisableHook(canonical_name, det)) // Pass the string API expects
 					break;
 
 				bool stillPresent = false;
 				{
 					std::unique_lock checkLock(g_hookInstallMutex);
 
-					const auto it = all_hooks_.find(func_name);
+					const auto it = all_hooks_.find(target); // Lookup by address
 					if (it != all_hooks_.end())
 					{
 						for (const auto& h : it->second)
@@ -681,7 +690,7 @@ namespace API
 						break;
 
 					if (extended_debug_)
-						Log::GetLog()->warn("[{}] DisableAllHooksFromModule: hook for {} is mid-rebuild, waiting (attempt {}/{})", modName, func_name, attempt + 1, kMaxRetries);
+						Log::GetLog()->warn("[{}] DisableAllHooksFromModule: hook for {} is mid-rebuild, waiting (attempt {}/{})", modName, canonical_name, attempt + 1, kMaxRetries);
 
 					g_rebuildDone.wait_for(checkLock, kRetryTimeout);
 				}
@@ -689,7 +698,7 @@ namespace API
 
 			{
 				std::lock_guard checkLock(g_hookInstallMutex);
-				const auto it = all_hooks_.find(func_name);
+				const auto it = all_hooks_.find(target); // Lookup by address
 				if (it != all_hooks_.end())
 				{
 					for (const auto& h : it->second)
@@ -697,13 +706,25 @@ namespace API
 						if (h->detour == det)
 						{
 							Log::GetLog()->error("[{}] FATAL: hook for {} could not be removed after {} retries ({}ms each). FreeLibrary will proceed with a dangling hook — expect a crash.",
-								modName, func_name, kMaxRetries, std::chrono::duration_cast<std::chrono::milliseconds>(kRetryTimeout).count());
+								modName, canonical_name, kMaxRetries, std::chrono::duration_cast<std::chrono::milliseconds>(kRetryTimeout).count());
 							break;
 						}
 					}
 				}
 			}
 		}
+	}
+
+	bool Hooks::AddCustomOffsetInternal(const std::string& name, LPVOID offset, bool bForceSet)
+	{
+		static const auto module_base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+		const auto address = reinterpret_cast<uintptr_t>(offset);
+		if (address > module_base)
+		{
+			// It's an absolute address, convert to RVA
+			return Offsets::Get().AddCustomOffset(name, reinterpret_cast<LPVOID>(address - module_base), bForceSet);
+		}
+		return Offsets::Get().AddCustomOffset(name, offset, bForceSet);
 	}
 } // namespace API
 

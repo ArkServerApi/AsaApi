@@ -218,4 +218,15 @@ namespace API
 
 		return cf;
 	}
+
+	bool Offsets::AddCustomOffset(const std::string& name, LPVOID offset, bool bForceSet)
+	{
+		if (!bForceSet && offsets_dump_.contains(name))
+		{
+			//Log::GetLog()->critical("Failed to add custom offset. The identifier '{}' already exists with offset 0x{:X}", offsets_dump_[name]);
+			return false;
+		}
+		offsets_dump_[name] = reinterpret_cast<intptr_t>(offset);
+		return true;
+	}
 } // namespace API

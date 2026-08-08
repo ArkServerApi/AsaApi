@@ -50,8 +50,12 @@ namespace API
 		bool SetHookInternalImplNoWait(const std::string& func_name, LPVOID detour,
 			LPVOID* original, HMODULE hOwner);
 
-		std::unordered_map<std::string, std::vector<std::shared_ptr<Hook>>> all_hooks_;
-		std::unordered_set<std::string> rebuilding_;
+		std::unordered_map<LPVOID, std::vector<std::shared_ptr<Hook>>> all_hooks_;
+		std::unordered_set<LPVOID> rebuilding_;
+		std::unordered_map<LPVOID, std::string> all_hooks_names_; // Maps memory address back to string
 		bool extended_debug_ = false;
+
+	public:
+		bool AddCustomOffsetInternal(const std::string& name, LPVOID offset, bool bForceSet = false);
 	};
 } // namespace API

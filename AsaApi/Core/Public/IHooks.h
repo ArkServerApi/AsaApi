@@ -34,6 +34,13 @@ namespace AsaApi
 	private:
 		virtual bool SetHookInternal(const std::string& func_name, LPVOID detour,
 			LPVOID* original) = 0;
+		virtual bool AddCustomOffsetInternal(const std::string& name, LPVOID offset, bool bForceSet = false) = 0;
+	public: 
+		bool AddCustomOffset(const std::string& name, LPVOID offset, bool bForceSet = false)
+		{
+			if (!offset) return false;
+			return AddCustomOffsetInternal(name, offset, bForceSet);
+		}
 	};
 
 	ARK_API IHooks& APIENTRY GetHooks();
