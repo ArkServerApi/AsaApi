@@ -722,9 +722,9 @@ namespace API
 		if (address > module_base)
 		{
 			// It's an absolute address, convert to RVA
-			return Offsets::Get().AddCustomOffset(name, reinterpret_cast<LPVOID>(address - module_base), bForceSet);
+			return Offsets::Get().AddCustomOffset(name, reinterpret_cast<LPVOID>(address - module_base), bForceSet, extended_debug_);
 		}
-		return Offsets::Get().AddCustomOffset(name, offset, bForceSet);
+		return Offsets::Get().AddCustomOffset(name, offset, bForceSet, extended_debug_);
 	}
 } // namespace API
 

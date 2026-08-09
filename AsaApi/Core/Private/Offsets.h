@@ -41,6 +41,7 @@ namespace API
 		std::unordered_map<std::string, BitField> bitfields_dump_;
 
 	public: 
-		bool AddCustomOffset(const std::string& name, LPVOID offset, bool bForceSet = false);
+		bool AddCustomOffset(const std::string& name, LPVOID offset, bool bForceSet = false, bool bExtendedDebug = false);
+
 	};
 } // namespace API

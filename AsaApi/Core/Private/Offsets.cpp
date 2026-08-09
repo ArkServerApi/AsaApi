@@ -81,7 +81,7 @@ namespace
 		if (!resolvedAny)
 			return "<unknown>";
 
-		return "AsaApi itself (no plugin on the call stack)";
+		return "AsaApi";
 	}
 } // namespace
 
@@ -219,14 +219,38 @@ namespace API
 		return cf;
 	}
 
-	bool Offsets::AddCustomOffset(const std::string& name, LPVOID offset, bool bForceSet)
+	bool Offsets::AddCustomOffset(const std::string& name, LPVOID offset, bool bForceSet, bool bExtendedDebug)
 	{
-		if (!bForceSet && offsets_dump_.contains(name))
-		{
-			//Log::GetLog()->critical("Failed to add custom offset. The identifier '{}' already exists with offset 0x{:X}", offsets_dump_[name]);
+		const bool bExists = offsets_dump_.contains(name);
+		const auto newOffset = reinterpret_cast<intptr_t>(offset);
+
+		if (!bForceSet && bExists)
 			return false;
+
+		if (bExists)
+		{
+			const auto oldOffset = offsets_dump_[name];
+
+			if (oldOffset == newOffset)
+				return false;
+
+			if (bExtendedDebug)
+				Log::GetLog()->info("{} updated offset for '{}': 0x{:X} -> 0x{:X}", 
+					DescribeOffsetRequester(),
+					name,
+					oldOffset,
+					newOffset);
 		}
-		offsets_dump_[name] = reinterpret_cast<intptr_t>(offset);
+		else
+		{
+			if (bExtendedDebug)
+				Log::GetLog()->info(
+					"{} added offset for '{}': 0x{:X}",
+					DescribeOffsetRequester(),
+					name,
+					newOffset);
+		}
+		offsets_dump_[name] = newOffset;
 		return true;
 	}
 } // namespace API
