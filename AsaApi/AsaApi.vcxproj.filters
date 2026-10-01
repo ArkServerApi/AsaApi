@@ -156,6 +156,9 @@
     <ClCompile Include="Core\Private\PluginManager\PluginManager.cpp">
       <Filter>Source Files\Core\Private\PluginManager</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Private\PluginManager\EssentialPlugins.cpp">
+      <Filter>Source Files\Core\Private\PluginManager</Filter>
+    </ClCompile>
     <ClCompile Include="Core\Public\API\UE\Serialization\Archive.cpp">
       <Filter>Source Files\Core\Public\API\UE\Serialization</Filter>
     </ClCompile>
@@ -2292,6 +2295,9 @@
       <Filter>Source Files\Core\Public</Filter>
     </ClInclude>
     <ClInclude Include="Core\Private\PluginManager\PluginManager.h">
+      <Filter>Source Files\Core\Private\PluginManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Private\PluginManager\EssentialPlugins.h">
       <Filter>Source Files\Core\Private\PluginManager</Filter>
     </ClInclude>
     <ClInclude Include="Core\Public\API\UE\Async\Async.h">

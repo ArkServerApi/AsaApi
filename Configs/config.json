@@ -20,6 +20,11 @@
       ]
     },
     "SuppressHttpErrors": false,
-    "HooksDoNotThrow": false
+    "HooksDoNotThrow": false,
+    "EssentialPlugins": {
+      "Enable": false,
+      "Plugins": []
+    },
+    "PluginFailureWebhook": ""
   }
 }

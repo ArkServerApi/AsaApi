@@ -27,6 +27,9 @@ namespace API
 		BitField GetBitField(const void* base, const std::string& name);
 		BitField GetBitField(LPVOID base, const std::string& name);
 
+		bool HasOffset(const std::string& name) const;
+		bool HasBitField(const std::string& name) const;
+
 	private:
 		Offsets();
 		~Offsets() = default;

@@ -91,6 +91,10 @@ namespace API
 		static nlohmann::json ReadPluginInfo(const std::string& plugin_name);
 		static nlohmann::json ReadSettingsConfig();
 
+		void CleanupModuleArtifacts(HINSTANCE h_module, const std::string& full_dll_path);
+		void EvictFailedPlugin(HINSTANCE h_module, const std::string& plugin_name, const std::string& full_dll_path);
+		void ReleaseDllDirectory(const std::string& plugin_name);
+
 		void CheckPluginsDependencies();
 
 		void DetectPluginChanges();
