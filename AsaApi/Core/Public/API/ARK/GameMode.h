@@ -1191,7 +1191,7 @@ struct UPrimalGameData : UObject
 	static TSubclassOf<UObject>* GetRedirectedClass(TSubclassOf<UObject>* result, FString* key, UObject* WorldContextObject) { return NativeCall<TSubclassOf<UObject>*, TSubclassOf<UObject>*, FString*, UObject*>(nullptr, "UPrimalGameData.GetRedirectedClass(FString&,UObject*)", result, key, WorldContextObject);  }
 	bool CallGeneTrait_BPGetCustomBlueprintData_Implementation(FName DataName, FFunctionParams_NoArrays* InData, FFunctionParams_NoArrays* OutData) { return NativeCall<bool, FName, FFunctionParams_NoArrays*, FFunctionParams_NoArrays*>(this, "UPrimalGameData.CallGeneTrait_BPGetCustomBlueprintData_Implementation(FName,FFunctionParams_NoArrays,FFunctionParams_NoArrays&)", DataName, InData, OutData); }
 	bool CallGeneTrait_BPGetCustomBlueprintData(FName DataName, FFunctionParams_NoArrays* InData, FFunctionParams_NoArrays* OutData) { return NativeCall<bool, FName, FFunctionParams_NoArrays*, FFunctionParams_NoArrays*>(this, "UPrimalGameData.CallGeneTrait_BPGetCustomBlueprintData(FName,FFunctionParams_NoArrays,FFunctionParams_NoArrays&)", DataName, InData, OutData); }
-	int GetBitmaskForBuffs(TArray<APrimalBuff*, TSizedDefaultAllocator<32> >* ActiveBuffs) { return NativeCall<int, TArray<APrimalBuff*, TSizedDefaultAllocator<32> >*>(this, "UPrimalGameData.GetBitmaskForBuffs(TArray<APrimalBuff*,TSizedDefaultAllocator<32>>)", ActiveBuffs); }
+	int GetBitmaskForBuffs(TArray<APrimalBuff*, TSizedDefaultAllocator<32> > ActiveBuffs) { return NativeCall<int, TArray<APrimalBuff*, TSizedDefaultAllocator<32> >>(this, "UPrimalGameData.GetBitmaskForBuffs(TArray<APrimalBuff*,TSizedDefaultAllocator<32>>)", ActiveBuffs); }
 };
 
 struct UPrimalGlobals : UObject
