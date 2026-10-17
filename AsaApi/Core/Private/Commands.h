@@ -81,6 +81,9 @@ namespace AsaApi
 
 			if (iter != commands.end())
 			{
+				// drop the callback now, while the plugin that owns it is still loaded
+				// (same reason as in `RemoveCommandsFromModule` below)
+				(*iter)->callback = nullptr;
 				commands.erase(std::remove(commands.begin(), commands.end(), *iter), commands.end());
 
 				return true;
