@@ -2275,7 +2275,7 @@ public:
 	// To allow more efficient memory handling, automatically adds one for the string termination.
 	FORCEINLINE void Reserve(int32 CharacterCount)
 	{
-		NativeCall<void>(this, "FString.Reserve(int)");
+		NativeCall<void, int32>(this, "FString.Reserve(int)", CharacterCount);
 	}
 
 	/**
