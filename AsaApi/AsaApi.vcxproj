@@ -84,6 +84,7 @@
     <ClCompile Include="Core\Private\Logger.cpp" />
     <ClCompile Include="Core\Private\Offsets.cpp" />
     <ClCompile Include="Core\Private\PDBReader\PDBReader.cpp" />
+    <ClCompile Include="Core\Private\PluginManager\EssentialPlugins.cpp" />
     <ClCompile Include="Core\Private\PluginManager\PluginManager.cpp" />
     <ClCompile Include="Core\Private\Tools\Requests.cpp" />
     <ClCompile Include="Core\Private\Tools\Timer.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="Core\Private\IBaseApi.h" />
     <ClInclude Include="Core\Private\Offsets.h" />
     <ClInclude Include="Core\Private\PDBReader\PDBReader.h" />
+    <ClInclude Include="Core\Private\PluginManager\EssentialPlugins.h" />
     <ClInclude Include="Core\Private\PluginManager\PluginManager.h" />
     <ClInclude Include="Core\Public\API\ARK\Actor.h" />
     <ClInclude Include="Core\Public\API\ARK\Ark.h" />
