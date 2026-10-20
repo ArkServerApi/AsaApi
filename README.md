@@ -17,7 +17,8 @@ Discord: https://discord.gg/2uRNp99M9r
 - To compile AsaApi you need the `14.39.33519` platform toolset version
 
 ## Template:
-Community member TheMollusk has provided a template Visual Studio project [here](https://github.com/MolluskARK/ASA-Plugin-Template).
+- Community member TheMollusk has provided a template Visual Studio project [here](https://github.com/MolluskARK/ASA-Plugin-Template).
+- Community member AuxJackDev has provided a plugin template for using msvc-wine to cross-build plugins from linux [here](https://github.com/AuxJackDev/asa-plugin-template-linux).
 
 ## Disclaimers
 - This is a community project aimed at extending the official server executable that is distributed with the game. Studio Wildcard retains all ownership over the original server files, game copyrights, etc.
