@@ -31,7 +31,7 @@ struct APrimalBotAIController : APrimalDinoAIController
     bool IsDinoRideable(APrimalDinoCharacter* Dino) { return NativeCall<bool, APrimalDinoCharacter*>(this, "APrimalBotAIController.IsDinoRideable(APrimalDinoCharacter*)", Dino); }
     void OnCharacterAttachedToDino(APrimalDinoCharacter* Dino) { NativeCall<void, APrimalDinoCharacter*>(this, "APrimalBotAIController.OnCharacterAttachedToDino(APrimalDinoCharacter*)", Dino); }
     void OnCharacterDetachedFromDino(APrimalDinoCharacter* Dino) { NativeCall<void, APrimalDinoCharacter*>(this, "APrimalBotAIController.OnCharacterDetachedFromDino(APrimalDinoCharacter*)", Dino); }
-    void ChangedAITarget_Implementation() { NativeCall<void>(this, "APrimalBotAIController.ChangedAITarget_Implementation()"); }
+    void ChangedAITarget_Implementation(AActor* OldTarget) { NativeCall<void, AActor*>(this, "APrimalBotAIController.ChangedAITarget_Implementation(AActor*)", OldTarget); }
     void SetHasAttackPriority(bool Value) { NativeCall<void, bool>(this, "APrimalBotAIController.SetHasAttackPriority(bool)", Value); }
     bool WantsAttackPriority() { return NativeCall<bool>(this, "APrimalBotAIController.WantsAttackPriority()"); }
     bool GetHasAttackPriority() { return NativeCall<bool>(this, "APrimalBotAIController.GetHasAttackPriority()"); }
@@ -514,7 +514,7 @@ struct APrimalBuff : APrimalEmitterSpawnable
     void Destroyed() { NativeCall<void>(this, "APrimalBuff.Destroyed()"); }
     void NetResetBuffStart_Implementation() { NativeCall<void>(this, "APrimalBuff.NetResetBuffStart_Implementation()"); }
     bool ResetBuffStart() { return NativeCall<bool>(this, "APrimalBuff.ResetBuffStart()"); }
-    APrimalBuff* AddBuff(APrimalCharacter* ForCharacter, AActor* DamageCauser) { return NativeCall<APrimalBuff*, APrimalCharacter*, AActor*>(this, "APrimalBuff.AddBuff(APrimalCharacter*,AActor*)", ForCharacter, DamageCauser); }
+    APrimalBuff* AddBuff(APrimalCharacter* ForCharacter, AActor* DamageCauser, TFunction<void __cdecl(APrimalBuff*)>* PreSpawnCustomizeFunc) { return NativeCall<APrimalBuff*, APrimalCharacter*, AActor*, TFunction<void __cdecl(APrimalBuff*)>*>(this, "APrimalBuff.AddBuff(APrimalCharacter*,AActor*,TFunction<void__cdecl(APrimalBuff*))", ForCharacter, DamageCauser, PreSpawnCustomizeFunc); }
     void ServerRequestRelatedMissionData_Implementation() { NativeCall<void>(this, "APrimalBuff.ServerRequestRelatedMissionData_Implementation()"); }
     void ClientReceiveRelatedMissionData_Implementation(AMissionType* InMission, bool InHasRelatedMission) { NativeCall<void, AMissionType*, bool>(this, "APrimalBuff.ClientReceiveRelatedMissionData_Implementation(AMissionType*,bool)", InMission, InHasRelatedMission); }
     void GetHUDElements(APlayerController* ForPC, TArray<FHUDElement, TSizedDefaultAllocator<32> >* OutHUDElements) { NativeCall<void, APlayerController*, TArray<FHUDElement, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff.GetHUDElements(APlayerController*,TArray<FHUDElement,TSizedDefaultAllocator<32>>&)", ForPC, OutHUDElements); }

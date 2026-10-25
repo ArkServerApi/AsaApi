@@ -3850,3 +3850,216 @@ struct FStructureVariant
 	FStructureVariant& operator=(FStructureVariant* __that) { return NativeCall<FStructureVariant&, FStructureVariant*>(this, "FStructureVariant.operator=(FStructureVariant&&)", __that); }
 	static UScriptStruct* StaticStruct() { return FindScriptStruct<FStructureVariant>(); }
 };
+
+struct FClassRemappingWeight
+{
+	TSoftClassPtr<UObject> FromClass;
+	TArray<TSoftClassPtr<UObject>, TSizedDefaultAllocator<32> > ToClasses;
+	TArray<float, TSizedDefaultAllocator<32> > Weights;
+	FName ActiveEvent;
+	unsigned __int32 bExactMatch : 1;
+};
+
+struct FNPCDifficultyLevelRange
+{
+	TArray<float, TSizedDefaultAllocator<32> > EnemyLevelsMin;
+	TArray<float, TSizedDefaultAllocator<32> > EnemyLevelsMax;
+	TArray<float, TSizedDefaultAllocator<32> > GameDifficulties;
+};
+
+struct FNPCSpawnEntry
+{
+	FString AnEntryName;
+	TArray<TSoftClassPtr<APrimalDinoCharacter>, TSizedDefaultAllocator<32> > NPCsToSpawn;
+	TArray<FString, TSizedDefaultAllocator<32> > NPCsToSpawnStrings;
+	TArray<FClassRemappingWeight, TSizedDefaultAllocator<32> > NPCRandomSpawnClassWeights;
+	TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> > NPCsSpawnOffsets;
+	TArray<float, TSizedDefaultAllocator<32> > NPCsToSpawnPercentageChance;
+	TArray<float, TSizedDefaultAllocator<32> > NPCMinLevelOffset;
+	TArray<float, TSizedDefaultAllocator<32> > NPCMaxLevelOffset;
+	TArray<float, TSizedDefaultAllocator<32> > NPCMinLevelMultiplier;
+	TArray<float, TSizedDefaultAllocator<32> > NPCMaxLevelMultiplier;
+	unsigned __int32 bAddLevelOffsetBeforeMultiplier : 1;
+	TArray<unsigned char, TSizedDefaultAllocator<32> > NPCOverrideLevel;
+	UE::Math::TVector<double> ExtentCheck;
+	UE::Math::TVector<double> GroupSpawnOffset;
+	float EntryWeight;
+	float ManualSpawnPointSpreadRadius;
+	float WaterOnlySpawnMinimumWaterHeight;
+	float MaximumWaterHeight;
+	TSubclassOf<UPrimalColorSet> ColorSets;
+	TArray<FNPCDifficultyLevelRange, TSizedDefaultAllocator<32> > NPCDifficultyLevelRanges;
+	float LevelDifficultyTestOverride;
+	float SpawnMinDistanceFromStructuresMultiplier;
+	float SpawnMinDistanceFromPlayersMultiplier;
+	float SpawnMinDistanceFromTamedDinosMultiplier;
+	float RandGroupSpawnOffsetZMin;
+	float RandGroupSpawnOffsetZMax;
+};
+
+struct FNPCSpawnLimit
+{
+	TSoftClassPtr<APrimalDinoCharacter> NPCClass;
+	FString NPCClassString;
+	float MaxPercentageOfDesiredNumToAllow;
+	int CurrentNumberOfNPCTouching;
+};
+
+struct UNPCSpawnEntriesContainer : UObject
+{
+	TArray<FNPCSpawnEntry, TSizedDefaultAllocator<32> >& NPCSpawnEntriesField() { return *GetNativePointerField<TArray<FNPCSpawnEntry, TSizedDefaultAllocator<32> >*>(this, "UNPCSpawnEntriesContainer.NPCSpawnEntries"); }
+	TArray<FNPCSpawnLimit, TSizedDefaultAllocator<32> >& NPCSpawnLimitsField() { return *GetNativePointerField<TArray<FNPCSpawnLimit, TSizedDefaultAllocator<32> >*>(this, "UNPCSpawnEntriesContainer.NPCSpawnLimits"); }
+	float& MaxDesiredNumEnemiesMultiplierField() { return *GetNativePointerField<float*>(this, "UNPCSpawnEntriesContainer.MaxDesiredNumEnemiesMultiplier"); }
+
+	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UNPCSpawnEntriesContainer.GetPrivateStaticClass()"); }
+};
+
+struct FNPCSpawnEntriesContainerAdditions
+{
+	TSubclassOf<UNPCSpawnEntriesContainer> SpawnEntriesContainerClass;
+	FString SpawnEntriesContainerClassString;
+	bool bSpawnEntriesContainerClassStringUseExactString;
+	TArray<FNPCSpawnEntry, TSizedDefaultAllocator<32> > AdditionalNPCSpawnEntries;
+	TArray<FNPCSpawnLimit, TSizedDefaultAllocator<32> > AdditionalNPCSpawnLimits;
+};
+
+struct ANPCZoneSpawnVolume : AVolume
+{
+};
+
+struct FLinkedZoneSpawnVolumeEntry
+{
+	ANPCZoneSpawnVolume* LinkedZoneSpawnVolume;
+	TArray<AActor*, TSizedDefaultAllocator<32> > ZoneSpawnVolumeFloors;
+	TArray<AActor*, TSizedDefaultAllocator<32> > ZoneSpawnVolumeIgnoreCeilings;
+	TArray<FName, TSizedDefaultAllocator<32> > ZoneSpawnVolumeIgnoreCeilingTags;
+	TArray<FName, TSizedDefaultAllocator<32> > ZoneSpawnVolumeFloorTags;
+	float EntryWeight;
+};
+
+struct ANPCZoneManager : AInfo
+{
+	TArray<ANPCZoneVolume*, TSizedDefaultAllocator<32> > LinkedZoneVolumes;
+	TArray<FLinkedZoneSpawnVolumeEntry, TSizedDefaultAllocator<32> > LinkedZoneSpawnVolumeEntries;
+	TArray<AActor*, TSizedDefaultAllocator<32> > DefaultZoneSpawnVolumeFloors;
+	TArray<AActor*, TSizedDefaultAllocator<32> > DefaultZoneSpawnVolumeIgnoreCeilings;
+	TArray<FName, TSizedDefaultAllocator<32> > DefaultZoneSpawnVolumeFloorTags;
+	TArray<FName, TSizedDefaultAllocator<32> > DefaultZoneSpawnVolumeIgnoreCeilingTags;
+	TSoftClassPtr<UNPCSpawnEntriesContainer> NPCSpawnEntriesContainerObject;
+	bool bEnabled;
+	bool bHasCompletedSetup;
+	bool bForceInEditor;
+	bool bNeverSpawnInWater;
+	bool bOnlySpawnInWater;
+	TArray<FName, TSizedDefaultAllocator<32> > OnlyAllowSpawningOnActorTags;
+	bool bAllowExtentTest;
+	int MinDesiredNumberOfNPC;
+	int SP_MinDesiredNumberOfNPC;
+	int MaxNumberOfNPC;
+	float DesiredNumberOfNPCMultiplier;
+	float TheSpawnPointMinimumFloorNormal;
+	float TheNewNewEditorNumberOfNPCMultiplier;
+	float KillOffOverweightNPCStasisTime;
+	float TheMaximumWorldTimeForFullIncrease;
+	float TheMaxMsToSpendSpawningInAFrame;
+	long double StartedSpawningThisFrame;
+	float TheMinimumPlayerDistanceFromSpawnPoint;
+	float TheIncreaseNPCInterval;
+	float SP_TheIncreaseNPCInterval;
+	float TheIncreaseNPCIntervalMax;
+	float TheDecreaseNPCInterval;
+	float NPCAIRangeMultiplier;
+	float NPCAIAggroNotifyNeighborsRangeMultiplier;
+	bool bNPCDontWander;
+	bool bNPCWildIgnoreWild;
+	bool bNPCNoKillXP;
+	bool bNPCPreventSaving;
+	bool bForceUntameable;
+	bool bForcePreventHibernation;
+	bool bUsesManualSpawning;
+	bool bDedicatedServerForceManualSpawningOnLayerLoadedDinos;
+	bool bIgnoreVolumeEcompassingCheck;
+	bool bSpawnAllNPCEntries;
+	bool bOnlyUseInSingleplayer;
+	bool bOnlyUseInDedicatedServer;
+	float NPCWanderRadiusMultiplier;
+	int MaxNumberSpawnZoneRandomPointChecks;
+	int TheNPCFullIncreaseMaximumIterations;
+	float TheMinimumTamedDinoDistanceFromSpawnPoint;
+	float TheMinimumStructureDistanceFromSpawnPoint;
+	float NPCLerpToMaxRandomBaseLevel;
+	float ManualSpawningNPCLerpToMaxRandomBaseLevel;
+	int MaximumNumberNearbyCoreStructures;
+	int AbsoluteMaximumNumberNearbyCoreStructures;
+	bool bAutoKillUseGlobalStasisArray;
+	bool bUseSpawnBlockingCheck;
+	bool bUseSpawnPawnBlockingCheck;
+	bool bTraceForSpawnPoints;
+	bool bUseSpawnOverlapCheck;
+	bool bSpawnRequiresTraceDownThroughCeiling;
+	float SpawnPointRequiresTraceUpToCeilingDistance;
+	ANPCZoneVolume* HardLimitWildDinosToVolume;
+	bool bTraceForSpawnAgainstWater;
+	bool bNPCForcePreventExitingWater;
+	bool bIsFirstStartup;
+	bool bUseSpawnPointOverrideRotation;
+	AVolume* NPCLimitTargetsToVolume;
+	FName LimitWildDinoToVolumeTag;
+	float NPCLevelMultiplier;
+	int ForceOverrideNPCBaseLevel;
+	float IncreaseNPCIntervalMultiplier;
+	bool bDirectlyLinkDinoCount;
+	bool bDidZoneSpawnVolumeSetup;
+	TArray<FNPCSpawnEntry, TSizedDefaultAllocator<32> > NPCSpawnEntries;
+	TArray<FNPCSpawnLimit, TSizedDefaultAllocator<32> > NPCSpawnLimits;
+	int UseDesiredNumberOfNPC;
+	long double FirstUpdateTime;
+	int NumNPCSpawned;
+	int NumSpawnFailures;
+	long double LastIncreaseNPCTime;
+	long double LastDecreaseNPCTime;
+	float DirectLinkDinoCount;
+	bool bIsCaveManager;
+	long double LoadedAtTime;
+	bool bForceRespawnDinos;
+	bool bTriedFullIncrease;
+	bool bSpawnsWaterDinos;
+	bool bSpawnsAmphibiousDinos;
+	bool bPrintedFailureToSpawnMessage;
+	float TheNextIncreaseNPCInterval;
+	float CloseStructureDistanceFromSpawnPoint;
+	TArray<AActor*, TSizedDefaultAllocator<32> > SpawnPointOverrides;
+	TArray<TWeakObjectPtr<APrimalDinoCharacter, FWeakObjectPtr>, TSizedDefaultAllocator<32> > DirectLinkedDinos;
+	FName NonDedicatedFreezeWildDinoPhysicsIfLayerUnloaded;
+	FName SubLevelWaterCheckUseTagOverride;
+	bool bUseHighestPriorityPhysicsWaterVolume;
+	bool bForcedInNoDinos;
+	bool bIgnoreSingleplayerSpawnRangeCheck;
+	float MinimumManualSpawnInterval;
+	long double LastManuallySpawnedTime;
+	bool bIgnoreNPCRandomClassReplacements;
+	bool bAllowSpawnPointOverridesNonDedicatedLevelUnloadedFreezing;
+	unsigned __int32 bUseBPPreventCheckIncreaseNPC : 1;
+	unsigned __int32 bUseBPNotifyNPCSpawned : 1;
+	int TheNPCDynamicIncreaseMaximumIterations;
+	TArray<float, TSizedDefaultAllocator<32> > WeightedChancesToSpawnWildChildrenOnCreatureSpawnMultipliers;
+	bool bSkipSpawnFrameCheck;
+	long double LastFullUpdateTime;
+	unsigned __int8 bIsPatrolManager : 1;
+	int SaveForceResetPatrolsVersion;
+	int LoadForceResetPatrolsVersion;
+	unsigned __int8 bForceResetPatrols : 1;
+	int SpawningPatrolGroupID;
+
+	TSoftClassPtr<UNPCSpawnEntriesContainer>& NPCSpawnEntriesContainerObjectField() { return *GetNativePointerField<TSoftClassPtr<UNPCSpawnEntriesContainer>*>(this, "ANPCZoneManager.NPCSpawnEntriesContainerObject"); }
+	TArray<FNPCSpawnEntry, TSizedDefaultAllocator<32> >& NPCSpawnEntriesField() { return *GetNativePointerField<TArray<FNPCSpawnEntry, TSizedDefaultAllocator<32> >*>(this, "ANPCZoneManager.NPCSpawnEntries"); }
+	TArray<FNPCSpawnLimit, TSizedDefaultAllocator<32> >& NPCSpawnLimitsField() { return *GetNativePointerField<TArray<FNPCSpawnLimit, TSizedDefaultAllocator<32> >*>(this, "ANPCZoneManager.NPCSpawnLimits"); }
+
+	TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>* GetSpawnableNPCClasses(TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>* result) { return NativeCall<TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>*, TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>*>(this, "ANPCZoneManager.GetSpawnableNPCClasses()", result); }
+};
+
+struct FClassRemapping
+{
+	TSoftClassPtr<UObject> FromClass;
+	TSoftClassPtr<UObject> ToClass;
+};
