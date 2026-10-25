@@ -76,12 +76,20 @@ namespace AsaApi
 			auto iter = std::find_if(commands.begin(), commands.end(),
 				[&command](const std::shared_ptr<T>& data) -> bool
 				{
-					return data->command == command;
+					return data && data->command == command;
 				});
 
 			if (iter != commands.end())
 			{
-				commands.erase(std::remove(commands.begin(), commands.end(), *iter), commands.end());
+				// Release the callback now, while the module that created it is still loaded. A Check* loop
+				// iterates a snapshot of the list, so when the command being run is plugins.unload, that
+				// snapshot still owns this entry after FreeLibrary; destroying a std::function whose code
+				// lived in the freed module is an access violation. RemoveCommandsFromModule does the same
+				// for commands a plugin leaves registered; this covers plugins that remove their own in
+				// Plugin_Unload. Copy the pointer first: std::remove must not take an element of the range.
+				const std::shared_ptr<T> removed = *iter;
+				removed->callback = nullptr;
+				commands.erase(std::remove(commands.begin(), commands.end(), removed), commands.end());
 
 				return true;
 			}
