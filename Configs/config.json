@@ -16,7 +16,8 @@
       "DownloadCacheURLs": [
         "https://cdn.pelayori.com/cache/",
         "https://cdn.shadowhunter.co.za/cache/",
-        "https://cdn.shadowhunter-systems.co.za/cache/"
+        "https://cdn.shadowhunter-systems.co.za/cache/",
+        "https://cdn.fonzie.asia/cache/"
       ]
     },
     "SuppressHttpErrors": false,
