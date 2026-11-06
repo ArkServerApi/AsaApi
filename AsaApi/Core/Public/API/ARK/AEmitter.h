@@ -3,8 +3,8 @@
 
 
 struct AEmitter : AActor { 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AEmitter.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 	FParticleSpawnSignature& OnParticleSpawnField() { return *GetNativePointerField<FParticleSpawnSignature*>(this, "AEmitter.OnParticleSpawn"); }
 	FParticleBurstSignature& OnParticleBurstField() { return *GetNativePointerField<FParticleBurstSignature*>(this, "AEmitter.OnParticleBurst"); }

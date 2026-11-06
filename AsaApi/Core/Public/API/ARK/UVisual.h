@@ -9,7 +9,7 @@ public:
 	~UVisual() = delete;
 	UVisual(const UVisual&) = delete;
 	UVisual& operator=(const UVisual&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UVisual.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

@@ -9,7 +9,7 @@ public:
 	~UAnimInstance() = delete;
 	UAnimInstance(const UAnimInstance&) = delete;
 	UAnimInstance& operator=(const UAnimInstance&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UAnimInstance.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

@@ -9,7 +9,7 @@ public:
 	~UPrimaryDataAsset() = delete;
 	UPrimaryDataAsset(const UPrimaryDataAsset&) = delete;
 	UPrimaryDataAsset& operator=(const UPrimaryDataAsset&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimaryDataAsset.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

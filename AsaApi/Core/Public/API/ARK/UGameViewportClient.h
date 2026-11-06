@@ -9,7 +9,7 @@ public:
 	~UGameViewportClient() = delete;
 	UGameViewportClient(const UGameViewportClient&) = delete;
 	UGameViewportClient& operator=(const UGameViewportClient&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGameViewportClient.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

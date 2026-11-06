@@ -9,7 +9,7 @@ public:
 	~UWorldSubsystem() = delete;
 	UWorldSubsystem(const UWorldSubsystem&) = delete;
 	UWorldSubsystem& operator=(const UWorldSubsystem&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UWorldSubsystem.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

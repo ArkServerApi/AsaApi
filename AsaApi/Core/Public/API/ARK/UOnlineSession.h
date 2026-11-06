@@ -9,7 +9,7 @@ public:
 	~UOnlineSession() = delete;
 	UOnlineSession(const UOnlineSession&) = delete;
 	UOnlineSession& operator=(const UOnlineSession&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UOnlineSession.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

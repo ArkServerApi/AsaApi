@@ -9,7 +9,7 @@ public:
 	~UCheatManagerExtension() = delete;
 	UCheatManagerExtension(const UCheatManagerExtension&) = delete;
 	UCheatManagerExtension& operator=(const UCheatManagerExtension&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCheatManagerExtension.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

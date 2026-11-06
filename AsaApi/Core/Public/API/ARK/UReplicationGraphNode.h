@@ -9,7 +9,7 @@ public:
 	~UReplicationGraphNode() = delete;
 	UReplicationGraphNode(const UReplicationGraphNode&) = delete;
 	UReplicationGraphNode& operator=(const UReplicationGraphNode&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReplicationGraphNode.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

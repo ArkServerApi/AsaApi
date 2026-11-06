@@ -15,8 +15,8 @@ struct AMissionType : AActor
 
 	void SendMissionCompleteMessages(const struct FCharacterAndControllerPair* Player, bool bCommpletedSuccessfully, float XPRewarded, class TArray<UPrimalItem*, TSizedDefaultAllocator<32> >* RewardLootItems) { NativeCall<void, const struct FCharacterAndControllerPair*, bool, float, class TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*>(this, "AMissionType.SendMissionCompleteMessages(FCharacterAndControllerPair&,bool,float,TArray<UPrimalItem*,TSizedDefaultAllocator<32>>)", Player, bCommpletedSuccessfully, XPRewarded, RewardLootItems); }
 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AMissionType.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 	USceneComponent*& MissionRootField() { return *GetNativePointerField<USceneComponent**>(this, "AMissionType.MissionRoot"); }
 	UPrimalInventoryComponent*& MissionInventoryField() { return *GetNativePointerField<UPrimalInventoryComponent**>(this, "AMissionType.MissionInventory"); }

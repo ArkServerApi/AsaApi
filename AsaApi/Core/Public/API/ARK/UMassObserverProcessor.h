@@ -9,7 +9,7 @@ public:
 	~UMassObserverProcessor() = delete;
 	UMassObserverProcessor(const UMassObserverProcessor&) = delete;
 	UMassObserverProcessor& operator=(const UMassObserverProcessor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UMassObserverProcessor.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

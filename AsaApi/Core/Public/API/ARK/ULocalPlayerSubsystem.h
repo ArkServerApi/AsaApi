@@ -9,7 +9,7 @@ public:
 	~ULocalPlayerSubsystem() = delete;
 	ULocalPlayerSubsystem(const ULocalPlayerSubsystem&) = delete;
 	ULocalPlayerSubsystem& operator=(const ULocalPlayerSubsystem&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULocalPlayerSubsystem.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

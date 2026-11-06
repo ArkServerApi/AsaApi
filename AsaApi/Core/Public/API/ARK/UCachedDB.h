@@ -9,7 +9,7 @@ public:
 	~UCachedDB() = delete;
 	UCachedDB(const UCachedDB&) = delete;
 	UCachedDB& operator=(const UCachedDB&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCachedDB.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };

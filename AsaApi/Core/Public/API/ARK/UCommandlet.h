@@ -9,7 +9,7 @@ public:
 	~UCommandlet() = delete;
 	UCommandlet(const UCommandlet&) = delete;
 	UCommandlet& operator=(const UCommandlet&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCommandlet.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return StaticClass(); }
 
 };
