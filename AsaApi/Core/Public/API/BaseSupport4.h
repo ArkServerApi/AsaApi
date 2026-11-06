@@ -1,4 +1,4 @@
 #pragma once
 
-struct EActorUpdateOverlapsMethod;
-struct EComponentCreationMethod;
+#include "ARK/EActorUpdateOverlapsMethod.h"
+#include "ARK/EComponentCreationMethod.h"

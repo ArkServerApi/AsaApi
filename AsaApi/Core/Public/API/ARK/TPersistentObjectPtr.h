@@ -1,9 +1,8 @@
 #pragma once
 
-
-template <typename FSoftObjectPath>
+template<typename TObjectID>
 struct TPersistentObjectPtr
 {
-	FWeakObjectPtr WeakPtr;
-	FSoftObjectPath ObjectID;
+    mutable FWeakObjectPtr WeakPtr;
+    TObjectID ObjectID;
 };

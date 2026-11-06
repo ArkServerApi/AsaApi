@@ -5,7 +5,9 @@ struct FDateTime
 {
 	// Fields
 
-	long Ticks;
+	int64 Ticks;
+	FDateTime() : Ticks(0) {}
+	FDateTime(int64 InTicks) : Ticks(InTicks) {}
 
 	// Bitfields
 
@@ -41,3 +43,5 @@ struct FDateTime
 	static FDateTime Now() { return NativeCall<FDateTime>(nullptr, "FDateTime.Now()"); }
 	int GetDay()const { return NativeCall<int>(this, "FDateTime.GetDay()"); }
 };
+static_assert(sizeof(FDateTime) == 8);
+static_assert(alignof(FDateTime) == 8);

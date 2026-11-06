@@ -12,6 +12,7 @@
 #include "FObjectHandlePrivate.h"
 #include "TObjectPtr.h"
 #include "FTopLevelAssetPath.h"
+#include "TStringOverload.h"
 #include "FSoftObjectPath.h"
 #include "FSoftClassPath.h"
 #include "TPersistentObjectPtr.h"

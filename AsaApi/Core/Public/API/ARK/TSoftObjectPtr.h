@@ -1,50 +1,23 @@
 #pragma once
+#include "SoftPointerSupport.h"
 
-
-template <typename T>
+template<typename T>
 struct TSoftObjectPtr
 {
 private:
-	FSoftObjectPtr SoftObjectPtr{};
-
-	FORCEINLINE UObject* RealGet() const
-	{
-		return NativeCall<UObject*, TSoftObjectPtr<T>*>(
-			nullptr,
-			"UPrimalAssets.AssetResolve(TSoftObjectPtr<UObject>)",
-			const_cast<TSoftObjectPtr<T>*>(this));
-	}
-
+    FSoftObjectPtr SoftObjectPtr{};
 public:
-	TSoftObjectPtr() = default;
-
-	explicit TSoftObjectPtr(const FString& Path)
-	{
-		SoftObjectPtr.ObjectID = Path;
-	}
-
-	explicit TSoftObjectPtr(const wchar_t* Path)
-		: TSoftObjectPtr(FString(Path))
-	{
-	}
-
-	FORCEINLINE T* Get() const { return static_cast<T*>(RealGet()); }
-
-	FORCEINLINE T* LoadSynchronous()
-	{
-		if (T* Object = Get())
-			return Object;
-
-		return static_cast<T*>(SoftObjectPtr.ObjectID.TryLoad(nullptr));
-	}
-
-	FORCEINLINE const FSoftObjectPath& ToSoftObjectPath() const
-	{
-		return SoftObjectPtr.ObjectID;
-	}
-
-	FORCEINLINE T* operator->() const { return Get(); }
-	FORCEINLINE T& operator*() const { return *Get(); }
-	FORCEINLINE operator bool() const { return Get() != nullptr; }
-	FORCEINLINE operator T* () const { return Get(); }
+    using ElementType = T;
+    TSoftObjectPtr() = default;
+    explicit TSoftObjectPtr(T* Object) : SoftObjectPtr(static_cast<const UObject*>(Object)) {}
+    explicit TSoftObjectPtr(const FSoftObjectPath& Path) : SoftObjectPtr(Path) {}
+    explicit TSoftObjectPtr(const FString& Path) { SoftObjectPtr.ObjectID = Path; }
+    explicit TSoftObjectPtr(const wchar_t* Path) : TSoftObjectPtr(FString(Path)) {}
+    T* Get() const { return AsaSoftObjectCast<T>(SoftObjectPtr.Get()); }
+    T* LoadSynchronous(ELoadFlags Flags = ELoadFlags::LOAD_None) const { return AsaSoftObjectCast<T>(SoftObjectPtr.LoadSynchronous(Flags)); }
+    const FSoftObjectPath& ToSoftObjectPath() const { return SoftObjectPtr.ToSoftObjectPath(); }
+    T* operator->() const { return Get(); }
+    T& operator*() const { return *Get(); }
+    explicit operator bool() const { return Get() != nullptr; }
+    operator T*() const { return Get(); }
 };

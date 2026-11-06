@@ -6,26 +6,13 @@
 #include "Misc/AssertionMacros.h"
 #include "Templates/TypeHash.h"
 #include "Containers/EnumAsByte.h"
-#include "Misc/FrameNumber.h"
-#include "Misc/DateTime.h"
 
-namespace ERangeBoundTypes
-{
-	/**
-	 * Enumerates the valid types of range bounds.
-	 */
-	enum Type
-	{
-		/** The range excludes the bound. */
-		Exclusive,
 
-		/** The range includes the bound. */
-		Inclusive,
 
-		/** The bound is open. */
-		Open
-	};
-}
+
+#include "API/Types/ERangeBoundTypes.h"
+
+
 
 
 /**
@@ -44,7 +31,7 @@ public:
 	 *
 	 * @see Exclusive, Inclusive, Open
 	 */
-	TRangeBound()
+	[[nodiscard]] TRangeBound()
 		: Type(ERangeBoundTypes::Open)
 		, Value()
 	{ }
@@ -55,7 +42,7 @@ public:
 	 * @param InValue The bound's value.
 	 * @see Exclusive, Inclusive, Open
 	 */
-	TRangeBound(ElementValueOrConstRef InValue)
+	[[nodiscard]] TRangeBound(ElementValueOrConstRef InValue)
 		: Type(ERangeBoundTypes::Inclusive)
 		, Value(InValue)
 	{ }
@@ -68,7 +55,7 @@ public:
 	 * @param Other The bound to compare with.
 	 * @return true if the bounds are equal, false otherwise.
 	 */
-	bool operator==(const TRangeBound& Other) const
+	[[nodiscard]] bool operator==(const TRangeBound& Other) const
 	{
 		return ((Type == Other.Type) && (IsOpen() || (Value == Other.Value)));
 	}
@@ -79,7 +66,7 @@ public:
 	 * @param Other The bound to compare with.
 	 * @return true if the bounds are not equal, false otherwise.
 	 */
-	bool operator!=(const TRangeBound& Other) const
+	[[nodiscard]] bool operator!=(const TRangeBound& Other) const
 	{
 		return ((Type != Other.Type) || (!IsOpen() && (Value != Other.Value)));
 	}
@@ -94,7 +81,7 @@ public:
 	 * @return Bound value.
 	 * @see IsOpen
 	 */
-	FORCEINLINE_DEBUGGABLE ElementValueOrConstRef GetValue() const
+	[[nodiscard]] inline ElementValueOrConstRef GetValue() const
 	{
 		check(Type != ERangeBoundTypes::Open);
 
@@ -110,7 +97,7 @@ public:
 	 * @param NewValue New bound value.
 	 * @see IsClosed
 	 */
-	FORCEINLINE_DEBUGGABLE void SetValue(ElementValueOrConstRef NewValue)
+	inline void SetValue(ElementValueOrConstRef NewValue)
 	{
 		check(Type != ERangeBoundTypes::Open);
 
@@ -122,7 +109,7 @@ public:
 	 *
 	 * @return true if the bound is closed, false otherwise.
 	 */
-	FORCEINLINE_DEBUGGABLE bool IsClosed() const
+	[[nodiscard]] FORCEINLINE bool IsClosed() const
 	{
 		return (Type != ERangeBoundTypes::Open);
 	}
@@ -132,7 +119,7 @@ public:
 	 *
 	 * @return true if the bound is exclusive, false otherwise.
 	 */
-	FORCEINLINE_DEBUGGABLE bool IsExclusive() const
+	[[nodiscard]] FORCEINLINE bool IsExclusive() const
 	{
 		return (Type == ERangeBoundTypes::Exclusive);
 	}
@@ -142,7 +129,7 @@ public:
 	 *
 	 * @return true if the bound is inclusive, false otherwise.
 	 */
-	FORCEINLINE_DEBUGGABLE bool IsInclusive() const
+	[[nodiscard]] FORCEINLINE bool IsInclusive() const
 	{
 		return (Type == ERangeBoundTypes::Inclusive);
 	}
@@ -152,7 +139,7 @@ public:
 	 *
 	 * @return true if the bound is open, false otherwise.
 	 */
-	FORCEINLINE_DEBUGGABLE bool IsOpen() const
+	[[nodiscard]] FORCEINLINE bool IsOpen() const
 	{
 		return (Type == ERangeBoundTypes::Open);
 	}
@@ -190,7 +177,7 @@ public:
 	 * @param Value The bound value.
 	 * @return An exclusive closed bound.
 	 */
-	static FORCEINLINE TRangeBound Exclusive(ElementValueOrConstRef Value)
+	[[nodiscard]] static inline TRangeBound Exclusive(ElementValueOrConstRef Value)
 	{
 		TRangeBound Result;
 
@@ -206,7 +193,7 @@ public:
 	 * @param Value The bound value.
 	 * @return An inclusive closed bound.
 	 */
-	static FORCEINLINE TRangeBound Inclusive(ElementValueOrConstRef Value)
+	[[nodiscard]] static inline TRangeBound Inclusive(ElementValueOrConstRef Value)
 	{
 		TRangeBound Result;
 
@@ -221,7 +208,7 @@ public:
 	 *
 	 * @return An open bound.
 	 */
-	static FORCEINLINE TRangeBound Open()
+	[[nodiscard]] static inline TRangeBound Open()
 	{
 		TRangeBound Result;
 
@@ -239,7 +226,7 @@ public:
 	 *
 	 * @return A new bound.
 	 */
-	static FORCEINLINE TRangeBound FlipInclusion(const TRangeBound& Bound)
+	[[nodiscard]] static inline TRangeBound FlipInclusion(const TRangeBound& Bound)
 	{
 		if (Bound.IsExclusive())
 		{
@@ -261,7 +248,7 @@ public:
 	 * @param B The second lower bound.
 	 * @return The greater lower bound.
 	 */
-	static FORCEINLINE const TRangeBound& MaxLower(const TRangeBound& A, const TRangeBound& B)
+	[[nodiscard]] static inline const TRangeBound& MaxLower(const TRangeBound& A, const TRangeBound& B)
 	{
 		if (A.IsOpen()) { return B; }
 		if (B.IsOpen()) { return A; }
@@ -279,7 +266,7 @@ public:
 	 * @param B The second upper bound.
 	 * @return The greater upper bound.
 	 */
-	static FORCEINLINE const TRangeBound& MaxUpper(const TRangeBound& A, const TRangeBound& B)
+	[[nodiscard]] static inline const TRangeBound& MaxUpper(const TRangeBound& A, const TRangeBound& B)
 	{
 		if (A.IsOpen()) { return A; }
 		if (B.IsOpen()) { return B; }
@@ -297,7 +284,7 @@ public:
 	 * @param B The second lower bound.
 	 * @return The lesser lower bound.
 	 */
-	static FORCEINLINE const TRangeBound& MinLower(const TRangeBound& A, const TRangeBound& B)
+	[[nodiscard]] static inline const TRangeBound& MinLower(const TRangeBound& A, const TRangeBound& B)
 	{
 		if (A.IsOpen()) { return A; }
 		if (B.IsOpen()) { return B; }
@@ -315,7 +302,7 @@ public:
 	 * @param B The second upper bound.
 	 * @return The lesser upper bound.
 	 */
-	static FORCEINLINE const TRangeBound& MinUpper(const TRangeBound& A, const TRangeBound& B)
+	[[nodiscard]] static inline const TRangeBound& MinUpper(const TRangeBound& A, const TRangeBound& B)
 	{
 		if (A.IsOpen()) { return B; }
 		if (B.IsOpen()) { return A; }
@@ -339,84 +326,3 @@ private:
 /* Default range bounds for built-in types (for FProperty support)
  *****************************************************************************/
 
-#define DEFINE_RANGEBOUND_WRAPPER_STRUCT(Name, ElementType) \
-	struct Name : TRangeBound<ElementType> \
-	{ \
-	private: \
-		typedef TRangeBound<ElementType> Super; \
-	 \
-	public: \
-		Name() \
-			: Super() \
-		{ } \
-		 \
-		Name(const Super& Other) \
-			: Super(Other) \
-		{ } \
-		 \
-		Name(const ElementType InValue) \
-			: Super(InValue) \
-		{ } \
-		 \
-		static FORCEINLINE Name Exclusive(ElementValueOrConstRef Value) \
-		{ \
-			return static_cast<const Name&>(Super::Exclusive(Value)); \
-		} \
-		 \
-		static FORCEINLINE Name Inclusive(ElementValueOrConstRef Value) \
-		{ \
-			return static_cast<const Name&>(Super::Inclusive(Value)); \
-		} \
-		 \
-		static FORCEINLINE Name Open() \
-		{ \
-			return static_cast<const Name&>(Super::Open()); \
-		} \
-		 \
-		static FORCEINLINE Name FlipInclusion(const Name& Bound) \
-		{ \
-			return static_cast<const Name&>(Super::FlipInclusion(Bound)); \
-		} \
-		 \
-		static FORCEINLINE const Name& MaxLower(const Name& A, const Name& B) \
-		{ \
-			return static_cast<const Name&>(Super::MaxLower(A, B)); \
-		} \
-		 \
-		static FORCEINLINE const Name& MaxUpper(const Name& A, const Name& B) \
-		{ \
-			return static_cast<const Name&>(Super::MaxUpper(A, B)); \
-		} \
-		 \
-		static FORCEINLINE const Name& MinLower(const Name& A, const Name& B) \
-		{ \
-			return static_cast<const Name&>(Super::MinLower(A, B)); \
-		} \
-		 \
-		static FORCEINLINE const Name& MinUpper(const Name& A, const Name& B) \
-		{ \
-			return static_cast<const Name&>(Super::MinUpper(A, B)); \
-		} \
-	}; \
-	 \
-	template <> \
-	struct TIsBitwiseConstructible<Name, TRangeBound<ElementType>> \
-	{ \
-		enum { Value = true }; \
-	}; \
-	 \
-	template <> \
-	struct TIsBitwiseConstructible<TRangeBound<ElementType>, Name> \
-	{ \
-		enum { Value = true }; \
-	};
-
-
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FDateRangeBound,   FDateTime)
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FDoubleRangeBound, double)
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FFloatRangeBound,  float)
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FInt8RangeBound,   int8)
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FInt16RangeBound,  int16)
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FInt32RangeBound,  int32)
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FInt64RangeBound,  int64)
-DEFINE_RANGEBOUND_WRAPPER_STRUCT(FFrameNumberRangeBound, FFrameNumber)

@@ -6,4 +6,8 @@
 #include "UPrimalColorSetMethods.h"
 #include "Sparse.h"
 #include "BulkGameplay.h"
+#include "UEEnumDefinitions.h"
+#include "UECoreDefinitions.h"
+#include "UEObjectDefinitions.h"
+#include "UEValueDefinitions.h"
 #include "ArkPostamble.h"

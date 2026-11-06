@@ -5,9 +5,9 @@
 #include "CoreTypes.h"
 #include "Containers/Array.h"
 #include "Misc/AssertionMacros.h"
-#include "Misc/DateTime.h"
+
 #include "Math/RangeBound.h"
-#include "Misc/FrameNumber.h"
+
 #include "Serialization/Archive.h"
 
 
@@ -56,7 +56,7 @@ public:
 	typedef typename TCallTraits<ElementType>::ParamType ElementValueOrConstRef;
 
 	/** Default constructor (no initialization). */
-	TRange() { }
+	[[nodiscard]] TRange() { }
 
 	/**
 	 * Create a range with a single element.
@@ -65,7 +65,7 @@ public:
 	 *
 	 * @param A The element in the range.
 	 */
-	explicit TRange(ElementValueOrConstRef A)
+	[[nodiscard]] explicit TRange(ElementValueOrConstRef A)
 		: LowerBound(BoundsType::Inclusive(A))
 		, UpperBound(BoundsType::Inclusive(A))
 	{ }
@@ -78,7 +78,7 @@ public:
 	 * @param A The range's lower bound value (inclusive).
 	 * @param B The range's upper bound value (exclusive).
 	 */
-	explicit TRange(ElementValueOrConstRef A, ElementValueOrConstRef B)
+	[[nodiscard]] explicit TRange(ElementValueOrConstRef A, ElementValueOrConstRef B)
 		: LowerBound(BoundsType::Inclusive(A))
 		, UpperBound(BoundsType::Exclusive(B))
 	{ }
@@ -89,7 +89,7 @@ public:
 	 * @param InLowerBound The range's lower bound.
 	 * @param InUpperBound The range's upper bound.
 	 */
-	explicit TRange(const BoundsType& InLowerBound, const BoundsType& InUpperBound)
+	[[nodiscard]] explicit TRange(const BoundsType& InLowerBound, const BoundsType& InUpperBound)
 		: LowerBound(InLowerBound)
 		, UpperBound(InUpperBound)
 	{ }
@@ -102,7 +102,7 @@ public:
 	 * @param Other The range to compare with.
 	 * @return true if the ranges are equal, false otherwise.
 	 */
-	bool operator==(const TRange& Other) const
+	[[nodiscard]] bool operator==(const TRange& Other) const
 	{
 		if (IsEmpty() && Other.IsEmpty())
 		{
@@ -118,7 +118,7 @@ public:
 	 * @param Other The range to compare with.
 	 * @return true if the ranges are not equal, false otherwise.
 	 */
-	bool operator!=(const TRange& Other) const
+	[[nodiscard]] bool operator!=(const TRange& Other) const
 	{
 		if (IsEmpty() && Other.IsEmpty())
 		{
@@ -140,7 +140,7 @@ public:
 	 * @param Other The other range.
 	 * @return true if this range adjoins the other, false otherwise.
 	 */
-	bool Adjoins(const TRange& Other) const
+	[[nodiscard]] bool Adjoins(const TRange& Other) const
 	{
 		if (IsEmpty() || Other.IsEmpty())
 		{
@@ -172,7 +172,7 @@ public:
 	 * @param Y The second range.
 	 * @return true if this range conjoins the two ranges, false otherwise.
 	 */
-	bool Conjoins(const TRange& X, const TRange& Y) const
+	[[nodiscard]] bool Conjoins(const TRange& X, const TRange& Y) const
 	{
 		if (X.Overlaps(Y))
 		{
@@ -188,7 +188,7 @@ public:
 	 * @param Element The element to check.
 	 * @return true if the range contains the element, false otherwise.
 	 */
-	bool Contains(ElementValueOrConstRef Element) const
+	[[nodiscard]] bool Contains(ElementValueOrConstRef Element) const
 	{
 		return ((BoundsType::MinLower(LowerBound, Element) == LowerBound) &&
 				(BoundsType::MaxUpper(UpperBound, Element) == UpperBound));
@@ -200,7 +200,7 @@ public:
 	 * @param Other The range to check.
 	 * @return true if the range contains the other range, false otherwise.
 	 */
-	bool Contains(const TRange& Other) const
+	[[nodiscard]] bool Contains(const TRange& Other) const
 	{
 		return ((BoundsType::MinLower(LowerBound, Other.LowerBound) == LowerBound) &&
 				(BoundsType::MaxUpper(UpperBound, Other.UpperBound) == UpperBound));
@@ -214,7 +214,7 @@ public:
 	 * @param Other The other range.
 	 * @return true if the ranges are contiguous, false otherwise.
 	 */
-	bool Contiguous(const TRange& Other) const
+	[[nodiscard]] bool Contiguous(const TRange& Other) const
 	{
 		return (Overlaps(Other) || Adjoins(Other));
 	}
@@ -225,7 +225,7 @@ public:
 	 * @return Lower bound.
 	 * @see GetLowerBoundValue, GetUpperBound, HasLowerBound
 	 */
-	BoundsType GetLowerBound() const
+	[[nodiscard]] BoundsType GetLowerBound() const
 	{
 		return LowerBound;
 	}
@@ -260,7 +260,7 @@ public:
 	 * @return Bound value.
 	 * @see GetLowerBound, GetUpperBoundValue, HasLowerBound
 	 */
-	ElementValueOrConstRef GetLowerBoundValue() const
+	[[nodiscard]] ElementValueOrConstRef GetLowerBoundValue() const
 	{
 		return LowerBound.GetValue();
 	}
@@ -271,7 +271,7 @@ public:
 	 * @return Upper bound.
 	 * @see GetLowerBound, GetUpperBoundValue, HasUpperBound
 	 */
-	BoundsType GetUpperBound() const
+	[[nodiscard]] BoundsType GetUpperBound() const
 	{
 		return UpperBound;
 	}
@@ -306,7 +306,7 @@ public:
 	 * @return Bound value.
 	 * @see GetLowerBoundValue, GetUpperBound, HasUpperBound
 	 */
-	ElementValueOrConstRef GetUpperBoundValue() const
+	[[nodiscard]] ElementValueOrConstRef GetUpperBoundValue() const
 	{
 		return UpperBound.GetValue();
 	}
@@ -317,7 +317,7 @@ public:
 	 * @return true if the range has a lower bound, false otherwise.
 	 * @see GetLowerBound, GetLowerBoundValue, HasUpperBound
 	 */
-	bool HasLowerBound() const
+	[[nodiscard]] bool HasLowerBound() const
 	{
 		return LowerBound.IsClosed();
 	}
@@ -328,7 +328,7 @@ public:
 	 * @return true if the range has an upper bound, false otherwise.
 	 * @see GetUpperBound, GetUpperBoundValue, HasLowerBound
 	 */
-	bool HasUpperBound() const
+	[[nodiscard]] bool HasUpperBound() const
 	{
 		return UpperBound.IsClosed();
 	}
@@ -342,7 +342,7 @@ public:
 	 * @return true if the range is degenerate, false otherwise.
 	 * @see IsEmpty
 	 */
-	bool IsDegenerate() const
+	[[nodiscard]] bool IsDegenerate() const
 	{
 		return (LowerBound.IsInclusive() && (LowerBound == UpperBound));
 	}
@@ -358,7 +358,7 @@ public:
 	 * @return true if the range is empty, false otherwise.
 	 * @see IsDegenerate
 	 */
-	bool IsEmpty() const
+	[[nodiscard]] bool IsEmpty() const
 	{
 		if (LowerBound.IsClosed() && UpperBound.IsClosed())
 		{
@@ -379,7 +379,7 @@ public:
 	 * @param Other The other range.
 	 * @return true if the ranges overlap, false otherwise.
 	 */
-	bool Overlaps(const TRange& Other) const
+	[[nodiscard]] bool Overlaps(const TRange& Other) const
 	{
 		if (IsEmpty() || Other.IsEmpty())
 		{
@@ -423,7 +423,8 @@ public:
 	 *
 	 * @return Range size.
 	 */
-	template<typename DifferenceType> DifferenceType Size() const
+	template<typename DifferenceType>
+	[[nodiscard]] DifferenceType Size() const
 	{
 		check(LowerBound.IsClosed() && UpperBound.IsClosed());
 
@@ -438,7 +439,7 @@ public:
 	 *
 	 * @param Element The element at which to split the range.
 	 */
-	TArray<TRange> Split(ElementValueOrConstRef Element) const
+	[[nodiscard]] TArray<TRange> Split(ElementValueOrConstRef Element) const
 	{
 		TArray<TRange> Result;
 		
@@ -465,7 +466,7 @@ public:
 	 * @return Between 0 and 2 remaining ranges.
 	 * @see Hull, Intersection, Union
 	 */
-	static FORCEINLINE TArray<TRange> Difference(const TRange& X, const TRange& Y)
+	[[nodiscard]] static inline TArray<TRange> Difference(const TRange& X, const TRange& Y)
 	{
 		TArray<TRange> Result;
 
@@ -502,7 +503,7 @@ public:
 	 * @return The hull.
 	 * @see Difference, Intersection, Union
 	 */
-	static FORCEINLINE TRange Hull(const TRange& X, const TRange& Y)
+	[[nodiscard]] static inline TRange Hull(const TRange& X, const TRange& Y)
 	{
 		if (X.IsEmpty())
 		{
@@ -524,7 +525,7 @@ public:
 	 * @return The hull.
 	 * @see Difference, Intersection, Union
 	 */
-	static FORCEINLINE TRange Hull(const TArray<TRange>& Ranges)
+	[[nodiscard]] static inline TRange Hull(const TArray<TRange>& Ranges)
 	{
 		if (Ranges.Num() == 0)
 		{
@@ -551,7 +552,7 @@ public:
 	 * @return The intersection, or an empty range if the ranges do not overlap.
 	 * @see Difference, Hull, Union
 	 */
-	static FORCEINLINE TRange Intersection(const TRange& X, const TRange& Y)
+	[[nodiscard]] static inline TRange Intersection(const TRange& X, const TRange& Y)
 	{
 		if (X.IsEmpty())
 		{
@@ -573,7 +574,7 @@ public:
 	 * @return The intersection.
 	 * @see Difference, Hull, Union
 	 */
-	static FORCEINLINE TRange Intersection(const TArray<TRange>& Ranges)
+	[[nodiscard]] static inline TRange Intersection(const TArray<TRange>& Ranges)
 	{
 		if (Ranges.Num() == 0)
 		{
@@ -600,7 +601,7 @@ public:
 	 * @return The union, or both ranges if the two ranges are not contiguous, or no ranges if both ranges are empty.
 	 * @see Difference, Hull, Intersection
 	 */
-	static FORCEINLINE TArray<TRange> Union(const TRange& X, const TRange& Y)
+	[[nodiscard]] static inline TArray<TRange> Union(const TRange& X, const TRange& Y)
 	{
 		TArray<TRange> OutRanges;
 
@@ -632,7 +633,7 @@ public:
 	 * @return A new range.
 	 * @see AtLeast, AtMost, Empty, Exclusive, GreaterThan, Inclusive, LessThan
 	 */
-	static FORCEINLINE TRange All()
+	[[nodiscard]] static FORCEINLINE TRange All()
 	{
 		return TRange(BoundsType::Open(), BoundsType::Open());
 	}
@@ -644,7 +645,7 @@ public:
 	 * @return A new range.
 	 * @see All, AtMost, Empty, Exclusive, GreaterThan, Inclusive, LessThan
 	 */
-	static FORCEINLINE TRange AtLeast(ElementValueOrConstRef Value)
+	[[nodiscard]] static FORCEINLINE TRange AtLeast(ElementValueOrConstRef Value)
 	{
 		return TRange(BoundsType::Inclusive(Value), BoundsType::Open());
 	}
@@ -656,7 +657,7 @@ public:
 	 * @return A new range.
 	 * @see All, AtLeast, Empty, Exclusive, GreaterThan, Inclusive, LessThan
 	 */
-	static FORCEINLINE TRange AtMost(ElementValueOrConstRef Value)
+	[[nodiscard]] static FORCEINLINE TRange AtMost(ElementValueOrConstRef Value)
 	{
 		return TRange(BoundsType::Open(), BoundsType::Inclusive(Value));
 	}
@@ -667,7 +668,7 @@ public:
 	 * @return Empty range.
 	 * @see All, AtLeast, AtMost, Exclusive, GreaterThan, Inclusive, LessThan
 	 */
-	static FORCEINLINE TRange Empty()
+	[[nodiscard]] static FORCEINLINE TRange Empty()
 	{
 		return TRange(BoundsType::Exclusive(ElementType()), BoundsType::Exclusive(ElementType()));
 	}
@@ -680,7 +681,7 @@ public:
 	 * @return A new range.
 	 * @see All, AtLeast, AtMost, Empty, Exclusive, GreaterThan, Inclusive, LessThan
 	 */
-	static FORCEINLINE TRange Exclusive(ElementValueOrConstRef Min, ElementValueOrConstRef Max)
+	[[nodiscard]] static FORCEINLINE TRange Exclusive(ElementValueOrConstRef Min, ElementValueOrConstRef Max)
 	{
 		return TRange(BoundsType::Exclusive(Min), BoundsType::Exclusive(Max));
 	}
@@ -692,7 +693,7 @@ public:
 	 * @return A new range.
 	 * @see All, AtLeast, AtMost, Empty, Exclusive, Inclusive, LessThan
 	 */
-	static FORCEINLINE TRange GreaterThan(ElementValueOrConstRef Value)
+	[[nodiscard]] static FORCEINLINE TRange GreaterThan(ElementValueOrConstRef Value)
 	{
 		return TRange(BoundsType::Exclusive(Value), BoundsType::Open());
 	}
@@ -705,7 +706,7 @@ public:
 	 * @return A new range.
 	 * @see All, AtLeast, AtMost, Empty, Exclusive, GreaterThan, LessThan
 	 */
-	static FORCEINLINE TRange Inclusive(ElementValueOrConstRef Min, ElementValueOrConstRef Max)
+	[[nodiscard]] static FORCEINLINE TRange Inclusive(ElementValueOrConstRef Min, ElementValueOrConstRef Max)
 	{
 		return TRange(BoundsType::Inclusive(Min), BoundsType::Inclusive(Max));
 	}
@@ -717,7 +718,7 @@ public:
 	 * @return A new range.
 	 * @see All, AtLeast, AtMost, Empty, Exclusive, GreaterThan, Inclusive
 	 */
-	static FORCEINLINE TRange LessThan(ElementValueOrConstRef Value)
+	[[nodiscard]] static FORCEINLINE TRange LessThan(ElementValueOrConstRef Value)
 	{
 		return TRange(BoundsType::Open(), BoundsType::Exclusive(Value));
 	}
@@ -760,121 +761,3 @@ private:
 /* Default ranges for built-in types
  *****************************************************************************/
 
-#define DEFINE_RANGE_WRAPPER_STRUCT(Name, ElementType) \
-	struct Name : TRange<ElementType> \
-	{ \
-	private: \
-		typedef TRange<ElementType> Super; \
-	 \
-	public: \
-		Name() \
-			: Super() \
-		{ \
-		} \
-		 \
-		Name(const Super& Rhs) \
-			: Super(Rhs) \
-		{ \
-		} \
-		 \
-		explicit Name(ElementValueOrConstRef A) \
-			: Super(A) \
-		{ \
-		} \
-		 \
-		explicit Name(ElementValueOrConstRef A, ElementValueOrConstRef B) \
-			: Super(A, B) \
-		{ \
-		} \
-		 \
-		explicit Name(const TRangeBound<ElementType>& InLowerBound, const TRangeBound<ElementType>& InUpperBound) \
-			: Super(InLowerBound, InUpperBound) \
-		{ \
-		} \
-		 \
-		TArray<Name> Split(ElementValueOrConstRef Element) const \
-		{ \
-			return TArray<Name>(Super::Split(Element)); \
-		} \
-		 \
-		static FORCEINLINE TArray<Name> Difference(const Name& X, const Name& Y) \
-		{ \
-			return TArray<Name>(Super::Difference(X, Y)); \
-		} \
-		 \
-		static FORCEINLINE Name Empty() \
-		{ \
-			return Super::Empty(); \
-		} \
-		 \
-		static FORCEINLINE Name Hull(const Name& X, const Name& Y) \
-		{ \
-			return Super::Hull(X, Y); \
-		} \
-		 \
-		static FORCEINLINE Name Hull(const TArray<Name>& Ranges) \
-		{ \
-			return Super::Hull(reinterpret_cast<const TArray<Super>&>(Ranges)); \
-		} \
-		 \
-		static FORCEINLINE Name Intersection(const Name& X, const Name& Y) \
-		{ \
-			return Super::Intersection(X, Y); \
-		} \
-		 \
-		static FORCEINLINE Name Intersection(const TArray<Name>& Ranges) \
-		{ \
-			return Super::Intersection(reinterpret_cast<const TArray<Super>&>(Ranges)); \
-		} \
-		 \
-		static FORCEINLINE TArray<Name> Union(const Name& X, const Name& Y) \
-		{ \
-			return TArray<Name>(Super::Union(X, Y)); \
-		} \
-		 \
-		static FORCEINLINE Name All() \
-		{ \
-			return Super::All(); \
-		} \
-		 \
-		static FORCEINLINE Name AtLeast(ElementValueOrConstRef Value) \
-		{ \
-			return Super::AtLeast(Value); \
-		} \
-		 \
-		static FORCEINLINE Name AtMost(ElementValueOrConstRef Value) \
-		{ \
-			return Super::AtMost(Value); \
-		} \
-		 \
-		static FORCEINLINE TRange GreaterThan(ElementValueOrConstRef Value) \
-		{ \
-			return Super::GreaterThan(Value); \
-		} \
-		 \
-		static FORCEINLINE TRange LessThan(ElementValueOrConstRef Value) \
-		{ \
-			return Super::LessThan(Value); \
-		} \
-	}; \
-	 \
-	template <> \
-	struct TIsBitwiseConstructible<Name, TRange<ElementType>> \
-	{ \
-		enum { Value = true }; \
-	}; \
-	 \
-	template <> \
-	struct TIsBitwiseConstructible<TRange<ElementType>, Name> \
-	{ \
-		enum { Value = true }; \
-	};
-
-DEFINE_RANGE_WRAPPER_STRUCT(FDateRange,   FDateTime)
-DEFINE_RANGE_WRAPPER_STRUCT(FDoubleRange, double)
-DEFINE_RANGE_WRAPPER_STRUCT(FFloatRange,  float)
-DEFINE_RANGE_WRAPPER_STRUCT(FInt8Range,   int8)
-DEFINE_RANGE_WRAPPER_STRUCT(FInt16Range,  int16)
-DEFINE_RANGE_WRAPPER_STRUCT(FInt32Range,  int32)
-DEFINE_RANGE_WRAPPER_STRUCT(FInt64Range,  int64)
-DEFINE_RANGE_WRAPPER_STRUCT(FFrameNumberRange, FFrameNumber)

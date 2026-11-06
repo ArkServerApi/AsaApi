@@ -1,4 +1,5 @@
 #pragma once
+#include "TStringOverload.h"
 #include "RestoredNativeForward.h"
 #include "../UE/Containers/Utf8String.h"
 
@@ -36,7 +37,8 @@ struct FSoftObjectPath
 	void SetPath(TStringView<char>* Path) { NativeCall<void, TStringView<char>*>(this, "FSoftObjectPath.SetPath(TStringView<char>)", Path); }
 	void SetPath(const UObject* InObject) { NativeCall<void, const UObject*>(this, "FSoftObjectPath.SetPath(UObject*)", InObject); }
 	void SetPath(const FTopLevelAssetPath& InAssetPath) { NativeCall<void, const FTopLevelAssetPath&>(this, "FSoftObjectPath.SetPath(FTopLevelAssetPath&)", InAssetPath); }
-	void SetPath(const FTopLevelAssetPath& InAssetPath, TStringOverload<FUtf8String>* InSubPathString) { NativeCall<void, const FTopLevelAssetPath&, TStringOverload<FUtf8String>*>(this, "FSoftObjectPath.SetPath(FTopLevelAssetPath&,TStringOverload<FUtf8String>)", InAssetPath, InSubPathString); }
+	void SetPath(const FTopLevelAssetPath& InAssetPath, TStringOverload<FUtf8String> InSubPathString) { NativeCall<void, const FTopLevelAssetPath&, TStringOverload<FUtf8String>>(this, "FSoftObjectPath.SetPath(FTopLevelAssetPath&,TStringOverload<FUtf8String>)", InAssetPath, std::move(InSubPathString)); }
+	void SetPath(const FTopLevelAssetPath& InAssetPath, const TStringOverload<FUtf8String>* InSubPathString) { if (!InSubPathString) throw std::invalid_argument("Null string argument"); SetPath(InAssetPath, *InSubPathString); }
 	void SetPath(TStringView<wchar_t>* Path) { NativeCall<void, TStringView<wchar_t>*>(this, "FSoftObjectPath.SetPath(TStringView<wchar_t>)", Path); }
 	void SetPath(TStringView<wchar_t> Path) { NativeCall<void, TStringView<wchar_t>>(this, "FSoftObjectPath.SetPath(TStringView<wchar_t>)", Path); }
 	// Current counterpart already declared for: void SetPath(FName PathName);
