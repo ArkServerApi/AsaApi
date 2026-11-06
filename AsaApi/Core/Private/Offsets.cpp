@@ -1,5 +1,6 @@
 #include "Offsets.h"
 #include "Logger/Logger.h"
+#include "PluginManager/EssentialPlugins.h"
 #include <Psapi.h>
 #pragma comment(lib, "Psapi.lib")
 #include <filesystem>
@@ -10,41 +11,13 @@
 
 namespace
 {
-	std::string ModuleName(HMODULE hModule)
-	{
-		if (!hModule)
-			return "<unknown>";
-
-		char path[MAX_PATH]{};
-		if (!GetModuleFileNameA(hModule, path, MAX_PATH))
-			return "<unknown>";
-
-		const std::string full(path);
-		const auto slash = full.find_last_of("\\/");
-		std::string name = (slash != std::string::npos) ? full.substr(slash + 1) : full;
-
-		const auto dot = name.rfind('.');
-		if (dot != std::string::npos)
-			name.erase(dot);
-
-		return name;
-	}
-
 	bool PathPartEquals(const std::filesystem::path& part, const std::string& expected)
 	{
 		return _stricmp(part.string().c_str(), expected.c_str()) == 0;
 	}
 
-	bool IsPluginModule(HMODULE hModule)
+	bool IsPluginModule(const std::filesystem::path& modulePath)
 	{
-		if (!hModule)
-			return false;
-
-		char path[MAX_PATH]{};
-		if (!GetModuleFileNameA(hModule, path, MAX_PATH))
-			return false;
-
-		const std::filesystem::path modulePath(path);
 		const std::filesystem::path pluginDir = modulePath.parent_path();
 
 		// a plugin still inside Plugin_Init is not in loaded_plugins_ yet, so match on the path instead
@@ -52,14 +25,39 @@ namespace
 			&& PathPartEquals(pluginDir.parent_path().filename(), "Plugins");
 	}
 
-	std::string DescribeOffsetRequester()
+	std::filesystem::path ModulePath(HMODULE hModule)
+	{
+		char path[MAX_PATH]{};
+		GetModuleFileNameA(hModule, path, MAX_PATH);
+
+		return std::filesystem::path(path);
+	}
+
+	struct OffsetRequester
+	{
+		std::filesystem::path plugin_dll_path;
+		std::string plugin_name;
+		bool resolved_any = false;
+		bool clean_unwind_to_loader = false;
+	};
+
+	OffsetRequester FindOffsetRequester(const std::string& loadingPlugin)
 	{
 		constexpr int maxFrames = 64;
 		void* stack[maxFrames]{};
 
 		const USHORT frames = CaptureStackBackTrace(1, maxFrames, stack, nullptr);
 
-		bool resolvedAny = false;
+		OffsetRequester requester;
+
+		HMODULE self = nullptr;
+		GetModuleHandleExA(
+			GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+			reinterpret_cast<LPCSTR>(&FindOffsetRequester),
+			&self);
+
+		// throwing may only unwind AsaApi frames and the loading plugin's own frames
+		bool cleanSoFar = true;
 
 		for (USHORT i = 0; i < frames; ++i)
 		{
@@ -69,19 +67,95 @@ namespace
 				reinterpret_cast<LPCSTR>(stack[i]),
 				&module))
 			{
+				cleanSoFar = false;
 				continue;
 			}
 
-			resolvedAny = true;
+			requester.resolved_any = true;
 
-			if (IsPluginModule(module))
-				return "plugin " + ModuleName(module);
+			const std::filesystem::path modulePath = ModulePath(module);
+			if (!IsPluginModule(modulePath))
+			{
+				if (module != self)
+					cleanSoFar = false;
+				continue;
+			}
+
+			if (requester.plugin_name.empty())
+			{
+				requester.plugin_dll_path = modulePath;
+				requester.plugin_name = modulePath.stem().string();
+
+				if (loadingPlugin.empty())
+					break;
+			}
+
+			if (_stricmp(modulePath.stem().string().c_str(), loadingPlugin.c_str()) == 0)
+				requester.clean_unwind_to_loader = cleanSoFar;
+			else
+				cleanSoFar = false;
 		}
 
-		if (!resolvedAny)
+		return requester;
+	}
+
+	std::string DescribeRequester(const OffsetRequester& requester)
+	{
+		if (!requester.plugin_name.empty())
+			return "plugin " + requester.plugin_name;
+
+		if (!requester.resolved_any)
 			return "<unknown>";
 
 		return "AsaApi itself (no plugin on the call stack)";
+	}
+
+	std::string DescribeOffsetRequester()
+	{
+		return DescribeRequester(FindOffsetRequester(API::EssentialPlugins::CurrentLoadingPlugin()));
+	}
+
+	void LogMissingSymbol(const std::string& name, API::EssentialPlugins::SymbolKind kind, const std::string& requester, const std::string& outcome = "")
+	{
+		const char* what = kind == API::EssentialPlugins::SymbolKind::BitField ? "bitfield address" : "offset";
+
+		if (outcome.empty())
+			Log::GetLog()->critical("Failed to get the {} of '{}'.\nRequested by: {}", what, name, requester);
+		else
+			Log::GetLog()->critical("Failed to get the {} of '{}'.\nRequested by: {}\n{}", what, name, requester, outcome);
+	}
+
+	void HandleMissingSymbol(const std::string& name, API::EssentialPlugins::SymbolKind kind)
+	{
+		const std::string& loadingPlugin = API::EssentialPlugins::CurrentLoadingPlugin();
+		const OffsetRequester requester = FindOffsetRequester(loadingPlugin);
+		const std::string description = DescribeRequester(requester);
+
+		if (requester.clean_unwind_to_loader && !API::EssentialPlugins::IsEssential(loadingPlugin))
+		{
+			LogMissingSymbol(name, kind, description, "Skipping plugin " + loadingPlugin + " (not in EssentialPlugins)");
+			API::EssentialPlugins::NoteLoadFailure(name, kind);
+			Log::GetLog()->flush();
+
+			throw std::runtime_error("missing " + std::string(API::EssentialPlugins::SymbolKindName(kind)) + " '" + name + "'");
+		}
+
+		if (!requester.plugin_name.empty() && !API::EssentialPlugins::IsEssential(requester.plugin_name))
+		{
+			const std::string outcome = API::EssentialPlugins::QuarantineAfterCrash(requester.plugin_dll_path, name, kind);
+			LogMissingSymbol(name, kind, description, outcome);
+		}
+		else
+		{
+			LogMissingSymbol(name, kind, description);
+
+			if (!requester.plugin_name.empty())
+				API::EssentialPlugins::SendCrashWebhook(requester.plugin_name, name, kind);
+		}
+
+		Log::GetLog()->flush();
+		Sleep(10000);
+		throw;
 	}
 } // namespace
 
@@ -143,12 +217,7 @@ namespace API
 	DWORD64 Offsets::GetAddress(const void* base, const std::string& name)
 	{
 		if (!offsets_dump_.contains(name))
-		{
-			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
-			Log::GetLog()->flush();
-			Sleep(10000);
-			throw;
-		}
+			HandleMissingSymbol(name, EssentialPlugins::SymbolKind::Offset);
 
 		return reinterpret_cast<DWORD64>(base) + static_cast<DWORD64>(offsets_dump_[name]);
 	}
@@ -157,15 +226,14 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
-			Log::GetLog()->flush();
 			if (hooks_do_not_throw_)
-				return nullptr;
-			else
 			{
-				Sleep(10000);
-				throw;
+				LogMissingSymbol(name, EssentialPlugins::SymbolKind::Offset, DescribeOffsetRequester());
+				Log::GetLog()->flush();
+				return nullptr;
 			}
+
+			HandleMissingSymbol(name, EssentialPlugins::SymbolKind::Offset);
 		}
 
 		return reinterpret_cast<LPVOID>(module_base_ + static_cast<DWORD64>(offsets_dump_[name]));
@@ -175,15 +243,14 @@ namespace API
 	{
 		if (!offsets_dump_.contains(name))
 		{
-			Log::GetLog()->critical("Failed to get the offset of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
-			Log::GetLog()->flush();
 			if (hooks_do_not_throw_)
-				return nullptr;
-			else
 			{
-				Sleep(10000);
-				throw;
+				LogMissingSymbol(name, EssentialPlugins::SymbolKind::Offset, DescribeOffsetRequester());
+				Log::GetLog()->flush();
+				return nullptr;
 			}
+
+			HandleMissingSymbol(name, EssentialPlugins::SymbolKind::Offset);
 		}
 
 		return reinterpret_cast<LPVOID>(data_base_ + static_cast<DWORD64>(offsets_dump_[name]));
@@ -199,15 +266,20 @@ namespace API
 		return GetBitFieldInternal(base, name);
 	}
 
+	bool Offsets::HasOffset(const std::string& name) const
+	{
+		return offsets_dump_.contains(name);
+	}
+
+	bool Offsets::HasBitField(const std::string& name) const
+	{
+		return bitfields_dump_.contains(name);
+	}
+
 	BitField Offsets::GetBitFieldInternal(const void* base, const std::string& name)
 	{
 		if (!bitfields_dump_.contains(name))
-		{
-			Log::GetLog()->critical("Failed to get the bitfield address of '{}'.\nRequested by: {}", name, DescribeOffsetRequester());
-			Log::GetLog()->flush();
-			Sleep(10000);
-			throw;
-		}
+			HandleMissingSymbol(name, EssentialPlugins::SymbolKind::BitField);
 
 		const auto bf = bitfields_dump_[name];
 		auto cf = BitField();

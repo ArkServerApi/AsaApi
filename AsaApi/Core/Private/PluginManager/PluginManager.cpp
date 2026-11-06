@@ -12,6 +12,7 @@
 #include "../Hooks.h"
 #include <Timer.h>
 #include "../Ark/ApiUtils.h"
+#include "EssentialPlugins.h"
 #include "Requests.h"
 
 namespace API
@@ -45,6 +46,8 @@ namespace API
 
 		const std::string dir_path = Tools::GetCurrentDir() + "/" + game_api->GetApiName() + "/Plugins";
 
+		EssentialPlugins::BeginWebhookReport();
+
 		for (const auto& dir_name : fs::directory_iterator(dir_path))
 		{
 			const auto& path = dir_name.path();
@@ -69,6 +72,9 @@ namespace API
 					fs::remove(new_full_dll_path);
 				}
 
+				if (EssentialPlugins::ShouldSkipQuarantined(full_dll_path))
+					continue;
+
 				std::stringstream stream;
 
 				std::shared_ptr<Plugin>& plugin = LoadPlugin(filename);
@@ -83,6 +89,8 @@ namespace API
 				Log::GetLog()->warn("({}) {}", __FUNCTION__, error.what());
 			}
 		}
+
+		EssentialPlugins::SendWebhookReport();
 
 		CheckPluginsDependencies();
 
@@ -147,21 +155,68 @@ namespace API
 		}
 
 		std::wstring wfull(full_dll_path.begin(), full_dll_path.end());
-		HINSTANCE h_module = LoadLibraryExW(wfull.c_str(), nullptr, LOAD_LIBRARY_SEARCH_DEFAULT_DIRS | LOAD_LIBRARY_SEARCH_USER_DIRS);
+		HINSTANCE h_module = nullptr;
+		{
+			EssentialPlugins::LibraryLoadGuard library_guard;
+			h_module = LoadLibraryExW(wfull.c_str(), nullptr, LOAD_LIBRARY_SEARCH_DEFAULT_DIRS | LOAD_LIBRARY_SEARCH_USER_DIRS);
+		}
 		if (h_module == nullptr)
 		{
+			const DWORD error_code = GetLastError();
+			ReleaseDllDirectory(plugin_name);
 			throw std::runtime_error(
-				"Failed to load plugin - " + plugin_name + "\nError code: " + std::to_string(GetLastError()));
+				"Failed to load plugin - " + plugin_name + "\nError code: " + std::to_string(error_code));
 		}
 
 		// Calls Plugin_Init (if found) after loading DLL
 		// Note: DllMain callbacks during LoadLibrary is load-locked so we cannot do things like WaitForMultipleObjects on threads
+		// Note: the pointer type must keep C++ linkage, an extern "C" type would let /EHc assume it cannot throw and elide the catch below
 		using pfnPluginInit = void(__fastcall*)();
 		const auto pfn_init = reinterpret_cast<pfnPluginInit>(GetProcAddress(h_module, "Plugin_Init"));
 		if (pfn_init != nullptr)
 		{
-			pfn_init();
+			EssentialPlugins::PluginLoadGuard load_guard(plugin_name);
+
+			bool init_threw = false;
+			std::string init_error;
+
+			try
+			{
+				pfn_init();
+			}
+			catch (const std::exception& error)
+			{
+				// error.what() can point into the plugin image, copy it before FreeLibrary
+				init_threw = true;
+				init_error = error.what();
+			}
+			catch (...)
+			{
+				init_threw = true;
+			}
+
+			const auto failure = load_guard.TakeFailure();
+			if (init_threw || !failure.symbol.empty())
+			{
+				EvictFailedPlugin(h_module, plugin_name, full_dll_path);
+
+				if (!failure.symbol.empty())
+				{
+					const std::string message = "Skipped plugin " + plugin_name + " - missing "
+						+ EssentialPlugins::SymbolKindName(failure.kind) + " '" + failure.symbol + "' (not in EssentialPlugins)";
+					EssentialPlugins::SendWebhookMessage(message);
+
+					throw std::runtime_error(message);
+				}
+
+				if (!init_error.empty())
+					throw std::runtime_error("Plugin " + plugin_name + " failed in Plugin_Init - " + init_error);
+
+				throw std::runtime_error("Plugin " + plugin_name + " failed in Plugin_Init");
+			}
 		}
+
+		EssentialPlugins::ClearCrashMarker(dir_path);
 
 		return loaded_plugins_.emplace_back(std::make_shared<Plugin>(h_module, plugin_name, plugin_info["FullName"],
 			plugin_info["Description"], plugin_info["Version"],
@@ -202,34 +257,58 @@ namespace API
 			pfn_unload();
 		}
 
+		CleanupModuleArtifacts((*iter)->h_module, full_dll_path);
+
+		{
+			EssentialPlugins::LibraryLoadGuard library_guard;
+			if (!FreeLibrary((*iter)->h_module))
+			{
+				throw std::runtime_error(
+					"Failed to unload plugin - " + plugin_name + "\nError code: " + std::to_string(GetLastError()));
+			}
+		}
+
+		ReleaseDllDirectory(plugin_name);
+
+		loaded_plugins_.erase(remove(loaded_plugins_.begin(), loaded_plugins_.end(), *iter), loaded_plugins_.end());
+		prevent_unload_warned_plugins_.erase(plugin_name);
+	}
+
+	void PluginManager::CleanupModuleArtifacts(HINSTANCE h_module, const std::string& full_dll_path)
+	{
 		// Cleans up all pending callbacks to prevent a server crash due to stale invocations after the plugin is unloaded.
-		API::Requests::Get().UnregisterCallbacksForModule((*iter)->h_module);
+		API::Requests::Get().UnregisterCallbacksForModule(h_module);
 
-		API::Timer::Get().UnloadTimersFromModule(FString(full_dll_path).Replace(L"/", L"\\"));
-		dynamic_cast<AsaApi::ApiUtils&>(*API::game_api->GetApiUtils()).RemoveMessagingManagerInternal(FString(full_dll_path).Replace(L"/", L"\\"));
+		const FString module_path = FString(full_dll_path).Replace(L"/", L"\\");
+		API::Timer::Get().UnloadTimersFromModule(module_path);
+		dynamic_cast<AsaApi::ApiUtils&>(*API::game_api->GetApiUtils()).RemoveMessagingManagerInternal(module_path);
 
-		dynamic_cast<AsaApi::Commands&>(*API::game_api->GetCommands()).RemoveAllCommandsFromModule((*iter)->h_module);
+		dynamic_cast<AsaApi::Commands&>(*API::game_api->GetCommands()).RemoveAllCommandsFromModule(h_module);
 
 		// Remove all hooks registered by this plugin before freeing its memory,
 		// so no live hook target points into the unloaded DLL image.
-		dynamic_cast<API::Hooks&>(*API::game_api->GetHooks()).DisableAllHooksFromModule((*iter)->h_module);
+		dynamic_cast<API::Hooks&>(*API::game_api->GetHooks()).DisableAllHooksFromModule(h_module);
+	}
 
-		const BOOL result = FreeLibrary((*iter)->h_module);
-		if (result == 0)
-		{
-			throw std::runtime_error(
-				"Failed to unload plugin - " + plugin_name + "\nError code: " + std::to_string(GetLastError()));
-		}
+	void PluginManager::EvictFailedPlugin(HINSTANCE h_module, const std::string& plugin_name, const std::string& full_dll_path)
+	{
+		CleanupModuleArtifacts(h_module, full_dll_path);
 
-		auto cookieIt = dll_dir_cookies_.find(plugin_name);
+		EssentialPlugins::LibraryLoadGuard library_guard;
+		if (!FreeLibrary(h_module))
+			Log::GetLog()->warn("Failed to unload plugin - {}\nError code: {}", plugin_name, GetLastError());
+
+		ReleaseDllDirectory(plugin_name);
+	}
+
+	void PluginManager::ReleaseDllDirectory(const std::string& plugin_name)
+	{
+		const auto cookieIt = dll_dir_cookies_.find(plugin_name);
 		if (cookieIt != dll_dir_cookies_.end())
 		{
 			RemoveDllDirectory(cookieIt->second);
 			dll_dir_cookies_.erase(cookieIt);
 		}
-
-		loaded_plugins_.erase(remove(loaded_plugins_.begin(), loaded_plugins_.end(), *iter), loaded_plugins_.end());
-		prevent_unload_warned_plugins_.erase(plugin_name);
 	}
 
 	nlohmann::json PluginManager::ReadPluginInfo(const std::string& plugin_name)
