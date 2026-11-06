@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class IKEEXT_SA_ROLE_:int
+{
+	IKEEXT_SA_ROLE_INITIATOR = 0x0,
+	IKEEXT_SA_ROLE_RESPONDER = 0x1,
+	IKEEXT_SA_ROLE_MAX = 0x2
+};

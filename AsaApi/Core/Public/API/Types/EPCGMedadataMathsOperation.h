@@ -1,0 +1,29 @@
+#pragma once
+
+
+enum class EPCGMedadataMathsOperation:unsigned short
+{
+	UnaryOp = 0x400,
+	Sign = 0x401,
+	Frac = 0x402,
+	Truncate = 0x403,
+	Round = 0x404,
+	Sqrt = 0x405,
+	Abs = 0x406,
+	Floor = 0x407,
+	Ceil = 0x408,
+	BinaryOp = 0x800,
+	Add = 0x801,
+	Subtract = 0x802,
+	Multiply = 0x803,
+	Divide = 0x804,
+	Max = 0x805,
+	Min = 0x806,
+	Pow = 0x807,
+	ClampMin = 0x808,
+	ClampMax = 0x809,
+	Modulo = 0x80A,
+	TernaryOp = 0x1000,
+	Clamp = 0x1001,
+	Lerp = 0x1002
+};

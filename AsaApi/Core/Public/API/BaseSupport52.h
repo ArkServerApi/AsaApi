@@ -1,0 +1,24 @@
+#pragma once
+
+struct UPrimalDinoEntry;
+struct UPrimalDinoSettings;
+struct UPrimalEngramEntry;
+struct UPrimalGameData;
+struct UPrimalGlobals;
+struct UPrimalGlobalUIData;
+struct UPrimalHarvestingComponent;
+struct UPrimalInventoryComponent;
+struct UPrimalItem_Dye;
+struct UPrimalItem_Shield;
+struct UPrimalItem;
+struct UPrimalLocalProfile;
+struct UPrimalNavigationInvokerComponent;
+struct UPrimalPlayerData;
+struct UPrimalStructureSettings;
+struct UPrimalStructureSnapSettings;
+struct UPrimalStructureToolTipWidget;
+struct UPrimalSupplyCrateItemSets;
+struct UPrimalUI;
+struct UPrimalWindSourceComponent;
+struct UPrimalWirelessExchangeData;
+struct UPrimalWorldBuffData;

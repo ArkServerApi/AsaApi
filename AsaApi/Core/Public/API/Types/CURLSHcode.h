@@ -1,0 +1,13 @@
+#pragma once
+
+
+enum class CURLSHcode:int
+{
+	CURLSHE_OK = 0x0,
+	CURLSHE_BAD_OPTION = 0x1,
+	CURLSHE_IN_USE = 0x2,
+	CURLSHE_INVALID = 0x3,
+	CURLSHE_NOMEM = 0x4,
+	CURLSHE_NOT_BUILT_IN = 0x5,
+	CURLSHE_LAST = 0x6
+};

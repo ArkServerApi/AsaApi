@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class INPUT_DESTINATION_ROUTING_MODE:int
+{
+	IDRM_DEFAULT = 0x0,
+	IDRM_OBSERVE = 0x1,
+	IDRM_ISM = 0x2,
+	IDRM_ROUTE_TO_MT = 0x3
+};

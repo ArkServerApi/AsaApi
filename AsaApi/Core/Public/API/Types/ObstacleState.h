@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class ObstacleState:int
+{
+	DT_OBSTACLE_EMPTY = 0x0,
+	DT_OBSTACLE_PROCESSING = 0x1,
+	DT_OBSTACLE_PROCESSED = 0x2,
+	DT_OBSTACLE_REMOVING = 0x3
+};

@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class ASSOCIATIONTYPE:int
+{
+	AT_FILEEXTENSION = 0x0,
+	AT_URLPROTOCOL = 0x1,
+	AT_STARTMENUCLIENT = 0x2,
+	AT_MIMETYPE = 0x3
+};

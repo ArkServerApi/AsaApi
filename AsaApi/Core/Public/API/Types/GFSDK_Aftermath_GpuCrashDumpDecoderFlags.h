@@ -1,0 +1,20 @@
+#pragma once
+
+
+enum class GFSDK_Aftermath_GpuCrashDumpDecoderFlags:unsigned int
+{
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_BASE_INFO = 0x1,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_DEVICE_INFO = 0x2,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_OS_INFO = 0x4,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_DISPLAY_DRIVER_INFO = 0x8,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_GPU_INFO = 0x10,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_PAGE_FAULT_INFO = 0x20,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_SHADER_INFO = 0x40,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_WARP_STATE_INFO = 0x80,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_SHADER_MAPPING_INFO = 0x100,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_EVENT_MARKER_INFO = 0x200,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_CALL_STACK_INFO = 0x400,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_DESCRIPTION_INFO = 0x800,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_FAULTED_WARP_INFO = 0x1000,
+	GFSDK_Aftermath_GpuCrashDumpDecoderFlags_ALL_INFO = 0x1FFF
+};

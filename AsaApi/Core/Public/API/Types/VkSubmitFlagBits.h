@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class VkSubmitFlagBits:int
+{
+	VK_SUBMIT_PROTECTED_BIT = 0x1,
+	VK_SUBMIT_PROTECTED_BIT_KHR = 0x1,
+	VK_SUBMIT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
+};

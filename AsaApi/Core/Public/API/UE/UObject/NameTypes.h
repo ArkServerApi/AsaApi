@@ -293,15 +293,10 @@ public:
 	}
 
 	/** Appends name to string builder. */
-	void AppendNameToString(FWideStringBuilderBase& OutString) const
-	{
-		NativeCall<void, FWideStringBuilderBase&>(nullptr, "FNameEntry.AppendNameToString(TStringBuilderBase<wchar_t>&)", OutString);
-	}
+	void AppendNameToString(TStringBuilderBase<wchar_t>& Out) { NativeCall<void, TStringBuilderBase<wchar_t>&>(this, "FNameEntry.AppendNameToString(TStringBuilderBase<wchar_t>&)", Out); }
+	void AppendNameToString(TStringBuilderBase<char8_t>& Out) { NativeCall<void, TStringBuilderBase<char8_t>&>(this, "FNameEntry.AppendNameToString(TStringBuilderBase<char8_t>&)", Out); }
 	
-	void AppendNameToString(FUtf8StringBuilderBase& OutString) const
-	{
-		NativeCall<void, TStringBuilderBase<FGenericPlatformTypes::UTF8CHAR>&>(this, "FNameEntry.AppendNameToString(TStringBuilderBase<FGenericPlatformTypes::UTF8CHAR>&)", OutString);
-	}
+	// Current counterpart already declared: AppendNameToString.
 
 	/** Appends name to string builder. Entry must not be wide. */
 	void AppendAnsiNameToString(FAnsiStringBuilderBase& OutString) const;

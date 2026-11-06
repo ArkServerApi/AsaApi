@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class IPSEC_TOKEN_MODE_:int
+{
+	IPSEC_TOKEN_MODE_MAIN = 0x0,
+	IPSEC_TOKEN_MODE_EXTENDED = 0x1,
+	IPSEC_TOKEN_MODE_MAX = 0x2
+};

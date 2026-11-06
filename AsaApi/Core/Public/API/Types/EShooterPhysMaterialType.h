@@ -1,0 +1,26 @@
+#pragma once
+
+
+namespace EShooterPhysMaterialType
+{
+	enum Type:int
+	{
+		Unknown = 0x0,
+		Concrete = 0x1,
+		Dirt = 0x2,
+		Water = 0x3,
+		Metal = 0x4,
+		Wood = 0x5,
+		Grass = 0x6,
+		Glass = 0x7,
+		Flesh = 0x8,
+		Leaves = 0x9,
+		Rock = 0xA,
+		Sand = 0xB,
+		Snow = 0xC,
+		Corruption = 0xD,
+		Lava = 0xE,
+		Acid = 0xF,
+		MAX = 0x10
+	};
+}

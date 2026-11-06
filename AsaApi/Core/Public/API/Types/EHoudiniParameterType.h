@@ -1,0 +1,29 @@
+#pragma once
+
+
+enum class EHoudiniParameterType:unsigned char
+{
+	Invalid = 0x0,
+	Button = 0x1,
+	ButtonStrip = 0x2,
+	Color = 0x3,
+	ColorRamp = 0x4,
+	File = 0x5,
+	FileDir = 0x6,
+	FileGeo = 0x7,
+	FileImage = 0x8,
+	Float = 0x9,
+	FloatRamp = 0xA,
+	Folder = 0xB,
+	FolderList = 0xC,
+	Input = 0xD,
+	Int = 0xE,
+	IntChoice = 0xF,
+	Label = 0x10,
+	MultiParm = 0x11,
+	Separator = 0x12,
+	String = 0x13,
+	StringChoice = 0x14,
+	StringAssetRef = 0x15,
+	Toggle = 0x16
+};

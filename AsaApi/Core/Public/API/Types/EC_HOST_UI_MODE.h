@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class EC_HOST_UI_MODE:int
+{
+	ECHUIM_DESKTOP = 0x0,
+	ECHUIM_IMMERSIVE = 0x1,
+	ECHUIM_SYSTEM_LAUNCHER = 0x2
+};

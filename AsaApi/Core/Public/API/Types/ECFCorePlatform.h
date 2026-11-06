@@ -1,0 +1,20 @@
+#pragma once
+
+
+enum class ECFCorePlatform:unsigned char
+{
+	None = 0x0,
+	Windows = 0x1,
+	XboxOne = 0x2,
+	XboxXS = 0x3,
+	Linux = 0x4,
+	PS4 = 0x5,
+	PS5 = 0x6,
+	Mac = 0x7,
+	IOS = 0x8,
+	TVOS = 0x9,
+	Android = 0xA,
+	Switch = 0xB,
+	WindowsServer = 0xC,
+	LinuxServer = 0xD
+};

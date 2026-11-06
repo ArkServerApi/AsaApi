@@ -1,0 +1,12 @@
+#pragma once
+
+
+enum class EDDSPixelFormat:int
+{
+	DDSPF_FourCC = 0x4,
+	DDSPF_RGB = 0x40,
+	DDSPF_DXT1 = 0x31545844,
+	DDSPF_DXT3 = 0x33545844,
+	DDSPF_DXT5 = 0x35545844,
+	DDSPF_DX10 = 0x30315844
+};

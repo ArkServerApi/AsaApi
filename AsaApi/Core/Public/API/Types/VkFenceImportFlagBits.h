@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class VkFenceImportFlagBits:int
+{
+	VK_FENCE_IMPORT_TEMPORARY_BIT = 0x1,
+	VK_FENCE_IMPORT_TEMPORARY_BIT_KHR = 0x1,
+	VK_FENCE_IMPORT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
+};

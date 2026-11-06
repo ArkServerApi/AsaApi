@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class FWP_DIRECTION_:int
+{
+	FWP_DIRECTION_OUTBOUND = 0x0,
+	FWP_DIRECTION_INBOUND = 0x1,
+	FWP_DIRECTION_MAX = 0x2
+};

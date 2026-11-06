@@ -1,0 +1,11 @@
+#pragma once
+
+
+enum class SET_WINDOW_GROUP_OPTIONS:int
+{
+	SWGO_NONE = 0x0,
+	SWGO_TEMPLATE = 0x1,
+	SWGO_NOZORDER = 0x2,
+	SWGO_RESPECT_MINIMIZE = 0x4,
+	SWGO_ALL = 0x3
+};

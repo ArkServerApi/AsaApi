@@ -1,0 +1,12 @@
+#pragma once
+
+
+enum EPrimalCameraState:unsigned char
+{
+	OLD_CAMERA = 0x0,
+	ASA_CAMERA = 0x1,
+	NORMAL_INTERP_TO_OLD_CAMERA = 0x2,
+	NORMAL_INTERP_TO_ASA_CAMERA = 0x3,
+	WAITING_TO_SWITCH_TO_OLD_CAMERA_SLOW = 0x4,
+	SLOW_INTERP_TO_OLD_CAMERA = 0x5
+};

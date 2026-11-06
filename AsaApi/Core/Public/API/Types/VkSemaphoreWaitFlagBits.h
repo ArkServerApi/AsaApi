@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class VkSemaphoreWaitFlagBits:int
+{
+	VK_SEMAPHORE_WAIT_ANY_BIT = 0x1,
+	VK_SEMAPHORE_WAIT_ANY_BIT_KHR = 0x1,
+	VK_SEMAPHORE_WAIT_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
+};

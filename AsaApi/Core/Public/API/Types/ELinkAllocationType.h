@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class ELinkAllocationType:int
+{
+	CREATE_LINK_PREALLOCATED = 0x0,
+	CREATE_LINK_DYNAMIC_OFFMESH = 0x1,
+	CREATE_LINK_DYNAMIC_CLUSTER = 0x2
+};

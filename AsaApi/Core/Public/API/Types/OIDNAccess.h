@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class OIDNAccess:int
+{
+	OIDN_ACCESS_READ = 0x0,
+	OIDN_ACCESS_WRITE = 0x1,
+	OIDN_ACCESS_READ_WRITE = 0x2,
+	OIDN_ACCESS_WRITE_DISCARD = 0x3
+};

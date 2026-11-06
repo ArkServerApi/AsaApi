@@ -1,0 +1,31 @@
+#pragma once
+
+
+enum class EMovieSceneBuiltInEasing:unsigned char
+{
+	Linear = 0x0,
+	SinIn = 0x1,
+	SinOut = 0x2,
+	SinInOut = 0x3,
+	QuadIn = 0x4,
+	QuadOut = 0x5,
+	QuadInOut = 0x6,
+	Cubic = 0x7,
+	CubicIn = 0x8,
+	CubicOut = 0x9,
+	CubicInOut = 0xA,
+	HermiteCubicInOut = 0xB,
+	QuartIn = 0xC,
+	QuartOut = 0xD,
+	QuartInOut = 0xE,
+	QuintIn = 0xF,
+	QuintOut = 0x10,
+	QuintInOut = 0x11,
+	ExpoIn = 0x12,
+	ExpoOut = 0x13,
+	ExpoInOut = 0x14,
+	CircIn = 0x15,
+	CircOut = 0x16,
+	CircInOut = 0x17,
+	Custom = 0x18
+};

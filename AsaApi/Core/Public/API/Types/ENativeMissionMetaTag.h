@@ -1,0 +1,21 @@
+#pragma once
+
+
+namespace ENativeMissionMetaTag
+{
+	enum Type:int
+	{
+		INVALID = 0x0,
+		GENESIS_VR_BOSS_UNLOCK = 0x1,
+		ARCTIC_MISSION = 0x2,
+		BOG_MISSION = 0x3,
+		LUNAR_MISSION = 0x4,
+		OCEAN_MISSION = 0x5,
+		VOLCANIC_MISSION = 0x6,
+		NORMAL_DIFFICULTY = 0x7,
+		ALPHA_DIFFICULTY = 0x8,
+		BETA_DIFFICULTY = 0x9,
+		GAMMA_DIFFICULTY = 0xA,
+		MAX = 0xB
+	};
+}

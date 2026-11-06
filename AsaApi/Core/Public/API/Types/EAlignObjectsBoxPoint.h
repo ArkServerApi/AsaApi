@@ -1,0 +1,15 @@
+#pragma once
+
+
+enum class EAlignObjectsBoxPoint:int
+{
+	Center = 0x0,
+	Bottom = 0x1,
+	Top = 0x2,
+	Left = 0x3,
+	Right = 0x4,
+	Front = 0x5,
+	Back = 0x6,
+	Min = 0x7,
+	Max = 0x8
+};

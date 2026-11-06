@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class LIBRARYFOLDERFILTER:int
+{
+	LFF_FORCEFILESYSTEM = 0x1,
+	LFF_STORAGEITEMS = 0x2,
+	LFF_ALLITEMS = 0x3
+};

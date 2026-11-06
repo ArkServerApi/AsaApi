@@ -1,0 +1,8 @@
+#pragma once
+
+
+enum class AMPROPERTY_PIN:int
+{
+	AMPROPERTY_PIN_CATEGORY = 0x0,
+	AMPROPERTY_PIN_MEDIUM = 0x1
+};

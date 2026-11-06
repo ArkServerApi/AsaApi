@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class _NVAPI_DITHER_BITS:int
+{
+	NVAPI_DITHER_BITS_6BITS = 0x0,
+	NVAPI_DITHER_BITS_8BITS = 0x1,
+	NVAPI_DITHER_BITS_10BITS = 0x2
+};

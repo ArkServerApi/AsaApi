@@ -1,0 +1,23 @@
+#pragma once
+
+struct FInstigatedAnyDamageSignature;
+struct FInteriorSettings;
+struct FInvalidReferenceRedirector;
+struct FInventoryComponentDefaultItemsAppend;
+struct FInventoryItemAdded;
+struct FInventoryItemRemoved;
+struct FItemAttachmentInfo;
+struct FItemCount;
+struct FItemCraftingConsumptionReplenishment;
+struct FItemCraftingCostOverride;
+struct FItemCraftQueueEntry;
+struct FItemMaxItemQuantityOverride;
+struct FItemMultiplier;
+struct FItemNetID;
+struct FItemNetInfo;
+struct FItemSetup;
+struct FItemSlotTypeDefinition;
+struct FItemSpawnActorClassOverride;
+struct FItemStatGroupValue;
+struct FItemStatInfo;
+struct FJoinabilitySettings;

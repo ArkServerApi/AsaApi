@@ -1,0 +1,42 @@
+#pragma once
+
+
+enum class _NDIS_NET_BUFFER_LIST_INFO:int
+{
+	TcpIpChecksumNetBufferListInfo = 0x0,
+	TcpOffloadBytesTransferred = 0x0,
+	IPsecOffloadV1NetBufferListInfo = 0x1,
+	IPsecOffloadV2NetBufferListInfo = 0x1,
+	TcpLargeSendNetBufferListInfo = 0x2,
+	TcpReceiveNoPush = 0x2,
+	ClassificationHandleNetBufferListInfo = 0x3,
+	Ieee8021QNetBufferListInfo = 0x4,
+	NetBufferListCancelId = 0x5,
+	MediaSpecificInformation = 0x6,
+	NetBufferListFrameType = 0x7,
+	NetBufferListProtocolId = 0x7,
+	NetBufferListHashValue = 0x8,
+	NetBufferListHashInfo = 0x9,
+	WfpNetBufferListInfo = 0xA,
+	IPsecOffloadV2TunnelNetBufferListInfo = 0xB,
+	IPsecOffloadV2HeaderNetBufferListInfo = 0xC,
+	NetBufferListCorrelationId = 0xD,
+	NetBufferListFilteringInfo = 0xE,
+	MediaSpecificInformationEx = 0xF,
+	NblOriginalInterfaceIfIndex = 0x10,
+	NblReAuthWfpFlowContext = 0x10,
+	TcpReceiveBytesTransferred = 0x11,
+	NrtNameResolutionId = 0x11,
+	SwitchForwardingReserved = 0x12,
+	SwitchForwardingDetail = 0x13,
+	VirtualSubnetInfo = 0x14,
+	IMReserved = 0x15,
+	TcpRecvSegCoalesceInfo = 0x16,
+	UdpSegmentationOffloadInfo = 0x16,
+	RscTcpTimestampDelta = 0x17,
+	TcpSendOffloadsSupplementalNetBufferListInfo = 0x17,
+	GftOffloadInformation = 0x18,
+	GftFlowEntryId = 0x19,
+	NetBufferListInfoReserved3 = 0x1A,
+	MaxNetBufferListInfo = 0x1B
+};

@@ -1,0 +1,7 @@
+#pragma once
+
+
+enum class NV_STATIC_METADATA_DESCRIPTOR_ID:int
+{
+	NV_STATIC_METADATA_TYPE_1 = 0x0
+};

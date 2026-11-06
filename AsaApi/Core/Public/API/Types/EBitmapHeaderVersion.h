@@ -1,0 +1,12 @@
+#pragma once
+
+
+enum class EBitmapHeaderVersion:unsigned char
+{
+	BHV_BITMAPINFOHEADER = 0x0,
+	BHV_BITMAPV2INFOHEADER = 0x1,
+	BHV_BITMAPV3INFOHEADER = 0x2,
+	BHV_BITMAPV4HEADER = 0x3,
+	BHV_BITMAPV5HEADER = 0x4,
+	BHV_INVALID = 0xFF
+};

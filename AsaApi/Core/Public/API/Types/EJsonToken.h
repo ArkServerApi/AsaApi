@@ -1,0 +1,19 @@
+#pragma once
+
+
+enum class EJsonToken:int
+{
+	None = 0x0,
+	Comma = 0x1,
+	CurlyOpen = 0x2,
+	CurlyClose = 0x3,
+	SquareOpen = 0x4,
+	SquareClose = 0x5,
+	Colon = 0x6,
+	String = 0x7,
+	Number = 0x8,
+	True = 0x9,
+	False = 0xA,
+	Null = 0xB,
+	Identifier = 0xC
+};

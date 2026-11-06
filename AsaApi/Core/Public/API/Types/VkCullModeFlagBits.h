@@ -1,0 +1,11 @@
+#pragma once
+
+
+enum class VkCullModeFlagBits:int
+{
+	VK_CULL_MODE_NONE = 0x0,
+	VK_CULL_MODE_FRONT_BIT = 0x1,
+	VK_CULL_MODE_BACK_BIT = 0x2,
+	VK_CULL_MODE_FRONT_AND_BACK = 0x3,
+	VK_CULL_MODE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
+};

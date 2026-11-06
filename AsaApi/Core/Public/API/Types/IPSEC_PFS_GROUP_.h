@@ -1,0 +1,16 @@
+#pragma once
+
+
+enum class IPSEC_PFS_GROUP_:int
+{
+	IPSEC_PFS_NONE = 0x0,
+	IPSEC_PFS_1 = 0x1,
+	IPSEC_PFS_2 = 0x2,
+	IPSEC_PFS_2048 = 0x3,
+	IPSEC_PFS_14 = 0x3,
+	IPSEC_PFS_ECP_256 = 0x4,
+	IPSEC_PFS_ECP_384 = 0x5,
+	IPSEC_PFS_MM = 0x6,
+	IPSEC_PFS_24 = 0x7,
+	IPSEC_PFS_MAX = 0x8
+};

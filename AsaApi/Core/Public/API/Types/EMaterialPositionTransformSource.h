@@ -1,0 +1,14 @@
+#pragma once
+
+
+enum class EMaterialPositionTransformSource:int
+{
+	TRANSFORMPOSSOURCE_Local = 0x0,
+	TRANSFORMPOSSOURCE_World = 0x1,
+	TRANSFORMPOSSOURCE_TranslatedWorld = 0x2,
+	TRANSFORMPOSSOURCE_View = 0x3,
+	TRANSFORMPOSSOURCE_Camera = 0x4,
+	TRANSFORMPOSSOURCE_Particle = 0x5,
+	TRANSFORMPOSSOURCE_Instance = 0x6,
+	TRANSFORMPOSSOURCE_MAX = 0x7
+};

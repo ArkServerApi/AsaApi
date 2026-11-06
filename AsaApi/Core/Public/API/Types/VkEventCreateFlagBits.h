@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class VkEventCreateFlagBits:int
+{
+	VK_EVENT_CREATE_DEVICE_ONLY_BIT = 0x1,
+	VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR = 0x1,
+	VK_EVENT_CREATE_FLAG_BITS_MAX_ENUM = 0x7FFFFFFF
+};

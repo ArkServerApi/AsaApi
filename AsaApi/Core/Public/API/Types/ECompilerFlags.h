@@ -1,0 +1,42 @@
+#pragma once
+
+
+enum class ECompilerFlags:int
+{
+	CFLAG_PreferFlowControl = 0x0,
+	CFLAG_Debug = 0x1,
+	CFLAG_AvoidFlowControl = 0x2,
+	CFLAG_SkipValidation = 0x3,
+	CFLAG_StandardOptimization = 0x4,
+	CFLAG_ForceOptimization = 0x5,
+	CFLAG_GenerateSymbols = 0x6,
+	CFLAG_ExtraShaderData = 0x7,
+	CFLAG_AllowUniqueSymbols = 0x8,
+	CFLAG_NoFastMath = 0x9,
+	CFLAG_ZeroInitialise = 0xA,
+	CFLAG_BoundsChecking = 0xB,
+	CFLAG_ForceRemoveUnusedInterpolators = 0xC,
+	CFLAG_VertexToGeometryShader = 0xD,
+	CFLAG_VertexToPrimitiveShader = 0xE,
+	CFLAG_VertexUseAutoCulling = 0xF,
+	CFLAG_Archive = 0x10,
+	CFLAG_UsesExternalTexture = 0x11,
+	CFLAG_UseEmulatedUB = 0x12,
+	CFLAG_WaveOperations = 0x13,
+	CFLAG_ForceDXC = 0x14,
+	CFLAG_SkipOptimizations = 0x15,
+	CFLAG_SkipOptimizationsDXC = 0x16,
+	CFLAG_AllowTypedUAVLoads = 0x17,
+	CFLAG_Wave32 = 0x18,
+	CFLAG_InlineRayTracing = 0x19,
+	CFLAG_D3D12ForceShaderConductorRewrite = 0x1A,
+	CFLAG_AllowRealTypes = 0x1B,
+	CFLAG_PrecompileWithDXC = 0x1C,
+	CFLAG_HLSL2021 = 0x1D,
+	CFLAG_WarningsAsErrors = 0x1E,
+	CFLAG_BindlessResources = 0x1F,
+	CFLAG_BindlessSamplers = 0x20,
+	CFLAG_RemoveDeadCode = 0x21,
+	CFLAG_UseLegacyPreprocessor = 0x22,
+	CFLAG_Max = 0x23
+};

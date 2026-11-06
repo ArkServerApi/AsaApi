@@ -1,0 +1,8 @@
+#pragma once
+
+
+enum class GROUP_WINDOW_MANAGEMENT_POLICY:int
+{
+	GWMP_NONE = 0x0,
+	GWMP_DELEGATE_CLOSE_REQUEST = 0x1
+};

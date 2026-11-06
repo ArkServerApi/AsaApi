@@ -1,0 +1,15 @@
+#pragma once
+#include "BulkForward.h"
+#include "UObject.h"
+
+struct UVisual : public UObject
+{
+public:
+	UVisual() = delete;
+	~UVisual() = delete;
+	UVisual(const UVisual&) = delete;
+	UVisual& operator=(const UVisual&) = delete;
+	static UClass* StaticClass() = delete;
+	static UClass* GetPrivateStaticClass() = delete;
+
+};

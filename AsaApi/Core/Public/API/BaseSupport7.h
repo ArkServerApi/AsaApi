@@ -1,0 +1,18 @@
+#pragma once
+
+struct FActorComponentDeactivateSignature;
+struct FActorComponentInstanceData;
+struct FActorComponentTickFunction;
+struct FActorCustomEventSignature;
+struct FActorEndPlaySignature;
+struct FActorHitSignature;
+struct FActorMatineeUpdated;
+struct FActorOnClickedSignature;
+struct FActorOnInputTouchBeginSignature;
+struct FActorSemaphoreTaken;
+struct FActorSpawnParameters;
+struct FActorTickFunction;
+struct FAdditionalStaticMeshSockets;
+struct FAddressInfoResultData;
+struct FAdvancedBoneModifierSlider;
+struct FAggroEntry;
