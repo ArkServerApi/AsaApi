@@ -9,8 +9,8 @@ public:
 	~UShooterProjectileMovement() = delete;
 	UShooterProjectileMovement(const UShooterProjectileMovement&) = delete;
 	UShooterProjectileMovement& operator=(const UShooterProjectileMovement&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterProjectileMovement"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterProjectileMovement"); }
 
 	float& TamedEnemyHomingAccelerationMagnitudeField() { return *GetNativePointerField<float*>(this, "UShooterProjectileMovement.TamedEnemyHomingAccelerationMagnitude"); }
 	float& ClosestHomingTargetDistanceSqField() { return *GetNativePointerField<float*>(this, "UShooterProjectileMovement.ClosestHomingTargetDistanceSq"); }

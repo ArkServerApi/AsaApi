@@ -9,8 +9,8 @@ public:
 	~AIntervalGizmoActor() = delete;
 	AIntervalGizmoActor(const AIntervalGizmoActor&) = delete;
 	AIntervalGizmoActor& operator=(const AIntervalGizmoActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AIntervalGizmoActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AIntervalGizmoActor"); }
 
 	static AIntervalGizmoActor* ConstructDefaultIntervalGizmo(UWorld* World, UGizmoViewContext* GizmoViewContext) { return NativeCall<AIntervalGizmoActor*, UWorld*, UGizmoViewContext*>(nullptr, "AIntervalGizmoActor.ConstructDefaultIntervalGizmo(UWorld*,UGizmoViewContext*)", World, GizmoViewContext); }
 };

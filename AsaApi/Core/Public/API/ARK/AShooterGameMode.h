@@ -777,7 +777,7 @@ struct AShooterGameMode : APrimalGameMode
 	// void UpdateSaveBackupFiles();
 	void PostServerMetrics() { NativeCall<void>(this, "AShooterGameMode.PostServerMetrics()"); }
 	bool IsTimeSinceMissionDeactivated(TSubclassOf<AMissionType> MissionType, float CheckTimeSince, bool bForceTrueAtZeroTime) { return NativeCall<bool, TSubclassOf<AMissionType>, float, bool>(this, "AShooterGameMode.IsTimeSinceMissionDeactivated(TSubclassOf<AMissionType>,float,bool)", MissionType, CheckTimeSince, bForceTrueAtZeroTime); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AShooterGameMode.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterGameMode"); }
 	void GetDynamicConfig() { NativeCall<void>(this, "AShooterGameMode.GetDynamicConfig()"); }
 	static APlayerController* GetPlayerControllerByUniqueID(UWorld* World, FUniqueNetIdRepl* PlayerID) { return NativeCall<APlayerController*, UWorld*, FUniqueNetIdRepl*>(nullptr, "AShooterGameMode.GetPlayerControllerByUniqueID(UWorld*,FUniqueNetIdRepl)", World, PlayerID); }
 	bool ShouldChatMessageBeBlocked(const FPrimalChatMessage* Message, AShooterPlayerController* Recipient) { return NativeCall<bool, const FPrimalChatMessage*, AShooterPlayerController*>(this, "AShooterGameMode.ShouldChatMessageBeBlocked(FPrimalChatMessage&,AShooterPlayerController*)", Message, Recipient); }
@@ -909,7 +909,7 @@ struct AShooterGameMode : APrimalGameMode
 	bool GetBoolOption(const FString& Options, const FString& ParseString, bool CurrentValue) { return NativeCall<bool, const FString&, const FString&, bool>(this, "AShooterGameMode.GetBoolOption(FString&,FString&,bool)", Options, ParseString, CurrentValue); }
 	void Logout(AController* Exiting) { NativeCall<void, AController*>(this, "AShooterGameMode.Logout(AController*)", Exiting); }
 	bool PlayerCanRestart_Implementation(APlayerController* Player) { return NativeCall<bool, APlayerController*>(this, "AShooterGameMode.PlayerCanRestart_Implementation(APlayerController*)", Player); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterGameMode"); }
 	void LoadedWorld() { NativeCall<void>(this, "AShooterGameMode.LoadedWorld()"); }
 	void SavePlayersJoinNoCheckList() { NativeCall<void>(this, "AShooterGameMode.SavePlayersJoinNoCheckList()"); }
 	void KickPlayerController(APlayerController* thePC, const FString& KickMessage) { NativeCall<void, APlayerController*, const FString&>(this, "AShooterGameMode.KickPlayerController(APlayerController*,FString&)", thePC, KickMessage); }

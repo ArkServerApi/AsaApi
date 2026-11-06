@@ -1,0 +1,15 @@
+#pragma once
+class FArchive;
+struct FGuid;
+class FLinkerInstancingContext;
+class FName;
+struct FObjectDuplicationParameters;
+class FPackagePath;
+struct FStaticConstructObjectParameters;
+class FString;
+struct UClass;
+struct UObject;
+struct UObjectBase;
+class UPackage;
+class UPackageMap;
+class UWorldProxy;

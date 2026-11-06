@@ -45,7 +45,7 @@ struct UPrimalWorld : UObject
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalWorld.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWorld"); }
 	void ConstructOctree() { NativeCall<void>(this, "UPrimalWorld.ConstructOctree()"); }
 	void UpdateInternalOctreeTransform(UPrimitiveComponent* InComponent) { NativeCall<void, UPrimitiveComponent*>(this, "UPrimalWorld.UpdateInternalOctreeTransform(UPrimitiveComponent*)", InComponent); }
 	void RemoveFromInternalOctree(UPrimitiveComponent* InComponent) { NativeCall<void, UPrimitiveComponent*>(this, "UPrimalWorld.RemoveFromInternalOctree(UPrimitiveComponent*)", InComponent); }
@@ -60,7 +60,7 @@ struct UPrimalWorld : UObject
 	bool& bFlushingLevelStreamingField() { return *GetNativePointerField<bool*>(this, "UPrimalWorld.bFlushingLevelStreaming"); }
 	int& MaterialQualityAppliedField() { return *GetNativePointerField<int*>(this, "UPrimalWorld.MaterialQualityApplied"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWorld"); }
 
 	FConsoleVariableSinkDelegate& ConsoleVariableSinkDelegateField() { return *GetNativePointerField<FConsoleVariableSinkDelegate*>(this, "UPrimalWorld.ConsoleVariableSinkDelegate"); }
 	FConsoleVariableSinkDelegate& MaterialQualityChangedDelegateField() { return *GetNativePointerField<FConsoleVariableSinkDelegate*>(this, "UPrimalWorld.MaterialQualityChangedDelegate"); }

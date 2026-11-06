@@ -10,8 +10,8 @@ public:
 	~UWorldComposition() = delete;
 	UWorldComposition(const UWorldComposition&) = delete;
 	UWorldComposition& operator=(const UWorldComposition&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldComposition"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldComposition"); }
 	FString& WorldRootField() { return *GetNativePointerField<FString*>(this, "UWorldComposition.WorldRoot"); }
 	double& TilesStreamingTimeThresholdField() { return *GetNativePointerField<double*>(this, "UWorldComposition.TilesStreamingTimeThreshold"); }
 	bool& bLoadAllTilesDuringCinematicField() { return *GetNativePointerField<bool*>(this, "UWorldComposition.bLoadAllTilesDuringCinematic"); }

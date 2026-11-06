@@ -9,8 +9,8 @@ public:
 	~AMaterialInstanceActor() = delete;
 	AMaterialInstanceActor(const AMaterialInstanceActor&) = delete;
 	AMaterialInstanceActor& operator=(const AMaterialInstanceActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMaterialInstanceActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMaterialInstanceActor"); }
 
 	void PostLoad() { NativeCall<void>(this, "AMaterialInstanceActor.PostLoad()"); }
 };

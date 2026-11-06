@@ -9,8 +9,8 @@ public:
 	~UHUDPingWidget() = delete;
 	UHUDPingWidget(const UHUDPingWidget&) = delete;
 	UHUDPingWidget& operator=(const UHUDPingWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHUDPingWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHUDPingWidget"); }
 
 	FName& PingPlayerNameTextBlockNameField() { return *GetNativePointerField<FName*>(this, "UHUDPingWidget.PingPlayerNameTextBlockName"); }
 	FName& PingRespondingPlayerNameTextBlockNameField() { return *GetNativePointerField<FName*>(this, "UHUDPingWidget.PingRespondingPlayerNameTextBlockName"); }

@@ -9,8 +9,8 @@ public:
 	~AVolumetricLightmapDensityVolume() = delete;
 	AVolumetricLightmapDensityVolume(const AVolumetricLightmapDensityVolume&) = delete;
 	AVolumetricLightmapDensityVolume& operator=(const AVolumetricLightmapDensityVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AVolumetricLightmapDensityVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AVolumetricLightmapDensityVolume"); }
 
 	FInt32Interval& AllowedMipLevelRangeField() { return *GetNativePointerField<FInt32Interval*>(this, "AVolumetricLightmapDensityVolume.AllowedMipLevelRange"); }
 };

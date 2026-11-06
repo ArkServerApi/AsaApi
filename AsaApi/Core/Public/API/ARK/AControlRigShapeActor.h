@@ -9,8 +9,8 @@ public:
 	~AControlRigShapeActor() = delete;
 	AControlRigShapeActor(const AControlRigShapeActor&) = delete;
 	AControlRigShapeActor& operator=(const AControlRigShapeActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AControlRigShapeActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AControlRigShapeActor"); }
 
 	unsigned int& ControlRigIndexField() { return *GetNativePointerField<unsigned int*>(this, "AControlRigShapeActor.ControlRigIndex"); }
 	TWeakObjectPtr<UControlRig, FWeakObjectPtr>& ControlRigField() { return *GetNativePointerField<TWeakObjectPtr<UControlRig, FWeakObjectPtr>*>(this, "AControlRigShapeActor.ControlRig"); }

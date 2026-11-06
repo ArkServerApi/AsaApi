@@ -10,8 +10,8 @@ public:
 	~USkeletalMeshSocket() = delete;
 	USkeletalMeshSocket(const USkeletalMeshSocket&) = delete;
 	USkeletalMeshSocket& operator=(const USkeletalMeshSocket&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkeletalMeshSocket"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkeletalMeshSocket"); }
 	FName& SocketNameField() { return *GetNativePointerField<FName*>(this, "USkeletalMeshSocket.SocketName"); }
 	FName& BoneNameField() { return *GetNativePointerField<FName*>(this, "USkeletalMeshSocket.BoneName"); }
 	UE::Math::TVector<double>& RelativeLocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "USkeletalMeshSocket.RelativeLocation"); }

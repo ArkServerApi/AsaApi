@@ -10,8 +10,8 @@ public:
 	~UStringTable() = delete;
 	UStringTable(const UStringTable&) = delete;
 	UStringTable& operator=(const UStringTable&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStringTable"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStringTable"); }
 	FName& StringTableIdField() { return *GetNativePointerField<FName*>(this, "UStringTable.StringTableId"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "UStringTable.Serialize(FArchive&)", Ar); }
 	static void InitializeEngineBridge() { NativeCall<void>(nullptr, "UStringTable.InitializeEngineBridge()"); }

@@ -9,8 +9,8 @@ public:
 	~UBoundsCopyComponent() = delete;
 	UBoundsCopyComponent(const UBoundsCopyComponent&) = delete;
 	UBoundsCopyComponent& operator=(const UBoundsCopyComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBoundsCopyComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBoundsCopyComponent"); }
 
 	bool& bUseCollidingComponentsForSourceBoundsField() { return *GetNativePointerField<bool*>(this, "UBoundsCopyComponent.bUseCollidingComponentsForSourceBounds"); }
 	bool& bKeepOwnBoundsScaleField() { return *GetNativePointerField<bool*>(this, "UBoundsCopyComponent.bKeepOwnBoundsScale"); }

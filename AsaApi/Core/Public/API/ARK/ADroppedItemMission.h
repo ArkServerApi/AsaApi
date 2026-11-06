@@ -17,7 +17,7 @@ struct ADroppedItemMission : ADroppedItem
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADroppedItemMission"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesADroppedItemMission();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -27,7 +27,7 @@ struct ADroppedItemMission : ADroppedItem
 	bool IsAllowedToPickupItem_Implementation(APlayerController* PC) { return NativeCall<bool, APlayerController*>(this, "ADroppedItemMission.IsAllowedToPickupItem_Implementation(APlayerController*)", PC); }
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "ADroppedItemMission.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADroppedItemMission"); }
 
 	void SetupDroppedItemLifeSpan() { NativeCall<void>(this, "ADroppedItemMission.SetupDroppedItemLifeSpan()"); }
 	static void SetOwnerMission_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "ADroppedItemMission.SetOwnerMission_WrapperImpl(void*,void*)", Object, InValue); }

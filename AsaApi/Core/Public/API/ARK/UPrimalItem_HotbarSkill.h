@@ -10,8 +10,8 @@ public:
 	~UPrimalItem_HotbarSkill() = delete;
 	UPrimalItem_HotbarSkill(const UPrimalItem_HotbarSkill&) = delete;
 	UPrimalItem_HotbarSkill& operator=(const UPrimalItem_HotbarSkill&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItem_HotbarSkill"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItem_HotbarSkill"); }
 
 
 

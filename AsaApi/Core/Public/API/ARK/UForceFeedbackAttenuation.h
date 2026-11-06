@@ -10,7 +10,7 @@ public:
 	~UForceFeedbackAttenuation() = delete;
 	UForceFeedbackAttenuation(const UForceFeedbackAttenuation&) = delete;
 	UForceFeedbackAttenuation& operator=(const UForceFeedbackAttenuation&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UForceFeedbackAttenuation"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UForceFeedbackAttenuation"); }
 	FForceFeedbackAttenuationSettings& AttenuationField() { return *GetNativePointerField<FForceFeedbackAttenuationSettings*>(this, "UForceFeedbackAttenuation.Attenuation"); }
 };

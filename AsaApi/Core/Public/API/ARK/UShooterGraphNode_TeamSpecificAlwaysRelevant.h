@@ -9,7 +9,7 @@ public:
 	~UShooterGraphNode_TeamSpecificAlwaysRelevant() = delete;
 	UShooterGraphNode_TeamSpecificAlwaysRelevant(const UShooterGraphNode_TeamSpecificAlwaysRelevant&) = delete;
 	UShooterGraphNode_TeamSpecificAlwaysRelevant& operator=(const UShooterGraphNode_TeamSpecificAlwaysRelevant&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_TeamSpecificAlwaysRelevant"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_TeamSpecificAlwaysRelevant"); }
 
 };

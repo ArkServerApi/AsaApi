@@ -9,8 +9,8 @@ public:
 	~UVolumetricCloudComponent() = delete;
 	UVolumetricCloudComponent(const UVolumetricCloudComponent&) = delete;
 	UVolumetricCloudComponent& operator=(const UVolumetricCloudComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVolumetricCloudComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVolumetricCloudComponent"); }
 
 	float& LayerBottomAltitudeField() { return *GetNativePointerField<float*>(this, "UVolumetricCloudComponent.LayerBottomAltitude"); }
 	float& LayerHeightField() { return *GetNativePointerField<float*>(this, "UVolumetricCloudComponent.LayerHeight"); }

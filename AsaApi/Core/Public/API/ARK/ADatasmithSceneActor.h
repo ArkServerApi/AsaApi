@@ -9,8 +9,8 @@ public:
 	~ADatasmithSceneActor() = delete;
 	ADatasmithSceneActor(const ADatasmithSceneActor&) = delete;
 	ADatasmithSceneActor& operator=(const ADatasmithSceneActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADatasmithSceneActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADatasmithSceneActor"); }
 
 	void BeginDestroy() { NativeCall<void>(this, "ADatasmithSceneActor.BeginDestroy()"); }
 };

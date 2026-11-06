@@ -9,7 +9,7 @@ public:
 	~AWindDirectionalSource() = delete;
 	AWindDirectionalSource(const AWindDirectionalSource&) = delete;
 	AWindDirectionalSource& operator=(const AWindDirectionalSource&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWindDirectionalSource"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWindDirectionalSource"); }
 
 };

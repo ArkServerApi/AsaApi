@@ -10,7 +10,7 @@ public:
 	~APrimalShip() = delete;
 	APrimalShip(const APrimalShip&) = delete;
 	APrimalShip& operator=(const APrimalShip&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalShip"); }
 
 	float& UnAnchoredNetworkAndStasisRangeMultiplierField() { return *GetNativePointerField<float*>(this, "APrimalShip.UnAnchoredNetworkAndStasisRangeMultiplier"); }
 	float& AnchoredNetworkAndStasisRangeMultiplierField() { return *GetNativePointerField<float*>(this, "APrimalShip.AnchoredNetworkAndStasisRangeMultiplier"); }
@@ -371,7 +371,7 @@ public:
 	void PreInitializeComponents() { NativeCall<void>(this, "APrimalShip.PreInitializeComponents()"); }
 	void TickRowing() { NativeCall<void>(this, "APrimalShip.TickRowing()"); }
 	void RecomputeBuiltInLadderExtentsOnLoad() { NativeCall<void>(this, "APrimalShip.RecomputeBuiltInLadderExtentsOnLoad()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalShip.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalShip"); }
 	void UpdateTorches() { NativeCall<void>(this, "APrimalShip.UpdateTorches()"); }
 	void ShipRow() { NativeCall<void>(this, "APrimalShip.ShipRow()"); }
 	void UpdateSailingVars() { NativeCall<void>(this, "APrimalShip.UpdateSailingVars()"); }

@@ -75,7 +75,7 @@ struct UInstancedStaticMeshComponent : UStaticMeshComponent
 	// FUNCTION MISSING: UInstancedStaticMeshComponent.BuildInstanceRandomIDs(TArray<float,TSizedDefaultAllocator<32>>&)
 		//bool GetMaterialStreamingData(int MaterialIndex, FPrimitiveMaterialInfo* MaterialData) const { return NativeCall<bool, int, FPrimitiveMaterialInfo*>(this, "UInstancedStaticMeshComponent.GetMaterialStreamingData(int,FPrimitiveMaterialInfo&)", MaterialIndex, MaterialData); }
 	bool ShouldCreatePhysicsState()const { return NativeCall<bool>(this, "UInstancedStaticMeshComponent.ShouldCreatePhysicsState()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInstancedStaticMeshComponent"); }
 	void OnUnregister() { NativeCall<void>(this, "UInstancedStaticMeshComponent.OnUnregister()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ClearAllInstanceBodies();
@@ -153,7 +153,7 @@ struct UInstancedStaticMeshComponent : UStaticMeshComponent
 	float GetTextureStreamingTransformScale()const { return NativeCall<float>(this, "UInstancedStaticMeshComponent.GetTextureStreamingTransformScale()"); }
 	bool OverlapComponent(const UE::Math::TVector<double>& Pos, const UE::Math::TQuat<double>& Rot, const FCollisionShape* CollisionShape) const { return NativeCall<bool, const UE::Math::TVector<double>&, const UE::Math::TQuat<double>&, const FCollisionShape*>(this, "UInstancedStaticMeshComponent.OverlapComponent(UE::Math::TVector<double>&,UE::Math::TQuat<double>&,FCollisionShape&)", Pos, Rot, CollisionShape); }
 	UE::Math::TMatrix<double>* GetRenderMatrix(UE::Math::TMatrix<double>* result) { return NativeCall<UE::Math::TMatrix<double>*, UE::Math::TMatrix<double>*>(this, "UInstancedStaticMeshComponent.GetRenderMatrix()", result); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UInstancedStaticMeshComponent.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInstancedStaticMeshComponent"); }
 	void PreAllocateInstancesMemory(int AddedInstanceCount) { NativeCall<void, int>(this, "UInstancedStaticMeshComponent.PreAllocateInstancesMemory(int)", AddedInstanceCount); }
 	bool UpdateInstanceTransform(int InstanceIndex, const UE::Math::TTransform<double>* NewInstanceTransform, bool bWorldSpace, bool bMarkRenderStateDirty, bool bTeleport) { return NativeCall<bool, int, const UE::Math::TTransform<double>*, bool, bool, bool>(this, "UInstancedStaticMeshComponent.UpdateInstanceTransform(int,UE::Math::TTransform<double>&,bool,bool,bool)", InstanceIndex, NewInstanceTransform, bWorldSpace, bMarkRenderStateDirty, bTeleport); }
 	//void InitPerInstanceRenderData(bool InitializeFromCurrentData, FStaticMeshInstanceData* InSharedInstanceBufferData, bool InRequireCPUAccess) { NativeCall<void, boolFStaticMeshInstanceData*, bool>(this, "UInstancedStaticMeshComponent.InitPerInstanceRenderData(bool,FStaticMeshInstanceData*,bool)", InitializeFromCurrentData, InSharedInstanceBufferData, InRequireCPUAccess); }

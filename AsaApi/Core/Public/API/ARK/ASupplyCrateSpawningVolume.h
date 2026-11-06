@@ -45,7 +45,7 @@ struct ASupplyCrateSpawningVolume : AVolume
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASupplyCrateSpawningVolume"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesASupplyCrateSpawningVolume();
 	void SetSpawnEnabled(bool bEnable) { NativeCall<void, bool>(this, "ASupplyCrateSpawningVolume.SetSpawnEnabled(bool)", bEnable); }
@@ -60,4 +60,5 @@ struct ASupplyCrateSpawningVolume : AVolume
 
 	bool& bForceRandomSupplyCratePointsField() { return *GetNativePointerField<bool*>(this, "ASupplyCrateSpawningVolume.bForceRandomSupplyCratePoints"); }
 	static void SpawnCratesFromAllVolumes(UWorld* theWorld) { NativeCall<void, UWorld*>(nullptr, "ASupplyCrateSpawningVolume.SpawnCratesFromAllVolumes(UWorld*)", theWorld); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASupplyCrateSpawningVolume"); }
 };

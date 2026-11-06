@@ -39,7 +39,7 @@ struct APrimalStructureExplosive : APrimalStructure
 
     // Functions
 
-    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureExplosive.StaticClass()"); }
+    static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureExplosive"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureExplosive();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -58,7 +58,7 @@ struct APrimalStructureExplosive : APrimalStructure
 
 	bool& bExplosiveReadyField() { return *GetNativePointerField<bool*>(this, "APrimalStructureExplosive.bExplosiveReady"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureExplosive"); }
 
 	void ForceDetonateExplosive() { NativeCall<void>(this, "APrimalStructureExplosive.ForceDetonateExplosive()"); }
 	void NetIgnoreDestructionEvents_Implementation() { NativeCall<void>(this, "APrimalStructureExplosive.NetIgnoreDestructionEvents_Implementation()"); }

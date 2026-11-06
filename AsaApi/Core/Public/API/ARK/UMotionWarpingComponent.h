@@ -9,8 +9,8 @@ public:
 	~UMotionWarpingComponent() = delete;
 	UMotionWarpingComponent(const UMotionWarpingComponent&) = delete;
 	UMotionWarpingComponent& operator=(const UMotionWarpingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMotionWarpingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMotionWarpingComponent"); }
 
 	bool& bSearchForWindowsInAnimsWithinMontagesField() { return *GetNativePointerField<bool*>(this, "UMotionWarpingComponent.bSearchForWindowsInAnimsWithinMontages"); }
 	FMotionWarpingPreUpdate& OnPreUpdateField() { return *GetNativePointerField<FMotionWarpingPreUpdate*>(this, "UMotionWarpingComponent.OnPreUpdate"); }

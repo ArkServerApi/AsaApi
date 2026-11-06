@@ -9,7 +9,7 @@ public:
 	~UFieldNodeFloat() = delete;
 	UFieldNodeFloat(const UFieldNodeFloat&) = delete;
 	UFieldNodeFloat& operator=(const UFieldNodeFloat&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldNodeFloat"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFieldNodeFloat.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldNodeFloat"); }
 };

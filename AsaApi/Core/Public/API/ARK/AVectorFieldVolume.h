@@ -9,7 +9,7 @@ public:
 	~AVectorFieldVolume() = delete;
 	AVectorFieldVolume(const AVectorFieldVolume&) = delete;
 	AVectorFieldVolume& operator=(const AVectorFieldVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AVectorFieldVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AVectorFieldVolume"); }
 
 };

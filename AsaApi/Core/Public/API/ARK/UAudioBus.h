@@ -10,7 +10,7 @@ public:
 	~UAudioBus() = delete;
 	UAudioBus(const UAudioBus&) = delete;
 	UAudioBus& operator=(const UAudioBus&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAudioBus"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAudioBus"); }
 	void BeginDestroy() { NativeCall<void>(this, "UAudioBus.BeginDestroy()"); }
 };

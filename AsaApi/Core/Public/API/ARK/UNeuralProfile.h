@@ -10,8 +10,8 @@ public:
 	~UNeuralProfile() = delete;
 	UNeuralProfile(const UNeuralProfile&) = delete;
 	UNeuralProfile& operator=(const UNeuralProfile&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNeuralProfile"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNeuralProfile"); }
 	FNeuralProfileStruct& SettingsField() { return *GetNativePointerField<FNeuralProfileStruct*>(this, "UNeuralProfile.Settings"); }
 	FGuid& GuidField() { return *GetNativePointerField<FGuid*>(this, "UNeuralProfile.Guid"); }
 	void BeginDestroy() { NativeCall<void>(this, "UNeuralProfile.BeginDestroy()"); }

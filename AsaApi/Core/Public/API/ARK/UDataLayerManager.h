@@ -10,8 +10,8 @@ public:
 	~UDataLayerManager() = delete;
 	UDataLayerManager(const UDataLayerManager&) = delete;
 	UDataLayerManager& operator=(const UDataLayerManager&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDataLayerManager.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataLayerManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataLayerManager"); }
 	FOnDataLayerInstanceRuntimeStateChanged& OnDataLayerInstanceRuntimeStateChangedField() { return *GetNativePointerField<FOnDataLayerInstanceRuntimeStateChanged*>(this, "UDataLayerManager.OnDataLayerInstanceRuntimeStateChanged"); }
 	void DumpDataLayers(FOutputDevice& OutputDevice) { NativeCall<void, FOutputDevice&>(this, "UDataLayerManager.DumpDataLayers(FOutputDevice&)", OutputDevice); }
 	void Initialize() { NativeCall<void>(this, "UDataLayerManager.Initialize()"); }

@@ -9,7 +9,7 @@ public:
 	~UFXSystemComponent() = delete;
 	UFXSystemComponent(const UFXSystemComponent&) = delete;
 	UFXSystemComponent& operator=(const UFXSystemComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFXSystemComponent"); }
 
 	BitFieldValue<bool, unsigned char> bPSOPrecacheCalled() { return { this, "UFXSystemComponent.bPSOPrecacheCalled"}; }
 	void DeactivateImmediate() { NativeCall<void>(this, "UFXSystemComponent.DeactivateImmediate()"); }
@@ -17,7 +17,7 @@ public:
 	void SetAutoAttachmentParameters(USceneComponent* Parent, FName SocketName, EAttachmentRule LocationRule, EAttachmentRule RotationRule, EAttachmentRule ScaleRule) { NativeCall<void, USceneComponent*, FName, EAttachmentRule, EAttachmentRule, EAttachmentRule>(this, "UFXSystemComponent.SetAutoAttachmentParameters(USceneComponent*,FName,EAttachmentRule,EAttachmentRule,EAttachmentRule)", Parent, SocketName, LocationRule, RotationRule, ScaleRule); }
 	void SetUseAutoManageAttachment(bool bAutoManage) { NativeCall<void, bool>(this, "UFXSystemComponent.SetUseAutoManageAttachment(bool)", bAutoManage); }
 	void SetVectorParameter(FName ParameterName, UE::Math::TVector<double>* Param) { if (!Param) throw std::invalid_argument("Null native value parameter"); return NativeCall<void, FName, UE :: Math :: TVector < double >>(this, "UFXSystemComponent.SetVectorParameter(FName,UE::Math::TVector<double>)", ParameterName, *Param); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFXSystemComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFXSystemComponent"); }
 	void SetBoolParameter(FName ParameterName, bool Param) { NativeCall<void, FName, bool>(this, "UFXSystemComponent.SetBoolParameter(FName,bool)", ParameterName, Param); }
 	void SetFloatParameter(FName ParameterName, float Param) { NativeCall<void, FName, float>(this, "UFXSystemComponent.SetFloatParameter(FName,float)", ParameterName, Param); }
 	void SetEmitterEnable(FName EmitterName, bool bNewEnableState) { NativeCall<void, FName, bool>(this, "UFXSystemComponent.SetEmitterEnable(FName,bool)", EmitterName, bNewEnableState); }

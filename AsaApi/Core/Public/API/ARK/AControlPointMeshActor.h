@@ -9,8 +9,8 @@ public:
 	~AControlPointMeshActor() = delete;
 	AControlPointMeshActor(const AControlPointMeshActor&) = delete;
 	AControlPointMeshActor& operator=(const AControlPointMeshActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AControlPointMeshActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AControlPointMeshActor"); }
 
 	FString* GetDetailedInfoInternal(FString* result) { return NativeCall<FString*, FString*>(this, "AControlPointMeshActor.GetDetailedInfoInternal()", result); }
 };

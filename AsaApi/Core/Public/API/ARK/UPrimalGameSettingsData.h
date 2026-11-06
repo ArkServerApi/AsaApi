@@ -9,8 +9,8 @@ public:
 	~UPrimalGameSettingsData() = delete;
 	UPrimalGameSettingsData(const UPrimalGameSettingsData&) = delete;
 	UPrimalGameSettingsData& operator=(const UPrimalGameSettingsData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalGameSettingsData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalGameSettingsData"); }
 
 	bool& IsBaseBPField() { return *GetNativePointerField<bool*>(this, "UPrimalGameSettingsData.IsBaseBP"); }
 	float& DifficultyOffsetField() { return *GetNativePointerField<float*>(this, "UPrimalGameSettingsData.DifficultyOffset"); }

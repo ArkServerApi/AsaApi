@@ -9,8 +9,8 @@ public:
 	~APrimalBuff_DragonHorn() = delete;
 	APrimalBuff_DragonHorn(const APrimalBuff_DragonHorn&) = delete;
 	APrimalBuff_DragonHorn& operator=(const APrimalBuff_DragonHorn&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_DragonHorn"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_DragonHorn"); }
 
 	UE::Math::TVector2<double>& BuffStatusBarSizeField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_DragonHorn.BuffStatusBarSize"); }
 	UE::Math::TVector2<double>& BuffStatusBarOffsetField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_DragonHorn.BuffStatusBarOffset"); }

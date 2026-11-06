@@ -9,7 +9,7 @@ public:
 	~UStateTreeAIComponent() = delete;
 	UStateTreeAIComponent(const UStateTreeAIComponent&) = delete;
 	UStateTreeAIComponent& operator=(const UStateTreeAIComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStateTreeAIComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStateTreeAIComponent"); }
 
 };

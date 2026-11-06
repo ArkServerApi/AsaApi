@@ -9,8 +9,8 @@ public:
 	~ALODActor() = delete;
 	ALODActor(const ALODActor&) = delete;
 	ALODActor& operator=(const ALODActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALODActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALODActor"); }
 
 	FName& KeyField() { return *GetNativePointerField<FName*>(this, "ALODActor.Key"); }
 	float& LODDrawDistanceField() { return *GetNativePointerField<float*>(this, "ALODActor.LODDrawDistance"); }

@@ -10,7 +10,7 @@ public:
 	~UDistribution() = delete;
 	UDistribution(const UDistribution&) = delete;
 	UDistribution& operator=(const UDistribution&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDistribution.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDistribution"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDistribution"); }
 	bool IsPostLoadThreadSafe() { return NativeCall<bool>(this, "UDistribution.IsPostLoadThreadSafe()"); }
 };

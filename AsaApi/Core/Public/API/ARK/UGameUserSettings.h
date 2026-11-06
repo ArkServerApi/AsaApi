@@ -9,7 +9,7 @@ public:
 	~UGameUserSettings() = delete;
 	UGameUserSettings(const UGameUserSettings&) = delete;
 	UGameUserSettings& operator=(const UGameUserSettings&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGameUserSettings.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameUserSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameUserSettings"); }
 
 };

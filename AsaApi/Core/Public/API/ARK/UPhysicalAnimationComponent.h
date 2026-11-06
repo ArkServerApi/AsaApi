@@ -9,8 +9,8 @@ public:
 	~UPhysicalAnimationComponent() = delete;
 	UPhysicalAnimationComponent(const UPhysicalAnimationComponent&) = delete;
 	UPhysicalAnimationComponent& operator=(const UPhysicalAnimationComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicalAnimationComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicalAnimationComponent"); }
 
 	float& StrengthMultiplyerField() { return *GetNativePointerField<float*>(this, "UPhysicalAnimationComponent.StrengthMultiplyer"); }
 	FDelegateHandle& OnTeleportDelegateHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UPhysicalAnimationComponent.OnTeleportDelegateHandle"); }

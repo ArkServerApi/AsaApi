@@ -11,8 +11,8 @@ public:
 	~USpotLightComponent() = delete;
 	USpotLightComponent(const USpotLightComponent&) = delete;
 	USpotLightComponent& operator=(const USpotLightComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USpotLightComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USpotLightComponent"); }
 
 	float& InnerConeAngleField() { return *GetNativePointerField<float*>(this, "USpotLightComponent.InnerConeAngle"); }
 	float& OuterConeAngleField() { return *GetNativePointerField<float*>(this, "USpotLightComponent.OuterConeAngle"); }

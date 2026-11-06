@@ -9,8 +9,8 @@ public:
 	~UNetworkPhysicsComponent() = delete;
 	UNetworkPhysicsComponent(const UNetworkPhysicsComponent&) = delete;
 	UNetworkPhysicsComponent& operator=(const UNetworkPhysicsComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNetworkPhysicsComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNetworkPhysicsComponent"); }
 
 	FNetworkPhysicsRewindDataDeltaSourceInputProxy& ReplicatedDeltaSourceInputField() { return *GetNativePointerField<FNetworkPhysicsRewindDataDeltaSourceInputProxy*>(this, "UNetworkPhysicsComponent.ReplicatedDeltaSourceInput"); }
 	FNetworkPhysicsRewindDataDeltaSourceStateProxy& ReplicatedDeltaSourceStateField() { return *GetNativePointerField<FNetworkPhysicsRewindDataDeltaSourceStateProxy*>(this, "UNetworkPhysicsComponent.ReplicatedDeltaSourceState"); }

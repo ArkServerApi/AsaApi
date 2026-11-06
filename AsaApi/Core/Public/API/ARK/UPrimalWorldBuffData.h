@@ -10,8 +10,8 @@ public:
 	~UPrimalWorldBuffData() = delete;
 	UPrimalWorldBuffData(const UPrimalWorldBuffData&) = delete;
 	UPrimalWorldBuffData& operator=(const UPrimalWorldBuffData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWorldBuffData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWorldBuffData"); }
 
 	bool& bWorldBuffsAreSuspendedField() { return *GetNativePointerField<bool*>(this, "UPrimalWorldBuffData.bWorldBuffsAreSuspended"); }
 

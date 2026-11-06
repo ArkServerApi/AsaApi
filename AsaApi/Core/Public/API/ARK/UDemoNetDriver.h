@@ -10,8 +10,8 @@ public:
 	~UDemoNetDriver() = delete;
 	UDemoNetDriver(const UDemoNetDriver&) = delete;
 	UDemoNetDriver& operator=(const UDemoNetDriver&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDemoNetDriver"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDemoNetDriver"); }
 	APlayerController*& SpectatorControllerField() { return *GetNativePointerField<APlayerController**>(this, "UDemoNetDriver.SpectatorController"); }
 	double& AccumulatedRecordTimeField() { return *GetNativePointerField<double*>(this, "UDemoNetDriver.AccumulatedRecordTime"); }
 	double& LastRecordAvgFlushField() { return *GetNativePointerField<double*>(this, "UDemoNetDriver.LastRecordAvgFlush"); }

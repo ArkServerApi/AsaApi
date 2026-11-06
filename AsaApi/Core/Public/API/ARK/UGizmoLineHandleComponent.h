@@ -9,8 +9,8 @@ public:
 	~UGizmoLineHandleComponent() = delete;
 	UGizmoLineHandleComponent(const UGizmoLineHandleComponent&) = delete;
 	UGizmoLineHandleComponent& operator=(const UGizmoLineHandleComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGizmoLineHandleComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGizmoLineHandleComponent"); }
 
 	UE::Math::TVector<double>& NormalField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UGizmoLineHandleComponent.Normal"); }
 	float& HandleSizeField() { return *GetNativePointerField<float*>(this, "UGizmoLineHandleComponent.HandleSize"); }

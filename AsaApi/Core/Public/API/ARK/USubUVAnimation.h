@@ -10,8 +10,8 @@ public:
 	~USubUVAnimation() = delete;
 	USubUVAnimation(const USubUVAnimation&) = delete;
 	USubUVAnimation& operator=(const USubUVAnimation&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USubUVAnimation"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USubUVAnimation"); }
 	int& SubImages_HorizontalField() { return *GetNativePointerField<int*>(this, "USubUVAnimation.SubImages_Horizontal"); }
 	int& SubImages_VerticalField() { return *GetNativePointerField<int*>(this, "USubUVAnimation.SubImages_Vertical"); }
 	float& AlphaThresholdField() { return *GetNativePointerField<float*>(this, "USubUVAnimation.AlphaThreshold"); }

@@ -10,8 +10,8 @@ public:
 	~UReporterBase() = delete;
 	UReporterBase(const UReporterBase&) = delete;
 	UReporterBase& operator=(const UReporterBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReporterBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReporterBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReporterBase"); }
 	bool& bVisibleField() { return *GetNativePointerField<bool*>(this, "UReporterBase.bVisible"); }
 	void Draw(UCanvas* Canvas) { NativeCall<void, UCanvas*>(this, "UReporterBase.Draw(UCanvas*)", Canvas); }
 	void DrawTriangle(UCanvas* Canvas, const UE::Math::TVector2<double>& Vertex1, const UE::Math::TVector2<double>& Vertex2, const UE::Math::TVector2<double>& Vertex3, const FLinearColor& Color) { NativeCall<void, UCanvas*, const UE::Math::TVector2<double>&, const UE::Math::TVector2<double>&, const UE::Math::TVector2<double>&, const FLinearColor&>(this, "UReporterBase.DrawTriangle(UCanvas*,UE::Math::TVector2<double>&,UE::Math::TVector2<double>&,UE::Math::TVector2<double>&,FLinearColor&)", Canvas, Vertex1, Vertex2, Vertex3, Color); }

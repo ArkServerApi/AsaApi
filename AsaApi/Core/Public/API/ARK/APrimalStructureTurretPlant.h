@@ -25,7 +25,7 @@ struct APrimalStructureTurretPlant : APrimalStructureTurret
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureTurretPlant"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureTurretPlant();
     void BeginPlay() { NativeCall<void>(this, "APrimalStructureTurretPlant.BeginPlay()"); }
@@ -42,7 +42,7 @@ struct APrimalStructureTurretPlant : APrimalStructureTurret
     void Stasis() { NativeCall<void>(this, "APrimalStructureTurretPlant.Stasis()"); }
     void Unstasis() { NativeCall<void>(this, "APrimalStructureTurretPlant.Unstasis()"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureTurretPlant"); }
 
 	UE::Math::TVector<double>* GetMuzzleLocation(UE::Math::TVector<double>* result) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "APrimalStructureTurretPlant.GetMuzzleLocation()", result); }
 	int IsAllowedToBuild(APlayerController* PC, UE::Math::TVector<double>* AtLocation, UE::Math::TRotator<double>* AtRotation, FPlacementData& OutPlacementData, bool bDontAdjustForMaxRange, UE::Math::TRotator<double>* PlayerViewRotation, bool bFinalPlacement, bool bUseOriginalOutPlacementData, APawn* BuildingCharacterOverride) { if (!AtLocation) throw std::invalid_argument("Null native value parameter"); if (!AtRotation) throw std::invalid_argument("Null native value parameter"); if (!PlayerViewRotation) throw std::invalid_argument("Null native value parameter"); return NativeCall<int, APlayerController *, UE :: Math :: TVector < double >, UE :: Math :: TRotator < double >, FPlacementData &, bool, UE :: Math :: TRotator < double >, bool, bool, APawn *>(this, "APrimalStructureTurretPlant.IsAllowedToBuild(APlayerController*,UE::Math::TVector<double>,UE::Math::TRotator<double>,FPlacementData&,bool,UE::Math::TRotator<double>,bool,bool,APawn*)", PC, *AtLocation, *AtRotation, OutPlacementData, bDontAdjustForMaxRange, *PlayerViewRotation, bFinalPlacement, bUseOriginalOutPlacementData, BuildingCharacterOverride); }

@@ -9,8 +9,8 @@ public:
 	~UHoudiniHandleComponent() = delete;
 	UHoudiniHandleComponent(const UHoudiniHandleComponent&) = delete;
 	UHoudiniHandleComponent& operator=(const UHoudiniHandleComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoudiniHandleComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoudiniHandleComponent"); }
 
 	bool& bNeedToUpdateTransformField() { return *GetNativePointerField<bool*>(this, "UHoudiniHandleComponent.bNeedToUpdateTransform"); }
 	EHoudiniHandleType& HandleTypeField() { return *GetNativePointerField<EHoudiniHandleType*>(this, "UHoudiniHandleComponent.HandleType"); }

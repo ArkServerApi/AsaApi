@@ -9,8 +9,8 @@ public:
 	~UShooterDiscordUISubsystem() = delete;
 	UShooterDiscordUISubsystem(const UShooterDiscordUISubsystem&) = delete;
 	UShooterDiscordUISubsystem& operator=(const UShooterDiscordUISubsystem&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterDiscordUISubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterDiscordUISubsystem"); }
 
 	FDiscordClientOnStatusChangedMulticast& OnStatusChangedField() { return *GetNativePointerField<FDiscordClientOnStatusChangedMulticast*>(this, "UShooterDiscordUISubsystem.OnStatusChanged"); }
 	FDiscordClientActivityInviteCallbackMulticast& OnActivityInviteField() { return *GetNativePointerField<FDiscordClientActivityInviteCallbackMulticast*>(this, "UShooterDiscordUISubsystem.OnActivityInvite"); }

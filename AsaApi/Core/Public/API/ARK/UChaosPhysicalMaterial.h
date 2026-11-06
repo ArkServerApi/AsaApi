@@ -10,8 +10,8 @@ public:
 	~UChaosPhysicalMaterial() = delete;
 	UChaosPhysicalMaterial(const UChaosPhysicalMaterial&) = delete;
 	UChaosPhysicalMaterial& operator=(const UChaosPhysicalMaterial&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosPhysicalMaterial"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosPhysicalMaterial"); }
 	float& FrictionField() { return *GetNativePointerField<float*>(this, "UChaosPhysicalMaterial.Friction"); }
 	float& StaticFrictionField() { return *GetNativePointerField<float*>(this, "UChaosPhysicalMaterial.StaticFriction"); }
 	float& RestitutionField() { return *GetNativePointerField<float*>(this, "UChaosPhysicalMaterial.Restitution"); }

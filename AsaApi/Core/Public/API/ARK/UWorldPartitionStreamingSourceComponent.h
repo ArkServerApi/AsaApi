@@ -9,8 +9,8 @@ public:
 	~UWorldPartitionStreamingSourceComponent() = delete;
 	UWorldPartitionStreamingSourceComponent(const UWorldPartitionStreamingSourceComponent&) = delete;
 	UWorldPartitionStreamingSourceComponent& operator=(const UWorldPartitionStreamingSourceComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldPartitionStreamingSourceComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldPartitionStreamingSourceComponent"); }
 
 	EStreamingSourceTargetBehavior& TargetBehaviorField() { return *GetNativePointerField<EStreamingSourceTargetBehavior*>(this, "UWorldPartitionStreamingSourceComponent.TargetBehavior"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& TargetGridsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UWorldPartitionStreamingSourceComponent.TargetGrids"); }

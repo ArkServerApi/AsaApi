@@ -10,12 +10,12 @@ public:
 	~UProgressionTreeGraph_Milestones() = delete;
 	UProgressionTreeGraph_Milestones(const UProgressionTreeGraph_Milestones&) = delete;
 	UProgressionTreeGraph_Milestones& operator=(const UProgressionTreeGraph_Milestones&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UProgressionTreeGraph_Milestones"); }
 
 
 
 	bool ShouldEnforceMilestoneOrder() { return NativeCall<bool>(this, "UProgressionTreeGraph_Milestones.ShouldEnforceMilestoneOrder()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UProgressionTreeGraph_Milestones.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UProgressionTreeGraph_Milestones"); }
 
 	BitFieldValue<bool, unsigned char> bIsMilestoneBoard() { return { this, "UProgressionTreeGraph_Milestones.bIsMilestoneBoard"}; }
 	BitFieldValue<bool, unsigned char> bCheckRequiredMaps() { return { this, "UProgressionTreeGraph_Milestones.bCheckRequiredMaps"}; }

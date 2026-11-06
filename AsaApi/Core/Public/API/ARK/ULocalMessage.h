@@ -10,7 +10,7 @@ public:
 	~ULocalMessage() = delete;
 	ULocalMessage(const ULocalMessage&) = delete;
 	ULocalMessage& operator=(const ULocalMessage&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULocalMessage.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULocalMessage"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULocalMessage"); }
 	void ClientReceive(const FClientReceiveData& ClientData) { NativeCall<void, const FClientReceiveData&>(this, "ULocalMessage.ClientReceive(FClientReceiveData&)", ClientData); }
 };

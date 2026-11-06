@@ -15,9 +15,10 @@ struct ASwitchActor : AActor
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASwitchActor"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesASwitchActor();
 	void SelectOption(int OptionIndex) { NativeCall<void, int>(this, "ASwitchActor.SelectOption(int)", OptionIndex); }
 	void PostLoad() { NativeCall<void>(this, "ASwitchActor.PostLoad()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASwitchActor"); }
 };

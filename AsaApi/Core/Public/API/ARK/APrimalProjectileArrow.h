@@ -17,7 +17,7 @@ struct APrimalProjectileArrow : AShooterProjectile
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalProjectileArrow.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalProjectileArrow"); }
 	void PickedUp(AShooterCharacter* ByCharacter) { NativeCall<void, AShooterCharacter*>(this, "APrimalProjectileArrow.PickedUp(AShooterCharacter*)", ByCharacter); }
 	void PickUpCheck() { NativeCall<void>(this, "APrimalProjectileArrow.PickUpCheck()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -27,7 +27,7 @@ struct APrimalProjectileArrow : AShooterProjectile
 	void PickUpCheck_Implementation() { NativeCall<void>(this, "APrimalProjectileArrow.PickUpCheck_Implementation()"); }
 	void PickedUp_Implementation(AShooterCharacter* ByCharacter) { NativeCall<void, AShooterCharacter*>(this, "APrimalProjectileArrow.PickedUp_Implementation(AShooterCharacter*)", ByCharacter); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalProjectileArrow"); }
 
 	FTimerHandle& ArrowPickupTimerHandleField() { return *GetNativePointerField<FTimerHandle*>(this, "APrimalProjectileArrow.ArrowPickupTimerHandle"); }
 	void ClearPickupItemClass() { NativeCall<void>(this, "APrimalProjectileArrow.ClearPickupItemClass()"); }

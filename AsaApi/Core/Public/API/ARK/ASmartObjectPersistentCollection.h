@@ -9,8 +9,8 @@ public:
 	~ASmartObjectPersistentCollection() = delete;
 	ASmartObjectPersistentCollection(const ASmartObjectPersistentCollection&) = delete;
 	ASmartObjectPersistentCollection& operator=(const ASmartObjectPersistentCollection&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASmartObjectPersistentCollection"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASmartObjectPersistentCollection"); }
 
 	FSmartObjectContainer& SmartObjectContainerField() { return *GetNativePointerField<FSmartObjectContainer*>(this, "ASmartObjectPersistentCollection.SmartObjectContainer"); }
 	bool& bRegisteredField() { return *GetNativePointerField<bool*>(this, "ASmartObjectPersistentCollection.bRegistered"); }

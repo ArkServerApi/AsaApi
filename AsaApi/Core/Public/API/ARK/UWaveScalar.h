@@ -9,8 +9,8 @@ public:
 	~UWaveScalar() = delete;
 	UWaveScalar(const UWaveScalar&) = delete;
 	UWaveScalar& operator=(const UWaveScalar&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaveScalar"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaveScalar"); }
 
 	float& MagnitudeField() { return *GetNativePointerField<float*>(this, "UWaveScalar.Magnitude"); }
 	UE::Math::TVector<double>& PositionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UWaveScalar.Position"); }

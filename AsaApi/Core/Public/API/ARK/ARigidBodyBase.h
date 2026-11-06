@@ -9,7 +9,7 @@ public:
 	~ARigidBodyBase() = delete;
 	ARigidBodyBase(const ARigidBodyBase&) = delete;
 	ARigidBodyBase& operator=(const ARigidBodyBase&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ARigidBodyBase"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ARigidBodyBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ARigidBodyBase"); }
 };

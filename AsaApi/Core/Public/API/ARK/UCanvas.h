@@ -10,8 +10,8 @@ public:
 	~UCanvas() = delete;
 	UCanvas(const UCanvas&) = delete;
 	UCanvas& operator=(const UCanvas&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCanvas"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCanvas"); }
 	float& OrgXField() { return *GetNativePointerField<float*>(this, "UCanvas.OrgX"); }
 	float& OrgYField() { return *GetNativePointerField<float*>(this, "UCanvas.OrgY"); }
 	float& ClipXField() { return *GetNativePointerField<float*>(this, "UCanvas.ClipX"); }

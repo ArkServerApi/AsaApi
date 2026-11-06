@@ -9,8 +9,8 @@ public:
 	~UHeterogeneousVolumeComponent() = delete;
 	UHeterogeneousVolumeComponent(const UHeterogeneousVolumeComponent&) = delete;
 	UHeterogeneousVolumeComponent& operator=(const UHeterogeneousVolumeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHeterogeneousVolumeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHeterogeneousVolumeComponent"); }
 
 	float& FrameField() { return *GetNativePointerField<float*>(this, "UHeterogeneousVolumeComponent.Frame"); }
 	float& FrameRateField() { return *GetNativePointerField<float*>(this, "UHeterogeneousVolumeComponent.FrameRate"); }

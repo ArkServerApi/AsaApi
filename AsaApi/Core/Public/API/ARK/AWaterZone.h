@@ -10,8 +10,8 @@ public:
 	~AWaterZone() = delete;
 	AWaterZone(const AWaterZone&) = delete;
 	AWaterZone& operator=(const AWaterZone&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterZone"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterZone"); }
 
 	int& WaterInfoTextureArrayNumSlicesField() { return *GetNativePointerField<int*>(this, "AWaterZone.WaterInfoTextureArrayNumSlices"); }
 	UE::Math::TVector2<double>& ZoneExtentField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "AWaterZone.ZoneExtent"); }

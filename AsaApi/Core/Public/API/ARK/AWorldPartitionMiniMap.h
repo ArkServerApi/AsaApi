@@ -10,8 +10,8 @@ public:
 	~AWorldPartitionMiniMap() = delete;
 	AWorldPartitionMiniMap(const AWorldPartitionMiniMap&) = delete;
 	AWorldPartitionMiniMap& operator=(const AWorldPartitionMiniMap&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldPartitionMiniMap"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldPartitionMiniMap"); }
 
 	UE::Math::TBox2<double>& UVOffsetField() { return *GetNativePointerField<UE::Math::TBox2<double>*>(this, "AWorldPartitionMiniMap.UVOffset"); }
 	int& WorldUnitsPerPixelField() { return *GetNativePointerField<int*>(this, "AWorldPartitionMiniMap.WorldUnitsPerPixel"); }

@@ -9,8 +9,8 @@ public:
 	~UMarketTradeLogPanelWidget() = delete;
 	UMarketTradeLogPanelWidget(const UMarketTradeLogPanelWidget&) = delete;
 	UMarketTradeLogPanelWidget& operator=(const UMarketTradeLogPanelWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMarketTradeLogPanelWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMarketTradeLogPanelWidget"); }
 
 	UUI_Market*& MarketUIField() { return *GetNativePointerField<UUI_Market**>(this, "UMarketTradeLogPanelWidget.MarketUI"); }
 	APrimalStructureMarket*& MarketRefField() { return *GetNativePointerField<APrimalStructureMarket**>(this, "UMarketTradeLogPanelWidget.MarketRef"); }

@@ -10,8 +10,8 @@ public:
 	~APrimalBuff_StorageInterface() = delete;
 	APrimalBuff_StorageInterface(const APrimalBuff_StorageInterface&) = delete;
 	APrimalBuff_StorageInterface& operator=(const APrimalBuff_StorageInterface&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_StorageInterface"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_StorageInterface"); }
 
 	bool& bLastLocatedItemClassWasDediOnlyField() { return *GetNativePointerField<bool*>(this, "APrimalBuff_StorageInterface.bLastLocatedItemClassWasDediOnly"); }
 	double& LastLocateItemRequestedTimeField() { return *GetNativePointerField<double*>(this, "APrimalBuff_StorageInterface.LastLocateItemRequestedTime"); }

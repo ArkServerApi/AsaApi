@@ -9,8 +9,8 @@ public:
 	~ABuoyancyManager() = delete;
 	ABuoyancyManager(const ABuoyancyManager&) = delete;
 	ABuoyancyManager& operator=(const ABuoyancyManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABuoyancyManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABuoyancyManager"); }
 
 	TArray<UBuoyancyComponent*, TSizedDefaultAllocator<32> >& BuoyancyComponentsActiveField() { return *GetNativePointerField<TArray<UBuoyancyComponent*, TSizedDefaultAllocator<32> >*>(this, "ABuoyancyManager.BuoyancyComponentsActive"); }
 	FBuoyancyManagerAsyncCallback*& AsyncCallbackField() { return *GetNativePointerField<FBuoyancyManagerAsyncCallback**>(this, "ABuoyancyManager.AsyncCallback"); }

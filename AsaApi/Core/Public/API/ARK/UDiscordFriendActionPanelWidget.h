@@ -9,8 +9,8 @@ public:
 	~UDiscordFriendActionPanelWidget() = delete;
 	UDiscordFriendActionPanelWidget(const UDiscordFriendActionPanelWidget&) = delete;
 	UDiscordFriendActionPanelWidget& operator=(const UDiscordFriendActionPanelWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDiscordFriendActionPanelWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDiscordFriendActionPanelWidget"); }
 
 	FDiscordFriendActionPanelState& CurrentStateField() { return *GetNativePointerField<FDiscordFriendActionPanelState*>(this, "UDiscordFriendActionPanelWidget.CurrentState"); }
 	FDiscordFriendViewData& CurrentViewDataField() { return *GetNativePointerField<FDiscordFriendViewData*>(this, "UDiscordFriendActionPanelWidget.CurrentViewData"); }

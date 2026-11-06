@@ -45,7 +45,7 @@ struct APrimalWeaponElectronicBinoculars : AShooterWeapon_Melee
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWeaponElectronicBinoculars"); }
 	void ClientSetActivateNightVision(char bActive) { NativeCall<void, char>(this, "APrimalWeaponElectronicBinoculars.ClientSetActivateNightVision(signedchar)", bActive); }
 	void ServerSetActivateNightVision(char bActive) { NativeCall<void, char>(this, "APrimalWeaponElectronicBinoculars.ServerSetActivateNightVision(signedchar)", bActive); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -73,4 +73,5 @@ struct APrimalWeaponElectronicBinoculars : AShooterWeapon_Melee
 
 	float GetZoomFloat() { return NativeCall<float>(this, "APrimalWeaponElectronicBinoculars.GetZoomFloat()"); }
 	void SetBinocularsTargeting(bool SetTargeting) { NativeCall<void, bool>(this, "APrimalWeaponElectronicBinoculars.SetBinocularsTargeting(bool)", SetTargeting); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWeaponElectronicBinoculars"); }
 };

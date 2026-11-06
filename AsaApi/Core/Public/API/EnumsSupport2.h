@@ -2,4 +2,4 @@
 
 
 typedef EWorldType::Type ETeleportType;
-typedef EWorldType::Type EInternalObjectFlags;
+#include "Types/EInternalObjectFlags.h"

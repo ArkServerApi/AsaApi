@@ -10,8 +10,8 @@ public:
 	~ULandscapeSubsystem() = delete;
 	ULandscapeSubsystem(const ULandscapeSubsystem&) = delete;
 	ULandscapeSubsystem& operator=(const ULandscapeSubsystem&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeSubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeSubsystem"); }
 	bool& bIsGrassCreationPrioritizedField() { return *GetNativePointerField<bool*>(this, "ULandscapeSubsystem.bIsGrassCreationPrioritized"); }
 	FDelegateHandle& OnNaniteWorldSettingsChangedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "ULandscapeSubsystem.OnNaniteWorldSettingsChangedHandle"); }
 	FLandscapeTextureStreamingManager*& TextureStreamingManagerField() { return *GetNativePointerField<FLandscapeTextureStreamingManager**>(this, "ULandscapeSubsystem.TextureStreamingManager"); }

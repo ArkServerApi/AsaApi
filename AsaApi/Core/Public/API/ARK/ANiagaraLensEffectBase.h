@@ -9,8 +9,8 @@ public:
 	~ANiagaraLensEffectBase() = delete;
 	ANiagaraLensEffectBase(const ANiagaraLensEffectBase&) = delete;
 	ANiagaraLensEffectBase& operator=(const ANiagaraLensEffectBase&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANiagaraLensEffectBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANiagaraLensEffectBase"); }
 
 	float& BaseAuthoredFOVField() { return *GetNativePointerField<float*>(this, "ANiagaraLensEffectBase.BaseAuthoredFOV"); }
 	BitFieldValue<bool, unsigned char> bAllowMultipleInstances() { return { this, "ANiagaraLensEffectBase.bAllowMultipleInstances"}; }

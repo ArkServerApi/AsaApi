@@ -9,8 +9,8 @@ public:
 	~UPlaneReflectionCaptureComponent() = delete;
 	UPlaneReflectionCaptureComponent(const UPlaneReflectionCaptureComponent&) = delete;
 	UPlaneReflectionCaptureComponent& operator=(const UPlaneReflectionCaptureComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPlaneReflectionCaptureComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPlaneReflectionCaptureComponent"); }
 
 	float& InfluenceRadiusScaleField() { return *GetNativePointerField<float*>(this, "UPlaneReflectionCaptureComponent.InfluenceRadiusScale"); }
 	void UpdatePreviewShape() { NativeCall<void>(this, "UPlaneReflectionCaptureComponent.UpdatePreviewShape()"); }

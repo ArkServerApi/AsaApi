@@ -10,8 +10,8 @@ public:
 	~UPrimalInventoryComponent_StorageInterface() = delete;
 	UPrimalInventoryComponent_StorageInterface(const UPrimalInventoryComponent_StorageInterface&) = delete;
 	UPrimalInventoryComponent_StorageInterface& operator=(const UPrimalInventoryComponent_StorageInterface&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent_StorageInterface"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent_StorageInterface"); }
 
 	int& MaxThresholdSizeField() { return *GetNativePointerField<int*>(this, "UPrimalInventoryComponent_StorageInterface.MaxThresholdSize"); }
 	double& LastUpdatedWirelessItemsTimeField() { return *GetNativePointerField<double*>(this, "UPrimalInventoryComponent_StorageInterface.LastUpdatedWirelessItemsTime"); }

@@ -25,7 +25,7 @@ struct APrimalBotCharacter : APrimalDinoCharacter
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBotCharacter"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalBotCharacter();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -330,4 +330,5 @@ struct APrimalBotCharacter : APrimalDinoCharacter
 	bool IsPullingBowString() { return NativeCall<bool>(this, "APrimalBotCharacter.IsPullingBowString()"); }
 	bool AttemptAddWildGeneTraits(bool bForceReRoll) { return NativeCall<bool, bool>(this, "APrimalBotCharacter.AttemptAddWildGeneTraits(bool)", bForceReRoll); }
 	void NetStopFireWeapon() { NativeCall<void>(this, "APrimalBotCharacter.NetStopFireWeapon()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBotCharacter"); }
 };

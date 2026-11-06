@@ -9,8 +9,8 @@ public:
 	~UGeometryCollectionISMPoolComponent() = delete;
 	UGeometryCollectionISMPoolComponent(const UGeometryCollectionISMPoolComponent&) = delete;
 	UGeometryCollectionISMPoolComponent& operator=(const UGeometryCollectionISMPoolComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGeometryCollectionISMPoolComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGeometryCollectionISMPoolComponent"); }
 
 	unsigned int& NextMeshGroupIdField() { return *GetNativePointerField<unsigned int*>(this, "UGeometryCollectionISMPoolComponent.NextMeshGroupId"); }
 	FGeometryCollectionISMPool& PoolField() { return *GetNativePointerField<FGeometryCollectionISMPool*>(this, "UGeometryCollectionISMPoolComponent.Pool"); }

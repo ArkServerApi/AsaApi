@@ -4,6 +4,6 @@
 struct ANPCZoneSpawnVolume : AVolume
 {
 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANPCZoneSpawnVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANPCZoneSpawnVolume"); }
 };

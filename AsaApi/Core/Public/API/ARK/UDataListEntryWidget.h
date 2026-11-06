@@ -9,7 +9,7 @@ public:
 	~UDataListEntryWidget() = delete;
 	UDataListEntryWidget(const UDataListEntryWidget&) = delete;
 	UDataListEntryWidget& operator=(const UDataListEntryWidget&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListEntryWidget"); }
 
 	FName& DataListButtonNameField() { return *GetNativePointerField<FName*>(this, "UDataListEntryWidget.DataListButtonName"); }
 	int& ExistingButtonExplicitIndexTypeField() { return *GetNativePointerField<int*>(this, "UDataListEntryWidget.ExistingButtonExplicitIndexType"); }
@@ -66,6 +66,6 @@ public:
 	void ReleaseSlateResources(bool bReleaseChildren) { NativeCall<void, bool>(this, "UDataListEntryWidget.ReleaseSlateResources(bool)", bReleaseChildren); }
 	void SetEnabled(bool bEnable) { NativeCall<void, bool>(this, "UDataListEntryWidget.SetEnabled(bool)", bEnable); }
 	bool AllowDragging() { return NativeCall<bool>(this, "UDataListEntryWidget.AllowDragging()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDataListEntryWidget.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListEntryWidget"); }
 	void GetShowExtraCanvasBar(bool& IsVisible, float& Percent, FLinearColor& BarColor) { NativeCall<void, bool&, float&, FLinearColor&>(this, "UDataListEntryWidget.GetShowExtraCanvasBar(bool&,float&,FLinearColor&)", IsVisible, Percent, BarColor); }
 };

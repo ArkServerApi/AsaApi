@@ -9,7 +9,7 @@ public:
 	~UWidget() = delete;
 	UWidget(const UWidget&) = delete;
 	UWidget& operator=(const UWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWidget"); }
 
 };

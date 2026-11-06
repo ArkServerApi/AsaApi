@@ -9,8 +9,8 @@ public:
 	~UGameplayControlRotationComponent() = delete;
 	UGameplayControlRotationComponent(const UGameplayControlRotationComponent&) = delete;
 	UGameplayControlRotationComponent& operator=(const UGameplayControlRotationComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameplayControlRotationComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameplayControlRotationComponent"); }
 
 	float& AxisActionAngularSpeedThresholdField() { return *GetNativePointerField<float*>(this, "UGameplayControlRotationComponent.AxisActionAngularSpeedThreshold"); }
 	float& AxisActionMagnitudeThresholdField() { return *GetNativePointerField<float*>(this, "UGameplayControlRotationComponent.AxisActionMagnitudeThreshold"); }

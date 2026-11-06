@@ -9,8 +9,8 @@ public:
 	~UMassAgentComponent() = delete;
 	UMassAgentComponent(const UMassAgentComponent&) = delete;
 	UMassAgentComponent& operator=(const UMassAgentComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMassAgentComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMassAgentComponent"); }
 
 	FMassArchetypeCompositionDescriptor& PuppetSpecificAdditionField() { return *GetNativePointerField<FMassArchetypeCompositionDescriptor*>(this, "UMassAgentComponent.PuppetSpecificAddition"); }
 	FMassEntityConfig& EntityConfigField() { return *GetNativePointerField<FMassEntityConfig*>(this, "UMassAgentComponent.EntityConfig"); }

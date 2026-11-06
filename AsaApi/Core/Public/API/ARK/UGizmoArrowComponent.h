@@ -9,8 +9,8 @@ public:
 	~UGizmoArrowComponent() = delete;
 	UGizmoArrowComponent(const UGizmoArrowComponent&) = delete;
 	UGizmoArrowComponent& operator=(const UGizmoArrowComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGizmoArrowComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGizmoArrowComponent"); }
 
 	UE::Math::TVector<double>& DirectionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UGizmoArrowComponent.Direction"); }
 	float& GapField() { return *GetNativePointerField<float*>(this, "UGizmoArrowComponent.Gap"); }

@@ -19,7 +19,7 @@ struct UDamageType : UObject
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UDamageType.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDamageType"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDamageType"); }
 	//void UDamageType(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UDamageType.UDamageType(FObjectInitializer&)", ObjectInitializer); }
 };

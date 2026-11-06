@@ -9,8 +9,8 @@ public:
 	~UBeamWeaponComponent() = delete;
 	UBeamWeaponComponent(const UBeamWeaponComponent&) = delete;
 	UBeamWeaponComponent& operator=(const UBeamWeaponComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBeamWeaponComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBeamWeaponComponent"); }
 
 	UParticleSystem*& ParticleSystemTemplateField() { return *GetNativePointerField<UParticleSystem**>(this, "UBeamWeaponComponent.ParticleSystemTemplate"); }
 	UParticleSystem*& ChargeupParticleSystemTemplateField() { return *GetNativePointerField<UParticleSystem**>(this, "UBeamWeaponComponent.ChargeupParticleSystemTemplate"); }

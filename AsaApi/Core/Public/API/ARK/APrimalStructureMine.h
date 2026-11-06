@@ -10,8 +10,8 @@ public:
 	~APrimalStructureMine() = delete;
 	APrimalStructureMine(const APrimalStructureMine&) = delete;
 	APrimalStructureMine& operator=(const APrimalStructureMine&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureMine"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureMine"); }
 
 	float& MineSpeedField() { return *GetNativePointerField<float*>(this, "APrimalStructureMine.MineSpeed"); }
 	float& MineExplodeTimeField() { return *GetNativePointerField<float*>(this, "APrimalStructureMine.MineExplodeTime"); }

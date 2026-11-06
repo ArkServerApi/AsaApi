@@ -120,8 +120,8 @@ struct APlayerController : APrimalController, PlayerControllerExtensions
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APlayerController.StaticClass()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APlayerController.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APlayerController"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APlayerController"); }
 	const UObject* GetStreamingSourceOwner() { return NativeCall<const UObject*>(this, "APlayerController.GetStreamingSourceOwner()"); }
 	bool ShouldFlushKeysWhenViewportFocusChanges() { return NativeCall<bool>(this, "APlayerController.ShouldFlushKeysWhenViewportFocusChanges()"); }
 	EStreamingSourcePriority GetStreamingSourcePriority() { return NativeCall<EStreamingSourcePriority>(this, "APlayerController.GetStreamingSourcePriority()"); }

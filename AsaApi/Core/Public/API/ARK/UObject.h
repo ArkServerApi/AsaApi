@@ -12,7 +12,7 @@ struct UObject : UObjectBaseUtility
 	bool ProcessConsoleExec(const wchar_t* Cmd, FOutputDevice* Ar, UObject* Executor) { return NativeCall<bool, const wchar_t*, FOutputDevice*, UObject*>(this, "UObject.ProcessConsoleExec(wchar_t*,FOutputDevice&,UObject*)", Cmd, Ar, Executor); }
 	FString* GetDetailedInfoInternal(FString* result) { return NativeCall<FString*, FString*>(this, "UObject.GetDetailedInfoInternal()", result); }
 	//void ~UObject() { NativeCall<void>(this, "UObject.~UObject()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UObject.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UObject"); }
 	//unsigned __int64 GetResourceSizeBytes(EResourceSizeMode::Type Mode) { return NativeCall<unsigned __int64, EResourceSizeMode::Type>(this, "UObject.GetResourceSizeBytes(EResourceSizeMode::Type)", Mode); }
 	bool AreAllOuterObjectsValid() { return NativeCall<bool>(this, "UObject.AreAllOuterObjectsValid()"); }
 	bool IsInBlueprint() { return NativeCall<bool>(this, "UObject.IsInBlueprint()"); }
@@ -75,5 +75,5 @@ struct UObject : UObjectBaseUtility
 
 	ARK_API FProperty* FindProperty(FName name);
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UObject"); }
 };

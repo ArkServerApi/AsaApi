@@ -9,7 +9,7 @@ public:
 	~USplineComponent() = delete;
 	USplineComponent(const USplineComponent&) = delete;
 	USplineComponent& operator=(const USplineComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USplineComponent"); }
 
 	FSpline& SplineField() { return *GetNativePointerField<FSpline*>(this, "USplineComponent.Spline"); }
 	FSplineCurves& SplineCurvesField() { return *GetNativePointerField<FSplineCurves*>(this, "USplineComponent.SplineCurves"); }
@@ -81,7 +81,7 @@ public:
 	bool GetIgnoreBoundsForEditorFocus() { return NativeCall<bool>(this, "USplineComponent.GetIgnoreBoundsForEditorFocus()"); }
 	UE::Math::TVector<double>* FindDirectionClosestToWorldLocation(UE::Math::TVector<double>* result, const UE::Math::TVector<double>& WorldLocation, ESplineCoordinateSpace::Type CoordinateSpace) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const UE::Math::TVector<double>&, ESplineCoordinateSpace::Type>(this, "USplineComponent.FindDirectionClosestToWorldLocation(UE::Math::TVector<double>&,ESplineCoordinateSpace::Type)", result, WorldLocation, CoordinateSpace); }
 	void UpdateSpline() { NativeCall<void>(this, "USplineComponent.UpdateSpline()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USplineComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USplineComponent"); }
 	float GetFloatPropertyAtSplinePoint(int Index, FName PropertyName) { return NativeCall<float, int, FName>(this, "USplineComponent.GetFloatPropertyAtSplinePoint(int,FName)", Index, PropertyName); }
 	UE::Math::TVector<double>* GetTangentAtSplineInputKey(UE::Math::TVector<double>* result, float InKey, ESplineCoordinateSpace::Type CoordinateSpace) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, float, ESplineCoordinateSpace::Type>(this, "USplineComponent.GetTangentAtSplineInputKey(float,ESplineCoordinateSpace::Type)", result, InKey, CoordinateSpace); }
 	bool ShouldUseSplineCurves() { return NativeCall<bool>(this, "USplineComponent.ShouldUseSplineCurves()"); }

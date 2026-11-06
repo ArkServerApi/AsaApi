@@ -10,8 +10,8 @@ public:
 	~UMaterialInterface() = delete;
 	UMaterialInterface(const UMaterialInterface&) = delete;
 	UMaterialInterface& operator=(const UMaterialInterface&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UMaterialInterface.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialInterface"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialInterface"); }
 	FRenderCommandFence& ParentRefFenceField() { return *GetNativePointerField<FRenderCommandFence*>(this, "UMaterialInterface.ParentRefFence"); }
 	FLightmassMaterialInterfaceSettings& LightmassSettingsField() { return *GetNativePointerField<FLightmassMaterialInterfaceSettings*>(this, "UMaterialInterface.LightmassSettings"); }
 	unsigned int& FeatureLevelsToForceCompileField() { return *GetNativePointerField<unsigned int*>(this, "UMaterialInterface.FeatureLevelsToForceCompile"); }

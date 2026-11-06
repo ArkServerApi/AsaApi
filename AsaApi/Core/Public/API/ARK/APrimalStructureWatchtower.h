@@ -10,8 +10,8 @@ public:
 	~APrimalStructureWatchtower() = delete;
 	APrimalStructureWatchtower(const APrimalStructureWatchtower&) = delete;
 	APrimalStructureWatchtower& operator=(const APrimalStructureWatchtower&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureWatchtower"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureWatchtower"); }
 
 
 

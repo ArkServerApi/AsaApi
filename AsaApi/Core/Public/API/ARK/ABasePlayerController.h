@@ -22,7 +22,7 @@ struct ABasePlayerController : APrimalPlayerController
 	void ServerCheat(const FString* Msg) { NativeCall<void, const FString*>(this, "ABasePlayerController.ServerCheat(FString&)", Msg); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesABasePlayerController();
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "ABasePlayerController.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABasePlayerController"); }
 	void ManageVirtualCursor() { NativeCall<void>(this, "ABasePlayerController.ManageVirtualCursor()"); }
 	void SetVirtualCursorPosition(UE::Math::TVector2<double>* NewCursorPos) { NativeCall<void, UE::Math::TVector2<double>*>(this, "ABasePlayerController.SetVirtualCursorPosition(UE::Math::TVector2<double>)", NewCursorPos); }
 	void TickActor(float DeltaTime, ELevelTick TickType, FActorTickFunction* ThisTickFunction) { NativeCall<void, float, ELevelTick, FActorTickFunction*>(this, "ABasePlayerController.TickActor(float,ELevelTick,FActorTickFunction&)", DeltaTime, TickType, ThisTickFunction); }
@@ -45,7 +45,7 @@ struct ABasePlayerController : APrimalPlayerController
 	bool IsLookInputIgnored() { return NativeCall<bool>(this, "ABasePlayerController.IsLookInputIgnored()"); }
 	bool IsGameInputAllowed() { return NativeCall<bool>(this, "ABasePlayerController.IsGameInputAllowed()"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABasePlayerController"); }
 
 	bool& bHasSentStartEventsField() { return *GetNativePointerField<bool*>(this, "ABasePlayerController.bHasSentStartEvents"); }
 	TWeakObjectPtr<UUI_DiscordNotifications, FWeakObjectPtr>& OpenDiscordNotificationSceneField() { return *GetNativePointerField<TWeakObjectPtr<UUI_DiscordNotifications, FWeakObjectPtr>*>(this, "ABasePlayerController.OpenDiscordNotificationScene"); }

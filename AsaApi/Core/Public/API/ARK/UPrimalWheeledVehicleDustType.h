@@ -9,8 +9,8 @@ public:
 	~UPrimalWheeledVehicleDustType() = delete;
 	UPrimalWheeledVehicleDustType(const UPrimalWheeledVehicleDustType&) = delete;
 	UPrimalWheeledVehicleDustType& operator=(const UPrimalWheeledVehicleDustType&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWheeledVehicleDustType"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWheeledVehicleDustType"); }
 
 	UParticleSystem*& DefaultFXField() { return *GetNativePointerField<UParticleSystem**>(this, "UPrimalWheeledVehicleDustType.DefaultFX"); }
 	UParticleSystem*& ConcreteFXField() { return *GetNativePointerField<UParticleSystem**>(this, "UPrimalWheeledVehicleDustType.ConcreteFX"); }

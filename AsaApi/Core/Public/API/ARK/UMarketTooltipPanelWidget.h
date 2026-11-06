@@ -9,8 +9,8 @@ public:
 	~UMarketTooltipPanelWidget() = delete;
 	UMarketTooltipPanelWidget(const UMarketTooltipPanelWidget&) = delete;
 	UMarketTooltipPanelWidget& operator=(const UMarketTooltipPanelWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMarketTooltipPanelWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMarketTooltipPanelWidget"); }
 
 	FName& TooltipScrollBoxNameField() { return *GetNativePointerField<FName*>(this, "UMarketTooltipPanelWidget.TooltipScrollBoxName"); }
 	FName& TooltipScaleBoxNameField() { return *GetNativePointerField<FName*>(this, "UMarketTooltipPanelWidget.TooltipScaleBoxName"); }

@@ -10,8 +10,8 @@ public:
 	~UCameraModifier() = delete;
 	UCameraModifier(const UCameraModifier&) = delete;
 	UCameraModifier& operator=(const UCameraModifier&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCameraModifier.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCameraModifier"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCameraModifier"); }
 	unsigned char& PriorityField() { return *GetNativePointerField<unsigned char*>(this, "UCameraModifier.Priority"); }
 	float& AlphaInTimeField() { return *GetNativePointerField<float*>(this, "UCameraModifier.AlphaInTime"); }
 	float& AlphaOutTimeField() { return *GetNativePointerField<float*>(this, "UCameraModifier.AlphaOutTime"); }

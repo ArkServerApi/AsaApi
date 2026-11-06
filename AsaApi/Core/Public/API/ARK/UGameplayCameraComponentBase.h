@@ -9,7 +9,7 @@ public:
 	~UGameplayCameraComponentBase() = delete;
 	UGameplayCameraComponentBase(const UGameplayCameraComponentBase&) = delete;
 	UGameplayCameraComponentBase& operator=(const UGameplayCameraComponentBase&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameplayCameraComponentBase"); }
 
 	TEnumAsByte<EAutoReceiveInput::Type>& DefaultPlayerField() { return *GetNativePointerField<TEnumAsByte<EAutoReceiveInput::Type>*>(this, "UGameplayCameraComponentBase.DefaultPlayer"); }
 	bool& bRunStandaloneCameraSystemField() { return *GetNativePointerField<bool*>(this, "UGameplayCameraComponentBase.bRunStandaloneCameraSystem"); }
@@ -18,7 +18,7 @@ public:
 	bool& bIsOwnedOutputCameraComponentField() { return *GetNativePointerField<bool*>(this, "UGameplayCameraComponentBase.bIsOwnedOutputCameraComponent"); }
 	bool& bIsCameraCutNextFrameField() { return *GetNativePointerField<bool*>(this, "UGameplayCameraComponentBase.bIsCameraCutNextFrame"); }
 	UCameraAsset* OnCreateEvaluationContext() { return NativeCall<UCameraAsset*>(this, "UGameplayCameraComponentBase.OnCreateEvaluationContext()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGameplayCameraComponentBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameplayCameraComponentBase"); }
 	bool EnsureCameraSystemHostIfNeeded() { return NativeCall<bool>(this, "UGameplayCameraComponentBase.EnsureCameraSystemHostIfNeeded()"); }
 	static void AddReferencedObjects(UObject* InThis, FReferenceCollector& Collector) { NativeCall<void, UObject*, FReferenceCollector&>(nullptr, "UGameplayCameraComponentBase.AddReferencedObjects(UObject*,FReferenceCollector&)", InThis, Collector); }
 	void ActivateCameraForPlayerController(APlayerController* PlayerController, bool bSetAsViewTarget) { NativeCall<void, APlayerController*, bool>(this, "UGameplayCameraComponentBase.ActivateCameraForPlayerController(APlayerController*,bool)", PlayerController, bSetAsViewTarget); }

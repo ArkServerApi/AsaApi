@@ -9,8 +9,8 @@ public:
 	~AEQSTestingPawn() = delete;
 	AEQSTestingPawn(const AEQSTestingPawn&) = delete;
 	AEQSTestingPawn& operator=(const AEQSTestingPawn&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AEQSTestingPawn"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AEQSTestingPawn"); }
 
 	float& TimeLimitPerStepField() { return *GetNativePointerField<float*>(this, "AEQSTestingPawn.TimeLimitPerStep"); }
 	int& StepToDebugDrawField() { return *GetNativePointerField<int*>(this, "AEQSTestingPawn.StepToDebugDraw"); }

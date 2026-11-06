@@ -9,8 +9,8 @@ public:
 	~ALandscapeGizmoActor() = delete;
 	ALandscapeGizmoActor(const ALandscapeGizmoActor&) = delete;
 	ALandscapeGizmoActor& operator=(const ALandscapeGizmoActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscapeGizmoActor"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ALandscapeGizmoActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscapeGizmoActor"); }
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "ALandscapeGizmoActor.IsLevelBoundsRelevant()"); }
 };

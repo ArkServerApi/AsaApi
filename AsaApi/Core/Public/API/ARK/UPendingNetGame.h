@@ -9,7 +9,7 @@ public:
 	~UPendingNetGame() = delete;
 	UPendingNetGame(const UPendingNetGame&) = delete;
 	UPendingNetGame& operator=(const UPendingNetGame&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPendingNetGame.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPendingNetGame"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPendingNetGame"); }
 
 };

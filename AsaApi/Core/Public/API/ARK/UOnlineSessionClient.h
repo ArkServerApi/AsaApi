@@ -9,7 +9,7 @@ public:
 	~UOnlineSessionClient() = delete;
 	UOnlineSessionClient(const UOnlineSessionClient&) = delete;
 	UOnlineSessionClient& operator=(const UOnlineSessionClient&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UOnlineSessionClient.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UOnlineSessionClient"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UOnlineSessionClient"); }
 
 };

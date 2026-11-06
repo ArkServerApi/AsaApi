@@ -59,7 +59,7 @@ struct APrimalStructureDoor : APrimalStructure
 
     // Functions
 
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureDoor.StaticClass()"); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureDoor"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureDoor();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -92,7 +92,7 @@ struct APrimalStructureDoor : APrimalStructure
 	char& DoorOpenStateField() { return *GetNativePointerField<char*>(this, "APrimalStructureDoor.DoorOpenState"); }
 	char& DelayedDoorStateField() { return *GetNativePointerField<char*>(this, "APrimalStructureDoor.DelayedDoorState"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureDoor"); }
 
 	int GetDoorState() { return NativeCall<int>(this, "APrimalStructureDoor.GetDoorState()"); }
 	bool HasSamePinCode(APrimalStructureItemContainer* otherContainer) { return NativeCall<bool, APrimalStructureItemContainer*>(this, "APrimalStructureDoor.HasSamePinCode(APrimalStructureItemContainer*)", otherContainer); }

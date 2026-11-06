@@ -12,14 +12,14 @@ struct AHoverDronePawnBase : ADefaultPawn
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AHoverDronePawnBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHoverDronePawnBase"); }
 	void PossessedBy(AController* NewController) { NativeCall<void, AController*>(this, "AHoverDronePawnBase.PossessedBy(AController*)", NewController); }
 	void UnPossessed() { NativeCall<void>(this, "AHoverDronePawnBase.UnPossessed()"); }
 	void SetupPlayerInputComponent(UInputComponent* InInputComponent) { NativeCall<void, UInputComponent*>(this, "AHoverDronePawnBase.SetupPlayerInputComponent(UInputComponent*)", InInputComponent); }
 	void TurnAtRate(float Rate) { NativeCall<void, float>(this, "AHoverDronePawnBase.TurnAtRate(float)", Rate); }
 	void LookUpAtRate(float Rate) { NativeCall<void, float>(this, "AHoverDronePawnBase.LookUpAtRate(float)", Rate); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHoverDronePawnBase"); }
 
 	bool IsLoading() { return NativeCall<bool>(this, "AHoverDronePawnBase.IsLoading()"); }
 };

@@ -10,8 +10,8 @@ public:
 	~UPrimalShipSailComponent() = delete;
 	UPrimalShipSailComponent(const UPrimalShipSailComponent&) = delete;
 	UPrimalShipSailComponent& operator=(const UPrimalShipSailComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalShipSailComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalShipSailComponent"); }
 
 	float& Sail_CanvasHealthField() { return *GetNativePointerField<float*>(this, "UPrimalShipSailComponent.Sail_CanvasHealth"); }
 	float& Sail_CanvasMaxHealthField() { return *GetNativePointerField<float*>(this, "UPrimalShipSailComponent.Sail_CanvasMaxHealth"); }

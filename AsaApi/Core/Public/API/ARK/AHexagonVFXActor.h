@@ -9,7 +9,7 @@ public:
 	~AHexagonVFXActor() = delete;
 	AHexagonVFXActor(const AHexagonVFXActor&) = delete;
 	AHexagonVFXActor& operator=(const AHexagonVFXActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHexagonVFXActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHexagonVFXActor"); }
 
 };

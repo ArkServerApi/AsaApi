@@ -9,8 +9,8 @@ public:
 	~ULiveLinkComponentController() = delete;
 	ULiveLinkComponentController(const ULiveLinkComponentController&) = delete;
 	ULiveLinkComponentController& operator=(const ULiveLinkComponentController&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULiveLinkComponentController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULiveLinkComponentController"); }
 
 	FLiveLinkSubjectRepresentation& SubjectRepresentationField() { return *GetNativePointerField<FLiveLinkSubjectRepresentation*>(this, "ULiveLinkComponentController.SubjectRepresentation"); }
 	bool& bUpdateInEditorField() { return *GetNativePointerField<bool*>(this, "ULiveLinkComponentController.bUpdateInEditor"); }

@@ -9,8 +9,8 @@ public:
 	~UMotionControllerComponent() = delete;
 	UMotionControllerComponent(const UMotionControllerComponent&) = delete;
 	UMotionControllerComponent& operator=(const UMotionControllerComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMotionControllerComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMotionControllerComponent"); }
 
 	int& PlayerIndexField() { return *GetNativePointerField<int*>(this, "UMotionControllerComponent.PlayerIndex"); }
 	FName& MotionSourceField() { return *GetNativePointerField<FName*>(this, "UMotionControllerComponent.MotionSource"); }

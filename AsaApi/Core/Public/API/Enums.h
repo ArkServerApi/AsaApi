@@ -3564,3 +3564,5 @@
 #include "Types/ESortingTaskAction.h"
 #include "Types/EPlayerHeatMapHeatLevel.h"
 #include "EnumsSupport3.h"
+
+#include "Types/EGetObjectsFlags.h"

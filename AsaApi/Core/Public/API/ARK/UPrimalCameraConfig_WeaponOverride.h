@@ -9,7 +9,7 @@ public:
 	~UPrimalCameraConfig_WeaponOverride() = delete;
 	UPrimalCameraConfig_WeaponOverride(const UPrimalCameraConfig_WeaponOverride&) = delete;
 	UPrimalCameraConfig_WeaponOverride& operator=(const UPrimalCameraConfig_WeaponOverride&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCameraConfig_WeaponOverride"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCameraConfig_WeaponOverride"); }
 
 };

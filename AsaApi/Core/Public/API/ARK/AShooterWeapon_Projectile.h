@@ -37,7 +37,7 @@ struct AShooterWeapon_Projectile : AShooterWeapon
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AShooterWeapon_Projectile.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Projectile"); }
 	void Listener_LockOn_Update(bool reset) { NativeCall<void, bool>(this, "AShooterWeapon_Projectile.Listener_LockOn_Update(bool)", reset); }
 	void OnHideProjectile() { NativeCall<void>(this, "AShooterWeapon_Projectile.OnHideProjectile()"); }
 	void SetLockedTarget(AActor* Actor, bool bIsLocked) { NativeCall<void, AActor*, bool>(this, "AShooterWeapon_Projectile.SetLockedTarget(AActor*,bool)", Actor, bIsLocked); }
@@ -72,7 +72,7 @@ struct AShooterWeapon_Projectile : AShooterWeapon
 	bool& bUseLockOnField() { return *GetNativePointerField<bool*>(this, "AShooterWeapon_Projectile.bUseLockOn"); }
 	bool& bHasLockedTargetField() { return *GetNativePointerField<bool*>(this, "AShooterWeapon_Projectile.bHasLockedTarget"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Projectile"); }
 
 	BitFieldValue<bool, unsigned char> bCallBPCustomSpawningEventOnProjectileSpawn() { return { this, "AShooterWeapon_Projectile.bCallBPCustomSpawningEventOnProjectileSpawn"}; }
 	void Listener_LockOn_Stop_Implementation() { NativeCall<void>(this, "AShooterWeapon_Projectile.Listener_LockOn_Stop_Implementation()"); }

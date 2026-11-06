@@ -9,8 +9,8 @@ public:
 	~UPawnSensingComponent() = delete;
 	UPawnSensingComponent(const UPawnSensingComponent&) = delete;
 	UPawnSensingComponent& operator=(const UPawnSensingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPawnSensingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPawnSensingComponent"); }
 
 	float& HearingThresholdField() { return *GetNativePointerField<float*>(this, "UPawnSensingComponent.HearingThreshold"); }
 	float& LOSHearingThresholdField() { return *GetNativePointerField<float*>(this, "UPawnSensingComponent.LOSHearingThreshold"); }

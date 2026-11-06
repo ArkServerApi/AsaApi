@@ -10,8 +10,8 @@ public:
 	~USSAMTestComponent() = delete;
 	USSAMTestComponent(const USSAMTestComponent&) = delete;
 	USSAMTestComponent& operator=(const USSAMTestComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USSAMTestComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USSAMTestComponent"); }
 
 	UE::Math::TBoxSphereBounds<double, double>& TestBoundsField() { return *GetNativePointerField<UE::Math::TBoxSphereBounds<double, double>*>(this, "USSAMTestComponent.TestBounds"); }
 	bool& bUseFallbackProxyField() { return *GetNativePointerField<bool*>(this, "USSAMTestComponent.bUseFallbackProxy"); }

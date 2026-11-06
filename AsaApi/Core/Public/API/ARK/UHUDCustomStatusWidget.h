@@ -9,8 +9,8 @@ public:
 	~UHUDCustomStatusWidget() = delete;
 	UHUDCustomStatusWidget(const UHUDCustomStatusWidget&) = delete;
 	UHUDCustomStatusWidget& operator=(const UHUDCustomStatusWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHUDCustomStatusWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHUDCustomStatusWidget"); }
 
 	TWeakObjectPtr<APrimalCharacter, FWeakObjectPtr>& ForPrimalCharacterField() { return *GetNativePointerField<TWeakObjectPtr<APrimalCharacter, FWeakObjectPtr>*>(this, "UHUDCustomStatusWidget.ForPrimalCharacter"); }
 	FName& CanvasPanelNameField() { return *GetNativePointerField<FName*>(this, "UHUDCustomStatusWidget.CanvasPanelName"); }

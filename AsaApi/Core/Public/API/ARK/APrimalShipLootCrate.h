@@ -9,8 +9,8 @@ public:
 	~APrimalShipLootCrate() = delete;
 	APrimalShipLootCrate(const APrimalShipLootCrate&) = delete;
 	APrimalShipLootCrate& operator=(const APrimalShipLootCrate&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalShipLootCrate"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalShipLootCrate"); }
 
 	float& ShipOverlapTimerField() { return *GetNativePointerField<float*>(this, "APrimalShipLootCrate.ShipOverlapTimer"); }
 	float& CheckForShipsIntervalField() { return *GetNativePointerField<float*>(this, "APrimalShipLootCrate.CheckForShipsInterval"); }

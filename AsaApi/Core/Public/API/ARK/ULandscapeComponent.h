@@ -9,8 +9,8 @@ public:
 	~ULandscapeComponent() = delete;
 	ULandscapeComponent(const ULandscapeComponent&) = delete;
 	ULandscapeComponent& operator=(const ULandscapeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeComponent"); }
 
 	int& SectionBaseXField() { return *GetNativePointerField<int*>(this, "ULandscapeComponent.SectionBaseX"); }
 	int& SectionBaseYField() { return *GetNativePointerField<int*>(this, "ULandscapeComponent.SectionBaseY"); }

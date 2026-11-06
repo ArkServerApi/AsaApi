@@ -9,8 +9,8 @@ public:
 	~UBeamWeaponController() = delete;
 	UBeamWeaponController(const UBeamWeaponController&) = delete;
 	UBeamWeaponController& operator=(const UBeamWeaponController&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBeamWeaponController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBeamWeaponController"); }
 
 	FBeamStoppedFiringEvent& BeamStoppedFiringEventField() { return *GetNativePointerField<FBeamStoppedFiringEvent*>(this, "UBeamWeaponController.BeamStoppedFiringEvent"); }
 	FBeamsStoppedFiringEvent& BeamsStoppedFiringEventField() { return *GetNativePointerField<FBeamsStoppedFiringEvent*>(this, "UBeamWeaponController.BeamsStoppedFiringEvent"); }

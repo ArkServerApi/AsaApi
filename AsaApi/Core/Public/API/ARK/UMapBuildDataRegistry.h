@@ -10,8 +10,8 @@ public:
 	~UMapBuildDataRegistry() = delete;
 	UMapBuildDataRegistry(const UMapBuildDataRegistry&) = delete;
 	UMapBuildDataRegistry& operator=(const UMapBuildDataRegistry&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMapBuildDataRegistry"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMapBuildDataRegistry"); }
 	bool& bSetupResourceClustersField() { return *GetNativePointerField<bool*>(this, "UMapBuildDataRegistry.bSetupResourceClusters"); }
 	FRenderCommandFence& DestroyFenceField() { return *GetNativePointerField<FRenderCommandFence*>(this, "UMapBuildDataRegistry.DestroyFence"); }
 	FVolumetricLightMapGridDesc*& VolumetricLightMapGridDescField() { return *GetNativePointerField<FVolumetricLightMapGridDesc**>(this, "UMapBuildDataRegistry.VolumetricLightMapGridDesc"); }

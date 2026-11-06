@@ -9,8 +9,8 @@ public:
 	~UInventoryPanelWidget() = delete;
 	UInventoryPanelWidget(const UInventoryPanelWidget&) = delete;
 	UInventoryPanelWidget& operator=(const UInventoryPanelWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInventoryPanelWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInventoryPanelWidget"); }
 
 	FName& TabBgSwitcherNameField() { return *GetNativePointerField<FName*>(this, "UInventoryPanelWidget.TabBgSwitcherName"); }
 	FName& InventoryButtonNameField() { return *GetNativePointerField<FName*>(this, "UInventoryPanelWidget.InventoryButtonName"); }

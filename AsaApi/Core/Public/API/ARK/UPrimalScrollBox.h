@@ -9,8 +9,8 @@ public:
 	~UPrimalScrollBox() = delete;
 	UPrimalScrollBox(const UPrimalScrollBox&) = delete;
 	UPrimalScrollBox& operator=(const UPrimalScrollBox&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalScrollBox"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalScrollBox"); }
 
 	UWidget* GetFirstWidgetWithinVisibleScrollboxFrame() { return NativeCall<UWidget*>(this, "UPrimalScrollBox.GetFirstWidgetWithinVisibleScrollboxFrame()"); }
 };

@@ -9,8 +9,8 @@ public:
 	~APartyBeaconClient() = delete;
 	APartyBeaconClient(const APartyBeaconClient&) = delete;
 	APartyBeaconClient& operator=(const APartyBeaconClient&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APartyBeaconClient"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APartyBeaconClient"); }
 
 	FString& DestSessionIdField() { return *GetNativePointerField<FString*>(this, "APartyBeaconClient.DestSessionId"); }
 	FPartyReservation& PendingReservationField() { return *GetNativePointerField<FPartyReservation*>(this, "APartyBeaconClient.PendingReservation"); }

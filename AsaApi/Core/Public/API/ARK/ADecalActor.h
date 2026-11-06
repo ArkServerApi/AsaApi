@@ -9,8 +9,8 @@ public:
 	~ADecalActor() = delete;
 	ADecalActor(const ADecalActor&) = delete;
 	ADecalActor& operator=(const ADecalActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADecalActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADecalActor"); }
 
 	void SetDecalMaterial(UMaterialInterface* NewDecalMaterial) { NativeCall<void, UMaterialInterface*>(this, "ADecalActor.SetDecalMaterial(UMaterialInterface*)", NewDecalMaterial); }
 	void PostLoad() { NativeCall<void>(this, "ADecalActor.PostLoad()"); }

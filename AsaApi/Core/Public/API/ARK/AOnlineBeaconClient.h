@@ -9,7 +9,7 @@ public:
 	~AOnlineBeaconClient() = delete;
 	AOnlineBeaconClient(const AOnlineBeaconClient&) = delete;
 	AOnlineBeaconClient& operator=(const AOnlineBeaconClient&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AOnlineBeaconClient"); }
 
 	EBeaconConnectionState& ConnectionStateField() { return *GetNativePointerField<EBeaconConnectionState*>(this, "AOnlineBeaconClient.ConnectionState"); }
 	FTimerHandle& TimerHandle_OnFailureField() { return *GetNativePointerField<FTimerHandle*>(this, "AOnlineBeaconClient.TimerHandle_OnFailure"); }
@@ -21,7 +21,7 @@ public:
 	void SetNetConnection(UNetConnection* NetConnection) { NativeCall<void, UNetConnection*>(this, "AOnlineBeaconClient.SetNetConnection(UNetConnection*)", NetConnection); }
 	void OnNetCleanup(UNetConnection* Connection) { NativeCall<void, UNetConnection*>(this, "AOnlineBeaconClient.OnNetCleanup(UNetConnection*)", Connection); }
 	void ClientOnConnected_Implementation() { NativeCall<void>(this, "AOnlineBeaconClient.ClientOnConnected_Implementation()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AOnlineBeaconClient.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AOnlineBeaconClient"); }
 	void DestroyBeacon() { NativeCall<void>(this, "AOnlineBeaconClient.DestroyBeacon()"); }
 	const FUniqueNetIdRepl& GetUniqueId() { return NativeCall<const FUniqueNetIdRepl&>(this, "AOnlineBeaconClient.GetUniqueId()"); }
 	bool InitClient(FURL& URL) { return NativeCall<bool, FURL&>(this, "AOnlineBeaconClient.InitClient(FURL&)", URL); }

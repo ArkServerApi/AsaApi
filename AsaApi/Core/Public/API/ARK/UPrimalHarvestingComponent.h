@@ -10,8 +10,8 @@ public:
 	~UPrimalHarvestingComponent() = delete;
 	UPrimalHarvestingComponent(const UPrimalHarvestingComponent&) = delete;
 	UPrimalHarvestingComponent& operator=(const UPrimalHarvestingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalHarvestingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalHarvestingComponent"); }
 
 	float& MaxHarvestHealthField() { return *GetNativePointerField<float*>(this, "UPrimalHarvestingComponent.MaxHarvestHealth"); }
 	float& ExtraHarvestingXPMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalHarvestingComponent.ExtraHarvestingXPMultiplier"); }

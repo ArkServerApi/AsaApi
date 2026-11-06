@@ -10,8 +10,8 @@ public:
 	~ULandscapeGrassType() = delete;
 	ULandscapeGrassType(const ULandscapeGrassType&) = delete;
 	ULandscapeGrassType& operator=(const ULandscapeGrassType&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeGrassType"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeGrassType"); }
 	unsigned int& StateHashField() { return *GetNativePointerField<unsigned int*>(this, "ULandscapeGrassType.StateHash"); }
 	float& GrassDensity_DEPRECATEDField() { return *GetNativePointerField<float*>(this, "ULandscapeGrassType.GrassDensity_DEPRECATED"); }
 	float& PlacementJitter_DEPRECATEDField() { return *GetNativePointerField<float*>(this, "ULandscapeGrassType.PlacementJitter_DEPRECATED"); }

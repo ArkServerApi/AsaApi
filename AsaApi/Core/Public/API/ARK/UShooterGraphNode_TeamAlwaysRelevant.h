@@ -9,8 +9,8 @@ public:
 	~UShooterGraphNode_TeamAlwaysRelevant() = delete;
 	UShooterGraphNode_TeamAlwaysRelevant(const UShooterGraphNode_TeamAlwaysRelevant&) = delete;
 	UShooterGraphNode_TeamAlwaysRelevant& operator=(const UShooterGraphNode_TeamAlwaysRelevant&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_TeamAlwaysRelevant"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_TeamAlwaysRelevant"); }
 
 	void NotifyResetAllNetworkActors() { NativeCall<void>(this, "UShooterGraphNode_TeamAlwaysRelevant.NotifyResetAllNetworkActors()"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "UShooterGraphNode_TeamAlwaysRelevant.Serialize(FArchive&)", Ar); }

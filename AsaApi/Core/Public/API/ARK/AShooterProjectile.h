@@ -114,8 +114,8 @@ struct AShooterProjectile : AActor
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AShooterProjectile.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterProjectile"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterProjectile"); }
 	bool BPIgnoreRadialDamageVictim(AActor* Victim) { return NativeCall<bool, AActor*>(this, "AShooterProjectile.BPIgnoreRadialDamageVictim(AActor*)", Victim); }
 	void ClientNetExplode(FHitResult* HitResult) { NativeCall<void, FHitResult*>(this, "AShooterProjectile.ClientNetExplode(FHitResult)", HitResult); }
 	void Explode(const FHitResult* Impact) { NativeCall<void, const FHitResult*>(this, "AShooterProjectile.Explode(FHitResult&)", Impact); }

@@ -10,7 +10,7 @@ public:
 	~UStaticMeshDescription() = delete;
 	UStaticMeshDescription(const UStaticMeshDescription&) = delete;
 	UStaticMeshDescription& operator=(const UStaticMeshDescription&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStaticMeshDescription"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStaticMeshDescription"); }
 	void RegisterAttributes() { NativeCall<void>(this, "UStaticMeshDescription.RegisterAttributes()"); }
 };

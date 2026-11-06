@@ -9,8 +9,8 @@ public:
 	~UTribeWarButtonWidget() = delete;
 	UTribeWarButtonWidget(const UTribeWarButtonWidget&) = delete;
 	UTribeWarButtonWidget& operator=(const UTribeWarButtonWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTribeWarButtonWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTribeWarButtonWidget"); }
 
 	UCustomButtonWidget*& ButtonField() { return *GetNativePointerField<UCustomButtonWidget**>(this, "UTribeWarButtonWidget.Button"); }
 	UTextBlock*& EnemyTribeNameField() { return *GetNativePointerField<UTextBlock**>(this, "UTribeWarButtonWidget.EnemyTribeName"); }

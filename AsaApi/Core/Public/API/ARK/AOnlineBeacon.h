@@ -9,7 +9,7 @@ public:
 	~AOnlineBeacon() = delete;
 	AOnlineBeacon(const AOnlineBeacon&) = delete;
 	AOnlineBeacon& operator=(const AOnlineBeacon&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AOnlineBeacon"); }
 
 	float& BeaconConnectionInitialTimeoutField() { return *GetNativePointerField<float*>(this, "AOnlineBeacon.BeaconConnectionInitialTimeout"); }
 	float& BeaconConnectionTimeoutField() { return *GetNativePointerField<float*>(this, "AOnlineBeacon.BeaconConnectionTimeout"); }
@@ -32,6 +32,6 @@ public:
 	void EndPlay(EEndPlayReason::Type EndPlayReason) { NativeCall<void, EEndPlayReason::Type>(this, "AOnlineBeacon.EndPlay(EEndPlayReason::Type)", EndPlayReason); }
 	void CleanupNetDriver() { NativeCall<void>(this, "AOnlineBeacon.CleanupNetDriver()"); }
 	bool NotifyAcceptingChannel(UChannel* Channel) { return NativeCall<bool, UChannel*>(this, "AOnlineBeacon.NotifyAcceptingChannel(UChannel*)", Channel); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AOnlineBeacon.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AOnlineBeacon"); }
 	bool InitBase() { return NativeCall<bool>(this, "AOnlineBeacon.InitBase()"); }
 };

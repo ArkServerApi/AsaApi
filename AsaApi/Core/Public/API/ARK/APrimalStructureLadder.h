@@ -32,7 +32,7 @@ struct APrimalStructureLadder : APrimalStructure
 
     // Functions
 
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureLadder.StaticClass()"); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureLadder"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureLadder();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -60,7 +60,7 @@ struct APrimalStructureLadder : APrimalStructure
 	float& IsAboveTopLadderOffsetField() { return *GetNativePointerField<float*>(this, "APrimalStructureLadder.IsAboveTopLadderOffset"); }
 	float& RetractMultiuseDelayField() { return *GetNativePointerField<float*>(this, "APrimalStructureLadder.RetractMultiuseDelay"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureLadder"); }
 
 	FString& RetractLadderStringField() { return *GetNativePointerField<FString*>(this, "APrimalStructureLadder.RetractLadderString"); }
 	FString& ExtendLadderStringField() { return *GetNativePointerField<FString*>(this, "APrimalStructureLadder.ExtendLadderString"); }

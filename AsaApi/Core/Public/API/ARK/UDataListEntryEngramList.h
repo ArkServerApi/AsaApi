@@ -9,8 +9,8 @@ public:
 	~UDataListEntryEngramList() = delete;
 	UDataListEntryEngramList(const UDataListEntryEngramList&) = delete;
 	UDataListEntryEngramList& operator=(const UDataListEntryEngramList&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListEntryEngramList"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListEntryEngramList"); }
 
 	FName& DataPanelNameField() { return *GetNativePointerField<FName*>(this, "UDataListEntryEngramList.DataPanelName"); }
 	FName& LevelLabelNameField() { return *GetNativePointerField<FName*>(this, "UDataListEntryEngramList.LevelLabelName"); }

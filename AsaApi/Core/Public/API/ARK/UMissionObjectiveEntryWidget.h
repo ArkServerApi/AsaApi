@@ -9,8 +9,8 @@ public:
 	~UMissionObjectiveEntryWidget() = delete;
 	UMissionObjectiveEntryWidget(const UMissionObjectiveEntryWidget&) = delete;
 	UMissionObjectiveEntryWidget& operator=(const UMissionObjectiveEntryWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMissionObjectiveEntryWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMissionObjectiveEntryWidget"); }
 
 	FString& ItemLabelNameField() { return *GetNativePointerField<FString*>(this, "UMissionObjectiveEntryWidget.ItemLabelName"); }
 	UImage*& MissionCompleteIconField() { return *GetNativePointerField<UImage**>(this, "UMissionObjectiveEntryWidget.MissionCompleteIcon"); }

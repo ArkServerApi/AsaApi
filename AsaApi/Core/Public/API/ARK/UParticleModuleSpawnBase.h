@@ -10,8 +10,8 @@ public:
 	~UParticleModuleSpawnBase() = delete;
 	UParticleModuleSpawnBase(const UParticleModuleSpawnBase&) = delete;
 	UParticleModuleSpawnBase& operator=(const UParticleModuleSpawnBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UParticleModuleSpawnBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleModuleSpawnBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleModuleSpawnBase"); }
 	BitFieldValue<bool, unsigned __int32> bProcessSpawnRate() { return { this, "UParticleModuleSpawnBase.bProcessSpawnRate"}; }
 	BitFieldValue<bool, unsigned __int32> bProcessBurstList() { return { this, "UParticleModuleSpawnBase.bProcessBurstList"}; }
 	float GetEstimatedSpawnRate() { return NativeCall<float>(this, "UParticleModuleSpawnBase.GetEstimatedSpawnRate()"); }

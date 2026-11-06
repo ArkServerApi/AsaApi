@@ -10,8 +10,8 @@ public:
 	~ULevelStreamingDynamic() = delete;
 	ULevelStreamingDynamic(const ULevelStreamingDynamic&) = delete;
 	ULevelStreamingDynamic& operator=(const ULevelStreamingDynamic&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULevelStreamingDynamic.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULevelStreamingDynamic"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULevelStreamingDynamic"); }
 	BitFieldValue<bool, unsigned __int32> bInitiallyLoaded() { return { this, "ULevelStreamingDynamic.bInitiallyLoaded"}; }
 	BitFieldValue<bool, unsigned __int32> bInitiallyVisible() { return { this, "ULevelStreamingDynamic.bInitiallyVisible"}; }
 	void PostLoad() { NativeCall<void>(this, "ULevelStreamingDynamic.PostLoad()"); }

@@ -9,7 +9,7 @@ public:
 	~ALocalFogVolume() = delete;
 	ALocalFogVolume(const ALocalFogVolume&) = delete;
 	ALocalFogVolume& operator=(const ALocalFogVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALocalFogVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALocalFogVolume"); }
 
 };

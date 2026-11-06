@@ -9,8 +9,8 @@ public:
 	~ULODSyncComponent() = delete;
 	ULODSyncComponent(const ULODSyncComponent&) = delete;
 	ULODSyncComponent& operator=(const ULODSyncComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULODSyncComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULODSyncComponent"); }
 
 	int& NumLODsField() { return *GetNativePointerField<int*>(this, "ULODSyncComponent.NumLODs"); }
 	int& ForcedLODField() { return *GetNativePointerField<int*>(this, "ULODSyncComponent.ForcedLOD"); }

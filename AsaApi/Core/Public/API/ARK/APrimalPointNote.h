@@ -9,7 +9,7 @@ public:
 	~APrimalPointNote() = delete;
 	APrimalPointNote(const APrimalPointNote&) = delete;
 	APrimalPointNote& operator=(const APrimalPointNote&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalPointNote"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalPointNote.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalPointNote"); }
 };

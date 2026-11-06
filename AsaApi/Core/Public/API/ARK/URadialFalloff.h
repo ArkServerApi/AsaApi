@@ -9,8 +9,8 @@ public:
 	~URadialFalloff() = delete;
 	URadialFalloff(const URadialFalloff&) = delete;
 	URadialFalloff& operator=(const URadialFalloff&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URadialFalloff"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URadialFalloff"); }
 
 	float& MagnitudeField() { return *GetNativePointerField<float*>(this, "URadialFalloff.Magnitude"); }
 	float& MinRangeField() { return *GetNativePointerField<float*>(this, "URadialFalloff.MinRange"); }

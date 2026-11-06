@@ -9,8 +9,8 @@ public:
 	~UHUDPointsOfInterestContainer() = delete;
 	UHUDPointsOfInterestContainer(const UHUDPointsOfInterestContainer&) = delete;
 	UHUDPointsOfInterestContainer& operator=(const UHUDPointsOfInterestContainer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHUDPointsOfInterestContainer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHUDPointsOfInterestContainer"); }
 
 	FName& PointContainerCanvasNameField() { return *GetNativePointerField<FName*>(this, "UHUDPointsOfInterestContainer.PointContainerCanvasName"); }
 	UCanvasPanel*& PointContainerCanvasField() { return *GetNativePointerField<UCanvasPanel**>(this, "UHUDPointsOfInterestContainer.PointContainerCanvas"); }

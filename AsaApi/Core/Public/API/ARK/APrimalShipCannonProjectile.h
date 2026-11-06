@@ -10,8 +10,8 @@ public:
 	~APrimalShipCannonProjectile() = delete;
 	APrimalShipCannonProjectile(const APrimalShipCannonProjectile&) = delete;
 	APrimalShipCannonProjectile& operator=(const APrimalShipCannonProjectile&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalShipCannonProjectile"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalShipCannonProjectile"); }
 
 	float& ReplicatedInitialSpeedField() { return *GetNativePointerField<float*>(this, "APrimalShipCannonProjectile.ReplicatedInitialSpeed"); }
 	int& FiredFromCannonIndexField() { return *GetNativePointerField<int*>(this, "APrimalShipCannonProjectile.FiredFromCannonIndex"); }

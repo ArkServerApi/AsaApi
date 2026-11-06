@@ -23,7 +23,7 @@ struct APrimalStructureItemContainer_VisualItems : APrimalStructureItemContainer
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_VisualItems"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureItemContainer_VisualItems();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -39,4 +39,5 @@ struct APrimalStructureItemContainer_VisualItems : APrimalStructureItemContainer
 	void BPUpdateItemVisuals() { NativeCall<void>(this, "APrimalStructureItemContainer_VisualItems.BPUpdateItemVisuals()"); }
 	void OnRep_HasItems() { NativeCall<void>(this, "APrimalStructureItemContainer_VisualItems.OnRep_HasItems()"); }
 	UMeshComponent* GetMeshComponentForActivateMaterials() { return NativeCall<UMeshComponent*>(this, "APrimalStructureItemContainer_VisualItems.GetMeshComponentForActivateMaterials()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_VisualItems"); }
 };

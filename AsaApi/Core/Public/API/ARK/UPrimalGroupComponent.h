@@ -10,8 +10,8 @@ public:
 	~UPrimalGroupComponent() = delete;
 	UPrimalGroupComponent(const UPrimalGroupComponent&) = delete;
 	UPrimalGroupComponent& operator=(const UPrimalGroupComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalGroupComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalGroupComponent"); }
 
 	int& MaxGroupSizeField() { return *GetNativePointerField<int*>(this, "UPrimalGroupComponent.MaxGroupSize"); }
 	float& GroupSearchRadiusField() { return *GetNativePointerField<float*>(this, "UPrimalGroupComponent.GroupSearchRadius"); }

@@ -10,7 +10,7 @@ public:
 	~ULightComponentBase() = delete;
 	ULightComponentBase(const ULightComponentBase&) = delete;
 	ULightComponentBase& operator=(const ULightComponentBase&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULightComponentBase"); }
 
 	FGuid& OriginalLightGuidField() { return *GetNativePointerField<FGuid*>(this, "ULightComponentBase.OriginalLightGuid"); }
 	FGuid& LightGuidField() { return *GetNativePointerField<FGuid*>(this, "ULightComponentBase.LightGuid"); }
@@ -54,7 +54,7 @@ public:
 	void SetCastShadows(bool bNewValue) { NativeCall<void, bool>(this, "ULightComponentBase.SetCastShadows(bool)", bNewValue); }
 	void UpdateLightGUIDs() { NativeCall<void>(this, "ULightComponentBase.UpdateLightGUIDs()"); }
 	UE::Math::TBoxSphereBounds<double, double>* GetPlacementExtent(UE::Math::TBoxSphereBounds<double, double>* result) { return NativeCall<UE::Math::TBoxSphereBounds<double, double>*, UE::Math::TBoxSphereBounds<double, double>*>(this, "ULightComponentBase.GetPlacementExtent()", result); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULightComponentBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULightComponentBase"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "ULightComponentBase.Serialize(FArchive&)", Ar); }
 	void SetAffectGlobalIllumination(bool bNewValue) { NativeCall<void, bool>(this, "ULightComponentBase.SetAffectGlobalIllumination(bool)", bNewValue); }
 	void SetSamplesPerPixel(int NewValue) { NativeCall<void, int>(this, "ULightComponentBase.SetSamplesPerPixel(int)", NewValue); }

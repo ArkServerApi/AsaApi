@@ -9,7 +9,7 @@ public:
 	~UPrimalShipInterface() = delete;
 	UPrimalShipInterface(const UPrimalShipInterface&) = delete;
 	UPrimalShipInterface& operator=(const UPrimalShipInterface&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalShipInterface"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalShipInterface"); }
 
 };

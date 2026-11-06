@@ -31,7 +31,7 @@ struct UGeneTraitDefinitions : UObject
 	bool GeneTraits_RemoveInstanceOfGeneTraitIfItExists_Implementation(struct UObject* TargetToEvaluate, FName TraitName, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_RemoveInstanceOfGeneTraitIfItExists_Implementation(UObject*,FName,FString&)", TargetToEvaluate, TraitName, FailReasonString); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGeneTraitDefinitions"); }
 	bool BPGetCustomBlueprintData_Implementation(FName DataName, struct FFunctionParams_NoArrays* InData, struct FFunctionParams_NoArrays* OutData) { return NativeCall<bool, FName, struct FFunctionParams_NoArrays*, struct FFunctionParams_NoArrays*>(this, "UGeneTraitDefinitions.BPGetCustomBlueprintData_Implementation(FName,FFunctionParams_NoArrays,FFunctionParams_NoArrays&)", DataName, InData, OutData); }
 	int GeneTraits_GetMaxAllowedTraitsForThisCreature_Implementation(struct UObject* TargetToEvaluate) { return NativeCall<int, struct UObject*>(this, "UGeneTraitDefinitions.GeneTraits_GetMaxAllowedTraitsForThisCreature_Implementation(UObject*)", TargetToEvaluate); }
 	TSubclassOf<UObject>* GeneTraits_GetDefinitionForThisTrait_Implementation(TSubclassOf<UObject>* result, FName TraitName, TSubclassOf<UObject> CreatureClass, class FString* FailReasonString) { return NativeCall<TSubclassOf<UObject>*, TSubclassOf<UObject>*, FName, struct TSubclassOf<UObject>*, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_GetDefinitionForThisTrait_Implementation(FName,TSubclassOf<UObject>,FString&)", result, TraitName, &CreatureClass, FailReasonString); }
@@ -54,7 +54,7 @@ struct UGeneTraitDefinitions : UObject
 	int GeneTraits_GetCountOfGeneTraitStacksThisCreatureHas(struct UObject* TargetToEvaluate, FName TraitName) { return NativeCall<int, struct UObject*, FName>(this, "UGeneTraitDefinitions.GeneTraits_GetCountOfGeneTraitStacksThisCreatureHas(UObject*,FName)", TargetToEvaluate, TraitName); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGeneTraitDefinitions"); }
 	bool BPGetCustomBlueprintData(FName DataName, struct FFunctionParams_NoArrays* InData, struct FFunctionParams_NoArrays* OutData) { return NativeCall<bool, FName, struct FFunctionParams_NoArrays*, struct FFunctionParams_NoArrays*>(this, "UGeneTraitDefinitions.BPGetCustomBlueprintData(FName,FFunctionParams_NoArrays,FFunctionParams_NoArrays&)", DataName, InData, OutData); }
 	bool GeneTraits_AddInstanceOfGeneTraitIfPossible(struct UObject* TargetToEvaluate, FName TraitName, int TraitTier, class FString* FailReasonString) { return NativeCall<bool, struct UObject*, FName, int, class FString*>(this, "UGeneTraitDefinitions.GeneTraits_AddInstanceOfGeneTraitIfPossible(UObject*,FName,int,FString&)", TargetToEvaluate, TraitName, TraitTier, FailReasonString); }
 	static FName GeneTraits_SplitGeneTraitFNameAndTier(FName TraitName, int& TraitTierRank) { return NativeCall<FName, FName, int&>(nullptr, "UGeneTraitDefinitions.GeneTraits_SplitGeneTraitFNameAndTier(FName,int&)", TraitName, TraitTierRank); }

@@ -170,7 +170,7 @@ struct UWorld : UPrimalWorld
 	bool NotifyAcceptingChannel(UChannel* Channel) { return NativeCall<bool, UChannel*>(this, "UWorld.NotifyAcceptingChannel(UChannel*)", Channel); }
 	AGameStateBase* GetGameState() { return NativeCall<AGameStateBase*>(this, "UWorld.GetGameState<AShooterGameState>()"); }
 	bool IsPartitionedWorld() { return NativeCall<bool>(this, "UWorld.IsPartitionedWorld()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UWorld.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorld"); }
 	//ALevelSequenceActor* SpawnActor<class ALevelSequenceActor>(const FActorSpawnParameters* SpawnParameters) { return NativeCall<ALevelSequenceActor*, const FActorSpawnParameters*>(this, "UWorld.SpawnActor<class ALevelSequenceActor>(FActorSpawnParameters*)", SpawnParameters); }
 	//ULandscapeSubsystem* GetSubsystem() { return NativeCall<ULandscapeSubsystem*>(this, "UWorld.GetSubsystem<class ULandscapeSubsystem>()"); }
 	//UPCGSubsystem* GetSubsystem() { return NativeCall<UPCGSubsystem*>(this, "UWorld.GetSubsystem<class UPCGSubsystem>()"); }
@@ -331,7 +331,7 @@ struct UWorld : UPrimalWorld
 	FAudioDevice* GetAudioDeviceRaw() { return NativeCall<FAudioDevice*>(this, "UWorld.GetAudioDeviceRaw()"); }
 	//UHLODSubsystem* GetSubsystem<class UHLODSubsystem>() { return NativeCall<UHLODSubsystem*>(this, "UWorld.GetSubsystem<class UHLODSubsystem>()"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorld"); }
 
 	FStreamingLevelsToConsider& StreamingLevelsToConsiderField() { return *GetNativePointerField<FStreamingLevelsToConsider*>(this, "UWorld.StreamingLevelsToConsider"); }
 	bool& bAllowDeferredPhysicsStateCreationField() { return *GetNativePointerField<bool*>(this, "UWorld.bAllowDeferredPhysicsStateCreation"); }

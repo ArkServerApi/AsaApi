@@ -9,8 +9,8 @@ public:
 	~UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem() = delete;
 	UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem(const UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem&) = delete;
 	UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem& operator=(const UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem"); }
 
 	UImage*& ItemIconImageField() { return *GetNativePointerField<UImage**>(this, "UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem.ItemIconImage"); }
 	UTextBlock*& ItemQuantityTextBlockField() { return *GetNativePointerField<UTextBlock**>(this, "UToolTipWidgetPrimalStructureModuleItemsToDisplayListItem.ItemQuantityTextBlock"); }

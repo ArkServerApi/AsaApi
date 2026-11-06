@@ -9,8 +9,8 @@ public:
 	~UPrimalNavigationSystemConfig() = delete;
 	UPrimalNavigationSystemConfig(const UPrimalNavigationSystemConfig&) = delete;
 	UPrimalNavigationSystemConfig& operator=(const UPrimalNavigationSystemConfig&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalNavigationSystemConfig"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalNavigationSystemConfig"); }
 
 	bool& bEnableShouldDiscardSubLevelNavDataOverrideField() { return *GetNativePointerField<bool*>(this, "UPrimalNavigationSystemConfig.bEnableShouldDiscardSubLevelNavDataOverride"); }
 	bool& bShouldDiscardSubLevelNavDataOverrideField() { return *GetNativePointerField<bool*>(this, "UPrimalNavigationSystemConfig.bShouldDiscardSubLevelNavDataOverride"); }

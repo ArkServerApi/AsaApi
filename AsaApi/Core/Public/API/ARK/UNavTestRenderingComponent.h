@@ -9,7 +9,7 @@ public:
 	~UNavTestRenderingComponent() = delete;
 	UNavTestRenderingComponent(const UNavTestRenderingComponent&) = delete;
 	UNavTestRenderingComponent& operator=(const UNavTestRenderingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavTestRenderingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavTestRenderingComponent"); }
 
 };

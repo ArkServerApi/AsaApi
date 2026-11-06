@@ -10,8 +10,8 @@ public:
 	~USoundNode() = delete;
 	USoundNode(const USoundNode&) = delete;
 	USoundNode& operator=(const USoundNode&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USoundNode.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundNode"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundNode"); }
 	FRandomStream& RandomStreamField() { return *GetNativePointerField<FRandomStream*>(this, "USoundNode.RandomStream"); }
 	bool& bIsRetainingAudioField() { return *GetNativePointerField<bool*>(this, "USoundNode.bIsRetainingAudio"); }
 	bool SupportsSubtitles() { return NativeCall<bool>(this, "USoundNode.SupportsSubtitles()"); }

@@ -9,8 +9,8 @@ public:
 	~AGameplayCameraActor() = delete;
 	AGameplayCameraActor(const AGameplayCameraActor&) = delete;
 	AGameplayCameraActor& operator=(const AGameplayCameraActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayCameraActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayCameraActor"); }
 
 	USceneComponent* GetDefaultAttachComponent() { return NativeCall<USceneComponent*>(this, "AGameplayCameraActor.GetDefaultAttachComponent()"); }
 	UGameplayCameraComponentBase* GetCameraComponentBase() { return NativeCall<UGameplayCameraComponentBase*>(this, "AGameplayCameraActor.GetCameraComponentBase()"); }

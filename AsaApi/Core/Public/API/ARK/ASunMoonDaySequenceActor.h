@@ -9,7 +9,7 @@ public:
 	~ASunMoonDaySequenceActor() = delete;
 	ASunMoonDaySequenceActor(const ASunMoonDaySequenceActor&) = delete;
 	ASunMoonDaySequenceActor& operator=(const ASunMoonDaySequenceActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASunMoonDaySequenceActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASunMoonDaySequenceActor"); }
 
 };

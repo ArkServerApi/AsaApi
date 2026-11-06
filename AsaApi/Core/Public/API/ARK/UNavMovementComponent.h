@@ -17,7 +17,7 @@ struct UNavMovementComponent : UMovementComponent
 
 	void StopMovementImmediately() { NativeCall<void>(this, "UNavMovementComponent.StopMovementImmediately()"); }
 	IPathFollowingAgentInterface* GetPathFollowingAgent() { return NativeCall<IPathFollowingAgentInterface*>(this, "UNavMovementComponent.GetPathFollowingAgent()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNavMovementComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavMovementComponent"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUNavMovementComponent();
 	//void UNavMovementComponent(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UNavMovementComponent.UNavMovementComponent(FObjectInitializer&)", ObjectInitializer); }
@@ -28,7 +28,7 @@ struct UNavMovementComponent : UMovementComponent
 	//     void StopActiveMovement() { NativeCall<void>(this, "UNavMovementComponent.StopActiveMovement()"); }
 	// FUNCTION MISSING: UNavMovementComponent.StopActiveMovement()
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavMovementComponent"); }
 
 	float& FixedPathBrakingDistance_DEPRECATEDField() { return *GetNativePointerField<float*>(this, "UNavMovementComponent.FixedPathBrakingDistance_DEPRECATED"); }
 	FNavMovementProperties& NavMovementPropertiesField() { return *GetNativePointerField<FNavMovementProperties*>(this, "UNavMovementComponent.NavMovementProperties"); }

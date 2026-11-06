@@ -9,8 +9,8 @@ public:
 	~UWaterMeshComponent() = delete;
 	UWaterMeshComponent(const UWaterMeshComponent&) = delete;
 	UWaterMeshComponent& operator=(const UWaterMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterMeshComponent"); }
 
 	int& ForceCollapseDensityLevelField() { return *GetNativePointerField<int*>(this, "UWaterMeshComponent.ForceCollapseDensityLevel"); }
 	float& FarDistanceMeshExtentField() { return *GetNativePointerField<float*>(this, "UWaterMeshComponent.FarDistanceMeshExtent"); }

@@ -9,8 +9,8 @@ public:
 	~UAtmosphericFogComponent() = delete;
 	UAtmosphericFogComponent(const UAtmosphericFogComponent&) = delete;
 	UAtmosphericFogComponent& operator=(const UAtmosphericFogComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAtmosphericFogComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAtmosphericFogComponent"); }
 
 	FLinearColor& LUT_TintScatterField() { return *GetNativePointerField<FLinearColor*>(this, "UAtmosphericFogComponent.LUT_TintScatter"); }
 	FLinearColor& LUT_TintLossField() { return *GetNativePointerField<FLinearColor*>(this, "UAtmosphericFogComponent.LUT_TintLoss"); }

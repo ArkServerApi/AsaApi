@@ -10,8 +10,8 @@ public:
 	~URuntimeVirtualTexture() = delete;
 	URuntimeVirtualTexture(const URuntimeVirtualTexture&) = delete;
 	URuntimeVirtualTexture& operator=(const URuntimeVirtualTexture&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URuntimeVirtualTexture"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URuntimeVirtualTexture"); }
 	int& TileCountField() { return *GetNativePointerField<int*>(this, "URuntimeVirtualTexture.TileCount"); }
 	int& TileSizeField() { return *GetNativePointerField<int*>(this, "URuntimeVirtualTexture.TileSize"); }
 	int& TileBorderSizeField() { return *GetNativePointerField<int*>(this, "URuntimeVirtualTexture.TileBorderSize"); }

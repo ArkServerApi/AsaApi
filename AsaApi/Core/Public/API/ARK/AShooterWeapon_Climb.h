@@ -71,7 +71,7 @@ struct AShooterWeapon_Climb : AShooterWeapon_Melee
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Climb"); }
 	void ServerRequestClimbMove(unsigned __int8 Type, UE::Math::TVector<double>* Direction, bool ClimbingLeftArm) { NativeCall<void, unsigned __int8, UE::Math::TVector<double>*, bool>(this, "AShooterWeapon_Climb.ServerRequestClimbMove(unsignedchar,UE::Math::TVector<double>,bool)", Type, Direction, ClimbingLeftArm); }
 	void SetClimbingAnchorPoint(unsigned __int8 Type, unsigned __int8 Mode, FVector_NetQuantize100* Direction, FVector_NetQuantize100* Position, FVector_NetQuantizeNormal* Normal) { NativeCall<void, unsigned __int8, unsigned __int8, FVector_NetQuantize100*, FVector_NetQuantize100*, FVector_NetQuantizeNormal*>(this, "AShooterWeapon_Climb.SetClimbingAnchorPoint(unsignedchar,unsignedchar,FVector_NetQuantize100,FVector_NetQuantize100,FVector_NetQuantizeNormal)", Type, Mode, Direction, Position, Normal); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -164,4 +164,5 @@ struct AShooterWeapon_Climb : AShooterWeapon_Melee
 	void ServerPerformTurn(bool ClimbingLeftArm) { NativeCall<void, bool>(this, "AShooterWeapon_Climb.ServerPerformTurn(bool)", ClimbingLeftArm); }
 	const FWeaponAnim* GetOpenInventoryAnim() { return NativeCall<const FWeaponAnim*>(this, "AShooterWeapon_Climb.GetOpenInventoryAnim()"); }
 	UE::Math::TVector<double>* GetViewLocation(UE::Math::TVector<double>* result) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "AShooterWeapon_Climb.GetViewLocation()", result); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Climb"); }
 };

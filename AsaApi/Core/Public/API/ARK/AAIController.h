@@ -36,7 +36,7 @@ struct AAIController : APrimalController
 	//AActor* GetGameplayTaskOwner(const UGameplayTask* Task) { return NativeCall<AActor*, const UGameplayTask*>(this, "AAIController.GetGameplayTaskOwner(UGameplayTask*)", Task); }
 	//AActor* GetGameplayTaskAvatar(const UGameplayTask* Task) { return NativeCall<AActor*, const UGameplayTask*>(this, "AAIController.GetGameplayTaskAvatar(UGameplayTask*)", Task); }
 	unsigned __int8 GetGameplayTaskDefaultPriority() { return NativeCall<unsigned __int8>(this, "AAIController.GetGameplayTaskDefaultPriority()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AAIController.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AAIController"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAAIController();
 	void Tick(float DeltaTime) { NativeCall<void, float>(this, "AAIController.Tick(float)", DeltaTime); }
@@ -73,7 +73,7 @@ struct AAIController : APrimalController
 	//void OnGameplayTaskResourcesClaimed(FGameplayResourceSet NewlyClaimed, FGameplayResourceSet FreshlyReleased) { NativeCall<void, FGameplayResourceSet, FGameplayResourceSet>(this, "AAIController.OnGameplayTaskResourcesClaimed(FGameplayResourceSet,FGameplayResourceSet)", NewlyClaimed, FreshlyReleased); }
 	//void SetGenericTeamId(const FGenericTeamId* NewTeamID) { NativeCall<void, const FGenericTeamId*>(this, "AAIController.SetGenericTeamId(FGenericTeamId&)", NewTeamID); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AAIController"); }
 
 	FGameplayResourceSet& ScriptClaimedResourcesField() { return *GetNativePointerField<FGameplayResourceSet*>(this, "AAIController.ScriptClaimedResources"); }
 	FFocusKnowledge& FocusInformationField() { return *GetNativePointerField<FFocusKnowledge*>(this, "AAIController.FocusInformation"); }

@@ -9,8 +9,8 @@ public:
 	~USceneCaptureComponentCube() = delete;
 	USceneCaptureComponentCube(const USceneCaptureComponentCube&) = delete;
 	USceneCaptureComponentCube& operator=(const USceneCaptureComponentCube&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USceneCaptureComponentCube"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USceneCaptureComponentCube"); }
 
 	bool& bCaptureRotationField() { return *GetNativePointerField<bool*>(this, "USceneCaptureComponentCube.bCaptureRotation"); }
 	unsigned char& ReflectionTimeSliceFirstField() { return *GetNativePointerField<unsigned char*>(this, "USceneCaptureComponentCube.ReflectionTimeSliceFirst"); }

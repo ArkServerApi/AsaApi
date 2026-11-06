@@ -9,7 +9,7 @@ public:
 	~UReflectionCaptureComponent() = delete;
 	UReflectionCaptureComponent(const UReflectionCaptureComponent&) = delete;
 	UReflectionCaptureComponent& operator=(const UReflectionCaptureComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReflectionCaptureComponent"); }
 
 	EReflectionSourceType& ReflectionSourceTypeField() { return *GetNativePointerField<EReflectionSourceType*>(this, "UReflectionCaptureComponent.ReflectionSourceType"); }
 	float& SourceCubemapAngleField() { return *GetNativePointerField<float*>(this, "UReflectionCaptureComponent.SourceCubemapAngle"); }
@@ -68,7 +68,7 @@ public:
 	BitFieldValue<bool, unsigned __int32> bCaptureAmbientShadow() { return { this, "UReflectionCaptureComponent.bCaptureAmbientShadow"}; }
 	static int GetReflectionCaptureSize() { return NativeCall<int>(nullptr, "UReflectionCaptureComponent.GetReflectionCaptureSize()"); }
 	void UpdatePreviewShape() { NativeCall<void>(this, "UReflectionCaptureComponent.UpdatePreviewShape()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReflectionCaptureComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReflectionCaptureComponent"); }
 	void PostInitProperties() { NativeCall<void>(this, "UReflectionCaptureComponent.PostInitProperties()"); }
 	void MarkDirtyForRecaptureOrUpload() { NativeCall<void>(this, "UReflectionCaptureComponent.MarkDirtyForRecaptureOrUpload()"); }
 	float GetInfluenceBoundingRadius() { return NativeCall<float>(this, "UReflectionCaptureComponent.GetInfluenceBoundingRadius()"); }

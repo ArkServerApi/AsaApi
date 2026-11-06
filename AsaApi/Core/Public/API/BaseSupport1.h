@@ -12,6 +12,12 @@
 #endif
 
 // Forward declarations
+struct UClass;
+namespace AsaApi
+{
+    ARK_API UClass* ResolveClass(const char* cppClassName);
+}
+
 struct AActor;
 struct ABrush;
 struct ACharacter;

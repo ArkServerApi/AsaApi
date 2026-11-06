@@ -9,8 +9,8 @@ public:
 	~UConsoleCommandButtonWidget() = delete;
 	UConsoleCommandButtonWidget(const UConsoleCommandButtonWidget&) = delete;
 	UConsoleCommandButtonWidget& operator=(const UConsoleCommandButtonWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UConsoleCommandButtonWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UConsoleCommandButtonWidget"); }
 
 	UButton*& theButtonField() { return *GetNativePointerField<UButton**>(this, "UConsoleCommandButtonWidget.theButton"); }
 	UUI_ConsoleCommand*& theUIField() { return *GetNativePointerField<UUI_ConsoleCommand**>(this, "UConsoleCommandButtonWidget.theUI"); }

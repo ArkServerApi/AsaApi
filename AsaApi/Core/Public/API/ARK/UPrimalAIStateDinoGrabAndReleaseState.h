@@ -10,8 +10,8 @@ public:
 	~UPrimalAIStateDinoGrabAndReleaseState() = delete;
 	UPrimalAIStateDinoGrabAndReleaseState(const UPrimalAIStateDinoGrabAndReleaseState&) = delete;
 	UPrimalAIStateDinoGrabAndReleaseState& operator=(const UPrimalAIStateDinoGrabAndReleaseState&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoGrabAndReleaseState"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoGrabAndReleaseState"); }
 
 
 

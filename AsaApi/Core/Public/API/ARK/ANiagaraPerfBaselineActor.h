@@ -9,7 +9,7 @@ public:
 	~ANiagaraPerfBaselineActor() = delete;
 	ANiagaraPerfBaselineActor(const ANiagaraPerfBaselineActor&) = delete;
 	ANiagaraPerfBaselineActor& operator=(const ANiagaraPerfBaselineActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANiagaraPerfBaselineActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANiagaraPerfBaselineActor"); }
 
 };

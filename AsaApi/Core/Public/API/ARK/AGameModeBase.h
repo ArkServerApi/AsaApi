@@ -30,7 +30,7 @@ struct AGameModeBase : AInfo
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AGameModeBase.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameModeBase"); }
 	APlayerController* ProcessClientTravel(FString* URL, FGuid* NextMapGuid, bool bSeamless, bool bAbsolute) { return NativeCall<APlayerController*, FString*, FGuid*, bool, bool>(this, "AGameModeBase.ProcessClientTravel(FString&,bool,bool)", URL, NextMapGuid, bSeamless, bAbsolute); }
 	bool TeleportTo(const UE::Math::TVector<double>* DestLocation, const UE::Math::TRotator<double>* DestRotation, bool bIsATest, bool bNoCheck) { return NativeCall<bool, const UE::Math::TVector<double>*, const UE::Math::TRotator<double>*, bool, bool>(this, "AGameModeBase.TeleportTo(UE::Math::TVector<double>&,UE::Math::TRotator<double>&,bool,bool)", DestLocation, DestRotation, bIsATest, bNoCheck); }
 	AShooterGameState* GetGameState() { return NativeCall<AShooterGameState*>(this, "AGameModeBase.GetGameState<AShooterGameState>()"); }
@@ -102,7 +102,7 @@ struct AGameModeBase : AInfo
 	void ChangeName(AController* Other, const FString* S, bool bNameChange) { NativeCall<void, AController*, const FString*, bool>(this, "AGameModeBase.ChangeName(AController*,FString&,bool)", Other, S, bNameChange); }
 	bool AllowCheats(APlayerController* P) { return NativeCall<bool, APlayerController*>(this, "AGameModeBase.AllowCheats(APlayerController*)", P); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameModeBase"); }
 
 	void GetActorBounds(bool bOnlyCollidingComponents, UE::Math::TVector<double>& Origin, UE::Math::TVector<double>& BoxExtent, bool bIncludeFromChildActors) { NativeCall<void, bool, UE::Math::TVector<double>&, UE::Math::TVector<double>&, bool>(this, "AGameModeBase.GetActorBounds(bool,UE::Math::TVector<double>&,UE::Math::TVector<double>&,bool)", bOnlyCollidingComponents, Origin, BoxExtent, bIncludeFromChildActors); }
 	void HandleStartingNewPlayer(APlayerController* NewPlayer) { NativeCall<void, APlayerController*>(this, "AGameModeBase.HandleStartingNewPlayer(APlayerController*)", NewPlayer); }

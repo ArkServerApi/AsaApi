@@ -10,8 +10,8 @@ public:
 	~UCurveTable() = delete;
 	UCurveTable(const UCurveTable&) = delete;
 	UCurveTable& operator=(const UCurveTable&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCurveTable.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCurveTable"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCurveTable"); }
 	void FinishDestroy() { NativeCall<void>(this, "UCurveTable.FinishDestroy()"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "UCurveTable.Serialize(FArchive&)", Ar); }
 	void RemoveRow(FName RowName) { NativeCall<void, FName>(this, "UCurveTable.RemoveRow(FName)", RowName); }

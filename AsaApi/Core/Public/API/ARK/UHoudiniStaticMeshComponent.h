@@ -9,8 +9,8 @@ public:
 	~UHoudiniStaticMeshComponent() = delete;
 	UHoudiniStaticMeshComponent(const UHoudiniStaticMeshComponent&) = delete;
 	UHoudiniStaticMeshComponent& operator=(const UHoudiniStaticMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoudiniStaticMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoudiniStaticMeshComponent"); }
 
 	bool& bHoudiniIconVisibleField() { return *GetNativePointerField<bool*>(this, "UHoudiniStaticMeshComponent.bHoudiniIconVisible"); }
 	void SetMesh(UHoudiniStaticMesh* InMesh) { NativeCall<void, UHoudiniStaticMesh*>(this, "UHoudiniStaticMeshComponent.SetMesh(UHoudiniStaticMesh*)", InMesh); }

@@ -11,8 +11,8 @@ public:
 	~UMaterialCacheVirtualTexture() = delete;
 	UMaterialCacheVirtualTexture(const UMaterialCacheVirtualTexture&) = delete;
 	UMaterialCacheVirtualTexture& operator=(const UMaterialCacheVirtualTexture&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialCacheVirtualTexture"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialCacheVirtualTexture"); }
 	TWeakObjectPtr<USceneComponent, FWeakObjectPtr>& OwningComponentField() { return *GetNativePointerField<TWeakObjectPtr<USceneComponent, FWeakObjectPtr>*>(this, "UMaterialCacheVirtualTexture.OwningComponent"); }
 	bool& bSharedShadingField() { return *GetNativePointerField<bool*>(this, "UMaterialCacheVirtualTexture.bSharedShading"); }
 	FTextureResource* CreateResource() { return NativeCall<FTextureResource*>(this, "UMaterialCacheVirtualTexture.CreateResource()"); }

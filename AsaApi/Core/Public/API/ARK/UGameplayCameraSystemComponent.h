@@ -9,8 +9,8 @@ public:
 	~UGameplayCameraSystemComponent() = delete;
 	UGameplayCameraSystemComponent(const UGameplayCameraSystemComponent&) = delete;
 	UGameplayCameraSystemComponent& operator=(const UGameplayCameraSystemComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameplayCameraSystemComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameplayCameraSystemComponent"); }
 
 	TEnumAsByte<EAutoReceiveInput::Type>& AutoActivateForPlayerField() { return *GetNativePointerField<TEnumAsByte<EAutoReceiveInput::Type>*>(this, "UGameplayCameraSystemComponent.AutoActivateForPlayer"); }
 	bool& bSetPlayerControllerRotationField() { return *GetNativePointerField<bool*>(this, "UGameplayCameraSystemComponent.bSetPlayerControllerRotation"); }

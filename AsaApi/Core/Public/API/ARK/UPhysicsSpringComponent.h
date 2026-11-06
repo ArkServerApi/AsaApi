@@ -9,8 +9,8 @@ public:
 	~UPhysicsSpringComponent() = delete;
 	UPhysicsSpringComponent(const UPhysicsSpringComponent&) = delete;
 	UPhysicsSpringComponent& operator=(const UPhysicsSpringComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsSpringComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsSpringComponent"); }
 
 	float& SpringStiffnessField() { return *GetNativePointerField<float*>(this, "UPhysicsSpringComponent.SpringStiffness"); }
 	float& SpringDampingField() { return *GetNativePointerField<float*>(this, "UPhysicsSpringComponent.SpringDamping"); }

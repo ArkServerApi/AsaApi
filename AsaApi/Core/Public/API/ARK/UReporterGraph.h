@@ -10,8 +10,8 @@ public:
 	~UReporterGraph() = delete;
 	UReporterGraph(const UReporterGraph&) = delete;
 	UReporterGraph& operator=(const UReporterGraph&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReporterGraph"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReporterGraph"); }
 	FRect& GraphScreenSizeField() { return *GetNativePointerField<FRect*>(this, "UReporterGraph.GraphScreenSize"); }
 	FRect& GraphMinMaxDataField() { return *GetNativePointerField<FRect*>(this, "UReporterGraph.GraphMinMaxData"); }
 	FLinearColor& AxesColorField() { return *GetNativePointerField<FLinearColor*>(this, "UReporterGraph.AxesColor"); }

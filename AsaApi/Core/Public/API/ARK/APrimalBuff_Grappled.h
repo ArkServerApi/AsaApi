@@ -109,7 +109,7 @@ struct APrimalBuff_Grappled : APrimalBuff
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_Grappled"); }
     bool AllowGrappleLogic() { return NativeCall<bool>(this, "APrimalBuff_Grappled.AllowGrappleLogic()"); }
     void ApplyTetherMoveVelocity(UE::Math::TVector<double>* CurrentVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.ApplyTetherMoveVelocity(UE::Math::TVector<double>&,float)", CurrentVelocity, DeltaTime); }
     bool BP_InterceptGrappleLogic(UE::Math::TVector<double>* CharVelocity) { return NativeCall<bool, UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.BP_InterceptGrappleLogic(UE::Math::TVector<double>&)", CharVelocity); }
@@ -351,4 +351,5 @@ struct APrimalBuff_Grappled : APrimalBuff
 	static bool CanCharControlGrappleTether(APrimalCharacter* ForChar, const FGrappleTether& ForTether, bool bAllowSlaveGrappleToControl) { return NativeCall<bool, APrimalCharacter*, const FGrappleTether&, bool>(nullptr, "APrimalBuff_Grappled.CanCharControlGrappleTether(APrimalCharacter*,FGrappleTether&,bool)", ForChar, ForTether, bAllowSlaveGrappleToControl); }
 	bool CanSyncGrappleTetherLengths() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanSyncGrappleTetherLengths()"); }
 	static bool TetherHasValidMasterRef(FGrappleTether& ForTether) { return NativeCall<bool, FGrappleTether&>(nullptr, "APrimalBuff_Grappled.TetherHasValidMasterRef(FGrappleTether&)", ForTether); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_Grappled"); }
 };

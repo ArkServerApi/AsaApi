@@ -9,8 +9,8 @@ public:
 	~AGameplayCamerasPlayerCameraManager() = delete;
 	AGameplayCamerasPlayerCameraManager(const AGameplayCamerasPlayerCameraManager&) = delete;
 	AGameplayCamerasPlayerCameraManager& operator=(const AGameplayCamerasPlayerCameraManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayCamerasPlayerCameraManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayCamerasPlayerCameraManager"); }
 
 	bool& bOverrideViewRotationModeField() { return *GetNativePointerField<bool*>(this, "AGameplayCamerasPlayerCameraManager.bOverrideViewRotationMode"); }
 	bool& bIsSettingNewViewTargetField() { return *GetNativePointerField<bool*>(this, "AGameplayCamerasPlayerCameraManager.bIsSettingNewViewTarget"); }

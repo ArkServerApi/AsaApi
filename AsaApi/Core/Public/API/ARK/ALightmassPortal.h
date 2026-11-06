@@ -9,8 +9,8 @@ public:
 	~ALightmassPortal() = delete;
 	ALightmassPortal(const ALightmassPortal&) = delete;
 	ALightmassPortal& operator=(const ALightmassPortal&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALightmassPortal"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALightmassPortal"); }
 
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "ALightmassPortal.IsLevelBoundsRelevant()"); }
 };

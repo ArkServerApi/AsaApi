@@ -9,7 +9,7 @@ public:
 	~UPrimalItem_DeathEssence() = delete;
 	UPrimalItem_DeathEssence(const UPrimalItem_DeathEssence&) = delete;
 	UPrimalItem_DeathEssence& operator=(const UPrimalItem_DeathEssence&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItem_DeathEssence"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItem_DeathEssence"); }
 
 };

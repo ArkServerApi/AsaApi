@@ -99,7 +99,7 @@ struct APrimalWeaponGPS : AShooterWeapon_Melee
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWeaponGPS"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalWeaponGPS();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -173,4 +173,5 @@ struct APrimalWeaponGPS : AShooterWeapon_Melee
 	static void SetItemBalloonLocation_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalWeaponGPS.SetItemBalloonLocation_WrapperImpl(void*,void*)", Object, InValue); }
 	void ServerSetUseCompassInsteadOfGPS(bool bUseCompass) { NativeCall<void, bool>(this, "APrimalWeaponGPS.ServerSetUseCompassInsteadOfGPS(bool)", bUseCompass); }
 	bool IsShowingMap() { return NativeCall<bool>(this, "APrimalWeaponGPS.IsShowingMap()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWeaponGPS"); }
 };

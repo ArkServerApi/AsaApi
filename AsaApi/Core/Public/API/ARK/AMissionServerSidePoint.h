@@ -9,8 +9,8 @@ public:
 	~AMissionServerSidePoint() = delete;
 	AMissionServerSidePoint(const AMissionServerSidePoint&) = delete;
 	AMissionServerSidePoint& operator=(const AMissionServerSidePoint&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMissionServerSidePoint"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMissionServerSidePoint"); }
 
 	FName& TriggerKeyField() { return *GetNativePointerField<FName*>(this, "AMissionServerSidePoint.TriggerKey"); }
 	int& TriggerOrderField() { return *GetNativePointerField<int*>(this, "AMissionServerSidePoint.TriggerOrder"); }

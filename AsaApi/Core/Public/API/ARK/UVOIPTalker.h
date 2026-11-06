@@ -9,8 +9,8 @@ public:
 	~UVOIPTalker() = delete;
 	UVOIPTalker(const UVOIPTalker&) = delete;
 	UVOIPTalker& operator=(const UVOIPTalker&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVOIPTalker"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVOIPTalker"); }
 
 	FVoiceSettings& SettingsField() { return *GetNativePointerField<FVoiceSettings*>(this, "UVOIPTalker.Settings"); }
 	FUniqueNetIdWrapper& PlayerIdField() { return *GetNativePointerField<FUniqueNetIdWrapper*>(this, "UVOIPTalker.PlayerId"); }

@@ -9,8 +9,8 @@ public:
 	~ANiagaraPreviewGrid() = delete;
 	ANiagaraPreviewGrid(const ANiagaraPreviewGrid&) = delete;
 	ANiagaraPreviewGrid& operator=(const ANiagaraPreviewGrid&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANiagaraPreviewGrid"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANiagaraPreviewGrid"); }
 
 	float& SpacingXField() { return *GetNativePointerField<float*>(this, "ANiagaraPreviewGrid.SpacingX"); }
 	float& SpacingYField() { return *GetNativePointerField<float*>(this, "ANiagaraPreviewGrid.SpacingY"); }

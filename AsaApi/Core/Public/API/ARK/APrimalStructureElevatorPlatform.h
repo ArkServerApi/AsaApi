@@ -48,7 +48,7 @@ struct APrimalStructureElevatorPlatform : APrimalStructure
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureElevatorPlatform"); }
     void ServerActivate(APlayerController* ForPC, bool bForceDirection, EPrimalStructureElevatorState Dir, float DistanceToTravelOverride) { NativeCall<void, APlayerController*, bool, EPrimalStructureElevatorState, float>(this, "APrimalStructureElevatorPlatform.ServerActivate(APlayerController*,bool,EPrimalStructureElevatorState,float)", ForPC, bForceDirection, Dir, DistanceToTravelOverride); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureElevatorPlatform();
@@ -92,4 +92,5 @@ struct APrimalStructureElevatorPlatform : APrimalStructure
 	float GetTrackHeight() { return NativeCall<float>(this, "APrimalStructureElevatorPlatform.GetTrackHeight()"); }
 	void AddLiftedActor(APrimalCharacter* LiftedActor) { NativeCall<void, APrimalCharacter*>(this, "APrimalStructureElevatorPlatform.AddLiftedActor(APrimalCharacter*)", LiftedActor); }
 	void BPElevatorStopped(bool bSwitchedDirection, EPrimalStructureElevatorState NewDirection) { NativeCall<void, bool, EPrimalStructureElevatorState>(this, "APrimalStructureElevatorPlatform.BPElevatorStopped(bool,EPrimalStructureElevatorState)", bSwitchedDirection, NewDirection); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureElevatorPlatform"); }
 };

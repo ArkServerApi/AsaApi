@@ -9,8 +9,8 @@ public:
 	~UTrackingItemUI() = delete;
 	UTrackingItemUI(const UTrackingItemUI&) = delete;
 	UTrackingItemUI& operator=(const UTrackingItemUI&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTrackingItemUI"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTrackingItemUI"); }
 
 	UPrimalRichTextBlock*& ItemInfoLabel1Field() { return *GetNativePointerField<UPrimalRichTextBlock**>(this, "UTrackingItemUI.ItemInfoLabel1"); }
 	UPrimalRichTextBlock*& ItemInfoLabel2Field() { return *GetNativePointerField<UPrimalRichTextBlock**>(this, "UTrackingItemUI.ItemInfoLabel2"); }

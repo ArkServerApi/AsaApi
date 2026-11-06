@@ -10,8 +10,8 @@ public:
 	~UTransformProviderData() = delete;
 	UTransformProviderData(const UTransformProviderData&) = delete;
 	UTransformProviderData& operator=(const UTransformProviderData&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UTransformProviderData.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTransformProviderData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTransformProviderData"); }
 	bool IsGpuOnly() { return NativeCall<bool>(this, "UTransformProviderData.IsGpuOnly()"); }
 	void SubmitChanges() { NativeCall<void>(this, "UTransformProviderData.SubmitChanges()"); }
 	bool UsesSkeletonBatching() { return NativeCall<bool>(this, "UTransformProviderData.UsesSkeletonBatching()"); }

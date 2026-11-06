@@ -9,8 +9,8 @@ public:
 	~UBrushComponent() = delete;
 	UBrushComponent(const UBrushComponent&) = delete;
 	UBrushComponent& operator=(const UBrushComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBrushComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBrushComponent"); }
 
 	float& SurfaceNavAreaHeightField() { return *GetNativePointerField<float*>(this, "UBrushComponent.SurfaceNavAreaHeight"); }
 	ESceneDepthPriorityGroup GetStaticDepthPriorityGroup() { return NativeCall<ESceneDepthPriorityGroup>(this, "UBrushComponent.GetStaticDepthPriorityGroup()"); }

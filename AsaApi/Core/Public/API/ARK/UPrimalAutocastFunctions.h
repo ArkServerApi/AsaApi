@@ -9,7 +9,7 @@ public:
 	~UPrimalAutocastFunctions() = delete;
 	UPrimalAutocastFunctions(const UPrimalAutocastFunctions&) = delete;
 	UPrimalAutocastFunctions& operator=(const UPrimalAutocastFunctions&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAutocastFunctions"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAutocastFunctions"); }
 
 };

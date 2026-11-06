@@ -11,7 +11,7 @@ public:
 	~UHierarchicalInstancedStaticMeshComponent() = delete;
 	UHierarchicalInstancedStaticMeshComponent(const UHierarchicalInstancedStaticMeshComponent&) = delete;
 	UHierarchicalInstancedStaticMeshComponent& operator=(const UHierarchicalInstancedStaticMeshComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHierarchicalInstancedStaticMeshComponent"); }
 
 	UE::Math::TVector<double>& TranslatedInstanceSpaceOriginField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UHierarchicalInstancedStaticMeshComponent.TranslatedInstanceSpaceOrigin"); }
 	TArray<int, TSizedDefaultAllocator<32> >& SortedInstancesField() { return *GetNativePointerField<TArray<int, TSizedDefaultAllocator<32> >*>(this, "UHierarchicalInstancedStaticMeshComponent.SortedInstances"); }
@@ -55,7 +55,7 @@ public:
 	UE::Math::TVector<double>* CalcTranslatedInstanceSpaceOrigin(UE::Math::TVector<double>* result) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "UHierarchicalInstancedStaticMeshComponent.CalcTranslatedInstanceSpaceOrigin()", result); }
 	void BuildComponentInstanceData(ERHIFeatureLevel::Type FeatureLevel, FInstanceUpdateComponentDesc& OutData) { NativeCall<void, ERHIFeatureLevel::Type, FInstanceUpdateComponentDesc&>(this, "UHierarchicalInstancedStaticMeshComponent.BuildComponentInstanceData(ERHIFeatureLevel::Type,FInstanceUpdateComponentDesc&)", FeatureLevel, OutData); }
 	void BuildComponentInstanceData(EShaderPlatform InShaderPlatform, FInstanceUpdateComponentDesc& OutData) { NativeCall<void, EShaderPlatform, FInstanceUpdateComponentDesc&>(this, "UHierarchicalInstancedStaticMeshComponent.BuildComponentInstanceData(EShaderPlatform,FInstanceUpdateComponentDesc&)", InShaderPlatform, OutData); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UHierarchicalInstancedStaticMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHierarchicalInstancedStaticMeshComponent"); }
 	int DesiredInstancesPerLeaf() { return NativeCall<int>(this, "UHierarchicalInstancedStaticMeshComponent.DesiredInstancesPerLeaf()"); }
 	bool RemoveInstances(const TArray<int, TSizedDefaultAllocator<32> >& InstancesToRemove, bool bInstanceArrayAlreadySortedInReverseOrder) { return NativeCall<bool, const TArray<int, TSizedDefaultAllocator<32> >&, bool>(this, "UHierarchicalInstancedStaticMeshComponent.RemoveInstances(TArray<int,TSizedDefaultAllocator<32>>&,bool)", InstancesToRemove, bInstanceArrayAlreadySortedInReverseOrder); }
 };

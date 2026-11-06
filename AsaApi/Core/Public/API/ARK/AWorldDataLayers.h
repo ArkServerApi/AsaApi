@@ -9,7 +9,7 @@ public:
 	~AWorldDataLayers() = delete;
 	AWorldDataLayers(const AWorldDataLayers&) = delete;
 	AWorldDataLayers& operator=(const AWorldDataLayers&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldDataLayers"); }
 
 	FWorldDataLayersEffectiveStates& EffectiveStatesField() { return *GetNativePointerField<FWorldDataLayersEffectiveStates*>(this, "AWorldDataLayers.EffectiveStates"); }
 	int& DataLayersStateEpochField() { return *GetNativePointerField<int*>(this, "AWorldDataLayers.DataLayersStateEpoch"); }
@@ -28,5 +28,5 @@ public:
 	const FWorldDataLayersEffectiveStates& GetEffectiveStates() { return NativeCall<const FWorldDataLayersEffectiveStates&>(this, "AWorldDataLayers.GetEffectiveStates()"); }
 	void PostLoad() { NativeCall<void>(this, "AWorldDataLayers.PostLoad()"); }
 	void OnDataLayerRuntimeStateChanged_Implementation(const UDataLayerInstance* InDataLayer, EDataLayerRuntimeState InState) { NativeCall<void, const UDataLayerInstance*, EDataLayerRuntimeState>(this, "AWorldDataLayers.OnDataLayerRuntimeStateChanged_Implementation(UDataLayerInstance*,EDataLayerRuntimeState)", InDataLayer, InState); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AWorldDataLayers.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldDataLayers"); }
 };

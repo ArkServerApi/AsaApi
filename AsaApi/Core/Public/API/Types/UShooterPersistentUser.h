@@ -18,4 +18,6 @@ struct UShooterPersistentUser {
 	void TellInputAboutKeybindings();
 	int GetUserIndex();
 	void SaveIfDirty();
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterPersistentUser"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterPersistentUser"); }
 };

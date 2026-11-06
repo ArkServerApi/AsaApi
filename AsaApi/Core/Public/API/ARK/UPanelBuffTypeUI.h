@@ -9,8 +9,8 @@ public:
 	~UPanelBuffTypeUI() = delete;
 	UPanelBuffTypeUI(const UPanelBuffTypeUI&) = delete;
 	UPanelBuffTypeUI& operator=(const UPanelBuffTypeUI&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPanelBuffTypeUI"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPanelBuffTypeUI"); }
 
 	UTextBlock*& BuffNameLabelField() { return *GetNativePointerField<UTextBlock**>(this, "UPanelBuffTypeUI.BuffNameLabel"); }
 	UPrimalRichTextBlock*& BuffDescriptionLabelField() { return *GetNativePointerField<UPrimalRichTextBlock**>(this, "UPanelBuffTypeUI.BuffDescriptionLabel"); }

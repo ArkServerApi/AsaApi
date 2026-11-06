@@ -11,8 +11,8 @@ public:
 	~USkeletalMesh() = delete;
 	USkeletalMesh(const USkeletalMesh&) = delete;
 	USkeletalMesh& operator=(const USkeletalMesh&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USkeletalMesh.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkeletalMesh"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkeletalMesh"); }
 	UE::Math::TBoxSphereBounds<double, double>& ImportedBoundsField() { return *GetNativePointerField<UE::Math::TBoxSphereBounds<double, double>*>(this, "USkeletalMesh.ImportedBounds"); }
 	UE::Math::TBoxSphereBounds<double, double>& ExtendedBoundsField() { return *GetNativePointerField<UE::Math::TBoxSphereBounds<double, double>*>(this, "USkeletalMesh.ExtendedBounds"); }
 	UE::Math::TVector<double>& PositiveBoundsExtensionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "USkeletalMesh.PositiveBoundsExtension"); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalBotSeatingComponent() = delete;
 	UPrimalBotSeatingComponent(const UPrimalBotSeatingComponent&) = delete;
 	UPrimalBotSeatingComponent& operator=(const UPrimalBotSeatingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalBotSeatingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalBotSeatingComponent"); }
 
 
 

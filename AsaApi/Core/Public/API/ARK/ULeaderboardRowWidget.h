@@ -9,8 +9,8 @@ public:
 	~ULeaderboardRowWidget() = delete;
 	ULeaderboardRowWidget(const ULeaderboardRowWidget&) = delete;
 	ULeaderboardRowWidget& operator=(const ULeaderboardRowWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULeaderboardRowWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULeaderboardRowWidget"); }
 
 	bool& bIsHeaderRowField() { return *GetNativePointerField<bool*>(this, "ULeaderboardRowWidget.bIsHeaderRow"); }
 	FName& ColumnContainerWidgetNameField() { return *GetNativePointerField<FName*>(this, "ULeaderboardRowWidget.ColumnContainerWidgetName"); }

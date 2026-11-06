@@ -10,8 +10,8 @@ public:
 	~UDialogueWave() = delete;
 	UDialogueWave(const UDialogueWave&) = delete;
 	UDialogueWave& operator=(const UDialogueWave&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDialogueWave"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDialogueWave"); }
 	FString& SpokenTextField() { return *GetNativePointerField<FString*>(this, "UDialogueWave.SpokenText"); }
 	FString& SubtitleOverrideField() { return *GetNativePointerField<FString*>(this, "UDialogueWave.SubtitleOverride"); }
 	FGuid& LocalizationGUIDField() { return *GetNativePointerField<FGuid*>(this, "UDialogueWave.LocalizationGUID"); }

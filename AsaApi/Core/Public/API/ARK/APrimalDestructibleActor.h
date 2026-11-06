@@ -10,8 +10,8 @@ public:
 	~APrimalDestructibleActor() = delete;
 	APrimalDestructibleActor(const APrimalDestructibleActor&) = delete;
 	APrimalDestructibleActor& operator=(const APrimalDestructibleActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalDestructibleActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalDestructibleActor"); }
 
 	bool& bForceDisableClusteringField() { return *GetNativePointerField<bool*>(this, "APrimalDestructibleActor.bForceDisableClustering"); }
 	bool& bUseBPStartDestructionField() { return *GetNativePointerField<bool*>(this, "APrimalDestructibleActor.bUseBPStartDestruction"); }

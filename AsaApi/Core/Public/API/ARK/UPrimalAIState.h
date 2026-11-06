@@ -10,7 +10,7 @@ public:
 	~UPrimalAIState() = delete;
 	UPrimalAIState(const UPrimalAIState&) = delete;
 	UPrimalAIState& operator=(const UPrimalAIState&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIState"); }
 
 	bool& bUseBPCanAttackField() { return *GetNativePointerField<bool*>(this, "UPrimalAIState.bUseBPCanAttack"); }
 	bool& bUseBPOverrideAttackWeightField() { return *GetNativePointerField<bool*>(this, "UPrimalAIState.bUseBPOverrideAttackWeight"); }
@@ -26,7 +26,7 @@ public:
 	void OnEnd() { NativeCall<void>(this, "UPrimalAIState.OnEnd()"); }
 	bool IsAttacking() { return NativeCall<bool>(this, "UPrimalAIState.IsAttacking()"); }
 	bool IsInAnimationStateActive() { return NativeCall<bool>(this, "UPrimalAIState.IsInAnimationStateActive()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAIState.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIState"); }
 	bool CanUseState() { return NativeCall<bool>(this, "UPrimalAIState.CanUseState()"); }
 	void SetLastAttackTime() { NativeCall<void>(this, "UPrimalAIState.SetLastAttackTime()"); }
 	void SetInAnimationStateActive(bool Value) { NativeCall<void, bool>(this, "UPrimalAIState.SetInAnimationStateActive(bool)", Value); }

@@ -48,12 +48,12 @@ struct USoundBase : UObject
 	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "USoundBase.Serialize(FArchive&)", Ar); }
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "USoundBase.Serialize(FStructuredArchiveRecord)", Record); }
 	bool CanBeClusterRoot()const { return NativeCall<bool>(this, "USoundBase.CanBeClusterRoot()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "USoundBase.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundBase"); }
 	float GetSubtitlePriority()const { return NativeCall<float>(this, "USoundBase.GetSubtitlePriority()"); }
 	//FSoundAttenuationSettings const* GetAttenuationSettingsToApply()const { return NativeCall<FSoundAttenuationSettings const*>(this, "USoundBase.GetAttenuationSettingsToApply()"); }
 	void InitResources() { NativeCall<void>(this, "USoundBase.InitResources()"); }
 	float GetMaxDistance()const { return NativeCall<float>(this, "USoundBase.GetMaxDistance()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundBase"); }
 	//USoundSubmixBase* GetSoundSubmix()const { return NativeCall<USoundSubmixBase*>(this, "USoundBase.GetSoundSubmix()"); }
 	bool HasConcatenatorNode()const { return NativeCall<bool>(this, "USoundBase.HasConcatenatorNode()"); }
 	bool EnableSubmixSendsOnPreview()const { return NativeCall<bool>(this, "USoundBase.EnableSubmixSendsOnPreview()"); }

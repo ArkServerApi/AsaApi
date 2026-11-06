@@ -9,8 +9,8 @@ public:
 	~ULineBatchComponent() = delete;
 	ULineBatchComponent(const ULineBatchComponent&) = delete;
 	ULineBatchComponent& operator=(const ULineBatchComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULineBatchComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULineBatchComponent"); }
 
 	float& DefaultLifeTimeField() { return *GetNativePointerField<float*>(this, "ULineBatchComponent.DefaultLifeTime"); }
 	BitFieldValue<bool, unsigned __int32> bCalculateAccurateBounds() { return { this, "ULineBatchComponent.bCalculateAccurateBounds"}; }

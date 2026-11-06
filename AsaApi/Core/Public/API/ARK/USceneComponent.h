@@ -60,7 +60,7 @@ struct USceneComponent : UActorComponent
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "USceneComponent.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USceneComponent"); }
 	void OnChildAttached(USceneComponent* ChildComponent) { NativeCall<void, USceneComponent*>(this, "USceneComponent.OnChildAttached(USceneComponent*)", ChildComponent); }
 	//void UpdateComponentToWorld(EUpdateTransformFlags UpdateTransformFlags, ETeleportType Teleport) { NativeCall<void, EUpdateTransformFlags, ETeleportType>(this, "USceneComponent.UpdateComponentToWorld(EUpdateTransformFlags,ETeleportType)", UpdateTransformFlags, Teleport); }
 	void SetHiddenInGame(bool NewHidden, bool bPropagateToChildren, bool bSetChildrenRenderState) { NativeCall<void, bool, bool, bool>(this, "USceneComponent.SetHiddenInGame(bool,USceneComponent::EVisibilityPropagation,bool)", NewHidden, bPropagateToChildren, bSetChildrenRenderState); }
@@ -153,7 +153,7 @@ struct USceneComponent : UActorComponent
 	// void K2_AddRelativeLocation(UE::Math::TVector<double>* DeltaLocation, bool bSweep, FHitResult* SweepHitResult, bool bTeleport);
 	void StopSound(USoundBase* SoundToStop, float FadeOutTime) { NativeCall<void, USoundBase*, float>(this, "USceneComponent.StopSound(USoundBase*,float)", SoundToStop, FadeOutTime); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USceneComponent"); }
 
 	const FLevelCollection*& CachedLevelCollectionField() { return *GetNativePointerField<const FLevelCollection**>(this, "USceneComponent.CachedLevelCollection"); }
 	TEnumAsByte<EComponentMobility::Type>& MobilityField() { return *GetNativePointerField<TEnumAsByte<EComponentMobility::Type>*>(this, "USceneComponent.Mobility"); }

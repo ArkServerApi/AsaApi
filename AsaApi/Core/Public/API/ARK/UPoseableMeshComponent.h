@@ -9,8 +9,8 @@ public:
 	~UPoseableMeshComponent() = delete;
 	UPoseableMeshComponent(const UPoseableMeshComponent&) = delete;
 	UPoseableMeshComponent& operator=(const UPoseableMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPoseableMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPoseableMeshComponent"); }
 
 	FBoneContainer& RequiredBonesField() { return *GetNativePointerField<FBoneContainer*>(this, "UPoseableMeshComponent.RequiredBones"); }
 	bool& bNeedsRefreshTransformField() { return *GetNativePointerField<bool*>(this, "UPoseableMeshComponent.bNeedsRefreshTransform"); }

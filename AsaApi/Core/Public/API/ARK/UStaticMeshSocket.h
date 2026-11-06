@@ -10,8 +10,8 @@ public:
 	~UStaticMeshSocket() = delete;
 	UStaticMeshSocket(const UStaticMeshSocket&) = delete;
 	UStaticMeshSocket& operator=(const UStaticMeshSocket&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStaticMeshSocket"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStaticMeshSocket"); }
 	FName& SocketNameField() { return *GetNativePointerField<FName*>(this, "UStaticMeshSocket.SocketName"); }
 	UE::Math::TVector<double>& RelativeLocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UStaticMeshSocket.RelativeLocation"); }
 	UE::Math::TRotator<double>& RelativeRotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "UStaticMeshSocket.RelativeRotation"); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalBuffPersistentData_MissionData() = delete;
 	UPrimalBuffPersistentData_MissionData(const UPrimalBuffPersistentData_MissionData&) = delete;
 	UPrimalBuffPersistentData_MissionData& operator=(const UPrimalBuffPersistentData_MissionData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalBuffPersistentData_MissionData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalBuffPersistentData_MissionData"); }
 
 	int& ActiveMissionIndexField() { return *GetNativePointerField<int*>(this, "UPrimalBuffPersistentData_MissionData.ActiveMissionIndex"); }
 

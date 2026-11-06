@@ -10,8 +10,8 @@ public:
 	~USpecularProfile() = delete;
 	USpecularProfile(const USpecularProfile&) = delete;
 	USpecularProfile& operator=(const USpecularProfile&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USpecularProfile"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USpecularProfile"); }
 	FSpecularProfileStruct& SettingsField() { return *GetNativePointerField<FSpecularProfileStruct*>(this, "USpecularProfile.Settings"); }
 	FGuid& GuidField() { return *GetNativePointerField<FGuid*>(this, "USpecularProfile.Guid"); }
 	void PostDuplicate(EDuplicateMode::Type DuplicateMode) { NativeCall<void, EDuplicateMode::Type>(this, "USpecularProfile.PostDuplicate(EDuplicateMode::Type)", DuplicateMode); }

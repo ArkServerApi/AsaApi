@@ -9,8 +9,8 @@ public:
 	~UBehaviorTreeComponent() = delete;
 	UBehaviorTreeComponent(const UBehaviorTreeComponent&) = delete;
 	UBehaviorTreeComponent& operator=(const UBehaviorTreeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBehaviorTreeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBehaviorTreeComponent"); }
 
 	FBehaviorTreeSearchData& SearchDataField() { return *GetNativePointerField<FBehaviorTreeSearchData*>(this, "UBehaviorTreeComponent.SearchData"); }
 	FBTNodeExecutionInfo& ExecutionRequestField() { return *GetNativePointerField<FBTNodeExecutionInfo*>(this, "UBehaviorTreeComponent.ExecutionRequest"); }

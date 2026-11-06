@@ -9,8 +9,8 @@ public:
 	~UDaySequenceModifierComponent() = delete;
 	UDaySequenceModifierComponent(const UDaySequenceModifierComponent&) = delete;
 	UDaySequenceModifierComponent& operator=(const UDaySequenceModifierComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDaySequenceModifierComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDaySequenceModifierComponent"); }
 
 	TWeakObjectPtr<APlayerController, FWeakObjectPtr>& WeakBlendTargetField() { return *GetNativePointerField<TWeakObjectPtr<APlayerController, FWeakObjectPtr>*>(this, "UDaySequenceModifierComponent.WeakBlendTarget"); }
 	int& BiasField() { return *GetNativePointerField<int*>(this, "UDaySequenceModifierComponent.Bias"); }

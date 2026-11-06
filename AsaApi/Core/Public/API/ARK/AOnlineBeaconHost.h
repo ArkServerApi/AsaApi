@@ -9,7 +9,7 @@ public:
 	~AOnlineBeaconHost() = delete;
 	AOnlineBeaconHost(const AOnlineBeaconHost&) = delete;
 	AOnlineBeaconHost& operator=(const AOnlineBeaconHost&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AOnlineBeaconHost"); }
 
 	int& ListenPortField() { return *GetNativePointerField<int*>(this, "AOnlineBeaconHost.ListenPort"); }
 	bool& bReuseAddressAndPortField() { return *GetNativePointerField<bool*>(this, "AOnlineBeaconHost.bReuseAddressAndPort"); }
@@ -28,7 +28,7 @@ public:
 	bool HandleControlMessage(UNetConnection* Connection, unsigned char MessageType, FInBunch& Bunch) { return NativeCall<bool, UNetConnection*, unsigned char, FInBunch&>(this, "AOnlineBeaconHost.HandleControlMessage(UNetConnection*,unsignedchar,FInBunch&)", Connection, MessageType, Bunch); }
 	bool VerifyJoinForBeaconType(const FUniqueNetId& PlayerId, const FString& BeaconType) { return NativeCall<bool, const FUniqueNetId&, const FString&>(this, "AOnlineBeaconHost.VerifyJoinForBeaconType(FUniqueNetId&,FString&)", PlayerId, BeaconType); }
 	AOnlineBeaconClient* GetClientActor(UNetConnection* Connection) { return NativeCall<AOnlineBeaconClient*, UNetConnection*>(this, "AOnlineBeaconHost.GetClientActor(UNetConnection*)", Connection); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AOnlineBeaconHost.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AOnlineBeaconHost"); }
 	void RemoveClientActor(AOnlineBeaconClient* ClientActor) { NativeCall<void, AOnlineBeaconClient*>(this, "AOnlineBeaconHost.RemoveClientActor(AOnlineBeaconClient*)", ClientActor); }
 	void HandleNetworkFailure(UWorld* World, UNetDriver* InNetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString) { NativeCall<void, UWorld*, UNetDriver*, ENetworkFailure::Type, const FString&>(this, "AOnlineBeaconHost.HandleNetworkFailure(UWorld*,UNetDriver*,ENetworkFailure::Type,FString&)", World, InNetDriver, FailureType, ErrorString); }
 };

@@ -9,8 +9,8 @@ public:
 	~UPCGExClusterSketchComponent() = delete;
 	UPCGExClusterSketchComponent(const UPCGExClusterSketchComponent&) = delete;
 	UPCGExClusterSketchComponent& operator=(const UPCGExClusterSketchComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPCGExClusterSketchComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPCGExClusterSketchComponent"); }
 
 	bool& bShowSketchField() { return *GetNativePointerField<bool*>(this, "UPCGExClusterSketchComponent.bShowSketch"); }
 	bool& bShowBasisField() { return *GetNativePointerField<bool*>(this, "UPCGExClusterSketchComponent.bShowBasis"); }

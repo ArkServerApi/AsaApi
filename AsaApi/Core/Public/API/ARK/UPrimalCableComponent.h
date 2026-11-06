@@ -9,8 +9,8 @@ public:
 	~UPrimalCableComponent() = delete;
 	UPrimalCableComponent(const UPrimalCableComponent&) = delete;
 	UPrimalCableComponent& operator=(const UPrimalCableComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCableComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCableComponent"); }
 
 	FComponentReference& AttachEndToField() { return *GetNativePointerField<FComponentReference*>(this, "UPrimalCableComponent.AttachEndTo"); }
 	UE::Math::TVector<double>& EndLocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalCableComponent.EndLocation"); }

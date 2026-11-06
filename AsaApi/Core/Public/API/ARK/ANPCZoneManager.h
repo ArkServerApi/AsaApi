@@ -122,8 +122,8 @@ struct ANPCZoneManager : AInfo
 
 	TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>* GetSpawnableNPCClasses(TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>* result) { return NativeCall<TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>*, TSet<TSoftClassPtr<APrimalDinoCharacter>, DefaultKeyFuncs<TSoftClassPtr<APrimalDinoCharacter>, 0>, FDefaultSetAllocator>*>(this, "ANPCZoneManager.GetSpawnableNPCClasses()", result); }
 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANPCZoneManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANPCZoneManager"); }
 
 	TArray<ANPCZoneVolume*, TSizedDefaultAllocator<32> >& LinkedZoneVolumesField() { return *GetNativePointerField<TArray<ANPCZoneVolume*, TSizedDefaultAllocator<32> >*>(this, "ANPCZoneManager.LinkedZoneVolumes"); }
 	TArray<AActor*, TSizedDefaultAllocator<32> >& DefaultZoneSpawnVolumeFloorsField() { return *GetNativePointerField<TArray<AActor*, TSizedDefaultAllocator<32> >*>(this, "ANPCZoneManager.DefaultZoneSpawnVolumeFloors"); }

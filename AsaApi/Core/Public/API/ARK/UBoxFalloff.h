@@ -9,8 +9,8 @@ public:
 	~UBoxFalloff() = delete;
 	UBoxFalloff(const UBoxFalloff&) = delete;
 	UBoxFalloff& operator=(const UBoxFalloff&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBoxFalloff"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBoxFalloff"); }
 
 	float& MagnitudeField() { return *GetNativePointerField<float*>(this, "UBoxFalloff.Magnitude"); }
 	float& MinRangeField() { return *GetNativePointerField<float*>(this, "UBoxFalloff.MinRange"); }

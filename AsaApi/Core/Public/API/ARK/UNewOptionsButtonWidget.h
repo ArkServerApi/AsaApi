@@ -9,7 +9,7 @@ public:
 	~UNewOptionsButtonWidget() = delete;
 	UNewOptionsButtonWidget(const UNewOptionsButtonWidget&) = delete;
 	UNewOptionsButtonWidget& operator=(const UNewOptionsButtonWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNewOptionsButtonWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNewOptionsButtonWidget"); }
 
 };

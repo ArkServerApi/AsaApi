@@ -9,8 +9,8 @@ public:
 	~UPrimalUI_Toast() = delete;
 	UPrimalUI_Toast(const UPrimalUI_Toast&) = delete;
 	UPrimalUI_Toast& operator=(const UPrimalUI_Toast&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalUI_Toast"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalUI_Toast"); }
 
 	int& CounterField() { return *GetNativePointerField<int*>(this, "UPrimalUI_Toast.Counter"); }
 	int& CounterMaxField() { return *GetNativePointerField<int*>(this, "UPrimalUI_Toast.CounterMax"); }

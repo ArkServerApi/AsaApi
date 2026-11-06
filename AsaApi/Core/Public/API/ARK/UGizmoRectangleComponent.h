@@ -9,8 +9,8 @@ public:
 	~UGizmoRectangleComponent() = delete;
 	UGizmoRectangleComponent(const UGizmoRectangleComponent&) = delete;
 	UGizmoRectangleComponent& operator=(const UGizmoRectangleComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGizmoRectangleComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGizmoRectangleComponent"); }
 
 	UE::Math::TVector<double>& DirectionXField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UGizmoRectangleComponent.DirectionX"); }
 	UE::Math::TVector<double>& DirectionYField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UGizmoRectangleComponent.DirectionY"); }

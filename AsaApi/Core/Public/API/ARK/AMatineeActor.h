@@ -9,7 +9,7 @@ public:
 	~AMatineeActor() = delete;
 	AMatineeActor(const AMatineeActor&) = delete;
 	AMatineeActor& operator=(const AMatineeActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMatineeActor"); }
 
 	FName& MatineeControllerNameField() { return *GetNativePointerField<FName*>(this, "AMatineeActor.MatineeControllerName"); }
 	float& PlayRateField() { return *GetNativePointerField<float*>(this, "AMatineeActor.PlayRate"); }
@@ -49,7 +49,7 @@ public:
 	BitFieldValue<bool, unsigned __int32> bClientInitializedMatinee() { return { this, "AMatineeActor.bClientInitializedMatinee"}; }
 	void UpdateInterpForParentMovementTracks(float Time, UInterpGroupInst* ViewGroupInst) { NativeCall<void, float, UInterpGroupInst*>(this, "AMatineeActor.UpdateInterpForParentMovementTracks(float,UInterpGroupInst*)", Time, ViewGroupInst); }
 	void Play(float OverrideSetPosition, bool bOverridePositionJump) { NativeCall<void, float, bool>(this, "AMatineeActor.Play(float,bool)", OverrideSetPosition, bOverridePositionJump); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AMatineeActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMatineeActor"); }
 	void TermInterp() { NativeCall<void>(this, "AMatineeActor.TermInterp()"); }
 	void Pause() { NativeCall<void>(this, "AMatineeActor.Pause()"); }
 	void Reverse() { NativeCall<void>(this, "AMatineeActor.Reverse()"); }

@@ -9,8 +9,8 @@ public:
 	~AWorldPartitionStandaloneHLOD() = delete;
 	AWorldPartitionStandaloneHLOD(const AWorldPartitionStandaloneHLOD&) = delete;
 	AWorldPartitionStandaloneHLOD& operator=(const AWorldPartitionStandaloneHLOD&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldPartitionStandaloneHLOD"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldPartitionStandaloneHLOD"); }
 
 	FGuid& LevelInstanceSpawnGuidField() { return *GetNativePointerField<FGuid*>(this, "AWorldPartitionStandaloneHLOD.LevelInstanceSpawnGuid"); }
 	FLevelInstanceActorGuid& LevelInstanceActorGuidField() { return *GetNativePointerField<FLevelInstanceActorGuid*>(this, "AWorldPartitionStandaloneHLOD.LevelInstanceActorGuid"); }

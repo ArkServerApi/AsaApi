@@ -9,8 +9,8 @@ public:
 	~AAmbientSound() = delete;
 	AAmbientSound(const AAmbientSound&) = delete;
 	AAmbientSound& operator=(const AAmbientSound&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AAmbientSound"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AAmbientSound"); }
 
 	float& DefaultVolumeMultiplierField() { return *GetNativePointerField<float*>(this, "AAmbientSound.DefaultVolumeMultiplier"); }
 	BitFieldValue<bool, unsigned __int32> bAddedToArray() { return { this, "AAmbientSound.bAddedToArray"}; }

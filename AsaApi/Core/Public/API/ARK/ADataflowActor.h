@@ -9,7 +9,7 @@ public:
 	~ADataflowActor() = delete;
 	ADataflowActor(const ADataflowActor&) = delete;
 	ADataflowActor& operator=(const ADataflowActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADataflowActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADataflowActor"); }
 
 };

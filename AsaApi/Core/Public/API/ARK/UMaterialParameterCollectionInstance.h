@@ -10,8 +10,8 @@ public:
 	~UMaterialParameterCollectionInstance() = delete;
 	UMaterialParameterCollectionInstance(const UMaterialParameterCollectionInstance&) = delete;
 	UMaterialParameterCollectionInstance& operator=(const UMaterialParameterCollectionInstance&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialParameterCollectionInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialParameterCollectionInstance"); }
 	bool& bLoggedMissingParameterWarningField() { return *GetNativePointerField<bool*>(this, "UMaterialParameterCollectionInstance.bLoggedMissingParameterWarning"); }
 	TWeakObjectPtr<UWorld, FWeakObjectPtr>& WorldField() { return *GetNativePointerField<TWeakObjectPtr<UWorld, FWeakObjectPtr>*>(this, "UMaterialParameterCollectionInstance.World"); }
 	FMaterialParameterCollectionInstanceResource*& ResourceField() { return *GetNativePointerField<FMaterialParameterCollectionInstanceResource**>(this, "UMaterialParameterCollectionInstance.Resource"); }

@@ -10,8 +10,8 @@ public:
 	~USimpleConstructionScript() = delete;
 	USimpleConstructionScript(const USimpleConstructionScript&) = delete;
 	USimpleConstructionScript& operator=(const USimpleConstructionScript&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USimpleConstructionScript"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USimpleConstructionScript"); }
 	int& NameToSCSNodeMapRefCountField() { return *GetNativePointerField<int*>(this, "USimpleConstructionScript.NameToSCSNodeMapRefCount"); }
 	FStaticMeshComponentBulkReregisterContext*& ReregisterContextField() { return *GetNativePointerField<FStaticMeshComponentBulkReregisterContext**>(this, "USimpleConstructionScript.ReregisterContext"); }
 	void FixupRootNodeParentReferences() { NativeCall<void>(this, "USimpleConstructionScript.FixupRootNodeParentReferences()"); }

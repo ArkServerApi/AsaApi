@@ -10,8 +10,8 @@ public:
 	~UDistributionFloat() = delete;
 	UDistributionFloat(const UDistributionFloat&) = delete;
 	UDistributionFloat& operator=(const UDistributionFloat&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDistributionFloat.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDistributionFloat"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDistributionFloat"); }
 	BitFieldValue<bool, unsigned char> bCanBeBaked() { return { this, "UDistributionFloat.bCanBeBaked"}; }
 	BitFieldValue<bool, unsigned char> bIsDirty() { return { this, "UDistributionFloat.bIsDirty"}; }
 	BitFieldValue<bool, unsigned char> bBakedDataSuccesfully() { return { this, "UDistributionFloat.bBakedDataSuccesfully"}; }

@@ -9,8 +9,8 @@ public:
 	~UFieldSystemMetaDataFilter() = delete;
 	UFieldSystemMetaDataFilter(const UFieldSystemMetaDataFilter&) = delete;
 	UFieldSystemMetaDataFilter& operator=(const UFieldSystemMetaDataFilter&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldSystemMetaDataFilter"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldSystemMetaDataFilter"); }
 
 	FFieldSystemMetaData* NewMetaData() { return NativeCall<FFieldSystemMetaData*>(this, "UFieldSystemMetaDataFilter.NewMetaData()"); }
 };

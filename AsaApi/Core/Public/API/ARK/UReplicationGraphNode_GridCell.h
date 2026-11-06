@@ -9,7 +9,7 @@ public:
 	~UReplicationGraphNode_GridCell() = delete;
 	UReplicationGraphNode_GridCell(const UReplicationGraphNode_GridCell&) = delete;
 	UReplicationGraphNode_GridCell& operator=(const UReplicationGraphNode_GridCell&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReplicationGraphNode_GridCell.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReplicationGraphNode_GridCell"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReplicationGraphNode_GridCell"); }
 
 };

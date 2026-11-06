@@ -9,8 +9,8 @@ public:
 	~AControlRigControlActor() = delete;
 	AControlRigControlActor(const AControlRigControlActor&) = delete;
 	AControlRigControlActor& operator=(const AControlRigControlActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AControlRigControlActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AControlRigControlActor"); }
 
 	bool& bRefreshOnTickField() { return *GetNativePointerField<bool*>(this, "AControlRigControlActor.bRefreshOnTick"); }
 	bool& bIsSelectableField() { return *GetNativePointerField<bool*>(this, "AControlRigControlActor.bIsSelectable"); }

@@ -9,7 +9,7 @@ public:
 	~UFallDamageType() = delete;
 	UFallDamageType(const UFallDamageType&) = delete;
 	UFallDamageType& operator=(const UFallDamageType&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFallDamageType"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFallDamageType"); }
 
 };

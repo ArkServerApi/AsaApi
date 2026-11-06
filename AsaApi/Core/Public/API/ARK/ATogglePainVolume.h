@@ -43,7 +43,7 @@ struct ATogglePainVolume : AVolume
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATogglePainVolume"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesATogglePainVolume();
 	void OnBeginOverlap(AActor* OverlappedActor, AActor* Actor) { NativeCall<void, AActor*, AActor*>(this, "ATogglePainVolume.OnBeginOverlap(AActor*,AActor*)", OverlappedActor, Actor); }
@@ -58,7 +58,7 @@ struct ATogglePainVolume : AVolume
 	void PreSave(FObjectPreSaveContext* ObjectSaveContext) { NativeCall<void, FObjectPreSaveContext*>(this, "ATogglePainVolume.PreSave(FObjectPreSaveContext)", ObjectSaveContext); }
 	bool CheckForStructures(bool bStartPainTimer, TSet<APrimalStructure*, DefaultKeyFuncs<APrimalStructure*, 0>, FDefaultSetAllocator>* OutStructures) { return NativeCall<bool, bool, TSet<APrimalStructure*, DefaultKeyFuncs<APrimalStructure*, 0>, FDefaultSetAllocator>*>(this, "ATogglePainVolume.CheckForStructures(bool,TSet<APrimalStructure*,DefaultKeyFuncs<APrimalStructure*,0>,FDefaultSetAllocator>*)", bStartPainTimer, OutStructures); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATogglePainVolume"); }
 
 	bool& bEnabledField() { return *GetNativePointerField<bool*>(this, "ATogglePainVolume.bEnabled"); }
 	TArray<AEmitter*, TSizedDefaultAllocator<32> >& ToggleEmittersField() { return *GetNativePointerField<TArray<AEmitter*, TSizedDefaultAllocator<32> >*>(this, "ATogglePainVolume.ToggleEmitters"); }

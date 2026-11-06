@@ -9,8 +9,8 @@ public:
 	~ANoPawnPlayerController() = delete;
 	ANoPawnPlayerController(const ANoPawnPlayerController&) = delete;
 	ANoPawnPlayerController& operator=(const ANoPawnPlayerController&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANoPawnPlayerController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANoPawnPlayerController"); }
 
 	bool& bEnableReplicationToConnectionField() { return *GetNativePointerField<bool*>(this, "ANoPawnPlayerController.bEnableReplicationToConnection"); }
 	AActor* GetViewTarget() { return NativeCall<AActor*>(this, "ANoPawnPlayerController.GetViewTarget()"); }

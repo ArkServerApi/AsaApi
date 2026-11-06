@@ -9,8 +9,8 @@ public:
 	~ALandscapeStreamingProxy() = delete;
 	ALandscapeStreamingProxy(const ALandscapeStreamingProxy&) = delete;
 	ALandscapeStreamingProxy& operator=(const ALandscapeStreamingProxy&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscapeStreamingProxy"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscapeStreamingProxy"); }
 
 	UMaterialInterface* GetLandscapeHoleMaterial() { return NativeCall<UMaterialInterface*>(this, "ALandscapeStreamingProxy.GetLandscapeHoleMaterial()"); }
 };

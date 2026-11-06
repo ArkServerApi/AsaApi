@@ -9,7 +9,7 @@ public:
 	~UEngineSubsystem() = delete;
 	UEngineSubsystem(const UEngineSubsystem&) = delete;
 	UEngineSubsystem& operator=(const UEngineSubsystem&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UEngineSubsystem.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UEngineSubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UEngineSubsystem"); }
 
 };

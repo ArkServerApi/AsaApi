@@ -9,8 +9,8 @@ public:
 	~UPrimalCheatManagerExtension() = delete;
 	UPrimalCheatManagerExtension(const UPrimalCheatManagerExtension&) = delete;
 	UPrimalCheatManagerExtension& operator=(const UPrimalCheatManagerExtension&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCheatManagerExtension"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCheatManagerExtension"); }
 
 	void JTNN() { NativeCall<void>(this, "UPrimalCheatManagerExtension.JTNN()"); }
 	AActor* GetTargetActor() { return NativeCall<AActor*>(this, "UPrimalCheatManagerExtension.GetTargetActor()"); }

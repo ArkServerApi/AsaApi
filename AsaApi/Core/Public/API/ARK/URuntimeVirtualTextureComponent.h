@@ -10,8 +10,8 @@ public:
 	~URuntimeVirtualTextureComponent() = delete;
 	URuntimeVirtualTextureComponent(const URuntimeVirtualTextureComponent&) = delete;
 	URuntimeVirtualTextureComponent& operator=(const URuntimeVirtualTextureComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URuntimeVirtualTextureComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URuntimeVirtualTextureComponent"); }
 
 	bool& bSetBoundsButtonField() { return *GetNativePointerField<bool*>(this, "URuntimeVirtualTextureComponent.bSetBoundsButton"); }
 	bool& bSnapBoundsToLandscapeField() { return *GetNativePointerField<bool*>(this, "URuntimeVirtualTextureComponent.bSnapBoundsToLandscape"); }

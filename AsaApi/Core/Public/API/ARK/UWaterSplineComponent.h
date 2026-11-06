@@ -9,8 +9,8 @@ public:
 	~UWaterSplineComponent() = delete;
 	UWaterSplineComponent(const UWaterSplineComponent&) = delete;
 	UWaterSplineComponent& operator=(const UWaterSplineComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterSplineComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterSplineComponent"); }
 
 	FWaterSplineCurveDefaults& WaterSplineDefaultsField() { return *GetNativePointerField<FWaterSplineCurveDefaults*>(this, "UWaterSplineComponent.WaterSplineDefaults"); }
 	FWaterSplineCurveDefaults& PreviousWaterSplineDefaultsField() { return *GetNativePointerField<FWaterSplineCurveDefaults*>(this, "UWaterSplineComponent.PreviousWaterSplineDefaults"); }

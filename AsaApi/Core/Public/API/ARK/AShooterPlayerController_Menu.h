@@ -10,8 +10,8 @@ public:
 	~AShooterPlayerController_Menu() = delete;
 	AShooterPlayerController_Menu(const AShooterPlayerController_Menu&) = delete;
 	AShooterPlayerController_Menu& operator=(const AShooterPlayerController_Menu&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterPlayerController_Menu"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterPlayerController_Menu"); }
 
 
 

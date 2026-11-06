@@ -9,7 +9,7 @@ public:
 	~ARecastNavMesh() = delete;
 	ARecastNavMesh(const ARecastNavMesh&) = delete;
 	ARecastNavMesh& operator=(const ARecastNavMesh&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ARecastNavMesh"); }
 
 	float& DrawOffsetField() { return *GetNativePointerField<float*>(this, "ARecastNavMesh.DrawOffset"); }
 	FRecastNavMeshTileGenerationDebug& TileGenerationDebugField() { return *GetNativePointerField<FRecastNavMeshTileGenerationDebug*>(this, "ARecastNavMesh.TileGenerationDebug"); }
@@ -123,7 +123,7 @@ public:
 	void DetachNavMeshDataChunk(URecastNavMeshDataChunk& NavDataChunk) { NativeCall<void, URecastNavMeshDataChunk&>(this, "ARecastNavMesh.DetachNavMeshDataChunk(URecastNavMeshDataChunk&)", NavDataChunk); }
 	void OnUnregistered() { NativeCall<void>(this, "ARecastNavMesh.OnUnregistered()"); }
 	URecastNavMeshDataChunk* GetNavigationDataChunk(const TArray<UNavigationDataChunk*, TSizedDefaultAllocator<32> >& InChunks) { return NativeCall<URecastNavMeshDataChunk*, const TArray<UNavigationDataChunk*, TSizedDefaultAllocator<32> >&>(this, "ARecastNavMesh.GetNavigationDataChunk(TArray<UNavigationDataChunk*,TSizedDefaultAllocator<32>>&)", InChunks); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ARecastNavMesh.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ARecastNavMesh"); }
 	bool IsNodeRefValid(unsigned __int64 NodeRef) { return NativeCall<bool, unsigned __int64>(this, "ARecastNavMesh.IsNodeRefValid(unsigned__int64)", NodeRef); }
 	void OnNavAreaChanged() { NativeCall<void>(this, "ARecastNavMesh.OnNavAreaChanged()"); }
 	static bool IsVoxelCacheEnabled() { return NativeCall<bool>(nullptr, "ARecastNavMesh.IsVoxelCacheEnabled()"); }

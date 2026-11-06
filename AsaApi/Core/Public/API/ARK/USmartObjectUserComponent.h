@@ -9,7 +9,7 @@ public:
 	~USmartObjectUserComponent() = delete;
 	USmartObjectUserComponent(const USmartObjectUserComponent&) = delete;
 	USmartObjectUserComponent& operator=(const USmartObjectUserComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USmartObjectUserComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USmartObjectUserComponent"); }
 
 };

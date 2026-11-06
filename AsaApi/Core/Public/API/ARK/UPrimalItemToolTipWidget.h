@@ -9,8 +9,8 @@ public:
 	~UPrimalItemToolTipWidget() = delete;
 	UPrimalItemToolTipWidget(const UPrimalItemToolTipWidget&) = delete;
 	UPrimalItemToolTipWidget& operator=(const UPrimalItemToolTipWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItemToolTipWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItemToolTipWidget"); }
 
 	FString& ItemNameLabelNameField() { return *GetNativePointerField<FString*>(this, "UPrimalItemToolTipWidget.ItemNameLabelName"); }
 	FString& ItemQuantityLabelNameField() { return *GetNativePointerField<FString*>(this, "UPrimalItemToolTipWidget.ItemQuantityLabelName"); }

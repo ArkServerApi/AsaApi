@@ -9,8 +9,8 @@ public:
 	~AMissionType_ModularMissionBase() = delete;
 	AMissionType_ModularMissionBase(const AMissionType_ModularMissionBase&) = delete;
 	AMissionType_ModularMissionBase& operator=(const AMissionType_ModularMissionBase&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMissionType_ModularMissionBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMissionType_ModularMissionBase"); }
 
 	float& DelayBeforeInitalModuleField() { return *GetNativePointerField<float*>(this, "AMissionType_ModularMissionBase.DelayBeforeInitalModule"); }
 	float& MissionTimeRemainingAfterEscapePhaseField() { return *GetNativePointerField<float*>(this, "AMissionType_ModularMissionBase.MissionTimeRemainingAfterEscapePhase"); }

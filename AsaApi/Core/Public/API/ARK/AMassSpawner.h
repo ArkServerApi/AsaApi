@@ -9,8 +9,8 @@ public:
 	~AMassSpawner() = delete;
 	AMassSpawner(const AMassSpawner&) = delete;
 	AMassSpawner& operator=(const AMassSpawner&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMassSpawner"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMassSpawner"); }
 
 	FMassSpawnerOnSpawningFinishedEvent& OnSpawningFinishedEventField() { return *GetNativePointerField<FMassSpawnerOnSpawningFinishedEvent*>(this, "AMassSpawner.OnSpawningFinishedEvent"); }
 	FMassSpawnerOnDespawningFinishedEvent& OnDespawningFinishedEventField() { return *GetNativePointerField<FMassSpawnerOnDespawningFinishedEvent*>(this, "AMassSpawner.OnDespawningFinishedEvent"); }

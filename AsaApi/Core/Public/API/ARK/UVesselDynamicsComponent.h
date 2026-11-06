@@ -9,8 +9,8 @@ public:
 	~UVesselDynamicsComponent() = delete;
 	UVesselDynamicsComponent(const UVesselDynamicsComponent&) = delete;
 	UVesselDynamicsComponent& operator=(const UVesselDynamicsComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVesselDynamicsComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVesselDynamicsComponent"); }
 
 	float& PointStepField() { return *GetNativePointerField<float*>(this, "UVesselDynamicsComponent.PointStep"); }
 	bool& bEnableBuoyancyField() { return *GetNativePointerField<bool*>(this, "UVesselDynamicsComponent.bEnableBuoyancy"); }

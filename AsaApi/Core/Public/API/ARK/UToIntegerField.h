@@ -9,8 +9,8 @@ public:
 	~UToIntegerField() = delete;
 	UToIntegerField(const UToIntegerField&) = delete;
 	UToIntegerField& operator=(const UToIntegerField&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UToIntegerField"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UToIntegerField"); }
 
 	FFieldNodeBase* NewEvaluationGraph(TArray<UFieldNodeBase const*, TSizedDefaultAllocator<32> >& Nodes) { return NativeCall<FFieldNodeBase*, TArray<UFieldNodeBase const*, TSizedDefaultAllocator<32> >&>(this, "UToIntegerField.NewEvaluationGraph(TArray<UFieldNodeBase*,TSizedDefaultAllocator<32>>&)", Nodes); }
 };

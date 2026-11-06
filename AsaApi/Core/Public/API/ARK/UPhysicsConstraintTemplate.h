@@ -10,8 +10,8 @@ public:
 	~UPhysicsConstraintTemplate() = delete;
 	UPhysicsConstraintTemplate(const UPhysicsConstraintTemplate&) = delete;
 	UPhysicsConstraintTemplate& operator=(const UPhysicsConstraintTemplate&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsConstraintTemplate"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsConstraintTemplate"); }
 	FConstraintInstance& DefaultInstanceField() { return *GetNativePointerField<FConstraintInstance*>(this, "UPhysicsConstraintTemplate.DefaultInstance"); }
 	FConstraintProfileProperties& DefaultProfileField() { return *GetNativePointerField<FConstraintProfileProperties*>(this, "UPhysicsConstraintTemplate.DefaultProfile"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "UPhysicsConstraintTemplate.Serialize(FArchive&)", Ar); }

@@ -9,8 +9,8 @@ public:
 	~UDiscordNotificationEntryWidget() = delete;
 	UDiscordNotificationEntryWidget(const UDiscordNotificationEntryWidget&) = delete;
 	UDiscordNotificationEntryWidget& operator=(const UDiscordNotificationEntryWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDiscordNotificationEntryWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDiscordNotificationEntryWidget"); }
 
 	UWidgetAnimation* FindAnimationByName(FName AnimationName) { return NativeCall<UWidgetAnimation*, FName>(this, "UDiscordNotificationEntryWidget.FindAnimationByName(FName)", AnimationName); }
 	float GetExitAnimationDuration() { return NativeCall<float>(this, "UDiscordNotificationEntryWidget.GetExitAnimationDuration()"); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalShipCannonComponent() = delete;
 	UPrimalShipCannonComponent(const UPrimalShipCannonComponent&) = delete;
 	UPrimalShipCannonComponent& operator=(const UPrimalShipCannonComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalShipCannonComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalShipCannonComponent"); }
 
 	bool& bUseArmThrowField() { return *GetNativePointerField<bool*>(this, "UPrimalShipCannonComponent.bUseArmThrow"); }
 	float& ThrowArmPitchDegField() { return *GetNativePointerField<float*>(this, "UPrimalShipCannonComponent.ThrowArmPitchDeg"); }

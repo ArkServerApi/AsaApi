@@ -9,8 +9,8 @@ public:
 	~UBinocularsWidgetUI() = delete;
 	UBinocularsWidgetUI(const UBinocularsWidgetUI&) = delete;
 	UBinocularsWidgetUI& operator=(const UBinocularsWidgetUI&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBinocularsWidgetUI"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBinocularsWidgetUI"); }
 
 	TArray<UTextBlock*, TSizedDefaultAllocator<32> >& TextInfoArrayField() { return *GetNativePointerField<TArray<UTextBlock*, TSizedDefaultAllocator<32> >*>(this, "UBinocularsWidgetUI.TextInfoArray"); }
 	FName& GamepadUnlockButtonNameField() { return *GetNativePointerField<FName*>(this, "UBinocularsWidgetUI.GamepadUnlockButtonName"); }

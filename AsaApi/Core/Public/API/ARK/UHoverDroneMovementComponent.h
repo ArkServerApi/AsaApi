@@ -9,8 +9,8 @@ public:
 	~UHoverDroneMovementComponent() = delete;
 	UHoverDroneMovementComponent(const UHoverDroneMovementComponent&) = delete;
 	UHoverDroneMovementComponent& operator=(const UHoverDroneMovementComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoverDroneMovementComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoverDroneMovementComponent"); }
 
 	UE::Math::TVector<double>& MeasuredVelocityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UHoverDroneMovementComponent.MeasuredVelocity"); }
 	int& MaxAllowedSpeedIndexField() { return *GetNativePointerField<int*>(this, "UHoverDroneMovementComponent.MaxAllowedSpeedIndex"); }

@@ -10,8 +10,8 @@ public:
 	~UVirtualTexture2D() = delete;
 	UVirtualTexture2D(const UVirtualTexture2D&) = delete;
 	UVirtualTexture2D& operator=(const UVirtualTexture2D&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVirtualTexture2D"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVirtualTexture2D"); }
 	FVirtualTextureBuildSettings& SettingsField() { return *GetNativePointerField<FVirtualTextureBuildSettings*>(this, "UVirtualTexture2D.Settings"); }
 	bool& bContinuousUpdate_DEPRECATEDField() { return *GetNativePointerField<bool*>(this, "UVirtualTexture2D.bContinuousUpdate_DEPRECATED"); }
 	bool& bSinglePhysicalSpaceField() { return *GetNativePointerField<bool*>(this, "UVirtualTexture2D.bSinglePhysicalSpace"); }

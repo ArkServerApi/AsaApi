@@ -9,8 +9,8 @@ public:
 	~AWorldPartitionMiniMapVolume() = delete;
 	AWorldPartitionMiniMapVolume(const AWorldPartitionMiniMapVolume&) = delete;
 	AWorldPartitionMiniMapVolume& operator=(const AWorldPartitionMiniMapVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldPartitionMiniMapVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldPartitionMiniMapVolume"); }
 
 	bool IsEditorOnly() { return NativeCall<bool>(this, "AWorldPartitionMiniMapVolume.IsEditorOnly()"); }
 };

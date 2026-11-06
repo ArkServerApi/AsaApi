@@ -9,7 +9,7 @@ public:
 	~UContextMenu_PrimalItem() = delete;
 	UContextMenu_PrimalItem(const UContextMenu_PrimalItem&) = delete;
 	UContextMenu_PrimalItem& operator=(const UContextMenu_PrimalItem&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenu_PrimalItem"); }
 
 	UContextMenuItem*& CachedContextMenuItemField() { return *GetNativePointerField<UContextMenuItem**>(this, "UContextMenu_PrimalItem.CachedContextMenuItem"); }
 	UPrimalItem*& CachedPrimalItemField() { return *GetNativePointerField<UPrimalItem**>(this, "UContextMenu_PrimalItem.CachedPrimalItem"); }
@@ -52,7 +52,7 @@ public:
 	void HandleActionAddAsSortingInputOne(UContextMenuItem* Item) { NativeCall<void, UContextMenuItem*>(this, "UContextMenu_PrimalItem.HandleActionAddAsSortingInputOne(UContextMenuItem*)", Item); }
 	void PopulateCraftMenu(UContextMenu* ContextMenu) { NativeCall<void, UContextMenu*>(this, "UContextMenu_PrimalItem.PopulateCraftMenu(UContextMenu*)", ContextMenu); }
 	void HandleActionDeleteFolder(UContextMenuItem* Item) { NativeCall<void, UContextMenuItem*>(this, "UContextMenu_PrimalItem.HandleActionDeleteFolder(UContextMenuItem*)", Item); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UContextMenu_PrimalItem.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenu_PrimalItem"); }
 	void HandleActionDiscard(UContextMenuItem* Item) { NativeCall<void, UContextMenuItem*>(this, "UContextMenu_PrimalItem.HandleActionDiscard(UContextMenuItem*)", Item); }
 	void PopulateSubmenuCustomCosmetics(UContextMenu* ContextMenu) { NativeCall<void, UContextMenu*>(this, "UContextMenu_PrimalItem.PopulateSubmenuCustomCosmetics(UContextMenu*)", ContextMenu); }
 	UContextMenu* HandleOnGetSubmenuSortingInputContent(UContextMenuItem* MenuItem) { return NativeCall<UContextMenu*, UContextMenuItem*>(this, "UContextMenu_PrimalItem.HandleOnGetSubmenuSortingInputContent(UContextMenuItem*)", MenuItem); }

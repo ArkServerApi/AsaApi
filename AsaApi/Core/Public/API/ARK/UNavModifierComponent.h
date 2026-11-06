@@ -9,7 +9,7 @@ public:
 	~UNavModifierComponent() = delete;
 	UNavModifierComponent(const UNavModifierComponent&) = delete;
 	UNavModifierComponent& operator=(const UNavModifierComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavModifierComponent"); }
 
 	UE::Math::TVector<double>& FailsafeExtentField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UNavModifierComponent.FailsafeExtent"); }
 	ENavigationDataResolution& NavMeshResolutionField() { return *GetNativePointerField<ENavigationDataResolution*>(this, "UNavModifierComponent.NavMeshResolution"); }
@@ -19,6 +19,6 @@ public:
 	void OnUnregister() { NativeCall<void>(this, "UNavModifierComponent.OnUnregister()"); }
 	void GetNavigationData(FNavigationRelevantData& Data) { NativeCall<void, FNavigationRelevantData&>(this, "UNavModifierComponent.GetNavigationData(FNavigationRelevantData&)", Data); }
 	void CalculateBounds() { NativeCall<void>(this, "UNavModifierComponent.CalculateBounds()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNavModifierComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavModifierComponent"); }
 	void CalcAndCacheBounds() { NativeCall<void>(this, "UNavModifierComponent.CalcAndCacheBounds()"); }
 };

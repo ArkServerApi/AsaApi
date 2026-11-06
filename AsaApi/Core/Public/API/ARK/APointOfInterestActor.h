@@ -28,8 +28,8 @@ struct APointOfInterestActor : AActor
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APointOfInterestActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APointOfInterestActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APointOfInterestActor"); }
 	bool IsPointOfInterestValid() { return NativeCall<bool>(this, "APointOfInterestActor.IsPointOfInterestValid()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPointOfInterestActor();

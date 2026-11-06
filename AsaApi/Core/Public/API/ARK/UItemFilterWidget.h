@@ -9,8 +9,8 @@ public:
 	~UItemFilterWidget() = delete;
 	UItemFilterWidget(const UItemFilterWidget&) = delete;
 	UItemFilterWidget& operator=(const UItemFilterWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UItemFilterWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UItemFilterWidget"); }
 
 	UTextBlock*& LabelStringField() { return *GetNativePointerField<UTextBlock**>(this, "UItemFilterWidget.LabelString"); }
 	UTextBlock*& FilterStringField() { return *GetNativePointerField<UTextBlock**>(this, "UItemFilterWidget.FilterString"); }

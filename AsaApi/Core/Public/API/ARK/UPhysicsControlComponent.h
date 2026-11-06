@@ -9,8 +9,8 @@ public:
 	~UPhysicsControlComponent() = delete;
 	UPhysicsControlComponent(const UPhysicsControlComponent&) = delete;
 	UPhysicsControlComponent& operator=(const UPhysicsControlComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsControlComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsControlComponent"); }
 
 	float& TeleportDistanceThresholdField() { return *GetNativePointerField<float*>(this, "UPhysicsControlComponent.TeleportDistanceThreshold"); }
 	float& TeleportRotationThresholdField() { return *GetNativePointerField<float*>(this, "UPhysicsControlComponent.TeleportRotationThreshold"); }

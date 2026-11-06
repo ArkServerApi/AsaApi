@@ -10,8 +10,8 @@ public:
 	~UVolumeTexture() = delete;
 	UVolumeTexture(const UVolumeTexture&) = delete;
 	UVolumeTexture& operator=(const UVolumeTexture&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVolumeTexture"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVolumeTexture"); }
 	FTexturePlatformData*& PrivatePlatformDataField() { return *GetNativePointerField<FTexturePlatformData**>(this, "UVolumeTexture.PrivatePlatformData"); }
 	void GetResourceSizeEx(FResourceSizeEx& CumulativeResourceSize) { NativeCall<void, FResourceSizeEx&>(this, "UVolumeTexture.GetResourceSizeEx(FResourceSizeEx&)", CumulativeResourceSize); }
 	FString* GetDesc(FString* result) { return NativeCall<FString*, FString*>(this, "UVolumeTexture.GetDesc()", result); }

@@ -9,8 +9,8 @@ public:
 	~ALandscape() = delete;
 	ALandscape(const ALandscape&) = delete;
 	ALandscape& operator=(const ALandscape&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscape"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscape"); }
 
 	bool& bGrassEnabledField() { return *GetNativePointerField<bool*>(this, "ALandscape.bGrassEnabled"); }
 	bool IsUpToDate() { return NativeCall<bool>(this, "ALandscape.IsUpToDate()"); }

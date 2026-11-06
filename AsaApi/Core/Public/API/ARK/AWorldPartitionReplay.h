@@ -9,8 +9,8 @@ public:
 	~AWorldPartitionReplay() = delete;
 	AWorldPartitionReplay(const AWorldPartitionReplay&) = delete;
 	AWorldPartitionReplay& operator=(const AWorldPartitionReplay&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldPartitionReplay"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldPartitionReplay"); }
 
 	TArray<FName, TSizedDefaultAllocator<32> >& StreamingSourceNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "AWorldPartitionReplay.StreamingSourceNames"); }
 	static void Uninitialize(UWorld* World) { NativeCall<void, UWorld*>(nullptr, "AWorldPartitionReplay.Uninitialize(UWorld*)", World); }

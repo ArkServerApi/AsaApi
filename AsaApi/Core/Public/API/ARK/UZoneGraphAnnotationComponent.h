@@ -9,7 +9,7 @@ public:
 	~UZoneGraphAnnotationComponent() = delete;
 	UZoneGraphAnnotationComponent(const UZoneGraphAnnotationComponent&) = delete;
 	UZoneGraphAnnotationComponent& operator=(const UZoneGraphAnnotationComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UZoneGraphAnnotationComponent"); }
 
 	FDelegateHandle& OnPostZoneGraphDataAddedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UZoneGraphAnnotationComponent.OnPostZoneGraphDataAddedHandle"); }
 	FDelegateHandle& OnPreZoneGraphDataRemovedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UZoneGraphAnnotationComponent.OnPreZoneGraphDataRemovedHandle"); }
@@ -24,5 +24,5 @@ public:
 	void PreZoneGraphDataRemoved(const AZoneGraphData& ZoneGraphData) { NativeCall<void, const AZoneGraphData&>(this, "UZoneGraphAnnotationComponent.PreZoneGraphDataRemoved(AZoneGraphData&)", ZoneGraphData); }
 	void PostSubsystemsInitialized() { NativeCall<void>(this, "UZoneGraphAnnotationComponent.PostSubsystemsInitialized()"); }
 	void OnUnregister() { NativeCall<void>(this, "UZoneGraphAnnotationComponent.OnUnregister()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UZoneGraphAnnotationComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UZoneGraphAnnotationComponent"); }
 };

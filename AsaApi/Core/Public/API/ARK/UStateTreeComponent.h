@@ -9,7 +9,7 @@ public:
 	~UStateTreeComponent() = delete;
 	UStateTreeComponent(const UStateTreeComponent&) = delete;
 	UStateTreeComponent& operator=(const UStateTreeComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStateTreeComponent"); }
 
 	FStateTreeRunStatusChanged& OnStateTreeRunStatusChangedField() { return *GetNativePointerField<FStateTreeRunStatusChanged*>(this, "UStateTreeComponent.OnStateTreeRunStatusChanged"); }
 	FStateTreeReference& StateTreeRefField() { return *GetNativePointerField<FStateTreeReference*>(this, "UStateTreeComponent.StateTreeRef"); }
@@ -32,7 +32,7 @@ public:
 	void BeginPlay() { NativeCall<void>(this, "UStateTreeComponent.BeginPlay()"); }
 	EAILogicResuming::Type ResumeLogic(const FString& Reason) { return NativeCall<EAILogicResuming::Type, const FString&>(this, "UStateTreeComponent.ResumeLogic(FString&)", Reason); }
 	bool SetContextRequirements(FStateTreeExecutionContext& Context, bool bLogErrors) { return NativeCall<bool, FStateTreeExecutionContext&, bool>(this, "UStateTreeComponent.SetContextRequirements(FStateTreeExecutionContext&,bool)", Context, bLogErrors); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UStateTreeComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStateTreeComponent"); }
 	void StartLogic() { NativeCall<void>(this, "UStateTreeComponent.StartLogic()"); }
 	unsigned char GetGameplayTaskDefaultPriority() { return NativeCall<unsigned char>(this, "UStateTreeComponent.GetGameplayTaskDefaultPriority()"); }
 	AActor* GetGameplayTaskAvatar(const UGameplayTask* Task) { return NativeCall<AActor*, const UGameplayTask*>(this, "UStateTreeComponent.GetGameplayTaskAvatar(UGameplayTask*)", Task); }

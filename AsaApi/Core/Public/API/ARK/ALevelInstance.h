@@ -9,7 +9,7 @@ public:
 	~ALevelInstance() = delete;
 	ALevelInstance(const ALevelInstance&) = delete;
 	ALevelInstance& operator=(const ALevelInstance&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALevelInstance"); }
 
 	FGuid& LevelInstanceSpawnGuidField() { return *GetNativePointerField<FGuid*>(this, "ALevelInstance.LevelInstanceSpawnGuid"); }
 	FLevelInstanceActorGuid& LevelInstanceActorGuidField() { return *GetNativePointerField<FLevelInstanceActorGuid*>(this, "ALevelInstance.LevelInstanceActorGuid"); }
@@ -27,5 +27,5 @@ public:
 	const FGuid& GetLevelInstanceGuid() { return NativeCall<const FGuid&>(this, "ALevelInstance.GetLevelInstanceGuid()"); }
 	void PostNetInit() { NativeCall<void>(this, "ALevelInstance.PostNetInit()"); }
 	void PostRegisterAllComponents() { NativeCall<void>(this, "ALevelInstance.PostRegisterAllComponents()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ALevelInstance.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALevelInstance"); }
 };

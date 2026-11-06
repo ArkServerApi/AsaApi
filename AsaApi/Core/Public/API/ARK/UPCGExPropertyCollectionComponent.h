@@ -9,8 +9,8 @@ public:
 	~UPCGExPropertyCollectionComponent() = delete;
 	UPCGExPropertyCollectionComponent(const UPCGExPropertyCollectionComponent&) = delete;
 	UPCGExPropertyCollectionComponent& operator=(const UPCGExPropertyCollectionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPCGExPropertyCollectionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPCGExPropertyCollectionComponent"); }
 
 	FPCGExPropertySchemaCollection& PropertiesField() { return *GetNativePointerField<FPCGExPropertySchemaCollection*>(this, "UPCGExPropertyCollectionComponent.Properties"); }
 	static UPCGExPropertyCollectionComponent* FindOnActor(const AActor* Actor) { return NativeCall<UPCGExPropertyCollectionComponent*, const AActor*>(nullptr, "UPCGExPropertyCollectionComponent.FindOnActor(AActor*)", Actor); }

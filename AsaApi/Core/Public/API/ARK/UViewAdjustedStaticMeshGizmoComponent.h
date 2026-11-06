@@ -9,8 +9,8 @@ public:
 	~UViewAdjustedStaticMeshGizmoComponent() = delete;
 	UViewAdjustedStaticMeshGizmoComponent(const UViewAdjustedStaticMeshGizmoComponent&) = delete;
 	UViewAdjustedStaticMeshGizmoComponent& operator=(const UViewAdjustedStaticMeshGizmoComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UViewAdjustedStaticMeshGizmoComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UViewAdjustedStaticMeshGizmoComponent"); }
 
 	bool& bHoveredField() { return *GetNativePointerField<bool*>(this, "UViewAdjustedStaticMeshGizmoComponent.bHovered"); }
 	bool& bInteractedField() { return *GetNativePointerField<bool*>(this, "UViewAdjustedStaticMeshGizmoComponent.bInteracted"); }

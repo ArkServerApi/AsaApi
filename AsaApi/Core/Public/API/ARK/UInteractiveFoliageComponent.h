@@ -9,8 +9,8 @@ public:
 	~UInteractiveFoliageComponent() = delete;
 	UInteractiveFoliageComponent(const UInteractiveFoliageComponent&) = delete;
 	UInteractiveFoliageComponent& operator=(const UInteractiveFoliageComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInteractiveFoliageComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInteractiveFoliageComponent"); }
 
 	FInteractiveFoliageSceneProxy*& FoliageSceneProxyField() { return *GetNativePointerField<FInteractiveFoliageSceneProxy**>(this, "UInteractiveFoliageComponent.FoliageSceneProxy"); }
 	void DestroyRenderState_Concurrent() { NativeCall<void>(this, "UInteractiveFoliageComponent.DestroyRenderState_Concurrent()"); }

@@ -9,8 +9,8 @@ public:
 	~UForceFeedbackComponent() = delete;
 	UForceFeedbackComponent(const UForceFeedbackComponent&) = delete;
 	UForceFeedbackComponent& operator=(const UForceFeedbackComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UForceFeedbackComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UForceFeedbackComponent"); }
 
 	float& IntensityMultiplierField() { return *GetNativePointerField<float*>(this, "UForceFeedbackComponent.IntensityMultiplier"); }
 	FForceFeedbackAttenuationSettings& AttenuationOverridesField() { return *GetNativePointerField<FForceFeedbackAttenuationSettings*>(this, "UForceFeedbackComponent.AttenuationOverrides"); }

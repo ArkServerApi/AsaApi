@@ -27,7 +27,7 @@ struct AGameStateBase : AInfo
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AGameStateBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameStateBase"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAGameStateBase();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -54,7 +54,7 @@ struct AGameStateBase : AInfo
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "AGameStateBase.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
 	APlayerState* GetPlayerStateFromUniqueNetId(const FUniqueNetIdWrapper* InPlayerId) { return NativeCall<APlayerState*, const FUniqueNetIdWrapper*>(this, "AGameStateBase.GetPlayerStateFromUniqueNetId(FUniqueNetIdWrapper&)", InPlayerId); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameStateBase"); }
 
 	bool& bReplicatedHasBegunPlayField() { return *GetNativePointerField<bool*>(this, "AGameStateBase.bReplicatedHasBegunPlay"); }
 	void LevelAddedToWorld(ULevel* addedLevel) { NativeCall<void, ULevel*>(this, "AGameStateBase.LevelAddedToWorld(ULevel*)", addedLevel); }

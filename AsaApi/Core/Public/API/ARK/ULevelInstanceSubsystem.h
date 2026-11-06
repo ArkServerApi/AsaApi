@@ -9,7 +9,7 @@ public:
 	~ULevelInstanceSubsystem() = delete;
 	ULevelInstanceSubsystem(const ULevelInstanceSubsystem&) = delete;
 	ULevelInstanceSubsystem& operator=(const ULevelInstanceSubsystem&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULevelInstanceSubsystem.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULevelInstanceSubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULevelInstanceSubsystem"); }
 
 };

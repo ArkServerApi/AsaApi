@@ -9,8 +9,8 @@ public:
 	~ACineCameraAttachMount() = delete;
 	ACineCameraAttachMount(const ACineCameraAttachMount&) = delete;
 	ACineCameraAttachMount& operator=(const ACineCameraAttachMount&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACineCameraAttachMount"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACineCameraAttachMount"); }
 
 	FName& TargetSocketField() { return *GetNativePointerField<FName*>(this, "ACineCameraAttachMount.TargetSocket"); }
 	FTransformFilter& TransformFilterField() { return *GetNativePointerField<FTransformFilter*>(this, "ACineCameraAttachMount.TransformFilter"); }

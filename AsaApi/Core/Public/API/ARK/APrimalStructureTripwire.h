@@ -41,7 +41,7 @@ struct APrimalStructureTripwire : APrimalStructureExplosive
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureTripwire"); }
     void DisconnectMe() { NativeCall<void>(this, "APrimalStructureTripwire.DisconnectMe()"); }
     void NetUpdateBoxName(const FString* NewName) { NativeCall<void, const FString*>(this, "APrimalStructureTripwire.NetUpdateBoxName(FString&)", NewName); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -77,4 +77,5 @@ struct APrimalStructureTripwire : APrimalStructureExplosive
 	void TriggerTouched(UPrimitiveComponent* OverlappedComponent, AActor* Other, UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) { NativeCall<void, UPrimitiveComponent*, AActor*, UPrimitiveComponent*, int, bool, const FHitResult&>(this, "APrimalStructureTripwire.TriggerTouched(UPrimitiveComponent*,AActor*,UPrimitiveComponent*,int,bool,FHitResult&)", OverlappedComponent, Other, OtherComp, OtherBodyIndex, bFromSweep, SweepResult); }
 	void InitTripWire() { NativeCall<void>(this, "APrimalStructureTripwire.InitTripWire()"); }
 	void Multicast_ConnectedTo(APrimalStructureTripwire* InTripwire) { NativeCall<void, APrimalStructureTripwire*>(this, "APrimalStructureTripwire.Multicast_ConnectedTo(APrimalStructureTripwire*)", InTripwire); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureTripwire"); }
 };

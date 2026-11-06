@@ -15,10 +15,10 @@ struct UMinimapData : UObject
 
 	// Unavailable in UE 5.8.3: dependent class factory unavailable
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMinimapData"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUMinimapData();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMinimapData"); }
 };

@@ -9,8 +9,8 @@ public:
 	~AEmitterCameraLensEffectBase() = delete;
 	AEmitterCameraLensEffectBase(const AEmitterCameraLensEffectBase&) = delete;
 	AEmitterCameraLensEffectBase& operator=(const AEmitterCameraLensEffectBase&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AEmitterCameraLensEffectBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AEmitterCameraLensEffectBase"); }
 
 	float& BaseFOVField() { return *GetNativePointerField<float*>(this, "AEmitterCameraLensEffectBase.BaseFOV"); }
 	float& DistFromCamera_DEPRECATEDField() { return *GetNativePointerField<float*>(this, "AEmitterCameraLensEffectBase.DistFromCamera_DEPRECATED"); }

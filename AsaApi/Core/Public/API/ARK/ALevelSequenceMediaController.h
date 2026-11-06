@@ -9,8 +9,8 @@ public:
 	~ALevelSequenceMediaController() = delete;
 	ALevelSequenceMediaController(const ALevelSequenceMediaController&) = delete;
 	ALevelSequenceMediaController& operator=(const ALevelSequenceMediaController&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALevelSequenceMediaController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALevelSequenceMediaController"); }
 
 	float& ServerStartTimeSecondsField() { return *GetNativePointerField<float*>(this, "ALevelSequenceMediaController.ServerStartTimeSeconds"); }
 	double& SequencePositionSecondsField() { return *GetNativePointerField<double*>(this, "ALevelSequenceMediaController.SequencePositionSeconds"); }

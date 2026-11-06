@@ -9,9 +9,9 @@ public:
 	~UFieldNodeBase() = delete;
 	UFieldNodeBase(const UFieldNodeBase&) = delete;
 	UFieldNodeBase& operator=(const UFieldNodeBase&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldNodeBase"); }
 
 	bool ResultsExpector() { return NativeCall<bool>(this, "UFieldNodeBase.ResultsExpector()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFieldNodeBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldNodeBase"); }
 	FFieldNodeBase* NewEvaluationGraph(TArray<UFieldNodeBase const*, TSizedDefaultAllocator<32> >& Nodes) { return NativeCall<FFieldNodeBase*, TArray<UFieldNodeBase const*, TSizedDefaultAllocator<32> >&>(this, "UFieldNodeBase.NewEvaluationGraph(TArray<UFieldNodeBase*,TSizedDefaultAllocator<32>>&)", Nodes); }
 };

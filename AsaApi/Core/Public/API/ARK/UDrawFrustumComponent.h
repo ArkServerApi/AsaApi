@@ -9,8 +9,8 @@ public:
 	~UDrawFrustumComponent() = delete;
 	UDrawFrustumComponent(const UDrawFrustumComponent&) = delete;
 	UDrawFrustumComponent& operator=(const UDrawFrustumComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDrawFrustumComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDrawFrustumComponent"); }
 
 	bool& bFrustumEnabledField() { return *GetNativePointerField<bool*>(this, "UDrawFrustumComponent.bFrustumEnabled"); }
 	FColor& FrustumColorField() { return *GetNativePointerField<FColor*>(this, "UDrawFrustumComponent.FrustumColor"); }

@@ -10,8 +10,8 @@ public:
 	~APrimalBuffAbilityCharges() = delete;
 	APrimalBuffAbilityCharges(const APrimalBuffAbilityCharges&) = delete;
 	APrimalBuffAbilityCharges& operator=(const APrimalBuffAbilityCharges&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuffAbilityCharges"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuffAbilityCharges"); }
 
 
 

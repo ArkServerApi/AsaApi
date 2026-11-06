@@ -10,8 +10,8 @@ public:
 	~UParticleModuleEventGenerator() = delete;
 	UParticleModuleEventGenerator(const UParticleModuleEventGenerator&) = delete;
 	UParticleModuleEventGenerator& operator=(const UParticleModuleEventGenerator&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleModuleEventGenerator"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleModuleEventGenerator"); }
 	bool HandleParticleKilled(FParticleEmitterInstance* Owner, FParticleEventInstancePayload* EventPayload, FBaseParticle* DeadParticle) { return NativeCall<bool, FParticleEmitterInstance*, FParticleEventInstancePayload*, FBaseParticle*>(this, "UParticleModuleEventGenerator.HandleParticleKilled(FParticleEmitterInstance*,FParticleEventInstancePayload*,FBaseParticle*)", Owner, EventPayload, DeadParticle); }
 	bool HandleParticleSpawned(FParticleEmitterInstance* Owner, FParticleEventInstancePayload* EventPayload, FBaseParticle* NewParticle) { return NativeCall<bool, FParticleEmitterInstance*, FParticleEventInstancePayload*, FBaseParticle*>(this, "UParticleModuleEventGenerator.HandleParticleSpawned(FParticleEmitterInstance*,FParticleEventInstancePayload*,FBaseParticle*)", Owner, EventPayload, NewParticle); }
 	bool HandleParticleCollision(FParticleEmitterInstance* Owner, FParticleEventInstancePayload* EventPayload, FParticleCollisionPayload* CollidePayload, FHitResult* Hit, FBaseParticle* CollideParticle, UE::Math::TVector<double>& CollideDirection) { return NativeCall<bool, FParticleEmitterInstance*, FParticleEventInstancePayload*, FParticleCollisionPayload*, FHitResult*, FBaseParticle*, UE::Math::TVector<double>&>(this, "UParticleModuleEventGenerator.HandleParticleCollision(FParticleEmitterInstance*,FParticleEventInstancePayload*,FParticleCollisionPayload*,FHitResult*,FBaseParticle*,UE::Math::TVector<double>&)", Owner, EventPayload, CollidePayload, Hit, CollideParticle, CollideDirection); }

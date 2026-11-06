@@ -9,7 +9,7 @@ public:
 	~ACameraActor() = delete;
 	ACameraActor(const ACameraActor&) = delete;
 	ACameraActor& operator=(const ACameraActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACameraActor"); }
 
 	TEnumAsByte<EAutoReceiveInput::Type>& AutoActivateForPlayerField() { return *GetNativePointerField<TEnumAsByte<EAutoReceiveInput::Type>*>(this, "ACameraActor.AutoActivateForPlayer"); }
 	TWeakObjectPtr<UCameraAnim, FWeakObjectPtr>& PreviewedCameraAnimField() { return *GetNativePointerField<TWeakObjectPtr<UCameraAnim, FWeakObjectPtr>*>(this, "ACameraActor.PreviewedCameraAnim"); }
@@ -23,5 +23,5 @@ public:
 	void NotifyCameraCut() { NativeCall<void>(this, "ACameraActor.NotifyCameraCut()"); }
 	int GetAutoActivatePlayerIndex() { return NativeCall<int>(this, "ACameraActor.GetAutoActivatePlayerIndex()"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "ACameraActor.Serialize(FArchive&)", Ar); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ACameraActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACameraActor"); }
 };

@@ -13,7 +13,7 @@ struct AHazardTrigger : ABaseBoxTrigger
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AHazardTrigger.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHazardTrigger"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAHazardTrigger();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -27,7 +27,7 @@ struct AHazardTrigger : ABaseBoxTrigger
 	void Activate() { NativeCall<void>(this, "AHazardTrigger.Activate()"); }
 	void Deactivate() { NativeCall<void>(this, "AHazardTrigger.Deactivate()"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHazardTrigger"); }
 
 	bool& bIsActiveField() { return *GetNativePointerField<bool*>(this, "AHazardTrigger.bIsActive"); }
 	bool& bConformToTerrainField() { return *GetNativePointerField<bool*>(this, "AHazardTrigger.bConformToTerrain"); }

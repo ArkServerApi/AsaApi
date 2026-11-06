@@ -9,8 +9,8 @@ public:
 	~UExponentialHeightFogComponent() = delete;
 	UExponentialHeightFogComponent(const UExponentialHeightFogComponent&) = delete;
 	UExponentialHeightFogComponent& operator=(const UExponentialHeightFogComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UExponentialHeightFogComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UExponentialHeightFogComponent"); }
 
 	float& PriorityField() { return *GetNativePointerField<float*>(this, "UExponentialHeightFogComponent.Priority"); }
 	float& FogDensityField() { return *GetNativePointerField<float*>(this, "UExponentialHeightFogComponent.FogDensity"); }

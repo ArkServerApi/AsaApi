@@ -22,7 +22,7 @@ struct APrimalPlayerController : APlayerController
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalPlayerController.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalPlayerController"); }
 	void ClientProcessNetExecCommandBP(AActor* ForActor, FName CommandName, FBPNetExecParams* ExecParams) { NativeCall<void, AActor*, FName, FBPNetExecParams*>(this, "APrimalPlayerController.ClientProcessNetExecCommandBP(AActor*,FName,FBPNetExecParams)", ForActor, CommandName, ExecParams); }
 	void ClientProcessNetExecCommandUnreliableBP(AActor* ForActor, FName CommandName, FBPNetExecParams* ExecParams) { NativeCall<void, AActor*, FName, FBPNetExecParams*>(this, "APrimalPlayerController.ClientProcessNetExecCommandUnreliableBP(AActor*,FName,FBPNetExecParams)", ForActor, CommandName, ExecParams); }
 	void PropertyServerToClients(AActor* ActorToRep, const FPrimalMulticastRepIndex& PropertyRepIndex, const TArray<unsigned char, TSizedDefaultAllocator<32> >& ReplicationData) { NativeCall<void, AActor*, const FPrimalMulticastRepIndex&, const TArray<unsigned char, TSizedDefaultAllocator<32> >&>(this, "APrimalPlayerController.PropertyServerToClients(AActor*,FPrimalMulticastRepIndex&,TArray<unsignedchar,TSizedDefaultAllocator<32>>&)", ActorToRep, PropertyRepIndex, ReplicationData); }
@@ -39,7 +39,7 @@ struct APrimalPlayerController : APlayerController
 	void PropertyServerToClients_Implementation(AActor* ActorToRep, const FPrimalMulticastRepIndex& PropertyRepIndex, const TArray<unsigned char, TSizedDefaultAllocator<32> >& ReplicationData) { NativeCall<void, AActor*, const FPrimalMulticastRepIndex&, const TArray<unsigned char, TSizedDefaultAllocator<32> >&>(this, "APrimalPlayerController.PropertyServerToClients_Implementation(AActor*,FPrimalMulticastRepIndex&,TArray<unsignedchar,TSizedDefaultAllocator<32>>&)", ActorToRep, PropertyRepIndex, ReplicationData); }
 	void PropertyServerToClientsUnreliable_Implementation(AActor* ActorToRep, const FPrimalMulticastRepIndex& PropertyRepIndex, const TArray<unsigned char, TSizedDefaultAllocator<32> >& ReplicationData) { NativeCall<void, AActor*, const FPrimalMulticastRepIndex&, const TArray<unsigned char, TSizedDefaultAllocator<32> >&>(this, "APrimalPlayerController.PropertyServerToClientsUnreliable_Implementation(AActor*,FPrimalMulticastRepIndex&,TArray<unsignedchar,TSizedDefaultAllocator<32>>&)", ActorToRep, PropertyRepIndex, ReplicationData); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalPlayerController"); }
 
 	void ComponentPropertyServerToClientsUnreliable_Implementation(UActorComponent* ComponentToRep, const FPrimalMulticastRepIndex& PropertyRepIndex, const TArray<unsigned char, TSizedDefaultAllocator<32> >& ReplicationData) { NativeCall<void, UActorComponent*, const FPrimalMulticastRepIndex&, const TArray<unsigned char, TSizedDefaultAllocator<32> >&>(this, "APrimalPlayerController.ComponentPropertyServerToClientsUnreliable_Implementation(UActorComponent*,FPrimalMulticastRepIndex&,TArray<unsignedchar,TSizedDefaultAllocator<32>>&)", ComponentToRep, PropertyRepIndex, ReplicationData); }
 	UE::Math::TVector<double>* GetLevelStreamingPawnViewLocation(UE::Math::TVector<double>* result) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "APrimalPlayerController.GetLevelStreamingPawnViewLocation()", result); }

@@ -9,8 +9,8 @@ public:
 	~UPrimalEggToolTipWidget_Crop() = delete;
 	UPrimalEggToolTipWidget_Crop(const UPrimalEggToolTipWidget_Crop&) = delete;
 	UPrimalEggToolTipWidget_Crop& operator=(const UPrimalEggToolTipWidget_Crop&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalEggToolTipWidget_Crop"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalEggToolTipWidget_Crop"); }
 
 	FLinearColor& TemperatureColor_PerfectField() { return *GetNativePointerField<FLinearColor*>(this, "UPrimalEggToolTipWidget_Crop.TemperatureColor_Perfect"); }
 	FLinearColor& TemperatureColor_BoostedField() { return *GetNativePointerField<FLinearColor*>(this, "UPrimalEggToolTipWidget_Crop.TemperatureColor_Boosted"); }

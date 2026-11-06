@@ -10,8 +10,8 @@ public:
 	~APrimalWeaponBoomerang() = delete;
 	APrimalWeaponBoomerang(const APrimalWeaponBoomerang&) = delete;
 	APrimalWeaponBoomerang& operator=(const APrimalWeaponBoomerang&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWeaponBoomerang"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWeaponBoomerang"); }
 
 	float& chanceToBreakField() { return *GetNativePointerField<float*>(this, "APrimalWeaponBoomerang.chanceToBreak"); }
 

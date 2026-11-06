@@ -30,7 +30,7 @@ struct ABasePrimalWorldSettings : AInfo
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesABasePrimalWorldSettings();
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ABasePrimalWorldSettings.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABasePrimalWorldSettings"); }
 	void AddToActorList(EActorLists ActorList, AActor* ActorToAdd) { NativeCall<void, EActorLists, AActor*>(this, "ABasePrimalWorldSettings.AddToActorList(EActorLists,AActor*)", ActorList, ActorToAdd); }
 	void RemoveFromActorList(EActorLists ActorList, AActor* ActorToRemove) { NativeCall<void, EActorLists, AActor*>(this, "ABasePrimalWorldSettings.RemoveFromActorList(EActorLists,AActor*)", ActorList, ActorToRemove); }
 	void ForEachActorInActorList(EActorLists ActorList, TFunctionRef<bool __cdecl(AActor*)>* Callback) { NativeCall<void, EActorLists, TFunctionRef<bool __cdecl(AActor*)>*>(this, "ABasePrimalWorldSettings.ForEachActorInActorList(EActorLists,TFunctionRef<bool__cdecl(AActor*))", ActorList, Callback); }
@@ -46,7 +46,7 @@ struct ABasePrimalWorldSettings : AInfo
 	AActor* GetActorWithTag(FName theTag) { return NativeCall<AActor*, FName>(this, "ABasePrimalWorldSettings.GetActorWithTag(FName)", theTag); }
 	void UpdateTreeStumps() { NativeCall<void>(this, "ABasePrimalWorldSettings.UpdateTreeStumps()"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABasePrimalWorldSettings"); }
 
 	bool& bSeamlessTravelWorldField() { return *GetNativePointerField<bool*>(this, "ABasePrimalWorldSettings.bSeamlessTravelWorld"); }
 	bool& bForceRouteBeginPlayOnLoadField() { return *GetNativePointerField<bool*>(this, "ABasePrimalWorldSettings.bForceRouteBeginPlayOnLoad"); }

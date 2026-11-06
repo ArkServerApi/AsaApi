@@ -10,8 +10,8 @@ public:
 	~UTextureRenderTarget() = delete;
 	UTextureRenderTarget(const UTextureRenderTarget&) = delete;
 	UTextureRenderTarget& operator=(const UTextureRenderTarget&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UTextureRenderTarget.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextureRenderTarget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextureRenderTarget"); }
 	float& TargetGammaField() { return *GetNativePointerField<float*>(this, "UTextureRenderTarget.TargetGamma"); }
 	BitFieldValue<bool, unsigned __int32> bUsedWithComputeMaterial() { return { this, "UTextureRenderTarget.bUsedWithComputeMaterial"}; }
 	BitFieldValue<bool, unsigned __int32> bNeedsTwoCopies() { return { this, "UTextureRenderTarget.bNeedsTwoCopies"}; }

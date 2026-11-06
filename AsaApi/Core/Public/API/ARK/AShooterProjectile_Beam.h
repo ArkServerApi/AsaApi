@@ -10,8 +10,8 @@ public:
 	~AShooterProjectile_Beam() = delete;
 	AShooterProjectile_Beam(const AShooterProjectile_Beam&) = delete;
 	AShooterProjectile_Beam& operator=(const AShooterProjectile_Beam&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterProjectile_Beam"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterProjectile_Beam"); }
 
 	float& MinBeamLengthField() { return *GetNativePointerField<float*>(this, "AShooterProjectile_Beam.MinBeamLength"); }
 	float& MaxBeamLengthField() { return *GetNativePointerField<float*>(this, "AShooterProjectile_Beam.MaxBeamLength"); }

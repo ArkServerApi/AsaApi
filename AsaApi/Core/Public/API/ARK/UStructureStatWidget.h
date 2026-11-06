@@ -9,8 +9,8 @@ public:
 	~UStructureStatWidget() = delete;
 	UStructureStatWidget(const UStructureStatWidget&) = delete;
 	UStructureStatWidget& operator=(const UStructureStatWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStructureStatWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStructureStatWidget"); }
 
 	FText& StatNameField() { return *GetNativePointerField<FText*>(this, "UStructureStatWidget.StatName"); }
 	UTexture2D*& StatIconField() { return *GetNativePointerField<UTexture2D**>(this, "UStructureStatWidget.StatIcon"); }

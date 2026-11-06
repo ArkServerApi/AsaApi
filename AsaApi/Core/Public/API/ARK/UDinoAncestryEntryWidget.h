@@ -9,8 +9,8 @@ public:
 	~UDinoAncestryEntryWidget() = delete;
 	UDinoAncestryEntryWidget(const UDinoAncestryEntryWidget&) = delete;
 	UDinoAncestryEntryWidget& operator=(const UDinoAncestryEntryWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDinoAncestryEntryWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDinoAncestryEntryWidget"); }
 
 	UTextBlock*& MaternalEntryLabelField() { return *GetNativePointerField<UTextBlock**>(this, "UDinoAncestryEntryWidget.MaternalEntryLabel"); }
 	UTextBlock*& PaternalEntryLabelField() { return *GetNativePointerField<UTextBlock**>(this, "UDinoAncestryEntryWidget.PaternalEntryLabel"); }

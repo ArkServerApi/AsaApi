@@ -9,8 +9,8 @@ public:
 	~ULandscapeMeshProxyComponent() = delete;
 	ULandscapeMeshProxyComponent(const ULandscapeMeshProxyComponent&) = delete;
 	ULandscapeMeshProxyComponent& operator=(const ULandscapeMeshProxyComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeMeshProxyComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeMeshProxyComponent"); }
 
 	FGuid& LandscapeGuidField() { return *GetNativePointerField<FGuid*>(this, "ULandscapeMeshProxyComponent.LandscapeGuid"); }
 	TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >& ProxyComponentCentersObjectSpaceField() { return *GetNativePointerField<TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >*>(this, "ULandscapeMeshProxyComponent.ProxyComponentCentersObjectSpace"); }

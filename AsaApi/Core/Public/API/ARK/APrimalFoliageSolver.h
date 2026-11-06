@@ -10,8 +10,8 @@ public:
 	~APrimalFoliageSolver() = delete;
 	APrimalFoliageSolver(const APrimalFoliageSolver&) = delete;
 	APrimalFoliageSolver& operator=(const APrimalFoliageSolver&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalFoliageSolver"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalFoliageSolver"); }
 
 	float& FluidRadiusScaleField() { return *GetNativePointerField<float*>(this, "APrimalFoliageSolver.FluidRadiusScale"); }
 	float& FluidRadiusBiasField() { return *GetNativePointerField<float*>(this, "APrimalFoliageSolver.FluidRadiusBias"); }

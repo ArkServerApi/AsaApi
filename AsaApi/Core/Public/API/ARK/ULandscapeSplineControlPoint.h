@@ -10,8 +10,8 @@ public:
 	~ULandscapeSplineControlPoint() = delete;
 	ULandscapeSplineControlPoint(const ULandscapeSplineControlPoint&) = delete;
 	ULandscapeSplineControlPoint& operator=(const ULandscapeSplineControlPoint&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeSplineControlPoint"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeSplineControlPoint"); }
 	UE::Math::TVector<double>& LocationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "ULandscapeSplineControlPoint.Location"); }
 	UE::Math::TRotator<double>& RotationField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "ULandscapeSplineControlPoint.Rotation"); }
 	float& WidthField() { return *GetNativePointerField<float*>(this, "ULandscapeSplineControlPoint.Width"); }

@@ -9,8 +9,8 @@ public:
 	~UDataListEntryButton_MainMenu() = delete;
 	UDataListEntryButton_MainMenu(const UDataListEntryButton_MainMenu&) = delete;
 	UDataListEntryButton_MainMenu& operator=(const UDataListEntryButton_MainMenu&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_MainMenu"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_MainMenu"); }
 
 	FString& DisplayNameField() { return *GetNativePointerField<FString*>(this, "UDataListEntryButton_MainMenu.DisplayName"); }
 	bool& bCenterDisplayNameField() { return *GetNativePointerField<bool*>(this, "UDataListEntryButton_MainMenu.bCenterDisplayName"); }

@@ -10,7 +10,7 @@ public:
 	~USkinnedMeshComponent() = delete;
 	USkinnedMeshComponent(const USkinnedMeshComponent&) = delete;
 	USkinnedMeshComponent& operator=(const USkinnedMeshComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkinnedMeshComponent"); }
 
 	FActorSkinnedMeshComponentInterface& SkinnedMeshComponentInterfaceField() { return *GetNativePointerField<FActorSkinnedMeshComponentInterface*>(this, "USkinnedMeshComponent.SkinnedMeshComponentInterface"); }
 	TWeakObjectPtr<USkinnedMeshComponent, FWeakObjectPtr>& LeaderPoseComponentField() { return *GetNativePointerField<TWeakObjectPtr<USkinnedMeshComponent, FWeakObjectPtr>*>(this, "USkinnedMeshComponent.LeaderPoseComponent"); }
@@ -241,7 +241,7 @@ public:
 	void RemoveFollowerPoseComponent(USkinnedMeshComponent* SkinnedMeshComponent) { NativeCall<void, USkinnedMeshComponent*>(this, "USkinnedMeshComponent.RemoveFollowerPoseComponent(USkinnedMeshComponent*)", SkinnedMeshComponent); }
 	bool GetMaterialStreamingData(int MaterialIndex, FPrimitiveMaterialInfo& MaterialData) { return NativeCall<bool, int, FPrimitiveMaterialInfo&>(this, "USkinnedMeshComponent.GetMaterialStreamingData(int,FPrimitiveMaterialInfo&)", MaterialIndex, MaterialData); }
 	void PostReinitProperties() { NativeCall<void>(this, "USkinnedMeshComponent.PostReinitProperties()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USkinnedMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkinnedMeshComponent"); }
 	void HideBone(int BoneIndex, EPhysBodyOp PhysBodyOption) { NativeCall<void, int, EPhysBodyOp>(this, "USkinnedMeshComponent.HideBone(int,EPhysBodyOp)", BoneIndex, PhysBodyOption); }
 	bool PrestreamMeshLODs(float Seconds) { return NativeCall<bool, float>(this, "USkinnedMeshComponent.PrestreamMeshLODs(float)", Seconds); }
 	void SetSkinnedAsset(USkinnedAsset* InSkinnedAsset) { NativeCall<void, USkinnedAsset*>(this, "USkinnedMeshComponent.SetSkinnedAsset(USkinnedAsset*)", InSkinnedAsset); }

@@ -19,7 +19,7 @@ struct ASkeletalMeshActor : AActor
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "ASkeletalMeshActor.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASkeletalMeshActor"); }
 	USkeletalMeshComponent* GetSkeletalMeshComponent() { return NativeCall<USkeletalMeshComponent*>(this, "ASkeletalMeshActor.GetSkeletalMeshComponent()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesASkeletalMeshActor();
@@ -40,7 +40,7 @@ struct ASkeletalMeshActor : AActor
 	void SetAnimPosition(FName SlotName, int ChannelIndex, UAnimSequence* InAnimSequence, float InPosition, bool bFireNotifies, bool bLooping) { NativeCall<void, FName, int, UAnimSequence*, float, bool, bool>(this, "ASkeletalMeshActor.SetAnimPosition(FName,int,UAnimSequence*,float,bool,bool)", SlotName, ChannelIndex, InAnimSequence, InPosition, bFireNotifies, bLooping); }
 	//void FinishAnimControl(UInterpGroup* InInterpGroup) { NativeCall<void, UInterpGroup*>(this, "ASkeletalMeshActor.FinishAnimControl(UInterpGroup*)", InInterpGroup); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASkeletalMeshActor"); }
 
 	void BeginAnimControl(UInterpGroup* InInterpGroup) { NativeCall<void, UInterpGroup*>(this, "ASkeletalMeshActor.BeginAnimControl(UInterpGroup*)", InInterpGroup); }
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "ASkeletalMeshActor._getUObject()"); }

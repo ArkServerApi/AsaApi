@@ -9,7 +9,7 @@ public:
 	~UDynamicSubsystem() = delete;
 	UDynamicSubsystem(const UDynamicSubsystem&) = delete;
 	UDynamicSubsystem& operator=(const UDynamicSubsystem&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDynamicSubsystem.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDynamicSubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDynamicSubsystem"); }
 
 };

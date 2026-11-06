@@ -9,8 +9,8 @@ public:
 	~AHoverDroneSpeedLimitBox() = delete;
 	AHoverDroneSpeedLimitBox(const AHoverDroneSpeedLimitBox&) = delete;
 	AHoverDroneSpeedLimitBox& operator=(const AHoverDroneSpeedLimitBox&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHoverDroneSpeedLimitBox"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHoverDroneSpeedLimitBox"); }
 
 	int& MaxAllowedSpeedIndexField() { return *GetNativePointerField<int*>(this, "AHoverDroneSpeedLimitBox.MaxAllowedSpeedIndex"); }
 };

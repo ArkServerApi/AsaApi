@@ -9,8 +9,8 @@ public:
 	~ALandscapeSplineActor() = delete;
 	ALandscapeSplineActor(const ALandscapeSplineActor&) = delete;
 	ALandscapeSplineActor& operator=(const ALandscapeSplineActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscapeSplineActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscapeSplineActor"); }
 
 	FGuid& LandscapeGuidField() { return *GetNativePointerField<FGuid*>(this, "ALandscapeSplineActor.LandscapeGuid"); }
 	UE::Math::TTransform<double>* LandscapeActorToWorld(UE::Math::TTransform<double>* result) { return NativeCall<UE::Math::TTransform<double>*, UE::Math::TTransform<double>*>(this, "ALandscapeSplineActor.LandscapeActorToWorld()", result); }

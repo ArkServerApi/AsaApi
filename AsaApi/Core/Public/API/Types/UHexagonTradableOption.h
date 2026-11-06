@@ -1,3 +1,5 @@
 #pragma once
 
-struct UHexagonTradableOption {};
+struct UHexagonTradableOption {	static UClass* StaticClass() { return AsaApi::ResolveClass("UHexagonTradableOption"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHexagonTradableOption"); }
+};

@@ -9,8 +9,8 @@ public:
 	~UMaterialBillboardComponent() = delete;
 	UMaterialBillboardComponent(const UMaterialBillboardComponent&) = delete;
 	UMaterialBillboardComponent& operator=(const UMaterialBillboardComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialBillboardComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialBillboardComponent"); }
 
 	void SetMaterial(int ElementIndex, UMaterialInterface* Material) { NativeCall<void, int, UMaterialInterface*>(this, "UMaterialBillboardComponent.SetMaterial(int,UMaterialInterface*)", ElementIndex, Material); }
 	FPrimitiveSceneProxy* CreateSceneProxy() { return NativeCall<FPrimitiveSceneProxy*>(this, "UMaterialBillboardComponent.CreateSceneProxy()"); }

@@ -9,8 +9,8 @@ public:
 	~UShooterGameInstance() = delete;
 	UShooterGameInstance(const UShooterGameInstance&) = delete;
 	UShooterGameInstance& operator=(const UShooterGameInstance&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGameInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGameInstance"); }
 
 	FName& LastStateField() { return *GetNativePointerField<FName*>(this, "UShooterGameInstance.LastState"); }
 	FName& CurrentStateField() { return *GetNativePointerField<FName*>(this, "UShooterGameInstance.CurrentState"); }

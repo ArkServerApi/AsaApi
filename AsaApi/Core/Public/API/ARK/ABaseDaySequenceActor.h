@@ -9,8 +9,8 @@ public:
 	~ABaseDaySequenceActor() = delete;
 	ABaseDaySequenceActor(const ABaseDaySequenceActor&) = delete;
 	ABaseDaySequenceActor& operator=(const ABaseDaySequenceActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABaseDaySequenceActor"); }
 
 	void BeginPlay() { NativeCall<void>(this, "ABaseDaySequenceActor.BeginPlay()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ABaseDaySequenceActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABaseDaySequenceActor"); }
 };

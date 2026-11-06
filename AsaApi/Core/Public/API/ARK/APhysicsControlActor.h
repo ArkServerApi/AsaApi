@@ -9,7 +9,7 @@ public:
 	~APhysicsControlActor() = delete;
 	APhysicsControlActor(const APhysicsControlActor&) = delete;
 	APhysicsControlActor& operator=(const APhysicsControlActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APhysicsControlActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APhysicsControlActor"); }
 
 };

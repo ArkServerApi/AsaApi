@@ -10,8 +10,8 @@ public:
 	~UNavCollisionBase() = delete;
 	UNavCollisionBase(const UNavCollisionBase&) = delete;
 	UNavCollisionBase& operator=(const UNavCollisionBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNavCollisionBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavCollisionBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavCollisionBase"); }
 	FNavCollisionConvex& TriMeshCollisionField() { return *GetNativePointerField<FNavCollisionConvex*>(this, "UNavCollisionBase.TriMeshCollision"); }
 	FNavCollisionConvex& ConvexCollisionField() { return *GetNativePointerField<FNavCollisionConvex*>(this, "UNavCollisionBase.ConvexCollision"); }
 	BitFieldValue<bool, unsigned __int32> bIsDynamicObstacle() { return { this, "UNavCollisionBase.bIsDynamicObstacle"}; }

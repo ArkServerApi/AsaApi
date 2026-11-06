@@ -9,8 +9,8 @@ public:
 	~UPhysicsControlInitializerComponent() = delete;
 	UPhysicsControlInitializerComponent(const UPhysicsControlInitializerComponent&) = delete;
 	UPhysicsControlInitializerComponent& operator=(const UPhysicsControlInitializerComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsControlInitializerComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsControlInitializerComponent"); }
 
 	FInitialCharacterControls& InitialCharacterControlsField() { return *GetNativePointerField<FInitialCharacterControls*>(this, "UPhysicsControlInitializerComponent.InitialCharacterControls"); }
 	bool& bCreateControlsAtBeginPlayField() { return *GetNativePointerField<bool*>(this, "UPhysicsControlInitializerComponent.bCreateControlsAtBeginPlay"); }

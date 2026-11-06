@@ -9,8 +9,8 @@ public:
 	~UUniformVector() = delete;
 	UUniformVector(const UUniformVector&) = delete;
 	UUniformVector& operator=(const UUniformVector&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UUniformVector"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UUniformVector"); }
 
 	float& MagnitudeField() { return *GetNativePointerField<float*>(this, "UUniformVector.Magnitude"); }
 	UE::Math::TVector<double>& DirectionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UUniformVector.Direction"); }

@@ -9,8 +9,8 @@ public:
 	~UChaosDestructionListener() = delete;
 	UChaosDestructionListener(const UChaosDestructionListener&) = delete;
 	UChaosDestructionListener& operator=(const UChaosDestructionListener&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosDestructionListener"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosDestructionListener"); }
 
 	FChaosCollisionEventRequestSettings& CollisionEventRequestSettingsField() { return *GetNativePointerField<FChaosCollisionEventRequestSettings*>(this, "UChaosDestructionListener.CollisionEventRequestSettings"); }
 	FChaosBreakingEventRequestSettings& BreakingEventRequestSettingsField() { return *GetNativePointerField<FChaosBreakingEventRequestSettings*>(this, "UChaosDestructionListener.BreakingEventRequestSettings"); }

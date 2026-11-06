@@ -9,8 +9,8 @@ public:
 	~UPrimalDinoStatusComponent() = delete;
 	UPrimalDinoStatusComponent(const UPrimalDinoStatusComponent&) = delete;
 	UPrimalDinoStatusComponent& operator=(const UPrimalDinoStatusComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDinoStatusComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDinoStatusComponent"); }
 
 
 

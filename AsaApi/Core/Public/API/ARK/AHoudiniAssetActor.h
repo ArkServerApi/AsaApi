@@ -9,8 +9,8 @@ public:
 	~AHoudiniAssetActor() = delete;
 	AHoudiniAssetActor(const AHoudiniAssetActor&) = delete;
 	AHoudiniAssetActor& operator=(const AHoudiniAssetActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHoudiniAssetActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHoudiniAssetActor"); }
 
 	UHoudiniCookable* GetHoudiniCookable() { return NativeCall<UHoudiniCookable*>(this, "AHoudiniAssetActor.GetHoudiniCookable()"); }
 };

@@ -19,7 +19,7 @@ struct APrimalStructureElevatorTrack : APrimalStructureItemContainer
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureElevatorTrack"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureElevatorTrack();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -45,7 +45,7 @@ struct APrimalStructureElevatorTrack : APrimalStructureItemContainer
 
 	bool& bHasBaseField() { return *GetNativePointerField<bool*>(this, "APrimalStructureElevatorTrack.bHasBase"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureElevatorTrack"); }
 
 	void DrawHUD(AShooterHUD* HUD) { NativeCall<void, AShooterHUD*>(this, "APrimalStructureElevatorTrack.DrawHUD(AShooterHUD*)", HUD); }
 	void MulticastSetElevatorBase(APrimalStructureElevatorPlatform* NewBase) { NativeCall<void, APrimalStructureElevatorPlatform*>(this, "APrimalStructureElevatorTrack.MulticastSetElevatorBase(APrimalStructureElevatorPlatform*)", NewBase); }

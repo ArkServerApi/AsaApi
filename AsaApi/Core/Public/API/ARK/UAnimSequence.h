@@ -10,8 +10,8 @@ public:
 	~UAnimSequence() = delete;
 	UAnimSequence(const UAnimSequence&) = delete;
 	UAnimSequence& operator=(const UAnimSequence&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimSequence"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimSequence"); }
 	FCompressedAnimSequence& CompressedDataField() { return *GetNativePointerField<FCompressedAnimSequence*>(this, "UAnimSequence.CompressedData"); }
 	int& RefFrameIndexField() { return *GetNativePointerField<int*>(this, "UAnimSequence.RefFrameIndex"); }
 	FName& RetargetSourceField() { return *GetNativePointerField<FName*>(this, "UAnimSequence.RetargetSource"); }

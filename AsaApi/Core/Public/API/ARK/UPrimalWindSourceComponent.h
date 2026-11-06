@@ -10,8 +10,8 @@ public:
 	~UPrimalWindSourceComponent() = delete;
 	UPrimalWindSourceComponent(const UPrimalWindSourceComponent&) = delete;
 	UPrimalWindSourceComponent& operator=(const UPrimalWindSourceComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWindSourceComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWindSourceComponent"); }
 
 	float& RadiusInnerField() { return *GetNativePointerField<float*>(this, "UPrimalWindSourceComponent.RadiusInner"); }
 	float& RadiusOuterField() { return *GetNativePointerField<float*>(this, "UPrimalWindSourceComponent.RadiusOuter"); }

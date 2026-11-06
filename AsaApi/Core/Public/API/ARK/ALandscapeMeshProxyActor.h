@@ -9,7 +9,7 @@ public:
 	~ALandscapeMeshProxyActor() = delete;
 	ALandscapeMeshProxyActor(const ALandscapeMeshProxyActor&) = delete;
 	ALandscapeMeshProxyActor& operator=(const ALandscapeMeshProxyActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscapeMeshProxyActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscapeMeshProxyActor"); }
 
 };

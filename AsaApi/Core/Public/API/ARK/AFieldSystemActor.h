@@ -9,7 +9,7 @@ public:
 	~AFieldSystemActor() = delete;
 	AFieldSystemActor(const AFieldSystemActor&) = delete;
 	AFieldSystemActor& operator=(const AFieldSystemActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AFieldSystemActor"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AFieldSystemActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AFieldSystemActor"); }
 };

@@ -10,8 +10,8 @@ public:
 	~UBodySetup() = delete;
 	UBodySetup(const UBodySetup&) = delete;
 	UBodySetup& operator=(const UBodySetup&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBodySetup.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBodySetup"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBodySetup"); }
 	FKAggregateGeom& AggGeomField() { return *GetNativePointerField<FKAggregateGeom*>(this, "UBodySetup.AggGeom"); }
 	FWalkableSlopeOverride& WalkableSlopeOverrideField() { return *GetNativePointerField<FWalkableSlopeOverride*>(this, "UBodySetup.WalkableSlopeOverride"); }
 	FFormatContainer& CookedFormatDataField() { return *GetNativePointerField<FFormatContainer*>(this, "UBodySetup.CookedFormatData"); }

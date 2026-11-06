@@ -47,7 +47,7 @@ struct APrimalWeaponBow : AShooterWeapon_Projectile
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalWeaponBow.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWeaponBow"); }
 	void ServerSetPullString(bool bIsPulling) { NativeCall<void, bool>(this, "APrimalWeaponBow.ServerSetPullString(bool)", bIsPulling); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalWeaponBow();
@@ -87,7 +87,7 @@ struct APrimalWeaponBow : AShooterWeapon_Projectile
 	bool& bHiddenArrowFPVField() { return *GetNativePointerField<bool*>(this, "APrimalWeaponBow.bHiddenArrowFPV"); }
 	bool& bStartedCameraShakeField() { return *GetNativePointerField<bool*>(this, "APrimalWeaponBow.bStartedCameraShake"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWeaponBow"); }
 
 	FWeaponAnim& PullStringAnimField() { return *GetNativePointerField<FWeaponAnim*>(this, "APrimalWeaponBow.PullStringAnim"); }
 	BitFieldValue<bool, unsigned char> bPreventMeleeWhileFiring() { return { this, "APrimalWeaponBow.bPreventMeleeWhileFiring"}; }

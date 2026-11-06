@@ -9,7 +9,7 @@ public:
 	~APCGExLevelInstance() = delete;
 	APCGExLevelInstance(const APCGExLevelInstance&) = delete;
 	APCGExLevelInstance& operator=(const APCGExLevelInstance&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APCGExLevelInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APCGExLevelInstance"); }
 
 };

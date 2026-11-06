@@ -16,7 +16,7 @@ struct AGameState : AGameStateBase
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AGameState.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameState"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAGameState();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -34,7 +34,7 @@ struct AGameState : AGameStateBase
 	float GetPlayerRespawnDelay(AController* Controller) { return NativeCall<float, AController*>(this, "AGameState.GetPlayerRespawnDelay(AController*)", Controller); }
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "AGameState.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameState"); }
 
 	void HandleMatchHasEnded() { NativeCall<void>(this, "AGameState.HandleMatchHasEnded()"); }
 	void OnRep_ElapsedTime() { NativeCall<void>(this, "AGameState.OnRep_ElapsedTime()"); }

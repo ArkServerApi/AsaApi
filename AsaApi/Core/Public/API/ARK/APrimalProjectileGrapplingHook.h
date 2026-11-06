@@ -23,7 +23,7 @@ struct APrimalProjectileGrapplingHook : AShooterProjectile
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalProjectileGrapplingHook"); }
 	void BeginPlay() { NativeCall<void>(this, "APrimalProjectileGrapplingHook.BeginPlay()"); }
 	void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "APrimalProjectileGrapplingHook.Tick(float)", DeltaSeconds); }
 
@@ -31,4 +31,5 @@ struct APrimalProjectileGrapplingHook : AShooterProjectile
 
 	UE::Math::TVector<double>* GetGrapHookEndPoint(UE::Math::TVector<double>* result) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "APrimalProjectileGrapplingHook.GetGrapHookEndPoint()", result); }
 	void BPHandleCharacterTriesToCutGrapplingCable(APrimalCharacter* Character) { NativeCall<void, APrimalCharacter*>(this, "APrimalProjectileGrapplingHook.BPHandleCharacterTriesToCutGrapplingCable(APrimalCharacter*)", Character); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalProjectileGrapplingHook"); }
 };

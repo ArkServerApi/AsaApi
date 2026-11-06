@@ -29,8 +29,8 @@ struct UShapeComponent : UPrimitiveComponent
 	//void CreateShapeBodySetupIfNeeded<FKSphereElem>() { NativeCall<void>(this, "UShapeComponent.CreateShapeBodySetupIfNeeded<FKSphereElem>()"); }
 	bool IsNavigationRelevant()const { return NativeCall<bool>(this, "UShapeComponent.IsNavigationRelevant()"); }
 	//void CreateShapeBodySetupIfNeeded<FKBoxElem>() { NativeCall<void>(this, "UShapeComponent.CreateShapeBodySetupIfNeeded<FKBoxElem>()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UShapeComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShapeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShapeComponent"); }
 	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UShapeComponent.Serialize(FArchive&)", Ar); }
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UShapeComponent.Serialize(FStructuredArchiveRecord)", Record); }
 	//void GetNavigationData(FNavigationRelevantData* Data) const { NativeCall<void, FNavigationRelevantData*>(this, "UShapeComponent.GetNavigationData(FNavigationRelevantData&)", Data); }

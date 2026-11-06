@@ -10,8 +10,8 @@ public:
 	~UAISystemBase() = delete;
 	UAISystemBase(const UAISystemBase&) = delete;
 	UAISystemBase& operator=(const UAISystemBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UAISystemBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAISystemBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAISystemBase"); }
 	FSoftClassPath& AISystemClassNameField() { return *GetNativePointerField<FSoftClassPath*>(this, "UAISystemBase.AISystemClassName"); }
 	FName& AISystemModuleNameField() { return *GetNativePointerField<FName*>(this, "UAISystemBase.AISystemModuleName"); }
 	FDelegateHandle& OnMatchStateSetHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UAISystemBase.OnMatchStateSetHandle"); }

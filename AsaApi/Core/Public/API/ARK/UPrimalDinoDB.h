@@ -9,8 +9,8 @@ public:
 	~UPrimalDinoDB() = delete;
 	UPrimalDinoDB(const UPrimalDinoDB&) = delete;
 	UPrimalDinoDB& operator=(const UPrimalDinoDB&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDinoDB"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDinoDB"); }
 
 	bool HasAsset(UClass* ClassAsset) { return NativeCall<bool, UClass*>(this, "UPrimalDinoDB.HasAsset(UClass*)", ClassAsset); }
 	void RemoveAllAssets() { NativeCall<void>(this, "UPrimalDinoDB.RemoveAllAssets()"); }

@@ -9,8 +9,8 @@ public:
 	~UChaosClothComponent() = delete;
 	UChaosClothComponent(const UChaosClothComponent&) = delete;
 	UChaosClothComponent& operator=(const UChaosClothComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosClothComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosClothComponent"); }
 
 	FChaosClothComponentEndTickFunction& EndTickFunctionField() { return *GetNativePointerField<FChaosClothComponentEndTickFunction*>(this, "UChaosClothComponent.EndTickFunction"); }
 	FDataflowSimulationAsset& SimulationAssetField() { return *GetNativePointerField<FDataflowSimulationAsset*>(this, "UChaosClothComponent.SimulationAsset"); }

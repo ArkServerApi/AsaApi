@@ -9,7 +9,7 @@ public:
 	~UReplicationGraphNode_GridSpatialization2D() = delete;
 	UReplicationGraphNode_GridSpatialization2D(const UReplicationGraphNode_GridSpatialization2D&) = delete;
 	UReplicationGraphNode_GridSpatialization2D& operator=(const UReplicationGraphNode_GridSpatialization2D&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReplicationGraphNode_GridSpatialization2D.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReplicationGraphNode_GridSpatialization2D"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReplicationGraphNode_GridSpatialization2D"); }
 
 };

@@ -56,7 +56,7 @@ struct UPrimalGlobals : UObject
 	// static void StaticRegisterNativesUPrimalGlobals();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalGlobals"); }
 	//void ~UPrimalGlobals() { NativeCall<void>(this, "UPrimalGlobals.~UPrimalGlobals()"); }
 	//void UPrimalGlobals(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UPrimalGlobals.UPrimalGlobals(FObjectInitializer*)", ObjectInitializer); }
 	void AsyncLoadGameMedia(bool LoadForConsoleDedicated, bool bIsTCSwap, bool bForceSynchronous) { NativeCall<void, bool, bool, bool>(this, "UPrimalGlobals.AsyncLoadGameMedia(bool,bool,bool)", LoadForConsoleDedicated, bIsTCSwap, bForceSynchronous); }
@@ -88,4 +88,5 @@ struct UPrimalGlobals : UObject
 	void ShowConfirmationDialog(const FString& TitleText, const FString& MessageText, bool isJustOKBox) { NativeCall<void, const FString&, const FString&, bool>(this, "UPrimalGlobals.ShowConfirmationDialog(FString&,FString&,bool)", TitleText, MessageText, isJustOKBox); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "UPrimalGlobals.Serialize(FArchive&)", Ar); }
 	static void DoPrivilegesNotification(UWorld* world, bool multiplayer) { NativeCall<void, UWorld*, bool>(nullptr, "UPrimalGlobals.DoPrivilegesNotification(UWorld*,bool)", world, multiplayer); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalGlobals"); }
 };

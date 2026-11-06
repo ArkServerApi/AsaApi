@@ -9,8 +9,8 @@ public:
 	~UNavLinkCustomComponent() = delete;
 	UNavLinkCustomComponent(const UNavLinkCustomComponent&) = delete;
 	UNavLinkCustomComponent& operator=(const UNavLinkCustomComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavLinkCustomComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavLinkCustomComponent"); }
 
 	unsigned int& NavLinkUserIdField() { return *GetNativePointerField<unsigned int*>(this, "UNavLinkCustomComponent.NavLinkUserId"); }
 	FNavLinkId& CustomLinkIdField() { return *GetNativePointerField<FNavLinkId*>(this, "UNavLinkCustomComponent.CustomLinkId"); }

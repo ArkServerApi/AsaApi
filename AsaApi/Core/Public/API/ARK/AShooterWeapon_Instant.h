@@ -33,7 +33,7 @@ struct AShooterWeapon_Instant : AShooterWeapon
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AShooterWeapon_Instant.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Instant"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterWeapon_Instant();
 	float WeaponTraceForHits(TArray<FHitResult, TSizedDefaultAllocator<32> >* HitResults, TArray<bool, TSizedDefaultAllocator<32> >* IsEntryHit, const UE::Math::TVector<double>* StartTrace, const UE::Math::TVector<double>* EndTrace, bool FilterVisuals) { return NativeCall<float, TArray<FHitResult, TSizedDefaultAllocator<32> >*, TArray<bool, TSizedDefaultAllocator<32> >*, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*, bool>(this, "AShooterWeapon_Instant.WeaponTraceForHits(TArray<FHitResult,TSizedDefaultAllocator<32>>&,TArray<bool,TSizedDefaultAllocator<32>>&,UE::Math::TVector<double>&,UE::Math::TVector<double>&,bool)", HitResults, IsEntryHit, StartTrace, EndTrace, FilterVisuals); }
@@ -51,7 +51,7 @@ struct AShooterWeapon_Instant : AShooterWeapon
 	void SpawnImpactEffects(const FHitResult* Impact, const UE::Math::TVector<double>* ShootDir, bool bIsEntryHit, float WeaponMaxRange) { NativeCall<void, const FHitResult*, const UE::Math::TVector<double>*, bool, float>(this, "AShooterWeapon_Instant.SpawnImpactEffects(FHitResult&,UE::Math::TVector<double>&,bool,float)", Impact, ShootDir, bIsEntryHit, WeaponMaxRange); }
 	void SpawnTrailEffect(const UE::Math::TVector<double>* EndPoint, const UE::Math::TVector<double>* StartPoint) { NativeCall<void, const UE::Math::TVector<double>*, const UE::Math::TVector<double>*>(this, "AShooterWeapon_Instant.SpawnTrailEffect(UE::Math::TVector<double>&,UE::Math::TVector<double>&,FColor&)", EndPoint, StartPoint); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Instant"); }
 
 	UNiagaraSystem*& TrailFX_NiagaraField() { return *GetNativePointerField<UNiagaraSystem**>(this, "AShooterWeapon_Instant.TrailFX_Niagara"); }
 	UNiagaraSystem*& TrailFX_Local_NiagaraField() { return *GetNativePointerField<UNiagaraSystem**>(this, "AShooterWeapon_Instant.TrailFX_Local_Niagara"); }

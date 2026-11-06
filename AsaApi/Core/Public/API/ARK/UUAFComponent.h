@@ -9,8 +9,8 @@ public:
 	~UUAFComponent() = delete;
 	UUAFComponent(const UUAFComponent&) = delete;
 	UUAFComponent& operator=(const UUAFComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UUAFComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UUAFComponent"); }
 
 	FComponentReference& OutputComponentField() { return *GetNativePointerField<FComponentReference*>(this, "UUAFComponent.OutputComponent"); }
 	unsigned int& SerialNumberField() { return *GetNativePointerField<unsigned int*>(this, "UUAFComponent.SerialNumber"); }

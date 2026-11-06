@@ -9,8 +9,8 @@ public:
 	~ASpectatorBeaconHost() = delete;
 	ASpectatorBeaconHost(const ASpectatorBeaconHost&) = delete;
 	ASpectatorBeaconHost& operator=(const ASpectatorBeaconHost&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASpectatorBeaconHost"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASpectatorBeaconHost"); }
 
 	bool& bLogoutOnSessionTimeoutField() { return *GetNativePointerField<bool*>(this, "ASpectatorBeaconHost.bLogoutOnSessionTimeout"); }
 	bool& bIsValidationStrRequiredField() { return *GetNativePointerField<bool*>(this, "ASpectatorBeaconHost.bIsValidationStrRequired"); }

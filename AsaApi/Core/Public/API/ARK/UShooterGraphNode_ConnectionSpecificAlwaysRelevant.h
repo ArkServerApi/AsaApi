@@ -9,7 +9,7 @@ public:
 	~UShooterGraphNode_ConnectionSpecificAlwaysRelevant() = delete;
 	UShooterGraphNode_ConnectionSpecificAlwaysRelevant(const UShooterGraphNode_ConnectionSpecificAlwaysRelevant&) = delete;
 	UShooterGraphNode_ConnectionSpecificAlwaysRelevant& operator=(const UShooterGraphNode_ConnectionSpecificAlwaysRelevant&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_ConnectionSpecificAlwaysRelevant"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_ConnectionSpecificAlwaysRelevant"); }
 
 };

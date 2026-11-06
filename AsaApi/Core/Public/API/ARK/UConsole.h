@@ -10,8 +10,8 @@ public:
 	~UConsole() = delete;
 	UConsole(const UConsole&) = delete;
 	UConsole& operator=(const UConsole&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UConsole"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UConsole"); }
 	TArray<FString, TSizedDefaultAllocator<32> >& ScrollbackField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "UConsole.Scrollback"); }
 	int& SBHeadField() { return *GetNativePointerField<int*>(this, "UConsole.SBHead"); }
 	int& SBPosField() { return *GetNativePointerField<int*>(this, "UConsole.SBPos"); }

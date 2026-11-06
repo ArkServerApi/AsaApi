@@ -9,8 +9,8 @@ public:
 	~UContextMenu_PrimalItem_StorageInterface() = delete;
 	UContextMenu_PrimalItem_StorageInterface(const UContextMenu_PrimalItem_StorageInterface&) = delete;
 	UContextMenu_PrimalItem_StorageInterface& operator=(const UContextMenu_PrimalItem_StorageInterface&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenu_PrimalItem_StorageInterface"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenu_PrimalItem_StorageInterface"); }
 
 	int& WithdrawAmountValueField() { return *GetNativePointerField<int*>(this, "UContextMenu_PrimalItem_StorageInterface.WithdrawAmountValue"); }
 	void PopulateRootMenu(UContextMenu* ContextMenu) { NativeCall<void, UContextMenu*>(this, "UContextMenu_PrimalItem_StorageInterface.PopulateRootMenu(UContextMenu*)", ContextMenu); }

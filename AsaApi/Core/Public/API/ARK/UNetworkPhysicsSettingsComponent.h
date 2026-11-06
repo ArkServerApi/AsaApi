@@ -9,8 +9,8 @@ public:
 	~UNetworkPhysicsSettingsComponent() = delete;
 	UNetworkPhysicsSettingsComponent(const UNetworkPhysicsSettingsComponent&) = delete;
 	UNetworkPhysicsSettingsComponent& operator=(const UNetworkPhysicsSettingsComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNetworkPhysicsSettingsComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNetworkPhysicsSettingsComponent"); }
 
 	FNetworkPhysicsSettingsComponentAsync*& NetworkPhysicsSettings_InternalField() { return *GetNativePointerField<FNetworkPhysicsSettingsComponentAsync**>(this, "UNetworkPhysicsSettingsComponent.NetworkPhysicsSettings_Internal"); }
 	void OnUnregister() { NativeCall<void>(this, "UNetworkPhysicsSettingsComponent.OnUnregister()"); }

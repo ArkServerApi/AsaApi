@@ -173,8 +173,8 @@ struct UPrimitiveComponent : USceneComponent
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimitiveComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimitiveComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimitiveComponent"); }
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimitiveComponent.Serialize(FStructuredArchiveRecord)", Record); }
 	bool OverlapComponent(const UE::Math::TVector<double>* Pos, const UE::Math::TQuat<double>* Rot, const struct FCollisionShape* CollisionShape) { return NativeCall<bool, const UE::Math::TVector<double>*, const UE::Math::TQuat<double>*, const FCollisionShape*>(this, "UPrimitiveComponent.OverlapComponent(UE::Math::TVector<double>&,UE::Math::TQuat<double>&,FCollisionShape&)", Pos, Rot, CollisionShape); }
 	bool AreSymmetricRotations(const UE::Math::TQuat<double>* A, const UE::Math::TQuat<double>* B, const UE::Math::TVector<double>* Scale3D) { return NativeCall<bool, const UE::Math::TQuat<double>*, const UE::Math::TQuat<double>*, const UE::Math::TVector<double>*>(this, "UPrimitiveComponent.AreSymmetricRotations(UE::Math::TQuat<double>&,UE::Math::TQuat<double>&,UE::Math::TVector<double>&)", A, B, Scale3D); }

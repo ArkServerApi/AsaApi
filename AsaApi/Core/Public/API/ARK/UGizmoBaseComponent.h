@@ -9,7 +9,7 @@ public:
 	~UGizmoBaseComponent() = delete;
 	UGizmoBaseComponent(const UGizmoBaseComponent&) = delete;
 	UGizmoBaseComponent& operator=(const UGizmoBaseComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGizmoBaseComponent"); }
 
 	FLinearColor& ColorField() { return *GetNativePointerField<FLinearColor*>(this, "UGizmoBaseComponent.Color"); }
 	float& HoverSizeMultiplierField() { return *GetNativePointerField<float*>(this, "UGizmoBaseComponent.HoverSizeMultiplier"); }
@@ -20,5 +20,5 @@ public:
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "UGizmoBaseComponent._getUObject()"); }
 	void UpdateHoverState(bool bHoveringIn) { NativeCall<void, bool>(this, "UGizmoBaseComponent.UpdateHoverState(bool)", bHoveringIn); }
 	void UpdateWorldLocalState(bool bWorldIn) { NativeCall<void, bool>(this, "UGizmoBaseComponent.UpdateWorldLocalState(bool)", bWorldIn); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGizmoBaseComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGizmoBaseComponent"); }
 };

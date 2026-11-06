@@ -10,8 +10,8 @@ public:
 	~AShooterGame_Menu() = delete;
 	AShooterGame_Menu(const AShooterGame_Menu&) = delete;
 	AShooterGame_Menu& operator=(const AShooterGame_Menu&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterGame_Menu"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterGame_Menu"); }
 
 	bool& HasStartedMusicField() { return *GetNativePointerField<bool*>(this, "AShooterGame_Menu.HasStartedMusic"); }
 	bool& bPreparedMenuBGField() { return *GetNativePointerField<bool*>(this, "AShooterGame_Menu.bPreparedMenuBG"); }

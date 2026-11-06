@@ -9,8 +9,8 @@ public:
 	~APrimalPatrolPoint() = delete;
 	APrimalPatrolPoint(const APrimalPatrolPoint&) = delete;
 	APrimalPatrolPoint& operator=(const APrimalPatrolPoint&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalPatrolPoint"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalPatrolPoint"); }
 
 	int& PointHierarchyDepthField() { return *GetNativePointerField<int*>(this, "APrimalPatrolPoint.PointHierarchyDepth"); }
 	FName& PointRegionField() { return *GetNativePointerField<FName*>(this, "APrimalPatrolPoint.PointRegion"); }

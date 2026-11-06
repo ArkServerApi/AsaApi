@@ -10,8 +10,8 @@ public:
 	~APrimalStructureTemplate() = delete;
 	APrimalStructureTemplate(const APrimalStructureTemplate&) = delete;
 	APrimalStructureTemplate& operator=(const APrimalStructureTemplate&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureTemplate"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureTemplate"); }
 
 	float& DecayAfterTimeField() { return *GetNativePointerField<float*>(this, "APrimalStructureTemplate.DecayAfterTime"); }
 	float& MaxAutoBuildDistanceField() { return *GetNativePointerField<float*>(this, "APrimalStructureTemplate.MaxAutoBuildDistance"); }

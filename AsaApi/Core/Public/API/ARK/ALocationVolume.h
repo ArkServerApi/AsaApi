@@ -9,8 +9,8 @@ public:
 	~ALocationVolume() = delete;
 	ALocationVolume(const ALocationVolume&) = delete;
 	ALocationVolume& operator=(const ALocationVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALocationVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALocationVolume"); }
 
 	FColor& DebugColorField() { return *GetNativePointerField<FColor*>(this, "ALocationVolume.DebugColor"); }
 	bool IsEditorOnly() { return NativeCall<bool>(this, "ALocationVolume.IsEditorOnly()"); }

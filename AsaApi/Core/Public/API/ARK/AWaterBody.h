@@ -9,7 +9,7 @@ public:
 	~AWaterBody() = delete;
 	AWaterBody(const AWaterBody&) = delete;
 	AWaterBody& operator=(const AWaterBody&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterBody"); }
 
 	int& WaterBodyIndexField() { return *GetNativePointerField<int*>(this, "AWaterBody.WaterBodyIndex"); }
 	UE::Math::TVector<double>* GetWaterVelocityVectorAtSplineInputKey(UE::Math::TVector<double>* result, float InKey) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, float>(this, "AWaterBody.GetWaterVelocityVectorAtSplineInputKey(float)", result, InKey); }
@@ -25,7 +25,7 @@ public:
 	void InitializeBody() { NativeCall<void>(this, "AWaterBody.InitializeBody()"); }
 	bool CanEverAffectWaterInfo() { return NativeCall<bool>(this, "AWaterBody.CanEverAffectWaterInfo()"); }
 	void NotifyActorEndOverlap(AActor* OtherActor) { NativeCall<void, AActor*>(this, "AWaterBody.NotifyActorEndOverlap(AActor*)", OtherActor); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AWaterBody.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterBody"); }
 	void PostRegisterAllComponents() { NativeCall<void>(this, "AWaterBody.PostRegisterAllComponents()"); }
 	void PostLoad() { NativeCall<void>(this, "AWaterBody.PostLoad()"); }
 	void NotifyActorBeginOverlap(AActor* OtherActor) { NativeCall<void, AActor*>(this, "AWaterBody.NotifyActorBeginOverlap(AActor*)", OtherActor); }

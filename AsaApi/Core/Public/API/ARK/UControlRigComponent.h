@@ -9,8 +9,8 @@ public:
 	~UControlRigComponent() = delete;
 	UControlRigComponent(const UControlRigComponent&) = delete;
 	UControlRigComponent& operator=(const UControlRigComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UControlRigComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UControlRigComponent"); }
 
 	FControlRigAssetStrongReference& ControlRigAssetReferenceField() { return *GetNativePointerField<FControlRigAssetStrongReference*>(this, "UControlRigComponent.ControlRigAssetReference"); }
 	FControlRigComponentDelegate& OnPreInitializeDelegateField() { return *GetNativePointerField<FControlRigComponentDelegate*>(this, "UControlRigComponent.OnPreInitializeDelegate"); }

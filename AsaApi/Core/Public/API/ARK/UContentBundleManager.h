@@ -10,8 +10,8 @@ public:
 	~UContentBundleManager() = delete;
 	UContentBundleManager(const UContentBundleManager&) = delete;
 	UContentBundleManager& operator=(const UContentBundleManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContentBundleManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContentBundleManager"); }
 	void DrawContentBundlesStatus(const UWorld* InWorld, UCanvas* Canvas, UE::Math::TVector2<double>& Offset) { NativeCall<void, const UWorld*, UCanvas*, UE::Math::TVector2<double>&>(this, "UContentBundleManager.DrawContentBundlesStatus(UWorld*,UCanvas*,UE::Math::TVector2<double>&)", InWorld, Canvas, Offset); }
 	const FContentBundleBase* GetContentBundle(const UWorld* InWorld, const FGuid& Guid) { return NativeCall<const FContentBundleBase*, const UWorld*, const FGuid&>(this, "UContentBundleManager.GetContentBundle(UWorld*,FGuid&)", InWorld, Guid); }
 	void OnWorldPartitionInitialized(UWorldPartition* InWorldPartition) { NativeCall<void, UWorldPartition*>(this, "UContentBundleManager.OnWorldPartitionInitialized(UWorldPartition*)", InWorldPartition); }

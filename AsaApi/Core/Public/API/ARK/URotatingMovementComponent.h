@@ -9,8 +9,8 @@ public:
 	~URotatingMovementComponent() = delete;
 	URotatingMovementComponent(const URotatingMovementComponent&) = delete;
 	URotatingMovementComponent& operator=(const URotatingMovementComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URotatingMovementComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URotatingMovementComponent"); }
 
 	UE::Math::TRotator<double>& RotationRateField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "URotatingMovementComponent.RotationRate"); }
 	UE::Math::TVector<double>& PivotTranslationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "URotatingMovementComponent.PivotTranslation"); }

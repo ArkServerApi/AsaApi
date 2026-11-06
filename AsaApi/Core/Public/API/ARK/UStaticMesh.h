@@ -11,8 +11,8 @@ public:
 	~UStaticMesh() = delete;
 	UStaticMesh(const UStaticMesh&) = delete;
 	UStaticMesh& operator=(const UStaticMesh&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStaticMesh"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStaticMesh"); }
 	FPerQualityLevelInt& MinQualityLevelLODField() { return *GetNativePointerField<FPerQualityLevelInt*>(this, "UStaticMesh.MinQualityLevelLOD"); }
 	FPerPlatformInt& MinLODField() { return *GetNativePointerField<FPerPlatformInt*>(this, "UStaticMesh.MinLOD"); }
 	int& ElementToIgnoreForTexFactorField() { return *GetNativePointerField<int*>(this, "UStaticMesh.ElementToIgnoreForTexFactor"); }

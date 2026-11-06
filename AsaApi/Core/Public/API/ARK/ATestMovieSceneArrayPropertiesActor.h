@@ -9,8 +9,8 @@ public:
 	~ATestMovieSceneArrayPropertiesActor() = delete;
 	ATestMovieSceneArrayPropertiesActor(const ATestMovieSceneArrayPropertiesActor&) = delete;
 	ATestMovieSceneArrayPropertiesActor& operator=(const ATestMovieSceneArrayPropertiesActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATestMovieSceneArrayPropertiesActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATestMovieSceneArrayPropertiesActor"); }
 
 	bool& TestBoolField() { return *GetNativePointerField<bool*>(this, "ATestMovieSceneArrayPropertiesActor.TestBool"); }
 	int& TestInt32Field() { return *GetNativePointerField<int*>(this, "ATestMovieSceneArrayPropertiesActor.TestInt32"); }

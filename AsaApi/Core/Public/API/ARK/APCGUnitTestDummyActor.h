@@ -9,8 +9,8 @@ public:
 	~APCGUnitTestDummyActor() = delete;
 	APCGUnitTestDummyActor(const APCGUnitTestDummyActor&) = delete;
 	APCGUnitTestDummyActor& operator=(const APCGUnitTestDummyActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APCGUnitTestDummyActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APCGUnitTestDummyActor"); }
 
 	int& IntPropertyField() { return *GetNativePointerField<int*>(this, "APCGUnitTestDummyActor.IntProperty"); }
 	float& FloatPropertyField() { return *GetNativePointerField<float*>(this, "APCGUnitTestDummyActor.FloatProperty"); }

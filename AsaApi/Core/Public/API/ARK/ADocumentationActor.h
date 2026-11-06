@@ -9,8 +9,8 @@ public:
 	~ADocumentationActor() = delete;
 	ADocumentationActor(const ADocumentationActor&) = delete;
 	ADocumentationActor& operator=(const ADocumentationActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADocumentationActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADocumentationActor"); }
 
 	EDocumentationActorType::Type& LinkTypeField() { return *GetNativePointerField<EDocumentationActorType::Type*>(this, "ADocumentationActor.LinkType"); }
 };

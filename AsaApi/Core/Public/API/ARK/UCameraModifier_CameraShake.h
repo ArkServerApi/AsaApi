@@ -10,8 +10,8 @@ public:
 	~UCameraModifier_CameraShake() = delete;
 	UCameraModifier_CameraShake(const UCameraModifier_CameraShake&) = delete;
 	UCameraModifier_CameraShake& operator=(const UCameraModifier_CameraShake&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCameraModifier_CameraShake"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCameraModifier_CameraShake"); }
 	float& SplitScreenShakeScaleField() { return *GetNativePointerField<float*>(this, "UCameraModifier_CameraShake.SplitScreenShakeScale"); }
 	bool ModifyCamera(float DeltaTime, FMinimalViewInfo& InOutPOV, bool IgnoredBasedOnModifiers) { return NativeCall<bool, float, FMinimalViewInfo&, bool>(this, "UCameraModifier_CameraShake.ModifyCamera(float,FMinimalViewInfo&,bool)", DeltaTime, InOutPOV, IgnoredBasedOnModifiers); }
 	void DisplayDebug(UCanvas* Canvas, const FDebugDisplayInfo& DebugDisplay, float& YL, float& YPos) { NativeCall<void, UCanvas*, const FDebugDisplayInfo&, float&, float&>(this, "UCameraModifier_CameraShake.DisplayDebug(UCanvas*,FDebugDisplayInfo&,float&,float&)", Canvas, DebugDisplay, YL, YPos); }

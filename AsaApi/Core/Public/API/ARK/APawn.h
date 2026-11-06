@@ -36,8 +36,8 @@ struct APawn : AActor
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APawn.StaticClass()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APawn.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APawn"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APawn"); }
 	bool IsPawnControlled() { return NativeCall<bool>(this, "APawn.IsPawnControlled()"); }
 	AShooterPlayerState* GetPlayerState() { return NativeCall<AShooterPlayerState*>(this, "APawn.GetPlayerState<AShooterPlayerState>()"); }
 	void PostLoad() { NativeCall<void>(this, "APawn.PostLoad()"); }

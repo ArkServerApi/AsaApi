@@ -9,8 +9,8 @@ public:
 	~ALevelScriptActor() = delete;
 	ALevelScriptActor(const ALevelScriptActor&) = delete;
 	ALevelScriptActor& operator=(const ALevelScriptActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALevelScriptActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALevelScriptActor"); }
 
 	BitFieldValue<bool, unsigned __int32> bInputEnabled() { return { this, "ALevelScriptActor.bInputEnabled"}; }
 	BitFieldValue<bool, unsigned __int32> bForceAbsoluteMaxDistance() { return { this, "ALevelScriptActor.bForceAbsoluteMaxDistance"}; }

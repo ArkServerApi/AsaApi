@@ -18,7 +18,7 @@ struct APrimalStructureMovingContainer : APrimalStructureItemContainer
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureMovingContainer"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
     void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "APrimalStructureMovingContainer.Tick(float)", DeltaSeconds); }
@@ -26,4 +26,5 @@ struct APrimalStructureMovingContainer : APrimalStructureItemContainer
     bool NetExecCommand(FName CommandName, const FNetExecParams* ExecParams) { return NativeCall<bool, FName, const FNetExecParams*>(this, "APrimalStructureMovingContainer.NetExecCommand(FName,FNetExecParams&)", CommandName, ExecParams); }
 
 	unsigned char& bHasSetLocationField() { return *GetNativePointerField<unsigned char*>(this, "APrimalStructureMovingContainer.bHasSetLocation"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureMovingContainer"); }
 };

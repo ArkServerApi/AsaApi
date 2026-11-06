@@ -9,8 +9,8 @@ public:
 	~ACameraRig_Crane() = delete;
 	ACameraRig_Crane(const ACameraRig_Crane&) = delete;
 	ACameraRig_Crane& operator=(const ACameraRig_Crane&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACameraRig_Crane"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACameraRig_Crane"); }
 
 	float& CranePitchField() { return *GetNativePointerField<float*>(this, "ACameraRig_Crane.CranePitch"); }
 	float& CraneYawField() { return *GetNativePointerField<float*>(this, "ACameraRig_Crane.CraneYaw"); }

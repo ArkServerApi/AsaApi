@@ -10,8 +10,8 @@ public:
 	~ALooseCameraSpringBuff() = delete;
 	ALooseCameraSpringBuff(const ALooseCameraSpringBuff&) = delete;
 	ALooseCameraSpringBuff& operator=(const ALooseCameraSpringBuff&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALooseCameraSpringBuff"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALooseCameraSpringBuff"); }
 
 	float& HoldDurationField() { return *GetNativePointerField<float*>(this, "ALooseCameraSpringBuff.HoldDuration"); }
 	float& BlendTimeField() { return *GetNativePointerField<float*>(this, "ALooseCameraSpringBuff.BlendTime"); }

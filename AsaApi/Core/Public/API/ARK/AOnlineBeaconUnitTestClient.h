@@ -9,8 +9,8 @@ public:
 	~AOnlineBeaconUnitTestClient() = delete;
 	AOnlineBeaconUnitTestClient(const AOnlineBeaconUnitTestClient&) = delete;
 	AOnlineBeaconUnitTestClient& operator=(const AOnlineBeaconUnitTestClient&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AOnlineBeaconUnitTestClient"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AOnlineBeaconUnitTestClient"); }
 
 	bool IsEditorOnly() { return NativeCall<bool>(this, "AOnlineBeaconUnitTestClient.IsEditorOnly()"); }
 };

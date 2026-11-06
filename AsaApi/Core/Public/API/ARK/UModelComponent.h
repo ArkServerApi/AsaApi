@@ -9,8 +9,8 @@ public:
 	~UModelComponent() = delete;
 	UModelComponent(const UModelComponent&) = delete;
 	UModelComponent& operator=(const UModelComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UModelComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UModelComponent"); }
 
 	int& ComponentIndexField() { return *GetNativePointerField<int*>(this, "UModelComponent.ComponentIndex"); }
 	TArray<unsigned short, TSizedDefaultAllocator<32> >& NodesField() { return *GetNativePointerField<TArray<unsigned short, TSizedDefaultAllocator<32> >*>(this, "UModelComponent.Nodes"); }

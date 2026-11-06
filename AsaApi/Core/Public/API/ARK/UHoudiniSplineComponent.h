@@ -9,8 +9,8 @@ public:
 	~UHoudiniSplineComponent() = delete;
 	UHoudiniSplineComponent(const UHoudiniSplineComponent&) = delete;
 	UHoudiniSplineComponent& operator=(const UHoudiniSplineComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoudiniSplineComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoudiniSplineComponent"); }
 
 	TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >& DisplayPointsField() { return *GetNativePointerField<TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >*>(this, "UHoudiniSplineComponent.DisplayPoints"); }
 	TArray<int, TSizedDefaultAllocator<32> >& DisplayPointIndexDividerField() { return *GetNativePointerField<TArray<int, TSizedDefaultAllocator<32> >*>(this, "UHoudiniSplineComponent.DisplayPointIndexDivider"); }

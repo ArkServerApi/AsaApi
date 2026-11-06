@@ -30,7 +30,7 @@ struct UMovementComponent : UActorComponent
 	// Functions
 
 	void StopMovementImmediately() { NativeCall<void>(this, "UMovementComponent.StopMovementImmediately()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UMovementComponent.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMovementComponent"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUMovementComponent();
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UMovementComponent.Serialize(FStructuredArchiveRecord)", Record); }
@@ -63,7 +63,7 @@ struct UMovementComponent : UActorComponent
 	float SlideAlongSurface(const UE::Math::TVector<double>* Delta, float Time, const UE::Math::TVector<double>* Normal, FHitResult* Hit, bool bHandleImpact) { return NativeCall<float, const UE::Math::TVector<double>*, float, const UE::Math::TVector<double>*, FHitResult*, bool>(this, "UMovementComponent.SlideAlongSurface(UE::Math::TVector<double>&,float,UE::Math::TVector<double>&,FHitResult&,bool)", Delta, Time, Normal, Hit, bHandleImpact); }
 	void TwoWallAdjust(UE::Math::TVector<double>* OutDelta, const FHitResult* Hit, const UE::Math::TVector<double>* OldHitNormal) { NativeCall<void, UE::Math::TVector<double>*, const FHitResult*, const UE::Math::TVector<double>*>(this, "UMovementComponent.TwoWallAdjust(UE::Math::TVector<double>&,FHitResult&,UE::Math::TVector<double>&)", OutDelta, Hit, OldHitNormal); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMovementComponent"); }
 
 	UE::Math::TVector<double>* ComputeSlideVector(UE::Math::TVector<double>* result, const UE::Math::TVector<double>& Delta, float Time, const UE::Math::TVector<double>& Normal, const FHitResult& Hit) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const UE::Math::TVector<double>&, float, const UE::Math::TVector<double>&, const FHitResult&>(this, "UMovementComponent.ComputeSlideVector(UE::Math::TVector<double>&,float,UE::Math::TVector<double>&,FHitResult&)", result, Delta, Time, Normal, Hit); }
 	void PhysicsVolumeChanged(APhysicsVolume* NewVolume) { NativeCall<void, APhysicsVolume*>(this, "UMovementComponent.PhysicsVolumeChanged(APhysicsVolume*)", NewVolume); }

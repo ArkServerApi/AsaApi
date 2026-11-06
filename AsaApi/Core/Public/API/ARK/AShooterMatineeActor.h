@@ -9,8 +9,8 @@ public:
 	~AShooterMatineeActor() = delete;
 	AShooterMatineeActor(const AShooterMatineeActor&) = delete;
 	AShooterMatineeActor& operator=(const AShooterMatineeActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterMatineeActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterMatineeActor"); }
 
 	bool& bUseMatineeManagerField() { return *GetNativePointerField<bool*>(this, "AShooterMatineeActor.bUseMatineeManager"); }
 	int& MatineeManagerPriorityField() { return *GetNativePointerField<int*>(this, "AShooterMatineeActor.MatineeManagerPriority"); }

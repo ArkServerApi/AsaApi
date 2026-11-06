@@ -9,8 +9,8 @@ public:
 	~AFoliageAttachmentOverrideVolume() = delete;
 	AFoliageAttachmentOverrideVolume(const AFoliageAttachmentOverrideVolume&) = delete;
 	AFoliageAttachmentOverrideVolume& operator=(const AFoliageAttachmentOverrideVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AFoliageAttachmentOverrideVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AFoliageAttachmentOverrideVolume"); }
 
 	BitFieldValue<bool, unsigned __int32> bAddedToArray() { return { this, "AFoliageAttachmentOverrideVolume.bAddedToArray"}; }
 	void Destroyed() { NativeCall<void>(this, "AFoliageAttachmentOverrideVolume.Destroyed()"); }

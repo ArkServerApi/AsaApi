@@ -9,8 +9,8 @@ public:
 	~UVisualSettingsUI() = delete;
 	UVisualSettingsUI(const UVisualSettingsUI&) = delete;
 	UVisualSettingsUI& operator=(const UVisualSettingsUI&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVisualSettingsUI"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVisualSettingsUI"); }
 
 	UCustomButtonWidget*& ApplyButtonField() { return *GetNativePointerField<UCustomButtonWidget**>(this, "UVisualSettingsUI.ApplyButton"); }
 	UCustomButtonWidget*& CancelButtonField() { return *GetNativePointerField<UCustomButtonWidget**>(this, "UVisualSettingsUI.CancelButton"); }

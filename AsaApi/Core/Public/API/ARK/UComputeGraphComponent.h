@@ -9,8 +9,8 @@ public:
 	~UComputeGraphComponent() = delete;
 	UComputeGraphComponent(const UComputeGraphComponent&) = delete;
 	UComputeGraphComponent& operator=(const UComputeGraphComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UComputeGraphComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UComputeGraphComponent"); }
 
 	FComputeGraphInstance& ComputeGraphInstanceField() { return *GetNativePointerField<FComputeGraphInstance*>(this, "UComputeGraphComponent.ComputeGraphInstance"); }
 	UObject* GetBindingObject_Implementation(int InBindingIndex) { return NativeCall<UObject*, int>(this, "UComputeGraphComponent.GetBindingObject_Implementation(int)", InBindingIndex); }

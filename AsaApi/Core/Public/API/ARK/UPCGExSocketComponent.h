@@ -9,8 +9,8 @@ public:
 	~UPCGExSocketComponent() = delete;
 	UPCGExSocketComponent(const UPCGExSocketComponent&) = delete;
 	UPCGExSocketComponent& operator=(const UPCGExSocketComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPCGExSocketComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPCGExSocketComponent"); }
 
 	FName& SocketNameField() { return *GetNativePointerField<FName*>(this, "UPCGExSocketComponent.SocketName"); }
 	FString& SocketTagField() { return *GetNativePointerField<FString*>(this, "UPCGExSocketComponent.SocketTag"); }

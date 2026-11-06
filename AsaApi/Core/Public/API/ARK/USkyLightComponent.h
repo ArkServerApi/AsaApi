@@ -9,8 +9,8 @@ public:
 	~USkyLightComponent() = delete;
 	USkyLightComponent(const USkyLightComponent&) = delete;
 	USkyLightComponent& operator=(const USkyLightComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkyLightComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkyLightComponent"); }
 
 	bool& bRealTimeCaptureField() { return *GetNativePointerField<bool*>(this, "USkyLightComponent.bRealTimeCapture"); }
 	float& SourceCubemapAngleField() { return *GetNativePointerField<float*>(this, "USkyLightComponent.SourceCubemapAngle"); }

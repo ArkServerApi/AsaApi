@@ -15,7 +15,7 @@ struct AAIAttackCoordinator : AActor
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AAIAttackCoordinator.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AAIAttackCoordinator"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAAIAttackCoordinator();
 	void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "AAIAttackCoordinator.Tick(float)", DeltaSeconds); }
@@ -25,7 +25,7 @@ struct AAIAttackCoordinator : AActor
 	void UpdateAttackGroup_Implementation(TArray<APrimalDinoAIController*, TSizedDefaultAllocator<32> >* AttackGroup) { NativeCall<void, TArray<APrimalDinoAIController*, TSizedDefaultAllocator<32> >*>(this, "AAIAttackCoordinator.UpdateAttackGroup_Implementation(TArray<APrimalDinoAIController*,TSizedDefaultAllocator<32>>&)", AttackGroup); }
 	float CalculateAttackerPriorityWeight_Implementation(APrimalDinoAIController* Attacker) { return NativeCall<float, APrimalDinoAIController*>(this, "AAIAttackCoordinator.CalculateAttackerPriorityWeight_Implementation(APrimalDinoAIController*)", Attacker); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AAIAttackCoordinator"); }
 
 	void RemoveAttacker(APrimalDinoAIController* Controller) { NativeCall<void, APrimalDinoAIController*>(this, "AAIAttackCoordinator.RemoveAttacker(APrimalDinoAIController*)", Controller); }
 	float CalculateAttackerPriorityWeight(APrimalDinoAIController* Attacker) { return NativeCall<float, APrimalDinoAIController*>(this, "AAIAttackCoordinator.CalculateAttackerPriorityWeight(APrimalDinoAIController*)", Attacker); }

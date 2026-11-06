@@ -9,8 +9,8 @@ public:
 	~UAbilitySystemComponent() = delete;
 	UAbilitySystemComponent(const UAbilitySystemComponent&) = delete;
 	UAbilitySystemComponent& operator=(const UAbilitySystemComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAbilitySystemComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAbilitySystemComponent"); }
 
 	FName& AffectedAnimInstanceTagField() { return *GetNativePointerField<FName*>(this, "UAbilitySystemComponent.AffectedAnimInstanceTag"); }
 	FPredictionKey& ScopedPredictionKeyField() { return *GetNativePointerField<FPredictionKey*>(this, "UAbilitySystemComponent.ScopedPredictionKey"); }

@@ -9,8 +9,8 @@ public:
 	~UCosmeticSelectorPanelUI() = delete;
 	UCosmeticSelectorPanelUI(const UCosmeticSelectorPanelUI&) = delete;
 	UCosmeticSelectorPanelUI& operator=(const UCosmeticSelectorPanelUI&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCosmeticSelectorPanelUI"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCosmeticSelectorPanelUI"); }
 
 	UDataListPanel*& ItemsDataListField() { return *GetNativePointerField<UDataListPanel**>(this, "UCosmeticSelectorPanelUI.ItemsDataList"); }
 	UDataListPanel*& CustomCosmeticsDataListField() { return *GetNativePointerField<UDataListPanel**>(this, "UCosmeticSelectorPanelUI.CustomCosmeticsDataList"); }

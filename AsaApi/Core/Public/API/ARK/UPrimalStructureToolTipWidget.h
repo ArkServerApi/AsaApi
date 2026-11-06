@@ -9,8 +9,8 @@ public:
 	~UPrimalStructureToolTipWidget() = delete;
 	UPrimalStructureToolTipWidget(const UPrimalStructureToolTipWidget&) = delete;
 	UPrimalStructureToolTipWidget& operator=(const UPrimalStructureToolTipWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalStructureToolTipWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalStructureToolTipWidget"); }
 
 	AShooterPlayerController*& ForPCField() { return *GetNativePointerField<AShooterPlayerController**>(this, "UPrimalStructureToolTipWidget.ForPC"); }
 	UTextBlock*& StructureNameLabelField() { return *GetNativePointerField<UTextBlock**>(this, "UPrimalStructureToolTipWidget.StructureNameLabel"); }

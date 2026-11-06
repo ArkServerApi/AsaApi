@@ -9,7 +9,7 @@ public:
 	~USceneCaptureComponent() = delete;
 	USceneCaptureComponent(const USceneCaptureComponent&) = delete;
 	USceneCaptureComponent& operator=(const USceneCaptureComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USceneCaptureComponent"); }
 
 	ESceneCapturePrimitiveRenderMode& PrimitiveRenderModeField() { return *GetNativePointerField<ESceneCapturePrimitiveRenderMode*>(this, "USceneCaptureComponent.PrimitiveRenderMode"); }
 	bool& bAlwaysPersistRenderingStateField() { return *GetNativePointerField<bool*>(this, "USceneCaptureComponent.bAlwaysPersistRenderingState"); }
@@ -45,7 +45,7 @@ public:
 	void UpdateShowFlags() { NativeCall<void>(this, "USceneCaptureComponent.UpdateShowFlags()"); }
 	void BeginDestroy() { NativeCall<void>(this, "USceneCaptureComponent.BeginDestroy()"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "USceneCaptureComponent.Serialize(FArchive&)", Ar); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USceneCaptureComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USceneCaptureComponent"); }
 	const AActor* GetViewOwner() { return NativeCall<const AActor*>(this, "USceneCaptureComponent.GetViewOwner()"); }
 	void RegisterDelegates() { NativeCall<void>(this, "USceneCaptureComponent.RegisterDelegates()"); }
 	bool IsCulledByDetailMode() { return NativeCall<bool>(this, "USceneCaptureComponent.IsCulledByDetailMode()"); }

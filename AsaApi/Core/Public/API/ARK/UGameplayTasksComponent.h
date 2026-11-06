@@ -9,7 +9,7 @@ public:
 	~UGameplayTasksComponent() = delete;
 	UGameplayTasksComponent(const UGameplayTasksComponent&) = delete;
 	UGameplayTasksComponent& operator=(const UGameplayTasksComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameplayTasksComponent"); }
 
 	int& EventLockCounterField() { return *GetNativePointerField<int*>(this, "UGameplayTasksComponent.EventLockCounter"); }
 	unsigned char& TopActivePriorityField() { return *GetNativePointerField<unsigned char*>(this, "UGameplayTasksComponent.TopActivePriority"); }
@@ -30,7 +30,7 @@ public:
 	void EndAllResourceConsumingTasksOwnedBy(const IGameplayTaskOwnerInterface& TaskOwner) { NativeCall<void, const IGameplayTaskOwnerInterface&>(this, "UGameplayTasksComponent.EndAllResourceConsumingTasksOwnedBy(IGameplayTaskOwnerInterface&)", TaskOwner); }
 	void OnGameplayTaskActivated(UGameplayTask& Task) { NativeCall<void, UGameplayTask&>(this, "UGameplayTasksComponent.OnGameplayTaskActivated(UGameplayTask&)", Task); }
 	void ReadyForReplication() { NativeCall<void>(this, "UGameplayTasksComponent.ReadyForReplication()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGameplayTasksComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameplayTasksComponent"); }
 	void UpdateTaskActivations() { NativeCall<void>(this, "UGameplayTasksComponent.UpdateTaskActivations()"); }
 	bool GetShouldTick() { return NativeCall<bool>(this, "UGameplayTasksComponent.GetShouldTick()"); }
 	void UpdateShouldTick() { NativeCall<void>(this, "UGameplayTasksComponent.UpdateShouldTick()"); }

@@ -9,8 +9,8 @@ public:
 	~ASpotLight() = delete;
 	ASpotLight(const ASpotLight&) = delete;
 	ASpotLight& operator=(const ASpotLight&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASpotLight"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ASpotLight.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASpotLight"); }
 	void PostLoad() { NativeCall<void>(this, "ASpotLight.PostLoad()"); }
 };

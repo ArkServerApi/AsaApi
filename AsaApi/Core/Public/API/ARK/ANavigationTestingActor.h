@@ -9,8 +9,8 @@ public:
 	~ANavigationTestingActor() = delete;
 	ANavigationTestingActor(const ANavigationTestingActor&) = delete;
 	ANavigationTestingActor& operator=(const ANavigationTestingActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANavigationTestingActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANavigationTestingActor"); }
 
 	FNavAgentProperties& NavAgentPropsField() { return *GetNativePointerField<FNavAgentProperties*>(this, "ANavigationTestingActor.NavAgentProps"); }
 	UE::Math::TVector<double>& QueryingExtentField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "ANavigationTestingActor.QueryingExtent"); }

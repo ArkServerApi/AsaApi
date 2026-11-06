@@ -9,8 +9,8 @@ public:
 	~UDynamicMeshComponent() = delete;
 	UDynamicMeshComponent(const UDynamicMeshComponent&) = delete;
 	UDynamicMeshComponent& operator=(const UDynamicMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDynamicMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDynamicMeshComponent"); }
 
 	bool& bInvalidateProxyOnChangeField() { return *GetNativePointerField<bool*>(this, "UDynamicMeshComponent.bInvalidateProxyOnChange"); }
 	FDelegateHandle& MeshObjectChangedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UDynamicMeshComponent.MeshObjectChangedHandle"); }

@@ -10,8 +10,8 @@ public:
 	~UAvoidanceManager() = delete;
 	UAvoidanceManager(const UAvoidanceManager&) = delete;
 	UAvoidanceManager& operator=(const UAvoidanceManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAvoidanceManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAvoidanceManager"); }
 	float& DefaultTimeToLiveField() { return *GetNativePointerField<float*>(this, "UAvoidanceManager.DefaultTimeToLive"); }
 	float& LockTimeAfterAvoidField() { return *GetNativePointerField<float*>(this, "UAvoidanceManager.LockTimeAfterAvoid"); }
 	float& LockTimeAfterCleanField() { return *GetNativePointerField<float*>(this, "UAvoidanceManager.LockTimeAfterClean"); }

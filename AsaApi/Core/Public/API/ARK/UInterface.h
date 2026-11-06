@@ -9,7 +9,7 @@ public:
 	~UInterface() = delete;
 	UInterface(const UInterface&) = delete;
 	UInterface& operator=(const UInterface&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UInterface.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInterface"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInterface"); }
 
 };

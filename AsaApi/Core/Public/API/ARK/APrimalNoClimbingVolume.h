@@ -9,7 +9,7 @@ public:
 	~APrimalNoClimbingVolume() = delete;
 	APrimalNoClimbingVolume(const APrimalNoClimbingVolume&) = delete;
 	APrimalNoClimbingVolume& operator=(const APrimalNoClimbingVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalNoClimbingVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalNoClimbingVolume"); }
 
 };

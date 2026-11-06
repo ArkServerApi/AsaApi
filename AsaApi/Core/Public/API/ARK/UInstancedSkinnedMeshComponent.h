@@ -9,7 +9,7 @@ public:
 	~UInstancedSkinnedMeshComponent() = delete;
 	UInstancedSkinnedMeshComponent(const UInstancedSkinnedMeshComponent&) = delete;
 	UInstancedSkinnedMeshComponent& operator=(const UInstancedSkinnedMeshComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInstancedSkinnedMeshComponent"); }
 
 	int& NumCustomDataFloatsField() { return *GetNativePointerField<int*>(this, "UInstancedSkinnedMeshComponent.NumCustomDataFloats"); }
 	TArray<float, TSizedDefaultAllocator<32> >& InstanceCustomDataField() { return *GetNativePointerField<TArray<float, TSizedDefaultAllocator<32> >*>(this, "UInstancedSkinnedMeshComponent.InstanceCustomData"); }
@@ -52,7 +52,7 @@ public:
 	void RecreateInstanceBody(int InstanceBodyIndex) { NativeCall<void, int>(this, "UInstancedSkinnedMeshComponent.RecreateInstanceBody(int)", InstanceBodyIndex); }
 	void MarkBoneAttachmentBindingDirty(int InstanceIndex) { NativeCall<void, int>(this, "UInstancedSkinnedMeshComponent.MarkBoneAttachmentBindingDirty(int)", InstanceIndex); }
 	void CreateRenderState_Concurrent(FRegisterComponentContext* Context) { NativeCall<void, FRegisterComponentContext*>(this, "UInstancedSkinnedMeshComponent.CreateRenderState_Concurrent(FRegisterComponentContext*)", Context); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UInstancedSkinnedMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInstancedSkinnedMeshComponent"); }
 	bool RemoveInstanceInternal(int InstanceIndex, bool bInstanceAlreadyRemoved) { return NativeCall<bool, int, bool>(this, "UInstancedSkinnedMeshComponent.RemoveInstanceInternal(int,bool)", InstanceIndex, bInstanceAlreadyRemoved); }
 	void SetCullDistances(int StartCullDistance, int EndCullDistance) { NativeCall<void, int, int>(this, "UInstancedSkinnedMeshComponent.SetCullDistances(int,int)", StartCullDistance, EndCullDistance); }
 	void SetHasPerInstancePrevTransforms(bool bInHasPreviousTransforms) { NativeCall<void, bool>(this, "UInstancedSkinnedMeshComponent.SetHasPerInstancePrevTransforms(bool)", bInHasPreviousTransforms); }

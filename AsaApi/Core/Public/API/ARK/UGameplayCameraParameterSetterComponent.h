@@ -9,8 +9,8 @@ public:
 	~UGameplayCameraParameterSetterComponent() = delete;
 	UGameplayCameraParameterSetterComponent(const UGameplayCameraParameterSetterComponent&) = delete;
 	UGameplayCameraParameterSetterComponent& operator=(const UGameplayCameraParameterSetterComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameplayCameraParameterSetterComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameplayCameraParameterSetterComponent"); }
 
 	FCameraRigAssetReference& CameraRigReferenceField() { return *GetNativePointerField<FCameraRigAssetReference*>(this, "UGameplayCameraParameterSetterComponent.CameraRigReference"); }
 	float& BlendInTimeField() { return *GetNativePointerField<float*>(this, "UGameplayCameraParameterSetterComponent.BlendInTime"); }

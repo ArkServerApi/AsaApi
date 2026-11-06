@@ -10,6 +10,6 @@ public:
 	~UHLODProxy() = delete;
 	UHLODProxy(const UHLODProxy&) = delete;
 	UHLODProxy& operator=(const UHLODProxy&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHLODProxy"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHLODProxy"); }
 };

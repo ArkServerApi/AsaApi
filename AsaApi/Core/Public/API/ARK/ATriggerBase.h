@@ -11,6 +11,6 @@ struct ATriggerBase : AActor
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "ATriggerBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATriggerBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATriggerBase"); }
 };

@@ -10,8 +10,8 @@ public:
 	~USoundMix() = delete;
 	USoundMix(const USoundMix&) = delete;
 	USoundMix& operator=(const USoundMix&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundMix"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundMix"); }
 	float& EQPriorityField() { return *GetNativePointerField<float*>(this, "USoundMix.EQPriority"); }
 	FAudioEQEffect& EQSettingsField() { return *GetNativePointerField<FAudioEQEffect*>(this, "USoundMix.EQSettings"); }
 	float& InitialDelayField() { return *GetNativePointerField<float*>(this, "USoundMix.InitialDelay"); }

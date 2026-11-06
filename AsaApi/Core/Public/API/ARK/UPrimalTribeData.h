@@ -9,8 +9,8 @@ public:
 	~UPrimalTribeData() = delete;
 	UPrimalTribeData(const UPrimalTribeData&) = delete;
 	UPrimalTribeData& operator=(const UPrimalTribeData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalTribeData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalTribeData"); }
 
 	FTribeData& TribeDataField() { return *GetNativePointerField<FTribeData*>(this, "UPrimalTribeData.TribeData"); }
 };

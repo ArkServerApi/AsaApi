@@ -9,7 +9,7 @@ public:
 	~AMassVisualizer() = delete;
 	AMassVisualizer(const AMassVisualizer&) = delete;
 	AMassVisualizer& operator=(const AMassVisualizer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMassVisualizer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMassVisualizer"); }
 
 };

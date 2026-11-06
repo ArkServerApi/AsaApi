@@ -10,8 +10,8 @@ public:
 	~APrimalStructureSeating_DriverSeat() = delete;
 	APrimalStructureSeating_DriverSeat(const APrimalStructureSeating_DriverSeat&) = delete;
 	APrimalStructureSeating_DriverSeat& operator=(const APrimalStructureSeating_DriverSeat&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureSeating_DriverSeat"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureSeating_DriverSeat"); }
 
 	bool& bDebugDrivingField() { return *GetNativePointerField<bool*>(this, "APrimalStructureSeating_DriverSeat.bDebugDriving"); }
 	bool& bDebugRowingField() { return *GetNativePointerField<bool*>(this, "APrimalStructureSeating_DriverSeat.bDebugRowing"); }

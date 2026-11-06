@@ -9,7 +9,7 @@ public:
 	~UProjectileMovementComponent() = delete;
 	UProjectileMovementComponent(const UProjectileMovementComponent&) = delete;
 	UProjectileMovementComponent& operator=(const UProjectileMovementComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UProjectileMovementComponent"); }
 
 	float& MinLifespanToUpdateField() { return *GetNativePointerField<float*>(this, "UProjectileMovementComponent.MinLifespanToUpdate"); }
 	float& InitialSpeedField() { return *GetNativePointerField<float*>(this, "UProjectileMovementComponent.InitialSpeed"); }
@@ -45,7 +45,7 @@ public:
 	BitFieldValue<bool, unsigned __int32> bAffectedByBasedCompRotation() { return { this, "UProjectileMovementComponent.bAffectedByBasedCompRotation"}; }
 	UE::Math::TVector<double>* ComputeAcceleration(UE::Math::TVector<double>* result, const UE::Math::TVector<double>& InVelocity, float DeltaTime, bool bGravityEnabled) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const UE::Math::TVector<double>&, float, bool>(this, "UProjectileMovementComponent.ComputeAcceleration(UE::Math::TVector<double>&,float,bool)", result, InVelocity, DeltaTime, bGravityEnabled); }
 	float GetMaxSpeed() { return NativeCall<float>(this, "UProjectileMovementComponent.GetMaxSpeed()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UProjectileMovementComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UProjectileMovementComponent"); }
 	void CheckIfUnderwater() { NativeCall<void>(this, "UProjectileMovementComponent.CheckIfUnderwater()"); }
 	UE::Math::TVector<double>* ComputeMoveDelta(UE::Math::TVector<double>* result, const UE::Math::TVector<double>& InVelocity, float DeltaTime, bool bGravityEnabled) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const UE::Math::TVector<double>&, float, bool>(this, "UProjectileMovementComponent.ComputeMoveDelta(UE::Math::TVector<double>&,float,bool)", result, InVelocity, DeltaTime, bGravityEnabled); }
 	UE::Math::TVector<double>* ComputeBounceResult(UE::Math::TVector<double>* result, const FHitResult& Hit, float TimeSlice, const UE::Math::TVector<double>& MoveDelta) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const FHitResult&, float, const UE::Math::TVector<double>&>(this, "UProjectileMovementComponent.ComputeBounceResult(FHitResult&,float,UE::Math::TVector<double>&)", result, Hit, TimeSlice, MoveDelta); }

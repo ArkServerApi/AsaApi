@@ -9,8 +9,8 @@ public:
 	~AResonanceAudioDirectivityVisualizer() = delete;
 	AResonanceAudioDirectivityVisualizer(const AResonanceAudioDirectivityVisualizer&) = delete;
 	AResonanceAudioDirectivityVisualizer& operator=(const AResonanceAudioDirectivityVisualizer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AResonanceAudioDirectivityVisualizer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AResonanceAudioDirectivityVisualizer"); }
 
 	int& CIRCLE_SECTIONSField() { return *GetNativePointerField<int*>(this, "AResonanceAudioDirectivityVisualizer.CIRCLE_SECTIONS"); }
 	TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >& VerticesField() { return *GetNativePointerField<TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >*>(this, "AResonanceAudioDirectivityVisualizer.Vertices"); }

@@ -10,8 +10,8 @@ public:
 	~APrimalBuff_WindTunnel() = delete;
 	APrimalBuff_WindTunnel(const APrimalBuff_WindTunnel&) = delete;
 	APrimalBuff_WindTunnel& operator=(const APrimalBuff_WindTunnel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_WindTunnel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_WindTunnel"); }
 
 	float& CaptureDistanceField() { return *GetNativePointerField<float*>(this, "APrimalBuff_WindTunnel.CaptureDistance"); }
 	float& DriftPhaseField() { return *GetNativePointerField<float*>(this, "APrimalBuff_WindTunnel.DriftPhase"); }

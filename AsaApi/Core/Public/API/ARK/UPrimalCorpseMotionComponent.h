@@ -10,7 +10,7 @@ public:
 	~UPrimalCorpseMotionComponent() = delete;
 	UPrimalCorpseMotionComponent(const UPrimalCorpseMotionComponent&) = delete;
 	UPrimalCorpseMotionComponent& operator=(const UPrimalCorpseMotionComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCorpseMotionComponent"); }
 
 	bool& bProcessingStatesField() { return *GetNativePointerField<bool*>(this, "UPrimalCorpseMotionComponent.bProcessingStates"); }
 	bool& bShutdownRequestedField() { return *GetNativePointerField<bool*>(this, "UPrimalCorpseMotionComponent.bShutdownRequested"); }
@@ -25,7 +25,7 @@ public:
 	void Shutdown() { NativeCall<void>(this, "UPrimalCorpseMotionComponent.Shutdown()"); }
 	bool CanBeginCorpseMotion() { return NativeCall<bool>(this, "UPrimalCorpseMotionComponent.CanBeginCorpseMotion()"); }
 	bool HasCorpseMotion(const APrimalCharacter* Character) { return NativeCall<bool, const APrimalCharacter*>(this, "UPrimalCorpseMotionComponent.HasCorpseMotion(APrimalCharacter*)", Character); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalCorpseMotionComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCorpseMotionComponent"); }
 
 	void EndPlay(EEndPlayReason::Type EndPlayReason) { NativeCall<void, EEndPlayReason::Type>(this, "UPrimalCorpseMotionComponent.EndPlay(EEndPlayReason::Type)", EndPlayReason); }
 };

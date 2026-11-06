@@ -9,8 +9,8 @@ public:
 	~UTribeManagerListButton() = delete;
 	UTribeManagerListButton(const UTribeManagerListButton&) = delete;
 	UTribeManagerListButton& operator=(const UTribeManagerListButton&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTribeManagerListButton"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTribeManagerListButton"); }
 
 	UCustomButtonWidget*& ButtonField() { return *GetNativePointerField<UCustomButtonWidget**>(this, "UTribeManagerListButton.Button"); }
 	UTextBlock*& GroupNameLabelField() { return *GetNativePointerField<UTextBlock**>(this, "UTribeManagerListButton.GroupNameLabel"); }

@@ -9,7 +9,7 @@ public:
 	~USilentDamageType() = delete;
 	USilentDamageType(const USilentDamageType&) = delete;
 	USilentDamageType& operator=(const USilentDamageType&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USilentDamageType"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USilentDamageType"); }
 
 };

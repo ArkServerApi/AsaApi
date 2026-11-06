@@ -18,8 +18,8 @@ struct APrimalEmitterSpawnable : AEmitter {
 	float& WarmupSecondsPerFrameCapField() { return *GetNativePointerField<float*>(this, "APrimalEmitterSpawnable.WarmupSecondsPerFrameCap"); }
 	int& MaxConcurrentActivatedVfxField() { return *GetNativePointerField<int*>(this, "APrimalEmitterSpawnable.MaxConcurrentActivatedVfx"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalEmitterSpawnable.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalEmitterSpawnable"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalEmitterSpawnable"); }
 
 	USceneComponent*& RootTransformCompField() { return *GetNativePointerField<USceneComponent**>(this, "APrimalEmitterSpawnable.RootTransformComp"); }
 	UAudioComponent*& SoundToPlayField() { return *GetNativePointerField<UAudioComponent**>(this, "APrimalEmitterSpawnable.SoundToPlay"); }

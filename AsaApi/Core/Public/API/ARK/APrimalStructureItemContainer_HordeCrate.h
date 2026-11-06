@@ -16,12 +16,12 @@ struct APrimalStructureItemContainer_HordeCrate : APrimalStructureItemContainer_
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_HordeCrate"); }
     long double GetLastGameplayRelevantTime() { return NativeCall<long double>(this, "APrimalStructureItemContainer_HordeCrate.GetLastGameplayRelevantTime()"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureItemContainer_HordeCrate();
     void SpawnElementNodePostProcess() { NativeCall<void>(this, "APrimalStructureItemContainer_HordeCrate.SpawnElementNodePostProcess()"); }
     void BeginPlay() { NativeCall<void>(this, "APrimalStructureItemContainer_HordeCrate.BeginPlay()"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_HordeCrate"); }
 };

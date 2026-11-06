@@ -9,8 +9,8 @@ public:
 	~AConstraintsActor() = delete;
 	AConstraintsActor(const AConstraintsActor&) = delete;
 	AConstraintsActor& operator=(const AConstraintsActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AConstraintsActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AConstraintsActor"); }
 
 	void Tick(float DeltaTime) { NativeCall<void, float>(this, "AConstraintsActor.Tick(float)", DeltaTime); }
 	void BeginPlay() { NativeCall<void>(this, "AConstraintsActor.BeginPlay()"); }

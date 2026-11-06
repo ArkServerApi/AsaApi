@@ -9,8 +9,8 @@ public:
 	~UBillboardComponent() = delete;
 	UBillboardComponent(const UBillboardComponent&) = delete;
 	UBillboardComponent& operator=(const UBillboardComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBillboardComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBillboardComponent"); }
 
 	float& ScreenSizeField() { return *GetNativePointerField<float*>(this, "UBillboardComponent.ScreenSize"); }
 	float& UField() { return *GetNativePointerField<float*>(this, "UBillboardComponent.U"); }

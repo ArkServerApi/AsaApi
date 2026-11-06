@@ -9,8 +9,8 @@ public:
 	~UWaterBodyRiverComponent() = delete;
 	UWaterBodyRiverComponent(const UWaterBodyRiverComponent&) = delete;
 	UWaterBodyRiverComponent& operator=(const UWaterBodyRiverComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterBodyRiverComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterBodyRiverComponent"); }
 
 	void CreateOrUpdateOceanTransitionMID() { NativeCall<void>(this, "UWaterBodyRiverComponent.CreateOrUpdateOceanTransitionMID()"); }
 	void CreateOrUpdateLakeTransitionMID() { NativeCall<void>(this, "UWaterBodyRiverComponent.CreateOrUpdateLakeTransitionMID()"); }

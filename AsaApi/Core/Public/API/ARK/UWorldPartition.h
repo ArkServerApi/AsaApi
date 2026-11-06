@@ -10,8 +10,8 @@ public:
 	~UWorldPartition() = delete;
 	UWorldPartition(const UWorldPartition&) = delete;
 	UWorldPartition& operator=(const UWorldPartition&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UWorldPartition.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldPartition"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldPartition"); }
 	bool& bEnableStreamingField() { return *GetNativePointerField<bool*>(this, "UWorldPartition.bEnableStreaming"); }
 	bool& bStreamingInEnabledField() { return *GetNativePointerField<bool*>(this, "UWorldPartition.bStreamingInEnabled"); }
 	int& StreamingStateEpochField() { return *GetNativePointerField<int*>(this, "UWorldPartition.StreamingStateEpoch"); }

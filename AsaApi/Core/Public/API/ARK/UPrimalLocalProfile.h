@@ -54,8 +54,8 @@ struct UPrimalLocalProfile : UObject {
 	int& LastFailedRequestField() { return *GetNativePointerField<int*>(this, "UPrimalLocalProfile.LastFailedRequest"); }
 	double& LastLoadedOrSavedTimeField() { return *GetNativePointerField<double*>(this, "UPrimalLocalProfile.LastLoadedOrSavedTime"); }
 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalLocalProfile"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalLocalProfile"); }
 
 	FOnLoadArkTributePlayersDataFinished& OnLoadArkTributePlayersDataFinishedField() { return *GetNativePointerField<FOnLoadArkTributePlayersDataFinished*>(this, "UPrimalLocalProfile.OnLoadArkTributePlayersDataFinished"); }
 	FOnSaveArkTributeFinished& OnSaveArkTributeFinishedField() { return *GetNativePointerField<FOnSaveArkTributeFinished*>(this, "UPrimalLocalProfile.OnSaveArkTributeFinished"); }

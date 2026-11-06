@@ -9,8 +9,8 @@ public:
 	~AInstancedFoliageActor() = delete;
 	AInstancedFoliageActor(const AInstancedFoliageActor&) = delete;
 	AInstancedFoliageActor& operator=(const AInstancedFoliageActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AInstancedFoliageActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AInstancedFoliageActor"); }
 
 	TArray<FString, TSizedDefaultAllocator<32> >& BaseMeshLookupField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "AInstancedFoliageActor.BaseMeshLookup"); }
 	void ForceUpdateHack() { NativeCall<void>(this, "AInstancedFoliageActor.ForceUpdateHack()"); }

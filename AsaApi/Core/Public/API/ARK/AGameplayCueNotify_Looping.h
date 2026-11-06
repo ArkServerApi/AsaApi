@@ -9,8 +9,8 @@ public:
 	~AGameplayCueNotify_Looping() = delete;
 	AGameplayCueNotify_Looping(const AGameplayCueNotify_Looping&) = delete;
 	AGameplayCueNotify_Looping& operator=(const AGameplayCueNotify_Looping&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayCueNotify_Looping"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayCueNotify_Looping"); }
 
 	FGameplayCueNotify_SpawnCondition& DefaultSpawnConditionField() { return *GetNativePointerField<FGameplayCueNotify_SpawnCondition*>(this, "AGameplayCueNotify_Looping.DefaultSpawnCondition"); }
 	FGameplayCueNotify_PlacementInfo& DefaultPlacementInfoField() { return *GetNativePointerField<FGameplayCueNotify_PlacementInfo*>(this, "AGameplayCueNotify_Looping.DefaultPlacementInfo"); }

@@ -171,7 +171,7 @@ struct APrimalWorldSettings : AARKNXWorldSettings
 	// static void StaticRegisterNativesAPrimalWorldSettings();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWorldSettings"); }
 	void DeferFXComponentActivation(UFXSystemComponent* ActorComp) { NativeCall<void, UFXSystemComponent*>(this, "APrimalWorldSettings.DeferFXComponentActivation(UFXSystemComponent*)", ActorComp); }
 	bool ForceInactiveMapActorParticles() { return NativeCall<bool>(this, "APrimalWorldSettings.ForceInactiveMapActorParticles()"); }
 	bool GetFoliageAndFluidSimEnabled() { return NativeCall<bool>(this, "APrimalWorldSettings.GetFoliageAndFluidSimEnabled()"); }
@@ -234,7 +234,7 @@ struct APrimalWorldSettings : AARKNXWorldSettings
 	bool& bAllowRagdollsField() { return *GetNativePointerField<bool*>(this, "APrimalWorldSettings.bAllowRagdolls"); }
 	bool& bDisableAllASAFluidSimField() { return *GetNativePointerField<bool*>(this, "APrimalWorldSettings.bDisableAllASAFluidSim"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWorldSettings"); }
 
 	FString& MapFriendlyNameField() { return *GetNativePointerField<FString*>(this, "APrimalWorldSettings.MapFriendlyName"); }
 	UStaticMeshComponent*& VolumetrioFogCanvasField() { return *GetNativePointerField<UStaticMeshComponent**>(this, "APrimalWorldSettings.VolumetrioFogCanvas"); }

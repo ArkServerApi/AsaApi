@@ -9,8 +9,8 @@ public:
 	~UShooterPendingNetGame() = delete;
 	UShooterPendingNetGame(const UShooterPendingNetGame&) = delete;
 	UShooterPendingNetGame& operator=(const UShooterPendingNetGame&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterPendingNetGame"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterPendingNetGame"); }
 
 	TArray<__int64, TSizedDefaultAllocator<32> >& ModIdsEnabledOnServerField() { return *GetNativePointerField<TArray<__int64, TSizedDefaultAllocator<32> >*>(this, "UShooterPendingNetGame.ModIdsEnabledOnServer"); }
 	TArray<__int64, TSizedDefaultAllocator<32> >& PassiveModIdsEnabledOnServerField() { return *GetNativePointerField<TArray<__int64, TSizedDefaultAllocator<32> >*>(this, "UShooterPendingNetGame.PassiveModIdsEnabledOnServer"); }

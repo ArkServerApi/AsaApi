@@ -9,7 +9,7 @@ public:
 	~UChaosVehicleMovementComponent() = delete;
 	UChaosVehicleMovementComponent(const UChaosVehicleMovementComponent&) = delete;
 	UChaosVehicleMovementComponent& operator=(const UChaosVehicleMovementComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosVehicleMovementComponent"); }
 
 	float& MassField() { return *GetNativePointerField<float*>(this, "UChaosVehicleMovementComponent.Mass"); }
 	bool& bEnableCenterOfMassOverrideField() { return *GetNativePointerField<bool*>(this, "UChaosVehicleMovementComponent.bEnableCenterOfMassOverride"); }
@@ -92,7 +92,7 @@ public:
 	bool CanCreateVehicle() { return NativeCall<bool>(this, "UChaosVehicleMovementComponent.CanCreateVehicle()"); }
 	void CreateVehicle() { NativeCall<void>(this, "UChaosVehicleMovementComponent.CreateVehicle()"); }
 	void ShowDebugInfo(AHUD* HUD, UCanvas* Canvas, const FDebugDisplayInfo& DisplayInfo, float& YL, float& YPos) { NativeCall<void, AHUD*, UCanvas*, const FDebugDisplayInfo&, float&, float&>(this, "UChaosVehicleMovementComponent.ShowDebugInfo(AHUD*,UCanvas*,FDebugDisplayInfo&,float&,float&)", HUD, Canvas, DisplayInfo, YL, YPos); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UChaosVehicleMovementComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosVehicleMovementComponent"); }
 	void SetUpdatedComponent(USceneComponent* NewUpdatedComponent) { NativeCall<void, USceneComponent*>(this, "UChaosVehicleMovementComponent.SetUpdatedComponent(USceneComponent*)", NewUpdatedComponent); }
 	AController* GetController() { return NativeCall<AController*>(this, "UChaosVehicleMovementComponent.GetController()"); }
 	void SetTargetGear(int GearNum, bool bImmediate) { NativeCall<void, int, bool>(this, "UChaosVehicleMovementComponent.SetTargetGear(int,bool)", GearNum, bImmediate); }

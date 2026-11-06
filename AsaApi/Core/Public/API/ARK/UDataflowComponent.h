@@ -10,8 +10,8 @@ public:
 	~UDataflowComponent() = delete;
 	UDataflowComponent(const UDataflowComponent&) = delete;
 	UDataflowComponent& operator=(const UDataflowComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataflowComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataflowComponent"); }
 
 	TArray<UDataflowEdNode const*, TSizedDefaultAllocator<32> >& RenderTargetsField() { return *GetNativePointerField<TArray<UDataflowEdNode const*, TSizedDefaultAllocator<32> >*>(this, "UDataflowComponent.RenderTargets"); }
 	FManagedArrayCollection& RenderCollectionField() { return *GetNativePointerField<FManagedArrayCollection*>(this, "UDataflowComponent.RenderCollection"); }

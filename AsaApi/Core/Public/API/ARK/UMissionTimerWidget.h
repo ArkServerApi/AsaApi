@@ -9,8 +9,8 @@ public:
 	~UMissionTimerWidget() = delete;
 	UMissionTimerWidget(const UMissionTimerWidget&) = delete;
 	UMissionTimerWidget& operator=(const UMissionTimerWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMissionTimerWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMissionTimerWidget"); }
 
 	UTextBlock*& TimeTextField() { return *GetNativePointerField<UTextBlock**>(this, "UMissionTimerWidget.TimeText"); }
 	UProgressBar*& TimeRemainingProgressBarField() { return *GetNativePointerField<UProgressBar**>(this, "UMissionTimerWidget.TimeRemainingProgressBar"); }

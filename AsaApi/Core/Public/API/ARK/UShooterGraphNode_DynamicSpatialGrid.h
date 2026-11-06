@@ -9,7 +9,7 @@ public:
 	~UShooterGraphNode_DynamicSpatialGrid() = delete;
 	UShooterGraphNode_DynamicSpatialGrid(const UShooterGraphNode_DynamicSpatialGrid&) = delete;
 	UShooterGraphNode_DynamicSpatialGrid& operator=(const UShooterGraphNode_DynamicSpatialGrid&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_DynamicSpatialGrid"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_DynamicSpatialGrid"); }
 
 };

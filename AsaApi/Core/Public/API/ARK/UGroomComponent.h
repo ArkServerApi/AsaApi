@@ -9,8 +9,8 @@ public:
 	~UGroomComponent() = delete;
 	UGroomComponent(const UGroomComponent&) = delete;
 	UGroomComponent& operator=(const UGroomComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGroomComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGroomComponent"); }
 
 	TArray<TWeakObjectPtr<USkeletalMeshComponent, FWeakObjectPtr>, TSizedDefaultAllocator<32> >& CollisionComponentsField() { return *GetNativePointerField<TArray<TWeakObjectPtr<USkeletalMeshComponent, FWeakObjectPtr>, TSizedDefaultAllocator<32> >*>(this, "UGroomComponent.CollisionComponents"); }
 	FHairSimulationSettings& SimulationSettingsField() { return *GetNativePointerField<FHairSimulationSettings*>(this, "UGroomComponent.SimulationSettings"); }

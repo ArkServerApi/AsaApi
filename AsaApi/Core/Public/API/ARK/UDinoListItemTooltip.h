@@ -9,8 +9,8 @@ public:
 	~UDinoListItemTooltip() = delete;
 	UDinoListItemTooltip(const UDinoListItemTooltip&) = delete;
 	UDinoListItemTooltip& operator=(const UDinoListItemTooltip&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDinoListItemTooltip"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDinoListItemTooltip"); }
 
 	FName& fnameTitleBar_NameLabelField() { return *GetNativePointerField<FName*>(this, "UDinoListItemTooltip.fnameTitleBar_NameLabel"); }
 	FName& fnameTitleBar_LevelLabelField() { return *GetNativePointerField<FName*>(this, "UDinoListItemTooltip.fnameTitleBar_LevelLabel"); }

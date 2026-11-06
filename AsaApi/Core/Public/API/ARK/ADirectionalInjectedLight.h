@@ -9,8 +9,8 @@ public:
 	~ADirectionalInjectedLight() = delete;
 	ADirectionalInjectedLight(const ADirectionalInjectedLight&) = delete;
 	ADirectionalInjectedLight& operator=(const ADirectionalInjectedLight&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADirectionalInjectedLight"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADirectionalInjectedLight"); }
 
 	void PostLoad() { NativeCall<void>(this, "ADirectionalInjectedLight.PostLoad()"); }
 };

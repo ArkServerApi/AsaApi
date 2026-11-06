@@ -9,8 +9,8 @@ public:
 	~ARadialForceActor() = delete;
 	ARadialForceActor(const ARadialForceActor&) = delete;
 	ARadialForceActor& operator=(const ARadialForceActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ARadialForceActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ARadialForceActor"); }
 
 	void FireImpulse() { NativeCall<void>(this, "ARadialForceActor.FireImpulse()"); }
 	void DisableForce() { NativeCall<void>(this, "ARadialForceActor.DisableForce()"); }

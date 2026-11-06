@@ -10,7 +10,7 @@ public:
 	~UTireType() = delete;
 	UTireType(const UTireType&) = delete;
 	UTireType& operator=(const UTireType&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTireType"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTireType"); }
 	float& FrictionScaleField() { return *GetNativePointerField<float*>(this, "UTireType.FrictionScale"); }
 };

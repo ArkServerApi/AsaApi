@@ -10,8 +10,8 @@ public:
 	~UTextureRenderTargetCube() = delete;
 	UTextureRenderTargetCube(const UTextureRenderTargetCube&) = delete;
 	UTextureRenderTargetCube& operator=(const UTextureRenderTargetCube&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextureRenderTargetCube"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextureRenderTargetCube"); }
 	int& SizeXField() { return *GetNativePointerField<int*>(this, "UTextureRenderTargetCube.SizeX"); }
 	FLinearColor& ClearColorField() { return *GetNativePointerField<FLinearColor*>(this, "UTextureRenderTargetCube.ClearColor"); }
 	int& NumMipsField() { return *GetNativePointerField<int*>(this, "UTextureRenderTargetCube.NumMips"); }

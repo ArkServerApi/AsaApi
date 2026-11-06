@@ -9,8 +9,8 @@ public:
 	~UPrimalNavigationInvokerComponent() = delete;
 	UPrimalNavigationInvokerComponent(const UPrimalNavigationInvokerComponent&) = delete;
 	UPrimalNavigationInvokerComponent& operator=(const UPrimalNavigationInvokerComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalNavigationInvokerComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalNavigationInvokerComponent"); }
 
 	float& DeactivationDelayField() { return *GetNativePointerField<float*>(this, "UPrimalNavigationInvokerComponent.DeactivationDelay"); }
 	FName& ActiveAlternateRadiusField() { return *GetNativePointerField<FName*>(this, "UPrimalNavigationInvokerComponent.ActiveAlternateRadius"); }

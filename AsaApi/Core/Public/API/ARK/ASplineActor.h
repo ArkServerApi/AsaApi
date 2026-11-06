@@ -9,8 +9,8 @@ public:
 	~ASplineActor() = delete;
 	ASplineActor(const ASplineActor&) = delete;
 	ASplineActor& operator=(const ASplineActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASplineActor"); }
 
 	USplineComponent*& SplineComponentField() { return *GetNativePointerField<USplineComponent**>(this, "ASplineActor.SplineComponent"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ASplineActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASplineActor"); }
 };

@@ -65,7 +65,7 @@ struct APrimalTargetableActor : AActor
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalTargetableActor.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalTargetableActor"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalTargetableActor();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -118,7 +118,7 @@ struct APrimalTargetableActor : AActor
 
 	FPrimalTargetableActorSparseClassData* GetMutablePrimalTargetableActorSparseClassData() { return const_cast<FPrimalTargetableActorSparseClassData*>(GetPrimalTargetableActorSparseClassData(EGetSparseClassDataMethod::CreateIfNull)); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalTargetableActor"); }
 
 	UNiagaraSystem*& HurtFX_NiagaraField() { return *GetNativePointerField<UNiagaraSystem**>(this, "APrimalTargetableActor.HurtFX_Niagara"); }
 	TEnumAsByte<EShooterPhysMaterialType::Type>& TargetableDamageFXDefaultPhysMaterialField() { return *GetNativePointerField<TEnumAsByte<EShooterPhysMaterialType::Type>*>(this, "APrimalTargetableActor.TargetableDamageFXDefaultPhysMaterial"); }

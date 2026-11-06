@@ -10,7 +10,7 @@ public:
 	~UPrimalCharacterMovement() = delete;
 	UPrimalCharacterMovement(const UPrimalCharacterMovement&) = delete;
 	UPrimalCharacterMovement& operator=(const UPrimalCharacterMovement&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCharacterMovement"); }
 
 	double& CharacterInterpolationAndStopsUseHighPrecisionVelocityUntilTimeField() { return *GetNativePointerField<double*>(this, "UPrimalCharacterMovement.CharacterInterpolationAndStopsUseHighPrecisionVelocityUntilTime"); }
 	float& ProneHalfHeightField() { return *GetNativePointerField<float*>(this, "UPrimalCharacterMovement.ProneHalfHeight"); }
@@ -131,7 +131,7 @@ public:
 	void PhysicsRotation(float DeltaTime) { NativeCall<void, float>(this, "UPrimalCharacterMovement.PhysicsRotation(float)", DeltaTime); }
 	void PhysSwimming(float deltaTime, int Iterations) { NativeCall<void, float, int>(this, "UPrimalCharacterMovement.PhysSwimming(float,int)", deltaTime, Iterations); }
 	void PhysWalking(float deltaTime, int Iterations) { NativeCall<void, float, int>(this, "UPrimalCharacterMovement.PhysWalking(float,int)", deltaTime, Iterations); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalCharacterMovement.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCharacterMovement"); }
 	void SetDefaultMovementMode() { NativeCall<void>(this, "UPrimalCharacterMovement.SetDefaultMovementMode()"); }
 	void SimulatedTick(float DeltaSeconds) { NativeCall<void, float>(this, "UPrimalCharacterMovement.SimulatedTick(float)", DeltaSeconds); }
 	bool PreventSlidingWhileFalling() { return NativeCall<bool>(this, "UPrimalCharacterMovement.PreventSlidingWhileFalling()"); }

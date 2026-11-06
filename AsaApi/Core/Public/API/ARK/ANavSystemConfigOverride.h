@@ -9,8 +9,8 @@ public:
 	~ANavSystemConfigOverride() = delete;
 	ANavSystemConfigOverride(const ANavSystemConfigOverride&) = delete;
 	ANavSystemConfigOverride& operator=(const ANavSystemConfigOverride&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANavSystemConfigOverride"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANavSystemConfigOverride"); }
 
 	ENavSystemOverridePolicy& OverridePolicyField() { return *GetNativePointerField<ENavSystemOverridePolicy*>(this, "ANavSystemConfigOverride.OverridePolicy"); }
 	BitFieldValue<bool, unsigned char> bLoadOnClient() { return { this, "ANavSystemConfigOverride.bLoadOnClient"}; }

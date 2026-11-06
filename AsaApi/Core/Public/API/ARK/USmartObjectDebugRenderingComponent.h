@@ -9,7 +9,7 @@ public:
 	~USmartObjectDebugRenderingComponent() = delete;
 	USmartObjectDebugRenderingComponent(const USmartObjectDebugRenderingComponent&) = delete;
 	USmartObjectDebugRenderingComponent& operator=(const USmartObjectDebugRenderingComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USmartObjectDebugRenderingComponent"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USmartObjectDebugRenderingComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USmartObjectDebugRenderingComponent"); }
 };

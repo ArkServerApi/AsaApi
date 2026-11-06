@@ -41,7 +41,7 @@ struct AShooterWeapon_MeleeLock : AShooterWeapon_Melee
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_MeleeLock"); }
 	void SetMeleeHitActor(APrimalCharacter* HitActor) { NativeCall<void, APrimalCharacter*>(this, "AShooterWeapon_MeleeLock.SetMeleeHitActor(APrimalCharacter*)", HitActor); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterWeapon_MeleeLock();
@@ -67,4 +67,5 @@ struct AShooterWeapon_MeleeLock : AShooterWeapon_Melee
 	static void GetbSteppingEnabled_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "AShooterWeapon_MeleeLock.GetbSteppingEnabled_WrapperImpl(void*,void*)", Object, OutValue); }
 	static void GetLockValue_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "AShooterWeapon_MeleeLock.GetLockValue_WrapperImpl(void*,void*)", Object, OutValue); }
 	static void SetLockValue_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "AShooterWeapon_MeleeLock.SetLockValue_WrapperImpl(void*,void*)", Object, InValue); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_MeleeLock"); }
 };

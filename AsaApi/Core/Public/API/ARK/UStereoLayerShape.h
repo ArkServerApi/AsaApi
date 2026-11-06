@@ -10,6 +10,6 @@ public:
 	~UStereoLayerShape() = delete;
 	UStereoLayerShape(const UStereoLayerShape&) = delete;
 	UStereoLayerShape& operator=(const UStereoLayerShape&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UStereoLayerShape.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStereoLayerShape"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStereoLayerShape"); }
 };

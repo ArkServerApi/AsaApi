@@ -10,8 +10,8 @@ public:
 	~UDEPRECATED_DataLayer() = delete;
 	UDEPRECATED_DataLayer(const UDEPRECATED_DataLayer&) = delete;
 	UDEPRECATED_DataLayer& operator=(const UDEPRECATED_DataLayer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDEPRECATED_DataLayer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDEPRECATED_DataLayer"); }
 	FName& DataLayerLabelField() { return *GetNativePointerField<FName*>(this, "UDEPRECATED_DataLayer.DataLayerLabel"); }
 	EDataLayerRuntimeState& InitialRuntimeStateField() { return *GetNativePointerField<EDataLayerRuntimeState*>(this, "UDEPRECATED_DataLayer.InitialRuntimeState"); }
 	FColor& DebugColorField() { return *GetNativePointerField<FColor*>(this, "UDEPRECATED_DataLayer.DebugColor"); }

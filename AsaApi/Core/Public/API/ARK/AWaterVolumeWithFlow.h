@@ -9,8 +9,8 @@ public:
 	~AWaterVolumeWithFlow() = delete;
 	AWaterVolumeWithFlow(const AWaterVolumeWithFlow&) = delete;
 	AWaterVolumeWithFlow& operator=(const AWaterVolumeWithFlow&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterVolumeWithFlow"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterVolumeWithFlow"); }
 
 	float& CellSizeField() { return *GetNativePointerField<float*>(this, "AWaterVolumeWithFlow.CellSize"); }
 	UE::Math::TVector2<double>& FlowMagnitudeMinMaxField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "AWaterVolumeWithFlow.FlowMagnitudeMinMax"); }

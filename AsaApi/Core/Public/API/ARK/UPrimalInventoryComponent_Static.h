@@ -9,7 +9,7 @@ public:
 	~UPrimalInventoryComponent_Static() = delete;
 	UPrimalInventoryComponent_Static(const UPrimalInventoryComponent_Static&) = delete;
 	UPrimalInventoryComponent_Static& operator=(const UPrimalInventoryComponent_Static&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent_Static"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent_Static"); }
 
 };

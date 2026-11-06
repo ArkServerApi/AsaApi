@@ -9,8 +9,8 @@ public:
 	~UPlayerHUDUI() = delete;
 	UPlayerHUDUI(const UPlayerHUDUI&) = delete;
 	UPlayerHUDUI& operator=(const UPlayerHUDUI&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPlayerHUDUI"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPlayerHUDUI"); }
 
 	FString& SlotItemsDataListNameField() { return *GetNativePointerField<FString*>(this, "UPlayerHUDUI.SlotItemsDataListName"); }
 	FName& PrimaryStatusBarsWidgetNameField() { return *GetNativePointerField<FName*>(this, "UPlayerHUDUI.PrimaryStatusBarsWidgetName"); }

@@ -58,7 +58,7 @@ Can be overridden by setting to 1 or 0 in the project's .Target.cs files.
 	#error USE_SMALL_TFUNCTIONS has been removed - please use NUM_TFUNCTION_INLINE_BYTES instead
 #else
 	#ifndef NUM_TFUNCTION_INLINE_BYTES
-		#define NUM_TFUNCTION_INLINE_BYTES 32
+		#define NUM_TFUNCTION_INLINE_BYTES 24
 	#endif
 #endif
 

@@ -55,7 +55,7 @@ struct ACharacter : APrimalPawn
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ACharacter.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACharacter"); }
 	UPrimitiveComponent* GetMovementBase() { return NativeCall<UPrimitiveComponent*>(this, "ACharacter.GetMovementBase()"); }
 	UPawnMovementComponent* GetMovementComponent() { return NativeCall<UPawnMovementComponent*>(this, "ACharacter.GetMovementComponent()"); }
 	void ClientAdjustRootMotionSourcePosition(float TimeStamp, FRootMotionSourceGroup* ServerRootMotion, bool bHasAnimRootMotion, float ServerMontageTrackPosition, UE::Math::TVector<double>* ServerLoc, FVector_NetQuantizeNormal* ServerRotation, float ServerVelZ, UPrimitiveComponent* ServerBase, FName ServerBoneName, bool bHasBase, bool bBaseRelativePosition, unsigned __int8 ServerMovementMode) { NativeCall<void, float, FRootMotionSourceGroup*, bool, float, UE::Math::TVector<double>*, FVector_NetQuantizeNormal*, float, UPrimitiveComponent*, FName, bool, bool, unsigned __int8>(this, "ACharacter.ClientAdjustRootMotionSourcePosition(float,FRootMotionSourceGroup,bool,float,UE::Math::TVector<double>,FVector_NetQuantizeNormal,float,UPrimitiveComponent*,FName,bool,bool,unsignedchar)", TimeStamp, ServerRootMotion, bHasAnimRootMotion, ServerMontageTrackPosition, ServerLoc, ServerRotation, ServerVelZ, ServerBase, ServerBoneName, bHasBase, bBaseRelativePosition, ServerMovementMode); }
@@ -127,7 +127,7 @@ struct ACharacter : APrimalPawn
 	bool IsBasedOnDynamicActor() { return NativeCall<bool>(this, "ACharacter.IsBasedOnDynamicActor()"); }
 	void ClientForceUpdateMovement_Implementation(UE::Math::TVector<double>* NewLocation, UE::Math::TVector<double>* NewVelocity) { NativeCall<void, UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "ACharacter.ClientForceUpdateMovement_Implementation(UE::Math::TVector<double>,UE::Math::TVector<double>)", NewLocation, NewVelocity); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACharacter"); }
 
 	FVector_NetQuantizeNormal& ReplicatedGravityDirectionField() { return *GetNativePointerField<FVector_NetQuantizeNormal*>(this, "ACharacter.ReplicatedGravityDirection"); }
 	FVector_NetQuantizeNormal& PreNetReceivedGravityDirectionField() { return *GetNativePointerField<FVector_NetQuantizeNormal*>(this, "ACharacter.PreNetReceivedGravityDirection"); }

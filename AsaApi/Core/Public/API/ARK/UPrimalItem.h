@@ -534,7 +534,7 @@ struct UPrimalItem : UObject
 	void SlottedTick(float DeltaSeconds) { NativeCall<void, float>(this, "UPrimalItem.SlottedTick(float)", DeltaSeconds); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUPrimalItem();
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalItem.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItem"); }
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalItem.Serialize(FStructuredArchiveRecord)", Record); }
 	UWorld* GetWorld() { return NativeCall<UWorld*>(this, "UPrimalItem.GetWorld()"); }
 	FItemNetInfo* GetItemNetInfo(FItemNetInfo* result, bool bIsForSendingToClient) { return NativeCall<FItemNetInfo*, FItemNetInfo*, bool>(this, "UPrimalItem.GetItemNetInfo(bool)", result, bIsForSendingToClient); }
@@ -734,7 +734,7 @@ struct UPrimalItem : UObject
 
 	FPrimalItemSparseClassData* GetMutablePrimalItemSparseClassData() { return const_cast<FPrimalItemSparseClassData*>(GetPrimalItemSparseClassData(EGetSparseClassDataMethod::CreateIfNull)); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItem"); }
 
 	FJustInTimeTexture2D& BrokenIconJITField() { return *GetNativePointerField<FJustInTimeTexture2D*>(this, "UPrimalItem.BrokenIconJIT"); }
 	FJustInTimeTexture2D& CustomBrokenOverlayIconJITField() { return *GetNativePointerField<FJustInTimeTexture2D*>(this, "UPrimalItem.CustomBrokenOverlayIconJIT"); }

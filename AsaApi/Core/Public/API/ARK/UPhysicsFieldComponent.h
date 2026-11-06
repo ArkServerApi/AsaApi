@@ -9,8 +9,8 @@ public:
 	~UPhysicsFieldComponent() = delete;
 	UPhysicsFieldComponent(const UPhysicsFieldComponent&) = delete;
 	UPhysicsFieldComponent& operator=(const UPhysicsFieldComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsFieldComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsFieldComponent"); }
 
 	FPhysicsFieldInstance*& FieldInstanceField() { return *GetNativePointerField<FPhysicsFieldInstance**>(this, "UPhysicsFieldComponent.FieldInstance"); }
 	FPhysicsFieldInstance*& DebugInstanceField() { return *GetNativePointerField<FPhysicsFieldInstance**>(this, "UPhysicsFieldComponent.DebugInstance"); }

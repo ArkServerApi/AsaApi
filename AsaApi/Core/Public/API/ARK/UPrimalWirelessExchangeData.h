@@ -9,8 +9,8 @@ public:
 	~UPrimalWirelessExchangeData() = delete;
 	UPrimalWirelessExchangeData(const UPrimalWirelessExchangeData&) = delete;
 	UPrimalWirelessExchangeData& operator=(const UPrimalWirelessExchangeData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWirelessExchangeData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWirelessExchangeData"); }
 
 	EWirelessTransmissionType& WirelessTypeField() { return *GetNativePointerField<EWirelessTransmissionType*>(this, "UPrimalWirelessExchangeData.WirelessType"); }
 	FName& WirelessTagField() { return *GetNativePointerField<FName*>(this, "UPrimalWirelessExchangeData.WirelessTag"); }

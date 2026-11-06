@@ -9,10 +9,10 @@ public:
 	~APrimalPlayerState() = delete;
 	APrimalPlayerState(const APrimalPlayerState&) = delete;
 	APrimalPlayerState& operator=(const APrimalPlayerState&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalPlayerState"); }
 
 
 
 	bool IsLocallyControlledByPlayer() { return NativeCall<bool>(this, "APrimalPlayerState.IsLocallyControlledByPlayer()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalPlayerState.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalPlayerState"); }
 };

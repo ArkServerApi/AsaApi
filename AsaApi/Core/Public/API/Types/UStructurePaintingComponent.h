@@ -62,4 +62,6 @@ struct UStructurePaintingComponent {
 	void UpdateMICPaintingTextureForIndex(int IndexPainting);
 	void OnRep_PaintingId();
 	int GetUniquePaintingId(int Index);
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStructurePaintingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStructurePaintingComponent"); }
 };

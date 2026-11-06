@@ -9,7 +9,7 @@ public:
 	~UPointLightComponent() = delete;
 	UPointLightComponent(const UPointLightComponent&) = delete;
 	UPointLightComponent& operator=(const UPointLightComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPointLightComponent"); }
 
 	float& LightFalloffExponentField() { return *GetNativePointerField<float*>(this, "UPointLightComponent.LightFalloffExponent"); }
 	float& SourceRadiusField() { return *GetNativePointerField<float*>(this, "UPointLightComponent.SourceRadius"); }
@@ -26,7 +26,7 @@ public:
 	FLightSceneProxy* CreateSceneProxy() { return NativeCall<FLightSceneProxy*>(this, "UPointLightComponent.CreateSceneProxy()"); }
 	void SetSoftSourceRadius(float NewValue) { NativeCall<void, float>(this, "UPointLightComponent.SetSoftSourceRadius(float)", NewValue); }
 	float ComputeLightBrightness() { return NativeCall<float>(this, "UPointLightComponent.ComputeLightBrightness()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPointLightComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPointLightComponent"); }
 	float GetUniformPenumbraSize() { return NativeCall<float>(this, "UPointLightComponent.GetUniformPenumbraSize()"); }
 	void SetLightFalloffExponent(float NewLightFalloffExponent) { NativeCall<void, float>(this, "UPointLightComponent.SetLightFalloffExponent(float)", NewLightFalloffExponent); }
 };

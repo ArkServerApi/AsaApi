@@ -10,8 +10,8 @@ public:
 	~UPhysicalMaterial() = delete;
 	UPhysicalMaterial(const UPhysicalMaterial&) = delete;
 	UPhysicalMaterial& operator=(const UPhysicalMaterial&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicalMaterial"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicalMaterial"); }
 	float& FrictionField() { return *GetNativePointerField<float*>(this, "UPhysicalMaterial.Friction"); }
 	float& StaticFrictionField() { return *GetNativePointerField<float*>(this, "UPhysicalMaterial.StaticFriction"); }
 	bool& bOverrideFrictionCombineModeField() { return *GetNativePointerField<bool*>(this, "UPhysicalMaterial.bOverrideFrictionCombineMode"); }

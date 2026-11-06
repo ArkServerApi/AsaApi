@@ -10,8 +10,8 @@ public:
 	~UMaterialParameterCollection() = delete;
 	UMaterialParameterCollection(const UMaterialParameterCollection&) = delete;
 	UMaterialParameterCollection& operator=(const UMaterialParameterCollection&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialParameterCollection"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialParameterCollection"); }
 	FGuid& StateIdField() { return *GetNativePointerField<FGuid*>(this, "UMaterialParameterCollection.StateId"); }
 	FGuid& BaseStateIdField() { return *GetNativePointerField<FGuid*>(this, "UMaterialParameterCollection.BaseStateId"); }
 	FThreadSafeBool& ReleasedByRTField() { return *GetNativePointerField<FThreadSafeBool*>(this, "UMaterialParameterCollection.ReleasedByRT"); }

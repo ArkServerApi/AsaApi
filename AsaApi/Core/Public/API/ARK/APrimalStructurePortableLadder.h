@@ -33,7 +33,7 @@ struct APrimalStructurePortableLadder : APrimalStructureLadder
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructurePortableLadder"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructurePortableLadder();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -50,7 +50,7 @@ struct APrimalStructurePortableLadder : APrimalStructureLadder
 
 	bool& bIsPlayingAnimationField() { return *GetNativePointerField<bool*>(this, "APrimalStructurePortableLadder.bIsPlayingAnimation"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructurePortableLadder"); }
 
 	BitFieldValue<bool, unsigned __int32> bQuickRetractAnim() { return { this, "APrimalStructurePortableLadder.bQuickRetractAnim"}; }
 	void BPSetLaddersRetracted(bool bRetract) { NativeCall<void, bool>(this, "APrimalStructurePortableLadder.BPSetLaddersRetracted(bool)", bRetract); }

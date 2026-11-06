@@ -29,7 +29,7 @@ struct APrimalProjectileBoomerang : APrimalProjectileArrow
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalProjectileBoomerang"); }
 	void BeginPlay() { NativeCall<void>(this, "APrimalProjectileBoomerang.BeginPlay()"); }
 	void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "APrimalProjectileBoomerang.Tick(float)", DeltaSeconds); }
 	void OnImpact_Implementation(const FHitResult* HitResult, bool bFromReplication) { NativeCall<void, const FHitResult*, bool>(this, "APrimalProjectileBoomerang.OnImpact_Implementation(FHitResult&,bool)", HitResult, bFromReplication); }
@@ -42,4 +42,5 @@ struct APrimalProjectileBoomerang : APrimalProjectileArrow
 
 	FTimerHandle& BoomerangPickupTimerHandleField() { return *GetNativePointerField<FTimerHandle*>(this, "APrimalProjectileBoomerang.BoomerangPickupTimerHandle"); }
 	bool Destroy(bool bNetForce, bool bShouldModifyLevel) { return NativeCall<bool, bool, bool>(this, "APrimalProjectileBoomerang.Destroy(bool,bool)", bNetForce, bShouldModifyLevel); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalProjectileBoomerang"); }
 };

@@ -9,8 +9,8 @@ public:
 	~APointOfInterestManagerList() = delete;
 	APointOfInterestManagerList(const APointOfInterestManagerList&) = delete;
 	APointOfInterestManagerList& operator=(const APointOfInterestManagerList&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APointOfInterestManagerList"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APointOfInterestManagerList"); }
 
 	BitFieldValue<bool, unsigned __int32> bRefreshPointsArray() { return { this, "APointOfInterestManagerList.bRefreshPointsArray"}; }
 	BitFieldValue<bool, unsigned __int32> bHasInitialized() { return { this, "APointOfInterestManagerList.bHasInitialized"}; }

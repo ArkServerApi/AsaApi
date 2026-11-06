@@ -9,8 +9,8 @@ public:
 	~AParticleEventManager() = delete;
 	AParticleEventManager(const AParticleEventManager&) = delete;
 	AParticleEventManager& operator=(const AParticleEventManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AParticleEventManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AParticleEventManager"); }
 
 	void EndPlay(EEndPlayReason::Type EndPlayReason) { NativeCall<void, EEndPlayReason::Type>(this, "AParticleEventManager.EndPlay(EEndPlayReason::Type)", EndPlayReason); }
 };

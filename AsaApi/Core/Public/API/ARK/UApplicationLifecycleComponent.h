@@ -9,8 +9,8 @@ public:
 	~UApplicationLifecycleComponent() = delete;
 	UApplicationLifecycleComponent(const UApplicationLifecycleComponent&) = delete;
 	UApplicationLifecycleComponent& operator=(const UApplicationLifecycleComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UApplicationLifecycleComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UApplicationLifecycleComponent"); }
 
 	void OnRegister() { NativeCall<void>(this, "UApplicationLifecycleComponent.OnRegister()"); }
 	void ApplicationHasReactivatedDelegate_Handler() { NativeCall<void>(this, "UApplicationLifecycleComponent.ApplicationHasReactivatedDelegate_Handler()"); }

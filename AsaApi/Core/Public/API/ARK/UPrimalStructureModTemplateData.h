@@ -9,8 +9,8 @@ public:
 	~UPrimalStructureModTemplateData() = delete;
 	UPrimalStructureModTemplateData(const UPrimalStructureModTemplateData&) = delete;
 	UPrimalStructureModTemplateData& operator=(const UPrimalStructureModTemplateData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalStructureModTemplateData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalStructureModTemplateData"); }
 
 	FString& MenuTitleField() { return *GetNativePointerField<FString*>(this, "UPrimalStructureModTemplateData.MenuTitle"); }
 	void ImportFromClipboard() { NativeCall<void>(this, "UPrimalStructureModTemplateData.ImportFromClipboard()"); }

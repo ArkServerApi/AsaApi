@@ -9,8 +9,8 @@ public:
 	~ATemplateSequenceActor() = delete;
 	ATemplateSequenceActor(const ATemplateSequenceActor&) = delete;
 	ATemplateSequenceActor& operator=(const ATemplateSequenceActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATemplateSequenceActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATemplateSequenceActor"); }
 
 	FMovieSceneSequencePlaybackSettings& PlaybackSettingsField() { return *GetNativePointerField<FMovieSceneSequencePlaybackSettings*>(this, "ATemplateSequenceActor.PlaybackSettings"); }
 	FSoftObjectPath& TemplateSequenceField() { return *GetNativePointerField<FSoftObjectPath*>(this, "ATemplateSequenceActor.TemplateSequence"); }

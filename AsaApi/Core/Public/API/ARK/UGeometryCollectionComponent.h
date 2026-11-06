@@ -11,8 +11,8 @@ public:
 	~UGeometryCollectionComponent() = delete;
 	UGeometryCollectionComponent(const UGeometryCollectionComponent&) = delete;
 	UGeometryCollectionComponent& operator=(const UGeometryCollectionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGeometryCollectionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGeometryCollectionComponent"); }
 
 	bool& Simulating_DEPRECATEDField() { return *GetNativePointerField<bool*>(this, "UGeometryCollectionComponent.Simulating_DEPRECATED"); }
 	ESimulationInitializationState& InitializationStateField() { return *GetNativePointerField<ESimulationInitializationState*>(this, "UGeometryCollectionComponent.InitializationState"); }

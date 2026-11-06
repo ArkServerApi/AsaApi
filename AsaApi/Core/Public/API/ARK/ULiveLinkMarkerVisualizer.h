@@ -9,8 +9,8 @@ public:
 	~ULiveLinkMarkerVisualizer() = delete;
 	ULiveLinkMarkerVisualizer(const ULiveLinkMarkerVisualizer&) = delete;
 	ULiveLinkMarkerVisualizer& operator=(const ULiveLinkMarkerVisualizer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULiveLinkMarkerVisualizer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULiveLinkMarkerVisualizer"); }
 
 	FLiveLinkSubjectName& LiveLinkSubjectField() { return *GetNativePointerField<FLiveLinkSubjectName*>(this, "ULiveLinkMarkerVisualizer.LiveLinkSubject"); }
 	bool& bEvaluateLiveLinkField() { return *GetNativePointerField<bool*>(this, "ULiveLinkMarkerVisualizer.bEvaluateLiveLink"); }

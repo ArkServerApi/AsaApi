@@ -9,7 +9,7 @@ public:
 	~AHUD() = delete;
 	AHUD(const AHUD&) = delete;
 	AHUD& operator=(const AHUD&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHUD"); }
 
 	int& CurrentTargetIndexField() { return *GetNativePointerField<int*>(this, "AHUD.CurrentTargetIndex"); }
 	double& LastHUDRenderTimeField() { return *GetNativePointerField<double*>(this, "AHUD.LastHUDRenderTime"); }
@@ -60,5 +60,5 @@ public:
 	void AddHitBox(UE::Math::TVector2<double>* Position, UE::Math::TVector2<double>* Size, FName Name, bool bConsumesInput, int Priority) { if (!Position) throw std::invalid_argument("Null native value parameter"); if (!Size) throw std::invalid_argument("Null native value parameter"); return NativeCall<void, UE :: Math :: TVector2 < double >, UE :: Math :: TVector2 < double >, FName, bool, int>(this, "AHUD.AddHitBox(UE::Math::TVector2<double>,UE::Math::TVector2<double>,FName,bool,int)", *Position, *Size, Name, bConsumesInput, Priority); }
 	void DrawSafeZoneOverlay() { NativeCall<void>(this, "AHUD.DrawSafeZoneOverlay()"); }
 	bool IsCanvasValid_WarnIfNot() { return NativeCall<bool>(this, "AHUD.IsCanvasValid_WarnIfNot()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AHUD.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHUD"); }
 };

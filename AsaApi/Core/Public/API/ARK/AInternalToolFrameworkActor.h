@@ -9,8 +9,8 @@ public:
 	~AInternalToolFrameworkActor() = delete;
 	AInternalToolFrameworkActor(const AInternalToolFrameworkActor&) = delete;
 	AInternalToolFrameworkActor& operator=(const AInternalToolFrameworkActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AInternalToolFrameworkActor"); }
 
 	bool& bIsSelectableInEditorField() { return *GetNativePointerField<bool*>(this, "AInternalToolFrameworkActor.bIsSelectableInEditor"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AInternalToolFrameworkActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AInternalToolFrameworkActor"); }
 };

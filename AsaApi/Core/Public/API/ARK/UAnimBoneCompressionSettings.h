@@ -10,7 +10,7 @@ public:
 	~UAnimBoneCompressionSettings() = delete;
 	UAnimBoneCompressionSettings(const UAnimBoneCompressionSettings&) = delete;
 	UAnimBoneCompressionSettings& operator=(const UAnimBoneCompressionSettings&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimBoneCompressionSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimBoneCompressionSettings"); }
 	void PostLoadSubobjects(FObjectInstancingGraph* OuterInstanceGraph) { NativeCall<void, FObjectInstancingGraph*>(this, "UAnimBoneCompressionSettings.PostLoadSubobjects(FObjectInstancingGraph*)", OuterInstanceGraph); }
 };

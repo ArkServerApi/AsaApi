@@ -9,7 +9,7 @@ public:
 	~ALandscapeGizmoActiveActor() = delete;
 	ALandscapeGizmoActiveActor(const ALandscapeGizmoActiveActor&) = delete;
 	ALandscapeGizmoActiveActor& operator=(const ALandscapeGizmoActiveActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscapeGizmoActiveActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscapeGizmoActiveActor"); }
 
 };

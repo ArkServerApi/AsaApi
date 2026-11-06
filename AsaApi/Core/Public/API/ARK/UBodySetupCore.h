@@ -10,8 +10,8 @@ public:
 	~UBodySetupCore() = delete;
 	UBodySetupCore(const UBodySetupCore&) = delete;
 	UBodySetupCore& operator=(const UBodySetupCore&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBodySetupCore.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBodySetupCore"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBodySetupCore"); }
 	FName& BoneNameField() { return *GetNativePointerField<FName*>(this, "UBodySetupCore.BoneName"); }
 	BitFieldValue<bool, unsigned __int32> bReallyUseTriangleMeshCollisions() { return { this, "UBodySetupCore.bReallyUseTriangleMeshCollisions"}; }
 	BitFieldValue<bool, unsigned __int32> bUseLastLODInsteadOfFirstForCollisionMesh() { return { this, "UBodySetupCore.bUseLastLODInsteadOfFirstForCollisionMesh"}; }

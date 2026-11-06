@@ -10,7 +10,7 @@ public:
 	~UExternalDataLayerAsset() = delete;
 	UExternalDataLayerAsset(const UExternalDataLayerAsset&) = delete;
 	UExternalDataLayerAsset& operator=(const UExternalDataLayerAsset&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UExternalDataLayerAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UExternalDataLayerAsset"); }
 	FExternalDataLayerUID& UIDField() { return *GetNativePointerField<FExternalDataLayerUID*>(this, "UExternalDataLayerAsset.UID"); }
 };

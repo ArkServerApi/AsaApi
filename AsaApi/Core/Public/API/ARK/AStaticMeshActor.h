@@ -13,7 +13,7 @@ struct AStaticMeshActor : AActor
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AStaticMeshActor.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AStaticMeshActor"); }
 	FString* GetDetailedInfoInternal(FString* result) { return NativeCall<FString*, FString*>(this, "AStaticMeshActor.GetDetailedInfoInternal()", result); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAStaticMeshActor();
@@ -21,7 +21,7 @@ struct AStaticMeshActor : AActor
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void BeginPlay();
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AStaticMeshActor"); }
 
 	bool& bStaticMeshReplicateMovementField() { return *GetNativePointerField<bool*>(this, "AStaticMeshActor.bStaticMeshReplicateMovement"); }
 	ENavDataGatheringMode GetGeometryGatheringMode() { return NativeCall<ENavDataGatheringMode>(this, "AStaticMeshActor.GetGeometryGatheringMode()"); }

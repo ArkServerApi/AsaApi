@@ -62,7 +62,7 @@ struct ADayCycleManager : AInfo
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADayCycleManager"); }
 	bool AllowStructureActivation(APrimalStructure* theStructure) { return NativeCall<bool, APrimalStructure*>(this, "ADayCycleManager.AllowStructureActivation(APrimalStructure*)", theStructure); }
 	bool AllowWeaponFiring(AActor* theWeaponOrStructure) { return NativeCall<bool, AActor*>(this, "ADayCycleManager.AllowWeaponFiring(AActor*)", theWeaponOrStructure); }
 	FString* GetDayNumberString(FString* result, bool bIncludeDayString) { return NativeCall<FString*, FString*, bool>(this, "ADayCycleManager.GetDayNumberString(bool)", result, bIncludeDayString); }
@@ -88,7 +88,7 @@ struct ADayCycleManager : AInfo
 	bool IsRainingAtLocation_Implementation(UE::Math::TVector<double>* Location) { return NativeCall<bool, UE::Math::TVector<double>*>(this, "ADayCycleManager.IsRainingAtLocation_Implementation(UE::Math::TVector<double>)", Location); }
 	FString* GetDayNumberString_Implementation(FString* result, bool bIncludeDayString) { return NativeCall<FString*, FString*, bool>(this, "ADayCycleManager.GetDayNumberString_Implementation(bool)", result, bIncludeDayString); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADayCycleManager"); }
 
 	bool& hackedDayNumberField() { return *GetNativePointerField<bool*>(this, "ADayCycleManager.hackedDayNumber"); }
 	UE::Math::TVector<double>& PrimaryWindVelocityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "ADayCycleManager.PrimaryWindVelocity"); }

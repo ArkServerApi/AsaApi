@@ -9,8 +9,8 @@ public:
 	~UClusterUnionReplicatedProxyComponent() = delete;
 	UClusterUnionReplicatedProxyComponent(const UClusterUnionReplicatedProxyComponent&) = delete;
 	UClusterUnionReplicatedProxyComponent& operator=(const UClusterUnionReplicatedProxyComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UClusterUnionReplicatedProxyComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UClusterUnionReplicatedProxyComponent"); }
 
 	TWeakObjectPtr<UClusterUnionComponent, FWeakObjectPtr>& ParentClusterUnionField() { return *GetNativePointerField<TWeakObjectPtr<UClusterUnionComponent, FWeakObjectPtr>*>(this, "UClusterUnionReplicatedProxyComponent.ParentClusterUnion"); }
 	TWeakObjectPtr<UPrimitiveComponent, FWeakObjectPtr>& ChildClusteredComponentField() { return *GetNativePointerField<TWeakObjectPtr<UPrimitiveComponent, FWeakObjectPtr>*>(this, "UClusterUnionReplicatedProxyComponent.ChildClusteredComponent"); }

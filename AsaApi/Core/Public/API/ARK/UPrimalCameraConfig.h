@@ -10,8 +10,8 @@ public:
 	~UPrimalCameraConfig() = delete;
 	UPrimalCameraConfig(const UPrimalCameraConfig&) = delete;
 	UPrimalCameraConfig& operator=(const UPrimalCameraConfig&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCameraConfig"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCameraConfig"); }
 
 	float& TransitionToTargetingCameraInterpSpeedField() { return *GetNativePointerField<float*>(this, "UPrimalCameraConfig.TransitionToTargetingCameraInterpSpeed"); }
 	float& TransitionToASACameraInterpTimeField() { return *GetNativePointerField<float*>(this, "UPrimalCameraConfig.TransitionToASACameraInterpTime"); }

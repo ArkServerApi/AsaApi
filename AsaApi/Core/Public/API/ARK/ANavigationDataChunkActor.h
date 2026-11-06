@@ -9,8 +9,8 @@ public:
 	~ANavigationDataChunkActor() = delete;
 	ANavigationDataChunkActor(const ANavigationDataChunkActor&) = delete;
 	ANavigationDataChunkActor& operator=(const ANavigationDataChunkActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANavigationDataChunkActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANavigationDataChunkActor"); }
 
 	void EndPlay(EEndPlayReason::Type EndPlayReason) { NativeCall<void, EEndPlayReason::Type>(this, "ANavigationDataChunkActor.EndPlay(EEndPlayReason::Type)", EndPlayReason); }
 	void BeginPlay() { NativeCall<void>(this, "ANavigationDataChunkActor.BeginPlay()"); }

@@ -20,8 +20,8 @@ struct UMeshComponent : UPrimitiveComponent
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMeshComponent"); }
 	void MulticastHideInstance(int originalIndex, UE::Math::TVector<double>* HitDirection, float Damage, float TotalHealth, bool bCheckHideAttachedDecals) { NativeCall<void, int, UE::Math::TVector<double>*, float, float, bool>(this, "UMeshComponent.MulticastHideInstance(int,UE::Math::TVector<double>,float,float,bool)", originalIndex, HitDirection, Damage, TotalHealth, bCheckHideAttachedDecals); }
 	void MulticastShowInstance(int originalIndex) { NativeCall<void, int>(this, "UMeshComponent.MulticastShowInstance(int)", originalIndex); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key

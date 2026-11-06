@@ -10,7 +10,7 @@ public:
 	~UShooterCharacterMovement() = delete;
 	UShooterCharacterMovement(const UShooterCharacterMovement&) = delete;
 	UShooterCharacterMovement& operator=(const UShooterCharacterMovement&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterCharacterMovement"); }
 
 	float& MaxSpeedMultiplierField() { return *GetNativePointerField<float*>(this, "UShooterCharacterMovement.MaxSpeedMultiplier"); }
 	bool& bUseAdditionalLinePenetrationChecksField() { return *GetNativePointerField<bool*>(this, "UShooterCharacterMovement.bUseAdditionalLinePenetrationChecks"); }
@@ -29,7 +29,7 @@ public:
 	void ApplyAccumulatedForces(float DeltaSeconds) { NativeCall<void, float>(this, "UShooterCharacterMovement.ApplyAccumulatedForces(float)", DeltaSeconds); }
 	APhysicsVolume* GetPhysicsVolume() { return NativeCall<APhysicsVolume*>(this, "UShooterCharacterMovement.GetPhysicsVolume()"); }
 	void PhysCustom(float deltaTime, int Iterations) { NativeCall<void, float, int>(this, "UShooterCharacterMovement.PhysCustom(float,int)", deltaTime, Iterations); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UShooterCharacterMovement.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterCharacterMovement"); }
 	bool CanCrouchInCurrentState() { return NativeCall<bool>(this, "UShooterCharacterMovement.CanCrouchInCurrentState()"); }
 	float ImmersionDepth(bool bUseLineTrace) { return NativeCall<float, bool>(this, "UShooterCharacterMovement.ImmersionDepth(bool)", bUseLineTrace); }
 	void LocalClientPostAdjustPosition() { NativeCall<void>(this, "UShooterCharacterMovement.LocalClientPostAdjustPosition()"); }

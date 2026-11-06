@@ -9,7 +9,7 @@ public:
 	~UFieldNodeInt() = delete;
 	UFieldNodeInt(const UFieldNodeInt&) = delete;
 	UFieldNodeInt& operator=(const UFieldNodeInt&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldNodeInt"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFieldNodeInt.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldNodeInt"); }
 };

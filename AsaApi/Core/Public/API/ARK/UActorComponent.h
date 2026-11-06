@@ -70,8 +70,8 @@ struct UActorComponent : UObject
 	// Functions
 
 	UWorld* GetWorld() { return NativeCall<UWorld*>(this, "UActorComponent.GetWorld()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UActorComponent.StaticClass()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UActorComponent.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UActorComponent"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UActorComponent"); }
 	void AsyncPhysicsTickComponent(float DeltaTime, float SimTime) { NativeCall<void, float, float>(this, "UActorComponent.AsyncPhysicsTickComponent(float,float)", DeltaTime, SimTime); }
 	ELifetimeCondition GetReplicationCondition() { return NativeCall<ELifetimeCondition>(this, "UActorComponent.GetReplicationCondition()"); }
 	void PostInitProperties() { NativeCall<void>(this, "UActorComponent.PostInitProperties()"); }

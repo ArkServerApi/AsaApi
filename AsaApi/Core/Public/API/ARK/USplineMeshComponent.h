@@ -9,8 +9,8 @@ public:
 	~USplineMeshComponent() = delete;
 	USplineMeshComponent(const USplineMeshComponent&) = delete;
 	USplineMeshComponent& operator=(const USplineMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USplineMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USplineMeshComponent"); }
 
 	FSplineMeshParams& SplineParamsField() { return *GetNativePointerField<FSplineMeshParams*>(this, "USplineMeshComponent.SplineParams"); }
 	UE::Math::TVector<double>& SplineUpDirField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "USplineMeshComponent.SplineUpDir"); }

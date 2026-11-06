@@ -10,8 +10,8 @@ public:
 	~APrimalStructureGhost() = delete;
 	APrimalStructureGhost(const APrimalStructureGhost&) = delete;
 	APrimalStructureGhost& operator=(const APrimalStructureGhost&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureGhost"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureGhost"); }
 
 
 

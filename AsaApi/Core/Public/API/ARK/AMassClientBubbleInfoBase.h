@@ -9,8 +9,8 @@ public:
 	~AMassClientBubbleInfoBase() = delete;
 	AMassClientBubbleInfoBase(const AMassClientBubbleInfoBase&) = delete;
 	AMassClientBubbleInfoBase& operator=(const AMassClientBubbleInfoBase&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMassClientBubbleInfoBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMassClientBubbleInfoBase"); }
 
 	FDelegateHandle& OnPostWorldInitDelegateHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "AMassClientBubbleInfoBase.OnPostWorldInitDelegateHandle"); }
 	TArray<FMassClientBubbleSerializerBase*, TSizedDefaultAllocator<32> >& SerializersField() { return *GetNativePointerField<TArray<FMassClientBubbleSerializerBase*, TSizedDefaultAllocator<32> >*>(this, "AMassClientBubbleInfoBase.Serializers"); }

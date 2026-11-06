@@ -9,8 +9,8 @@ public:
 	~AAudioVolume() = delete;
 	AAudioVolume(const AAudioVolume&) = delete;
 	AAudioVolume& operator=(const AAudioVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AAudioVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AAudioVolume"); }
 
 	float& PriorityField() { return *GetNativePointerField<float*>(this, "AAudioVolume.Priority"); }
 	FReverbSettings& SettingsField() { return *GetNativePointerField<FReverbSettings*>(this, "AAudioVolume.Settings"); }

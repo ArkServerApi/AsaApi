@@ -9,8 +9,8 @@ public:
 	~UPrimalStructureDB() = delete;
 	UPrimalStructureDB(const UPrimalStructureDB&) = delete;
 	UPrimalStructureDB& operator=(const UPrimalStructureDB&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalStructureDB"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalStructureDB"); }
 
 	void AddAsset(UClass* StructureClass) { NativeCall<void, UClass*>(this, "UPrimalStructureDB.AddAsset(UClass*)", StructureClass); }
 	bool HasAsset(UClass* ClassAsset) { return NativeCall<bool, UClass*>(this, "UPrimalStructureDB.HasAsset(UClass*)", ClassAsset); }

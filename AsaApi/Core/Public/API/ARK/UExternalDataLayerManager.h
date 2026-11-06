@@ -10,8 +10,8 @@ public:
 	~UExternalDataLayerManager() = delete;
 	UExternalDataLayerManager(const UExternalDataLayerManager&) = delete;
 	UExternalDataLayerManager& operator=(const UExternalDataLayerManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UExternalDataLayerManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UExternalDataLayerManager"); }
 	bool& bIsInitializedField() { return *GetNativePointerField<bool*>(this, "UExternalDataLayerManager.bIsInitialized"); }
 	bool& bIsRunningGameOrInstancedWorldPartitionField() { return *GetNativePointerField<bool*>(this, "UExternalDataLayerManager.bIsRunningGameOrInstancedWorldPartition"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "UExternalDataLayerManager.Serialize(FArchive&)", Ar); }

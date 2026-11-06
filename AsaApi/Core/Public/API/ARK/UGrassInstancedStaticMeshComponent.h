@@ -9,8 +9,8 @@ public:
 	~UGrassInstancedStaticMeshComponent() = delete;
 	UGrassInstancedStaticMeshComponent(const UGrassInstancedStaticMeshComponent&) = delete;
 	UGrassInstancedStaticMeshComponent& operator=(const UGrassInstancedStaticMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGrassInstancedStaticMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGrassInstancedStaticMeshComponent"); }
 
 	FPrimitiveSceneProxy* CreateSceneProxy() { return NativeCall<FPrimitiveSceneProxy*>(this, "UGrassInstancedStaticMeshComponent.CreateSceneProxy()"); }
 	bool SupportsWorldPositionOffsetVelocity() { return NativeCall<bool>(this, "UGrassInstancedStaticMeshComponent.SupportsWorldPositionOffsetVelocity()"); }

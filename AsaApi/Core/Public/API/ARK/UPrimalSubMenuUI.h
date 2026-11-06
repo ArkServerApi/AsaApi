@@ -9,7 +9,7 @@ public:
 	~UPrimalSubMenuUI() = delete;
 	UPrimalSubMenuUI(const UPrimalSubMenuUI&) = delete;
 	UPrimalSubMenuUI& operator=(const UPrimalSubMenuUI&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalSubMenuUI"); }
 
 	UUI_Hub*& ParentHubUIField() { return *GetNativePointerField<UUI_Hub**>(this, "UPrimalSubMenuUI.ParentHubUI"); }
 	TWeakObjectPtr<UWidget, FWeakObjectPtr>& StoredHighlightedWidgetField() { return *GetNativePointerField<TWeakObjectPtr<UWidget, FWeakObjectPtr>*>(this, "UPrimalSubMenuUI.StoredHighlightedWidget"); }
@@ -22,7 +22,7 @@ public:
 	void OnHighlightedWidget(UWidget* Widget) { NativeCall<void, UWidget*>(this, "UPrimalSubMenuUI.OnHighlightedWidget(UWidget*)", Widget); }
 	void SetAutoScroll(UWidget* widget) { NativeCall<void, UWidget*>(this, "UPrimalSubMenuUI.SetAutoScroll(UWidget*)", widget); }
 	UPrimalUI* GetParentPrimalUI() { return NativeCall<UPrimalUI*>(this, "UPrimalSubMenuUI.GetParentPrimalUI()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalSubMenuUI.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalSubMenuUI"); }
 	void InitializeSubMenu(UUI_Hub* Hub) { NativeCall<void, UUI_Hub*>(this, "UPrimalSubMenuUI.InitializeSubMenu(UUI_Hub*)", Hub); }
 	void OnShow() { NativeCall<void>(this, "UPrimalSubMenuUI.OnShow()"); }
 };

@@ -229,8 +229,8 @@ struct AShooterGameState : AGameState
 	// Functions
 
 	bool IsClusterServer()const { return NativeCall<bool>(this, "AShooterGameState.IsClusterServer()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AShooterGameState.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterGameState"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterGameState"); }
 	void AddTokens(int Quantity, int byTribe) { NativeCall<void, int, int>(this, "AShooterGameState.AddTokens(int,int)", Quantity, byTribe); }
 	bool AllowDownloadDino(const TSoftClassPtr<APrimalDinoCharacter>* TheDinoClass) { return NativeCall<bool, const TSoftClassPtr<APrimalDinoCharacter>*>(this, "AShooterGameState.AllowDownloadDino(TSoftClassPtr<APrimalDinoCharacter>&)", TheDinoClass); }
 	void ForceStartMatch(bool PreventFinishTheMatch, bool UseQuetzalBus) { NativeCall<void, bool, bool>(this, "AShooterGameState.ForceStartMatch(bool,bool)", PreventFinishTheMatch, UseQuetzalBus); }

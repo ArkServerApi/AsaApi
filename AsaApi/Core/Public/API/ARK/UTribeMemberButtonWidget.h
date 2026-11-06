@@ -9,8 +9,8 @@ public:
 	~UTribeMemberButtonWidget() = delete;
 	UTribeMemberButtonWidget(const UTribeMemberButtonWidget&) = delete;
 	UTribeMemberButtonWidget& operator=(const UTribeMemberButtonWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTribeMemberButtonWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTribeMemberButtonWidget"); }
 
 	int& IndexField() { return *GetNativePointerField<int*>(this, "UTribeMemberButtonWidget.Index"); }
 	UCustomButtonWidget*& ButtonField() { return *GetNativePointerField<UCustomButtonWidget**>(this, "UTribeMemberButtonWidget.Button"); }

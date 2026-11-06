@@ -9,8 +9,8 @@ public:
 	~USpringArmComponent() = delete;
 	USpringArmComponent(const USpringArmComponent&) = delete;
 	USpringArmComponent& operator=(const USpringArmComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USpringArmComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USpringArmComponent"); }
 
 	float& TargetArmLengthField() { return *GetNativePointerField<float*>(this, "USpringArmComponent.TargetArmLength"); }
 	UE::Math::TVector<double>& SocketOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "USpringArmComponent.SocketOffset"); }

@@ -10,8 +10,8 @@ public:
 	~AShooterImpactEffect() = delete;
 	AShooterImpactEffect(const AShooterImpactEffect&) = delete;
 	AShooterImpactEffect& operator=(const AShooterImpactEffect&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterImpactEffect"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterImpactEffect"); }
 
 	float& MaxDecalRangeField() { return *GetNativePointerField<float*>(this, "AShooterImpactEffect.MaxDecalRange"); }
 

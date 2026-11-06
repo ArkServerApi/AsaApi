@@ -10,8 +10,8 @@ public:
 	~UCurveLinearColor() = delete;
 	UCurveLinearColor(const UCurveLinearColor&) = delete;
 	UCurveLinearColor& operator=(const UCurveLinearColor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCurveLinearColor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCurveLinearColor"); }
 	float& AdjustHueField() { return *GetNativePointerField<float*>(this, "UCurveLinearColor.AdjustHue"); }
 	float& AdjustSaturationField() { return *GetNativePointerField<float*>(this, "UCurveLinearColor.AdjustSaturation"); }
 	float& AdjustBrightnessField() { return *GetNativePointerField<float*>(this, "UCurveLinearColor.AdjustBrightness"); }

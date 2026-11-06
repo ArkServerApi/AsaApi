@@ -9,8 +9,8 @@ public:
 	~ABoxReflectionCapture() = delete;
 	ABoxReflectionCapture(const ABoxReflectionCapture&) = delete;
 	ABoxReflectionCapture& operator=(const ABoxReflectionCapture&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABoxReflectionCapture"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABoxReflectionCapture"); }
 
 	UBoxReflectionCaptureComponent* GetBoxCaptureComponent() { return NativeCall<UBoxReflectionCaptureComponent*>(this, "ABoxReflectionCapture.GetBoxCaptureComponent()"); }
 };

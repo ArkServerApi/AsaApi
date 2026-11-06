@@ -9,8 +9,8 @@ public:
 	~UPrimalStaticData_MissionCompanionReactionData() = delete;
 	UPrimalStaticData_MissionCompanionReactionData(const UPrimalStaticData_MissionCompanionReactionData&) = delete;
 	UPrimalStaticData_MissionCompanionReactionData& operator=(const UPrimalStaticData_MissionCompanionReactionData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalStaticData_MissionCompanionReactionData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalStaticData_MissionCompanionReactionData"); }
 
 	FCompanionReactionData& ReactionData_MissionStartField() { return *GetNativePointerField<FCompanionReactionData*>(this, "UPrimalStaticData_MissionCompanionReactionData.ReactionData_MissionStart"); }
 	FCompanionReactionData& ReactionData_MissionEnd_SuccessField() { return *GetNativePointerField<FCompanionReactionData*>(this, "UPrimalStaticData_MissionCompanionReactionData.ReactionData_MissionEnd_Success"); }

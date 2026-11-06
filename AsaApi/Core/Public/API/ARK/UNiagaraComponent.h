@@ -9,7 +9,7 @@ public:
 	~UNiagaraComponent() = delete;
 	UNiagaraComponent(const UNiagaraComponent&) = delete;
 	UNiagaraComponent& operator=(const UNiagaraComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNiagaraComponent"); }
 
 	int& RandomSeedOffsetField() { return *GetNativePointerField<int*>(this, "UNiagaraComponent.RandomSeedOffset"); }
 	FNiagaraUserRedirectionParameterStore& OverrideParametersField() { return *GetNativePointerField<FNiagaraUserRedirectionParameterStore*>(this, "UNiagaraComponent.OverrideParameters"); }
@@ -108,7 +108,7 @@ public:
 	void ActivateSystem(bool bFlagAsJustAttached) { NativeCall<void, bool>(this, "UNiagaraComponent.ActivateSystem(bool)", bFlagAsJustAttached); }
 	void CancelAutoAttachment(bool bDetachFromParent) { NativeCall<void, bool>(this, "UNiagaraComponent.CancelAutoAttachment(bool)", bDetachFromParent); }
 	void SetVectorParameter(FName ParameterName, UE::Math::TVector<double>* Param) { if (!Param) throw std::invalid_argument("Null native value parameter"); return NativeCall<void, FName, UE :: Math :: TVector < double >>(this, "UNiagaraComponent.SetVectorParameter(FName,UE::Math::TVector<double>)", ParameterName, *Param); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNiagaraComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNiagaraComponent"); }
 	int GetNumMaterials() { return NativeCall<int>(this, "UNiagaraComponent.GetNumMaterials()"); }
 	void SetAsset(UNiagaraSystem* InAsset, bool bResetExistingOverrideParameters) { NativeCall<void, UNiagaraSystem*, bool>(this, "UNiagaraComponent.SetAsset(UNiagaraSystem*,bool)", InAsset, bResetExistingOverrideParameters); }
 	void DestroyCullProxy() { NativeCall<void>(this, "UNiagaraComponent.DestroyCullProxy()"); }

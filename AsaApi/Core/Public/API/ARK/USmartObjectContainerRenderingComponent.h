@@ -9,8 +9,8 @@ public:
 	~USmartObjectContainerRenderingComponent() = delete;
 	USmartObjectContainerRenderingComponent(const USmartObjectContainerRenderingComponent&) = delete;
 	USmartObjectContainerRenderingComponent& operator=(const USmartObjectContainerRenderingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USmartObjectContainerRenderingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USmartObjectContainerRenderingComponent"); }
 
 	bool ShouldRecreateProxyOnUpdateTransform() { return NativeCall<bool>(this, "USmartObjectContainerRenderingComponent.ShouldRecreateProxyOnUpdateTransform()"); }
 	FPrimitiveSceneProxy* CreateSceneProxy() { return NativeCall<FPrimitiveSceneProxy*>(this, "USmartObjectContainerRenderingComponent.CreateSceneProxy()"); }

@@ -72,7 +72,7 @@ struct AWorldSettings : ABasePrimalWorldSettings
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AWorldSettings.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldSettings"); }
 	void SetPauserPlayerState(APlayerState* PlayerState) { NativeCall<void, APlayerState*>(this, "AWorldSettings.SetPauserPlayerState(APlayerState*)", PlayerState); }
 	//TSubclassOf<UPhysicsCollisionHandler>* GetPhysicsCollisionHandlerClass(TSubclassOf<UPhysicsCollisionHandler>* result) { return NativeCall<TSubclassOf<UPhysicsCollisionHandler> *, TSubclassOf<UPhysicsCollisionHandler>*>(this, "AWorldSettings.GetPhysicsCollisionHandlerClass()", result); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -101,7 +101,7 @@ struct AWorldSettings : ABasePrimalWorldSettings
 	char CanSpawnANewDestructableActor_AndIfSoDestroyFurthestActiveActorIfNeeded(UE::Math::TVector<double>* ViewLocation, UE::Math::TVector<double>* NewDestructableActorLocation) { return NativeCall<char, UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "AWorldSettings.CanSpawnANewDestructableActor_AndIfSoDestroyFurthestActiveActorIfNeeded(UE::Math::TVector<double>,UE::Math::TVector<double>)", ViewLocation, NewDestructableActorLocation); }
 	void RewindForReplay() { NativeCall<void>(this, "AWorldSettings.RewindForReplay()"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldSettings"); }
 
 	float& VolumetricLightmapLoadingRangeField() { return *GetNativePointerField<float*>(this, "AWorldSettings.VolumetricLightmapLoadingRange"); }
 	FNaniteSettings& NaniteSettingsField() { return *GetNativePointerField<FNaniteSettings*>(this, "AWorldSettings.NaniteSettings"); }

@@ -10,8 +10,8 @@ public:
 	~APrimalPreviewSceneSetup() = delete;
 	APrimalPreviewSceneSetup(const APrimalPreviewSceneSetup&) = delete;
 	APrimalPreviewSceneSetup& operator=(const APrimalPreviewSceneSetup&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalPreviewSceneSetup"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalPreviewSceneSetup"); }
 
 
 

@@ -22,7 +22,7 @@ struct AShooterWeapon_Whip : AShooterWeapon_Melee
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Whip"); }
 	void Destroyed(__int16 a2) { NativeCall<void, __int16>(this, "AShooterWeapon_Whip.Destroyed()", a2); }
 	void OnEquipFinished() { NativeCall<void>(this, "AShooterWeapon_Whip.OnEquipFinished()"); }
 	void DoMeleeAttack() { NativeCall<void>(this, "AShooterWeapon_Whip.DoMeleeAttack()"); }
@@ -32,4 +32,5 @@ struct AShooterWeapon_Whip : AShooterWeapon_Melee
 	void HarvestWhipNear() { NativeCall<void>(this, "AShooterWeapon_Whip.HarvestWhipNear()"); }
 	bool CanStunDino(APrimalDinoCharacter* DinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "AShooterWeapon_Whip.CanStunDino(APrimalDinoCharacter*)", DinoCharacter); }
 	bool CanHerdDino(APrimalDinoCharacter* DinoCharacter) { return NativeCall<bool, APrimalDinoCharacter*>(this, "AShooterWeapon_Whip.CanHerdDino(APrimalDinoCharacter*)", DinoCharacter); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Whip"); }
 };

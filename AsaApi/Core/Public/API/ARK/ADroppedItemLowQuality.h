@@ -9,7 +9,7 @@ public:
 	~ADroppedItemLowQuality() = delete;
 	ADroppedItemLowQuality(const ADroppedItemLowQuality&) = delete;
 	ADroppedItemLowQuality& operator=(const ADroppedItemLowQuality&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADroppedItemLowQuality"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ADroppedItemLowQuality.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADroppedItemLowQuality"); }
 };

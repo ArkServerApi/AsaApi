@@ -9,8 +9,8 @@ public:
 	~AFoliageClippingVolume() = delete;
 	AFoliageClippingVolume(const AFoliageClippingVolume&) = delete;
 	AFoliageClippingVolume& operator=(const AFoliageClippingVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AFoliageClippingVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AFoliageClippingVolume"); }
 
 	BitFieldValue<bool, unsigned __int32> bEnabled() { return { this, "AFoliageClippingVolume.bEnabled"}; }
 	BitFieldValue<bool, unsigned __int32> bIsNPCClippingVolume() { return { this, "AFoliageClippingVolume.bIsNPCClippingVolume"}; }

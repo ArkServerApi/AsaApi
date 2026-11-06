@@ -10,8 +10,8 @@ public:
 	~UShooterDamageType() = delete;
 	UShooterDamageType(const UShooterDamageType&) = delete;
 	UShooterDamageType& operator=(const UShooterDamageType&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterDamageType"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterDamageType"); }
 
 	float& DamageTorpidityIncreaseMultiplierField() { return *GetNativePointerField<float*>(this, "UShooterDamageType.DamageTorpidityIncreaseMultiplier"); }
 	float& DamageInstigatorPercentageField() { return *GetNativePointerField<float*>(this, "UShooterDamageType.DamageInstigatorPercentage"); }

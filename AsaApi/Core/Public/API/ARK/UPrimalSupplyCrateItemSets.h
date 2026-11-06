@@ -9,7 +9,7 @@ public:
 	~UPrimalSupplyCrateItemSets() = delete;
 	UPrimalSupplyCrateItemSets(const UPrimalSupplyCrateItemSets&) = delete;
 	UPrimalSupplyCrateItemSets& operator=(const UPrimalSupplyCrateItemSets&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalSupplyCrateItemSets"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalSupplyCrateItemSets"); }
 
 };

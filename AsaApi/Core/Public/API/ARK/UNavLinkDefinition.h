@@ -10,8 +10,8 @@ public:
 	~UNavLinkDefinition() = delete;
 	UNavLinkDefinition(const UNavLinkDefinition&) = delete;
 	UNavLinkDefinition& operator=(const UNavLinkDefinition&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNavLinkDefinition.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavLinkDefinition"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavLinkDefinition"); }
 	BitFieldValue<bool, unsigned __int32> bHasInitializedAreaClasses() { return { this, "UNavLinkDefinition.bHasInitializedAreaClasses"}; }
 	BitFieldValue<bool, unsigned __int32> bHasDeterminedMetaAreaClass() { return { this, "UNavLinkDefinition.bHasDeterminedMetaAreaClass"}; }
 	BitFieldValue<bool, unsigned __int32> bHasMetaAreaClass() { return { this, "UNavLinkDefinition.bHasMetaAreaClass"}; }

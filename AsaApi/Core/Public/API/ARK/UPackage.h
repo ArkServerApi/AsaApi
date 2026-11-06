@@ -10,8 +10,8 @@ public:
 	~UPackage() = delete;
 	UPackage(const UPackage&) = delete;
 	UPackage& operator=(const UPackage&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPackage.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPackage"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPackage"); }
 	FPackageId& PackageIdField() { return *GetNativePointerField<FPackageId*>(this, "UPackage.PackageId"); }
 	FPackagePath& LoadedPathField() { return *GetNativePointerField<FPackagePath*>(this, "UPackage.LoadedPath"); }
 	BitFieldValue<bool, unsigned char> bDirty() { return { this, "UPackage.bDirty"}; }

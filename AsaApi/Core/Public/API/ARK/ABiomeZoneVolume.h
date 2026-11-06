@@ -64,7 +64,7 @@ struct ABiomeZoneVolume : AVolume
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABiomeZoneVolume"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesABiomeZoneVolume();
 	float GetBiomeTemperature(float GlobalTemperature) { return NativeCall<float, float>(this, "ABiomeZoneVolume.GetBiomeTemperature(float)", GlobalTemperature); }
@@ -79,7 +79,7 @@ struct ABiomeZoneVolume : AVolume
 	static __int64 IsPointInVacuumBase(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint) { return NativeCall<__int64, UWorld*, UE::Math::TVector<double>*>(nullptr, "ABiomeZoneVolume.IsPointInVacuumBase(UWorld*,UE::Math::TVector<double>)", ForWorld, AtPoint); }
 	static AActor* GetPhysicsVolumeAtLocation(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint, bool bFastPath) { return NativeCall<AActor*, UWorld*, UE::Math::TVector<double>*, bool>(nullptr, "ABiomeZoneVolume.GetPhysicsVolumeAtLocation(UWorld*,UE::Math::TVector<double>,bool)", ForWorld, AtPoint, bFastPath); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABiomeZoneVolume"); }
 
 	EBiomeZone& BiomeZoneField() { return *GetNativePointerField<EBiomeZone*>(this, "ABiomeZoneVolume.BiomeZone"); }
 	bool& bOnlyApplyAdjustmentRateValuesOutdoorsField() { return *GetNativePointerField<bool*>(this, "ABiomeZoneVolume.bOnlyApplyAdjustmentRateValuesOutdoors"); }

@@ -10,8 +10,8 @@ public:
 	~UTextBuffer() = delete;
 	UTextBuffer(const UTextBuffer&) = delete;
 	UTextBuffer& operator=(const UTextBuffer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextBuffer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextBuffer"); }
 	int& PosField() { return *GetNativePointerField<int*>(this, "UTextBuffer.Pos"); }
 	int& TopField() { return *GetNativePointerField<int*>(this, "UTextBuffer.Top"); }
 	FString& TextField() { return *GetNativePointerField<FString*>(this, "UTextBuffer.Text"); }

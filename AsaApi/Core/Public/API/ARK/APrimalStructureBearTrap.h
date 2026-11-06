@@ -38,7 +38,7 @@ struct APrimalStructureBearTrap : APrimalStructure
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureBearTrap"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureBearTrap();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -68,7 +68,7 @@ struct APrimalStructureBearTrap : APrimalStructure
 	bool& bUseDragWeightForMassCheckField() { return *GetNativePointerField<bool*>(this, "APrimalStructureBearTrap.bUseDragWeightForMassCheck"); }
 	bool& bDestroyOnTrapActivatedField() { return *GetNativePointerField<bool*>(this, "APrimalStructureBearTrap.bDestroyOnTrapActivated"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureBearTrap"); }
 
 	void BPNotifyImmobilizedCharacterIsDeadOrInConscious(bool IsDead, bool IsConscious) { NativeCall<void, bool, bool>(this, "APrimalStructureBearTrap.BPNotifyImmobilizedCharacterIsDeadOrInConscious(bool,bool)", IsDead, IsConscious); }
 	void BPDie() { NativeCall<void>(this, "APrimalStructureBearTrap.BPDie()"); }

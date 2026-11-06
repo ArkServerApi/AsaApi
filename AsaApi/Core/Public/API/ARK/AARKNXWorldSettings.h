@@ -17,8 +17,8 @@ struct AARKNXWorldSettings : AWorldSettings
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AARKNXWorldSettings.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AARKNXWorldSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AARKNXWorldSettings"); }
 	void BeginPlay() { NativeCall<void>(this, "AARKNXWorldSettings.BeginPlay()"); }
 	void Tick(float DeltaTime) { NativeCall<void, float>(this, "AARKNXWorldSettings.Tick(float)", DeltaTime); }
 

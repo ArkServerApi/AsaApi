@@ -9,8 +9,8 @@ public:
 	~UHUDPingsContainer() = delete;
 	UHUDPingsContainer(const UHUDPingsContainer&) = delete;
 	UHUDPingsContainer& operator=(const UHUDPingsContainer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHUDPingsContainer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHUDPingsContainer"); }
 
 	FName& PingContainerCanvasNameField() { return *GetNativePointerField<FName*>(this, "UHUDPingsContainer.PingContainerCanvasName"); }
 	UCanvasPanel*& PingContainerCanvasField() { return *GetNativePointerField<UCanvasPanel**>(this, "UHUDPingsContainer.PingContainerCanvas"); }

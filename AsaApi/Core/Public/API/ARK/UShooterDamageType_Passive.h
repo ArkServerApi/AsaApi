@@ -9,7 +9,7 @@ public:
 	~UShooterDamageType_Passive() = delete;
 	UShooterDamageType_Passive(const UShooterDamageType_Passive&) = delete;
 	UShooterDamageType_Passive& operator=(const UShooterDamageType_Passive&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterDamageType_Passive"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterDamageType_Passive"); }
 
 };

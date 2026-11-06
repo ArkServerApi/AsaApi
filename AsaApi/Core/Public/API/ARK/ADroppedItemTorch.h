@@ -18,7 +18,7 @@ struct ADroppedItemTorch : ADroppedItem
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADroppedItemTorch"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesADroppedItemTorch();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -39,4 +39,5 @@ struct ADroppedItemTorch : ADroppedItem
 	static void GetFireIsOn_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "ADroppedItemTorch.GetFireIsOn_WrapperImpl(void*,void*)", Object, OutValue); }
 	int GetFlameColorIndex_Implementation() { return NativeCall<int>(this, "ADroppedItemTorch.GetFlameColorIndex_Implementation()"); }
 	static void SetFireIsOn_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "ADroppedItemTorch.SetFireIsOn_WrapperImpl(void*,void*)", Object, InValue); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADroppedItemTorch"); }
 };

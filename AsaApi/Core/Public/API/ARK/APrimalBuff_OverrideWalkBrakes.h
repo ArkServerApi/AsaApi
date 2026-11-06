@@ -10,8 +10,8 @@ public:
 	~APrimalBuff_OverrideWalkBrakes() = delete;
 	APrimalBuff_OverrideWalkBrakes(const APrimalBuff_OverrideWalkBrakes&) = delete;
 	APrimalBuff_OverrideWalkBrakes& operator=(const APrimalBuff_OverrideWalkBrakes&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_OverrideWalkBrakes"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_OverrideWalkBrakes"); }
 
 	float& ReducedBrakingDecelerationField() { return *GetNativePointerField<float*>(this, "APrimalBuff_OverrideWalkBrakes.ReducedBrakingDeceleration"); }
 	float& OriginalBrakingDecelerationWalkingField() { return *GetNativePointerField<float*>(this, "APrimalBuff_OverrideWalkBrakes.OriginalBrakingDecelerationWalking"); }

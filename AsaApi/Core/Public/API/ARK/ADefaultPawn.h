@@ -18,7 +18,7 @@ struct ADefaultPawn : APrimalPawn
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "ADefaultPawn.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADefaultPawn"); }
 	void UpdateNavigationRelevance() { NativeCall<void>(this, "ADefaultPawn.UpdateNavigationRelevance()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesADefaultPawn();
@@ -28,7 +28,7 @@ struct ADefaultPawn : APrimalPawn
 	void TurnAtRate(float Rate) { NativeCall<void, float>(this, "ADefaultPawn.TurnAtRate(float)", Rate); }
 	void LookUpAtRate(float Rate) { NativeCall<void, float>(this, "ADefaultPawn.LookUpAtRate(float)", Rate); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADefaultPawn"); }
 
 	UPawnMovementComponent* GetMovementComponent() { return NativeCall<UPawnMovementComponent*>(this, "ADefaultPawn.GetMovementComponent()"); }
 	void MoveUp_World(float Val) { NativeCall<void, float>(this, "ADefaultPawn.MoveUp_World(float)", Val); }

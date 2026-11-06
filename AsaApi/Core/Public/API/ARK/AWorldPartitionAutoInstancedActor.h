@@ -9,8 +9,8 @@ public:
 	~AWorldPartitionAutoInstancedActor() = delete;
 	AWorldPartitionAutoInstancedActor(const AWorldPartitionAutoInstancedActor&) = delete;
 	AWorldPartitionAutoInstancedActor& operator=(const AWorldPartitionAutoInstancedActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldPartitionAutoInstancedActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldPartitionAutoInstancedActor"); }
 
 	void PostInitializeComponents() { NativeCall<void>(this, "AWorldPartitionAutoInstancedActor.PostInitializeComponents()"); }
 	void ForceUpdateHack() { NativeCall<void>(this, "AWorldPartitionAutoInstancedActor.ForceUpdateHack()"); }

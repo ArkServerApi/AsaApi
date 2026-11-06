@@ -9,8 +9,8 @@ public:
 	~UTimelineComponent() = delete;
 	UTimelineComponent(const UTimelineComponent&) = delete;
 	UTimelineComponent& operator=(const UTimelineComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTimelineComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTimelineComponent"); }
 
 	FTimeline& TheTimelineField() { return *GetNativePointerField<FTimeline*>(this, "UTimelineComponent.TheTimeline"); }
 	BitFieldValue<bool, unsigned __int32> bIgnoreTimeDilation() { return { this, "UTimelineComponent.bIgnoreTimeDilation"}; }

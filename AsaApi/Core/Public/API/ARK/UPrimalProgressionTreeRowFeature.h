@@ -9,8 +9,8 @@ public:
 	~UPrimalProgressionTreeRowFeature() = delete;
 	UPrimalProgressionTreeRowFeature(const UPrimalProgressionTreeRowFeature&) = delete;
 	UPrimalProgressionTreeRowFeature& operator=(const UPrimalProgressionTreeRowFeature&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeRowFeature"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeRowFeature"); }
 
 	int GetNodeRow(FName NodeID) { return NativeCall<int, FName>(this, "UPrimalProgressionTreeRowFeature.GetNodeRow(FName)", NodeID); }
 };

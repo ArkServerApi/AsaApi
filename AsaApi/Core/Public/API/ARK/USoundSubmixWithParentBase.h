@@ -10,8 +10,8 @@ public:
 	~USoundSubmixWithParentBase() = delete;
 	USoundSubmixWithParentBase(const USoundSubmixWithParentBase&) = delete;
 	USoundSubmixWithParentBase& operator=(const USoundSubmixWithParentBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USoundSubmixWithParentBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundSubmixWithParentBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundSubmixWithParentBase"); }
 	BitFieldValue<bool, unsigned char> bIsDynamic() { return { this, "USoundSubmixWithParentBase.bIsDynamic"}; }
 	bool IsDynamic(bool bIncludeAncestors) { return NativeCall<bool, bool>(this, "USoundSubmixWithParentBase.IsDynamic(bool)", bIncludeAncestors); }
 	USoundSubmixBase* FindDynamicAncestor() { return NativeCall<USoundSubmixBase*>(this, "USoundSubmixWithParentBase.FindDynamicAncestor()"); }

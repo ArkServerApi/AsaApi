@@ -9,8 +9,8 @@ public:
 	~ASPPlayerCameraManager() = delete;
 	ASPPlayerCameraManager(const ASPPlayerCameraManager&) = delete;
 	ASPPlayerCameraManager& operator=(const ASPPlayerCameraManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASPPlayerCameraManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASPPlayerCameraManager"); }
 
 	float& BasePelvisRelativeZField() { return *GetNativePointerField<float*>(this, "ASPPlayerCameraManager.BasePelvisRelativeZ"); }
 	FName& PelvisBoneNameField() { return *GetNativePointerField<FName*>(this, "ASPPlayerCameraManager.PelvisBoneName"); }

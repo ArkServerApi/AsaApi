@@ -9,8 +9,8 @@ public:
 	~UPCGComponent() = delete;
 	UPCGComponent(const UPCGComponent&) = delete;
 	UPCGComponent& operator=(const UPCGComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPCGComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPCGComponent"); }
 
 	int& SeedField() { return *GetNativePointerField<int*>(this, "UPCGComponent.Seed"); }
 	bool& bActivatedField() { return *GetNativePointerField<bool*>(this, "UPCGComponent.bActivated"); }

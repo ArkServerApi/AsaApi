@@ -9,7 +9,7 @@ public:
 	~APlayerCameraManager() = delete;
 	APlayerCameraManager(const APlayerCameraManager&) = delete;
 	APlayerCameraManager& operator=(const APlayerCameraManager&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APlayerCameraManager"); }
 
 	FName& CameraStyleField() { return *GetNativePointerField<FName*>(this, "APlayerCameraManager.CameraStyle"); }
 	float& DefaultFOVField() { return *GetNativePointerField<float*>(this, "APlayerCameraManager.DefaultFOV"); }
@@ -107,7 +107,7 @@ public:
 	APawn* GetViewTargetPawn() { return NativeCall<APawn*>(this, "APlayerCameraManager.GetViewTargetPawn()"); }
 	bool ShouldLooslyAttachViewToHMDView() { return NativeCall<bool>(this, "APlayerCameraManager.ShouldLooslyAttachViewToHMDView()"); }
 	AActor* GetViewTarget() { return NativeCall<AActor*>(this, "APlayerCameraManager.GetViewTarget()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APlayerCameraManager.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APlayerCameraManager"); }
 	void DoUpdateCamera(float DeltaTime) { NativeCall<void, float>(this, "APlayerCameraManager.DoUpdateCamera(float)", DeltaTime); }
 	void StopCameraShake(UCameraShakeBase* ShakeInst, bool bImmediately) { NativeCall<void, UCameraShakeBase*, bool>(this, "APlayerCameraManager.StopCameraShake(UCameraShakeBase*,bool)", ShakeInst, bImmediately); }
 	void CleanUpAnimCamera(bool bDestroy) { NativeCall<void, bool>(this, "APlayerCameraManager.CleanUpAnimCamera(bool)", bDestroy); }

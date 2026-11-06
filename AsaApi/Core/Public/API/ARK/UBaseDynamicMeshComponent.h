@@ -9,7 +9,7 @@ public:
 	~UBaseDynamicMeshComponent() = delete;
 	UBaseDynamicMeshComponent(const UBaseDynamicMeshComponent&) = delete;
 	UBaseDynamicMeshComponent& operator=(const UBaseDynamicMeshComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBaseDynamicMeshComponent"); }
 
 	bool& bExplicitShowWireframeField() { return *GetNativePointerField<bool*>(this, "UBaseDynamicMeshComponent.bExplicitShowWireframe"); }
 	FLinearColor& WireframeColorField() { return *GetNativePointerField<FLinearColor*>(this, "UBaseDynamicMeshComponent.WireframeColor"); }
@@ -32,7 +32,7 @@ public:
 	void ApplyChange(const FMeshReplacementChange* Change, bool bRevert) { NativeCall<void, const FMeshReplacementChange*, bool>(this, "UBaseDynamicMeshComponent.ApplyChange(FMeshReplacementChange*,bool)", Change, bRevert); }
 	UMaterialInterface* GetOverrideRenderMaterial(int MaterialIndex) { return NativeCall<UMaterialInterface*, int>(this, "UBaseDynamicMeshComponent.GetOverrideRenderMaterial(int)", MaterialIndex); }
 	EDynamicMeshComponentColorOverrideMode GetColorOverrideMode() { return NativeCall<EDynamicMeshComponentColorOverrideMode>(this, "UBaseDynamicMeshComponent.GetColorOverrideMode()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBaseDynamicMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBaseDynamicMeshComponent"); }
 	void SetSecondaryRenderMaterial(UMaterialInterface* Material) { NativeCall<void, UMaterialInterface*>(this, "UBaseDynamicMeshComponent.SetSecondaryRenderMaterial(UMaterialInterface*)", Material); }
 	void ClearOverrideWireframeRenderMaterial() { NativeCall<void>(this, "UBaseDynamicMeshComponent.ClearOverrideWireframeRenderMaterial()"); }
 	void ClearSecondaryRenderMaterial() { NativeCall<void>(this, "UBaseDynamicMeshComponent.ClearSecondaryRenderMaterial()"); }

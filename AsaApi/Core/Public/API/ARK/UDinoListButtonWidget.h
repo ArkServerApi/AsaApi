@@ -9,8 +9,8 @@ public:
 	~UDinoListButtonWidget() = delete;
 	UDinoListButtonWidget(const UDinoListButtonWidget&) = delete;
 	UDinoListButtonWidget& operator=(const UDinoListButtonWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDinoListButtonWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDinoListButtonWidget"); }
 
 	FName& ContextMenuAnchorNameField() { return *GetNativePointerField<FName*>(this, "UDinoListButtonWidget.ContextMenuAnchorName"); }
 	FName& DinoStatusLabelNameField() { return *GetNativePointerField<FName*>(this, "UDinoListButtonWidget.DinoStatusLabelName"); }

@@ -9,8 +9,8 @@ public:
 	~UPaintingStreamingComponent() = delete;
 	UPaintingStreamingComponent(const UPaintingStreamingComponent&) = delete;
 	UPaintingStreamingComponent& operator=(const UPaintingStreamingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPaintingStreamingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPaintingStreamingComponent"); }
 
 	void ClientCancelPaintingSteamingJob(UStructurePaintingComponent* PaintingComponent, int PaintingIndex) { NativeCall<void, UStructurePaintingComponent*, int>(this, "UPaintingStreamingComponent.ClientCancelPaintingSteamingJob(UStructurePaintingComponent*,int)", PaintingComponent, PaintingIndex); }
 	void ServerCancelPaintingStream_Implementation(UStructurePaintingComponent* PaintingComponent, int PaintingIndex) { NativeCall<void, UStructurePaintingComponent*, int>(this, "UPaintingStreamingComponent.ServerCancelPaintingStream_Implementation(UStructurePaintingComponent*,int)", PaintingComponent, PaintingIndex); }

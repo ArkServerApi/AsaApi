@@ -9,7 +9,7 @@ public:
 	~ALandscapeProxy() = delete;
 	ALandscapeProxy(const ALandscapeProxy&) = delete;
 	ALandscapeProxy& operator=(const ALandscapeProxy&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscapeProxy"); }
 
 	FGuid& LandscapeGuidField() { return *GetNativePointerField<FGuid*>(this, "ALandscapeProxy.LandscapeGuid"); }
 	FGuid& OriginalLandscapeGuidField() { return *GetNativePointerField<FGuid*>(this, "ALandscapeProxy.OriginalLandscapeGuid"); }
@@ -104,7 +104,7 @@ public:
 	void UpdateRenderingMethod() { NativeCall<void>(this, "ALandscapeProxy.UpdateRenderingMethod()"); }
 	void SetVirtualTextureRenderPassType(ERuntimeVirtualTextureMainPassType InType) { NativeCall<void, ERuntimeVirtualTextureMainPassType>(this, "ALandscapeProxy.SetVirtualTextureRenderPassType(ERuntimeVirtualTextureMainPassType)", InType); }
 	void ChangeComponentScreenSizeToUseSubSections(float InComponentScreenSizeToUseSubSections) { NativeCall<void, float>(this, "ALandscapeProxy.ChangeComponentScreenSizeToUseSubSections(float)", InComponentScreenSizeToUseSubSections); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ALandscapeProxy.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscapeProxy"); }
 	static void RemoveInvalidExclusionBoxes() { NativeCall<void>(nullptr, "ALandscapeProxy.RemoveInvalidExclusionBoxes()"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "ALandscapeProxy.Serialize(FArchive&)", Ar); }
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "ALandscapeProxy._getUObject()"); }

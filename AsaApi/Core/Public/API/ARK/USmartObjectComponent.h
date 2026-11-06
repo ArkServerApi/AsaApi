@@ -9,8 +9,8 @@ public:
 	~USmartObjectComponent() = delete;
 	USmartObjectComponent(const USmartObjectComponent&) = delete;
 	USmartObjectComponent& operator=(const USmartObjectComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USmartObjectComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USmartObjectComponent"); }
 
 	FSmartObjectComponentEventSignature& OnSmartObjectEventField() { return *GetNativePointerField<FSmartObjectComponentEventSignature*>(this, "USmartObjectComponent.OnSmartObjectEvent"); }
 	FGuid& ComponentGuidField() { return *GetNativePointerField<FGuid*>(this, "USmartObjectComponent.ComponentGuid"); }

@@ -9,8 +9,8 @@ public:
 	~UMediaPlateComponent() = delete;
 	UMediaPlateComponent(const UMediaPlateComponent&) = delete;
 	UMediaPlateComponent& operator=(const UMediaPlateComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMediaPlateComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMediaPlateComponent"); }
 
 	bool& bPlayOnOpenField() { return *GetNativePointerField<bool*>(this, "UMediaPlateComponent.bPlayOnOpen"); }
 	bool& bAutoPlayField() { return *GetNativePointerField<bool*>(this, "UMediaPlateComponent.bAutoPlay"); }

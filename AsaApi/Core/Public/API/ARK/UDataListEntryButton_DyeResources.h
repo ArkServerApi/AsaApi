@@ -9,8 +9,8 @@ public:
 	~UDataListEntryButton_DyeResources() = delete;
 	UDataListEntryButton_DyeResources(const UDataListEntryButton_DyeResources&) = delete;
 	UDataListEntryButton_DyeResources& operator=(const UDataListEntryButton_DyeResources&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_DyeResources"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_DyeResources"); }
 
 	UTextBlock*& DisplayStringField() { return *GetNativePointerField<UTextBlock**>(this, "UDataListEntryButton_DyeResources.DisplayString"); }
 	UImage*& ItemIconField() { return *GetNativePointerField<UImage**>(this, "UDataListEntryButton_DyeResources.ItemIcon"); }

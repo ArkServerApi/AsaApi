@@ -10,8 +10,8 @@ public:
 	~UBlendSpace() = delete;
 	UBlendSpace(const UBlendSpace&) = delete;
 	UBlendSpace& operator=(const UBlendSpace&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBlendSpace.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBlendSpace"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBlendSpace"); }
 	bool& bContainsRotationOffsetMeshSpaceSamplesField() { return *GetNativePointerField<bool*>(this, "UBlendSpace.bContainsRotationOffsetMeshSpaceSamples"); }
 	float& TargetWeightInterpolationSpeedPerSecField() { return *GetNativePointerField<float*>(this, "UBlendSpace.TargetWeightInterpolationSpeedPerSec"); }
 	bool& bTargetWeightInterpolationEaseInOutField() { return *GetNativePointerField<bool*>(this, "UBlendSpace.bTargetWeightInterpolationEaseInOut"); }

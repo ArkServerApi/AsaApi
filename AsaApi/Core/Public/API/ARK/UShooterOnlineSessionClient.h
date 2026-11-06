@@ -9,8 +9,8 @@ public:
 	~UShooterOnlineSessionClient() = delete;
 	UShooterOnlineSessionClient(const UShooterOnlineSessionClient&) = delete;
 	UShooterOnlineSessionClient& operator=(const UShooterOnlineSessionClient&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterOnlineSessionClient"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterOnlineSessionClient"); }
 
 	bool ShouldAcceptInvite(int ControllerId, const FOnlineSessionSearchResult& SearchResult) { return NativeCall<bool, int, const FOnlineSessionSearchResult&>(this, "UShooterOnlineSessionClient.ShouldAcceptInvite(int,FOnlineSessionSearchResult&)", ControllerId, SearchResult); }
 };

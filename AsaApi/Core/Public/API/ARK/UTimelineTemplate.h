@@ -10,8 +10,8 @@ public:
 	~UTimelineTemplate() = delete;
 	UTimelineTemplate(const UTimelineTemplate&) = delete;
 	UTimelineTemplate& operator=(const UTimelineTemplate&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTimelineTemplate"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTimelineTemplate"); }
 	float& TimelineLengthField() { return *GetNativePointerField<float*>(this, "UTimelineTemplate.TimelineLength"); }
 	FGuid& TimelineGuidField() { return *GetNativePointerField<FGuid*>(this, "UTimelineTemplate.TimelineGuid"); }
 	FName& VariableNameField() { return *GetNativePointerField<FName*>(this, "UTimelineTemplate.VariableName"); }

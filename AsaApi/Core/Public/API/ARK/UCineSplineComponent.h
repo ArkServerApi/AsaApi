@@ -9,8 +9,8 @@ public:
 	~UCineSplineComponent() = delete;
 	UCineSplineComponent(const UCineSplineComponent&) = delete;
 	UCineSplineComponent& operator=(const UCineSplineComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCineSplineComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCineSplineComponent"); }
 
 	FCineSplineCurveDefaults& CameraSplineDefaultsField() { return *GetNativePointerField<FCineSplineCurveDefaults*>(this, "UCineSplineComponent.CameraSplineDefaults"); }
 	void AddSplineDataAtPosition(float InPosition, const FCineSplinePointData& InPointData) { NativeCall<void, float, const FCineSplinePointData&>(this, "UCineSplineComponent.AddSplineDataAtPosition(float,FCineSplinePointData&)", InPosition, InPointData); }

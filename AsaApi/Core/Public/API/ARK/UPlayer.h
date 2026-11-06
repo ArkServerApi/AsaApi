@@ -10,6 +10,6 @@ struct UPlayer : UObject {
 
 	FString* ConsoleCommand(FString* result, const FString* Cmd, bool bWriteToLog) { return NativeCall<FString*, FString*, const FString*, bool>(this, "UPlayer.ConsoleCommand(FString&,bool)", result, Cmd, bWriteToLog); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPlayer.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPlayer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPlayer"); }
 };

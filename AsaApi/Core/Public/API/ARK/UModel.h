@@ -11,8 +11,8 @@ public:
 	~UModel() = delete;
 	UModel(const UModel&) = delete;
 	UModel& operator=(const UModel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UModel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UModel"); }
 	TArray<UE::Math::TVector<float>, TSizedDefaultAllocator<32> >& VectorsField() { return *GetNativePointerField<TArray<UE::Math::TVector<float>, TSizedDefaultAllocator<32> >*>(this, "UModel.Vectors"); }
 	TArray<UE::Math::TVector<float>, TSizedDefaultAllocator<32> >& PointsField() { return *GetNativePointerField<TArray<UE::Math::TVector<float>, TSizedDefaultAllocator<32> >*>(this, "UModel.Points"); }
 	FModelVertexBuffer& VertexBufferField() { return *GetNativePointerField<FModelVertexBuffer*>(this, "UModel.VertexBuffer"); }

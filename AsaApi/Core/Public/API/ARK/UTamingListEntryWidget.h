@@ -9,8 +9,8 @@ public:
 	~UTamingListEntryWidget() = delete;
 	UTamingListEntryWidget(const UTamingListEntryWidget&) = delete;
 	UTamingListEntryWidget& operator=(const UTamingListEntryWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTamingListEntryWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTamingListEntryWidget"); }
 
 	FString& ItemLabelNameField() { return *GetNativePointerField<FString*>(this, "UTamingListEntryWidget.ItemLabelName"); }
 	FLinearColor& NameLabelColor_DefaultField() { return *GetNativePointerField<FLinearColor*>(this, "UTamingListEntryWidget.NameLabelColor_Default"); }

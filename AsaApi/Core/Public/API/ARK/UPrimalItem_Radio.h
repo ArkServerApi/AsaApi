@@ -10,8 +10,8 @@ public:
 	~UPrimalItem_Radio() = delete;
 	UPrimalItem_Radio(const UPrimalItem_Radio&) = delete;
 	UPrimalItem_Radio& operator=(const UPrimalItem_Radio&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItem_Radio"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItem_Radio"); }
 
 
 

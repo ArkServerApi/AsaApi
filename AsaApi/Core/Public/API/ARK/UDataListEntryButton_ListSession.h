@@ -9,8 +9,8 @@ public:
 	~UDataListEntryButton_ListSession() = delete;
 	UDataListEntryButton_ListSession(const UDataListEntryButton_ListSession&) = delete;
 	UDataListEntryButton_ListSession& operator=(const UDataListEntryButton_ListSession&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_ListSession"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_ListSession"); }
 
 	FCustomButtonWidgetStyle& LastJoinedExtendedStyleField() { return *GetNativePointerField<FCustomButtonWidgetStyle*>(this, "UDataListEntryButton_ListSession.LastJoinedExtendedStyle"); }
 	FCustomButtonWidgetStyle& StandardExtendedStyleField() { return *GetNativePointerField<FCustomButtonWidgetStyle*>(this, "UDataListEntryButton_ListSession.StandardExtendedStyle"); }

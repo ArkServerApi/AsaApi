@@ -10,7 +10,7 @@ public:
 	~UBookmarkBase() = delete;
 	UBookmarkBase(const UBookmarkBase&) = delete;
 	UBookmarkBase& operator=(const UBookmarkBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBookmarkBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBookmarkBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBookmarkBase"); }
 	void OnCleared() { NativeCall<void>(this, "UBookmarkBase.OnCleared()"); }
 };

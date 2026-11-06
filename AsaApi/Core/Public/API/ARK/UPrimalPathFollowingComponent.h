@@ -9,8 +9,8 @@ public:
 	~UPrimalPathFollowingComponent() = delete;
 	UPrimalPathFollowingComponent(const UPrimalPathFollowingComponent&) = delete;
 	UPrimalPathFollowingComponent& operator=(const UPrimalPathFollowingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalPathFollowingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalPathFollowingComponent"); }
 
 	UE::Math::TVector<double>& MoveTowardTargetOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalPathFollowingComponent.MoveTowardTargetOffset"); }
 	UE::Math::TVector<double>& TargetFocalPositionOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalPathFollowingComponent.TargetFocalPositionOffset"); }

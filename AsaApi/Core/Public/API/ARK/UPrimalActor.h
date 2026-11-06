@@ -171,7 +171,7 @@ struct UPrimalActor : UObject
 	// FUNCTION MISSING: UPrimalActor.IsPrimalCharacterOrStructure()
 	//     bool IsInstancedFoliage() { return NativeCall<bool>(this, "UPrimalActor.IsInstancedFoliage()"); }
 	// FUNCTION MISSING: UPrimalActor.IsInstancedFoliage()
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalActor.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalActor"); }
 	bool AllowIgnoreCharacterEncroachment(UPrimitiveComponent* HitComponent, AActor* EncroachingCharacter) { return NativeCall<bool, UPrimitiveComponent*, AActor*>(this, "UPrimalActor.AllowIgnoreCharacterEncroachment(UPrimitiveComponent*,AActor*)", HitComponent, EncroachingCharacter); }
 	bool AllowManualMultiUseActivation(APlayerController* ForPC) { return NativeCall<bool, APlayerController*>(this, "UPrimalActor.AllowManualMultiUseActivation(APlayerController*,int)", ForPC); }
 	void BPAttachedRootComponent() { NativeCall<void>(this, "UPrimalActor.BPAttachedRootComponent()"); }
@@ -218,7 +218,7 @@ struct UPrimalActor : UObject
 	float& PreviousStasisRangeMultField() { return *GetNativePointerField<float*>(this, "UPrimalActor.PreviousStasisRangeMult"); }
 	unsigned char& UnstasisSetIndexField() { return *GetNativePointerField<unsigned char*>(this, "UPrimalActor.UnstasisSetIndex"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalActor"); }
 
 	EReplicationGraphBehavior& RepGraphBehaviorField() { return *GetNativePointerField<EReplicationGraphBehavior*>(this, "UPrimalActor.RepGraphBehavior"); }
 	BitFieldValue<bool, unsigned char> bHasComponentsWithMultiUseEntries() { return { this, "UPrimalActor.bHasComponentsWithMultiUseEntries"}; }

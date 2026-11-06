@@ -11,8 +11,8 @@ public:
 	~USkinnedAsset() = delete;
 	USkinnedAsset(const USkinnedAsset&) = delete;
 	USkinnedAsset& operator=(const USkinnedAsset&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USkinnedAsset.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkinnedAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkinnedAsset"); }
 	UE::Math::TRotator<double>& RotOffsetField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "USkinnedAsset.RotOffset"); }
 	UE::Math::TRotator<double>& ItemSlotAttachmentRotOffsetField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "USkinnedAsset.ItemSlotAttachmentRotOffset"); }
 	UE::Math::TVector<double>& LocOffsetField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "USkinnedAsset.LocOffset"); }

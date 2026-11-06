@@ -9,8 +9,8 @@ public:
 	~AGeometryCollectionRenderLevelSetActor() = delete;
 	AGeometryCollectionRenderLevelSetActor(const AGeometryCollectionRenderLevelSetActor&) = delete;
 	AGeometryCollectionRenderLevelSetActor& operator=(const AGeometryCollectionRenderLevelSetActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGeometryCollectionRenderLevelSetActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGeometryCollectionRenderLevelSetActor"); }
 
 	float& SurfaceToleranceField() { return *GetNativePointerField<float*>(this, "AGeometryCollectionRenderLevelSetActor.SurfaceTolerance"); }
 	float& IsovalueField() { return *GetNativePointerField<float*>(this, "AGeometryCollectionRenderLevelSetActor.Isovalue"); }

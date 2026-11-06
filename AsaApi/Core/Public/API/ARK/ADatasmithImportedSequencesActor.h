@@ -9,7 +9,7 @@ public:
 	~ADatasmithImportedSequencesActor() = delete;
 	ADatasmithImportedSequencesActor(const ADatasmithImportedSequencesActor&) = delete;
 	ADatasmithImportedSequencesActor& operator=(const ADatasmithImportedSequencesActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADatasmithImportedSequencesActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADatasmithImportedSequencesActor"); }
 
 };

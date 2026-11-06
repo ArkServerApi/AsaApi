@@ -9,8 +9,8 @@ public:
 	~UPlanarReflectionComponent() = delete;
 	UPlanarReflectionComponent(const UPlanarReflectionComponent&) = delete;
 	UPlanarReflectionComponent& operator=(const UPlanarReflectionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPlanarReflectionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPlanarReflectionComponent"); }
 
 	float& NormalDistortionStrengthField() { return *GetNativePointerField<float*>(this, "UPlanarReflectionComponent.NormalDistortionStrength"); }
 	float& PrefilterRoughnessField() { return *GetNativePointerField<float*>(this, "UPlanarReflectionComponent.PrefilterRoughness"); }

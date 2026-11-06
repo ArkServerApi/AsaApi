@@ -9,8 +9,8 @@ public:
 	~UAsyncMessageBindingComponent() = delete;
 	UAsyncMessageBindingComponent(const UAsyncMessageBindingComponent&) = delete;
 	UAsyncMessageBindingComponent& operator=(const UAsyncMessageBindingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAsyncMessageBindingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAsyncMessageBindingComponent"); }
 
 	void UninitializeComponent() { NativeCall<void>(this, "UAsyncMessageBindingComponent.UninitializeComponent()"); }
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "UAsyncMessageBindingComponent._getUObject()"); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalAIStateBPBase() = delete;
 	UPrimalAIStateBPBase(const UPrimalAIStateBPBase&) = delete;
 	UPrimalAIStateBPBase& operator=(const UPrimalAIStateBPBase&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateBPBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateBPBase"); }
 
 	float& MinTickEventTimeField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateBPBase.MinTickEventTime"); }
 	float& MaxTickEventTimeField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateBPBase.MaxTickEventTime"); }

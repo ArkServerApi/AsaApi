@@ -9,7 +9,7 @@ public:
 	~UReplicationGraphNode_ActorList() = delete;
 	UReplicationGraphNode_ActorList(const UReplicationGraphNode_ActorList&) = delete;
 	UReplicationGraphNode_ActorList& operator=(const UReplicationGraphNode_ActorList&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReplicationGraphNode_ActorList.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReplicationGraphNode_ActorList"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReplicationGraphNode_ActorList"); }
 
 };

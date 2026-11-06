@@ -16,7 +16,7 @@ struct AShooterWeapon_InstantCharging : AShooterWeapon_Instant
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_InstantCharging"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterWeapon_InstantCharging();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -28,7 +28,7 @@ struct AShooterWeapon_InstantCharging : AShooterWeapon_Instant
 	void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "AShooterWeapon_InstantCharging.Tick(float)", DeltaSeconds); }
 	void ServerSetCharging_Implementation(long double StartTime) { NativeCall<void, long double>(this, "AShooterWeapon_InstantCharging.ServerSetCharging_Implementation(double)", StartTime); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_InstantCharging"); }
 
 	void ServerSetCharging(double StartTime) { NativeCall<void, double>(this, "AShooterWeapon_InstantCharging.ServerSetCharging(double)", StartTime); }
 	static void SetChargeStartTime_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "AShooterWeapon_InstantCharging.SetChargeStartTime_WrapperImpl(void*,void*)", Object, InValue); }

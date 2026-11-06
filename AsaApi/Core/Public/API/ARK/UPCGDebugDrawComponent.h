@@ -9,8 +9,8 @@ public:
 	~UPCGDebugDrawComponent() = delete;
 	UPCGDebugDrawComponent(const UPCGDebugDrawComponent&) = delete;
 	UPCGDebugDrawComponent& operator=(const UPCGDebugDrawComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPCGDebugDrawComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPCGDebugDrawComponent"); }
 
 	FDebugRenderSceneProxy*& SceneProxyField() { return *GetNativePointerField<FDebugRenderSceneProxy**>(this, "UPCGDebugDrawComponent.SceneProxy"); }
 	FTimerHandle& TimerHandleField() { return *GetNativePointerField<FTimerHandle*>(this, "UPCGDebugDrawComponent.TimerHandle"); }

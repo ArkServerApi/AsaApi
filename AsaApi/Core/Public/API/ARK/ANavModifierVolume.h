@@ -9,8 +9,8 @@ public:
 	~ANavModifierVolume() = delete;
 	ANavModifierVolume(const ANavModifierVolume&) = delete;
 	ANavModifierVolume& operator=(const ANavModifierVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANavModifierVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANavModifierVolume"); }
 
 	bool& bMaskFillCollisionUnderneathForNavmeshField() { return *GetNativePointerField<bool*>(this, "ANavModifierVolume.bMaskFillCollisionUnderneathForNavmesh"); }
 	ENavigationDataResolution& NavMeshResolutionField() { return *GetNativePointerField<ENavigationDataResolution*>(this, "ANavModifierVolume.NavMeshResolution"); }

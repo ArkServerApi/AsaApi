@@ -9,7 +9,7 @@ public:
 	~UChildActorComponent() = delete;
 	UChildActorComponent(const UChildActorComponent&) = delete;
 	UChildActorComponent& operator=(const UChildActorComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChildActorComponent"); }
 
 	FName& ChildActorNameField() { return *GetNativePointerField<FName*>(this, "UChildActorComponent.ChildActorName"); }
 	UObject*& ActorOuterField() { return *GetNativePointerField<UObject**>(this, "UChildActorComponent.ActorOuter"); }
@@ -19,7 +19,7 @@ public:
 	BitFieldValue<bool, unsigned char> bNeedsRecreate() { return { this, "UChildActorComponent.bNeedsRecreate"}; }
 	BitFieldValue<bool, unsigned char> bChildActorNameIsExact() { return { this, "UChildActorComponent.bChildActorNameIsExact"}; }
 	void ApplyComponentInstanceData(FChildActorComponentInstanceData* ChildActorInstanceData, ECacheApplyPhase CacheApplyPhase) { NativeCall<void, FChildActorComponentInstanceData*, ECacheApplyPhase>(this, "UChildActorComponent.ApplyComponentInstanceData(FChildActorComponentInstanceData*,ECacheApplyPhase)", ChildActorInstanceData, CacheApplyPhase); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UChildActorComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChildActorComponent"); }
 	void TearOffChildActor() { NativeCall<void>(this, "UChildActorComponent.TearOffChildActor()"); }
 	static void AddReferencedObjects(UObject* InThis, FReferenceCollector& Collector) { NativeCall<void, UObject*, FReferenceCollector&>(nullptr, "UChildActorComponent.AddReferencedObjects(UObject*,FReferenceCollector&)", InThis, Collector); }
 	void PostRepNotifies() { NativeCall<void>(this, "UChildActorComponent.PostRepNotifies()"); }

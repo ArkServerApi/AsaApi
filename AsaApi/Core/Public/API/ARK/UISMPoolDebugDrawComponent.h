@@ -9,8 +9,8 @@ public:
 	~UISMPoolDebugDrawComponent() = delete;
 	UISMPoolDebugDrawComponent(const UISMPoolDebugDrawComponent&) = delete;
 	UISMPoolDebugDrawComponent& operator=(const UISMPoolDebugDrawComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UISMPoolDebugDrawComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UISMPoolDebugDrawComponent"); }
 
 	bool& bShowGlobalStatsField() { return *GetNativePointerField<bool*>(this, "UISMPoolDebugDrawComponent.bShowGlobalStats"); }
 	bool& bShowStatsField() { return *GetNativePointerField<bool*>(this, "UISMPoolDebugDrawComponent.bShowStats"); }

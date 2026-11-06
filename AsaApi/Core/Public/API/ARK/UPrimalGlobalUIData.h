@@ -10,8 +10,8 @@ public:
 	~UPrimalGlobalUIData() = delete;
 	UPrimalGlobalUIData(const UPrimalGlobalUIData&) = delete;
 	UPrimalGlobalUIData& operator=(const UPrimalGlobalUIData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalGlobalUIData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalGlobalUIData"); }
 
 	float& MutagenGoodToGreatThresholdField() { return *GetNativePointerField<float*>(this, "UPrimalGlobalUIData.MutagenGoodToGreatThreshold"); }
 

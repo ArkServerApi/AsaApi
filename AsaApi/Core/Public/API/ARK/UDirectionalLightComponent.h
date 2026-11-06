@@ -9,8 +9,8 @@ public:
 	~UDirectionalLightComponent() = delete;
 	UDirectionalLightComponent(const UDirectionalLightComponent&) = delete;
 	UDirectionalLightComponent& operator=(const UDirectionalLightComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDirectionalLightComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDirectionalLightComponent"); }
 
 	float& ShadowCascadeBiasDistributionField() { return *GetNativePointerField<float*>(this, "UDirectionalLightComponent.ShadowCascadeBiasDistribution"); }
 	float& OcclusionMaskDarknessField() { return *GetNativePointerField<float*>(this, "UDirectionalLightComponent.OcclusionMaskDarkness"); }

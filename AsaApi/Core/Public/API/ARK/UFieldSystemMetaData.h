@@ -9,8 +9,8 @@ public:
 	~UFieldSystemMetaData() = delete;
 	UFieldSystemMetaData(const UFieldSystemMetaData&) = delete;
 	UFieldSystemMetaData& operator=(const UFieldSystemMetaData&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldSystemMetaData"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFieldSystemMetaData.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldSystemMetaData"); }
 	FFieldSystemMetaData* NewMetaData() { return NativeCall<FFieldSystemMetaData*>(this, "UFieldSystemMetaData.NewMetaData()"); }
 };

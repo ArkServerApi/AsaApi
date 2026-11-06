@@ -9,7 +9,7 @@ public:
 	~AGroomActor() = delete;
 	AGroomActor(const AGroomActor&) = delete;
 	AGroomActor& operator=(const AGroomActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGroomActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGroomActor"); }
 
 };

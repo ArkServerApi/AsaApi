@@ -10,8 +10,8 @@ public:
 	~APrimalStructureMarket() = delete;
 	APrimalStructureMarket(const APrimalStructureMarket&) = delete;
 	APrimalStructureMarket& operator=(const APrimalStructureMarket&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureMarket"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureMarket"); }
 
 	int& MaxTradeLogEntriesField() { return *GetNativePointerField<int*>(this, "APrimalStructureMarket.MaxTradeLogEntries"); }
 	double& LastTimeModifiedTradeLogField() { return *GetNativePointerField<double*>(this, "APrimalStructureMarket.LastTimeModifiedTradeLog"); }

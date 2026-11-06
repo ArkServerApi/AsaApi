@@ -9,8 +9,8 @@ public:
 	~ADatasmithAreaLightActor() = delete;
 	ADatasmithAreaLightActor(const ADatasmithAreaLightActor&) = delete;
 	ADatasmithAreaLightActor& operator=(const ADatasmithAreaLightActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADatasmithAreaLightActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADatasmithAreaLightActor"); }
 
 	TEnumAsByte<EComponentMobility::Type>& MobilityField() { return *GetNativePointerField<TEnumAsByte<EComponentMobility::Type>*>(this, "ADatasmithAreaLightActor.Mobility"); }
 	EDatasmithAreaLightActorType& LightTypeField() { return *GetNativePointerField<EDatasmithAreaLightActorType*>(this, "ADatasmithAreaLightActor.LightType"); }

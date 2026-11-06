@@ -9,8 +9,8 @@ public:
 	~APrimalCinematicActor() = delete;
 	APrimalCinematicActor(const APrimalCinematicActor&) = delete;
 	APrimalCinematicActor& operator=(const APrimalCinematicActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalCinematicActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalCinematicActor"); }
 
 	UTextureRenderTarget2D*& RenderTargetField() { return *GetNativePointerField<UTextureRenderTarget2D**>(this, "APrimalCinematicActor.RenderTarget"); }
 	float& TimeOffsetSecondsField() { return *GetNativePointerField<float*>(this, "APrimalCinematicActor.TimeOffsetSeconds"); }

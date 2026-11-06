@@ -32,7 +32,7 @@ struct AStructurePreventionZoneVolume : AVolume
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AStructurePreventionZoneVolume"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAStructurePreventionZoneVolume();
 	static bool IsPointAllowed(UWorld* ForWorld, UE::Math::TVector<double>* AtPoint, bool bAllowInRegularPreventionVolumes, const APrimalStructure* Structure) { return NativeCall<bool, UWorld*, UE::Math::TVector<double>*, bool, const APrimalStructure*>(nullptr, "AStructurePreventionZoneVolume.IsPointAllowed(UWorld*,UE::Math::TVector<double>,bool,APrimalStructure*)", ForWorld, AtPoint, bAllowInRegularPreventionVolumes, Structure); }
@@ -48,4 +48,5 @@ struct AStructurePreventionZoneVolume : AVolume
 	static bool IsStructureAllowed(const UWorld* ForWorld, const APrimalStructure* Structure) { return NativeCall<bool, const UWorld*, const APrimalStructure*>(nullptr, "AStructurePreventionZoneVolume.IsStructureAllowed(UWorld*,APrimalStructure*)", ForWorld, Structure); }
 	void InitAddToActorList() { NativeCall<void>(this, "AStructurePreventionZoneVolume.InitAddToActorList()"); }
 	void PostInitializeComponents() { NativeCall<void>(this, "AStructurePreventionZoneVolume.PostInitializeComponents()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AStructurePreventionZoneVolume"); }
 };

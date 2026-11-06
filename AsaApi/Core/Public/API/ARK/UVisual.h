@@ -9,7 +9,7 @@ public:
 	~UVisual() = delete;
 	UVisual(const UVisual&) = delete;
 	UVisual& operator=(const UVisual&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UVisual.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVisual"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVisual"); }
 
 };

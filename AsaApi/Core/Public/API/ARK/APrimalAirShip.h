@@ -10,8 +10,8 @@ public:
 	~APrimalAirShip() = delete;
 	APrimalAirShip(const APrimalAirShip&) = delete;
 	APrimalAirShip& operator=(const APrimalAirShip&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalAirShip"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalAirShip"); }
 
 	float& AnchorGroundTraceDistanceField() { return *GetNativePointerField<float*>(this, "APrimalAirShip.AnchorGroundTraceDistance"); }
 	float& AnchorTraceStartHeightField() { return *GetNativePointerField<float*>(this, "APrimalAirShip.AnchorTraceStartHeight"); }

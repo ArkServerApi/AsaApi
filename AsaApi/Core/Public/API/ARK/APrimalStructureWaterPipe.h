@@ -27,7 +27,7 @@ struct APrimalStructureWaterPipe : APrimalStructure
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureWaterPipe"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureWaterPipe();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -59,4 +59,5 @@ struct APrimalStructureWaterPipe : APrimalStructure
 	void SubtractWaterFromConnections(float Amount, float& AmountRemoved, TArray<APrimalStructure*, TSizedDefaultAllocator<32> >& TestedStructures, bool bAllowNetworking) { NativeCall<void, float, float&, TArray<APrimalStructure*, TSizedDefaultAllocator<32> >&, bool>(this, "APrimalStructureWaterPipe.SubtractWaterFromConnections(float,float&,TArray<APrimalStructure*,TSizedDefaultAllocator<32>>&,bool)", Amount, AmountRemoved, TestedStructures, bAllowNetworking); }
 	void BPOnWaterStateChange(bool bPipeHasWaterOrPower) { NativeCall<void, bool>(this, "APrimalStructureWaterPipe.BPOnWaterStateChange(bool)", bPipeHasWaterOrPower); }
 	void OnRep_HasWater(bool bPreviousHasWater) { NativeCall<void, bool>(this, "APrimalStructureWaterPipe.OnRep_HasWater(bool)", bPreviousHasWater); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureWaterPipe"); }
 };

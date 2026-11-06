@@ -403,8 +403,8 @@ struct AShooterPlayerController : ABasePlayerController
 	// Functions
 
 	//void ClientPlayForceFeedback(UForceFeedbackEffect* ForceFeedbackEffect, FForceFeedbackParameters* Params, float intensityMult) { NativeCall<void, UForceFeedbackEffect*, FForceFeedbackParameters*, float>(this, "AShooterPlayerController.ClientPlayForceFeedback(UForceFeedbackEffect*,FForceFeedbackParameters,float)", ForceFeedbackEffect, Params, intensityMult); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AShooterPlayerController.StaticClass()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterPlayerController"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterPlayerController"); }
 	bool AllowedToSpectateAllTeams() { return NativeCall<bool>(this, "AShooterPlayerController.AllowedToSpectateAllTeams()"); }
 	void BPGetExtraWaypointsSOTF(APlayerController* Controller, AShooterCharacter* PlayerPawn, const TArray<FPointOfInterestData_ForCompanion, TSizedDefaultAllocator<32> >* IndicatorsIn, TArray<FPointOfInterestData_ForCompanion, TSizedDefaultAllocator<32> >* IndicatorsOut) { NativeCall<void, APlayerController*, AShooterCharacter*, const TArray<FPointOfInterestData_ForCompanion, TSizedDefaultAllocator<32> >*, TArray<FPointOfInterestData_ForCompanion, TSizedDefaultAllocator<32> >*>(this, "AShooterPlayerController.BPGetExtraWaypointsSOTF(APlayerController*,AShooterCharacter*,TArray<FPointOfInterestData_ForCompanion,TSizedDefaultAllocator<32>>&,TArray<FPointOfInterestData_ForCompanion,TSizedDefaultAllocator<32>>&)", Controller, PlayerPawn, IndicatorsIn, IndicatorsOut); }
 	bool BPPreventChangeCamera() { return NativeCall<bool>(this, "AShooterPlayerController.BPPreventChangeCamera()"); }

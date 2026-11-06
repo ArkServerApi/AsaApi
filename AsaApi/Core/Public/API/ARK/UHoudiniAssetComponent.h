@@ -9,7 +9,7 @@ public:
 	~UHoudiniAssetComponent() = delete;
 	UHoudiniAssetComponent(const UHoudiniAssetComponent&) = delete;
 	UHoudiniAssetComponent& operator=(const UHoudiniAssetComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoudiniAssetComponent"); }
 
 	bool& bCookOnParameterChange_DEPRECATEDField() { return *GetNativePointerField<bool*>(this, "UHoudiniAssetComponent.bCookOnParameterChange_DEPRECATED"); }
 	bool& bUploadTransformsToHoudiniEngine_DEPRECATEDField() { return *GetNativePointerField<bool*>(this, "UHoudiniAssetComponent.bUploadTransformsToHoudiniEngine_DEPRECATED"); }
@@ -62,7 +62,7 @@ public:
 	void CreateRenderState_Concurrent(FRegisterComponentContext* Context) { NativeCall<void, FRegisterComponentContext*>(this, "UHoudiniAssetComponent.CreateRenderState_Concurrent(FRegisterComponentContext*)", Context); }
 	void SetHoudiniAsset(UHoudiniAsset* InHoudiniAsset) { NativeCall<void, UHoudiniAsset*>(this, "UHoudiniAssetComponent.SetHoudiniAsset(UHoudiniAsset*)", InHoudiniAsset); }
 	void SetEnableProxyStaticMeshOverride(bool InEnable) { NativeCall<void, bool>(this, "UHoudiniAssetComponent.SetEnableProxyStaticMeshOverride(bool)", InEnable); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UHoudiniAssetComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoudiniAssetComponent"); }
 	FPrimitiveSceneProxy* CreateSceneProxy() { return NativeCall<FPrimitiveSceneProxy*>(this, "UHoudiniAssetComponent.CreateSceneProxy()"); }
 	void NotifyHoudiniPostUnregister() { NativeCall<void>(this, "UHoudiniAssetComponent.NotifyHoudiniPostUnregister()"); }
 	UWorld* GetHACWorld() { return NativeCall<UWorld*>(this, "UHoudiniAssetComponent.GetHACWorld()"); }

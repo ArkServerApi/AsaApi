@@ -9,8 +9,8 @@ public:
 	~UVectorFieldComponent() = delete;
 	UVectorFieldComponent(const UVectorFieldComponent&) = delete;
 	UVectorFieldComponent& operator=(const UVectorFieldComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVectorFieldComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVectorFieldComponent"); }
 
 	float& IntensityField() { return *GetNativePointerField<float*>(this, "UVectorFieldComponent.Intensity"); }
 	float& TightnessField() { return *GetNativePointerField<float*>(this, "UVectorFieldComponent.Tightness"); }

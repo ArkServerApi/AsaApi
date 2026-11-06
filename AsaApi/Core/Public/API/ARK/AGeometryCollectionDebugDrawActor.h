@@ -9,8 +9,8 @@ public:
 	~AGeometryCollectionDebugDrawActor() = delete;
 	AGeometryCollectionDebugDrawActor(const AGeometryCollectionDebugDrawActor&) = delete;
 	AGeometryCollectionDebugDrawActor& operator=(const AGeometryCollectionDebugDrawActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGeometryCollectionDebugDrawActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGeometryCollectionDebugDrawActor"); }
 
 	FGeometryCollectionDebugDrawWarningMessage& WarningMessage_DEPRECATEDField() { return *GetNativePointerField<FGeometryCollectionDebugDrawWarningMessage*>(this, "AGeometryCollectionDebugDrawActor.WarningMessage_DEPRECATED"); }
 	FGeometryCollectionDebugDrawActorSelectedRigidBody& SelectedRigidBody_DEPRECATEDField() { return *GetNativePointerField<FGeometryCollectionDebugDrawActorSelectedRigidBody*>(this, "AGeometryCollectionDebugDrawActor.SelectedRigidBody_DEPRECATED"); }

@@ -17,9 +17,9 @@ struct APrimalController : AController
 
 	AActor* GetAimedUseActor(UActorComponent** UseComponent, int* hitBodyIndex, bool bForceUseActorLocation, bool bForceUpdateAimedActors) { return NativeCall<AActor*, UActorComponent**, int*, bool, bool>(this, "APrimalController.GetAimedUseActor(UActorComponent**,int*,bool,bool)", UseComponent, hitBodyIndex, bForceUseActorLocation, bForceUpdateAimedActors); }
 	APawn* GetResponsibleDamager(AActor* DamageCauser) { return NativeCall<APawn*, AActor*>(this, "APrimalController.GetResponsibleDamager(AActor*)", DamageCauser); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalController.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalController"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalController"); }
 
 	bool OverrideHasReachedGoalWithUseHeight(const UE::Math::TVector<double>& GoalLoc, float UseRadius, float UseHeight, float ZDelta) { return NativeCall<bool, const UE::Math::TVector<double>&, float, float, float>(this, "APrimalController.OverrideHasReachedGoalWithUseHeight(UE::Math::TVector<double>&,float,float,float)", GoalLoc, UseRadius, UseHeight, ZDelta); }
 	float GetAcceptanceRadiusOffset() { return NativeCall<float>(this, "APrimalController.GetAcceptanceRadiusOffset()"); }

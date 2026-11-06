@@ -9,8 +9,8 @@ public:
 	~UCableComponent() = delete;
 	UCableComponent(const UCableComponent&) = delete;
 	UCableComponent& operator=(const UCableComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCableComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCableComponent"); }
 
 	bool& bAttachStartField() { return *GetNativePointerField<bool*>(this, "UCableComponent.bAttachStart"); }
 	bool& bAttachEndField() { return *GetNativePointerField<bool*>(this, "UCableComponent.bAttachEnd"); }

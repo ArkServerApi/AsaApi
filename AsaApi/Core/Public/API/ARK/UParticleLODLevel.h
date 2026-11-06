@@ -10,8 +10,8 @@ public:
 	~UParticleLODLevel() = delete;
 	UParticleLODLevel(const UParticleLODLevel&) = delete;
 	UParticleLODLevel& operator=(const UParticleLODLevel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleLODLevel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleLODLevel"); }
 	int& LevelField() { return *GetNativePointerField<int*>(this, "UParticleLODLevel.Level"); }
 	int& PeakActiveParticlesField() { return *GetNativePointerField<int*>(this, "UParticleLODLevel.PeakActiveParticles"); }
 	BitFieldValue<bool, unsigned __int32> bEnabled() { return { this, "UParticleLODLevel.bEnabled"}; }

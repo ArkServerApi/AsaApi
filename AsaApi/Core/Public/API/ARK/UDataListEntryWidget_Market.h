@@ -9,8 +9,8 @@ public:
 	~UDataListEntryWidget_Market() = delete;
 	UDataListEntryWidget_Market(const UDataListEntryWidget_Market&) = delete;
 	UDataListEntryWidget_Market& operator=(const UDataListEntryWidget_Market&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListEntryWidget_Market"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListEntryWidget_Market"); }
 
 	FName& ItemNameTextNameField() { return *GetNativePointerField<FName*>(this, "UDataListEntryWidget_Market.ItemNameTextName"); }
 	FName& ItemDistanceTextNameField() { return *GetNativePointerField<FName*>(this, "UDataListEntryWidget_Market.ItemDistanceTextName"); }

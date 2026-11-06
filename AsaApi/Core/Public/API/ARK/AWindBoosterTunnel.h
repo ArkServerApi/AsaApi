@@ -9,8 +9,8 @@ public:
 	~AWindBoosterTunnel() = delete;
 	AWindBoosterTunnel(const AWindBoosterTunnel&) = delete;
 	AWindBoosterTunnel& operator=(const AWindBoosterTunnel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWindBoosterTunnel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWindBoosterTunnel"); }
 
 	USplineComponent*& TunnelSplineField() { return *GetNativePointerField<USplineComponent**>(this, "AWindBoosterTunnel.TunnelSpline"); }
 	UBoxComponent*& TunnelVolumeField() { return *GetNativePointerField<UBoxComponent**>(this, "AWindBoosterTunnel.TunnelVolume"); }

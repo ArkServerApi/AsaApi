@@ -9,8 +9,8 @@ public:
 	~APCGPartitionActor() = delete;
 	APCGPartitionActor(const APCGPartitionActor&) = delete;
 	APCGPartitionActor& operator=(const APCGPartitionActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APCGPartitionActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APCGPartitionActor"); }
 
 	FGuid& PCGGuidField() { return *GetNativePointerField<FGuid*>(this, "APCGPartitionActor.PCGGuid"); }
 	unsigned int& PCGGridSizeField() { return *GetNativePointerField<unsigned int*>(this, "APCGPartitionActor.PCGGridSize"); }

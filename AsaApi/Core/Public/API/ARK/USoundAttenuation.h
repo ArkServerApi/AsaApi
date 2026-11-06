@@ -10,7 +10,7 @@ public:
 	~USoundAttenuation() = delete;
 	USoundAttenuation(const USoundAttenuation&) = delete;
 	USoundAttenuation& operator=(const USoundAttenuation&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundAttenuation"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundAttenuation"); }
 	FSoundAttenuationSettings& AttenuationField() { return *GetNativePointerField<FSoundAttenuationSettings*>(this, "USoundAttenuation.Attenuation"); }
 };

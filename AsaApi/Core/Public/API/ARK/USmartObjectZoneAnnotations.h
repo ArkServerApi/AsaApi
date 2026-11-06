@@ -9,8 +9,8 @@ public:
 	~USmartObjectZoneAnnotations() = delete;
 	USmartObjectZoneAnnotations(const USmartObjectZoneAnnotations&) = delete;
 	USmartObjectZoneAnnotations& operator=(const USmartObjectZoneAnnotations&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USmartObjectZoneAnnotations"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USmartObjectZoneAnnotations"); }
 
 	FZoneGraphTagFilter& AffectedLaneTagsField() { return *GetNativePointerField<FZoneGraphTagFilter*>(this, "USmartObjectZoneAnnotations.AffectedLaneTags"); }
 	FZoneGraphTag& BehaviorTagField() { return *GetNativePointerField<FZoneGraphTag*>(this, "USmartObjectZoneAnnotations.BehaviorTag"); }

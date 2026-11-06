@@ -9,8 +9,8 @@ public:
 	~UTextRenderComponent() = delete;
 	UTextRenderComponent(const UTextRenderComponent&) = delete;
 	UTextRenderComponent& operator=(const UTextRenderComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextRenderComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextRenderComponent"); }
 
 	FText& TextField() { return *GetNativePointerField<FText*>(this, "UTextRenderComponent.Text"); }
 	FColor& TextRenderColorField() { return *GetNativePointerField<FColor*>(this, "UTextRenderComponent.TextRenderColor"); }

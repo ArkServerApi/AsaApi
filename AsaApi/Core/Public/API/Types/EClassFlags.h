@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum class EClassFlags:unsigned __int64
+enum class EClassFlags: unsigned int
 {
 	CLASS_None = 0x0,
 	CLASS_Abstract = 0x1,
@@ -35,5 +35,7 @@ enum class EClassFlags:unsigned __int64
 	CLASS_Intrinsic = 0x10000000,
 	CLASS_Constructed = 0x20000000,
 	CLASS_ConfigDoNotCheckDefaults = 0x40000000,
-	CLASS_NewerVersionExists = 0x80000000
+	CLASS_NewerVersionExists = 0x80000000,
+	CLASS_Partial = 0x100,
+	CLASS_PerPlatformConfig = 0x8000,
 };

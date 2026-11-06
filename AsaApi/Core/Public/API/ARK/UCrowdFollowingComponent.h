@@ -9,8 +9,8 @@ public:
 	~UCrowdFollowingComponent() = delete;
 	UCrowdFollowingComponent(const UCrowdFollowingComponent&) = delete;
 	UCrowdFollowingComponent& operator=(const UCrowdFollowingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCrowdFollowingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCrowdFollowingComponent"); }
 
 	UE::Math::TVector<double>& CrowdAgentMoveDirectionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UCrowdFollowingComponent.CrowdAgentMoveDirection"); }
 	TEnumAsByte<ECrowdAvoidanceQuality::Type>& AvoidanceQualityField() { return *GetNativePointerField<TEnumAsByte<ECrowdAvoidanceQuality::Type>*>(this, "UCrowdFollowingComponent.AvoidanceQuality"); }

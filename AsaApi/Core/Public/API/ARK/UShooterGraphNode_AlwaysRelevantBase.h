@@ -9,8 +9,8 @@ public:
 	~UShooterGraphNode_AlwaysRelevantBase() = delete;
 	UShooterGraphNode_AlwaysRelevantBase(const UShooterGraphNode_AlwaysRelevantBase&) = delete;
 	UShooterGraphNode_AlwaysRelevantBase& operator=(const UShooterGraphNode_AlwaysRelevantBase&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_AlwaysRelevantBase"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UShooterGraphNode_AlwaysRelevantBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_AlwaysRelevantBase"); }
 	void PrepareForReplication() { NativeCall<void>(this, "UShooterGraphNode_AlwaysRelevantBase.PrepareForReplication()"); }
 };

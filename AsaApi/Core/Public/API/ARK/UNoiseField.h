@@ -9,8 +9,8 @@ public:
 	~UNoiseField() = delete;
 	UNoiseField(const UNoiseField&) = delete;
 	UNoiseField& operator=(const UNoiseField&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNoiseField"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNoiseField"); }
 
 	float& MinRangeField() { return *GetNativePointerField<float*>(this, "UNoiseField.MinRange"); }
 	float& MaxRangeField() { return *GetNativePointerField<float*>(this, "UNoiseField.MaxRange"); }

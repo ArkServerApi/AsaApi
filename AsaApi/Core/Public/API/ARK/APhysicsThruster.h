@@ -9,7 +9,7 @@ public:
 	~APhysicsThruster() = delete;
 	APhysicsThruster(const APhysicsThruster&) = delete;
 	APhysicsThruster& operator=(const APhysicsThruster&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APhysicsThruster"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APhysicsThruster"); }
 
 };

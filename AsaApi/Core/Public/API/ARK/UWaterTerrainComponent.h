@@ -10,8 +10,8 @@ public:
 	~UWaterTerrainComponent() = delete;
 	UWaterTerrainComponent(const UWaterTerrainComponent&) = delete;
 	UWaterTerrainComponent& operator=(const UWaterTerrainComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterTerrainComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterTerrainComponent"); }
 
 	void OnRegister() { NativeCall<void>(this, "UWaterTerrainComponent.OnRegister()"); }
 	TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >* GetTerrainPrimitives(TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >* result) { return NativeCall<TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >*, TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >*>(this, "UWaterTerrainComponent.GetTerrainPrimitives()", result); }

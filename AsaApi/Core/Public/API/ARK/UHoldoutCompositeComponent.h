@@ -9,8 +9,8 @@ public:
 	~UHoldoutCompositeComponent() = delete;
 	UHoldoutCompositeComponent(const UHoldoutCompositeComponent&) = delete;
 	UHoldoutCompositeComponent& operator=(const UHoldoutCompositeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoldoutCompositeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoldoutCompositeComponent"); }
 
 	bool& bIsEnabledField() { return *GetNativePointerField<bool*>(this, "UHoldoutCompositeComponent.bIsEnabled"); }
 	void BeginDestroy() { NativeCall<void>(this, "UHoldoutCompositeComponent.BeginDestroy()"); }

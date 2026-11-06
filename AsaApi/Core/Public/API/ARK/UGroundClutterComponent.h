@@ -9,8 +9,8 @@ public:
 	~UGroundClutterComponent() = delete;
 	UGroundClutterComponent(const UGroundClutterComponent&) = delete;
 	UGroundClutterComponent& operator=(const UGroundClutterComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGroundClutterComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGroundClutterComponent"); }
 
 	int& LayerIDField() { return *GetNativePointerField<int*>(this, "UGroundClutterComponent.LayerID"); }
 	bool& bDrawDebugInfoField() { return *GetNativePointerField<bool*>(this, "UGroundClutterComponent.bDrawDebugInfo"); }

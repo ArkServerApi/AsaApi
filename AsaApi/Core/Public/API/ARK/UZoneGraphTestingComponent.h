@@ -9,8 +9,8 @@ public:
 	~UZoneGraphTestingComponent() = delete;
 	UZoneGraphTestingComponent(const UZoneGraphTestingComponent&) = delete;
 	UZoneGraphTestingComponent& operator=(const UZoneGraphTestingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UZoneGraphTestingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UZoneGraphTestingComponent"); }
 
 	FDelegateHandle& OnDataAddedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UZoneGraphTestingComponent.OnDataAddedHandle"); }
 	FDelegateHandle& OnDataRemovedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UZoneGraphTestingComponent.OnDataRemovedHandle"); }

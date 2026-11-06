@@ -10,8 +10,8 @@ public:
 	~UTexture2DArray() = delete;
 	UTexture2DArray(const UTexture2DArray&) = delete;
 	UTexture2DArray& operator=(const UTexture2DArray&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTexture2DArray"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTexture2DArray"); }
 	FTexturePlatformData*& PrivatePlatformDataField() { return *GetNativePointerField<FTexturePlatformData**>(this, "UTexture2DArray.PrivatePlatformData"); }
 	unsigned int CalcTextureMemorySize(int MipCount) { return NativeCall<unsigned int, int>(this, "UTexture2DArray.CalcTextureMemorySize(int)", MipCount); }
 	int GetArraySize() { return NativeCall<int>(this, "UTexture2DArray.GetArraySize()"); }

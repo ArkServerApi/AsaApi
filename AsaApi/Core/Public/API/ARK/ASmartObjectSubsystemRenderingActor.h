@@ -9,7 +9,7 @@ public:
 	~ASmartObjectSubsystemRenderingActor() = delete;
 	ASmartObjectSubsystemRenderingActor(const ASmartObjectSubsystemRenderingActor&) = delete;
 	ASmartObjectSubsystemRenderingActor& operator=(const ASmartObjectSubsystemRenderingActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASmartObjectSubsystemRenderingActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASmartObjectSubsystemRenderingActor"); }
 
 };

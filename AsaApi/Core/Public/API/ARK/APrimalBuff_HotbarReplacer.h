@@ -10,8 +10,8 @@ public:
 	~APrimalBuff_HotbarReplacer() = delete;
 	APrimalBuff_HotbarReplacer(const APrimalBuff_HotbarReplacer&) = delete;
 	APrimalBuff_HotbarReplacer& operator=(const APrimalBuff_HotbarReplacer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_HotbarReplacer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_HotbarReplacer"); }
 
 	int& SlotCountField() { return *GetNativePointerField<int*>(this, "APrimalBuff_HotbarReplacer.SlotCount"); }
 	bool& bDebugField() { return *GetNativePointerField<bool*>(this, "APrimalBuff_HotbarReplacer.bDebug"); }

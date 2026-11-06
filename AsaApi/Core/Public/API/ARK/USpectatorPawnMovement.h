@@ -9,9 +9,9 @@ public:
 	~USpectatorPawnMovement() = delete;
 	USpectatorPawnMovement(const USpectatorPawnMovement&) = delete;
 	USpectatorPawnMovement& operator=(const USpectatorPawnMovement&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USpectatorPawnMovement"); }
 
 	BitFieldValue<bool, unsigned __int32> bIgnoreTimeDilation() { return { this, "USpectatorPawnMovement.bIgnoreTimeDilation"}; }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USpectatorPawnMovement.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USpectatorPawnMovement"); }
 	void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) { NativeCall<void, float, ELevelTick, FActorComponentTickFunction*>(this, "USpectatorPawnMovement.TickComponent(float,ELevelTick,FActorComponentTickFunction*)", DeltaTime, TickType, ThisTickFunction); }
 };

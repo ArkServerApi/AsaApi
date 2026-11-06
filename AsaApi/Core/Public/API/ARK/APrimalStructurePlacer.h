@@ -64,7 +64,7 @@ struct APrimalStructurePlacer : AInfo
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructurePlacer"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructurePlacer();
     void BeginPlay() { NativeCall<void>(this, "APrimalStructurePlacer.BeginPlay()"); }
@@ -91,7 +91,7 @@ struct APrimalStructurePlacer : AInfo
 	bool& bChoosingRotationField() { return *GetNativePointerField<bool*>(this, "APrimalStructurePlacer.bChoosingRotation"); }
 	double& LastExtendedRangeRequestTimeField() { return *GetNativePointerField<double*>(this, "APrimalStructurePlacer.LastExtendedRangeRequestTime"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructurePlacer"); }
 
 	FTimerHandle& OnToggleGhostHeldTimerHandleField() { return *GetNativePointerField<FTimerHandle*>(this, "APrimalStructurePlacer.OnToggleGhostHeldTimerHandle"); }
 	FTimerHandle& OnToggleCancelHeldTimerHandleField() { return *GetNativePointerField<FTimerHandle*>(this, "APrimalStructurePlacer.OnToggleCancelHeldTimerHandle"); }

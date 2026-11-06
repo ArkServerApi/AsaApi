@@ -10,8 +10,8 @@ public:
 	~ULandscapeSplineSegment() = delete;
 	ULandscapeSplineSegment(const ULandscapeSplineSegment&) = delete;
 	ULandscapeSplineSegment& operator=(const ULandscapeSplineSegment&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeSplineSegment"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeSplineSegment"); }
 	FInterpCurveVector& SplineInfoField() { return *GetNativePointerField<FInterpCurveVector*>(this, "ULandscapeSplineSegment.SplineInfo"); }
 	void PostInitProperties() { NativeCall<void>(this, "ULandscapeSplineSegment.PostInitProperties()"); }
 	void FindNearest(const UE::Math::TVector<double>& InLocation, float& t, UE::Math::TVector<double>& OutLocation, UE::Math::TVector<double>& OutTangent) { NativeCall<void, const UE::Math::TVector<double>&, float&, UE::Math::TVector<double>&, UE::Math::TVector<double>&>(this, "ULandscapeSplineSegment.FindNearest(UE::Math::TVector<double>&,float&,UE::Math::TVector<double>&,UE::Math::TVector<double>&)", InLocation, t, OutLocation, OutTangent); }

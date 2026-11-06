@@ -9,8 +9,8 @@ public:
 	~UShooterEngine() = delete;
 	UShooterEngine(const UShooterEngine&) = delete;
 	UShooterEngine& operator=(const UShooterEngine&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterEngine"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterEngine"); }
 
 	FString& LastConnectionErrorStringField() { return *GetNativePointerField<FString*>(this, "UShooterEngine.LastConnectionErrorString"); }
 	FString& LastNotInstalledDLCMapNameField() { return *GetNativePointerField<FString*>(this, "UShooterEngine.LastNotInstalledDLCMapName"); }

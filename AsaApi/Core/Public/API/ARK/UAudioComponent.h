@@ -9,8 +9,8 @@ public:
 	~UAudioComponent() = delete;
 	UAudioComponent(const UAudioComponent&) = delete;
 	UAudioComponent& operator=(const UAudioComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAudioComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAudioComponent"); }
 
 	unsigned int& AudioDeviceIDField() { return *GetNativePointerField<unsigned int*>(this, "UAudioComponent.AudioDeviceID"); }
 	FName& AudioComponentUserIDField() { return *GetNativePointerField<FName*>(this, "UAudioComponent.AudioComponentUserID"); }

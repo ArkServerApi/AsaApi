@@ -9,7 +9,7 @@ public:
 	~AMatineeActorCameraAnim() = delete;
 	AMatineeActorCameraAnim(const AMatineeActorCameraAnim&) = delete;
 	AMatineeActorCameraAnim& operator=(const AMatineeActorCameraAnim&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMatineeActorCameraAnim"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMatineeActorCameraAnim"); }
 
 };

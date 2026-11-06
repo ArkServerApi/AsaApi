@@ -10,8 +10,8 @@ public:
 	~APhysicsPrimalRaft() = delete;
 	APhysicsPrimalRaft(const APhysicsPrimalRaft&) = delete;
 	APhysicsPrimalRaft& operator=(const APhysicsPrimalRaft&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APhysicsPrimalRaft"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APhysicsPrimalRaft"); }
 
 	bool& bUseForcestoApplyField() { return *GetNativePointerField<bool*>(this, "APhysicsPrimalRaft.bUseForcestoApply"); }
 	bool& bShouldLimitLinearVelocityField() { return *GetNativePointerField<bool*>(this, "APhysicsPrimalRaft.bShouldLimitLinearVelocity"); }

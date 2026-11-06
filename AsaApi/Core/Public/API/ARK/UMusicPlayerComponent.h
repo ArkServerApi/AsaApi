@@ -9,8 +9,8 @@ public:
 	~UMusicPlayerComponent() = delete;
 	UMusicPlayerComponent(const UMusicPlayerComponent&) = delete;
 	UMusicPlayerComponent& operator=(const UMusicPlayerComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMusicPlayerComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMusicPlayerComponent"); }
 
 	bool& bAutoPlayOnInitField() { return *GetNativePointerField<bool*>(this, "UMusicPlayerComponent.bAutoPlayOnInit"); }
 	FString& OptionsGroupLabelField() { return *GetNativePointerField<FString*>(this, "UMusicPlayerComponent.OptionsGroupLabel"); }

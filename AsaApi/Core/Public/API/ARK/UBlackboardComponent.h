@@ -9,8 +9,8 @@ public:
 	~UBlackboardComponent() = delete;
 	UBlackboardComponent(const UBlackboardComponent&) = delete;
 	UBlackboardComponent& operator=(const UBlackboardComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBlackboardComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBlackboardComponent"); }
 
 	TArray<unsigned char, TSizedDefaultAllocator<32> >& ValueMemoryField() { return *GetNativePointerField<TArray<unsigned char, TSizedDefaultAllocator<32> >*>(this, "UBlackboardComponent.ValueMemory"); }
 	TArray<unsigned short, TSizedDefaultAllocator<32> >& ValueOffsetsField() { return *GetNativePointerField<TArray<unsigned short, TSizedDefaultAllocator<32> >*>(this, "UBlackboardComponent.ValueOffsets"); }

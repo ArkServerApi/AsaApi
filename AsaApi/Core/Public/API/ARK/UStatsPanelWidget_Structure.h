@@ -9,8 +9,8 @@ public:
 	~UStatsPanelWidget_Structure() = delete;
 	UStatsPanelWidget_Structure(const UStatsPanelWidget_Structure&) = delete;
 	UStatsPanelWidget_Structure& operator=(const UStatsPanelWidget_Structure&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget_Structure"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget_Structure"); }
 
 	FName& EquipmentDataListPanelNameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget_Structure.EquipmentDataListPanelName"); }
 	FName& DisabledEquipmentPanelNameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget_Structure.DisabledEquipmentPanelName"); }

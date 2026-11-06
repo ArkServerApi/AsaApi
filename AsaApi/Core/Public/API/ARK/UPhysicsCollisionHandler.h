@@ -10,8 +10,8 @@ public:
 	~UPhysicsCollisionHandler() = delete;
 	UPhysicsCollisionHandler(const UPhysicsCollisionHandler&) = delete;
 	UPhysicsCollisionHandler& operator=(const UPhysicsCollisionHandler&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsCollisionHandler"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsCollisionHandler"); }
 	float& ImpactThresholdField() { return *GetNativePointerField<float*>(this, "UPhysicsCollisionHandler.ImpactThreshold"); }
 	float& ImpactReFireDelayField() { return *GetNativePointerField<float*>(this, "UPhysicsCollisionHandler.ImpactReFireDelay"); }
 	float& LastImpactSoundTimeField() { return *GetNativePointerField<float*>(this, "UPhysicsCollisionHandler.LastImpactSoundTime"); }

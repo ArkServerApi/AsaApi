@@ -10,8 +10,8 @@ public:
 	~ULandscapeLayerInfoObject() = delete;
 	ULandscapeLayerInfoObject(const ULandscapeLayerInfoObject&) = delete;
 	ULandscapeLayerInfoObject& operator=(const ULandscapeLayerInfoObject&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeLayerInfoObject"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeLayerInfoObject"); }
 	FName& LayerNameField() { return *GetNativePointerField<FName*>(this, "ULandscapeLayerInfoObject.LayerName"); }
 	float& HardnessField() { return *GetNativePointerField<float*>(this, "ULandscapeLayerInfoObject.Hardness"); }
 	FLinearColor& LayerUsageDebugColorField() { return *GetNativePointerField<FLinearColor*>(this, "ULandscapeLayerInfoObject.LayerUsageDebugColor"); }

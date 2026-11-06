@@ -9,8 +9,8 @@ public:
 	~APCGExSocketActor() = delete;
 	APCGExSocketActor(const APCGExSocketActor&) = delete;
 	APCGExSocketActor& operator=(const APCGExSocketActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APCGExSocketActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APCGExSocketActor"); }
 
 	FName& SocketNameField() { return *GetNativePointerField<FName*>(this, "APCGExSocketActor.SocketName"); }
 	FString& SocketTagField() { return *GetNativePointerField<FString*>(this, "APCGExSocketActor.SocketTag"); }

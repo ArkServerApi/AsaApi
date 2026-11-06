@@ -9,8 +9,8 @@ public:
 	~UPrimalWordFilter() = delete;
 	UPrimalWordFilter(const UPrimalWordFilter&) = delete;
 	UPrimalWordFilter& operator=(const UPrimalWordFilter&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWordFilter"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWordFilter"); }
 
 	int& NumRootNodesField() { return *GetNativePointerField<int*>(this, "UPrimalWordFilter.NumRootNodes"); }
 	bool& wordsNeedSpacesField() { return *GetNativePointerField<bool*>(this, "UPrimalWordFilter.wordsNeedSpaces"); }

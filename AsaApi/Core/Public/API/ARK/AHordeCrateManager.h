@@ -23,11 +23,12 @@ struct AHordeCrateManager : AActor
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHordeCrateManager"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAHordeCrateManager();
 	void BeginPlay() { NativeCall<void>(this, "AHordeCrateManager.BeginPlay()"); }
 	void ForceStartHorde(AActor* SpawnNetwork, AShooterPlayerController* PC, TSubclassOf<AActor> ActorClass, int DifficultyIndex) { NativeCall<void, AActor*, AShooterPlayerController*, TSubclassOf<AActor>, int>(this, "AHordeCrateManager.ForceStartHorde(AActor*,AShooterPlayerController*,TSubclassOf<AActor>,int)", SpawnNetwork, PC, ActorClass, DifficultyIndex); }
 
 	bool& bIsEnabledField() { return *GetNativePointerField<bool*>(this, "AHordeCrateManager.bIsEnabled"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHordeCrateManager"); }
 };

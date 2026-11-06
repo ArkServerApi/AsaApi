@@ -9,8 +9,8 @@ public:
 	~UW_SkillTreeRune() = delete;
 	UW_SkillTreeRune(const UW_SkillTreeRune&) = delete;
 	UW_SkillTreeRune& operator=(const UW_SkillTreeRune&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UW_SkillTreeRune"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UW_SkillTreeRune"); }
 
 	float& HexRotationField() { return *GetNativePointerField<float*>(this, "UW_SkillTreeRune.HexRotation"); }
 	float& BorderThicknessField() { return *GetNativePointerField<float*>(this, "UW_SkillTreeRune.BorderThickness"); }

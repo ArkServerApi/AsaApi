@@ -9,8 +9,8 @@ public:
 	~URotatedRadialVector() = delete;
 	URotatedRadialVector(const URotatedRadialVector&) = delete;
 	URotatedRadialVector& operator=(const URotatedRadialVector&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URotatedRadialVector"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URotatedRadialVector"); }
 
 	float& MagnitudeField() { return *GetNativePointerField<float*>(this, "URotatedRadialVector.Magnitude"); }
 	UE::Math::TVector<double>& PositionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "URotatedRadialVector.Position"); }

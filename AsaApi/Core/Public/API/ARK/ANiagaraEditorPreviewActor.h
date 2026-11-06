@@ -9,8 +9,8 @@ public:
 	~ANiagaraEditorPreviewActor() = delete;
 	ANiagaraEditorPreviewActor(const ANiagaraEditorPreviewActor&) = delete;
 	ANiagaraEditorPreviewActor& operator=(const ANiagaraEditorPreviewActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANiagaraEditorPreviewActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANiagaraEditorPreviewActor"); }
 
 	double& MotionDurationField() { return *GetNativePointerField<double*>(this, "ANiagaraEditorPreviewActor.MotionDuration"); }
 	double& ShapeTensionField() { return *GetNativePointerField<double*>(this, "ANiagaraEditorPreviewActor.ShapeTension"); }

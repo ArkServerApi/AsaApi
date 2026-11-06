@@ -10,8 +10,8 @@ public:
 	~UPointSetComponent() = delete;
 	UPointSetComponent(const UPointSetComponent&) = delete;
 	UPointSetComponent& operator=(const UPointSetComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPointSetComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPointSetComponent"); }
 
 	UE::Math::TBoxSphereBounds<double, double>& BoundsField() { return *GetNativePointerField<UE::Math::TBoxSphereBounds<double, double>*>(this, "UPointSetComponent.Bounds"); }
 	bool& bBoundsDirtyField() { return *GetNativePointerField<bool*>(this, "UPointSetComponent.bBoundsDirty"); }

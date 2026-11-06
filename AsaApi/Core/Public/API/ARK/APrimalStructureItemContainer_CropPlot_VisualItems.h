@@ -21,7 +21,7 @@ struct APrimalStructureItemContainer_CropPlot_VisualItems : APrimalStructureItem
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_CropPlot_VisualItems"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureItemContainer_CropPlot_VisualItems();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -34,4 +34,5 @@ struct APrimalStructureItemContainer_CropPlot_VisualItems : APrimalStructureItem
 
 	void OnRep_HasItems() { NativeCall<void>(this, "APrimalStructureItemContainer_CropPlot_VisualItems.OnRep_HasItems()"); }
 	void BPUpdateItemVisuals() { NativeCall<void>(this, "APrimalStructureItemContainer_CropPlot_VisualItems.BPUpdateItemVisuals()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_CropPlot_VisualItems"); }
 };

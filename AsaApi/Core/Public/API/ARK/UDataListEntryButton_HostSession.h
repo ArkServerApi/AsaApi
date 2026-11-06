@@ -9,8 +9,8 @@ public:
 	~UDataListEntryButton_HostSession() = delete;
 	UDataListEntryButton_HostSession(const UDataListEntryButton_HostSession&) = delete;
 	UDataListEntryButton_HostSession& operator=(const UDataListEntryButton_HostSession&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_HostSession"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListEntryButton_HostSession"); }
 
 	FString& DisplayNameField() { return *GetNativePointerField<FString*>(this, "UDataListEntryButton_HostSession.DisplayName"); }
 	bool& bCenterDisplayNameField() { return *GetNativePointerField<bool*>(this, "UDataListEntryButton_HostSession.bCenterDisplayName"); }

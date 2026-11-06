@@ -16,9 +16,9 @@ struct UPrimalAssetsBase : UObject
 	// static void StaticRegisterNativesUPrimalAssetsBase();
 	// 	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAssetsBase.GetPrivateStaticClass()"); }
 	// FUNCTION MISSING: UPrimalAssetsBase.GetPrivateStaticClass()
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAssetsBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAssetsBase"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAssetsBase"); }
 
 	FOnAssetLoadHitch& OnHitchedField() { return *GetNativePointerField<FOnAssetLoadHitch*>(this, "UPrimalAssetsBase.OnHitched"); }
 };

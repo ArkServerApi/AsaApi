@@ -9,10 +9,10 @@ public:
 	~UPrimalReplicationDriver() = delete;
 	UPrimalReplicationDriver(const UPrimalReplicationDriver&) = delete;
 	UPrimalReplicationDriver& operator=(const UPrimalReplicationDriver&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalReplicationDriver"); }
 
 
 
 	void SetActiveRepGraphBehaviorFor(AActor* pActor) { NativeCall<void, AActor*>(this, "UPrimalReplicationDriver.SetActiveRepGraphBehaviorFor(AActor*)", pActor); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalReplicationDriver.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalReplicationDriver"); }
 };

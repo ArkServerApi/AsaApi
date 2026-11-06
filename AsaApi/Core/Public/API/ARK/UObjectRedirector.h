@@ -10,8 +10,8 @@ public:
 	~UObjectRedirector() = delete;
 	UObjectRedirector(const UObjectRedirector&) = delete;
 	UObjectRedirector& operator=(const UObjectRedirector&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UObjectRedirector"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UObjectRedirector"); }
 	UObject*& DestinationObjectField() { return *GetNativePointerField<UObject**>(this, "UObjectRedirector.DestinationObject"); }
 	bool HasNonEditorOnlyReferences() { return NativeCall<bool>(this, "UObjectRedirector.HasNonEditorOnlyReferences()"); }
 	static void StaticRegisterNativesUObjectRedirector() { NativeCall<void>(nullptr, "UObjectRedirector.StaticRegisterNativesUObjectRedirector()"); }

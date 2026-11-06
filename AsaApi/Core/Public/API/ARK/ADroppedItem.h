@@ -64,7 +64,7 @@ struct ADroppedItem : AActor
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "ADroppedItem.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADroppedItem"); }
 	void PostNetReceivePhysicState() { NativeCall<void>(this, "ADroppedItem.PostNetReceivePhysicState()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesADroppedItem();
@@ -89,7 +89,7 @@ struct ADroppedItem : AActor
 	APhysicsVolume* GetApproximateLocationPhysicsVolume() { return NativeCall<APhysicsVolume*>(this, "ADroppedItem.GetApproximateLocationPhysicsVolume()"); }
 	void KeepPhysicsActiveForDuration(float Duration) { NativeCall<void, float>(this, "ADroppedItem.KeepPhysicsActiveForDuration(float)", Duration); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADroppedItem"); }
 
 	bool& bUseImpulseOffsetRangesField() { return *GetNativePointerField<bool*>(this, "ADroppedItem.bUseImpulseOffsetRanges"); }
 	bool& bClientDisablePhysicsField() { return *GetNativePointerField<bool*>(this, "ADroppedItem.bClientDisablePhysics"); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalClimbingSettings() = delete;
 	UPrimalClimbingSettings(const UPrimalClimbingSettings&) = delete;
 	UPrimalClimbingSettings& operator=(const UPrimalClimbingSettings&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalClimbingSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalClimbingSettings"); }
 
 	bool& bDebugField() { return *GetNativePointerField<bool*>(this, "UPrimalClimbingSettings.bDebug"); }
 	bool& bAllowInputClimbingField() { return *GetNativePointerField<bool*>(this, "UPrimalClimbingSettings.bAllowInputClimbing"); }

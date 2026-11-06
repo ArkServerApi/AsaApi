@@ -9,8 +9,8 @@ public:
 	~USparseVolumeTextureViewerComponent() = delete;
 	USparseVolumeTextureViewerComponent(const USparseVolumeTextureViewerComponent&) = delete;
 	USparseVolumeTextureViewerComponent& operator=(const USparseVolumeTextureViewerComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USparseVolumeTextureViewerComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USparseVolumeTextureViewerComponent"); }
 
 	float& FrameField() { return *GetNativePointerField<float*>(this, "USparseVolumeTextureViewerComponent.Frame"); }
 	float& FrameRateField() { return *GetNativePointerField<float*>(this, "USparseVolumeTextureViewerComponent.FrameRate"); }

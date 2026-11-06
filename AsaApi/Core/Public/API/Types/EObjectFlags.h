@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum class EObjectFlags :unsigned __int64
+enum class EObjectFlags : unsigned int
 {
 	RF_NoFlags = 0x0,
 	RF_Public = 0x1,
@@ -35,5 +35,10 @@ enum class EObjectFlags :unsigned __int64
 	RF_HasExternalPackage = 0x10000000,
 	RF_PendingKill = 0x20000000,
 	RF_Garbage = 0x40000000,
-	RF_AllocatedInSharedPage = 0x80000000
+	RF_AllocatedInSharedPage = 0x80000000,
+	RF_GeneratePublicHash = 0x800,
+	RF_ImmutableDefaultObject = 0x4000000,
+	RF_MigratingAsset = 0x20000000,
+	RF_MirroredGarbage = 0x40000000,
+	RF_HasDynamicImports = 0x80000000,
 };

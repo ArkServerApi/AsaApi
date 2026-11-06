@@ -111,7 +111,7 @@ struct AShooterPlayerState : APlayerState
 	void ServerSetDinoGroupName_Implementation(int groupIndex, const FString& GroupName) { NativeCall<void, int, const FString&>(this, "AShooterPlayerState.ServerSetDinoGroupName_Implementation(int,FString&)", groupIndex, GroupName); }
 	// Unavailable in UE 5.8.3: dependent factory unavailable
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterPlayerState"); }
 	void ServerGetServerOptions_Implementation() { NativeCall<void>(this, "AShooterPlayerState.ServerGetServerOptions_Implementation()"); }
 	void SendTribeInviteData_Implementation(FTribeData* TribeInviteData) { NativeCall<void, FTribeData*>(this, "AShooterPlayerState.SendTribeInviteData_Implementation(FTribeData)", TribeInviteData); }
 	void ClientRefreshDinoOrderGroup_Implementation(int groupIndex, FDinoOrderGroup* groupData, int UseCurrentlySelectedGroup) { NativeCall<void, int, FDinoOrderGroup*, int>(this, "AShooterPlayerState.ClientRefreshDinoOrderGroup_Implementation(int,FDinoOrderGroup,int)", groupIndex, groupData, UseCurrentlySelectedGroup); }
@@ -119,7 +119,7 @@ struct AShooterPlayerState : APlayerState
 	void ClientGetServerOptions_Implementation(FServerOptions* info) { NativeCall<void, FServerOptions*>(this, "AShooterPlayerState.ClientGetServerOptions_Implementation(FServerOptions)", info); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterPlayerState"); }
 	void ServerRequestCreateNewPlayer_Implementation(FPrimalPlayerCharacterConfigStructReplicated* PlayerCharacterConfig) { NativeCall<void, FPrimalPlayerCharacterConfigStructReplicated*>(this, "AShooterPlayerState.ServerRequestCreateNewPlayer_Implementation(FPrimalPlayerCharacterConfigStructReplicated)", PlayerCharacterConfig); }
 	bool IsInTribeWar(int EnemyTeam) { return NativeCall<bool, int>(this, "AShooterPlayerState.IsInTribeWar(int)", EnemyTeam); }
 	void ServerDinoOrderGroup_AddOrRemoveDinoClass_Implementation(int groupIndex, TSubclassOf<APrimalDinoCharacter> DinoClass, bool bAdd) { NativeCall<void, int, TSubclassOf<APrimalDinoCharacter>, bool>(this, "AShooterPlayerState.ServerDinoOrderGroup_AddOrRemoveDinoClass_Implementation(int,TSubclassOf<APrimalDinoCharacter>,bool)", groupIndex, DinoClass, bAdd); }

@@ -9,7 +9,7 @@ public:
 	~ACameraRig_Rail() = delete;
 	ACameraRig_Rail(const ACameraRig_Rail&) = delete;
 	ACameraRig_Rail& operator=(const ACameraRig_Rail&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACameraRig_Rail"); }
 
 	float& CurrentPositionOnRailField() { return *GetNativePointerField<float*>(this, "ACameraRig_Rail.CurrentPositionOnRail"); }
 	bool& bLockOrientationToRailField() { return *GetNativePointerField<bool*>(this, "ACameraRig_Rail.bLockOrientationToRail"); }
@@ -17,5 +17,5 @@ public:
 	void UpdateRailComponents() { NativeCall<void>(this, "ACameraRig_Rail.UpdateRailComponents()"); }
 	USceneComponent* GetDefaultAttachComponent() { return NativeCall<USceneComponent*>(this, "ACameraRig_Rail.GetDefaultAttachComponent()"); }
 	bool ShouldTickIfViewportsOnly() { return NativeCall<bool>(this, "ACameraRig_Rail.ShouldTickIfViewportsOnly()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ACameraRig_Rail.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACameraRig_Rail"); }
 };

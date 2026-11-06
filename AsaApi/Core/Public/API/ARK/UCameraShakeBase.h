@@ -10,8 +10,8 @@ public:
 	~UCameraShakeBase() = delete;
 	UCameraShakeBase(const UCameraShakeBase&) = delete;
 	UCameraShakeBase& operator=(const UCameraShakeBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCameraShakeBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCameraShakeBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCameraShakeBase"); }
 	bool& bSingleInstanceField() { return *GetNativePointerField<bool*>(this, "UCameraShakeBase.bSingleInstance"); }
 	float& ShakeScaleField() { return *GetNativePointerField<float*>(this, "UCameraShakeBase.ShakeScale"); }
 	ECameraShakePlaySpace& PlaySpaceField() { return *GetNativePointerField<ECameraShakePlaySpace*>(this, "UCameraShakeBase.PlaySpace"); }

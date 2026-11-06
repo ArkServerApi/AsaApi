@@ -9,8 +9,8 @@ public:
 	~UMissionDispatcherToolTipWidget() = delete;
 	UMissionDispatcherToolTipWidget(const UMissionDispatcherToolTipWidget&) = delete;
 	UMissionDispatcherToolTipWidget& operator=(const UMissionDispatcherToolTipWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMissionDispatcherToolTipWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMissionDispatcherToolTipWidget"); }
 
 	FString& MissionNameLabelNameField() { return *GetNativePointerField<FString*>(this, "UMissionDispatcherToolTipWidget.MissionNameLabelName"); }
 	FString& TitleLabelNameField() { return *GetNativePointerField<FString*>(this, "UMissionDispatcherToolTipWidget.TitleLabelName"); }

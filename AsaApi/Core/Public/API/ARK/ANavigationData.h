@@ -9,7 +9,7 @@ public:
 	~ANavigationData() = delete;
 	ANavigationData(const ANavigationData&) = delete;
 	ANavigationData& operator=(const ANavigationData&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANavigationData"); }
 
 	FNavDataConfig& NavDataConfigField() { return *GetNativePointerField<FNavDataConfig*>(this, "ANavigationData.NavDataConfig"); }
 	ERuntimeGenerationType& RuntimeGenerationField() { return *GetNativePointerField<ERuntimeGenerationType*>(this, "ANavigationData.RuntimeGeneration"); }
@@ -65,7 +65,7 @@ public:
 	void OnStreamingNavDataAdded(ANavigationDataChunkActor& InActor) { NativeCall<void, ANavigationDataChunkActor&>(this, "ANavigationData.OnStreamingNavDataAdded(ANavigationDataChunkActor&)", InActor); }
 	bool DoesNodeContainLocation(unsigned __int64 NodeRef, const UE::Math::TVector<double>& WorldSpaceLocation) { return NativeCall<bool, unsigned __int64, const UE::Math::TVector<double>&>(this, "ANavigationData.DoesNodeContainLocation(unsigned__int64,UE::Math::TVector<double>&)", NodeRef, WorldSpaceLocation); }
 	void FinishBatchQuery() { NativeCall<void>(this, "ANavigationData.FinishBatchQuery()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ANavigationData.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANavigationData"); }
 	int GetNewAreaID(const UClass* AreaClass) { return NativeCall<int, const UClass*>(this, "ANavigationData.GetNewAreaID(UClass*)", AreaClass); }
 	void UnregisterAndCleanUp() { NativeCall<void>(this, "ANavigationData.UnregisterAndCleanUp()"); }
 	void BeginBatchQuery() { NativeCall<void>(this, "ANavigationData.BeginBatchQuery()"); }

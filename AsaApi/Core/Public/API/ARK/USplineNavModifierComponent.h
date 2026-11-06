@@ -9,8 +9,8 @@ public:
 	~USplineNavModifierComponent() = delete;
 	USplineNavModifierComponent(const USplineNavModifierComponent&) = delete;
 	USplineNavModifierComponent& operator=(const USplineNavModifierComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USplineNavModifierComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USplineNavModifierComponent"); }
 
 	bool& bUpdateNavDataOnSplineChangeField() { return *GetNativePointerField<bool*>(this, "USplineNavModifierComponent.bUpdateNavDataOnSplineChange"); }
 	FComponentReference& AttachedSplineField() { return *GetNativePointerField<FComponentReference*>(this, "USplineNavModifierComponent.AttachedSpline"); }

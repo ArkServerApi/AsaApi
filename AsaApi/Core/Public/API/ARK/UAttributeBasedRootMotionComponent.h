@@ -9,8 +9,8 @@ public:
 	~UAttributeBasedRootMotionComponent() = delete;
 	UAttributeBasedRootMotionComponent(const UAttributeBasedRootMotionComponent&) = delete;
 	UAttributeBasedRootMotionComponent& operator=(const UAttributeBasedRootMotionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAttributeBasedRootMotionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAttributeBasedRootMotionComponent"); }
 
 	bool& bEnableRootMotionField() { return *GetNativePointerField<bool*>(this, "UAttributeBasedRootMotionComponent.bEnableRootMotion"); }
 	FAttributeBasedRootMotionComponentPrePhysicsTickFunction& PrePhysicsTickFunctionField() { return *GetNativePointerField<FAttributeBasedRootMotionComponentPrePhysicsTickFunction*>(this, "UAttributeBasedRootMotionComponent.PrePhysicsTickFunction"); }

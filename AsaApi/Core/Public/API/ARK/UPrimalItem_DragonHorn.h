@@ -9,8 +9,8 @@ public:
 	~UPrimalItem_DragonHorn() = delete;
 	UPrimalItem_DragonHorn(const UPrimalItem_DragonHorn&) = delete;
 	UPrimalItem_DragonHorn& operator=(const UPrimalItem_DragonHorn&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItem_DragonHorn"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItem_DragonHorn"); }
 
 
 

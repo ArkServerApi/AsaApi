@@ -9,8 +9,8 @@ public:
 	~UPCGProceduralISMComponent() = delete;
 	UPCGProceduralISMComponent(const UPCGProceduralISMComponent&) = delete;
 	UPCGProceduralISMComponent& operator=(const UPCGProceduralISMComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPCGProceduralISMComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPCGProceduralISMComponent"); }
 
 	int& NumInstancesField() { return *GetNativePointerField<int*>(this, "UPCGProceduralISMComponent.NumInstances"); }
 	int& NumCustomDataFloatsField() { return *GetNativePointerField<int*>(this, "UPCGProceduralISMComponent.NumCustomDataFloats"); }

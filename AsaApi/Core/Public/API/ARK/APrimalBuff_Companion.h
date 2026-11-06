@@ -110,7 +110,7 @@ struct APrimalBuff_Companion : APrimalBuff
 	// static void StaticRegisterNativesAPrimalBuff_Companion();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_Companion"); }
     void ClientAllowVRTeleport_Implementation() { NativeCall<void>(this, "APrimalBuff_Companion.ClientAllowVRTeleport_Implementation()"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
@@ -178,7 +178,7 @@ struct APrimalBuff_Companion : APrimalBuff
 	bool& IsUsingLocalizedAudioTrackField() { return *GetNativePointerField<bool*>(this, "APrimalBuff_Companion.IsUsingLocalizedAudioTrack"); }
 	bool& ForcedMonologueCheatField() { return *GetNativePointerField<bool*>(this, "APrimalBuff_Companion.ForcedMonologueCheat"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_Companion"); }
 
 	USkeletalMeshComponentWithSoftRef*& CompanionMeshCompField() { return *GetNativePointerField<USkeletalMeshComponentWithSoftRef**>(this, "APrimalBuff_Companion.CompanionMeshComp"); }
 	TEnumAsByte<ECompanionState::Type>& CompanionState_CurrentField() { return *GetNativePointerField<TEnumAsByte<ECompanionState::Type>*>(this, "APrimalBuff_Companion.CompanionState_Current"); }

@@ -10,8 +10,8 @@ public:
 	~APrimalReverseVacuumCompartment() = delete;
 	APrimalReverseVacuumCompartment(const APrimalReverseVacuumCompartment&) = delete;
 	APrimalReverseVacuumCompartment& operator=(const APrimalReverseVacuumCompartment&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalReverseVacuumCompartment"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalReverseVacuumCompartment"); }
 
 	int& MaximumConnectedCubesField() { return *GetNativePointerField<int*>(this, "APrimalReverseVacuumCompartment.MaximumConnectedCubes"); }
 	int& MaximumConnectedMergedCubesField() { return *GetNativePointerField<int*>(this, "APrimalReverseVacuumCompartment.MaximumConnectedMergedCubes"); }

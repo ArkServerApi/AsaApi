@@ -9,8 +9,8 @@ public:
 	~UBasicReplicationGraph() = delete;
 	UBasicReplicationGraph(const UBasicReplicationGraph&) = delete;
 	UBasicReplicationGraph& operator=(const UBasicReplicationGraph&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBasicReplicationGraph"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBasicReplicationGraph"); }
 
 	void RouteRemoveNetworkActorToNodes(const FNewReplicatedActorInfo& ActorInfo) { NativeCall<void, const FNewReplicatedActorInfo&>(this, "UBasicReplicationGraph.RouteRemoveNetworkActorToNodes(FNewReplicatedActorInfo&)", ActorInfo); }
 	void InitGlobalGraphNodes() { NativeCall<void>(this, "UBasicReplicationGraph.InitGlobalGraphNodes()"); }

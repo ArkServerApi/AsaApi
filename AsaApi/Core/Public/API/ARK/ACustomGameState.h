@@ -24,7 +24,7 @@ struct ACustomGameState : AShooterGameState
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACustomGameState"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesACustomGameState();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -143,4 +143,5 @@ struct ACustomGameState : AShooterGameState
 	void OnNotifyPlayerDied(AShooterCharacter* theShooterChar, AShooterPlayerController* prevController, APawn* InstigatingPawn, AActor* DamageCauser) { NativeCall<void, AShooterCharacter*, AShooterPlayerController*, APawn*, AActor*>(this, "ACustomGameState.OnNotifyPlayerDied(AShooterCharacter*,AShooterPlayerController*,APawn*,AActor*)", theShooterChar, prevController, InstigatingPawn, DamageCauser); }
 	bool OnAllowRemoveItems(UPrimalInventoryComponent* ForInv, AShooterPlayerController* PC, UPrimalItem* anItemToTransfer) { return NativeCall<bool, UPrimalInventoryComponent*, AShooterPlayerController*, UPrimalItem*>(this, "ACustomGameState.OnAllowRemoveItems(UPrimalInventoryComponent*,AShooterPlayerController*,UPrimalItem*)", ForInv, PC, anItemToTransfer); }
 	bool OnDrawingHUDNotifications(AShooterHUD* HUD) { return NativeCall<bool, AShooterHUD*>(this, "ACustomGameState.OnDrawingHUDNotifications(AShooterHUD*)", HUD); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACustomGameState"); }
 };

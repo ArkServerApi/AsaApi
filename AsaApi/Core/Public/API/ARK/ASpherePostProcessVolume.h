@@ -9,8 +9,8 @@ public:
 	~ASpherePostProcessVolume() = delete;
 	ASpherePostProcessVolume(const ASpherePostProcessVolume&) = delete;
 	ASpherePostProcessVolume& operator=(const ASpherePostProcessVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASpherePostProcessVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASpherePostProcessVolume"); }
 
 	float& SphereVolumeRadiusField() { return *GetNativePointerField<float*>(this, "ASpherePostProcessVolume.SphereVolumeRadius"); }
 	USphereComponent*& SphereComponentField() { return *GetNativePointerField<USphereComponent**>(this, "ASpherePostProcessVolume.SphereComponent"); }

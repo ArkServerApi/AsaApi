@@ -9,8 +9,8 @@ public:
 	~UDragonHornDinoComponent() = delete;
 	UDragonHornDinoComponent(const UDragonHornDinoComponent&) = delete;
 	UDragonHornDinoComponent& operator=(const UDragonHornDinoComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDragonHornDinoComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDragonHornDinoComponent"); }
 
 	FDragonHornDinoActionDelegate& OnDragonHornActionField() { return *GetNativePointerField<FDragonHornDinoActionDelegate*>(this, "UDragonHornDinoComponent.OnDragonHornAction"); }
 	UTexture2D*& LinkIconField() { return *GetNativePointerField<UTexture2D**>(this, "UDragonHornDinoComponent.LinkIcon"); }

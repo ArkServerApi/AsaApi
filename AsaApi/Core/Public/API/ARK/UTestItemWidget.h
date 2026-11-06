@@ -9,8 +9,8 @@ public:
 	~UTestItemWidget() = delete;
 	UTestItemWidget(const UTestItemWidget&) = delete;
 	UTestItemWidget& operator=(const UTestItemWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTestItemWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTestItemWidget"); }
 
 	FString& ItemLabelNameField() { return *GetNativePointerField<FString*>(this, "UTestItemWidget.ItemLabelName"); }
 };

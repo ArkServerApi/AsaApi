@@ -9,8 +9,8 @@ public:
 	~UWaterBodyOceanComponent() = delete;
 	UWaterBodyOceanComponent(const UWaterBodyOceanComponent&) = delete;
 	UWaterBodyOceanComponent& operator=(const UWaterBodyOceanComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterBodyOceanComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterBodyOceanComponent"); }
 
 	UE::Math::TVector<double>& CollisionExtentsField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UWaterBodyOceanComponent.CollisionExtents"); }
 	UE::Math::TVector2<double>& OceanExtentsField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "UWaterBodyOceanComponent.OceanExtents"); }

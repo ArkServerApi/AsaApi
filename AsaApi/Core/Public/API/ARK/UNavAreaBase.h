@@ -10,8 +10,8 @@ public:
 	~UNavAreaBase() = delete;
 	UNavAreaBase(const UNavAreaBase&) = delete;
 	UNavAreaBase& operator=(const UNavAreaBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNavAreaBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavAreaBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavAreaBase"); }
 	int& NavAreaPriorityField() { return *GetNativePointerField<int*>(this, "UNavAreaBase.NavAreaPriority"); }
 	BitFieldValue<bool, unsigned char> bIsMetaArea() { return { this, "UNavAreaBase.bIsMetaArea"}; }
 	bool IsLowArea() { return NativeCall<bool>(this, "UNavAreaBase.IsLowArea()"); }

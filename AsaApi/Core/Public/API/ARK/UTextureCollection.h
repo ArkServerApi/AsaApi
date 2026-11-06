@@ -10,8 +10,8 @@ public:
 	~UTextureCollection() = delete;
 	UTextureCollection(const UTextureCollection&) = delete;
 	UTextureCollection& operator=(const UTextureCollection&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UTextureCollection.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextureCollection"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextureCollection"); }
 	FTextureCollectionResource*& PrivateResourceField() { return *GetNativePointerField<FTextureCollectionResource**>(this, "UTextureCollection.PrivateResource"); }
 	FTextureCollectionResource*& PrivateResourceRenderThreadField() { return *GetNativePointerField<FTextureCollectionResource**>(this, "UTextureCollection.PrivateResourceRenderThread"); }
 	FTextureCollectionResource* CreateResource() { return NativeCall<FTextureCollectionResource*>(this, "UTextureCollection.CreateResource()"); }

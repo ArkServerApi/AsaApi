@@ -10,8 +10,8 @@ public:
 	~UEnum() = delete;
 	UEnum(const UEnum&) = delete;
 	UEnum& operator=(const UEnum&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UEnum.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UEnum"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UEnum"); }
 	FString& CppTypeField() { return *GetNativePointerField<FString*>(this, "UEnum.CppType"); }
 	FName& EnumPackageField() { return *GetNativePointerField<FName*>(this, "UEnum.EnumPackage"); }
 	static __int64 ParseEnum(const wchar_t*& Str) { return NativeCall<__int64, const wchar_t*&>(nullptr, "UEnum.ParseEnum(wchar_t*&)", Str); }

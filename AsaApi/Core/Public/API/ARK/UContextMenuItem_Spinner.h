@@ -9,8 +9,8 @@ public:
 	~UContextMenuItem_Spinner() = delete;
 	UContextMenuItem_Spinner(const UContextMenuItem_Spinner&) = delete;
 	UContextMenuItem_Spinner& operator=(const UContextMenuItem_Spinner&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenuItem_Spinner"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenuItem_Spinner"); }
 
 	int& ValueField() { return *GetNativePointerField<int*>(this, "UContextMenuItem_Spinner.Value"); }
 	int& MinValueField() { return *GetNativePointerField<int*>(this, "UContextMenuItem_Spinner.MinValue"); }

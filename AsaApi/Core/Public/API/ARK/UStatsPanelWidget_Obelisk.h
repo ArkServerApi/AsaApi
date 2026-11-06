@@ -9,8 +9,8 @@ public:
 	~UStatsPanelWidget_Obelisk() = delete;
 	UStatsPanelWidget_Obelisk(const UStatsPanelWidget_Obelisk&) = delete;
 	UStatsPanelWidget_Obelisk& operator=(const UStatsPanelWidget_Obelisk&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget_Obelisk"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget_Obelisk"); }
 
 	FName& NameLabelNameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget_Obelisk.NameLabelName"); }
 	FName& DescriptionLabelNameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget_Obelisk.DescriptionLabelName"); }

@@ -9,8 +9,8 @@ public:
 	~UHUDActiveMissionWidget() = delete;
 	UHUDActiveMissionWidget(const UHUDActiveMissionWidget&) = delete;
 	UHUDActiveMissionWidget& operator=(const UHUDActiveMissionWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHUDActiveMissionWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHUDActiveMissionWidget"); }
 
 	TWeakObjectPtr<APrimalCharacter, FWeakObjectPtr>& ForPrimalCharacterField() { return *GetNativePointerField<TWeakObjectPtr<APrimalCharacter, FWeakObjectPtr>*>(this, "UHUDActiveMissionWidget.ForPrimalCharacter"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& ActiveMissionVisibilityWidgetNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UHUDActiveMissionWidget.ActiveMissionVisibilityWidgetNames"); }

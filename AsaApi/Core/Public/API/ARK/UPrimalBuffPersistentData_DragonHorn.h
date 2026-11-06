@@ -10,8 +10,8 @@ public:
 	~UPrimalBuffPersistentData_DragonHorn() = delete;
 	UPrimalBuffPersistentData_DragonHorn(const UPrimalBuffPersistentData_DragonHorn&) = delete;
 	UPrimalBuffPersistentData_DragonHorn& operator=(const UPrimalBuffPersistentData_DragonHorn&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalBuffPersistentData_DragonHorn"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalBuffPersistentData_DragonHorn"); }
 
 	unsigned int& DinoID1Field() { return *GetNativePointerField<unsigned int*>(this, "UPrimalBuffPersistentData_DragonHorn.DinoID1"); }
 	unsigned int& DinoID2Field() { return *GetNativePointerField<unsigned int*>(this, "UPrimalBuffPersistentData_DragonHorn.DinoID2"); }

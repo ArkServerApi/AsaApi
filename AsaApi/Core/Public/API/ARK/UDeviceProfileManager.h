@@ -10,8 +10,8 @@ public:
 	~UDeviceProfileManager() = delete;
 	UDeviceProfileManager(const UDeviceProfileManager&) = delete;
 	UDeviceProfileManager& operator=(const UDeviceProfileManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDeviceProfileManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDeviceProfileManager"); }
 	UDeviceProfile*& ActiveDeviceProfileField() { return *GetNativePointerField<UDeviceProfile**>(this, "UDeviceProfileManager.ActiveDeviceProfile"); }
 	UDeviceProfile*& BaseDeviceProfileField() { return *GetNativePointerField<UDeviceProfile**>(this, "UDeviceProfileManager.BaseDeviceProfile"); }
 	UDeviceProfile*& PreviewDeviceProfileField() { return *GetNativePointerField<UDeviceProfile**>(this, "UDeviceProfileManager.PreviewDeviceProfile"); }

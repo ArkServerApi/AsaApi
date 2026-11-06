@@ -10,6 +10,6 @@ public:
 	~UMeshDeformerInstanceSettings() = delete;
 	UMeshDeformerInstanceSettings(const UMeshDeformerInstanceSettings&) = delete;
 	UMeshDeformerInstanceSettings& operator=(const UMeshDeformerInstanceSettings&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UMeshDeformerInstanceSettings.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMeshDeformerInstanceSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMeshDeformerInstanceSettings"); }
 };

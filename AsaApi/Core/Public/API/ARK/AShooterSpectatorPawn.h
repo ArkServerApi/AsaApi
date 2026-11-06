@@ -9,8 +9,8 @@ public:
 	~AShooterSpectatorPawn() = delete;
 	AShooterSpectatorPawn(const AShooterSpectatorPawn&) = delete;
 	AShooterSpectatorPawn& operator=(const AShooterSpectatorPawn&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterSpectatorPawn"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterSpectatorPawn"); }
 
 	bool& bIsAutoCyclingField() { return *GetNativePointerField<bool*>(this, "AShooterSpectatorPawn.bIsAutoCycling"); }
 	double& LastAutoCycleTargetAliveTimeField() { return *GetNativePointerField<double*>(this, "AShooterSpectatorPawn.LastAutoCycleTargetAliveTime"); }

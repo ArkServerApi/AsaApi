@@ -9,8 +9,8 @@ public:
 	~UBuoyancyComponent() = delete;
 	UBuoyancyComponent(const UBuoyancyComponent&) = delete;
 	UBuoyancyComponent& operator=(const UBuoyancyComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBuoyancyComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBuoyancyComponent"); }
 
 	FOnPontoonEnteredWater& OnEnteredWaterDelegateField() { return *GetNativePointerField<FOnPontoonEnteredWater*>(this, "UBuoyancyComponent.OnEnteredWaterDelegate"); }
 	FOnPontoonExitedWater& OnExitedWaterDelegateField() { return *GetNativePointerField<FOnPontoonExitedWater*>(this, "UBuoyancyComponent.OnExitedWaterDelegate"); }

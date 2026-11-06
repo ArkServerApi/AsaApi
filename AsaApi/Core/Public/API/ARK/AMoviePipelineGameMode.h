@@ -9,8 +9,8 @@ public:
 	~AMoviePipelineGameMode() = delete;
 	AMoviePipelineGameMode(const AMoviePipelineGameMode&) = delete;
 	AMoviePipelineGameMode& operator=(const AMoviePipelineGameMode&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMoviePipelineGameMode"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMoviePipelineGameMode"); }
 
 	void BeginPlay() { NativeCall<void>(this, "AMoviePipelineGameMode.BeginPlay()"); }
 };

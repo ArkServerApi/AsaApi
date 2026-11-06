@@ -9,9 +9,9 @@ public:
 	~UPrimalWordList() = delete;
 	UPrimalWordList(const UPrimalWordList&) = delete;
 	UPrimalWordList& operator=(const UPrimalWordList&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWordList"); }
 
 	FString& ActiveWordListRefField() { return *GetNativePointerField<FString*>(this, "UPrimalWordList.ActiveWordListRef"); }
 	bool SanitizeString(FString& ToSanitize) { return NativeCall<bool, FString&>(this, "UPrimalWordList.SanitizeString(FString&)", ToSanitize); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalWordList.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWordList"); }
 };

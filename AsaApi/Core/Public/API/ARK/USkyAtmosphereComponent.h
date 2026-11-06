@@ -9,7 +9,7 @@ public:
 	~USkyAtmosphereComponent() = delete;
 	USkyAtmosphereComponent(const USkyAtmosphereComponent&) = delete;
 	USkyAtmosphereComponent& operator=(const USkyAtmosphereComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkyAtmosphereComponent"); }
 
 	ESkyAtmosphereTransformMode& TransformModeField() { return *GetNativePointerField<ESkyAtmosphereTransformMode*>(this, "USkyAtmosphereComponent.TransformMode"); }
 	float& BottomRadiusField() { return *GetNativePointerField<float*>(this, "USkyAtmosphereComponent.BottomRadius"); }
@@ -46,7 +46,7 @@ public:
 	bool& bIsAtmosphericFogField() { return *GetNativePointerField<bool*>(this, "USkyAtmosphereComponent.bIsAtmosphericFog"); }
 	BitFieldValue<bool, unsigned char> bHoldout() { return { this, "USkyAtmosphereComponent.bHoldout"}; }
 	BitFieldValue<bool, unsigned char> bRenderInMainPass() { return { this, "USkyAtmosphereComponent.bRenderInMainPass"}; }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USkyAtmosphereComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkyAtmosphereComponent"); }
 	void SetDummyStaticLightingGUIDs() { NativeCall<void>(this, "USkyAtmosphereComponent.SetDummyStaticLightingGUIDs()"); }
 	void SetAerialPespectiveViewDistanceScale(float NewValue) { NativeCall<void, float>(this, "USkyAtmosphereComponent.SetAerialPespectiveViewDistanceScale(float)", NewValue); }
 	void SetRayleighExponentialDistribution(float NewValue) { NativeCall<void, float>(this, "USkyAtmosphereComponent.SetRayleighExponentialDistribution(float)", NewValue); }

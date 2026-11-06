@@ -9,7 +9,7 @@ public:
 	~AGeneratedMeshAreaLight() = delete;
 	AGeneratedMeshAreaLight(const AGeneratedMeshAreaLight&) = delete;
 	AGeneratedMeshAreaLight& operator=(const AGeneratedMeshAreaLight&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGeneratedMeshAreaLight"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGeneratedMeshAreaLight"); }
 
 };

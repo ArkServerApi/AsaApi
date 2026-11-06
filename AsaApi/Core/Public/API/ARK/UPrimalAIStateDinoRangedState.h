@@ -10,7 +10,7 @@ public:
 	~UPrimalAIStateDinoRangedState() = delete;
 	UPrimalAIStateDinoRangedState(const UPrimalAIStateDinoRangedState&) = delete;
 	UPrimalAIStateDinoRangedState& operator=(const UPrimalAIStateDinoRangedState&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoRangedState"); }
 
 	float& AccuracyWeightField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoRangedState.AccuracyWeight"); }
 	float& ClampAngleField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoRangedState.ClampAngle"); }
@@ -18,7 +18,7 @@ public:
 
 	void PreventAttackForTime(float time) { NativeCall<void, float>(this, "UPrimalAIStateDinoRangedState.PreventAttackForTime(float)", time); }
 	void OnBegin(UPrimalAIState* InParentState) { NativeCall<void, UPrimalAIState*>(this, "UPrimalAIStateDinoRangedState.OnBegin(UPrimalAIState*)", InParentState); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAIStateDinoRangedState.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoRangedState"); }
 	bool IsChildState() { return NativeCall<bool>(this, "UPrimalAIStateDinoRangedState.IsChildState()"); }
 	bool IsAttacking() { return NativeCall<bool>(this, "UPrimalAIStateDinoRangedState.IsAttacking()"); }
 	bool IsInAnimationStateActive() { return NativeCall<bool>(this, "UPrimalAIStateDinoRangedState.IsInAnimationStateActive()"); }

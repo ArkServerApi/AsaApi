@@ -9,8 +9,8 @@ public:
 	~UMultiUseTooltip() = delete;
 	UMultiUseTooltip(const UMultiUseTooltip&) = delete;
 	UMultiUseTooltip& operator=(const UMultiUseTooltip&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMultiUseTooltip"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMultiUseTooltip"); }
 
 	UMultiUseActionWidget*& MultiUseActionWidget_UIField() { return *GetNativePointerField<UMultiUseActionWidget**>(this, "UMultiUseTooltip.MultiUseActionWidget_UI"); }
 	AShooterPlayerController*& ForPCField() { return *GetNativePointerField<AShooterPlayerController**>(this, "UMultiUseTooltip.ForPC"); }

@@ -9,8 +9,8 @@ public:
 	~UShooterGameUserSettings() = delete;
 	UShooterGameUserSettings(const UShooterGameUserSettings&) = delete;
 	UShooterGameUserSettings& operator=(const UShooterGameUserSettings&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGameUserSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGameUserSettings"); }
 
 	int& AdvancedGraphicsQualityField() { return *GetNativePointerField<int*>(this, "UShooterGameUserSettings.AdvancedGraphicsQuality"); }
 	float& MasterAudioVolumeField() { return *GetNativePointerField<float*>(this, "UShooterGameUserSettings.MasterAudioVolume"); }

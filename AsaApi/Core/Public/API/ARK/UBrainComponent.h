@@ -9,7 +9,7 @@ public:
 	~UBrainComponent() = delete;
 	UBrainComponent(const UBrainComponent&) = delete;
 	UBrainComponent& operator=(const UBrainComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBrainComponent"); }
 
 	TArray<FAIMessageObserver*, TSizedDefaultAllocator<32> >& MessageObserversField() { return *GetNativePointerField<TArray<FAIMessageObserver*, TSizedDefaultAllocator<32> >*>(this, "UBrainComponent.MessageObservers"); }
 	FAIResourceLock& ResourceLockField() { return *GetNativePointerField<FAIResourceLock*>(this, "UBrainComponent.ResourceLock"); }
@@ -33,5 +33,5 @@ public:
 	FString* GetDebugInfoString(FString* result) { return NativeCall<FString*, FString*>(this, "UBrainComponent.GetDebugInfoString()", result); }
 	void StartLogic() { NativeCall<void>(this, "UBrainComponent.StartLogic()"); }
 	void LockResource(EAIRequestPriority::Type LockSource) { NativeCall<void, EAIRequestPriority::Type>(this, "UBrainComponent.LockResource(EAIRequestPriority::Type)", LockSource); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBrainComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBrainComponent"); }
 };

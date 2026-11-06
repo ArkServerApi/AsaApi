@@ -9,8 +9,8 @@ public:
 	~UInterpToMovementComponent() = delete;
 	UInterpToMovementComponent(const UInterpToMovementComponent&) = delete;
 	UInterpToMovementComponent& operator=(const UInterpToMovementComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInterpToMovementComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInterpToMovementComponent"); }
 
 	float& DurationField() { return *GetNativePointerField<float*>(this, "UInterpToMovementComponent.Duration"); }
 	bool& bSweepField() { return *GetNativePointerField<bool*>(this, "UInterpToMovementComponent.bSweep"); }

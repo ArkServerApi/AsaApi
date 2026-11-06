@@ -9,8 +9,8 @@ public:
 	~UPrimalProgressionTreeAsset() = delete;
 	UPrimalProgressionTreeAsset(const UPrimalProgressionTreeAsset&) = delete;
 	UPrimalProgressionTreeAsset& operator=(const UPrimalProgressionTreeAsset&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeAsset"); }
 
 	UPrimalProgressionTreeGraph*& ProgressionGraphField() { return *GetNativePointerField<UPrimalProgressionTreeGraph**>(this, "UPrimalProgressionTreeAsset.ProgressionGraph"); }
 	FName& SkillTreeTagField() { return *GetNativePointerField<FName*>(this, "UPrimalProgressionTreeAsset.SkillTreeTag"); }

@@ -10,8 +10,8 @@ public:
 	~USoundSubmixBase() = delete;
 	USoundSubmixBase(const USoundSubmixBase&) = delete;
 	USoundSubmixBase& operator=(const USoundSubmixBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USoundSubmixBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundSubmixBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundSubmixBase"); }
 	bool& bAutoDisableField() { return *GetNativePointerField<bool*>(this, "USoundSubmixBase.bAutoDisable"); }
 	float& AutoDisableTimeField() { return *GetNativePointerField<float*>(this, "USoundSubmixBase.AutoDisableTime"); }
 	void IncrementLoadRefCount() { NativeCall<void>(this, "USoundSubmixBase.IncrementLoadRefCount()"); }

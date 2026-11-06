@@ -9,8 +9,8 @@ public:
 	~AOceanVolume() = delete;
 	AOceanVolume(const AOceanVolume&) = delete;
 	AOceanVolume& operator=(const AOceanVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AOceanVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AOceanVolume"); }
 
 	double& LastRPCTimeField() { return *GetNativePointerField<double*>(this, "AOceanVolume.LastRPCTime"); }
 	bool& bDrawDebugDataField() { return *GetNativePointerField<bool*>(this, "AOceanVolume.bDrawDebugData"); }

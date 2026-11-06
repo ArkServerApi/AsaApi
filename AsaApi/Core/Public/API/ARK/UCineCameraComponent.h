@@ -9,8 +9,8 @@ public:
 	~UCineCameraComponent() = delete;
 	UCineCameraComponent(const UCineCameraComponent&) = delete;
 	UCineCameraComponent& operator=(const UCineCameraComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCineCameraComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCineCameraComponent"); }
 
 	FCameraFilmbackSettings& FilmbackSettings_DEPRECATEDField() { return *GetNativePointerField<FCameraFilmbackSettings*>(this, "UCineCameraComponent.FilmbackSettings_DEPRECATED"); }
 	FCameraFilmbackSettings& FilmbackField() { return *GetNativePointerField<FCameraFilmbackSettings*>(this, "UCineCameraComponent.Filmback"); }

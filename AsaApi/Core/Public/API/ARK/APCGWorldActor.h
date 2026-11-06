@@ -9,8 +9,8 @@ public:
 	~APCGWorldActor() = delete;
 	APCGWorldActor(const APCGWorldActor&) = delete;
 	APCGWorldActor& operator=(const APCGWorldActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APCGWorldActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APCGWorldActor"); }
 
 	unsigned int& PartitionGridSizeField() { return *GetNativePointerField<unsigned int*>(this, "APCGWorldActor.PartitionGridSize"); }
 	bool& bTreatPlayerControllersAsGenerationSourcesField() { return *GetNativePointerField<bool*>(this, "APCGWorldActor.bTreatPlayerControllersAsGenerationSources"); }

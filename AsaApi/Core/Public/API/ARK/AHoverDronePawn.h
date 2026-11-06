@@ -18,7 +18,7 @@ struct AHoverDronePawn : AHoverDronePawnBase
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHoverDronePawn"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAHoverDronePawn();
 	void SetupPlayerInputComponent(UInputComponent* InInputComponent) { NativeCall<void, UInputComponent*>(this, "AHoverDronePawn.SetupPlayerInputComponent(UInputComponent*)", InInputComponent); }
@@ -31,7 +31,7 @@ struct AHoverDronePawn : AHoverDronePawnBase
 	//     int GetDroneSpeedIndex() { return NativeCall<int>(this, "AHoverDronePawn.GetDroneSpeedIndex()"); }
 	// FUNCTION MISSING: AHoverDronePawn.GetDroneSpeedIndex()
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHoverDronePawn"); }
 
 	bool& bIsTiltingEnabledField() { return *GetNativePointerField<bool*>(this, "AHoverDronePawn.bIsTiltingEnabled"); }
 	bool& bConstrainMovementToXYPlaneField() { return *GetNativePointerField<bool*>(this, "AHoverDronePawn.bConstrainMovementToXYPlane"); }

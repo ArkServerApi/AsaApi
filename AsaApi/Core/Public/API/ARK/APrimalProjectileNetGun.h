@@ -25,7 +25,7 @@ struct APrimalProjectileNetGun : APrimalProjectileArrow
 	void StartDissolveFX() { NativeCall<void>(this, "APrimalProjectileNetGun.StartDissolveFX()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalProjectileNetGun"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalProjectileNetGun();
 	void BeginPlay() { NativeCall<void>(this, "APrimalProjectileNetGun.BeginPlay()"); }
@@ -35,7 +35,7 @@ struct APrimalProjectileNetGun : APrimalProjectileArrow
 
 	bool& bStartDissolveFXField() { return *GetNativePointerField<bool*>(this, "APrimalProjectileNetGun.bStartDissolveFX"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalProjectileNetGun"); }
 
 	void GetManagedBoneLocationsAndRotations(TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >& Locations, TArray<UE::Math::TRotator<double>, TSizedDefaultAllocator<32> >& Rotations) { NativeCall<void, TArray<UE::Math::TVector<double>, TSizedDefaultAllocator<32> >&, TArray<UE::Math::TRotator<double>, TSizedDefaultAllocator<32> >&>(this, "APrimalProjectileNetGun.GetManagedBoneLocationsAndRotations(TArray<UE::Math::TVector<double>,TSizedDefaultAllocator<32>>&,TArray<UE::Math::TRotator<double>,TSizedDefaultAllocator<32>>&)", Locations, Rotations); }
 	UE::Math::TRotator<double>* GetManagedBoneRotation(UE::Math::TRotator<double>* result, FName InBoneName) { return NativeCall<UE::Math::TRotator<double>*, UE::Math::TRotator<double>*, FName>(this, "APrimalProjectileNetGun.GetManagedBoneRotation(FName)", result, InBoneName); }

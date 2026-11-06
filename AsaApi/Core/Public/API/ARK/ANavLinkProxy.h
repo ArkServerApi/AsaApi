@@ -9,8 +9,8 @@ public:
 	~ANavLinkProxy() = delete;
 	ANavLinkProxy(const ANavLinkProxy&) = delete;
 	ANavLinkProxy& operator=(const ANavLinkProxy&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANavLinkProxy"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANavLinkProxy"); }
 
 	bool& bSmartLinkIsRelevantField() { return *GetNativePointerField<bool*>(this, "ANavLinkProxy.bSmartLinkIsRelevant"); }
 	FSmartLinkReachedSignature& OnSmartLinkReachedField() { return *GetNativePointerField<FSmartLinkReachedSignature*>(this, "ANavLinkProxy.OnSmartLinkReached"); }

@@ -625,7 +625,7 @@ struct APrimalCharacter : ACharacter
 	void SetCameraProfile(FName NewProfileId) { NativeCall<void, FName>(this, "APrimalCharacter.SetCameraProfile(FName)", NewProfileId); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalCharacter();
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalCharacter.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalCharacter"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "APrimalCharacter.Serialize(FStructuredArchiveRecord)", Record); }
@@ -1134,7 +1134,7 @@ struct APrimalCharacter : ACharacter
 
 	FPrimalCharacterSparseClassData* GetMutablePrimalCharacterSparseClassData() { return const_cast<FPrimalCharacterSparseClassData*>(GetPrimalCharacterSparseClassData(EGetSparseClassDataMethod::CreateIfNull)); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalCharacter"); }
 
 	FVelocityBasedCharacterSoundInfo& VelocityBasedEnteredSwimmingSoundsField() { return *GetNativePointerField<FVelocityBasedCharacterSoundInfo*>(this, "APrimalCharacter.VelocityBasedEnteredSwimmingSounds"); }
 	FPrimalPropertyBag& PropertyBagField() { return *GetNativePointerField<FPrimalPropertyBag*>(this, "APrimalCharacter.PropertyBag"); }

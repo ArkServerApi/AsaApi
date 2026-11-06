@@ -10,8 +10,8 @@ public:
 	~UDataTable() = delete;
 	UDataTable(const UDataTable&) = delete;
 	UDataTable& operator=(const UDataTable&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDataTable.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataTable"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataTable"); }
 	FString& ImportKeyFieldField() { return *GetNativePointerField<FString*>(this, "UDataTable.ImportKeyField"); }
 	BitFieldValue<bool, unsigned char> bStripFromClientBuilds() { return { this, "UDataTable.bStripFromClientBuilds"}; }
 	BitFieldValue<bool, unsigned char> bIgnoreExtraFields() { return { this, "UDataTable.bIgnoreExtraFields"}; }

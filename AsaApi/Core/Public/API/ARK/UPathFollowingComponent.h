@@ -9,7 +9,7 @@ public:
 	~UPathFollowingComponent() = delete;
 	UPathFollowingComponent(const UPathFollowingComponent&) = delete;
 	UPathFollowingComponent& operator=(const UPathFollowingComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPathFollowingComponent"); }
 
 	FWeakObjectPtr& CurrentCustomLinkObField() { return *GetNativePointerField<FWeakObjectPtr*>(this, "UPathFollowingComponent.CurrentCustomLinkOb"); }
 	FWeakObjectPtr& MoveSegmentCustomLinkObField() { return *GetNativePointerField<FWeakObjectPtr*>(this, "UPathFollowingComponent.MoveSegmentCustomLinkOb"); }
@@ -110,7 +110,7 @@ public:
 	bool HasReached(const FAIMoveRequest& MoveRequest) { return NativeCall<bool, const FAIMoveRequest&>(this, "UPathFollowingComponent.HasReached(FAIMoveRequest&)", MoveRequest); }
 	void OnNavigationInitDone() { NativeCall<void>(this, "UPathFollowingComponent.OnNavigationInitDone()"); }
 	void SetMovementComponent(UNavMovementComponent* MoveComp) { NativeCall<void, UNavMovementComponent*>(this, "UPathFollowingComponent.SetMovementComponent(UNavMovementComponent*)", MoveComp); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPathFollowingComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPathFollowingComponent"); }
 	FString* GetDebugString(FString* result) { return NativeCall<FString*, FString*>(this, "UPathFollowingComponent.GetDebugString()", result); }
 	int GetCurrentPathElement() { return NativeCall<int>(this, "UPathFollowingComponent.GetCurrentPathElement()"); }
 	void FinishUsingCustomLink(INavLinkCustomInterface* CustomNavLink) { NativeCall<void, INavLinkCustomInterface*>(this, "UPathFollowingComponent.FinishUsingCustomLink(INavLinkCustomInterface*)", CustomNavLink); }

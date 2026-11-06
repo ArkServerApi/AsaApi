@@ -9,8 +9,8 @@ public:
 	~UMultiUseActionWidget() = delete;
 	UMultiUseActionWidget(const UMultiUseActionWidget&) = delete;
 	UMultiUseActionWidget& operator=(const UMultiUseActionWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMultiUseActionWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMultiUseActionWidget"); }
 
 	UTextBlock*& MultiUseLabelText1Field() { return *GetNativePointerField<UTextBlock**>(this, "UMultiUseActionWidget.MultiUseLabelText1"); }
 	UTextBlock*& MultiUseLabelText2Field() { return *GetNativePointerField<UTextBlock**>(this, "UMultiUseActionWidget.MultiUseLabelText2"); }

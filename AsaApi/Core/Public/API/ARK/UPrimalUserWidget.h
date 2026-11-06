@@ -10,7 +10,7 @@ public:
 	~UPrimalUserWidget() = delete;
 	UPrimalUserWidget(const UPrimalUserWidget&) = delete;
 	UPrimalUserWidget& operator=(const UPrimalUserWidget&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalUserWidget"); }
 
 	int& ViewportZOrderField() { return *GetNativePointerField<int*>(this, "UPrimalUserWidget.ViewportZOrder"); }
 	float& DPIScalerField() { return *GetNativePointerField<float*>(this, "UPrimalUserWidget.DPIScaler"); }
@@ -27,7 +27,7 @@ public:
 	void WidgetAddedToViewport() { NativeCall<void>(this, "UPrimalUserWidget.WidgetAddedToViewport()"); }
 	UWidget* GetOverrideHighligteableWidgetBP() { return NativeCall<UWidget*>(this, "UPrimalUserWidget.GetOverrideHighligteableWidgetBP()"); }
 	void OnWidgetGamepadActiveChanged(bool bIsGamepadActive) { NativeCall<void, bool>(this, "UPrimalUserWidget.OnWidgetGamepadActiveChanged(bool)", bIsGamepadActive); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalUserWidget.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalUserWidget"); }
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "UPrimalUserWidget._getUObject()"); }
 
 	bool PlayAnimationByName(const wchar_t* Name) { return NativeCall<bool, const wchar_t*>(this, "UPrimalUserWidget.PlayAnimationByName(wchar_t*)", Name); }

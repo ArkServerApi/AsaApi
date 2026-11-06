@@ -9,8 +9,8 @@ public:
 	~UGameplayCameraComponent() = delete;
 	UGameplayCameraComponent(const UGameplayCameraComponent&) = delete;
 	UGameplayCameraComponent& operator=(const UGameplayCameraComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameplayCameraComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameplayCameraComponent"); }
 
 	FCameraAssetReference& CameraReferenceField() { return *GetNativePointerField<FCameraAssetReference*>(this, "UGameplayCameraComponent.CameraReference"); }
 	FInstancedPropertyBag& CachedParameterOverridesField() { return *GetNativePointerField<FInstancedPropertyBag*>(this, "UGameplayCameraComponent.CachedParameterOverrides"); }

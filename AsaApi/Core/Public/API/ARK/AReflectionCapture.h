@@ -9,9 +9,9 @@ public:
 	~AReflectionCapture() = delete;
 	AReflectionCapture(const AReflectionCapture&) = delete;
 	AReflectionCapture& operator=(const AReflectionCapture&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AReflectionCapture"); }
 
 	void PostLoad() { NativeCall<void>(this, "AReflectionCapture.PostLoad()"); }
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "AReflectionCapture.IsLevelBoundsRelevant()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AReflectionCapture.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AReflectionCapture"); }
 };

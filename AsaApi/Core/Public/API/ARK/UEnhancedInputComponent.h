@@ -9,8 +9,8 @@ public:
 	~UEnhancedInputComponent() = delete;
 	UEnhancedInputComponent(const UEnhancedInputComponent&) = delete;
 	UEnhancedInputComponent& operator=(const UEnhancedInputComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UEnhancedInputComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UEnhancedInputComponent"); }
 
 	bool& bShouldFireDelegatesInEditorField() { return *GetNativePointerField<bool*>(this, "UEnhancedInputComponent.bShouldFireDelegatesInEditor"); }
 	bool& bShouldCheckForLegacyKeyConsumptionField() { return *GetNativePointerField<bool*>(this, "UEnhancedInputComponent.bShouldCheckForLegacyKeyConsumption"); }

@@ -9,8 +9,8 @@ public:
 	~AMissionTrigger() = delete;
 	AMissionTrigger(const AMissionTrigger&) = delete;
 	AMissionTrigger& operator=(const AMissionTrigger&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMissionTrigger"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMissionTrigger"); }
 
 	FName& TriggerKeyField() { return *GetNativePointerField<FName*>(this, "AMissionTrigger.TriggerKey"); }
 	int& TriggerOrderField() { return *GetNativePointerField<int*>(this, "AMissionTrigger.TriggerOrder"); }

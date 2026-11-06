@@ -9,8 +9,8 @@ public:
 	~AMediaPlate() = delete;
 	AMediaPlate(const AMediaPlate&) = delete;
 	AMediaPlate& operator=(const AMediaPlate&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMediaPlate"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMediaPlate"); }
 
 	bool& bEnableHoldoutCompositeField() { return *GetNativePointerField<bool*>(this, "AMediaPlate.bEnableHoldoutComposite"); }
 	UMaterialInterface* GetCurrentMaterial() { return NativeCall<UMaterialInterface*>(this, "AMediaPlate.GetCurrentMaterial()"); }

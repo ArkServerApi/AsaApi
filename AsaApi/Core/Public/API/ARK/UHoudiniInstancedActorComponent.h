@@ -9,8 +9,8 @@ public:
 	~UHoudiniInstancedActorComponent() = delete;
 	UHoudiniInstancedActorComponent(const UHoudiniInstancedActorComponent&) = delete;
 	UHoudiniInstancedActorComponent& operator=(const UHoudiniInstancedActorComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoudiniInstancedActorComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoudiniInstancedActorComponent"); }
 
 	void OnComponentCreated() { NativeCall<void>(this, "UHoudiniInstancedActorComponent.OnComponentCreated()"); }
 	void OnComponentDestroyed(bool bDestroyingHierarchy) { NativeCall<void, bool>(this, "UHoudiniInstancedActorComponent.OnComponentDestroyed(bool)", bDestroyingHierarchy); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalItemTrait() = delete;
 	UPrimalItemTrait(const UPrimalItemTrait&) = delete;
 	UPrimalItemTrait& operator=(const UPrimalItemTrait&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItemTrait"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItemTrait"); }
 
 
 

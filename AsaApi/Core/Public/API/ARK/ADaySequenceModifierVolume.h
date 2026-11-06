@@ -9,8 +9,8 @@ public:
 	~ADaySequenceModifierVolume() = delete;
 	ADaySequenceModifierVolume(const ADaySequenceModifierVolume&) = delete;
 	ADaySequenceModifierVolume& operator=(const ADaySequenceModifierVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADaySequenceModifierVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADaySequenceModifierVolume"); }
 
 	FDelegateHandle& ReplayScrubbedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "ADaySequenceModifierVolume.ReplayScrubbedHandle"); }
 	bool& bEnableSplitscreenSupportField() { return *GetNativePointerField<bool*>(this, "ADaySequenceModifierVolume.bEnableSplitscreenSupport"); }

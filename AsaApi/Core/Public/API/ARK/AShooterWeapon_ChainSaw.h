@@ -18,7 +18,7 @@ struct AShooterWeapon_ChainSaw : AShooterWeapon
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_ChainSaw"); }
 	void ServerReloadWeapon() { NativeCall<void>(this, "AShooterWeapon_ChainSaw.ServerReloadWeapon()"); }
 	void ServerStopFireAnim() { NativeCall<void>(this, "AShooterWeapon_ChainSaw.ServerStopFireAnim()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -45,4 +45,5 @@ struct AShooterWeapon_ChainSaw : AShooterWeapon
 	void ClientSimulateChangeFireAnim() { NativeCall<void>(this, "AShooterWeapon_ChainSaw.ClientSimulateChangeFireAnim()"); }
 	void StartAltFire() { NativeCall<void>(this, "AShooterWeapon_ChainSaw.StartAltFire()"); }
 	void ServerHit() { NativeCall<void>(this, "AShooterWeapon_ChainSaw.ServerHit()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_ChainSaw"); }
 };

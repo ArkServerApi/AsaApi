@@ -10,8 +10,8 @@ public:
 	~UAnimationAsset() = delete;
 	UAnimationAsset(const UAnimationAsset&) = delete;
 	UAnimationAsset& operator=(const UAnimationAsset&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UAnimationAsset.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimationAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimationAsset"); }
 	FGuid& SkeletonGuidField() { return *GetNativePointerField<FGuid*>(this, "UAnimationAsset.SkeletonGuid"); }
 	FGuid& SkeletonVirtualBoneGuidField() { return *GetNativePointerField<FGuid*>(this, "UAnimationAsset.SkeletonVirtualBoneGuid"); }
 	void TickAssetPlayer(FAnimTickRecord& Instance, FAnimNotifyQueue& NotifyQueue, FAnimAssetTickContext& Context) { NativeCall<void, FAnimTickRecord&, FAnimNotifyQueue&, FAnimAssetTickContext&>(this, "UAnimationAsset.TickAssetPlayer(FAnimTickRecord&,FAnimNotifyQueue&,FAnimAssetTickContext&)", Instance, NotifyQueue, Context); }

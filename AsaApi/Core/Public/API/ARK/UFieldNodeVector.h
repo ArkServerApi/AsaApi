@@ -9,7 +9,7 @@ public:
 	~UFieldNodeVector() = delete;
 	UFieldNodeVector(const UFieldNodeVector&) = delete;
 	UFieldNodeVector& operator=(const UFieldNodeVector&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldNodeVector"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFieldNodeVector.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldNodeVector"); }
 };

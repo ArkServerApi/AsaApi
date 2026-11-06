@@ -12,6 +12,6 @@ struct UFunction : UStruct
 	unsigned __int16 RPCResponseId;
 	UProperty* FirstPropertyToInit;
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFunction.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFunction"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFunction"); }
 };

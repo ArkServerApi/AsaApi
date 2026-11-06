@@ -10,8 +10,8 @@ public:
 	~UPrimalAIStateDinoSpiderMinions() = delete;
 	UPrimalAIStateDinoSpiderMinions(const UPrimalAIStateDinoSpiderMinions&) = delete;
 	UPrimalAIStateDinoSpiderMinions& operator=(const UPrimalAIStateDinoSpiderMinions&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoSpiderMinions"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoSpiderMinions"); }
 
 	unsigned char& MinionMaxCountField() { return *GetNativePointerField<unsigned char*>(this, "UPrimalAIStateDinoSpiderMinions.MinionMaxCount"); }
 	bool& bFirstBatchField() { return *GetNativePointerField<bool*>(this, "UPrimalAIStateDinoSpiderMinions.bFirstBatch"); }

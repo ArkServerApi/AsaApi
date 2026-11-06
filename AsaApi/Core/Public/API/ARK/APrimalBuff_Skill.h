@@ -10,8 +10,8 @@ public:
 	~APrimalBuff_Skill() = delete;
 	APrimalBuff_Skill(const APrimalBuff_Skill&) = delete;
 	APrimalBuff_Skill& operator=(const APrimalBuff_Skill&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_Skill"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_Skill"); }
 
 	int& SkillRankField() { return *GetNativePointerField<int*>(this, "APrimalBuff_Skill.SkillRank"); }
 

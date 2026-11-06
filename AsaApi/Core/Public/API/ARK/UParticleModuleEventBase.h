@@ -10,6 +10,6 @@ public:
 	~UParticleModuleEventBase() = delete;
 	UParticleModuleEventBase(const UParticleModuleEventBase&) = delete;
 	UParticleModuleEventBase& operator=(const UParticleModuleEventBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UParticleModuleEventBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleModuleEventBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleModuleEventBase"); }
 };

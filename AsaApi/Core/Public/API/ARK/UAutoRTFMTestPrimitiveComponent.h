@@ -9,8 +9,8 @@ public:
 	~UAutoRTFMTestPrimitiveComponent() = delete;
 	UAutoRTFMTestPrimitiveComponent(const UAutoRTFMTestPrimitiveComponent&) = delete;
 	UAutoRTFMTestPrimitiveComponent& operator=(const UAutoRTFMTestPrimitiveComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAutoRTFMTestPrimitiveComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAutoRTFMTestPrimitiveComponent"); }
 
 	int& ValueField() { return *GetNativePointerField<int*>(this, "UAutoRTFMTestPrimitiveComponent.Value"); }
 	UBodySetup*& BodySetupField() { return *GetNativePointerField<UBodySetup**>(this, "UAutoRTFMTestPrimitiveComponent.BodySetup"); }

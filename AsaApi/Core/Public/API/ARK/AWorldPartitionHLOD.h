@@ -9,8 +9,8 @@ public:
 	~AWorldPartitionHLOD() = delete;
 	AWorldPartitionHLOD(const AWorldPartitionHLOD&) = delete;
 	AWorldPartitionHLOD& operator=(const AWorldPartitionHLOD&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldPartitionHLOD"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldPartitionHLOD"); }
 
 	unsigned int& LODLevelField() { return *GetNativePointerField<unsigned int*>(this, "AWorldPartitionHLOD.LODLevel"); }
 	bool& bRequireWarmupField() { return *GetNativePointerField<bool*>(this, "AWorldPartitionHLOD.bRequireWarmup"); }

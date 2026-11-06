@@ -9,8 +9,8 @@ public:
 	~USphereReflectionCaptureComponent() = delete;
 	USphereReflectionCaptureComponent(const USphereReflectionCaptureComponent&) = delete;
 	USphereReflectionCaptureComponent& operator=(const USphereReflectionCaptureComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USphereReflectionCaptureComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USphereReflectionCaptureComponent"); }
 
 	float& InfluenceRadiusField() { return *GetNativePointerField<float*>(this, "USphereReflectionCaptureComponent.InfluenceRadius"); }
 	float& CaptureDistanceScaleField() { return *GetNativePointerField<float*>(this, "USphereReflectionCaptureComponent.CaptureDistanceScale"); }

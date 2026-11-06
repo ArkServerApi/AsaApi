@@ -9,8 +9,8 @@ public:
 	~AEngineTestTickActor() = delete;
 	AEngineTestTickActor(const AEngineTestTickActor&) = delete;
 	AEngineTestTickActor& operator=(const AEngineTestTickActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AEngineTestTickActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AEngineTestTickActor"); }
 
 	int& TickCountField() { return *GetNativePointerField<int*>(this, "AEngineTestTickActor.TickCount"); }
 	int& TickOrderField() { return *GetNativePointerField<int*>(this, "AEngineTestTickActor.TickOrder"); }

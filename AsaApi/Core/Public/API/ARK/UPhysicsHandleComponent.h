@@ -9,8 +9,8 @@ public:
 	~UPhysicsHandleComponent() = delete;
 	UPhysicsHandleComponent(const UPhysicsHandleComponent&) = delete;
 	UPhysicsHandleComponent& operator=(const UPhysicsHandleComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsHandleComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsHandleComponent"); }
 
 	FName& GrabbedBoneNameField() { return *GetNativePointerField<FName*>(this, "UPhysicsHandleComponent.GrabbedBoneName"); }
 	float& LinearDampingField() { return *GetNativePointerField<float*>(this, "UPhysicsHandleComponent.LinearDamping"); }

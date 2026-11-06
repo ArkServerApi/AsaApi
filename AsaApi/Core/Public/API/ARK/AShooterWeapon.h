@@ -311,7 +311,7 @@ struct AShooterWeapon : AActor
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AShooterWeapon.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon"); }
 	UAnimSequence* GetStandingAnimation_Implementation(float& OutBlendInTime, float& OutBlendOutTime) { return NativeCall<UAnimSequence*, float&, float&>(this, "AShooterWeapon.GetStandingAnimation_Implementation(float&,float&)", OutBlendInTime, OutBlendOutTime); }
 	//     bool IsPlayingCameraAnimFPV() { return NativeCall<bool>(this, "AShooterWeapon.IsPlayingCameraAnimFPV"); }
 	// FUNCTION MISSING: AShooterWeapon.IsPlayingCameraAnimFPV
@@ -767,4 +767,5 @@ struct AShooterWeapon : AActor
 	bool BPIsValidUnStasisCaster() { return NativeCall<bool>(this, "AShooterWeapon.BPIsValidUnStasisCaster()"); }
 	void BPUpdateFirstPersonMeshes(bool bIsFirstPerson) { NativeCall<void, bool>(this, "AShooterWeapon.BPUpdateFirstPersonMeshes(bool)", bIsFirstPerson); }
 	USkeletalMeshComponent* GetWeaponMesh() { return NativeCall<USkeletalMeshComponent*>(this, "AShooterWeapon.GetWeaponMesh()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon"); }
 };

@@ -9,8 +9,8 @@ public:
 	~UPostProcessComponent() = delete;
 	UPostProcessComponent(const UPostProcessComponent&) = delete;
 	UPostProcessComponent& operator=(const UPostProcessComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPostProcessComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPostProcessComponent"); }
 
 	FPostProcessSettings& SettingsField() { return *GetNativePointerField<FPostProcessSettings*>(this, "UPostProcessComponent.Settings"); }
 	float& PriorityField() { return *GetNativePointerField<float*>(this, "UPostProcessComponent.Priority"); }

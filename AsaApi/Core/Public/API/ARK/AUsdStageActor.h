@@ -9,8 +9,8 @@ public:
 	~AUsdStageActor() = delete;
 	AUsdStageActor(const AUsdStageActor&) = delete;
 	AUsdStageActor& operator=(const AUsdStageActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AUsdStageActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AUsdStageActor"); }
 
 	FFilePath& RootLayerField() { return *GetNativePointerField<FFilePath*>(this, "AUsdStageActor.RootLayer"); }
 	EUsdInitialLoadSet& InitialLoadSetField() { return *GetNativePointerField<EUsdInitialLoadSet*>(this, "AUsdStageActor.InitialLoadSet"); }

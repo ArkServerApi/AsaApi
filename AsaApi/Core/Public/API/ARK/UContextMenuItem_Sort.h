@@ -9,8 +9,8 @@ public:
 	~UContextMenuItem_Sort() = delete;
 	UContextMenuItem_Sort(const UContextMenuItem_Sort&) = delete;
 	UContextMenuItem_Sort& operator=(const UContextMenuItem_Sort&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenuItem_Sort"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenuItem_Sort"); }
 
 	FName& SorDirSwitcherNameField() { return *GetNativePointerField<FName*>(this, "UContextMenuItem_Sort.SorDirSwitcherName"); }
 	UWidgetSwitcher*& SortDirSwitcherField() { return *GetNativePointerField<UWidgetSwitcher**>(this, "UContextMenuItem_Sort.SortDirSwitcher"); }

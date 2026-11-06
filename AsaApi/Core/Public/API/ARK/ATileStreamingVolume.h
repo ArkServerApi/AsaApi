@@ -9,8 +9,8 @@ public:
 	~ATileStreamingVolume() = delete;
 	ATileStreamingVolume(const ATileStreamingVolume&) = delete;
 	ATileStreamingVolume& operator=(const ATileStreamingVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATileStreamingVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATileStreamingVolume"); }
 
 	TArray<FName, TSizedDefaultAllocator<32> >& StreamingLevelNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "ATileStreamingVolume.StreamingLevelNames"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& ExcludeLevelNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "ATileStreamingVolume.ExcludeLevelNames"); }

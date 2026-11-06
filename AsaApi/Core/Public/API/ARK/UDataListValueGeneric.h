@@ -9,8 +9,8 @@ public:
 	~UDataListValueGeneric() = delete;
 	UDataListValueGeneric(const UDataListValueGeneric&) = delete;
 	UDataListValueGeneric& operator=(const UDataListValueGeneric&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataListValueGeneric"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataListValueGeneric"); }
 
 	FOnFloatValueGenericChangedEvent& OnValueChangedField() { return *GetNativePointerField<FOnFloatValueGenericChangedEvent*>(this, "UDataListValueGeneric.OnValueChanged"); }
 	FOnEditableOverridedValueCommittedEvent& OnTextCommittedField() { return *GetNativePointerField<FOnEditableOverridedValueCommittedEvent*>(this, "UDataListValueGeneric.OnTextCommitted"); }

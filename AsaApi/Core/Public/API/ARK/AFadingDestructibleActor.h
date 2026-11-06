@@ -9,7 +9,7 @@ public:
 	~AFadingDestructibleActor() = delete;
 	AFadingDestructibleActor(const AFadingDestructibleActor&) = delete;
 	AFadingDestructibleActor& operator=(const AFadingDestructibleActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AFadingDestructibleActor"); }
 
 	float& Fall_RotAccelField() { return *GetNativePointerField<float*>(this, "AFadingDestructibleActor.Fall_RotAccel"); }
 	float& Fall_RotAccelRateField() { return *GetNativePointerField<float*>(this, "AFadingDestructibleActor.Fall_RotAccelRate"); }
@@ -33,7 +33,7 @@ public:
 	BitFieldValue<bool, unsigned __int32> bDontUseRotationalFall() { return { this, "AFadingDestructibleActor.bDontUseRotationalFall"}; }
 	BitFieldValue<bool, unsigned __int32> bUseBPSetupForFalling() { return { this, "AFadingDestructibleActor.bUseBPSetupForFalling"}; }
 	void BPSetupForFalling(UStaticMesh* InMesh, const TArray<UMaterialInterface*, TSizedDefaultAllocator<32> >& OverrideDestructionMaterials, const UE::Math::TVector<double>& HitDirection, USkeletalMesh* InSKMesh, bool rotate, float Damage, float TotalHealth) { NativeCall<void, UStaticMesh*, const TArray<UMaterialInterface*, TSizedDefaultAllocator<32> >&, const UE::Math::TVector<double>&, USkeletalMesh*, bool, float, float>(this, "AFadingDestructibleActor.BPSetupForFalling(UStaticMesh*,TArray<UMaterialInterface*,TSizedDefaultAllocator<32>>&,UE::Math::TVector<double>&,USkeletalMesh*,bool,float,float)", InMesh, OverrideDestructionMaterials, HitDirection, InSKMesh, rotate, Damage, TotalHealth); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AFadingDestructibleActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AFadingDestructibleActor"); }
 	void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "AFadingDestructibleActor.Tick(float)", DeltaSeconds); }
 	bool IsFader() { return NativeCall<bool>(this, "AFadingDestructibleActor.IsFader()"); }
 	void SetupForFalling(UStaticMesh* InMesh, const TArray<UMaterialInterface*, TSizedDefaultAllocator<32> >& OverrideDestructionMaterials, const UE::Math::TVector<double>& HitDirection, USkeletalMesh* InSKMesh, bool rotate, float Damage, float TotalHealth, UHierarchicalInstancedStaticMeshComponent* HISMComp, int InstanceIdx) { NativeCall<void, UStaticMesh*, const TArray<UMaterialInterface*, TSizedDefaultAllocator<32> >&, const UE::Math::TVector<double>&, USkeletalMesh*, bool, float, float, UHierarchicalInstancedStaticMeshComponent*, int>(this, "AFadingDestructibleActor.SetupForFalling(UStaticMesh*,TArray<UMaterialInterface*,TSizedDefaultAllocator<32>>&,UE::Math::TVector<double>&,USkeletalMesh*,bool,float,float,UHierarchicalInstancedStaticMeshComponent*,int)", InMesh, OverrideDestructionMaterials, HitDirection, InSKMesh, rotate, Damage, TotalHealth, HISMComp, InstanceIdx); }

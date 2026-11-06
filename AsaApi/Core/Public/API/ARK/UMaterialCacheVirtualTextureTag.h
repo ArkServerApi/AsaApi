@@ -10,8 +10,8 @@ public:
 	~UMaterialCacheVirtualTextureTag() = delete;
 	UMaterialCacheVirtualTextureTag(const UMaterialCacheVirtualTextureTag&) = delete;
 	UMaterialCacheVirtualTextureTag& operator=(const UMaterialCacheVirtualTextureTag&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialCacheVirtualTextureTag"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialCacheVirtualTextureTag"); }
 	bool& bEnableCompressionField() { return *GetNativePointerField<bool*>(this, "UMaterialCacheVirtualTextureTag.bEnableCompression"); }
 	bool& bEnableBaseColorHQField() { return *GetNativePointerField<bool*>(this, "UMaterialCacheVirtualTextureTag.bEnableBaseColorHQ"); }
 	bool& bEnableNormalHQField() { return *GetNativePointerField<bool*>(this, "UMaterialCacheVirtualTextureTag.bEnableNormalHQ"); }

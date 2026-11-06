@@ -126,8 +126,8 @@ struct AActor : UPrimalActor, ActorExtensions
 	void AsyncPhysicsTickActor(float DeltaTime, float SimTime) { NativeCall<void, float, float>(this, "AActor.AsyncPhysicsTickActor(float,float)", DeltaTime, SimTime); }
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "AActor.IsLevelBoundsRelevant()"); }
 	__int64 GetDefaultAttachComponent() { return reinterpret_cast<__int64>(NativeCall<USceneComponent*>(this, "AActor.GetDefaultAttachComponent()")); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AActor.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AActor"); }
 	//USkeletalMeshComponent* FindComponentByClass<class USkeletalMeshComponent>() { return NativeCall<USkeletalMeshComponent*>(this, "AActor.FindComponentByClass<class USkeletalMeshComponent>()"); }
 	//USplineComponent* FindComponentByClass<class USplineComponent>() { return NativeCall<USplineComponent*>(this, "AActor.FindComponentByClass<class USplineComponent>()"); }
 //     bool IsHidden() { return NativeCall<bool>(this, "AActor.IsHidden()"); }

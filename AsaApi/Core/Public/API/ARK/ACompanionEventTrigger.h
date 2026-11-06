@@ -9,8 +9,8 @@ public:
 	~ACompanionEventTrigger() = delete;
 	ACompanionEventTrigger(const ACompanionEventTrigger&) = delete;
 	ACompanionEventTrigger& operator=(const ACompanionEventTrigger&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACompanionEventTrigger"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACompanionEventTrigger"); }
 
 	UBoxComponent*& BoxTriggerCompField() { return *GetNativePointerField<UBoxComponent**>(this, "ACompanionEventTrigger.BoxTriggerComp"); }
 	UTextRenderComponent*& EventTitleTextCompField() { return *GetNativePointerField<UTextRenderComponent**>(this, "ACompanionEventTrigger.EventTitleTextComp"); }

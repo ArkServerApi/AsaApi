@@ -9,8 +9,8 @@ public:
 	~UStatsPanelWidget_Character() = delete;
 	UStatsPanelWidget_Character(const UStatsPanelWidget_Character&) = delete;
 	UStatsPanelWidget_Character& operator=(const UStatsPanelWidget_Character&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget_Character"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget_Character"); }
 
 	FName& PlayerStatusBoxNameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget_Character.PlayerStatusBoxName"); }
 	FName& ExperienceBoxNameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget_Character.ExperienceBoxName"); }

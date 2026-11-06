@@ -9,8 +9,8 @@ public:
 	~AWaterSimulationManager() = delete;
 	AWaterSimulationManager(const AWaterSimulationManager&) = delete;
 	AWaterSimulationManager& operator=(const AWaterSimulationManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterSimulationManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterSimulationManager"); }
 
 	FBuoOceanIslandHeightSampler& IslandsSamplerField() { return *GetNativePointerField<FBuoOceanIslandHeightSampler*>(this, "AWaterSimulationManager.IslandsSampler"); }
 	float& ReplicatedSimulationTimeField() { return *GetNativePointerField<float*>(this, "AWaterSimulationManager.ReplicatedSimulationTime"); }

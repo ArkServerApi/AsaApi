@@ -9,8 +9,8 @@ public:
 	~ADayCycleAmbientSound() = delete;
 	ADayCycleAmbientSound(const ADayCycleAmbientSound&) = delete;
 	ADayCycleAmbientSound& operator=(const ADayCycleAmbientSound&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADayCycleAmbientSound"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADayCycleAmbientSound"); }
 
 	UAudioComponent*& AudioComponentDayField() { return *GetNativePointerField<UAudioComponent**>(this, "ADayCycleAmbientSound.AudioComponentDay"); }
 	UAudioComponent*& AudioComponentNightField() { return *GetNativePointerField<UAudioComponent**>(this, "ADayCycleAmbientSound.AudioComponentNight"); }

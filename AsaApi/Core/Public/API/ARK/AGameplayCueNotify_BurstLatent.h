@@ -9,8 +9,8 @@ public:
 	~AGameplayCueNotify_BurstLatent() = delete;
 	AGameplayCueNotify_BurstLatent(const AGameplayCueNotify_BurstLatent&) = delete;
 	AGameplayCueNotify_BurstLatent& operator=(const AGameplayCueNotify_BurstLatent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayCueNotify_BurstLatent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayCueNotify_BurstLatent"); }
 
 	FGameplayCueNotify_SpawnCondition& DefaultSpawnConditionField() { return *GetNativePointerField<FGameplayCueNotify_SpawnCondition*>(this, "AGameplayCueNotify_BurstLatent.DefaultSpawnCondition"); }
 	FGameplayCueNotify_PlacementInfo& DefaultPlacementInfoField() { return *GetNativePointerField<FGameplayCueNotify_PlacementInfo*>(this, "AGameplayCueNotify_BurstLatent.DefaultPlacementInfo"); }

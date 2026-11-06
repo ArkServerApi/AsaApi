@@ -10,8 +10,8 @@ public:
 	~UTextureRenderTarget2DArray() = delete;
 	UTextureRenderTarget2DArray(const UTextureRenderTarget2DArray&) = delete;
 	UTextureRenderTarget2DArray& operator=(const UTextureRenderTarget2DArray&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextureRenderTarget2DArray"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextureRenderTarget2DArray"); }
 	int& SizeXField() { return *GetNativePointerField<int*>(this, "UTextureRenderTarget2DArray.SizeX"); }
 	int& SizeYField() { return *GetNativePointerField<int*>(this, "UTextureRenderTarget2DArray.SizeY"); }
 	int& SlicesField() { return *GetNativePointerField<int*>(this, "UTextureRenderTarget2DArray.Slices"); }

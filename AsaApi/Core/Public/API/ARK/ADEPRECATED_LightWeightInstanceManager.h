@@ -9,7 +9,7 @@ public:
 	~ADEPRECATED_LightWeightInstanceManager() = delete;
 	ADEPRECATED_LightWeightInstanceManager(const ADEPRECATED_LightWeightInstanceManager&) = delete;
 	ADEPRECATED_LightWeightInstanceManager& operator=(const ADEPRECATED_LightWeightInstanceManager&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADEPRECATED_LightWeightInstanceManager"); }
 
 	FString& BaseInstanceNameField() { return *GetNativePointerField<FString*>(this, "ADEPRECATED_LightWeightInstanceManager.BaseInstanceName"); }
 	TArray<int, TSizedDefaultAllocator<32> >& DestroyedActorIndicesField() { return *GetNativePointerField<TArray<int, TSizedDefaultAllocator<32> >*>(this, "ADEPRECATED_LightWeightInstanceManager.DestroyedActorIndices"); }
@@ -35,7 +35,7 @@ public:
 	void AddNewInstanceAt(FLWIData* InitData, int Index) { NativeCall<void, FLWIData*, int>(this, "ADEPRECATED_LightWeightInstanceManager.AddNewInstanceAt(FLWIData*,int)", InitData, Index); }
 	void UpdateDataAtIndex(FLWIData* InData, int Index) { NativeCall<void, FLWIData*, int>(this, "ADEPRECATED_LightWeightInstanceManager.UpdateDataAtIndex(FLWIData*,int)", InData, Index); }
 	void OnRep_Transforms() { NativeCall<void>(this, "ADEPRECATED_LightWeightInstanceManager.OnRep_Transforms()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ADEPRECATED_LightWeightInstanceManager.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADEPRECATED_LightWeightInstanceManager"); }
 	void GrowDataArrays() { NativeCall<void>(this, "ADEPRECATED_LightWeightInstanceManager.GrowDataArrays()"); }
 	int FindIndexForActor(const AActor* InActor) { return NativeCall<int, const AActor*>(this, "ADEPRECATED_LightWeightInstanceManager.FindIndexForActor(AActor*)", InActor); }
 	FLWIData* AllocateInitData() { return NativeCall<FLWIData*>(this, "ADEPRECATED_LightWeightInstanceManager.AllocateInitData()"); }

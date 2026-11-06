@@ -10,8 +10,8 @@ public:
 	~UFXSystemAsset() = delete;
 	UFXSystemAsset(const UFXSystemAsset&) = delete;
 	UFXSystemAsset& operator=(const UFXSystemAsset&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFXSystemAsset.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFXSystemAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFXSystemAsset"); }
 	unsigned int& MaxPoolSizeField() { return *GetNativePointerField<unsigned int*>(this, "UFXSystemAsset.MaxPoolSize"); }
 	unsigned int& PoolPrimeSizeField() { return *GetNativePointerField<unsigned int*>(this, "UFXSystemAsset.PoolPrimeSize"); }
 	bool& PSOPrecachingLaunchedField() { return *GetNativePointerField<bool*>(this, "UFXSystemAsset.PSOPrecachingLaunched"); }

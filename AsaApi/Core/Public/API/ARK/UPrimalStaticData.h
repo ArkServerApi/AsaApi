@@ -9,9 +9,9 @@ public:
 	~UPrimalStaticData() = delete;
 	UPrimalStaticData(const UPrimalStaticData&) = delete;
 	UPrimalStaticData& operator=(const UPrimalStaticData&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalStaticData"); }
 
 
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalStaticData.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalStaticData"); }
 };

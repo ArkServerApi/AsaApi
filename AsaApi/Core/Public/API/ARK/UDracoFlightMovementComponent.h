@@ -10,8 +10,8 @@ public:
 	~UDracoFlightMovementComponent() = delete;
 	UDracoFlightMovementComponent(const UDracoFlightMovementComponent&) = delete;
 	UDracoFlightMovementComponent& operator=(const UDracoFlightMovementComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDracoFlightMovementComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDracoFlightMovementComponent"); }
 
 	float& LandedRunningSpeedModifierField() { return *GetNativePointerField<float*>(this, "UDracoFlightMovementComponent.LandedRunningSpeedModifier"); }
 	float& HoverRunningSpeedModifierField() { return *GetNativePointerField<float*>(this, "UDracoFlightMovementComponent.HoverRunningSpeedModifier"); }

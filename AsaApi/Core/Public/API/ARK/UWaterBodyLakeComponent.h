@@ -9,8 +9,8 @@ public:
 	~UWaterBodyLakeComponent() = delete;
 	UWaterBodyLakeComponent(const UWaterBodyLakeComponent&) = delete;
 	UWaterBodyLakeComponent& operator=(const UWaterBodyLakeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterBodyLakeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterBodyLakeComponent"); }
 
 	void Reset() { NativeCall<void>(this, "UWaterBodyLakeComponent.Reset()"); }
 	TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >* GetCollisionComponents(TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >* result, bool bInOnlyEnabledComponents) { return NativeCall<TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >*, TArray<UPrimitiveComponent*, TSizedDefaultAllocator<32> >*, bool>(this, "UWaterBodyLakeComponent.GetCollisionComponents(bool)", result, bInOnlyEnabledComponents); }

@@ -28,7 +28,7 @@ struct APrimalBuff_MissionData : APrimalBuff
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_MissionData"); }
     void ClientLoadMissionLevels(FName MissionTag) { NativeCall<void, FName>(this, "APrimalBuff_MissionData.ClientLoadMissionLevels(FName)", MissionTag); }
     //void ClientMissionEligibilityResponse(const TArray<FMissionEligibilityData, TSizedDefaultAllocator<32> >* EligibilityData) { NativeCall<void, const TArray<FMissionEligibilityData, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_MissionData.ClientMissionEligibilityResponse(TArray<FMissionEligibilityData,TSizedDefaultAllocator<32>>&)", EligibilityData); }
     void ClientSendMissionAlert(EMissionAlertType::Type AlertType, const FString* AlertTitle, const TArray<FMissionAlertEntry, TSizedDefaultAllocator<32> >* AlertEntries, float DisplayTime, USoundBase* Sound, bool FlyoutFromTop) { NativeCall<void, EMissionAlertType::Type, const FString*, const TArray<FMissionAlertEntry, TSizedDefaultAllocator<32> >*, float, USoundBase*, bool>(this, "APrimalBuff_MissionData.ClientSendMissionAlert(EMissionAlertType::Type,FString&,TArray<FMissionAlertEntry,TSizedDefaultAllocator<32>>&,float,USoundBase*,bool)", AlertType, AlertTitle, AlertEntries, DisplayTime, Sound, FlyoutFromTop); }
@@ -104,7 +104,7 @@ struct APrimalBuff_MissionData : APrimalBuff
 	bool& bHasRequestedMovieSkipField() { return *GetNativePointerField<bool*>(this, "APrimalBuff_MissionData.bHasRequestedMovieSkip"); }
 	bool& bSentClientStopMovieField() { return *GetNativePointerField<bool*>(this, "APrimalBuff_MissionData.bSentClientStopMovie"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_MissionData"); }
 
 	FOnMissionClientEvent& OnPlayerAddedToMissionField() { return *GetNativePointerField<FOnMissionClientEvent*>(this, "APrimalBuff_MissionData.OnPlayerAddedToMission"); }
 	FOnMissionClientBoolEvent& OnPlayerRemovedFromMissionField() { return *GetNativePointerField<FOnMissionClientBoolEvent*>(this, "APrimalBuff_MissionData.OnPlayerRemovedFromMission"); }

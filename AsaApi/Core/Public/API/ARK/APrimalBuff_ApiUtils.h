@@ -28,6 +28,6 @@ struct APrimalBuff_ApiUtils : APrimalBuff
 		return EmptyNotification;
 	}
 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_ApiUtils"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_ApiUtils"); }
 };

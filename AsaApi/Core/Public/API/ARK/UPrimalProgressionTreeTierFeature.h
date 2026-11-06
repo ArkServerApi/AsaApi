@@ -9,8 +9,8 @@ public:
 	~UPrimalProgressionTreeTierFeature() = delete;
 	UPrimalProgressionTreeTierFeature(const UPrimalProgressionTreeTierFeature&) = delete;
 	UPrimalProgressionTreeTierFeature& operator=(const UPrimalProgressionTreeTierFeature&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeTierFeature"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeTierFeature"); }
 
 	bool IncreaseSkillTier(FName SkillID) { return NativeCall<bool, FName>(this, "UPrimalProgressionTreeTierFeature.IncreaseSkillTier(FName)", SkillID); }
 	void SetSkillTierConfig(FName SkillID, int MaxTier, int BaseCost, int CostIncreasePerTier) { NativeCall<void, FName, int, int, int>(this, "UPrimalProgressionTreeTierFeature.SetSkillTierConfig(FName,int,int,int)", SkillID, MaxTier, BaseCost, CostIncreasePerTier); }

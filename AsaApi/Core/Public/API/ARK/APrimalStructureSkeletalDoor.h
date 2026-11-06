@@ -18,7 +18,7 @@ struct APrimalStructureSkeletalDoor : APrimalStructureDoor
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureSkeletalDoor"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureSkeletalDoor();
     void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "APrimalStructureSkeletalDoor.Tick(float)", DeltaSeconds); }
@@ -26,7 +26,7 @@ struct APrimalStructureSkeletalDoor : APrimalStructureDoor
     void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult* SweepResult) { NativeCall<void, UPrimitiveComponent*, AActor*, UPrimitiveComponent*, int, bool, const FHitResult*>(this, "APrimalStructureSkeletalDoor.OnBeginOverlap(UPrimitiveComponent*,AActor*,UPrimitiveComponent*,int,bool,FHitResult&)", OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult); }
     void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex) { NativeCall<void, UPrimitiveComponent*, AActor*, UPrimitiveComponent*, int>(this, "APrimalStructureSkeletalDoor.OnEndOverlap(UPrimitiveComponent*,AActor*,UPrimitiveComponent*,int)", OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureSkeletalDoor"); }
 
 	void BeginPlay() { NativeCall<void>(this, "APrimalStructureSkeletalDoor.BeginPlay()"); }
 	int GetDoorOpenState() { return NativeCall<int>(this, "APrimalStructureSkeletalDoor.GetDoorOpenState()"); }

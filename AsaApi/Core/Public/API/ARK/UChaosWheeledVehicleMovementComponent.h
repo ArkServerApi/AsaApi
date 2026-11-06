@@ -9,8 +9,8 @@ public:
 	~UChaosWheeledVehicleMovementComponent() = delete;
 	UChaosWheeledVehicleMovementComponent(const UChaosWheeledVehicleMovementComponent&) = delete;
 	UChaosWheeledVehicleMovementComponent& operator=(const UChaosWheeledVehicleMovementComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosWheeledVehicleMovementComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosWheeledVehicleMovementComponent"); }
 
 	bool& bSuspensionEnabledField() { return *GetNativePointerField<bool*>(this, "UChaosWheeledVehicleMovementComponent.bSuspensionEnabled"); }
 	bool& bWheelFrictionEnabledField() { return *GetNativePointerField<bool*>(this, "UChaosWheeledVehicleMovementComponent.bWheelFrictionEnabled"); }

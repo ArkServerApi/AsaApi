@@ -10,11 +10,11 @@ public:
 	~UPrimalProgressionTreeGraph() = delete;
 	UPrimalProgressionTreeGraph(const UPrimalProgressionTreeGraph&) = delete;
 	UPrimalProgressionTreeGraph& operator=(const UPrimalProgressionTreeGraph&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeGraph"); }
 
 
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalProgressionTreeGraph.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalProgressionTreeGraph"); }
 
 	TArray<UPrimalProgressionTreeFeature*, TSizedDefaultAllocator<32> >& GraphFeaturesField() { return *GetNativePointerField<TArray<UPrimalProgressionTreeFeature*, TSizedDefaultAllocator<32> >*>(this, "UPrimalProgressionTreeGraph.GraphFeatures"); }
 	TArray<FName, TSizedDefaultAllocator<32> >* GetPathBetweenNodes_Implementation(TArray<FName, TSizedDefaultAllocator<32> >* result, FName StartNodeID, FName EndNodeID) { return NativeCall<TArray<FName, TSizedDefaultAllocator<32> >*, TArray<FName, TSizedDefaultAllocator<32> >*, FName, FName>(this, "UPrimalProgressionTreeGraph.GetPathBetweenNodes_Implementation(FName,FName)", result, StartNodeID, EndNodeID); }

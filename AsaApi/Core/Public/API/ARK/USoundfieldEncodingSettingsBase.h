@@ -10,6 +10,6 @@ public:
 	~USoundfieldEncodingSettingsBase() = delete;
 	USoundfieldEncodingSettingsBase(const USoundfieldEncodingSettingsBase&) = delete;
 	USoundfieldEncodingSettingsBase& operator=(const USoundfieldEncodingSettingsBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USoundfieldEncodingSettingsBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundfieldEncodingSettingsBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundfieldEncodingSettingsBase"); }
 };

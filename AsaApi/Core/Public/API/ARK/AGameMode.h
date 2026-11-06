@@ -24,7 +24,7 @@ struct AGameMode : AGameModeBase
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AGameMode.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameMode"); }
 	bool ReadyToStartMatch() { return NativeCall<bool>(this, "AGameMode.ReadyToStartMatch()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAGameMode();
@@ -68,7 +68,7 @@ struct AGameMode : AGameModeBase
 	bool IsHandlingReplays() { return NativeCall<bool>(this, "AGameMode.IsHandlingReplays()"); }
 	void HandleDisconnect(UWorld* InWorld, UNetDriver* NetDriver) { NativeCall<void, UWorld*, UNetDriver*>(this, "AGameMode.HandleDisconnect(UWorld*,UNetDriver*)", InWorld, NetDriver); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameMode"); }
 
 	bool& bHandleDedicatedServerReplaysField() { return *GetNativePointerField<bool*>(this, "AGameMode.bHandleDedicatedServerReplays"); }
 	bool GetTravelType() { return NativeCall<bool>(this, "AGameMode.GetTravelType()"); }

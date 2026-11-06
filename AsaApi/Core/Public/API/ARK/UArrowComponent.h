@@ -9,8 +9,8 @@ public:
 	~UArrowComponent() = delete;
 	UArrowComponent(const UArrowComponent&) = delete;
 	UArrowComponent& operator=(const UArrowComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UArrowComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UArrowComponent"); }
 
 	FColor& ArrowColorField() { return *GetNativePointerField<FColor*>(this, "UArrowComponent.ArrowColor"); }
 	float& ArrowSizeField() { return *GetNativePointerField<float*>(this, "UArrowComponent.ArrowSize"); }

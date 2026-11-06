@@ -10,8 +10,8 @@ public:
 	~UWorldPartitionStreamingPolicy() = delete;
 	UWorldPartitionStreamingPolicy(const UWorldPartitionStreamingPolicy&) = delete;
 	UWorldPartitionStreamingPolicy& operator=(const UWorldPartitionStreamingPolicy&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UWorldPartitionStreamingPolicy.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldPartitionStreamingPolicy"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldPartitionStreamingPolicy"); }
 	const UWorldPartition*& WorldPartitionField() { return *GetNativePointerField<const UWorldPartition**>(this, "UWorldPartitionStreamingPolicy.WorldPartition"); }
 	bool& bShouldMergeStreamingSourceInfoField() { return *GetNativePointerField<bool*>(this, "UWorldPartitionStreamingPolicy.bShouldMergeStreamingSourceInfo"); }
 	const FWorldPartitionUpdateStreamingCurrentState& CurrentStateField() { return *GetNativePointerField<const FWorldPartitionUpdateStreamingCurrentState*>(this, "UWorldPartitionStreamingPolicy.CurrentState"); }

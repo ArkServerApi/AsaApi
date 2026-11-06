@@ -9,7 +9,7 @@ public:
 	~UCameraComponent() = delete;
 	UCameraComponent(const UCameraComponent&) = delete;
 	UCameraComponent& operator=(const UCameraComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCameraComponent"); }
 
 	float& FieldOfViewField() { return *GetNativePointerField<float*>(this, "UCameraComponent.FieldOfView"); }
 	float& FirstPersonFieldOfViewField() { return *GetNativePointerField<float*>(this, "UCameraComponent.FirstPersonFieldOfView"); }
@@ -44,7 +44,7 @@ public:
 	void GetCameraView(float DeltaTime, FMinimalViewInfo& DesiredView) { NativeCall<void, float, FMinimalViewInfo&>(this, "UCameraComponent.GetCameraView(float,FMinimalViewInfo&)", DeltaTime, DesiredView); }
 	void SetFirstPersonScale(float InFirstPersonScale) { NativeCall<void, float>(this, "UCameraComponent.SetFirstPersonScale(float)", InFirstPersonScale); }
 	void SetFirstPersonFieldOfView(float InFirstPersonFieldOfView) { NativeCall<void, float>(this, "UCameraComponent.SetFirstPersonFieldOfView(float)", InFirstPersonFieldOfView); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCameraComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCameraComponent"); }
 	void SetFieldOfView(float InFieldOfView) { NativeCall<void, float>(this, "UCameraComponent.SetFieldOfView(float)", InFieldOfView); }
 	void AddExtraPostProcessBlend(const FPostProcessSettings& PPSettings, float PPBlendWeight) { NativeCall<void, const FPostProcessSettings&, float>(this, "UCameraComponent.AddExtraPostProcessBlend(FPostProcessSettings&,float)", PPSettings, PPBlendWeight); }
 	void NotifyCameraCut() { NativeCall<void>(this, "UCameraComponent.NotifyCameraCut()"); }

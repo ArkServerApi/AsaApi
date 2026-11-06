@@ -9,7 +9,7 @@ public:
 	~UReplicationGraph() = delete;
 	UReplicationGraph(const UReplicationGraph&) = delete;
 	UReplicationGraph& operator=(const UReplicationGraph&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReplicationGraph"); }
 
 	float& DestructInfoMaxDistanceSquaredField() { return *GetNativePointerField<float*>(this, "UReplicationGraph.DestructInfoMaxDistanceSquared"); }
 	unsigned int& GlobalActorChannelFrameNumTimeoutField() { return *GetNativePointerField<unsigned int*>(this, "UReplicationGraph.GlobalActorChannelFrameNumTimeout"); }
@@ -67,7 +67,7 @@ public:
 	void PrintGraphDebugInfo_OnInvalidActor() { NativeCall<void>(this, "UReplicationGraph.PrintGraphDebugInfo_OnInvalidActor()"); }
 	UWorld* GetWorld() { return NativeCall<UWorld*>(this, "UReplicationGraph.GetWorld()"); }
 	__int64 ReplicateSingleActor(const AActor*& Actor, FConnectionReplicationActorInfo& ActorInfo, FGlobalActorReplicationInfo& GlobalActorInfo, FPerConnectionActorInfoMap& ConnectionActorInfoMap, UNetReplicationGraphConnection& ConnectionManager, unsigned int FrameNum) { return NativeCall<__int64, const AActor*&, FConnectionReplicationActorInfo&, FGlobalActorReplicationInfo&, FPerConnectionActorInfoMap&, UNetReplicationGraphConnection&, unsigned int>(this, "UReplicationGraph.ReplicateSingleActor(AActor*&,FConnectionReplicationActorInfo&,FGlobalActorReplicationInfo&,FPerConnectionActorInfoMap&,UNetReplicationGraphConnection&,unsignedint)", Actor, ActorInfo, GlobalActorInfo, ConnectionActorInfoMap, ConnectionManager, FrameNum); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReplicationGraph.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReplicationGraph"); }
 	void NotifyActorDormancyChange(AActor* Actor, ENetDormancy OldDormancyState) { NativeCall<void, AActor*, ENetDormancy>(this, "UReplicationGraph.NotifyActorDormancyChange(AActor*,ENetDormancy)", Actor, OldDormancyState); }
 	void InitGlobalGraphNodes() { NativeCall<void>(this, "UReplicationGraph.InitGlobalGraphNodes()"); }
 	void Primal_NotifyDormantActorServerDestroyedAllConnections(AActor* Actor) { NativeCall<void, AActor*>(this, "UReplicationGraph.Primal_NotifyDormantActorServerDestroyedAllConnections(AActor*)", Actor); }

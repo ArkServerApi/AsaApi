@@ -9,8 +9,8 @@ public:
 	~ACineCameraActor() = delete;
 	ACineCameraActor(const ACineCameraActor&) = delete;
 	ACineCameraActor& operator=(const ACineCameraActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACineCameraActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACineCameraActor"); }
 
 	FCameraLookatTrackingSettings& LookatTrackingSettingsField() { return *GetNativePointerField<FCameraLookatTrackingSettings*>(this, "ACineCameraActor.LookatTrackingSettings"); }
 	UCineCameraComponent*& CineCameraComponentField() { return *GetNativePointerField<UCineCameraComponent**>(this, "ACineCameraActor.CineCameraComponent"); }

@@ -9,8 +9,8 @@ public:
 	~ANPCZoneVolume() = delete;
 	ANPCZoneVolume(const ANPCZoneVolume&) = delete;
 	ANPCZoneVolume& operator=(const ANPCZoneVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANPCZoneVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANPCZoneVolume"); }
 
 	float& HibernatedCountWeightsField() { return *GetNativePointerField<float*>(this, "ANPCZoneVolume.HibernatedCountWeights"); }
 	TArray<TWeakObjectPtr<APrimalDinoCharacter, FWeakObjectPtr>, TSizedDefaultAllocator<32> >& OverlappedDinosField() { return *GetNativePointerField<TArray<TWeakObjectPtr<APrimalDinoCharacter, FWeakObjectPtr>, TSizedDefaultAllocator<32> >*>(this, "ANPCZoneVolume.OverlappedDinos"); }

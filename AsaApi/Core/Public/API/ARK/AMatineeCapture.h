@@ -9,8 +9,8 @@ public:
 	~AMatineeCapture() = delete;
 	AMatineeCapture(const AMatineeCapture&) = delete;
 	AMatineeCapture& operator=(const AMatineeCapture&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMatineeCapture"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMatineeCapture"); }
 
 	AMatineeActor*& MatineeActorField() { return *GetNativePointerField<AMatineeActor**>(this, "AMatineeCapture.MatineeActor"); }
 	float& CaptureFPSField() { return *GetNativePointerField<float*>(this, "AMatineeCapture.CaptureFPS"); }

@@ -9,8 +9,8 @@ public:
 	~AMatineeActorManager() = delete;
 	AMatineeActorManager(const AMatineeActorManager&) = delete;
 	AMatineeActorManager& operator=(const AMatineeActorManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMatineeActorManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMatineeActorManager"); }
 
 	bool& bPriorityToFloatSetsField() { return *GetNativePointerField<bool*>(this, "AMatineeActorManager.bPriorityToFloatSets"); }
 	bool& bPriorityToVectorSetsField() { return *GetNativePointerField<bool*>(this, "AMatineeActorManager.bPriorityToVectorSets"); }

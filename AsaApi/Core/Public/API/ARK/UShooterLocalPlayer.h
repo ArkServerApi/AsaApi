@@ -9,8 +9,8 @@ public:
 	~UShooterLocalPlayer() = delete;
 	UShooterLocalPlayer(const UShooterLocalPlayer&) = delete;
 	UShooterLocalPlayer& operator=(const UShooterLocalPlayer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterLocalPlayer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterLocalPlayer"); }
 
 	UOnlineSession*& OnlineSessionField() { return *GetNativePointerField<UOnlineSession**>(this, "UShooterLocalPlayer.OnlineSession"); }
 	UShooterPersistentUser*& PersistentUserField() { return *GetNativePointerField<UShooterPersistentUser**>(this, "UShooterLocalPlayer.PersistentUser"); }

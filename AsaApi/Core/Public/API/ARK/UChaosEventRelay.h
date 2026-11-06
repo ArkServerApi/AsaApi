@@ -10,8 +10,8 @@ public:
 	~UChaosEventRelay() = delete;
 	UChaosEventRelay(const UChaosEventRelay&) = delete;
 	UChaosEventRelay& operator=(const UChaosEventRelay&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosEventRelay"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosEventRelay"); }
 	FCollisionEventSignature& OnCollisionEventField() { return *GetNativePointerField<FCollisionEventSignature*>(this, "UChaosEventRelay.OnCollisionEvent"); }
 	FBreakEventSignature& OnBreakEventField() { return *GetNativePointerField<FBreakEventSignature*>(this, "UChaosEventRelay.OnBreakEvent"); }
 	FRemovalEventSignature& OnRemovalEventField() { return *GetNativePointerField<FRemovalEventSignature*>(this, "UChaosEventRelay.OnRemovalEvent"); }

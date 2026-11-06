@@ -10,8 +10,8 @@ public:
 	~UAnimSequenceBase() = delete;
 	UAnimSequenceBase(const UAnimSequenceBase&) = delete;
 	UAnimSequenceBase& operator=(const UAnimSequenceBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UAnimSequenceBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimSequenceBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimSequenceBase"); }
 	float& SequenceLengthField() { return *GetNativePointerField<float*>(this, "UAnimSequenceBase.SequenceLength"); }
 	FRawCurveTracks& RawCurveDataField() { return *GetNativePointerField<FRawCurveTracks*>(this, "UAnimSequenceBase.RawCurveData"); }
 	float& RateScaleField() { return *GetNativePointerField<float*>(this, "UAnimSequenceBase.RateScale"); }

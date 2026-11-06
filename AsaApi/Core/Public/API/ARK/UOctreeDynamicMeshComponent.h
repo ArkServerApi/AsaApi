@@ -9,8 +9,8 @@ public:
 	~UOctreeDynamicMeshComponent() = delete;
 	UOctreeDynamicMeshComponent(const UOctreeDynamicMeshComponent&) = delete;
 	UOctreeDynamicMeshComponent& operator=(const UOctreeDynamicMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UOctreeDynamicMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UOctreeDynamicMeshComponent"); }
 
 	FDelegateHandle& MeshObjectChangedHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UOctreeDynamicMeshComponent.MeshObjectChangedHandle"); }
 	FDelegateHandle& PreMeshChangeHandleField() { return *GetNativePointerField<FDelegateHandle*>(this, "UOctreeDynamicMeshComponent.PreMeshChangeHandle"); }

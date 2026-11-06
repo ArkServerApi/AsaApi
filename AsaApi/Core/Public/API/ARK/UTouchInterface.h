@@ -10,8 +10,8 @@ public:
 	~UTouchInterface() = delete;
 	UTouchInterface(const UTouchInterface&) = delete;
 	UTouchInterface& operator=(const UTouchInterface&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTouchInterface"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTouchInterface"); }
 	float& ActiveOpacityField() { return *GetNativePointerField<float*>(this, "UTouchInterface.ActiveOpacity"); }
 	float& InactiveOpacityField() { return *GetNativePointerField<float*>(this, "UTouchInterface.InactiveOpacity"); }
 	float& TimeUntilDeactiveField() { return *GetNativePointerField<float*>(this, "UTouchInterface.TimeUntilDeactive"); }

@@ -9,8 +9,8 @@ public:
 	~APrimalLevelInstance() = delete;
 	APrimalLevelInstance(const APrimalLevelInstance&) = delete;
 	APrimalLevelInstance& operator=(const APrimalLevelInstance&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalLevelInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalLevelInstance"); }
 
 	UPrimalLevelInstanceSubsystem* GetPrimalLevelInstanceSubsystem() { return NativeCall<UPrimalLevelInstanceSubsystem*>(this, "APrimalLevelInstance.GetPrimalLevelInstanceSubsystem()"); }
 	TArray<AActor*, TSizedDefaultAllocator<32> >* GetAllMissionActors(TArray<AActor*, TSizedDefaultAllocator<32> >* result) { return NativeCall<TArray<AActor*, TSizedDefaultAllocator<32> >*, TArray<AActor*, TSizedDefaultAllocator<32> >*>(this, "APrimalLevelInstance.GetAllMissionActors()", result); }

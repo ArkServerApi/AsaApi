@@ -10,8 +10,8 @@ public:
 	~AStandingMountedTurret() = delete;
 	AStandingMountedTurret(const AStandingMountedTurret&) = delete;
 	AStandingMountedTurret& operator=(const AStandingMountedTurret&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AStandingMountedTurret"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AStandingMountedTurret"); }
 
 	float& ShootingDamageAmountField() { return *GetNativePointerField<float*>(this, "AStandingMountedTurret.ShootingDamageAmount"); }
 	float& ShootingDamageImpulseField() { return *GetNativePointerField<float*>(this, "AStandingMountedTurret.ShootingDamageImpulse"); }

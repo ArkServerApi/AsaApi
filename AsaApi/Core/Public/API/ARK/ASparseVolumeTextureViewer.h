@@ -9,7 +9,7 @@ public:
 	~ASparseVolumeTextureViewer() = delete;
 	ASparseVolumeTextureViewer(const ASparseVolumeTextureViewer&) = delete;
 	ASparseVolumeTextureViewer& operator=(const ASparseVolumeTextureViewer&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASparseVolumeTextureViewer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASparseVolumeTextureViewer"); }
 
 };

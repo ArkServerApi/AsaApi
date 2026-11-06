@@ -9,8 +9,8 @@ public:
 	~UHoudiniAssetBlueprintComponent() = delete;
 	UHoudiniAssetBlueprintComponent(const UHoudiniAssetBlueprintComponent&) = delete;
 	UHoudiniAssetBlueprintComponent& operator=(const UHoudiniAssetBlueprintComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoudiniAssetBlueprintComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoudiniAssetBlueprintComponent"); }
 
 	TWeakObjectPtr<UBlueprint, FWeakObjectPtr>& CachedBlueprintField() { return *GetNativePointerField<TWeakObjectPtr<UBlueprint, FWeakObjectPtr>*>(this, "UHoudiniAssetBlueprintComponent.CachedBlueprint"); }
 	TWeakObjectPtr<AActor, FWeakObjectPtr>& CachedActorCDOField() { return *GetNativePointerField<TWeakObjectPtr<AActor, FWeakObjectPtr>*>(this, "UHoudiniAssetBlueprintComponent.CachedActorCDO"); }

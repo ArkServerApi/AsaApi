@@ -27,8 +27,8 @@ struct AController : AActor
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AController.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AController"); }
 	void FailedToSpawnPawn() { NativeCall<void>(this, "AController.FailedToSpawnPawn()"); }
 	void ClientSetRotation(UE::Math::TRotator<double>* NewRotation, bool bResetCamera) { NativeCall<void, UE::Math::TRotator<double>*, bool>(this, "AController.ClientSetRotation(UE::Math::TRotator<double>,bool)", NewRotation, bResetCamera); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key

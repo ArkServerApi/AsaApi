@@ -10,8 +10,8 @@ public:
 	~UCameraShakePattern() = delete;
 	UCameraShakePattern(const UCameraShakePattern&) = delete;
 	UCameraShakePattern& operator=(const UCameraShakePattern&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCameraShakePattern.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCameraShakePattern"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCameraShakePattern"); }
 	void GetShakePatternInfoImpl(FCameraShakeInfo& OutInfo) { NativeCall<void, FCameraShakeInfo&>(this, "UCameraShakePattern.GetShakePatternInfoImpl(FCameraShakeInfo&)", OutInfo); }
 	UCameraShakeBase* GetShakeInstance() { return NativeCall<UCameraShakeBase*>(this, "UCameraShakePattern.GetShakeInstance()"); }
 	void StopShakePattern(const FCameraShakePatternStopParams& Params) { NativeCall<void, const FCameraShakePatternStopParams&>(this, "UCameraShakePattern.StopShakePattern(FCameraShakePatternStopParams&)", Params); }

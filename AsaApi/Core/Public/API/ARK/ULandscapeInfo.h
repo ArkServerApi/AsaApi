@@ -10,8 +10,8 @@ public:
 	~ULandscapeInfo() = delete;
 	ULandscapeInfo(const ULandscapeInfo&) = delete;
 	ULandscapeInfo& operator=(const ULandscapeInfo&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeInfo"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeInfo"); }
 	FGuid& LandscapeGuidField() { return *GetNativePointerField<FGuid*>(this, "ULandscapeInfo.LandscapeGuid"); }
 	int& ComponentSizeQuadsField() { return *GetNativePointerField<int*>(this, "ULandscapeInfo.ComponentSizeQuads"); }
 	int& SubsectionSizeQuadsField() { return *GetNativePointerField<int*>(this, "ULandscapeInfo.SubsectionSizeQuads"); }

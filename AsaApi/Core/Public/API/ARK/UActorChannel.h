@@ -9,7 +9,7 @@ public:
 	~UActorChannel() = delete;
 	UActorChannel(const UActorChannel&) = delete;
 	UActorChannel& operator=(const UActorChannel&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UActorChannel.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UActorChannel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UActorChannel"); }
 
 };

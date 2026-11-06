@@ -9,8 +9,8 @@ public:
 	~ULiveLinkBroadcastComponent() = delete;
 	ULiveLinkBroadcastComponent(const ULiveLinkBroadcastComponent&) = delete;
 	ULiveLinkBroadcastComponent& operator=(const ULiveLinkBroadcastComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULiveLinkBroadcastComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULiveLinkBroadcastComponent"); }
 
 	bool& bEnableField() { return *GetNativePointerField<bool*>(this, "ULiveLinkBroadcastComponent.bEnable"); }
 	FName& SubjectNameField() { return *GetNativePointerField<FName*>(this, "ULiveLinkBroadcastComponent.SubjectName"); }

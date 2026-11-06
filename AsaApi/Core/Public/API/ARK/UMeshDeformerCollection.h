@@ -10,6 +10,6 @@ public:
 	~UMeshDeformerCollection() = delete;
 	UMeshDeformerCollection(const UMeshDeformerCollection&) = delete;
 	UMeshDeformerCollection& operator=(const UMeshDeformerCollection&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMeshDeformerCollection"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMeshDeformerCollection"); }
 };

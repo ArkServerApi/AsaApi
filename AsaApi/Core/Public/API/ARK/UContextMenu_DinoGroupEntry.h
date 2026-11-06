@@ -9,8 +9,8 @@ public:
 	~UContextMenu_DinoGroupEntry() = delete;
 	UContextMenu_DinoGroupEntry(const UContextMenu_DinoGroupEntry&) = delete;
 	UContextMenu_DinoGroupEntry& operator=(const UContextMenu_DinoGroupEntry&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenu_DinoGroupEntry"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenu_DinoGroupEntry"); }
 
 	void HandleActionSetGroup(UContextMenuItem* Item) { NativeCall<void, UContextMenuItem*>(this, "UContextMenu_DinoGroupEntry.HandleActionSetGroup(UContextMenuItem*)", Item); }
 	void InitializeMe(UContextMenu* WithParentContextMenu, UMenuAnchor* WithParentMenuAnchor, UWidget* WithParentContextWidget) { NativeCall<void, UContextMenu*, UMenuAnchor*, UWidget*>(this, "UContextMenu_DinoGroupEntry.InitializeMe(UContextMenu*,UMenuAnchor*,UWidget*)", WithParentContextMenu, WithParentMenuAnchor, WithParentContextWidget); }

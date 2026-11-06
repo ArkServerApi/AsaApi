@@ -9,8 +9,8 @@ public:
 	~UControllerGameplayCameraEvaluationComponent() = delete;
 	UControllerGameplayCameraEvaluationComponent(const UControllerGameplayCameraEvaluationComponent&) = delete;
 	UControllerGameplayCameraEvaluationComponent& operator=(const UControllerGameplayCameraEvaluationComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UControllerGameplayCameraEvaluationComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UControllerGameplayCameraEvaluationComponent"); }
 
 	void BeginPlay() { NativeCall<void>(this, "UControllerGameplayCameraEvaluationComponent.BeginPlay()"); }
 	void EndPlay(EEndPlayReason::Type EndPlayReason) { NativeCall<void, EEndPlayReason::Type>(this, "UControllerGameplayCameraEvaluationComponent.EndPlay(EEndPlayReason::Type)", EndPlayReason); }

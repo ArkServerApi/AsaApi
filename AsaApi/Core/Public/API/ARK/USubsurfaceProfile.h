@@ -10,8 +10,8 @@ public:
 	~USubsurfaceProfile() = delete;
 	USubsurfaceProfile(const USubsurfaceProfile&) = delete;
 	USubsurfaceProfile& operator=(const USubsurfaceProfile&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USubsurfaceProfile"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USubsurfaceProfile"); }
 	FSubsurfaceProfileStruct& SettingsField() { return *GetNativePointerField<FSubsurfaceProfileStruct*>(this, "USubsurfaceProfile.Settings"); }
 	FGuid& GuidField() { return *GetNativePointerField<FGuid*>(this, "USubsurfaceProfile.Guid"); }
 	void PostDuplicate(EDuplicateMode::Type DuplicateMode) { NativeCall<void, EDuplicateMode::Type>(this, "USubsurfaceProfile.PostDuplicate(EDuplicateMode::Type)", DuplicateMode); }

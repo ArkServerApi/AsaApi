@@ -10,8 +10,8 @@ public:
 	~UTriangleSetComponent() = delete;
 	UTriangleSetComponent(const UTriangleSetComponent&) = delete;
 	UTriangleSetComponent& operator=(const UTriangleSetComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTriangleSetComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTriangleSetComponent"); }
 
 	UE::Math::TBoxSphereBounds<double, double>& BoundsField() { return *GetNativePointerField<UE::Math::TBoxSphereBounds<double, double>*>(this, "UTriangleSetComponent.Bounds"); }
 	bool& bBoundsDirtyField() { return *GetNativePointerField<bool*>(this, "UTriangleSetComponent.bBoundsDirty"); }

@@ -9,8 +9,8 @@ public:
 	~UZoneShapeComponent() = delete;
 	UZoneShapeComponent(const UZoneShapeComponent&) = delete;
 	UZoneShapeComponent& operator=(const UZoneShapeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UZoneShapeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UZoneShapeComponent"); }
 
 	FZoneLaneProfileRef& LaneProfileField() { return *GetNativePointerField<FZoneLaneProfileRef*>(this, "UZoneShapeComponent.LaneProfile"); }
 	bool& bReverseLaneProfileField() { return *GetNativePointerField<bool*>(this, "UZoneShapeComponent.bReverseLaneProfile"); }

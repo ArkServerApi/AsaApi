@@ -9,8 +9,8 @@ public:
 	~UGizmoCircleComponent() = delete;
 	UGizmoCircleComponent(const UGizmoCircleComponent&) = delete;
 	UGizmoCircleComponent& operator=(const UGizmoCircleComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGizmoCircleComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGizmoCircleComponent"); }
 
 	UE::Math::TVector<double>& NormalField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UGizmoCircleComponent.Normal"); }
 	float& RadiusField() { return *GetNativePointerField<float*>(this, "UGizmoCircleComponent.Radius"); }

@@ -9,7 +9,7 @@ public:
 	~AGameplayCueNotify_Actor() = delete;
 	AGameplayCueNotify_Actor(const AGameplayCueNotify_Actor&) = delete;
 	AGameplayCueNotify_Actor& operator=(const AGameplayCueNotify_Actor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayCueNotify_Actor"); }
 
 	bool& bAutoDestroyOnRemoveField() { return *GetNativePointerField<bool*>(this, "AGameplayCueNotify_Actor.bAutoDestroyOnRemove"); }
 	float& AutoDestroyDelayField() { return *GetNativePointerField<float*>(this, "AGameplayCueNotify_Actor.AutoDestroyDelay"); }
@@ -50,5 +50,5 @@ public:
 	void SetOwner(AActor* InNewOwner) { NativeCall<void, AActor*>(this, "AGameplayCueNotify_Actor.SetOwner(AActor*)", InNewOwner); }
 	bool OnActive_Implementation(AActor* MyTarget, const FGameplayCueParameters& Parameters) { return NativeCall<bool, AActor*, const FGameplayCueParameters&>(this, "AGameplayCueNotify_Actor.OnActive_Implementation(AActor*,FGameplayCueParameters&)", MyTarget, Parameters); }
 	void K2_EndGameplayCue() { NativeCall<void>(this, "AGameplayCueNotify_Actor.K2_EndGameplayCue()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AGameplayCueNotify_Actor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayCueNotify_Actor"); }
 };

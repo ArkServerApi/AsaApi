@@ -9,8 +9,8 @@ public:
 	~APartitionActor() = delete;
 	APartitionActor(const APartitionActor&) = delete;
 	APartitionActor& operator=(const APartitionActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APartitionActor"); }
 
 	static bool IsPartitioned(const APartitionActor* Actor) { return NativeCall<bool, const APartitionActor*>(nullptr, "APartitionActor.IsPartitioned(APartitionActor*)", Actor); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APartitionActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APartitionActor"); }
 };

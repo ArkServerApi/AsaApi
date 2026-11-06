@@ -9,8 +9,8 @@ public:
 	~UDracoTargetComponent() = delete;
 	UDracoTargetComponent(const UDracoTargetComponent&) = delete;
 	UDracoTargetComponent& operator=(const UDracoTargetComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDracoTargetComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDracoTargetComponent"); }
 
 	float& MinClientPushIntervalField() { return *GetNativePointerField<float*>(this, "UDracoTargetComponent.MinClientPushInterval"); }
 	float& MinLocationDeltaField() { return *GetNativePointerField<float*>(this, "UDracoTargetComponent.MinLocationDelta"); }

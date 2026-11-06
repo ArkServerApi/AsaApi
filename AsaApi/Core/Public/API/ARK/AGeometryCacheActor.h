@@ -9,8 +9,8 @@ public:
 	~AGeometryCacheActor() = delete;
 	AGeometryCacheActor(const AGeometryCacheActor&) = delete;
 	AGeometryCacheActor& operator=(const AGeometryCacheActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGeometryCacheActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGeometryCacheActor"); }
 
 	UGeometryCacheComponent* GetGeometryCacheComponent() { return NativeCall<UGeometryCacheComponent*>(this, "AGeometryCacheActor.GetGeometryCacheComponent()"); }
 };

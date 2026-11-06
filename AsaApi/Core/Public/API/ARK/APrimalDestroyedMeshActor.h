@@ -9,8 +9,8 @@ public:
 	~APrimalDestroyedMeshActor() = delete;
 	APrimalDestroyedMeshActor(const APrimalDestroyedMeshActor&) = delete;
 	APrimalDestroyedMeshActor& operator=(const APrimalDestroyedMeshActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalDestroyedMeshActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalDestroyedMeshActor"); }
 
 	void BeginPlay() { NativeCall<void>(this, "APrimalDestroyedMeshActor.BeginPlay()"); }
 	void Destroyed() { NativeCall<void>(this, "APrimalDestroyedMeshActor.Destroyed()"); }

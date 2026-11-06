@@ -16,8 +16,8 @@ struct UPrimalAssets : UPrimalAssetsBase
 
 	static UClass* ClassAssetResolve(TSoftClassPtr<UObject>* Ptr) { return NativeCall<UClass*, TSoftClassPtr<UObject>*>(nullptr, "UPrimalAssets.ClassAssetResolve(TSoftClassPtr<UObject>)", Ptr); }
 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAssets"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAssets"); }
 
 	void RetainObject(UObject* obj) { NativeCall<void, UObject*>(this, "UPrimalAssets.RetainObject(UObject*)", obj); }
 	static UObject* Static_SyncResolveReference(const FSoftObjectPath& ref) { return NativeCall<UObject*, const FSoftObjectPath&>(nullptr, "UPrimalAssets.Static_SyncResolveReference(FSoftObjectPath&)", ref); }

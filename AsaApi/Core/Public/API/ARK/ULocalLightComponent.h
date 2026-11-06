@@ -11,14 +11,14 @@ public:
 	~ULocalLightComponent() = delete;
 	ULocalLightComponent(const ULocalLightComponent&) = delete;
 	ULocalLightComponent& operator=(const ULocalLightComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULocalLightComponent"); }
 
 	ELightUnits& IntensityUnitsField() { return *GetNativePointerField<ELightUnits*>(this, "ULocalLightComponent.IntensityUnits"); }
 	float& InverseExposureBlendField() { return *GetNativePointerField<float*>(this, "ULocalLightComponent.InverseExposureBlend"); }
 	float& Radius_DEPRECATEDField() { return *GetNativePointerField<float*>(this, "ULocalLightComponent.Radius_DEPRECATED"); }
 	float& AttenuationRadiusField() { return *GetNativePointerField<float*>(this, "ULocalLightComponent.AttenuationRadius"); }
 	FLightmassPointLightSettings& LightmassSettingsField() { return *GetNativePointerField<FLightmassPointLightSettings*>(this, "ULocalLightComponent.LightmassSettings"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULocalLightComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULocalLightComponent"); }
 	static float GetUnitsConversionFactor(ELightUnits SrcUnits, ELightUnits TargetUnits, float CosHalfConeAngle) { return NativeCall<float, ELightUnits, ELightUnits, float>(nullptr, "ULocalLightComponent.GetUnitsConversionFactor(ELightUnits,ELightUnits,float)", SrcUnits, TargetUnits, CosHalfConeAngle); }
 	void SendRenderTransform_Concurrent() { NativeCall<void>(this, "ULocalLightComponent.SendRenderTransform_Concurrent()"); }
 	void SetAttenuationRadius(float NewRadius) { NativeCall<void, float>(this, "ULocalLightComponent.SetAttenuationRadius(float)", NewRadius); }

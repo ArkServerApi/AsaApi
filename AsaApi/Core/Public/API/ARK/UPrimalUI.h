@@ -9,7 +9,7 @@ public:
 	~UPrimalUI() = delete;
 	UPrimalUI(const UPrimalUI&) = delete;
 	UPrimalUI& operator=(const UPrimalUI&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalUI"); }
 
 	bool& bAddedToViewportClientField() { return *GetNativePointerField<bool*>(this, "UPrimalUI.bAddedToViewportClient"); }
 	double& PressedSelectButtonTimeField() { return *GetNativePointerField<double*>(this, "UPrimalUI.PressedSelectButtonTime"); }
@@ -260,7 +260,7 @@ public:
 	void ProcessSplitscreenScaling(bool ScaleX) { NativeCall<void, bool>(this, "UPrimalUI.ProcessSplitscreenScaling(bool)", ScaleX); }
 	void SetRecentlyExpandedWidget(UWidget* widget) { NativeCall<void, UWidget*>(this, "UPrimalUI.SetRecentlyExpandedWidget(UWidget*)", widget); }
 	void ConfirmationDialogCancelled() { NativeCall<void>(this, "UPrimalUI.ConfirmationDialogCancelled()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalUI.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalUI"); }
 	static UPrimalUI* GetParentPrimalUI(const UWidget* aWidget) { return NativeCall<UPrimalUI*, const UWidget*>(nullptr, "UPrimalUI.GetParentPrimalUI(UWidget*)", aWidget); }
 	UPrimalUI* GetParentPrimalUI() { return NativeCall<UPrimalUI*>(this, "UPrimalUI.GetParentPrimalUI()"); }
 	static void PlayHapticEffect(APlayerController* PC, EHapticEffectType type, const UE::Math::TVector<double>& location, UWorld* world) { NativeCall<void, APlayerController*, EHapticEffectType, const UE::Math::TVector<double>&, UWorld*>(nullptr, "UPrimalUI.PlayHapticEffect(APlayerController*,EHapticEffectType,UE::Math::TVector<double>&,UWorld*)", PC, type, location, world); }

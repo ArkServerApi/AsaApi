@@ -9,7 +9,7 @@ public:
 	~UWaterBodyComponent() = delete;
 	UWaterBodyComponent(const UWaterBodyComponent&) = delete;
 	UWaterBodyComponent& operator=(const UWaterBodyComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterBodyComponent"); }
 
 	float& TargetWaveMaskDepthField() { return *GetNativePointerField<float*>(this, "UWaterBodyComponent.TargetWaveMaskDepth"); }
 	float& MaxWaveHeightOffsetField() { return *GetNativePointerField<float*>(this, "UWaterBodyComponent.MaxWaveHeightOffset"); }
@@ -108,7 +108,7 @@ public:
 	void OnComponentCollisionSettingsChanged(bool bUpdateOverlaps) { NativeCall<void, bool>(this, "UWaterBodyComponent.OnComponentCollisionSettingsChanged(bool)", bUpdateOverlaps); }
 	bool IsWaterSplineClosedLoop() { return NativeCall<bool>(this, "UWaterBodyComponent.IsWaterSplineClosedLoop()"); }
 	bool IsHLODRelevant() { return NativeCall<bool>(this, "UWaterBodyComponent.IsHLODRelevant()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UWaterBodyComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterBodyComponent"); }
 	void CopySharedCollisionSettingsToComponent(UPrimitiveComponent* InComponent) { NativeCall<void, UPrimitiveComponent*>(this, "UWaterBodyComponent.CopySharedCollisionSettingsToComponent(UPrimitiveComponent*)", InComponent); }
 	bool AffectsLandscape() { return NativeCall<bool>(this, "UWaterBodyComponent.AffectsLandscape()"); }
 	float GetWaterVelocityAtSplineInputKey(float InKey) { return NativeCall<float, float>(this, "UWaterBodyComponent.GetWaterVelocityAtSplineInputKey(float)", InKey); }

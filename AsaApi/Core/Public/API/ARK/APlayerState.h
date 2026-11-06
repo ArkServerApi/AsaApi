@@ -38,8 +38,8 @@ struct APlayerState : AInfo
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APlayerState.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APlayerState.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APlayerState"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APlayerState"); }
 	FString* GetPlayerNameCustom(FString* result) { return NativeCall<FString*, FString*>(this, "APlayerState.GetPlayerNameCustom()", result); }
 	//     bool IsSpectator() { return NativeCall<bool>(this, "APlayerState.IsSpectator()"); }
 	// FUNCTION MISSING: APlayerState.IsSpectator()

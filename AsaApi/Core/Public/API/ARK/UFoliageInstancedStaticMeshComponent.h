@@ -9,8 +9,8 @@ public:
 	~UFoliageInstancedStaticMeshComponent() = delete;
 	UFoliageInstancedStaticMeshComponent(const UFoliageInstancedStaticMeshComponent&) = delete;
 	UFoliageInstancedStaticMeshComponent& operator=(const UFoliageInstancedStaticMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFoliageInstancedStaticMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFoliageInstancedStaticMeshComponent"); }
 
 	FInstancePointDamageSignature& OnInstanceTakePointDamageField() { return *GetNativePointerField<FInstancePointDamageSignature*>(this, "UFoliageInstancedStaticMeshComponent.OnInstanceTakePointDamage"); }
 	FInstanceRadialDamageSignature& OnInstanceTakeRadialDamageField() { return *GetNativePointerField<FInstanceRadialDamageSignature*>(this, "UFoliageInstancedStaticMeshComponent.OnInstanceTakeRadialDamage"); }

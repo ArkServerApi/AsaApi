@@ -9,8 +9,8 @@ public:
 	~UPrimalInventoryDB() = delete;
 	UPrimalInventoryDB(const UPrimalInventoryDB&) = delete;
 	UPrimalInventoryDB& operator=(const UPrimalInventoryDB&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalInventoryDB"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalInventoryDB"); }
 
 	UClass* GetDBClass() { return NativeCall<UClass*>(this, "UPrimalInventoryDB.GetDBClass()"); }
 	void AddAsset(UClass* InventoryClass) { NativeCall<void, UClass*>(this, "UPrimalInventoryDB.AddAsset(UClass*)", InventoryClass); }

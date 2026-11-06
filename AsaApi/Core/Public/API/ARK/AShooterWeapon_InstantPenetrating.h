@@ -19,7 +19,7 @@ struct AShooterWeapon_InstantPenetrating : AShooterWeapon_Instant
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_InstantPenetrating"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterWeapon_InstantPenetrating();
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "AShooterWeapon_InstantPenetrating.Serialize(FStructuredArchiveRecord)", Record); }
@@ -35,4 +35,5 @@ struct AShooterWeapon_InstantPenetrating : AShooterWeapon_Instant
 	UE::Math::TVector<double>* FindExitHit(UE::Math::TVector<double>* result, FHitResult& OutHit, const FHitResult& Hit, const FCollisionQueryParams& TraceParams) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, FHitResult&, const FHitResult&, const FCollisionQueryParams&>(this, "AShooterWeapon_InstantPenetrating.FindExitHit(FHitResult&,FHitResult&,FCollisionQueryParams&)", result, OutHit, Hit, TraceParams); }
 	bool BPStopPenetratingAtHit(const FHitResult& CurrentHit, bool bIsEntryHit, float CurrentDistance, float CurrentMaxDistance) { return NativeCall<bool, const FHitResult&, bool, float, float>(this, "AShooterWeapon_InstantPenetrating.BPStopPenetratingAtHit(FHitResult&,bool,float,float)", CurrentHit, bIsEntryHit, CurrentDistance, CurrentMaxDistance); }
 	int PassiveUseAmmo(int Amount) { return NativeCall<int, int>(this, "AShooterWeapon_InstantPenetrating.PassiveUseAmmo(int)", Amount); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_InstantPenetrating"); }
 };

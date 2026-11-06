@@ -9,7 +9,7 @@ public:
 	~AISMPoolActor() = delete;
 	AISMPoolActor(const AISMPoolActor&) = delete;
 	AISMPoolActor& operator=(const AISMPoolActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AISMPoolActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AISMPoolActor"); }
 
 };

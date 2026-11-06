@@ -22,7 +22,7 @@ struct UStruct : UField
 	// Functions
 
 	bool IsChildOf(const UStruct* SomeBase) { return NativeCall<bool, const UStruct*>(this, "UStruct.IsChildOf(UStruct*)", SomeBase); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UStruct.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStruct"); }
 	void SerializeTaggedProperties(FArchive* Ar, unsigned __int8* Data, UStruct* DefaultsStruct, unsigned __int8* Defaults, const UObject* BreakRecursionIfFullyLoad) { NativeCall<void, FArchive*, unsigned __int8*, UStruct*, unsigned __int8*, const UObject*>(this, "UStruct.SerializeTaggedProperties(FStructuredArchiveSlot,unsignedchar*,UStruct*,unsignedchar*,UObject*)", Ar, Data, DefaultsStruct, Defaults, BreakRecursionIfFullyLoad); }
 	void SerializeBin(FArchive* Ar, void* Data) { NativeCall<void, FArchive*, void*>(this, "UStruct.SerializeBin(FStructuredArchiveSlot,void*)", Ar, Data); }
 	const wchar_t* GetPrefixCPP() { return NativeCall<const wchar_t*>(this, "UStruct.GetPrefixCPP()"); }
@@ -52,5 +52,5 @@ struct UStruct : UField
 	EExprToken SerializeExpr(int* iCode, FArchive* Ar) { return NativeCall<EExprToken, int*, FArchive*>(this, "UStruct.SerializeExpr(int&,FArchive&)", iCode, Ar); }
 	FProperty* FindPropertyByName(FName InName) { return NativeCall<FProperty*, FName>(this, "UStruct.FindPropertyByName(FName)", InName); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStruct"); }
 };

@@ -9,8 +9,8 @@ public:
 	~AWaterBodyRiver() = delete;
 	AWaterBodyRiver(const AWaterBodyRiver&) = delete;
 	AWaterBodyRiver& operator=(const AWaterBodyRiver&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterBodyRiver"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterBodyRiver"); }
 
 	void PostLoad() { NativeCall<void>(this, "AWaterBodyRiver.PostLoad()"); }
 };

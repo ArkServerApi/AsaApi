@@ -32,7 +32,7 @@ struct UClass : UStruct
 	// Functions
 
 	UObject* GetDefaultObject(bool bCreateIfNeeded) { return NativeCall<UObject*, bool>(this, "UClass.GetDefaultObject(bool)", bCreateIfNeeded); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UClass.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UClass"); }
 	void SerializeDefaultObject(UObject* Object, FArchive* Ar) { NativeCall<void, UObject*, FArchive*>(this, "UClass.SerializeDefaultObject(UObject*,FStructuredArchiveSlot)", Object, Ar); }
 	void PostLoadDefaultObject(UObject* Object) { NativeCall<void, UObject*>(this, "UClass.PostLoadDefaultObject(UObject*)", Object); }
 	void PostInitProperties() { NativeCall<void>(this, "UClass.PostInitProperties()"); }
@@ -74,5 +74,5 @@ struct UClass : UStruct
 	void AssembleReferenceTokenStream(bool bForce) { NativeCall<void, bool>(this, "UClass.AssembleReferenceTokenStream(bool)", bForce); }
 	void AssembleReferenceTokenStreamInternal(bool bForce) { NativeCall<void, bool>(this, "UClass.AssembleReferenceTokenStreamInternal(bool)", bForce); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UClass"); }
 };

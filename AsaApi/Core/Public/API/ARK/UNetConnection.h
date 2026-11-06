@@ -179,8 +179,8 @@ struct UNetConnection : UPlayer
 	void Close() { NativeCall<void>(this, "UNetConnection.Close()"); }
 	FString* RemoteAddressToString(FString* result) { return NativeCall<FString*, FString*>(this, "UNetConnection.RemoteAddressToString()", result); }
 	int GetAddrPort() { return NativeCall<int>(this, "UNetConnection.GetAddrPort()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UNetConnection.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNetConnection"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNetConnection"); }
 	void StartTickingChannel(UChannel* Channel) { NativeCall<void, UChannel*>(this, "UNetConnection.StartTickingChannel(UChannel*)", Channel); }
 	FString* LowLevelGetRemoteAddress(FString* result, bool bAppendPort) { return NativeCall<FString*, FString*, bool>(this, "UNetConnection.LowLevelGetRemoteAddress(bool)", result, bAppendPort); }
 	FString* LowLevelDescribe(FString* result) { return NativeCall<FString*, FString*>(this, "UNetConnection.LowLevelDescribe()", result); }

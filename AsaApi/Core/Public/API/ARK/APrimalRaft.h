@@ -30,7 +30,7 @@ struct APrimalRaft : APrimalDinoCharacter
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalRaft.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalRaft"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalRaft();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -78,7 +78,7 @@ struct APrimalRaft : APrimalDinoCharacter
 
 	FPrimalRaftSparseClassData* GetMutablePrimalRaftSparseClassData() { return const_cast<FPrimalRaftSparseClassData*>(GetPrimalRaftSparseClassData(EGetSparseClassDataMethod::CreateIfNull)); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalRaft"); }
 
 	UTexture2D*& IconField() { return *GetNativePointerField<UTexture2D**>(this, "APrimalRaft.Icon"); }
 	UTexture2D*& AnchorLoweringIconField() { return *GetNativePointerField<UTexture2D**>(this, "APrimalRaft.AnchorLoweringIcon"); }

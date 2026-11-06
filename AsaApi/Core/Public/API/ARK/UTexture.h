@@ -30,7 +30,7 @@ struct UTexture : UStreamableRenderAsset
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UTexture.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTexture"); }
 	const FString* GetAssetUserDataArray() { return NativeCall<const FString*>(this, "UTexture.GetAssetUserDataArray()"); }
 	EMaterialValueType GetMaterialType() { return NativeCall<EMaterialValueType>(this, "UTexture.GetMaterialType()"); }
 	FTextureResource* CreateResource() { return NativeCall<FTextureResource*>(this, "UTexture.CreateResource()"); }
@@ -73,5 +73,5 @@ struct UTexture : UStreamableRenderAsset
 	float GetSurfaceWidth() { return NativeCall<float>(this, "UTexture.GetSurfaceWidth()"); }
 	ETextureClass GetTextureClass() { return NativeCall<ETextureClass>(this, "UTexture.GetTextureClass()"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTexture"); }
 };

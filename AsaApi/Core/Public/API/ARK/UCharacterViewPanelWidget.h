@@ -9,8 +9,8 @@ public:
 	~UCharacterViewPanelWidget() = delete;
 	UCharacterViewPanelWidget(const UCharacterViewPanelWidget&) = delete;
 	UCharacterViewPanelWidget& operator=(const UCharacterViewPanelWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCharacterViewPanelWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCharacterViewPanelWidget"); }
 
 	FString& PreviewWidgetNameField() { return *GetNativePointerField<FString*>(this, "UCharacterViewPanelWidget.PreviewWidgetName"); }
 	float& prevZoomField() { return *GetNativePointerField<float*>(this, "UCharacterViewPanelWidget.prevZoom"); }

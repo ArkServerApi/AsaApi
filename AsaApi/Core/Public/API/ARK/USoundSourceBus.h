@@ -10,8 +10,8 @@ public:
 	~USoundSourceBus() = delete;
 	USoundSourceBus(const USoundSourceBus&) = delete;
 	USoundSourceBus& operator=(const USoundSourceBus&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundSourceBus"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundSourceBus"); }
 	float& SourceBusDurationField() { return *GetNativePointerField<float*>(this, "USoundSourceBus.SourceBusDuration"); }
 	BitFieldValue<bool, unsigned __int32> bAutoDeactivateWhenSilent() { return { this, "USoundSourceBus.bAutoDeactivateWhenSilent"}; }
 	bool IsSeekable() { return NativeCall<bool>(this, "USoundSourceBus.IsSeekable()"); }

@@ -9,8 +9,8 @@ public:
 	~UTradeItemButtonWidget() = delete;
 	UTradeItemButtonWidget(const UTradeItemButtonWidget&) = delete;
 	UTradeItemButtonWidget& operator=(const UTradeItemButtonWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTradeItemButtonWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTradeItemButtonWidget"); }
 
 	FName& ItemCostTextBlockNameField() { return *GetNativePointerField<FName*>(this, "UTradeItemButtonWidget.ItemCostTextBlockName"); }
 	FName& ItemQuantityTextBlockNameField() { return *GetNativePointerField<FName*>(this, "UTradeItemButtonWidget.ItemQuantityTextBlockName"); }

@@ -10,8 +10,8 @@ public:
 	~UStereoLayerComponent() = delete;
 	UStereoLayerComponent(const UStereoLayerComponent&) = delete;
 	UStereoLayerComponent& operator=(const UStereoLayerComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStereoLayerComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStereoLayerComponent"); }
 
 	TArray<FName, TSizedDefaultAllocator<32> >& AdditionalFlagsField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UStereoLayerComponent.AdditionalFlags"); }
 	UE::Math::TVector2<double>& QuadSizeField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "UStereoLayerComponent.QuadSize"); }

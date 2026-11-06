@@ -10,8 +10,8 @@ public:
 	~UDeviceProfile() = delete;
 	UDeviceProfile(const UDeviceProfile&) = delete;
 	UDeviceProfile& operator=(const UDeviceProfile&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDeviceProfile"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDeviceProfile"); }
 	FString& DeviceTypeField() { return *GetNativePointerField<FString*>(this, "UDeviceProfile.DeviceType"); }
 	FString& BaseProfileNameField() { return *GetNativePointerField<FString*>(this, "UDeviceProfile.BaseProfileName"); }
 	bool& bVisibleField() { return *GetNativePointerField<bool*>(this, "UDeviceProfile.bVisible"); }

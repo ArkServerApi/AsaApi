@@ -9,8 +9,8 @@ public:
 	~UMissionRequirementEntryWidget() = delete;
 	UMissionRequirementEntryWidget(const UMissionRequirementEntryWidget&) = delete;
 	UMissionRequirementEntryWidget& operator=(const UMissionRequirementEntryWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMissionRequirementEntryWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMissionRequirementEntryWidget"); }
 
 	FString& DisplayTextField() { return *GetNativePointerField<FString*>(this, "UMissionRequirementEntryWidget.DisplayText"); }
 	FName& CustomTagField() { return *GetNativePointerField<FName*>(this, "UMissionRequirementEntryWidget.CustomTag"); }

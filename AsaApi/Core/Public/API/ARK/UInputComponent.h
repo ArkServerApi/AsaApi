@@ -9,7 +9,7 @@ public:
 	~UInputComponent() = delete;
 	UInputComponent(const UInputComponent&) = delete;
 	UInputComponent& operator=(const UInputComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInputComponent"); }
 
 	int& PriorityField() { return *GetNativePointerField<int*>(this, "UInputComponent.Priority"); }
 	BitFieldValue<bool, unsigned char> bBlockInput() { return { this, "UInputComponent.bBlockInput"}; }
@@ -24,5 +24,5 @@ public:
 	void ClearActionBindings() { NativeCall<void>(this, "UInputComponent.ClearActionBindings()"); }
 	void ClearBindingsForObject(UObject* InOwner) { NativeCall<void, UObject*>(this, "UInputComponent.ClearBindingsForObject(UObject*)", InOwner); }
 	bool HasBindings() { return NativeCall<bool>(this, "UInputComponent.HasBindings()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UInputComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInputComponent"); }
 };

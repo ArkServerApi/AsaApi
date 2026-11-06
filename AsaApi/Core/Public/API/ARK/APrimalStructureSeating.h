@@ -51,7 +51,7 @@ struct APrimalStructureSeating : APrimalStructureItemContainer
     // Functions
 
     int BPGetBestSeatNumber_Implementation(AShooterPlayerController* ForPC, int InBestSeatNumber) { return NativeCall<int, AShooterPlayerController*, int>(this, "APrimalStructureSeating.BPGetBestSeatNumber_Implementation(AShooterPlayerController*,int)", ForPC, InBestSeatNumber); }
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureSeating.StaticClass()"); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureSeating"); }
     void BPSeatedPlayer(AShooterCharacter* SeatedChar, int AtSeatNumber) { NativeCall<void, AShooterCharacter*, int>(this, "APrimalStructureSeating.BPSeatedPlayer(AShooterCharacter*,int)", SeatedChar, AtSeatNumber); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureSeating();
@@ -84,7 +84,7 @@ struct APrimalStructureSeating : APrimalStructureItemContainer
 	bool& bFreeLookActiveField() { return *GetNativePointerField<bool*>(this, "APrimalStructureSeating.bFreeLookActive"); }
 	bool& bEnableTraceOnCanSeatField() { return *GetNativePointerField<bool*>(this, "APrimalStructureSeating.bEnableTraceOnCanSeat"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureSeating"); }
 
 	FName& LeftHandkdStaticMeshSocketNameField() { return *GetNativePointerField<FName*>(this, "APrimalStructureSeating.LeftHandkdStaticMeshSocketName"); }
 	FName& LeftHandkdSkeletalMeshSocketNameField() { return *GetNativePointerField<FName*>(this, "APrimalStructureSeating.LeftHandkdSkeletalMeshSocketName"); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalWorldBuffCustomImplement() = delete;
 	UPrimalWorldBuffCustomImplement(const UPrimalWorldBuffCustomImplement&) = delete;
 	UPrimalWorldBuffCustomImplement& operator=(const UPrimalWorldBuffCustomImplement&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalWorldBuffCustomImplement"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalWorldBuffCustomImplement"); }
 
 
 

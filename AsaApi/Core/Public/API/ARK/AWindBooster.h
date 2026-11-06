@@ -9,7 +9,7 @@ public:
 	~AWindBooster() = delete;
 	AWindBooster(const AWindBooster&) = delete;
 	AWindBooster& operator=(const AWindBooster&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWindBooster"); }
 
 	USceneComponent*& RootSceneComponentField() { return *GetNativePointerField<USceneComponent**>(this, "AWindBooster.RootSceneComponent"); }
 	UBoxComponent*& DetectionPlaneField() { return *GetNativePointerField<UBoxComponent**>(this, "AWindBooster.DetectionPlane"); }
@@ -25,7 +25,7 @@ public:
 	FGuid& UuidField() { return *GetNativePointerField<FGuid*>(this, "AWindBooster.Uuid"); }
 	float& CosThresholdField() { return *GetNativePointerField<float*>(this, "AWindBooster.CosThreshold"); }
 	FGuid* GetStableGUID_Implementation(FGuid* result) { return NativeCall<FGuid*, FGuid*>(this, "AWindBooster.GetStableGUID_Implementation()", result); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AWindBooster.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWindBooster"); }
 	void OnActivated(AShooterPlayerController* PC) { NativeCall<void, AShooterPlayerController*>(this, "AWindBooster.OnActivated(AShooterPlayerController*)", PC); }
 	void ApplyBoostToDragonBP(APrimalDinoCharacter* Dragon) { NativeCall<void, APrimalDinoCharacter*>(this, "AWindBooster.ApplyBoostToDragonBP(APrimalDinoCharacter*)", Dragon); }
 	void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex) { NativeCall<void, UPrimitiveComponent*, AActor*, UPrimitiveComponent*, int>(this, "AWindBooster.OnEndOverlap(UPrimitiveComponent*,AActor*,UPrimitiveComponent*,int)", OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex); }

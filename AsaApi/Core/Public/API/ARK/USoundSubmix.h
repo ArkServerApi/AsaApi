@@ -10,8 +10,8 @@ public:
 	~USoundSubmix() = delete;
 	USoundSubmix(const USoundSubmix&) = delete;
 	USoundSubmix& operator=(const USoundSubmix&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundSubmix"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundSubmix"); }
 	int& EnvelopeFollowerAttackTimeField() { return *GetNativePointerField<int*>(this, "USoundSubmix.EnvelopeFollowerAttackTime"); }
 	int& EnvelopeFollowerReleaseTimeField() { return *GetNativePointerField<int*>(this, "USoundSubmix.EnvelopeFollowerReleaseTime"); }
 	FSoundModulationDestinationSettings& OutputVolumeModulationField() { return *GetNativePointerField<FSoundModulationDestinationSettings*>(this, "USoundSubmix.OutputVolumeModulation"); }

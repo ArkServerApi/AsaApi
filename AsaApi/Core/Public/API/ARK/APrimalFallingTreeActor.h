@@ -9,8 +9,8 @@ public:
 	~APrimalFallingTreeActor() = delete;
 	APrimalFallingTreeActor(const APrimalFallingTreeActor&) = delete;
 	APrimalFallingTreeActor& operator=(const APrimalFallingTreeActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalFallingTreeActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalFallingTreeActor"); }
 
 	UStaticMeshComponent*& StaticMeshComponentField() { return *GetNativePointerField<UStaticMeshComponent**>(this, "APrimalFallingTreeActor.StaticMeshComponent"); }
 	UAudioComponent*& AudioComponentField() { return *GetNativePointerField<UAudioComponent**>(this, "APrimalFallingTreeActor.AudioComponent"); }

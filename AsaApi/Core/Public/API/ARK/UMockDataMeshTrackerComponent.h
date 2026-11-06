@@ -9,8 +9,8 @@ public:
 	~UMockDataMeshTrackerComponent() = delete;
 	UMockDataMeshTrackerComponent(const UMockDataMeshTrackerComponent&) = delete;
 	UMockDataMeshTrackerComponent& operator=(const UMockDataMeshTrackerComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMockDataMeshTrackerComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMockDataMeshTrackerComponent"); }
 
 	bool& ScanWorldField() { return *GetNativePointerField<bool*>(this, "UMockDataMeshTrackerComponent.ScanWorld"); }
 	bool& RequestNormalsField() { return *GetNativePointerField<bool*>(this, "UMockDataMeshTrackerComponent.RequestNormals"); }

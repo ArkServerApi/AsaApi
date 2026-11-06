@@ -10,8 +10,8 @@ public:
 	~USoundWave() = delete;
 	USoundWave(const USoundWave&) = delete;
 	USoundWave& operator=(const USoundWave&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USoundWave.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundWave"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundWave"); }
 	int& CompressionQualityField() { return *GetNativePointerField<int*>(this, "USoundWave.CompressionQuality"); }
 	int& StreamingPriorityField() { return *GetNativePointerField<int*>(this, "USoundWave.StreamingPriority"); }
 	FSoundModulationDefaultRoutingSettings& ModulationSettingsField() { return *GetNativePointerField<FSoundModulationDefaultRoutingSettings*>(this, "USoundWave.ModulationSettings"); }

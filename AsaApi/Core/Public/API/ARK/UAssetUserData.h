@@ -10,8 +10,8 @@ public:
 	~UAssetUserData() = delete;
 	UAssetUserData(const UAssetUserData&) = delete;
 	UAssetUserData& operator=(const UAssetUserData&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UAssetUserData.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAssetUserData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAssetUserData"); }
 	void DrawCanvas(FCanvas& Canvas, FSceneView& View) { NativeCall<void, FCanvas&, FSceneView&>(this, "UAssetUserData.DrawCanvas(FCanvas&,FSceneView&)", Canvas, View); }
 	void PostEditChangeOwner(const FPropertyChangedEvent& PropertyChangedEvent) { NativeCall<void, const FPropertyChangedEvent&>(this, "UAssetUserData.PostEditChangeOwner(FPropertyChangedEvent&)", PropertyChangedEvent); }
 	bool Merge(UAssetUserData* Other) { return NativeCall<bool, UAssetUserData*>(this, "UAssetUserData.Merge(UAssetUserData*const)", Other); }

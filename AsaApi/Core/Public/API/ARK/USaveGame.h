@@ -9,7 +9,7 @@ public:
 	~USaveGame() = delete;
 	USaveGame(const USaveGame&) = delete;
 	USaveGame& operator=(const USaveGame&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USaveGame.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USaveGame"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USaveGame"); }
 
 };

@@ -9,11 +9,11 @@ public:
 	~AOnlineBeaconHostObject() = delete;
 	AOnlineBeaconHostObject(const AOnlineBeaconHostObject&) = delete;
 	AOnlineBeaconHostObject& operator=(const AOnlineBeaconHostObject&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AOnlineBeaconHostObject"); }
 
 	FString& BeaconTypeNameField() { return *GetNativePointerField<FString*>(this, "AOnlineBeaconHostObject.BeaconTypeName"); }
 	EBeaconState::Type GetBeaconState() { return NativeCall<EBeaconState::Type>(this, "AOnlineBeaconHostObject.GetBeaconState()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AOnlineBeaconHostObject.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AOnlineBeaconHostObject"); }
 	void OnClientConnected(AOnlineBeaconClient* NewClientActor, UNetConnection* ClientConnection) { NativeCall<void, AOnlineBeaconClient*, UNetConnection*>(this, "AOnlineBeaconHostObject.OnClientConnected(AOnlineBeaconClient*,UNetConnection*)", NewClientActor, ClientConnection); }
 	void DisconnectClient(AOnlineBeaconClient* ClientActor) { NativeCall<void, AOnlineBeaconClient*>(this, "AOnlineBeaconHostObject.DisconnectClient(AOnlineBeaconClient*)", ClientActor); }
 	void Unregister() { NativeCall<void>(this, "AOnlineBeaconHostObject.Unregister()"); }

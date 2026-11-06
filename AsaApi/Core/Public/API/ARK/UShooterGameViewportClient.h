@@ -9,8 +9,8 @@ public:
 	~UShooterGameViewportClient() = delete;
 	UShooterGameViewportClient(const UShooterGameViewportClient&) = delete;
 	UShooterGameViewportClient& operator=(const UShooterGameViewportClient&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGameViewportClient"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGameViewportClient"); }
 
 	TArray<UObject*, TSizedDefaultAllocator<32> >& ViewPortWidgetsField() { return *GetNativePointerField<TArray<UObject*, TSizedDefaultAllocator<32> >*>(this, "UShooterGameViewportClient.ViewPortWidgets"); }
 	USoundBase*& LoadingMusicField() { return *GetNativePointerField<USoundBase**>(this, "UShooterGameViewportClient.LoadingMusic"); }

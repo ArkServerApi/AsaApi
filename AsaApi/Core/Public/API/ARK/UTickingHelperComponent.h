@@ -9,8 +9,8 @@ public:
 	~UTickingHelperComponent() = delete;
 	UTickingHelperComponent(const UTickingHelperComponent&) = delete;
 	UTickingHelperComponent& operator=(const UTickingHelperComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTickingHelperComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTickingHelperComponent"); }
 
 	FTimeRange& ThrottledTickTimeRangeField() { return *GetNativePointerField<FTimeRange*>(this, "UTickingHelperComponent.ThrottledTickTimeRange"); }
 	bool& bUsePerFrameTickEventsField() { return *GetNativePointerField<bool*>(this, "UTickingHelperComponent.bUsePerFrameTickEvents"); }

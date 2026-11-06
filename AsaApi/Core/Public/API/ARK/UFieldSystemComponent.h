@@ -9,8 +9,8 @@ public:
 	~UFieldSystemComponent() = delete;
 	UFieldSystemComponent(const UFieldSystemComponent&) = delete;
 	UFieldSystemComponent& operator=(const UFieldSystemComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldSystemComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldSystemComponent"); }
 
 	bool& bIsWorldFieldField() { return *GetNativePointerField<bool*>(this, "UFieldSystemComponent.bIsWorldField"); }
 	bool& bIsChaosFieldField() { return *GetNativePointerField<bool*>(this, "UFieldSystemComponent.bIsChaosField"); }

@@ -9,8 +9,8 @@ public:
 	~ASOTFNotificationDisplay() = delete;
 	ASOTFNotificationDisplay(const ASOTFNotificationDisplay&) = delete;
 	ASOTFNotificationDisplay& operator=(const ASOTFNotificationDisplay&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASOTFNotificationDisplay"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASOTFNotificationDisplay"); }
 
 	ASOTFNotification*& NotificationSystemField() { return *GetNativePointerField<ASOTFNotification**>(this, "ASOTFNotificationDisplay.NotificationSystem"); }
 	FBannerTextInfo& BannerTextField() { return *GetNativePointerField<FBannerTextInfo*>(this, "ASOTFNotificationDisplay.BannerText"); }

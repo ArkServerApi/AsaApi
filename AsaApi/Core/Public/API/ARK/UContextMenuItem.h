@@ -9,7 +9,7 @@ public:
 	~UContextMenuItem() = delete;
 	UContextMenuItem(const UContextMenuItem&) = delete;
 	UContextMenuItem& operator=(const UContextMenuItem&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenuItem"); }
 
 	FName& SubmenuMenuAnchorNameField() { return *GetNativePointerField<FName*>(this, "UContextMenuItem.SubmenuMenuAnchorName"); }
 	FName& SubmenuIndicatorNameField() { return *GetNativePointerField<FName*>(this, "UContextMenuItem.SubmenuIndicatorName"); }
@@ -36,7 +36,7 @@ public:
 	ETextJustify::Type GetJustification() { return NativeCall<ETextJustify::Type>(this, "UContextMenuItem.GetJustification()"); }
 	void InitializeMe(UContextMenu* WithParentContextMenu) { NativeCall<void, UContextMenu*>(this, "UContextMenuItem.InitializeMe(UContextMenu*)", WithParentContextMenu); }
 	void SetCaption(const FText& caption) { NativeCall<void, const FText&>(this, "UContextMenuItem.SetCaption(FText&)", caption); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UContextMenuItem.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenuItem"); }
 	void OnButtonClicked() { NativeCall<void>(this, "UContextMenuItem.OnButtonClicked()"); }
 	void InternalRefresh() { NativeCall<void>(this, "UContextMenuItem.InternalRefresh()"); }
 	UContextMenu* GetParentContextMenu() { return NativeCall<UContextMenu*>(this, "UContextMenuItem.GetParentContextMenu()"); }

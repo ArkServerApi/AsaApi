@@ -9,8 +9,8 @@ public:
 	~ATestBeaconClient() = delete;
 	ATestBeaconClient(const ATestBeaconClient&) = delete;
 	ATestBeaconClient& operator=(const ATestBeaconClient&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATestBeaconClient"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATestBeaconClient"); }
 
 	void OnFailure() { NativeCall<void>(this, "ATestBeaconClient.OnFailure()"); }
 	void ClientPing_Implementation() { NativeCall<void>(this, "ATestBeaconClient.ClientPing_Implementation()"); }

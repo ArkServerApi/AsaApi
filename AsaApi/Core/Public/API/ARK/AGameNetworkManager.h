@@ -56,10 +56,10 @@ struct AGameNetworkManager : AInfo
 
 	// Unavailable in UE 5.8.3: dependent class factory unavailable
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameNetworkManager"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameNetworkManager"); }
 	void EnableStandbyCheatDetection(bool bIsEnabled) { NativeCall<void, bool>(this, "AGameNetworkManager.EnableStandbyCheatDetection(bool)", bIsEnabled); }
 	void PostInitializeComponents() { NativeCall<void>(this, "AGameNetworkManager.PostInitializeComponents()"); }
 	void UpdateNetSpeedsTimer() { NativeCall<void>(this, "AGameNetworkManager.UpdateNetSpeedsTimer()"); }

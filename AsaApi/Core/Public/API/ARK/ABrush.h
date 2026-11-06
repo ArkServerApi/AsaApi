@@ -9,7 +9,7 @@ public:
 	~ABrush() = delete;
 	ABrush(const ABrush&) = delete;
 	ABrush& operator=(const ABrush&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABrush"); }
 
 	FColor& BrushColorField() { return *GetNativePointerField<FColor*>(this, "ABrush.BrushColor"); }
 	int& PolyFlagsField() { return *GetNativePointerField<int*>(this, "ABrush.PolyFlags"); }
@@ -21,7 +21,7 @@ public:
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "ABrush.IsLevelBoundsRelevant()"); }
 	bool IsStaticBrush() { return NativeCall<bool>(this, "ABrush.IsStaticBrush()"); }
 	bool NeedsLoadForServer() { return NativeCall<bool>(this, "ABrush.NeedsLoadForServer()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ABrush.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABrush"); }
 	bool IsBrushShape() { return NativeCall<bool>(this, "ABrush.IsBrushShape()"); }
 	bool NeedsLoadForClient() { return NativeCall<bool>(this, "ABrush.NeedsLoadForClient()"); }
 	bool IsComponentRelevantForNavigation(UActorComponent* Component) { return NativeCall<bool, UActorComponent*>(this, "ABrush.IsComponentRelevantForNavigation(UActorComponent*)", Component); }

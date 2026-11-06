@@ -9,8 +9,8 @@ public:
 	~AShooterPlayerCameraManager() = delete;
 	AShooterPlayerCameraManager(const AShooterPlayerCameraManager&) = delete;
 	AShooterPlayerCameraManager& operator=(const AShooterPlayerCameraManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterPlayerCameraManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterPlayerCameraManager"); }
 
 	FMinimalViewInfo& LastPreModifierCameraCacheField() { return *GetNativePointerField<FMinimalViewInfo*>(this, "AShooterPlayerCameraManager.LastPreModifierCameraCache"); }
 	float& NormalFOVField() { return *GetNativePointerField<float*>(this, "AShooterPlayerCameraManager.NormalFOV"); }

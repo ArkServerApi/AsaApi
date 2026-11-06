@@ -9,7 +9,7 @@ public:
 	~ACableActor() = delete;
 	ACableActor(const ACableActor&) = delete;
 	ACableActor& operator=(const ACableActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACableActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACableActor"); }
 
 };

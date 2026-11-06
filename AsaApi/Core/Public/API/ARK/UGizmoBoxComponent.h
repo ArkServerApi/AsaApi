@@ -9,8 +9,8 @@ public:
 	~UGizmoBoxComponent() = delete;
 	UGizmoBoxComponent(const UGizmoBoxComponent&) = delete;
 	UGizmoBoxComponent& operator=(const UGizmoBoxComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGizmoBoxComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGizmoBoxComponent"); }
 
 	UE::Math::TVector<double>& OriginField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UGizmoBoxComponent.Origin"); }
 	UE::Math::TVector<double>& DimensionsField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UGizmoBoxComponent.Dimensions"); }

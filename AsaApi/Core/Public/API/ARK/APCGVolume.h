@@ -9,7 +9,7 @@ public:
 	~APCGVolume() = delete;
 	APCGVolume(const APCGVolume&) = delete;
 	APCGVolume& operator=(const APCGVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APCGVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APCGVolume"); }
 
 };

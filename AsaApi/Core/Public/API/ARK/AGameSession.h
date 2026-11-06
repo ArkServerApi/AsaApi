@@ -18,8 +18,8 @@ struct AGameSession : AInfo
 	// Functions
 
 	void GetActorBounds(bool bOnlyCollidingComponents, UE::Math::TVector<double>* Origin, UE::Math::TVector<double>* BoxExtent, bool bIncludeFromChildActors) { NativeCall<void, bool, UE::Math::TVector<double>*, UE::Math::TVector<double>*, bool>(this, "AGameSession.GetActorBounds(bool,UE::Math::TVector<double>&,UE::Math::TVector<double>&,bool)", bOnlyCollidingComponents, Origin, BoxExtent, bIncludeFromChildActors); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AGameSession.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameSession"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameSession"); }
 	bool RequiresPushToTalk() { return NativeCall<bool>(this, "AGameSession.RequiresPushToTalk()"); }
 	void HandleMatchHasStarted() { NativeCall<void>(this, "AGameSession.HandleMatchHasStarted()"); }
 	void HandleMatchHasEnded() { NativeCall<void>(this, "AGameSession.HandleMatchHasEnded()"); }

@@ -45,7 +45,7 @@ struct AShooterGameSession : AGameSession
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterGameSession"); }
 	static UGameServerQuerySubsystem* GetNitradoSubsystem() { return NativeCall<UGameServerQuerySubsystem*>(nullptr, "AShooterGameSession.GetNitradoSubsystem()"); }
 	void OnStartOnlineGameComplete(FName WithSessionName, bool bWasSuccessful) { NativeCall<void, FName, bool>(this, "AShooterGameSession.OnStartOnlineGameComplete(FName,bool)", WithSessionName, bWasSuccessful); }
 	void HandleMatchHasStarted() { NativeCall<void>(this, "AShooterGameSession.HandleMatchHasStarted()"); }
@@ -92,4 +92,5 @@ struct AShooterGameSession : AGameSession
 	void CancelFindSessions() { NativeCall<void>(this, "AShooterGameSession.CancelFindSessions()"); }
 	void ClearDiscordResolvedSearchResult() { NativeCall<void>(this, "AShooterGameSession.ClearDiscordResolvedSearchResult()"); }
 	void RecreateSessionListenServer() { NativeCall<void>(this, "AShooterGameSession.RecreateSessionListenServer()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterGameSession"); }
 };

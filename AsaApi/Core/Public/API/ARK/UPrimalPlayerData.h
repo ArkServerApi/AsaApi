@@ -27,7 +27,7 @@ struct UPrimalPlayerData : UObject
 	// static void StaticRegisterNativesUPrimalPlayerData();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalPlayerData"); }
 	void ApplyToPlayerState(AShooterPlayerState* aPlayerState) { NativeCall<void, AShooterPlayerState*>(this, "UPrimalPlayerData.ApplyToPlayerState(AShooterPlayerState*)", aPlayerState); }
 	FString GetUniqueNetIdAsString() { using AsaReturnType = FString; alignas(AsaReturnType) unsigned char AsaReturnBytes[sizeof(AsaReturnType)]; auto* AsaReturnPointer = reinterpret_cast<AsaReturnType*>(AsaReturnBytes); auto* AsaReturnedPointer = NativeCall<AsaReturnType*, AsaReturnType*>(this, "UPrimalPlayerData.GetUniqueNetIdAsString()", AsaReturnPointer); if (AsaReturnedPointer != AsaReturnPointer) throw std::runtime_error("Unexpected native result buffer"); std::unique_ptr<AsaReturnType, void(*)(AsaReturnType*)> AsaReturnOwner(std::launder(AsaReturnPointer), [](AsaReturnType* value) { value->~AsaReturnType(); }); return MoveTemp(*AsaReturnOwner); }
 	void SetChibiLevels(int newLevels, AShooterPlayerController* ForPC) { NativeCall<void, int, AShooterPlayerController*>(this, "UPrimalPlayerData.SetChibiLevels(int,AShooterPlayerController*)", newLevels, ForPC); }
@@ -41,7 +41,7 @@ struct UPrimalPlayerData : UObject
 	void RefreshPersistentBuffs(AShooterCharacter* theChar, bool bFromInstigatorDeath, bool bFromDisconnect, bool bSkipBuffCall) { NativeCall<void, AShooterCharacter*, bool, bool, bool>(this, "UPrimalPlayerData.RefreshPersistentBuffs(AShooterCharacter*,bool,bool,bool)", theChar, bFromInstigatorDeath, bFromDisconnect, bSkipBuffCall); }
 	// Unavailable in UE 5.8.3: dependent class factory unavailable
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalPlayerData"); }
 	void SetChibiLevels_Implementation(int newLevels, AShooterPlayerController* ForPC) { NativeCall<void, int, AShooterPlayerController*>(this, "UPrimalPlayerData.SetChibiLevels_Implementation(int,AShooterPlayerController*)", newLevels, ForPC); }
 	void InitForPlayer(AShooterPlayerState* aPlayerState, bool bDontSaveGame) { NativeCall<void, AShooterPlayerState*, bool>(this, "UPrimalPlayerData.InitForPlayer(AShooterPlayerState*,bool)", aPlayerState, bDontSaveGame); }
 	void SaveToFile(FObjectWriter* Writer) { NativeCall<void, FObjectWriter*>(this, "UPrimalPlayerData.SaveToFile(FObjectWriter&,bool)", Writer); }

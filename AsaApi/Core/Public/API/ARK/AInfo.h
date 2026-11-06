@@ -10,8 +10,8 @@ struct AInfo : AActor
 
 	  // Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AInfo.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AInfo"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AInfo"); }
 	//void AInfo(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "AInfo.AInfo(FObjectInitializer*)", ObjectInitializer); }
 
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "AInfo.IsLevelBoundsRelevant()"); }

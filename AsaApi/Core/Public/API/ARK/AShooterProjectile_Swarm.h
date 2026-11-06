@@ -50,7 +50,7 @@ struct AShooterProjectile_Swarm : AShooterProjectile
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterProjectile_Swarm"); }
 	void BPGetBoidSpawnLocationAndVelocity(int BoidIndex, const FBoid* BoidData, UE::Math::TVector<double>* SpawnLocation, UE::Math::TVector<double>* SpawnVelocity) { NativeCall<void, int, const FBoid*, UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "AShooterProjectile_Swarm.BPGetBoidSpawnLocationAndVelocity(int,FBoid&,UE::Math::TVector<double>&,UE::Math::TVector<double>&)", BoidIndex, BoidData, SpawnLocation, SpawnVelocity); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterProjectile_Swarm();
@@ -75,4 +75,5 @@ struct AShooterProjectile_Swarm : AShooterProjectile
 	void LifeSpanExpired() { NativeCall<void>(this, "AShooterProjectile_Swarm.LifeSpanExpired()"); }
 	void BPOnBoidExplode(int BoidIndex, UFXSystemComponent* BoidParticles, const FHitResult& Hit) { NativeCall<void, int, UFXSystemComponent*, const FHitResult&>(this, "AShooterProjectile_Swarm.BPOnBoidExplode(int,UFXSystemComponent*,FHitResult&)", BoidIndex, BoidParticles, Hit); }
 	int GetNumberOfBoidsInFlight() { return NativeCall<int>(this, "AShooterProjectile_Swarm.GetNumberOfBoidsInFlight()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterProjectile_Swarm"); }
 };

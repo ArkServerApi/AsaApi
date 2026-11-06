@@ -22,7 +22,7 @@ struct APrimalStructureSign : APrimalStructure
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureSign"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureSign();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -49,4 +49,5 @@ struct APrimalStructureSign : APrimalStructure
 	void UpdatedSignText(UTextRenderComponent* TextRenderComponent) { NativeCall<void, UTextRenderComponent*>(this, "APrimalStructureSign.UpdatedSignText(UTextRenderComponent*)", TextRenderComponent); }
 	void MultiUpdateSignTextScale_Implementation(float newScale) { NativeCall<void, float>(this, "APrimalStructureSign.MultiUpdateSignTextScale_Implementation(float)", newScale); }
 	void OnRep_SignText(const FString& PreviousSignText) { NativeCall<void, const FString&>(this, "APrimalStructureSign.OnRep_SignText(FString&)", PreviousSignText); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureSign"); }
 };

@@ -9,8 +9,8 @@ public:
 	~UNavMeshRenderingComponent() = delete;
 	UNavMeshRenderingComponent(const UNavMeshRenderingComponent&) = delete;
 	UNavMeshRenderingComponent& operator=(const UNavMeshRenderingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavMeshRenderingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavMeshRenderingComponent"); }
 
 	FTimerHandle& TimerHandleField() { return *GetNativePointerField<FTimerHandle*>(this, "UNavMeshRenderingComponent.TimerHandle"); }
 	BitFieldValue<bool, unsigned __int32> bCollectNavigationData() { return { this, "UNavMeshRenderingComponent.bCollectNavigationData"}; }

@@ -9,7 +9,7 @@ public:
 	~UContextMenu() = delete;
 	UContextMenu(const UContextMenu&) = delete;
 	UContextMenu& operator=(const UContextMenu&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenu"); }
 
 	FName& CustomNameField() { return *GetNativePointerField<FName*>(this, "UContextMenu.CustomName"); }
 	UMenuAnchor*& ParentMenuAnchorField() { return *GetNativePointerField<UMenuAnchor**>(this, "UContextMenu.ParentMenuAnchor"); }
@@ -20,7 +20,7 @@ public:
 	void SetActiveItem(UContextMenuItem* item) { NativeCall<void, UContextMenuItem*>(this, "UContextMenu.SetActiveItem(UContextMenuItem*)", item); }
 	void CloseMenu(bool CloseParents) { NativeCall<void, bool>(this, "UContextMenu.CloseMenu(bool)", CloseParents); }
 	UPanelWidget* GetMainContainer() { return NativeCall<UPanelWidget*>(this, "UContextMenu.GetMainContainer()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UContextMenu.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenu"); }
 	void InternalPopulateMenu() { NativeCall<void>(this, "UContextMenu.InternalPopulateMenu()"); }
 	UContextMenuItem* GetActiveItem() { return NativeCall<UContextMenuItem*>(this, "UContextMenu.GetActiveItem()"); }
 };

@@ -9,8 +9,8 @@ public:
 	~UPhysicsConstraintComponent() = delete;
 	UPhysicsConstraintComponent(const UPhysicsConstraintComponent&) = delete;
 	UPhysicsConstraintComponent& operator=(const UPhysicsConstraintComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsConstraintComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsConstraintComponent"); }
 
 	FConstrainComponentPropName& ComponentName1Field() { return *GetNativePointerField<FConstrainComponentPropName*>(this, "UPhysicsConstraintComponent.ComponentName1"); }
 	FConstrainComponentPropName& ComponentName2Field() { return *GetNativePointerField<FConstrainComponentPropName*>(this, "UPhysicsConstraintComponent.ComponentName2"); }

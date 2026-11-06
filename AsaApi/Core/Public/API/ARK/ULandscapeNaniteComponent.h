@@ -9,8 +9,8 @@ public:
 	~ULandscapeNaniteComponent() = delete;
 	ULandscapeNaniteComponent(const ULandscapeNaniteComponent&) = delete;
 	ULandscapeNaniteComponent& operator=(const ULandscapeNaniteComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeNaniteComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeNaniteComponent"); }
 
 	FGuid& ProxyContentIdField() { return *GetNativePointerField<FGuid*>(this, "ULandscapeNaniteComponent.ProxyContentId"); }
 	bool& bEnabledField() { return *GetNativePointerField<bool*>(this, "ULandscapeNaniteComponent.bEnabled"); }

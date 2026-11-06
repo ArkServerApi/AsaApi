@@ -9,8 +9,8 @@ public:
 	~USceneCaptureComponent2D() = delete;
 	USceneCaptureComponent2D(const USceneCaptureComponent2D&) = delete;
 	USceneCaptureComponent2D& operator=(const USceneCaptureComponent2D&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USceneCaptureComponent2D"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USceneCaptureComponent2D"); }
 
 	TEnumAsByte<ECameraProjectionMode::Type>& ProjectionTypeField() { return *GetNativePointerField<TEnumAsByte<ECameraProjectionMode::Type>*>(this, "USceneCaptureComponent2D.ProjectionType"); }
 	float& FOVAngleField() { return *GetNativePointerField<float*>(this, "USceneCaptureComponent2D.FOVAngle"); }

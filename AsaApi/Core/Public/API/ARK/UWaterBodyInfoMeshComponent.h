@@ -9,8 +9,8 @@ public:
 	~UWaterBodyInfoMeshComponent() = delete;
 	UWaterBodyInfoMeshComponent(const UWaterBodyInfoMeshComponent&) = delete;
 	UWaterBodyInfoMeshComponent& operator=(const UWaterBodyInfoMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterBodyInfoMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterBodyInfoMeshComponent"); }
 
 	bool& bIsDilatedMeshField() { return *GetNativePointerField<bool*>(this, "UWaterBodyInfoMeshComponent.bIsDilatedMesh"); }
 	bool& bIsConservativeRasterCompatibleField() { return *GetNativePointerField<bool*>(this, "UWaterBodyInfoMeshComponent.bIsConservativeRasterCompatible"); }

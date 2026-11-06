@@ -68,7 +68,7 @@ struct APrimalStructureItemContainer_SupplyCrate : APrimalStructureItemContainer
 
     // Functions
 
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureItemContainer_SupplyCrate.StaticClass()"); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_SupplyCrate"); }
     void OnRep_FinishedCrateMovement() { NativeCall<void>(this, "APrimalStructureItemContainer_SupplyCrate.OnRep_FinishedCrateMovement()"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureItemContainer_SupplyCrate();
@@ -92,7 +92,7 @@ struct APrimalStructureItemContainer_SupplyCrate : APrimalStructureItemContainer
 	bool& bSetsRandomWithoutReplacementField() { return *GetNativePointerField<bool*>(this, "APrimalStructureItemContainer_SupplyCrate.bSetsRandomWithoutReplacement"); }
 	bool& bIsUnderWaterCrateField() { return *GetNativePointerField<bool*>(this, "APrimalStructureItemContainer_SupplyCrate.bIsUnderWaterCrate"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_SupplyCrate"); }
 
 	ECrateMovementMode& CrateMovementModeField() { return *GetNativePointerField<ECrateMovementMode*>(this, "APrimalStructureItemContainer_SupplyCrate.CrateMovementMode"); }
 	BitFieldValue<bool, unsigned char> bInventoryAccessOnlyActivated() { return { this, "APrimalStructureItemContainer_SupplyCrate.bInventoryAccessOnlyActivated"}; }

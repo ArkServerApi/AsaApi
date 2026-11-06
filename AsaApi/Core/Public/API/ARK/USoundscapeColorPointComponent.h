@@ -9,8 +9,8 @@ public:
 	~USoundscapeColorPointComponent() = delete;
 	USoundscapeColorPointComponent(const USoundscapeColorPointComponent&) = delete;
 	USoundscapeColorPointComponent& operator=(const USoundscapeColorPointComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundscapeColorPointComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundscapeColorPointComponent"); }
 
 	FGameplayTag& ColorPointField() { return *GetNativePointerField<FGameplayTag*>(this, "USoundscapeColorPointComponent.ColorPoint"); }
 	void BeginPlay() { NativeCall<void>(this, "USoundscapeColorPointComponent.BeginPlay()"); }

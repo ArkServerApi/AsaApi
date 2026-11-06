@@ -9,8 +9,8 @@ public:
 	~UOperatorField() = delete;
 	UOperatorField(const UOperatorField&) = delete;
 	UOperatorField& operator=(const UOperatorField&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UOperatorField"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UOperatorField"); }
 
 	float& MagnitudeField() { return *GetNativePointerField<float*>(this, "UOperatorField.Magnitude"); }
 	bool ResultsExpector() { return NativeCall<bool>(this, "UOperatorField.ResultsExpector()"); }

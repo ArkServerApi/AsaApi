@@ -10,8 +10,8 @@ public:
 	~UPhysicalMaterialMask() = delete;
 	UPhysicalMaterialMask(const UPhysicalMaterialMask&) = delete;
 	UPhysicalMaterialMask& operator=(const UPhysicalMaterialMask&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicalMaterialMask"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicalMaterialMask"); }
 	int& UVChannelIndexField() { return *GetNativePointerField<int*>(this, "UPhysicalMaterialMask.UVChannelIndex"); }
 	void PostLoad() { NativeCall<void>(this, "UPhysicalMaterialMask.PostLoad()"); }
 	void FinishDestroy() { NativeCall<void>(this, "UPhysicalMaterialMask.FinishDestroy()"); }

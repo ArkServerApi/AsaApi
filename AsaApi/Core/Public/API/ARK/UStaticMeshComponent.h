@@ -52,8 +52,8 @@ struct UStaticMeshComponent : UMeshComponent
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UStaticMeshComponent.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UStaticMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStaticMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStaticMeshComponent"); }
 	bool GetShadowIndirectOnly() { return NativeCall<bool>(this, "UStaticMeshComponent.GetShadowIndirectOnly()"); }
 	void PropagateLightingScenarioChange() { NativeCall<void>(this, "UStaticMeshComponent.PropagateLightingScenarioChange()"); }
 	bool BuildTextureStreamingDataImpl(ETextureStreamingBuildType BuildType, EMaterialQualityLevel::Type QualityLevel, ERHIFeatureLevel::Type FeatureLevel, TSet<FGuid, DefaultKeyFuncs<FGuid, 0>, FDefaultSetAllocator>* DependentResources, bool* bOutSupportsBuildTextureStreamingData) { return NativeCall<bool, ETextureStreamingBuildType, EMaterialQualityLevel::Type, ERHIFeatureLevel::Type, TSet<FGuid, DefaultKeyFuncs<FGuid, 0>, FDefaultSetAllocator>*, bool*>(this, "UStaticMeshComponent.BuildTextureStreamingDataImpl(ETextureStreamingBuildType,EMaterialQualityLevel::Type,ERHIFeatureLevel::Type,TSet<FGuid,DefaultKeyFuncs<FGuid,0>,FDefaultSetAllocator>&,bool&)", BuildType, QualityLevel, FeatureLevel, DependentResources, bOutSupportsBuildTextureStreamingData); }

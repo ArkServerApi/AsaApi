@@ -10,8 +10,8 @@ public:
 	~UFoliageConeAttractionComponent() = delete;
 	UFoliageConeAttractionComponent(const UFoliageConeAttractionComponent&) = delete;
 	UFoliageConeAttractionComponent& operator=(const UFoliageConeAttractionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFoliageConeAttractionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFoliageConeAttractionComponent"); }
 
 	double& CurrentConeLengthField() { return *GetNativePointerField<double*>(this, "UFoliageConeAttractionComponent.CurrentConeLength"); }
 	double& ConeTanHalfAngleField() { return *GetNativePointerField<double*>(this, "UFoliageConeAttractionComponent.ConeTanHalfAngle"); }

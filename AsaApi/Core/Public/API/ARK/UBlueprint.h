@@ -10,8 +10,8 @@ public:
 	~UBlueprint() = delete;
 	UBlueprint(const UBlueprint&) = delete;
 	UBlueprint& operator=(const UBlueprint&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBlueprint.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBlueprint"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBlueprint"); }
 	int& BlueprintSystemVersionField() { return *GetNativePointerField<int*>(this, "UBlueprint.BlueprintSystemVersion"); }
 	BitFieldValue<bool, unsigned char> bRecompileOnLoad() { return { this, "UBlueprint.bRecompileOnLoad"}; }
 	BitFieldValue<bool, unsigned char> bHasBeenRegenerated() { return { this, "UBlueprint.bHasBeenRegenerated"}; }

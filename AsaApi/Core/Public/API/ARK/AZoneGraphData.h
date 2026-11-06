@@ -9,8 +9,8 @@ public:
 	~AZoneGraphData() = delete;
 	AZoneGraphData(const AZoneGraphData&) = delete;
 	AZoneGraphData& operator=(const AZoneGraphData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AZoneGraphData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AZoneGraphData"); }
 
 	bool& bRegisteredField() { return *GetNativePointerField<bool*>(this, "AZoneGraphData.bRegistered"); }
 	bool& bEnableDrawingField() { return *GetNativePointerField<bool*>(this, "AZoneGraphData.bEnableDrawing"); }

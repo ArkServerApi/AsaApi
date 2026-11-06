@@ -9,8 +9,8 @@ public:
 	~UDyeRegionButtonWidget() = delete;
 	UDyeRegionButtonWidget(const UDyeRegionButtonWidget&) = delete;
 	UDyeRegionButtonWidget& operator=(const UDyeRegionButtonWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDyeRegionButtonWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDyeRegionButtonWidget"); }
 
 	FLinearColor& DefaultBackgroundColorField() { return *GetNativePointerField<FLinearColor*>(this, "UDyeRegionButtonWidget.DefaultBackgroundColor"); }
 	FLinearColor& DefaultPreviewColorField() { return *GetNativePointerField<FLinearColor*>(this, "UDyeRegionButtonWidget.DefaultPreviewColor"); }

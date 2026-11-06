@@ -9,7 +9,7 @@ public:
 	~UGameEngine() = delete;
 	UGameEngine(const UGameEngine&) = delete;
 	UGameEngine& operator=(const UGameEngine&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGameEngine.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameEngine"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameEngine"); }
 
 };

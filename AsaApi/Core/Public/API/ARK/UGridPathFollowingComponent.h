@@ -9,8 +9,8 @@ public:
 	~UGridPathFollowingComponent() = delete;
 	UGridPathFollowingComponent(const UGridPathFollowingComponent&) = delete;
 	UGridPathFollowingComponent& operator=(const UGridPathFollowingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGridPathFollowingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGridPathFollowingComponent"); }
 
 	int& ActiveGridIdxField() { return *GetNativePointerField<int*>(this, "UGridPathFollowingComponent.ActiveGridIdx"); }
 	int& ActiveGridIdField() { return *GetNativePointerField<int*>(this, "UGridPathFollowingComponent.ActiveGridId"); }

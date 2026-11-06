@@ -14,7 +14,7 @@ struct UTexture2D : UTexture
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UTexture2D.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTexture2D"); }
 	TextureAddress GetTextureAddressY() { return NativeCall<TextureAddress>(this, "UTexture2D.GetTextureAddressY()"); }
 	TextureAddress GetTextureAddressX() { return NativeCall<TextureAddress>(this, "UTexture2D.GetTextureAddressX()"); }
 	float GetSurfaceHeight() { return NativeCall<float>(this, "UTexture2D.GetSurfaceHeight()"); }
@@ -49,5 +49,5 @@ struct UTexture2D : UTexture
 	bool StreamOut(int NewMipCount) { return NativeCall<bool, int>(this, "UTexture2D.StreamOut(int)", NewMipCount); }
 	void GetMipData(int FirstMipToLoad, void** OutMipData) { NativeCall<void, int, void**>(this, "UTexture2D.GetMipData(int,void**)", FirstMipToLoad, OutMipData); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTexture2D"); }
 };

@@ -41,7 +41,7 @@ struct APrimalStructureUnderwaterBase : APrimalStructureItemContainer
 
     // Functions
 
-    static UClass* GetPrivateStaticClass() { return static_cast<UClass*>(Globals::StaticFindObject(UClass::GetPrivateStaticClass(), nullptr, TEXT("/Script/ShooterGame.PrimalStructureUnderwaterBase"), false)); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureUnderwaterBase"); }
     void SetPortholeState(int index, int NewState) { NativeCall<void, int, int>(this, "APrimalStructureUnderwaterBase.SetPortholeState(int,int)", index, NewState); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureUnderwaterBase();
@@ -75,7 +75,7 @@ struct APrimalStructureUnderwaterBase : APrimalStructureItemContainer
     void UpdateLockState(APlayerController* PC, bool DoLock, bool bDontIncrementTagger) { NativeCall<void, APlayerController*, bool, bool>(this, "APrimalStructureUnderwaterBase.UpdateLockState(APlayerController*,bool,bool)", PC, DoLock, bDontIncrementTagger); }
     bool ApplyPinCode(AShooterPlayerController* ForPC, int appledPinCode, bool bIsSetting, int TheCustomIndex) { return NativeCall<bool, AShooterPlayerController*, int, bool, int>(this, "APrimalStructureUnderwaterBase.ApplyPinCode(AShooterPlayerController*,int,bool,int)", ForPC, appledPinCode, bIsSetting, TheCustomIndex); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureUnderwaterBase"); }
 
 	BitFieldValue<bool, unsigned char> bPreventAddingPortholeMUEntries() { return { this, "APrimalStructureUnderwaterBase.bPreventAddingPortholeMUEntries"}; }
 	bool IsInsideBase_Implementation(const UE::Math::TVector<double>& AtPoint) { return NativeCall<bool, const UE::Math::TVector<double>&>(this, "APrimalStructureUnderwaterBase.IsInsideBase_Implementation(UE::Math::TVector<double>&)", AtPoint); }

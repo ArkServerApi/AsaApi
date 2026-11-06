@@ -9,8 +9,8 @@ public:
 	~UPrimalPlayerStatusComponent() = delete;
 	UPrimalPlayerStatusComponent(const UPrimalPlayerStatusComponent&) = delete;
 	UPrimalPlayerStatusComponent& operator=(const UPrimalPlayerStatusComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalPlayerStatusComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalPlayerStatusComponent"); }
 
 
 

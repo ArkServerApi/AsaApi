@@ -9,8 +9,8 @@ public:
 	~AGameplayAbilityTargetActor_Radius() = delete;
 	AGameplayAbilityTargetActor_Radius(const AGameplayAbilityTargetActor_Radius&) = delete;
 	AGameplayAbilityTargetActor_Radius& operator=(const AGameplayAbilityTargetActor_Radius&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayAbilityTargetActor_Radius"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayAbilityTargetActor_Radius"); }
 
 	float& RadiusField() { return *GetNativePointerField<float*>(this, "AGameplayAbilityTargetActor_Radius.Radius"); }
 	void StartTargeting(UGameplayAbility* InAbility) { NativeCall<void, UGameplayAbility*>(this, "AGameplayAbilityTargetActor_Radius.StartTargeting(UGameplayAbility*)", InAbility); }

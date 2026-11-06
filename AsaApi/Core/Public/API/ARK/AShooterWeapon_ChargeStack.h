@@ -10,8 +10,8 @@ public:
 	~AShooterWeapon_ChargeStack() = delete;
 	AShooterWeapon_ChargeStack(const AShooterWeapon_ChargeStack&) = delete;
 	AShooterWeapon_ChargeStack& operator=(const AShooterWeapon_ChargeStack&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_ChargeStack"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_ChargeStack"); }
 
 	int& ChargeStacksMaxField() { return *GetNativePointerField<int*>(this, "AShooterWeapon_ChargeStack.ChargeStacksMax"); }
 	float& ChargeStackRechargeSecondsField() { return *GetNativePointerField<float*>(this, "AShooterWeapon_ChargeStack.ChargeStackRechargeSeconds"); }

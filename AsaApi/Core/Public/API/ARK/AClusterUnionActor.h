@@ -9,7 +9,7 @@ public:
 	~AClusterUnionActor() = delete;
 	AClusterUnionActor(const AClusterUnionActor&) = delete;
 	AClusterUnionActor& operator=(const AClusterUnionActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AClusterUnionActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AClusterUnionActor"); }
 
 };

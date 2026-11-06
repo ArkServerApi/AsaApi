@@ -9,8 +9,8 @@ public:
 	~URadialForceComponent() = delete;
 	URadialForceComponent(const URadialForceComponent&) = delete;
 	URadialForceComponent& operator=(const URadialForceComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URadialForceComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URadialForceComponent"); }
 
 	float& RadiusField() { return *GetNativePointerField<float*>(this, "URadialForceComponent.Radius"); }
 	float& ImpulseStrengthField() { return *GetNativePointerField<float*>(this, "URadialForceComponent.ImpulseStrength"); }

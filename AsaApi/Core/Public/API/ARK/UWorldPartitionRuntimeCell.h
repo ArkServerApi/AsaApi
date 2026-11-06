@@ -10,8 +10,8 @@ public:
 	~UWorldPartitionRuntimeCell() = delete;
 	UWorldPartitionRuntimeCell(const UWorldPartitionRuntimeCell&) = delete;
 	UWorldPartitionRuntimeCell& operator=(const UWorldPartitionRuntimeCell&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UWorldPartitionRuntimeCell.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldPartitionRuntimeCell"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldPartitionRuntimeCell"); }
 	bool& bIsAlwaysLoadedField() { return *GetNativePointerField<bool*>(this, "UWorldPartitionRuntimeCell.bIsAlwaysLoaded"); }
 	bool& bIsSpatiallyLoadedField() { return *GetNativePointerField<bool*>(this, "UWorldPartitionRuntimeCell.bIsSpatiallyLoaded"); }
 	FDataLayerInstanceNames& DataLayersField() { return *GetNativePointerField<FDataLayerInstanceNames*>(this, "UWorldPartitionRuntimeCell.DataLayers"); }

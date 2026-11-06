@@ -9,7 +9,7 @@ public:
 	~UPrimalAnimInstance() = delete;
 	UPrimalAnimInstance(const UPrimalAnimInstance&) = delete;
 	UPrimalAnimInstance& operator=(const UPrimalAnimInstance&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAnimInstance"); }
 
 	APrimalCharacter*& MyPrimalCharOwnerField() { return *GetNativePointerField<APrimalCharacter**>(this, "UPrimalAnimInstance.MyPrimalCharOwner"); }
 	UPrimalCharacterMovement*& MyPrimalMovementCompField() { return *GetNativePointerField<UPrimalCharacterMovement**>(this, "UPrimalAnimInstance.MyPrimalMovementComp"); }
@@ -35,7 +35,7 @@ public:
 	void CacheTraversalAnimationVars(float DeltaTime) { NativeCall<void, float>(this, "UPrimalAnimInstance.CacheTraversalAnimationVars(float)", DeltaTime); }
 	void ForceUpdateOnGameThread(float DeltaTime) { NativeCall<void, float>(this, "UPrimalAnimInstance.ForceUpdateOnGameThread(float)", DeltaTime); }
 	void BlendSpacePlayerBase_InitializeBlendFilter(FBlendFilter& BlendFilter) { NativeCall<void, FBlendFilter&>(this, "UPrimalAnimInstance.BlendSpacePlayerBase_InitializeBlendFilter(FBlendFilter&)", BlendFilter); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAnimInstance.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAnimInstance"); }
 	APrimalDinoCharacter* TryGetPawnOwnerAsDino() { return NativeCall<APrimalDinoCharacter*>(this, "UPrimalAnimInstance.TryGetPawnOwnerAsDino()"); }
 	APrimalStructureTurret* TryGetOwnerAsTurret() { return NativeCall<APrimalStructureTurret*>(this, "UPrimalAnimInstance.TryGetOwnerAsTurret()"); }
 };

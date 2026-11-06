@@ -9,8 +9,8 @@ public:
 	~UTargetingInfoToolTipWidget() = delete;
 	UTargetingInfoToolTipWidget(const UTargetingInfoToolTipWidget&) = delete;
 	UTargetingInfoToolTipWidget& operator=(const UTargetingInfoToolTipWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTargetingInfoToolTipWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTargetingInfoToolTipWidget"); }
 
 	AShooterPlayerController*& ForPCField() { return *GetNativePointerField<AShooterPlayerController**>(this, "UTargetingInfoToolTipWidget.ForPC"); }
 	UTextBlock*& TitleLabelField() { return *GetNativePointerField<UTextBlock**>(this, "UTargetingInfoToolTipWidget.TitleLabel"); }

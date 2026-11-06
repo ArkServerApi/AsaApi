@@ -9,8 +9,8 @@ public:
 	~UPrimalRichTextBlock() = delete;
 	UPrimalRichTextBlock(const UPrimalRichTextBlock&) = delete;
 	UPrimalRichTextBlock& operator=(const UPrimalRichTextBlock&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalRichTextBlock"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalRichTextBlock"); }
 
 	FText& TextField() { return *GetNativePointerField<FText*>(this, "UPrimalRichTextBlock.Text"); }
 	TEnumAsByte<ETextJustify::Type>& JustificationField() { return *GetNativePointerField<TEnumAsByte<ETextJustify::Type>*>(this, "UPrimalRichTextBlock.Justification"); }

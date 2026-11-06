@@ -9,8 +9,8 @@ public:
 	~ALevelStreamingVolume() = delete;
 	ALevelStreamingVolume(const ALevelStreamingVolume&) = delete;
 	ALevelStreamingVolume& operator=(const ALevelStreamingVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALevelStreamingVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALevelStreamingVolume"); }
 
 	TArray<FName, TSizedDefaultAllocator<32> >& StreamingLevelNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "ALevelStreamingVolume.StreamingLevelNames"); }
 	BitFieldValue<bool, unsigned __int32> bEditorPreVisOnly() { return { this, "ALevelStreamingVolume.bEditorPreVisOnly"}; }

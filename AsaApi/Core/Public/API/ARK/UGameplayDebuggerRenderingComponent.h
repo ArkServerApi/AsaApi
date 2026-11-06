@@ -9,8 +9,8 @@ public:
 	~UGameplayDebuggerRenderingComponent() = delete;
 	UGameplayDebuggerRenderingComponent(const UGameplayDebuggerRenderingComponent&) = delete;
 	UGameplayDebuggerRenderingComponent& operator=(const UGameplayDebuggerRenderingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGameplayDebuggerRenderingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGameplayDebuggerRenderingComponent"); }
 
 	FGameplayDebuggerDebugDrawDelegateHelper& GameplayDebuggerDebugDrawDelegateHelperField() { return *GetNativePointerField<FGameplayDebuggerDebugDrawDelegateHelper*>(this, "UGameplayDebuggerRenderingComponent.GameplayDebuggerDebugDrawDelegateHelper"); }
 	FDebugRenderSceneProxy* CreateDebugSceneProxy() { return NativeCall<FDebugRenderSceneProxy*>(this, "UGameplayDebuggerRenderingComponent.CreateDebugSceneProxy()"); }

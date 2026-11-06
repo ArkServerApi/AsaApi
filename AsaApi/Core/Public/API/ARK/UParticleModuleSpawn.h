@@ -10,8 +10,8 @@ public:
 	~UParticleModuleSpawn() = delete;
 	UParticleModuleSpawn(const UParticleModuleSpawn&) = delete;
 	UParticleModuleSpawn& operator=(const UParticleModuleSpawn&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleModuleSpawn"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleModuleSpawn"); }
 	FRawDistributionFloat& RateField() { return *GetNativePointerField<FRawDistributionFloat*>(this, "UParticleModuleSpawn.Rate"); }
 	FRawDistributionFloat& RateScaleField() { return *GetNativePointerField<FRawDistributionFloat*>(this, "UParticleModuleSpawn.RateScale"); }
 	FRawDistributionFloat& BurstScaleField() { return *GetNativePointerField<FRawDistributionFloat*>(this, "UParticleModuleSpawn.BurstScale"); }

@@ -9,8 +9,8 @@ public:
 	~ULocalFogVolumeComponent() = delete;
 	ULocalFogVolumeComponent(const ULocalFogVolumeComponent&) = delete;
 	ULocalFogVolumeComponent& operator=(const ULocalFogVolumeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULocalFogVolumeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULocalFogVolumeComponent"); }
 
 	float& RadialFogExtinctionField() { return *GetNativePointerField<float*>(this, "ULocalFogVolumeComponent.RadialFogExtinction"); }
 	float& HeightFogExtinctionField() { return *GetNativePointerField<float*>(this, "ULocalFogVolumeComponent.HeightFogExtinction"); }

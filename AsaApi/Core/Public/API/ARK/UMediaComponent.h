@@ -9,8 +9,8 @@ public:
 	~UMediaComponent() = delete;
 	UMediaComponent(const UMediaComponent&) = delete;
 	UMediaComponent& operator=(const UMediaComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMediaComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMediaComponent"); }
 
 	void OnRegister() { NativeCall<void>(this, "UMediaComponent.OnRegister()"); }
 	UMediaPlayer* GetMediaPlayer() { return NativeCall<UMediaPlayer*>(this, "UMediaComponent.GetMediaPlayer()"); }

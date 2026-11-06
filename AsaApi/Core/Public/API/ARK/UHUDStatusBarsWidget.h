@@ -9,8 +9,8 @@ public:
 	~UHUDStatusBarsWidget() = delete;
 	UHUDStatusBarsWidget(const UHUDStatusBarsWidget&) = delete;
 	UHUDStatusBarsWidget& operator=(const UHUDStatusBarsWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHUDStatusBarsWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHUDStatusBarsWidget"); }
 
 	TWeakObjectPtr<APrimalCharacter, FWeakObjectPtr>& ForPrimalCharacterField() { return *GetNativePointerField<TWeakObjectPtr<APrimalCharacter, FWeakObjectPtr>*>(this, "UHUDStatusBarsWidget.ForPrimalCharacter"); }
 	FString& HealthBarNameField() { return *GetNativePointerField<FString*>(this, "UHUDStatusBarsWidget.HealthBarName"); }

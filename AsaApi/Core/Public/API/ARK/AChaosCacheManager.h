@@ -9,7 +9,7 @@ public:
 	~AChaosCacheManager() = delete;
 	AChaosCacheManager(const AChaosCacheManager&) = delete;
 	AChaosCacheManager& operator=(const AChaosCacheManager&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AChaosCacheManager"); }
 
 	bool& bCreateNewCacheCollectionAssetOnRecordField() { return *GetNativePointerField<bool*>(this, "AChaosCacheManager.bCreateNewCacheCollectionAssetOnRecord"); }
 	float& StartTimeField() { return *GetNativePointerField<float*>(this, "AChaosCacheManager.StartTime"); }
@@ -33,7 +33,7 @@ public:
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "AChaosCacheManager.Serialize(FArchive&)", Ar); }
 	void EnsureObservedComponentsNotifierRegistration() { NativeCall<void>(this, "AChaosCacheManager.EnsureObservedComponentsNotifierRegistration()"); }
 	void TickActor(float DeltaTime, ELevelTick TickType, FActorTickFunction& ThisTickFunction) { NativeCall<void, float, ELevelTick, FActorTickFunction&>(this, "AChaosCacheManager.TickActor(float,ELevelTick,FActorTickFunction&)", DeltaTime, TickType, ThisTickFunction); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AChaosCacheManager.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AChaosCacheManager"); }
 	void BeginPlay() { NativeCall<void>(this, "AChaosCacheManager.BeginPlay()"); }
 	void ClearObservedComponents(bool bDestroyComponents) { NativeCall<void, bool>(this, "AChaosCacheManager.ClearObservedComponents(bool)", bDestroyComponents); }
 };

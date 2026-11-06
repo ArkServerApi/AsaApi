@@ -10,8 +10,8 @@ public:
 	~UTexture2DDynamic() = delete;
 	UTexture2DDynamic(const UTexture2DDynamic&) = delete;
 	UTexture2DDynamic& operator=(const UTexture2DDynamic&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTexture2DDynamic"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTexture2DDynamic"); }
 	int& SizeXField() { return *GetNativePointerField<int*>(this, "UTexture2DDynamic.SizeX"); }
 	int& SizeYField() { return *GetNativePointerField<int*>(this, "UTexture2DDynamic.SizeY"); }
 	int& NumMipsField() { return *GetNativePointerField<int*>(this, "UTexture2DDynamic.NumMips"); }

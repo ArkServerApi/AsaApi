@@ -9,8 +9,8 @@ public:
 	~ASkyBoxLoader() = delete;
 	ASkyBoxLoader(const ASkyBoxLoader&) = delete;
 	ASkyBoxLoader& operator=(const ASkyBoxLoader&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASkyBoxLoader"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASkyBoxLoader"); }
 
 	TArray<UTexture2D*, TSizedDefaultAllocator<32> >& LoadedSkyTexturesField() { return *GetNativePointerField<TArray<UTexture2D*, TSizedDefaultAllocator<32> >*>(this, "ASkyBoxLoader.LoadedSkyTextures"); }
 	TArray<UTexture2D*, TSizedDefaultAllocator<32> >& LoadedFogScatterTexturesField() { return *GetNativePointerField<TArray<UTexture2D*, TSizedDefaultAllocator<32> >*>(this, "ASkyBoxLoader.LoadedFogScatterTextures"); }

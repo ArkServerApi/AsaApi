@@ -9,8 +9,8 @@ public:
 	~UPrimalDinoMeshComponent() = delete;
 	UPrimalDinoMeshComponent(const UPrimalDinoMeshComponent&) = delete;
 	UPrimalDinoMeshComponent& operator=(const UPrimalDinoMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDinoMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDinoMeshComponent"); }
 
 	unsigned char& bUpdateBoundsWhenStationaryField() { return *GetNativePointerField<unsigned char*>(this, "UPrimalDinoMeshComponent.bUpdateBoundsWhenStationary"); }
 	UE::Math::TVector<double>& CachedRootBonePositionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPrimalDinoMeshComponent.CachedRootBonePosition"); }

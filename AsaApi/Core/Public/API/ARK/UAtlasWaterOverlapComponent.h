@@ -9,8 +9,8 @@ public:
 	~UAtlasWaterOverlapComponent() = delete;
 	UAtlasWaterOverlapComponent(const UAtlasWaterOverlapComponent&) = delete;
 	UAtlasWaterOverlapComponent& operator=(const UAtlasWaterOverlapComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAtlasWaterOverlapComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAtlasWaterOverlapComponent"); }
 
 	FComponentWaterOverlapSignature& OnComponentEnterWaterField() { return *GetNativePointerField<FComponentWaterOverlapSignature*>(this, "UAtlasWaterOverlapComponent.OnComponentEnterWater"); }
 	FComponentWaterOverlapSignature& OnComponentExitWaterField() { return *GetNativePointerField<FComponentWaterOverlapSignature*>(this, "UAtlasWaterOverlapComponent.OnComponentExitWater"); }

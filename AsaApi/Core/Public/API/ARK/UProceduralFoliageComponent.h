@@ -9,8 +9,8 @@ public:
 	~UProceduralFoliageComponent() = delete;
 	UProceduralFoliageComponent(const UProceduralFoliageComponent&) = delete;
 	UProceduralFoliageComponent& operator=(const UProceduralFoliageComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UProceduralFoliageComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UProceduralFoliageComponent"); }
 
 	float& TileOverlapField() { return *GetNativePointerField<float*>(this, "UProceduralFoliageComponent.TileOverlap"); }
 	FGuid& ProceduralGuidField() { return *GetNativePointerField<FGuid*>(this, "UProceduralFoliageComponent.ProceduralGuid"); }

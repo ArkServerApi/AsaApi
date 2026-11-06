@@ -9,7 +9,7 @@ public:
 	~ADaySequenceActor() = delete;
 	ADaySequenceActor(const ADaySequenceActor&) = delete;
 	ADaySequenceActor& operator=(const ADaySequenceActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADaySequenceActor"); }
 
 	int& BiasField() { return *GetNativePointerField<int*>(this, "ADaySequenceActor.Bias"); }
 	bool& bForceDisableDayInterpCurveField() { return *GetNativePointerField<bool*>(this, "ADaySequenceActor.bForceDisableDayInterpCurve"); }
@@ -53,7 +53,7 @@ public:
 	UObject* GetInstanceData() { return NativeCall<UObject*>(this, "ADaySequenceActor.GetInstanceData()"); }
 	float GetTimeOfDay() { return NativeCall<float>(this, "ADaySequenceActor.GetTimeOfDay()"); }
 	void SequencePlayerUpdated(float CurrentTime, float PreviousTime) { NativeCall<void, float, float>(this, "ADaySequenceActor.SequencePlayerUpdated(float,float)", CurrentTime, PreviousTime); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ADaySequenceActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADaySequenceActor"); }
 	void Pause() { NativeCall<void>(this, "ADaySequenceActor.Pause()"); }
 	void Multicast_SetTimePerCycle_Implementation(float InHours) { NativeCall<void, float>(this, "ADaySequenceActor.Multicast_SetTimePerCycle_Implementation(float)", InHours); }
 	bool ShouldTickIfViewportsOnly() { return NativeCall<bool>(this, "ADaySequenceActor.ShouldTickIfViewportsOnly()"); }

@@ -9,7 +9,7 @@ public:
 	~AHeterogeneousVolume() = delete;
 	AHeterogeneousVolume(const AHeterogeneousVolume&) = delete;
 	AHeterogeneousVolume& operator=(const AHeterogeneousVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHeterogeneousVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHeterogeneousVolume"); }
 
 };

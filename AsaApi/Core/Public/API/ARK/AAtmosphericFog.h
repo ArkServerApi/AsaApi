@@ -9,7 +9,7 @@ public:
 	~AAtmosphericFog() = delete;
 	AAtmosphericFog(const AAtmosphericFog&) = delete;
 	AAtmosphericFog& operator=(const AAtmosphericFog&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AAtmosphericFog"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AAtmosphericFog"); }
 
 };

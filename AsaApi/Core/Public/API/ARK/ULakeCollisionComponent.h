@@ -9,8 +9,8 @@ public:
 	~ULakeCollisionComponent() = delete;
 	ULakeCollisionComponent(const ULakeCollisionComponent&) = delete;
 	ULakeCollisionComponent& operator=(const ULakeCollisionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULakeCollisionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULakeCollisionComponent"); }
 
 	UE::Math::TVector<double>& BoxExtentField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "ULakeCollisionComponent.BoxExtent"); }
 	void UpdateBodySetup() { NativeCall<void>(this, "ULakeCollisionComponent.UpdateBodySetup()"); }

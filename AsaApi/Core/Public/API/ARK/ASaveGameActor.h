@@ -9,6 +9,6 @@ struct ASaveGameActor : AActor
 
 	  // Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "ASaveGameActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASaveGameActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASaveGameActor"); }
 };

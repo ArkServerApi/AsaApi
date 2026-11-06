@@ -10,8 +10,8 @@ public:
 	~USkeleton() = delete;
 	USkeleton(const USkeleton&) = delete;
 	USkeleton& operator=(const USkeleton&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkeleton"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkeleton"); }
 	FReferenceSkeleton& ReferenceSkeletonField() { return *GetNativePointerField<FReferenceSkeleton*>(this, "USkeleton.ReferenceSkeleton"); }
 	FGuid& GuidField() { return *GetNativePointerField<FGuid*>(this, "USkeleton.Guid"); }
 	FGuid& VirtualBoneGuidField() { return *GetNativePointerField<FGuid*>(this, "USkeleton.VirtualBoneGuid"); }

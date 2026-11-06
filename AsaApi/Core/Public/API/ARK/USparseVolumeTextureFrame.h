@@ -10,8 +10,8 @@ public:
 	~USparseVolumeTextureFrame() = delete;
 	USparseVolumeTextureFrame(const USparseVolumeTextureFrame&) = delete;
 	USparseVolumeTextureFrame& operator=(const USparseVolumeTextureFrame&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USparseVolumeTextureFrame"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USparseVolumeTextureFrame"); }
 	int& FrameIndexField() { return *GetNativePointerField<int*>(this, "USparseVolumeTextureFrame.FrameIndex"); }
 	void FinishDestroy() { NativeCall<void>(this, "USparseVolumeTextureFrame.FinishDestroy()"); }
 	static USparseVolumeTextureFrame* GetFrameAndIssueStreamingRequest(USparseVolumeTexture* SparseVolumeTexture, unsigned int StreamingInstanceKey, float FrameRate, float FrameIndex, float MipLevel, bool bBlocking, bool bHasValidFrameRate) { return NativeCall<USparseVolumeTextureFrame*, USparseVolumeTexture*, unsigned int, float, float, float, bool, bool>(nullptr, "USparseVolumeTextureFrame.GetFrameAndIssueStreamingRequest(USparseVolumeTexture*,unsignedint,float,float,float,bool,bool)", SparseVolumeTexture, StreamingInstanceKey, FrameRate, FrameIndex, MipLevel, bBlocking, bHasValidFrameRate); }

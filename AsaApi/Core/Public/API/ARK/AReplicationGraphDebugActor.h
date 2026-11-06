@@ -9,8 +9,8 @@ public:
 	~AReplicationGraphDebugActor() = delete;
 	AReplicationGraphDebugActor(const AReplicationGraphDebugActor&) = delete;
 	AReplicationGraphDebugActor& operator=(const AReplicationGraphDebugActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AReplicationGraphDebugActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AReplicationGraphDebugActor"); }
 
 	bool IsReplayRelevantFor(const AActor* RealViewer, const AActor* ViewTarget, const UE::Math::TVector<double>& SrcLocation, float CullDistanceSquared) { return NativeCall<bool, const AActor*, const AActor*, const UE::Math::TVector<double>&, float>(this, "AReplicationGraphDebugActor.IsReplayRelevantFor(AActor*,AActor*,UE::Math::TVector<double>&,float)", RealViewer, ViewTarget, SrcLocation, CullDistanceSquared); }
 	void ServerPrintCullDistances_Implementation() { NativeCall<void>(this, "AReplicationGraphDebugActor.ServerPrintCullDistances_Implementation()"); }

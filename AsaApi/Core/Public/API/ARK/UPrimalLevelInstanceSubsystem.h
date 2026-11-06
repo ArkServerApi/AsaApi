@@ -9,8 +9,8 @@ public:
 	~UPrimalLevelInstanceSubsystem() = delete;
 	UPrimalLevelInstanceSubsystem(const UPrimalLevelInstanceSubsystem&) = delete;
 	UPrimalLevelInstanceSubsystem& operator=(const UPrimalLevelInstanceSubsystem&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalLevelInstanceSubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalLevelInstanceSubsystem"); }
 
 	void Deinitialize() { NativeCall<void>(this, "UPrimalLevelInstanceSubsystem.Deinitialize()"); }
 	void Initialize(FSubsystemCollectionBase& Collection) { NativeCall<void, FSubsystemCollectionBase&>(this, "UPrimalLevelInstanceSubsystem.Initialize(FSubsystemCollectionBase&)", Collection); }

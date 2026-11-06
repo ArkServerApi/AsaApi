@@ -10,8 +10,8 @@ public:
 	~UPrimalDinoEntry() = delete;
 	UPrimalDinoEntry(const UPrimalDinoEntry&) = delete;
 	UPrimalDinoEntry& operator=(const UPrimalDinoEntry&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDinoEntry"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDinoEntry"); }
 
 	bool& bRequiresKillField() { return *GetNativePointerField<bool*>(this, "UPrimalDinoEntry.bRequiresKill"); }
 

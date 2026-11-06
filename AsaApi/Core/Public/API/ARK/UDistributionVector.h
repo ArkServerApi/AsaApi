@@ -10,8 +10,8 @@ public:
 	~UDistributionVector() = delete;
 	UDistributionVector(const UDistributionVector&) = delete;
 	UDistributionVector& operator=(const UDistributionVector&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDistributionVector.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDistributionVector"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDistributionVector"); }
 	BitFieldValue<bool, unsigned char> bCanBeBaked() { return { this, "UDistributionVector.bCanBeBaked"}; }
 	BitFieldValue<bool, unsigned char> bIsDirty() { return { this, "UDistributionVector.bIsDirty"}; }
 	BitFieldValue<bool, unsigned char> bBakedDataSuccesfully() { return { this, "UDistributionVector.bBakedDataSuccesfully"}; }

@@ -9,8 +9,8 @@ public:
 	~UPlayerActivatableComponent() = delete;
 	UPlayerActivatableComponent(const UPlayerActivatableComponent&) = delete;
 	UPlayerActivatableComponent& operator=(const UPlayerActivatableComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPlayerActivatableComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPlayerActivatableComponent"); }
 
 	bool& bFlagAsRevealedField() { return *GetNativePointerField<bool*>(this, "UPlayerActivatableComponent.bFlagAsRevealed"); }
 	bool& bIssueClientRPCField() { return *GetNativePointerField<bool*>(this, "UPlayerActivatableComponent.bIssueClientRPC"); }

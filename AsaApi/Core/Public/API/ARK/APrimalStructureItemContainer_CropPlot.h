@@ -65,7 +65,7 @@ struct APrimalStructureItemContainer_CropPlot : APrimalStructureItemContainer
 
     // Functions
 
-    static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureItemContainer_CropPlot.StaticClass()"); }
+    static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_CropPlot"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureItemContainer_CropPlot();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -118,7 +118,7 @@ struct APrimalStructureItemContainer_CropPlot : APrimalStructureItemContainer
 	float& ReplicatedGamemodeCropGrowthSpeedMultiplierField() { return *GetNativePointerField<float*>(this, "APrimalStructureItemContainer_CropPlot.ReplicatedGamemodeCropGrowthSpeedMultiplier"); }
 	float& ReplicatedCropPhaseFertilizerCacheField() { return *GetNativePointerField<float*>(this, "APrimalStructureItemContainer_CropPlot.ReplicatedCropPhaseFertilizerCache"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureItemContainer_CropPlot"); }
 
 	TEnumAsByte<ESeedCropPhase::Type>& CurrentCropPhaseField() { return *GetNativePointerField<TEnumAsByte<ESeedCropPhase::Type>*>(this, "APrimalStructureItemContainer_CropPlot.CurrentCropPhase"); }
 	FUnreplicatedEggData& StoredCreatureDataField() { return *GetNativePointerField<FUnreplicatedEggData*>(this, "APrimalStructureItemContainer_CropPlot.StoredCreatureData"); }

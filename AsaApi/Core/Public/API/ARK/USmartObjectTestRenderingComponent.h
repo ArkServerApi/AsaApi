@@ -9,8 +9,8 @@ public:
 	~USmartObjectTestRenderingComponent() = delete;
 	USmartObjectTestRenderingComponent(const USmartObjectTestRenderingComponent&) = delete;
 	USmartObjectTestRenderingComponent& operator=(const USmartObjectTestRenderingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USmartObjectTestRenderingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USmartObjectTestRenderingComponent"); }
 
 	void PostInitProperties() { NativeCall<void>(this, "USmartObjectTestRenderingComponent.PostInitProperties()"); }
 };

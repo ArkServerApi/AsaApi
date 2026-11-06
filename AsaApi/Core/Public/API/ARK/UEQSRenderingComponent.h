@@ -9,8 +9,8 @@ public:
 	~UEQSRenderingComponent() = delete;
 	UEQSRenderingComponent(const UEQSRenderingComponent&) = delete;
 	UEQSRenderingComponent& operator=(const UEQSRenderingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UEQSRenderingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UEQSRenderingComponent"); }
 
 	FString& DrawFlagNameField() { return *GetNativePointerField<FString*>(this, "UEQSRenderingComponent.DrawFlagName"); }
 	BitFieldValue<bool, unsigned __int32> bDrawOnlyWhenSelected() { return { this, "UEQSRenderingComponent.bDrawOnlyWhenSelected"}; }

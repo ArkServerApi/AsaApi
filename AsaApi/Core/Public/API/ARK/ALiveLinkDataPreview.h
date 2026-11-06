@@ -9,8 +9,8 @@ public:
 	~ALiveLinkDataPreview() = delete;
 	ALiveLinkDataPreview(const ALiveLinkDataPreview&) = delete;
 	ALiveLinkDataPreview& operator=(const ALiveLinkDataPreview&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALiveLinkDataPreview"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALiveLinkDataPreview"); }
 
 	bool& bDrawLabelsField() { return *GetNativePointerField<bool*>(this, "ALiveLinkDataPreview.bDrawLabels"); }
 	bool& bEvaluateLiveLinkField() { return *GetNativePointerField<bool*>(this, "ALiveLinkDataPreview.bEvaluateLiveLink"); }

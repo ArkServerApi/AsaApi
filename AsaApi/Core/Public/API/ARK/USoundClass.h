@@ -10,8 +10,8 @@ public:
 	~USoundClass() = delete;
 	USoundClass(const USoundClass&) = delete;
 	USoundClass& operator=(const USoundClass&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundClass"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundClass"); }
 	FSoundClassProperties& PropertiesField() { return *GetNativePointerField<FSoundClassProperties*>(this, "USoundClass.Properties"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "USoundClass.Serialize(FArchive&)", Ar); }
 	void BeginDestroy() { NativeCall<void>(this, "USoundClass.BeginDestroy()"); }

@@ -9,8 +9,8 @@ public:
 	~AWaterBodyIsland() = delete;
 	AWaterBodyIsland(const AWaterBodyIsland&) = delete;
 	AWaterBodyIsland& operator=(const AWaterBodyIsland&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterBodyIsland"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterBodyIsland"); }
 
 	FWaterCurveSettings& WaterCurveSettingsField() { return *GetNativePointerField<FWaterCurveSettings*>(this, "AWaterBodyIsland.WaterCurveSettings"); }
 	FWaterBodyHeightmapSettings& WaterHeightmapSettingsField() { return *GetNativePointerField<FWaterBodyHeightmapSettings*>(this, "AWaterBodyIsland.WaterHeightmapSettings"); }

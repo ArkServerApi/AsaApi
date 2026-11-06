@@ -9,8 +9,8 @@ public:
 	~UContextMenu_InventorySort() = delete;
 	UContextMenu_InventorySort(const UContextMenu_InventorySort&) = delete;
 	UContextMenu_InventorySort& operator=(const UContextMenu_InventorySort&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenu_InventorySort"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenu_InventorySort"); }
 
 	void HandleActionSpoilTimer(UContextMenuItem* Item) { NativeCall<void, UContextMenuItem*>(this, "UContextMenu_InventorySort.HandleActionSpoilTimer(UContextMenuItem*)", Item); }
 	void CloseMenu(bool CloseParents) { NativeCall<void, bool>(this, "UContextMenu_InventorySort.CloseMenu(bool)", CloseParents); }

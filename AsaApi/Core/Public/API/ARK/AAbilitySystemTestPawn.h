@@ -9,8 +9,8 @@ public:
 	~AAbilitySystemTestPawn() = delete;
 	AAbilitySystemTestPawn(const AAbilitySystemTestPawn&) = delete;
 	AAbilitySystemTestPawn& operator=(const AAbilitySystemTestPawn&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AAbilitySystemTestPawn"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AAbilitySystemTestPawn"); }
 
 	void PostInitializeComponents() { NativeCall<void>(this, "AAbilitySystemTestPawn.PostInitializeComponents()"); }
 	UAbilitySystemComponent* GetAbilitySystemComponent() { return NativeCall<UAbilitySystemComponent*>(this, "AAbilitySystemTestPawn.GetAbilitySystemComponent()"); }

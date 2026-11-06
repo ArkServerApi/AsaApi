@@ -10,8 +10,8 @@ public:
 	~APrimalShipAIController() = delete;
 	APrimalShipAIController(const APrimalShipAIController&) = delete;
 	APrimalShipAIController& operator=(const APrimalShipAIController&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalShipAIController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalShipAIController"); }
 
 	float& WanderRadiusField() { return *GetNativePointerField<float*>(this, "APrimalShipAIController.WanderRadius"); }
 	float& WanderConeHalfAngleField() { return *GetNativePointerField<float*>(this, "APrimalShipAIController.WanderConeHalfAngle"); }

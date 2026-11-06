@@ -10,8 +10,8 @@ public:
 	~APrimalShipDeck() = delete;
 	APrimalShipDeck(const APrimalShipDeck&) = delete;
 	APrimalShipDeck& operator=(const APrimalShipDeck&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalShipDeck"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalShipDeck"); }
 
 
 

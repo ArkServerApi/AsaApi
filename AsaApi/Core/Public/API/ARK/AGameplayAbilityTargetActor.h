@@ -9,7 +9,7 @@ public:
 	~AGameplayAbilityTargetActor() = delete;
 	AGameplayAbilityTargetActor(const AGameplayAbilityTargetActor&) = delete;
 	AGameplayAbilityTargetActor& operator=(const AGameplayAbilityTargetActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayAbilityTargetActor"); }
 
 	bool& ShouldProduceTargetDataOnServerField() { return *GetNativePointerField<bool*>(this, "AGameplayAbilityTargetActor.ShouldProduceTargetDataOnServer"); }
 	FGameplayAbilityTargetingLocationInfo& StartLocationField() { return *GetNativePointerField<FGameplayAbilityTargetingLocationInfo*>(this, "AGameplayAbilityTargetActor.StartLocation"); }
@@ -24,7 +24,7 @@ public:
 	void ConfirmTargetingAndContinue() { NativeCall<void>(this, "AGameplayAbilityTargetActor.ConfirmTargetingAndContinue()"); }
 	bool ShouldProduceTargetData() { return NativeCall<bool>(this, "AGameplayAbilityTargetActor.ShouldProduceTargetData()"); }
 	void StartTargeting(UGameplayAbility* Ability) { NativeCall<void, UGameplayAbility*>(this, "AGameplayAbilityTargetActor.StartTargeting(UGameplayAbility*)", Ability); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AGameplayAbilityTargetActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayAbilityTargetActor"); }
 	bool IsConfirmTargetingAllowed() { return NativeCall<bool>(this, "AGameplayAbilityTargetActor.IsConfirmTargetingAllowed()"); }
 	void BindToConfirmCancelInputs() { NativeCall<void>(this, "AGameplayAbilityTargetActor.BindToConfirmCancelInputs()"); }
 	void CancelTargeting() { NativeCall<void>(this, "AGameplayAbilityTargetActor.CancelTargeting()"); }

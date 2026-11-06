@@ -9,8 +9,8 @@ public:
 	~UZoneGraphRenderingComponent() = delete;
 	UZoneGraphRenderingComponent(const UZoneGraphRenderingComponent&) = delete;
 	UZoneGraphRenderingComponent& operator=(const UZoneGraphRenderingComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UZoneGraphRenderingComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UZoneGraphRenderingComponent"); }
 
 	bool& bPreviousShowNavigationField() { return *GetNativePointerField<bool*>(this, "UZoneGraphRenderingComponent.bPreviousShowNavigation"); }
 	bool& bForceUpdateField() { return *GetNativePointerField<bool*>(this, "UZoneGraphRenderingComponent.bForceUpdate"); }

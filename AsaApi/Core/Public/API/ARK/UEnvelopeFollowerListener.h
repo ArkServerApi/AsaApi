@@ -9,8 +9,8 @@ public:
 	~UEnvelopeFollowerListener() = delete;
 	UEnvelopeFollowerListener(const UEnvelopeFollowerListener&) = delete;
 	UEnvelopeFollowerListener& operator=(const UEnvelopeFollowerListener&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UEnvelopeFollowerListener"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UEnvelopeFollowerListener"); }
 
 	FOnEnvelopeFollowerUpdate& OnEnvelopeFollowerUpdateField() { return *GetNativePointerField<FOnEnvelopeFollowerUpdate*>(this, "UEnvelopeFollowerListener.OnEnvelopeFollowerUpdate"); }
 	bool& bRegisteredField() { return *GetNativePointerField<bool*>(this, "UEnvelopeFollowerListener.bRegistered"); }

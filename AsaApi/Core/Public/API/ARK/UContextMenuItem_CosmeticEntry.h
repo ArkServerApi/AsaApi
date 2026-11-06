@@ -9,8 +9,8 @@ public:
 	~UContextMenuItem_CosmeticEntry() = delete;
 	UContextMenuItem_CosmeticEntry(const UContextMenuItem_CosmeticEntry&) = delete;
 	UContextMenuItem_CosmeticEntry& operator=(const UContextMenuItem_CosmeticEntry&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UContextMenuItem_CosmeticEntry"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UContextMenuItem_CosmeticEntry"); }
 
 	FItemNetID& TargetItemIDField() { return *GetNativePointerField<FItemNetID*>(this, "UContextMenuItem_CosmeticEntry.TargetItemID"); }
 	__int64& CosmeticModIDField() { return *GetNativePointerField<__int64*>(this, "UContextMenuItem_CosmeticEntry.CosmeticModID"); }

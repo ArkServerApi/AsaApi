@@ -95,7 +95,7 @@ struct APrimalStructureTurretBallista : APrimalStructureSeating
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureTurretBallista"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureTurretBallista();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -152,7 +152,7 @@ struct APrimalStructureTurretBallista : APrimalStructureSeating
 	bool& AimFromPlayerViewField() { return *GetNativePointerField<bool*>(this, "APrimalStructureTurretBallista.AimFromPlayerView"); }
 	float& FireMaxDistanceToMuzzleFlashField() { return *GetNativePointerField<float*>(this, "APrimalStructureTurretBallista.FireMaxDistanceToMuzzleFlash"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureTurretBallista"); }
 
 	TWeakObjectPtr<APrimalBotCharacter, FWeakObjectPtr>& CurrSeatedBotField() { return *GetNativePointerField<TWeakObjectPtr<APrimalBotCharacter, FWeakObjectPtr>*>(this, "APrimalStructureTurretBallista.CurrSeatedBot"); }
 	BitFieldValue<bool, unsigned char> bUseBallistaAimOffsetOnCharacter_StandingTurret() { return { this, "APrimalStructureTurretBallista.bUseBallistaAimOffsetOnCharacter_StandingTurret"}; }

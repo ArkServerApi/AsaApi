@@ -9,8 +9,8 @@ public:
 	~AGameplayDebuggerPlayerManager() = delete;
 	AGameplayDebuggerPlayerManager(const AGameplayDebuggerPlayerManager&) = delete;
 	AGameplayDebuggerPlayerManager& operator=(const AGameplayDebuggerPlayerManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayDebuggerPlayerManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayDebuggerPlayerManager"); }
 
 	BitFieldValue<bool, unsigned char> bEditorTimeTick() { return { this, "AGameplayDebuggerPlayerManager.bEditorTimeTick"}; }
 	BitFieldValue<bool, unsigned __int32> bHasAuthority() { return { this, "AGameplayDebuggerPlayerManager.bHasAuthority"}; }

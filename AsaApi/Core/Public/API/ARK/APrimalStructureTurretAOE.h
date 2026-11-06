@@ -10,8 +10,8 @@ public:
 	~APrimalStructureTurretAOE() = delete;
 	APrimalStructureTurretAOE(const APrimalStructureTurretAOE&) = delete;
 	APrimalStructureTurretAOE& operator=(const APrimalStructureTurretAOE&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureTurretAOE"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureTurretAOE"); }
 
 	int& CurrAttackTypeIndexField() { return *GetNativePointerField<int*>(this, "APrimalStructureTurretAOE.CurrAttackTypeIndex"); }
 	double& LastBounceTimeField() { return *GetNativePointerField<double*>(this, "APrimalStructureTurretAOE.LastBounceTime"); }

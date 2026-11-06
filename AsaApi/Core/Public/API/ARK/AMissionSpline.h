@@ -9,8 +9,8 @@ public:
 	~AMissionSpline() = delete;
 	AMissionSpline(const AMissionSpline&) = delete;
 	AMissionSpline& operator=(const AMissionSpline&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMissionSpline"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMissionSpline"); }
 
 	bool& bValidateSplineField() { return *GetNativePointerField<bool*>(this, "AMissionSpline.bValidateSpline"); }
 	float& SplineValidationMinTotalLengthField() { return *GetNativePointerField<float*>(this, "AMissionSpline.SplineValidationMinTotalLength"); }

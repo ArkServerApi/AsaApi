@@ -17,7 +17,7 @@ struct UField : UObject
 	void PostLoad() { NativeCall<void>(this, "UField.PostLoad()"); }
 	void Serialize(FArchive* Ar) { NativeCall<void, FArchive*>(this, "UField.Serialize(FArchive&)", Ar); }
 	void AddCppProperty(FProperty* Property) { NativeCall<void, FProperty*>(this, "UField.AddCppProperty(FProperty*)", Property); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UField.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UField"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UField"); }
 };

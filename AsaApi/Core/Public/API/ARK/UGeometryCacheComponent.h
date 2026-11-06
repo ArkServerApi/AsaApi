@@ -10,7 +10,7 @@ public:
 	~UGeometryCacheComponent() = delete;
 	UGeometryCacheComponent(const UGeometryCacheComponent&) = delete;
 	UGeometryCacheComponent& operator=(const UGeometryCacheComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGeometryCacheComponent"); }
 
 	bool& bRunningField() { return *GetNativePointerField<bool*>(this, "UGeometryCacheComponent.bRunning"); }
 	bool& bLoopingField() { return *GetNativePointerField<bool*>(this, "UGeometryCacheComponent.bLooping"); }
@@ -45,7 +45,7 @@ public:
 	void FinishDestroy() { NativeCall<void>(this, "UGeometryCacheComponent.FinishDestroy()"); }
 	bool IsMaterialSlotNameValid(FName MaterialSlotName) { return NativeCall<bool, FName>(this, "UGeometryCacheComponent.IsMaterialSlotNameValid(FName)", MaterialSlotName); }
 	bool UpdateTrackSection(int TrackIndex, float Time) { return NativeCall<bool, int, float>(this, "UGeometryCacheComponent.UpdateTrackSection(int,float)", TrackIndex, Time); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UGeometryCacheComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGeometryCacheComponent"); }
 	bool GetManualTick() { return NativeCall<bool>(this, "UGeometryCacheComponent.GetManualTick()"); }
 	void OnUnregister() { NativeCall<void>(this, "UGeometryCacheComponent.OnUnregister()"); }
 	void SetManualTick(bool bInManualTick) { NativeCall<void, bool>(this, "UGeometryCacheComponent.SetManualTick(bool)", bInManualTick); }

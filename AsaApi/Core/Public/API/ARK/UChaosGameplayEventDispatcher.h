@@ -9,8 +9,8 @@ public:
 	~UChaosGameplayEventDispatcher() = delete;
 	UChaosGameplayEventDispatcher(const UChaosGameplayEventDispatcher&) = delete;
 	UChaosGameplayEventDispatcher& operator=(const UChaosGameplayEventDispatcher&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosGameplayEventDispatcher"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosGameplayEventDispatcher"); }
 
 	float& LastCollisionDataTimeField() { return *GetNativePointerField<float*>(this, "UChaosGameplayEventDispatcher.LastCollisionDataTime"); }
 	float& LastBreakingDataTimeField() { return *GetNativePointerField<float*>(this, "UChaosGameplayEventDispatcher.LastBreakingDataTime"); }

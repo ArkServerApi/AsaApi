@@ -39,7 +39,7 @@ struct AShooterWeapon_Placer : AShooterWeapon
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Placer"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterWeapon_Placer();
 	void StartFire(bool bFromGamepad) { NativeCall<void, bool>(this, "AShooterWeapon_Placer.StartFire(bool)", bFromGamepad); }
@@ -74,4 +74,5 @@ struct AShooterWeapon_Placer : AShooterWeapon
 	bool BPSecondaryAction() { return NativeCall<bool>(this, "AShooterWeapon_Placer.BPSecondaryAction()"); }
 	void ServerDetonateExplosives() { NativeCall<void>(this, "AShooterWeapon_Placer.ServerDetonateExplosives()"); }
 	void BPPrefireAction() { NativeCall<void>(this, "AShooterWeapon_Placer.BPPrefireAction()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Placer"); }
 };

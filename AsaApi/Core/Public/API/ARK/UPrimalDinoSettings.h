@@ -10,8 +10,8 @@ public:
 	~UPrimalDinoSettings() = delete;
 	UPrimalDinoSettings(const UPrimalDinoSettings&) = delete;
 	UPrimalDinoSettings& operator=(const UPrimalDinoSettings&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDinoSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDinoSettings"); }
 
 	float& TamingAffinityNoFoodDecreasePercentageSpeedField() { return *GetNativePointerField<float*>(this, "UPrimalDinoSettings.TamingAffinityNoFoodDecreasePercentageSpeed"); }
 	bool& bWakingTameDisplayItemNameField() { return *GetNativePointerField<bool*>(this, "UPrimalDinoSettings.bWakingTameDisplayItemName"); }

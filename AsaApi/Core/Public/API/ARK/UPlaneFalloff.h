@@ -9,8 +9,8 @@ public:
 	~UPlaneFalloff() = delete;
 	UPlaneFalloff(const UPlaneFalloff&) = delete;
 	UPlaneFalloff& operator=(const UPlaneFalloff&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPlaneFalloff"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPlaneFalloff"); }
 
 	float& MagnitudeField() { return *GetNativePointerField<float*>(this, "UPlaneFalloff.Magnitude"); }
 	float& MinRangeField() { return *GetNativePointerField<float*>(this, "UPlaneFalloff.MinRange"); }

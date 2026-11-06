@@ -9,7 +9,7 @@ public:
 	~UShooterGraphNode_GlobalAlwaysRelevant() = delete;
 	UShooterGraphNode_GlobalAlwaysRelevant(const UShooterGraphNode_GlobalAlwaysRelevant&) = delete;
 	UShooterGraphNode_GlobalAlwaysRelevant& operator=(const UShooterGraphNode_GlobalAlwaysRelevant&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_GlobalAlwaysRelevant"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_GlobalAlwaysRelevant"); }
 
 };

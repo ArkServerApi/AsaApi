@@ -9,8 +9,8 @@ public:
 	~AWaterBodyCustom() = delete;
 	AWaterBodyCustom(const AWaterBodyCustom&) = delete;
 	AWaterBodyCustom& operator=(const AWaterBodyCustom&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterBodyCustom"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterBodyCustom"); }
 
 	void PostLoad() { NativeCall<void>(this, "AWaterBodyCustom.PostLoad()"); }
 };

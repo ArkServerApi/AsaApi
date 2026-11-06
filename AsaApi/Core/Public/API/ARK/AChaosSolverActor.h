@@ -9,8 +9,8 @@ public:
 	~AChaosSolverActor() = delete;
 	AChaosSolverActor(const AChaosSolverActor&) = delete;
 	AChaosSolverActor& operator=(const AChaosSolverActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AChaosSolverActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AChaosSolverActor"); }
 
 	FChaosSolverConfiguration& PropertiesField() { return *GetNativePointerField<FChaosSolverConfiguration*>(this, "AChaosSolverActor.Properties"); }
 	float& TimeStepMultiplier_DEPRECATEDField() { return *GetNativePointerField<float*>(this, "AChaosSolverActor.TimeStepMultiplier_DEPRECATED"); }

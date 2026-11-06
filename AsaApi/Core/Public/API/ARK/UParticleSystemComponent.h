@@ -10,7 +10,7 @@ public:
 	~UParticleSystemComponent() = delete;
 	UParticleSystemComponent(const UParticleSystemComponent&) = delete;
 	UParticleSystemComponent& operator=(const UParticleSystemComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleSystemComponent"); }
 
 	bool& bAsyncWorkOutstandingField() { return *GetNativePointerField<bool*>(this, "UParticleSystemComponent.bAsyncWorkOutstanding"); }
 	EPSCPoolMethod& PoolingMethodField() { return *GetNativePointerField<EPSCPoolMethod*>(this, "UParticleSystemComponent.PoolingMethod"); }
@@ -167,7 +167,7 @@ public:
 	void OrientZAxisTowardCamera() { NativeCall<void>(this, "UParticleSystemComponent.OrientZAxisTowardCamera()"); }
 	void DeactivateImmediate() { NativeCall<void>(this, "UParticleSystemComponent.DeactivateImmediate()"); }
 	bool IsComponentTickEnabled() { return NativeCall<bool>(this, "UParticleSystemComponent.IsComponentTickEnabled()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UParticleSystemComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleSystemComponent"); }
 	int GetCurrentLODIndex() { return NativeCall<int>(this, "UParticleSystemComponent.FInstanceOwner.GetCurrentLODIndex()"); }
 	int GetNumMaterials() { return NativeCall<int>(this, "UParticleSystemComponent.GetNumMaterials()"); }
 	bool CanBeOccluded() { return NativeCall<bool>(this, "UParticleSystemComponent.CanBeOccluded()"); }

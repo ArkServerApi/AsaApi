@@ -9,7 +9,7 @@ public:
 	~UToolTipWidget() = delete;
 	UToolTipWidget(const UToolTipWidget&) = delete;
 	UToolTipWidget& operator=(const UToolTipWidget&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UToolTipWidget"); }
 
 	FString& ToolTipLabelNameField() { return *GetNativePointerField<FString*>(this, "UToolTipWidget.ToolTipLabelName"); }
 	int& WidgetWidthField() { return *GetNativePointerField<int*>(this, "UToolTipWidget.WidgetWidth"); }
@@ -33,5 +33,5 @@ public:
 	bool RecalculateGeometryAfterParentPaint() { return NativeCall<bool>(this, "UToolTipWidget.RecalculateGeometryAfterParentPaint()"); }
 	void BPInitToolTip(AShooterPlayerController* HUDOwner, const FString& ToolTipString, UObject* DataListEntry) { NativeCall<void, AShooterPlayerController*, const FString&, UObject*>(this, "UToolTipWidget.BPInitToolTip(AShooterPlayerController*,FString&,UObject*)", HUDOwner, ToolTipString, DataListEntry); }
 	void UpdateToolTip(float DeltaSeconds) { NativeCall<void, float>(this, "UToolTipWidget.UpdateToolTip(float)", DeltaSeconds); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UToolTipWidget.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UToolTipWidget"); }
 };

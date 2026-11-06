@@ -9,8 +9,8 @@ public:
 	~AOceanDinoManager() = delete;
 	AOceanDinoManager(const AOceanDinoManager&) = delete;
 	AOceanDinoManager& operator=(const AOceanDinoManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AOceanDinoManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AOceanDinoManager"); }
 
 	float& ViewerNumDinosGatherRadiusField() { return *GetNativePointerField<float*>(this, "AOceanDinoManager.ViewerNumDinosGatherRadius"); }
 	float& ViewerDinoSpawnRadiusMinField() { return *GetNativePointerField<float*>(this, "AOceanDinoManager.ViewerDinoSpawnRadiusMin"); }

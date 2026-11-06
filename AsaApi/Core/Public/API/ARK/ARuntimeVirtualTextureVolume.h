@@ -9,8 +9,8 @@ public:
 	~ARuntimeVirtualTextureVolume() = delete;
 	ARuntimeVirtualTextureVolume(const ARuntimeVirtualTextureVolume&) = delete;
 	ARuntimeVirtualTextureVolume& operator=(const ARuntimeVirtualTextureVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ARuntimeVirtualTextureVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ARuntimeVirtualTextureVolume"); }
 
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "ARuntimeVirtualTextureVolume.Serialize(FArchive&)", Ar); }
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "ARuntimeVirtualTextureVolume.IsLevelBoundsRelevant()"); }

@@ -10,8 +10,8 @@ public:
 	~UWorldPartitionRuntimeCellData() = delete;
 	UWorldPartitionRuntimeCellData(const UWorldPartitionRuntimeCellData&) = delete;
 	UWorldPartitionRuntimeCellData& operator=(const UWorldPartitionRuntimeCellData&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UWorldPartitionRuntimeCellData.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldPartitionRuntimeCellData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldPartitionRuntimeCellData"); }
 	unsigned char& CachedMinSourcePriorityField() { return *GetNativePointerField<unsigned char*>(this, "UWorldPartitionRuntimeCellData.CachedMinSourcePriority"); }
 	bool& bCachedWasRequestedByBlockingSourceField() { return *GetNativePointerField<bool*>(this, "UWorldPartitionRuntimeCellData.bCachedWasRequestedByBlockingSource"); }
 	double& CachedMinSquareDistanceToBlockingSourceField() { return *GetNativePointerField<double*>(this, "UWorldPartitionRuntimeCellData.CachedMinSquareDistanceToBlockingSource"); }

@@ -9,8 +9,8 @@ public:
 	~USkeletalMeshComponentBudgeted() = delete;
 	USkeletalMeshComponentBudgeted(const USkeletalMeshComponentBudgeted&) = delete;
 	USkeletalMeshComponentBudgeted& operator=(const USkeletalMeshComponentBudgeted&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkeletalMeshComponentBudgeted"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkeletalMeshComponentBudgeted"); }
 
 	IAnimationBudgetAllocator*& AnimationBudgetAllocatorField() { return *GetNativePointerField<IAnimationBudgetAllocator**>(this, "USkeletalMeshComponentBudgeted.AnimationBudgetAllocator"); }
 	int& AnimationBudgetHandleField() { return *GetNativePointerField<int*>(this, "USkeletalMeshComponentBudgeted.AnimationBudgetHandle"); }

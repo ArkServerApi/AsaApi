@@ -9,8 +9,8 @@ public:
 	~UIKRigComponent() = delete;
 	UIKRigComponent(const UIKRigComponent&) = delete;
 	UIKRigComponent& operator=(const UIKRigComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UIKRigComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UIKRigComponent"); }
 
 	FIKRigGoalContainer& GoalContainerField() { return *GetNativePointerField<FIKRigGoalContainer*>(this, "UIKRigComponent.GoalContainer"); }
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "UIKRigComponent._getUObject()"); }

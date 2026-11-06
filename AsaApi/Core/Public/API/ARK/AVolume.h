@@ -13,14 +13,14 @@ struct AVolume : AActor // : ABrush
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AVolume.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AVolume"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAVolume();
 	void PreInitializeComponents() { NativeCall<void>(this, "AVolume.PreInitializeComponents()"); }
 	void PreRegisterAllComponents() { NativeCall<void>(this, "AVolume.PreRegisterAllComponents()"); }
 	char EncompassesPoint(UE::Math::TVector<double>* Point, float SphereRadius, float* OutDistanceToPoint, float* MaxDistanceLimit) { return NativeCall<char, UE::Math::TVector<double>*, float, float*, float*>(this, "AVolume.EncompassesPoint(UE::Math::TVector<double>,float,float*,float*)", Point, SphereRadius, OutDistanceToPoint, MaxDistanceLimit); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AVolume"); }
 
 	bool& bAllowCollisionComponentWithZeroRadiusField() { return *GetNativePointerField<bool*>(this, "AVolume.bAllowCollisionComponentWithZeroRadius"); }
 	bool IsVolumeBrush() { return NativeCall<bool>(this, "AVolume.IsVolumeBrush()"); }

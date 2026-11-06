@@ -94,8 +94,8 @@ struct APrimalStructureTurret : APrimalStructureItemContainer
 
     // Functions
 
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructureTurret.StaticClass()"); }
-    static UClass* StaticClass() { return GetPrivateStaticClass(); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureTurret"); }
+    static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureTurret"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructureTurret();
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key

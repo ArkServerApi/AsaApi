@@ -20,12 +20,8 @@
 #include <new> // IWYU pragma: export
 
 
-// Disable visualization hack for shipping or test builds.
-#if !(UE_BUILD_SHIPPING || UE_BUILD_TEST)
-	#define ENABLE_TFUNCTIONREF_VISUALIZATION 1
-#else
-	#define ENABLE_TFUNCTIONREF_VISUALIZATION 0
-#endif
+// Callable storage must have the same layout in every plugin configuration.
+#define ENABLE_TFUNCTIONREF_VISUALIZATION 0
 
 #if defined(_WIN32) && !defined(_WIN64) && (!defined(ALLOW_TFUNCTION_INLINE_ALLOCATORS_ON_WIN32) || !ALLOW_TFUNCTION_INLINE_ALLOCATORS_ON_WIN32)
 	// Don't use inline storage on Win32, because that will affect the alignment of TFunction, and we can't pass extra-aligned types by value on Win32.
@@ -355,11 +351,11 @@ namespace UE::Core::Private::Function
 			Owned->Destroy();
 		}
 
-		void* HeapAllocation;
 		#if TFUNCTION_USES_INLINE_STORAGE
 			// Inline storage for an owned object
-			TAlignedBytes<TFUNCTION_INLINE_SIZE, TFUNCTION_INLINE_ALIGNMENT> InlineAllocation;
+			alignas(TFUNCTION_INLINE_ALIGNMENT) uint8 InlineAllocation[TFUNCTION_INLINE_SIZE];
 		#endif
+		void* HeapAllocation;
 	};
 
 	template <bool bUnique>

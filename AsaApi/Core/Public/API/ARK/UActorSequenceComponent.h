@@ -9,8 +9,8 @@ public:
 	~UActorSequenceComponent() = delete;
 	UActorSequenceComponent(const UActorSequenceComponent&) = delete;
 	UActorSequenceComponent& operator=(const UActorSequenceComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UActorSequenceComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UActorSequenceComponent"); }
 
 	FMovieSceneSequencePlaybackSettings& PlaybackSettingsField() { return *GetNativePointerField<FMovieSceneSequencePlaybackSettings*>(this, "UActorSequenceComponent.PlaybackSettings"); }
 	void PostInitProperties() { NativeCall<void>(this, "UActorSequenceComponent.PostInitProperties()"); }

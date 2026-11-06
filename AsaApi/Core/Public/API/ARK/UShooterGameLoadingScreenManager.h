@@ -9,8 +9,8 @@ public:
 	~UShooterGameLoadingScreenManager() = delete;
 	UShooterGameLoadingScreenManager(const UShooterGameLoadingScreenManager&) = delete;
 	UShooterGameLoadingScreenManager& operator=(const UShooterGameLoadingScreenManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGameLoadingScreenManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGameLoadingScreenManager"); }
 
 	bool& bMovieWasPlayingField() { return *GetNativePointerField<bool*>(this, "UShooterGameLoadingScreenManager.bMovieWasPlaying"); }
 	void EndStreamingPause() { NativeCall<void>(this, "UShooterGameLoadingScreenManager.EndStreamingPause()"); }

@@ -9,7 +9,7 @@ public:
 	~ATextRenderActor() = delete;
 	ATextRenderActor(const ATextRenderActor&) = delete;
 	ATextRenderActor& operator=(const ATextRenderActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATextRenderActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATextRenderActor"); }
 
 };

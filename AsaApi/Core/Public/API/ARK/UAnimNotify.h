@@ -10,8 +10,8 @@ public:
 	~UAnimNotify() = delete;
 	UAnimNotify(const UAnimNotify&) = delete;
 	UAnimNotify& operator=(const UAnimNotify&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UAnimNotify.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimNotify"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimNotify"); }
 	bool& bIsNativeBranchingPointField() { return *GetNativePointerField<bool*>(this, "UAnimNotify.bIsNativeBranchingPoint"); }
 	USkeletalMeshComponent*& MeshContextField() { return *GetNativePointerField<USkeletalMeshComponent**>(this, "UAnimNotify.MeshContext"); }
 	bool& bIgnoreOnDediServerField() { return *GetNativePointerField<bool*>(this, "UAnimNotify.bIgnoreOnDediServer"); }

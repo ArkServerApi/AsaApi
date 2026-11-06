@@ -9,8 +9,8 @@ public:
 	~UCustomizableSkeletalComponent() = delete;
 	UCustomizableSkeletalComponent(const UCustomizableSkeletalComponent&) = delete;
 	UCustomizableSkeletalComponent& operator=(const UCustomizableSkeletalComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCustomizableSkeletalComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCustomizableSkeletalComponent"); }
 
 	int& ComponentIndexField() { return *GetNativePointerField<int*>(this, "UCustomizableSkeletalComponent.ComponentIndex"); }
 	FName& ComponentNameField() { return *GetNativePointerField<FName*>(this, "UCustomizableSkeletalComponent.ComponentName"); }

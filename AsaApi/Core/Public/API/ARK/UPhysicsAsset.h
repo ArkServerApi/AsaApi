@@ -10,8 +10,8 @@ public:
 	~UPhysicsAsset() = delete;
 	UPhysicsAsset(const UPhysicsAsset&) = delete;
 	UPhysicsAsset& operator=(const UPhysicsAsset&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPhysicsAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPhysicsAsset"); }
 	TArray<int, TSizedDefaultAllocator<32> >& BoundsBodiesField() { return *GetNativePointerField<TArray<int, TSizedDefaultAllocator<32> >*>(this, "UPhysicsAsset.BoundsBodies"); }
 	FPhysicsAssetSolverSettings& SolverSettingsField() { return *GetNativePointerField<FPhysicsAssetSolverSettings*>(this, "UPhysicsAsset.SolverSettings"); }
 	FSolverIterations& SolverIterationsField() { return *GetNativePointerField<FSolverIterations*>(this, "UPhysicsAsset.SolverIterations"); }

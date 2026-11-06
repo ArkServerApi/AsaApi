@@ -9,8 +9,8 @@ public:
 	~UPCGGenSourceComponent() = delete;
 	UPCGGenSourceComponent(const UPCGGenSourceComponent&) = delete;
 	UPCGGenSourceComponent& operator=(const UPCGGenSourceComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPCGGenSourceComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPCGGenSourceComponent"); }
 
 	void OnUnregister() { NativeCall<void>(this, "UPCGGenSourceComponent.OnUnregister()"); }
 	void OnComponentDestroyed(bool bDestroyingHierarchy) { NativeCall<void, bool>(this, "UPCGGenSourceComponent.OnComponentDestroyed(bool)", bDestroyingHierarchy); }

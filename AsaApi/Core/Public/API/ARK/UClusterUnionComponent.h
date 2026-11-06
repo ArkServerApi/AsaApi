@@ -10,8 +10,8 @@ public:
 	~UClusterUnionComponent() = delete;
 	UClusterUnionComponent(const UClusterUnionComponent&) = delete;
 	UClusterUnionComponent& operator=(const UClusterUnionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UClusterUnionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UClusterUnionComponent"); }
 
 	bool& bEnableDamageFromCollisionField() { return *GetNativePointerField<bool*>(this, "UClusterUnionComponent.bEnableDamageFromCollision"); }
 	FOnClusterUnionAddedComponent& OnComponentAddedEventField() { return *GetNativePointerField<FOnClusterUnionAddedComponent*>(this, "UClusterUnionComponent.OnComponentAddedEvent"); }

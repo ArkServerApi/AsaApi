@@ -9,7 +9,7 @@ public:
 	~USubsystem() = delete;
 	USubsystem(const USubsystem&) = delete;
 	USubsystem& operator=(const USubsystem&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USubsystem.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USubsystem"); }
 
 };

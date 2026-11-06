@@ -9,8 +9,8 @@ public:
 	~ADEPRECATED_LightWeightInstanceStaticMeshManager() = delete;
 	ADEPRECATED_LightWeightInstanceStaticMeshManager(const ADEPRECATED_LightWeightInstanceStaticMeshManager&) = delete;
 	ADEPRECATED_LightWeightInstanceStaticMeshManager& operator=(const ADEPRECATED_LightWeightInstanceStaticMeshManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADEPRECATED_LightWeightInstanceStaticMeshManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADEPRECATED_LightWeightInstanceStaticMeshManager"); }
 
 	TArray<int, TSizedDefaultAllocator<32> >& RenderingIndicesToDataIndicesField() { return *GetNativePointerField<TArray<int, TSizedDefaultAllocator<32> >*>(this, "ADEPRECATED_LightWeightInstanceStaticMeshManager.RenderingIndicesToDataIndices"); }
 	TArray<int, TSizedDefaultAllocator<32> >& DataIndicesToRenderingIndicesField() { return *GetNativePointerField<TArray<int, TSizedDefaultAllocator<32> >*>(this, "ADEPRECATED_LightWeightInstanceStaticMeshManager.DataIndicesToRenderingIndices"); }

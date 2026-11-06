@@ -9,8 +9,8 @@ public:
 	~UGeometryCollectionISMPoolDebugDrawComponent() = delete;
 	UGeometryCollectionISMPoolDebugDrawComponent(const UGeometryCollectionISMPoolDebugDrawComponent&) = delete;
 	UGeometryCollectionISMPoolDebugDrawComponent& operator=(const UGeometryCollectionISMPoolDebugDrawComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGeometryCollectionISMPoolDebugDrawComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGeometryCollectionISMPoolDebugDrawComponent"); }
 
 	bool& bShowGlobalStatsField() { return *GetNativePointerField<bool*>(this, "UGeometryCollectionISMPoolDebugDrawComponent.bShowGlobalStats"); }
 	bool& bShowStatsField() { return *GetNativePointerField<bool*>(this, "UGeometryCollectionISMPoolDebugDrawComponent.bShowStats"); }

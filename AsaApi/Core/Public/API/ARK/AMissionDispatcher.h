@@ -10,8 +10,8 @@ public:
 	~AMissionDispatcher() = delete;
 	AMissionDispatcher(const AMissionDispatcher&) = delete;
 	AMissionDispatcher& operator=(const AMissionDispatcher&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMissionDispatcher"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMissionDispatcher"); }
 
 	int& AutoStartMissionTypesIndexField() { return *GetNativePointerField<int*>(this, "AMissionDispatcher.AutoStartMissionTypesIndex"); }
 	float& MaxDistanceAllowToStartMissionField() { return *GetNativePointerField<float*>(this, "AMissionDispatcher.MaxDistanceAllowToStartMission"); }

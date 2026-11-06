@@ -9,7 +9,7 @@ public:
 	~AGeometryCollectionISMPoolActor() = delete;
 	AGeometryCollectionISMPoolActor(const AGeometryCollectionISMPoolActor&) = delete;
 	AGeometryCollectionISMPoolActor& operator=(const AGeometryCollectionISMPoolActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGeometryCollectionISMPoolActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGeometryCollectionISMPoolActor"); }
 
 };

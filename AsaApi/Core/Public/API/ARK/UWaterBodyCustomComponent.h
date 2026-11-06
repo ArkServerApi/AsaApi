@@ -9,8 +9,8 @@ public:
 	~UWaterBodyCustomComponent() = delete;
 	UWaterBodyCustomComponent(const UWaterBodyCustomComponent&) = delete;
 	UWaterBodyCustomComponent& operator=(const UWaterBodyCustomComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWaterBodyCustomComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWaterBodyCustomComponent"); }
 
 	void BeginUpdateWaterBody() { NativeCall<void>(this, "UWaterBodyCustomComponent.BeginUpdateWaterBody()"); }
 	void OnUpdateBody(bool bWithExclusionVolumes) { NativeCall<void, bool>(this, "UWaterBodyCustomComponent.OnUpdateBody(bool)", bWithExclusionVolumes); }

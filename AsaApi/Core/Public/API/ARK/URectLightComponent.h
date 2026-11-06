@@ -9,8 +9,8 @@ public:
 	~URectLightComponent() = delete;
 	URectLightComponent(const URectLightComponent&) = delete;
 	URectLightComponent& operator=(const URectLightComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URectLightComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URectLightComponent"); }
 
 	float& SourceWidthField() { return *GetNativePointerField<float*>(this, "URectLightComponent.SourceWidth"); }
 	float& SourceHeightField() { return *GetNativePointerField<float*>(this, "URectLightComponent.SourceHeight"); }

@@ -10,8 +10,8 @@ public:
 	~UPrimalStructureSettings() = delete;
 	UPrimalStructureSettings(const UPrimalStructureSettings&) = delete;
 	UPrimalStructureSettings& operator=(const UPrimalStructureSettings&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalStructureSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalStructureSettings"); }
 
 	float& DecayDestructionPeriodMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalStructureSettings.DecayDestructionPeriodMultiplier"); }
 

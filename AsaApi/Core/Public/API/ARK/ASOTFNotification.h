@@ -9,8 +9,8 @@ public:
 	~ASOTFNotification() = delete;
 	ASOTFNotification(const ASOTFNotification&) = delete;
 	ASOTFNotification& operator=(const ASOTFNotification&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASOTFNotification"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASOTFNotification"); }
 
 	float& NightBloomMultiplierField() { return *GetNativePointerField<float*>(this, "ASOTFNotification.NightBloomMultiplier"); }
 	float& EffectScaleField() { return *GetNativePointerField<float*>(this, "ASOTFNotification.EffectScale"); }

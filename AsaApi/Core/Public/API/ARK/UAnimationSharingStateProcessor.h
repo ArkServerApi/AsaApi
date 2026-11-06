@@ -9,7 +9,7 @@ public:
 	~UAnimationSharingStateProcessor() = delete;
 	UAnimationSharingStateProcessor(const UAnimationSharingStateProcessor&) = delete;
 	UAnimationSharingStateProcessor& operator=(const UAnimationSharingStateProcessor&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UAnimationSharingStateProcessor.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimationSharingStateProcessor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimationSharingStateProcessor"); }
 
 };

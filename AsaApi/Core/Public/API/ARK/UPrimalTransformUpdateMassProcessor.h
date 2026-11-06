@@ -9,8 +9,8 @@ public:
 	~UPrimalTransformUpdateMassProcessor() = delete;
 	UPrimalTransformUpdateMassProcessor(const UPrimalTransformUpdateMassProcessor&) = delete;
 	UPrimalTransformUpdateMassProcessor& operator=(const UPrimalTransformUpdateMassProcessor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalTransformUpdateMassProcessor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalTransformUpdateMassProcessor"); }
 
 	bool& OddsField() { return *GetNativePointerField<bool*>(this, "UPrimalTransformUpdateMassProcessor.Odds"); }
 	FMassEntityQuery& QueryField() { return *GetNativePointerField<FMassEntityQuery*>(this, "UPrimalTransformUpdateMassProcessor.Query"); }

@@ -9,7 +9,7 @@ public:
 	~USkeletalMeshComponent() = delete;
 	USkeletalMeshComponent(const USkeletalMeshComponent&) = delete;
 	USkeletalMeshComponent& operator=(const USkeletalMeshComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USkeletalMeshComponent"); }
 
 	FSingleAnimationPlayData& AnimationDataField() { return *GetNativePointerField<FSingleAnimationPlayData*>(this, "USkeletalMeshComponent.AnimationData"); }
 	UE::Math::TVector<double>& RootBoneTranslationField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "USkeletalMeshComponent.RootBoneTranslation"); }
@@ -352,7 +352,7 @@ public:
 	void SetBodySimulatePhysics(const FName& InBoneName, bool bSimulate) { NativeCall<void, const FName&, bool>(this, "USkeletalMeshComponent.SetBodySimulatePhysics(FName&,bool)", InBoneName, bSimulate); }
 	void ResetClothTeleportMode() { NativeCall<void>(this, "USkeletalMeshComponent.ResetClothTeleportMode()"); }
 	bool CanSimulateClothing() { return NativeCall<bool>(this, "USkeletalMeshComponent.CanSimulateClothing()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "USkeletalMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USkeletalMeshComponent"); }
 	void DestroyPhysicsState() { NativeCall<void>(this, "USkeletalMeshComponent.DestroyPhysicsState()"); }
 	UE::Math::TVector<double>* GetMeshScaleMultiplier(UE::Math::TVector<double>* result) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*>(this, "USkeletalMeshComponent.GetMeshScaleMultiplier()", result); }
 	void RemoveClothCollisionSource(USkeletalMeshComponent* InSourceComponent, UPhysicsAsset* InSourcePhysicsAsset) { NativeCall<void, USkeletalMeshComponent*, UPhysicsAsset*>(this, "USkeletalMeshComponent.RemoveClothCollisionSource(USkeletalMeshComponent*,UPhysicsAsset*)", InSourceComponent, InSourcePhysicsAsset); }

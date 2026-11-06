@@ -334,7 +334,7 @@ struct UPrimalGameData : UObject
 	// static void StaticRegisterNativesUPrimalGameData();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalGameData"); }
 	//void ~UPrimalGameData() { NativeCall<void>(this, "UPrimalGameData.~UPrimalGameData()"); }
 	//void UPrimalGameData(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UPrimalGameData.UPrimalGameData(FObjectInitializer*)", ObjectInitializer); }
 	void SetCoreDefaults() { NativeCall<void>(this, "UPrimalGameData.SetCoreDefaults()"); }
@@ -486,4 +486,5 @@ struct UPrimalGameData : UObject
 	bool BPCanTeamDamage(int attackerTeam, int victimTeam, const AActor* Attacker) { return NativeCall<bool, int, int, const AActor*>(this, "UPrimalGameData.BPCanTeamDamage(int,int,AActor*)", attackerTeam, victimTeam, Attacker); }
 	UObject* GetObject() { return NativeCall<UObject*>(this, "UPrimalGameData.GetObject()"); }
 	FName GetExplorerNoteName(int NoteIndex) { using AsaReturnType = FName; alignas(AsaReturnType) unsigned char AsaReturnBytes[sizeof(AsaReturnType)]; auto* AsaReturnPointer = reinterpret_cast<AsaReturnType*>(AsaReturnBytes); auto* AsaReturnedPointer = NativeCall<AsaReturnType*, AsaReturnType*, int>(this, "UPrimalGameData.GetExplorerNoteName(int)", AsaReturnPointer, NoteIndex); if (AsaReturnedPointer != AsaReturnPointer) throw std::runtime_error("Unexpected native result buffer"); std::unique_ptr<AsaReturnType, void(*)(AsaReturnType*)> AsaReturnOwner(std::launder(AsaReturnPointer), [](AsaReturnType* value) { value->~AsaReturnType(); }); return MoveTemp(*AsaReturnOwner); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalGameData"); }
 };

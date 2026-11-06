@@ -9,8 +9,8 @@ public:
 	~AInteractiveFoliageActor() = delete;
 	AInteractiveFoliageActor(const AInteractiveFoliageActor&) = delete;
 	AInteractiveFoliageActor& operator=(const AInteractiveFoliageActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AInteractiveFoliageActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AInteractiveFoliageActor"); }
 
 	UE::Math::TVector<double>& TouchingActorEntryPositionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "AInteractiveFoliageActor.TouchingActorEntryPosition"); }
 	UE::Math::TVector<double>& FoliageVelocityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "AInteractiveFoliageActor.FoliageVelocity"); }

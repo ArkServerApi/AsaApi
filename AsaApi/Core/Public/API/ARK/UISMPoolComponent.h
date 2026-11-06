@@ -9,8 +9,8 @@ public:
 	~UISMPoolComponent() = delete;
 	UISMPoolComponent(const UISMPoolComponent&) = delete;
 	UISMPoolComponent& operator=(const UISMPoolComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UISMPoolComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UISMPoolComponent"); }
 
 	unsigned int& NextMeshGroupIdField() { return *GetNativePointerField<unsigned int*>(this, "UISMPoolComponent.NextMeshGroupId"); }
 	FISMPool& PoolField() { return *GetNativePointerField<FISMPool*>(this, "UISMPoolComponent.Pool"); }

@@ -9,8 +9,8 @@ public:
 	~UShooterWeaponDB() = delete;
 	UShooterWeaponDB(const UShooterWeaponDB&) = delete;
 	UShooterWeaponDB& operator=(const UShooterWeaponDB&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterWeaponDB"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterWeaponDB"); }
 
 	void AddAsset(UClass* WeaponClass) { NativeCall<void, UClass*>(this, "UShooterWeaponDB.AddAsset(UClass*)", WeaponClass); }
 	UClass* GetDBClass() { return NativeCall<UClass*>(this, "UShooterWeaponDB.GetDBClass()"); }

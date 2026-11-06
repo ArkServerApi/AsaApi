@@ -22,7 +22,7 @@ struct ACustomGameMode : AShooterGameMode
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACustomGameMode"); }
 	bool OnInitGame(const FString* MapName, const FString* Options, FString* ErrorMessage) { return NativeCall<bool, const FString*, const FString*, FString*>(this, "ACustomGameMode.OnInitGame(FString&,FString&,FString&)", MapName, Options, ErrorMessage); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesACustomGameMode();
@@ -82,4 +82,5 @@ struct ACustomGameMode : AShooterGameMode
 	bool OnPlayerCanRestart_Implementation(APlayerController* Player) { return NativeCall<bool, APlayerController*>(this, "ACustomGameMode.OnPlayerCanRestart_Implementation(APlayerController*)", Player); }
 	bool OnAllowModifyStatusValue(UPrimalCharacterStatusComponent* forComp, EPrimalCharacterStatusValue::Type valueType, float Amount) { return NativeCall<bool, UPrimalCharacterStatusComponent*, EPrimalCharacterStatusValue::Type, float>(this, "ACustomGameMode.OnAllowModifyStatusValue(UPrimalCharacterStatusComponent*,EPrimalCharacterStatusValue::Type,float)", forComp, valueType, Amount); }
 	bool OnAllowAddToTribe(AShooterPlayerState* ForPlayerState, const FTribeData& MyNewTribe) { return NativeCall<bool, AShooterPlayerState*, const FTribeData&>(this, "ACustomGameMode.OnAllowAddToTribe(AShooterPlayerState*,FTribeData&)", ForPlayerState, MyNewTribe); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACustomGameMode"); }
 };

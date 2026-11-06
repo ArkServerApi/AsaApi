@@ -10,8 +10,8 @@ public:
 	~UClothingAssetBase() = delete;
 	UClothingAssetBase(const UClothingAssetBase&) = delete;
 	UClothingAssetBase& operator=(const UClothingAssetBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UClothingAssetBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UClothingAssetBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UClothingAssetBase"); }
 	FGuid& AssetGuidField() { return *GetNativePointerField<FGuid*>(this, "UClothingAssetBase.AssetGuid"); }
 	void PostUpdateAllAssets() { NativeCall<void>(this, "UClothingAssetBase.PostUpdateAllAssets()"); }
 	int GetNumLods() { return NativeCall<int>(this, "UClothingAssetBase.GetNumLods()"); }

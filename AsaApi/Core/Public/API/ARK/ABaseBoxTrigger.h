@@ -18,12 +18,12 @@ struct ABaseBoxTrigger : AActor
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesABaseBoxTrigger();
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ABaseBoxTrigger.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABaseBoxTrigger"); }
 	void BeginPlay() { NativeCall<void>(this, "ABaseBoxTrigger.BeginPlay()"); }
 	void OnTriggerBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex, bool bFromSweep, const FHitResult* SweepResult) { NativeCall<void, UPrimitiveComponent*, AActor*, UPrimitiveComponent*, int, bool, const FHitResult*>(this, "ABaseBoxTrigger.OnTriggerBeginOverlap(UPrimitiveComponent*,AActor*,UPrimitiveComponent*,int,bool,FHitResult&)", OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult); }
 	void OnTriggerEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex) { NativeCall<void, UPrimitiveComponent*, AActor*, UPrimitiveComponent*, int>(this, "ABaseBoxTrigger.OnTriggerEndOverlap(UPrimitiveComponent*,AActor*,UPrimitiveComponent*,int)", OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABaseBoxTrigger"); }
 
 	void BPOnTriggerEndOverlap(AActor* OtherActor, UPrimitiveComponent* OtherComp, int OtherBodyIndex) { NativeCall<void, AActor*, UPrimitiveComponent*, int>(this, "ABaseBoxTrigger.BPOnTriggerEndOverlap(AActor*,UPrimitiveComponent*,int)", OtherActor, OtherComp, OtherBodyIndex); }
 	bool IsCharacterTouchingTrigger(APrimalCharacter* Character) { return NativeCall<bool, APrimalCharacter*>(this, "ABaseBoxTrigger.IsCharacterTouchingTrigger(APrimalCharacter*)", Character); }

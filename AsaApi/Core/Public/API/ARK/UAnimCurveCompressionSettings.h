@@ -10,6 +10,6 @@ public:
 	~UAnimCurveCompressionSettings() = delete;
 	UAnimCurveCompressionSettings(const UAnimCurveCompressionSettings&) = delete;
 	UAnimCurveCompressionSettings& operator=(const UAnimCurveCompressionSettings&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimCurveCompressionSettings"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimCurveCompressionSettings"); }
 };

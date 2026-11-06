@@ -9,8 +9,8 @@ public:
 	~ATestBeaconHost() = delete;
 	ATestBeaconHost(const ATestBeaconHost&) = delete;
 	ATestBeaconHost& operator=(const ATestBeaconHost&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATestBeaconHost"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATestBeaconHost"); }
 
 	AOnlineBeaconClient* SpawnBeaconActor(UNetConnection* ClientConnection) { return NativeCall<AOnlineBeaconClient*, UNetConnection*>(this, "ATestBeaconHost.SpawnBeaconActor(UNetConnection*)", ClientConnection); }
 	bool Init() { return NativeCall<bool>(this, "ATestBeaconHost.Init()"); }

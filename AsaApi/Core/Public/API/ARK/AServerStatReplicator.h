@@ -9,8 +9,8 @@ public:
 	~AServerStatReplicator() = delete;
 	AServerStatReplicator(const AServerStatReplicator&) = delete;
 	AServerStatReplicator& operator=(const AServerStatReplicator&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AServerStatReplicator"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AServerStatReplicator"); }
 
 	bool& bUpdateStatNetField() { return *GetNativePointerField<bool*>(this, "AServerStatReplicator.bUpdateStatNet"); }
 	bool& bOverwriteClientStatsField() { return *GetNativePointerField<bool*>(this, "AServerStatReplicator.bOverwriteClientStats"); }

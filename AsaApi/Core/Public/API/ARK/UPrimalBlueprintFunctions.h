@@ -10,8 +10,8 @@ public:
 	~UPrimalBlueprintFunctions() = delete;
 	UPrimalBlueprintFunctions(const UPrimalBlueprintFunctions&) = delete;
 	UPrimalBlueprintFunctions& operator=(const UPrimalBlueprintFunctions&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalBlueprintFunctions"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalBlueprintFunctions"); }
 
 
 

@@ -9,7 +9,7 @@ public:
 	~ULocalPlayer() = delete;
 	ULocalPlayer(const ULocalPlayer&) = delete;
 	ULocalPlayer& operator=(const ULocalPlayer&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULocalPlayer.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULocalPlayer"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULocalPlayer"); }
 
 };

@@ -10,8 +10,8 @@ public:
 	~ULandscapeHeightmapTextureEdgeFixup() = delete;
 	ULandscapeHeightmapTextureEdgeFixup(const ULandscapeHeightmapTextureEdgeFixup&) = delete;
 	ULandscapeHeightmapTextureEdgeFixup& operator=(const ULandscapeHeightmapTextureEdgeFixup&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeHeightmapTextureEdgeFixup"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeHeightmapTextureEdgeFixup"); }
 	FLandscapeGroup*& ActiveGroupField() { return *GetNativePointerField<FLandscapeGroup**>(this, "ULandscapeHeightmapTextureEdgeFixup.ActiveGroup"); }
 	bool& bMappedField() { return *GetNativePointerField<bool*>(this, "ULandscapeHeightmapTextureEdgeFixup.bMapped"); }
 	bool& bForceUpdateSnapshotField() { return *GetNativePointerField<bool*>(this, "ULandscapeHeightmapTextureEdgeFixup.bForceUpdateSnapshot"); }

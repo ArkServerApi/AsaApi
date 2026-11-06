@@ -9,8 +9,8 @@ public:
 	~AHibernationManager() = delete;
 	AHibernationManager(const AHibernationManager&) = delete;
 	AHibernationManager& operator=(const AHibernationManager&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHibernationManager"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHibernationManager"); }
 
 	int& NumHibernatedStructureEntitiesField() { return *GetNativePointerField<int*>(this, "AHibernationManager.NumHibernatedStructureEntities"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& SharedNameTableField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "AHibernationManager.SharedNameTable"); }

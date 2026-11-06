@@ -9,7 +9,7 @@ public:
 	~UBaseSelectableButtonWidget() = delete;
 	UBaseSelectableButtonWidget(const UBaseSelectableButtonWidget&) = delete;
 	UBaseSelectableButtonWidget& operator=(const UBaseSelectableButtonWidget&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBaseSelectableButtonWidget"); }
 
 	bool BPIsSelected() { return NativeCall<bool>(this, "UBaseSelectableButtonWidget.BPIsSelected()"); }
 	UCustomButtonWidget* GetButton() { return NativeCall<UCustomButtonWidget*>(this, "UBaseSelectableButtonWidget.GetButton()"); }
@@ -17,5 +17,5 @@ public:
 	void BPSetSelected(bool bSelected) { NativeCall<void, bool>(this, "UBaseSelectableButtonWidget.BPSetSelected(bool)", bSelected); }
 	bool IsSelected() { return NativeCall<bool>(this, "UBaseSelectableButtonWidget.IsSelected()"); }
 	UCustomButtonWidget* BPGetButton() { return NativeCall<UCustomButtonWidget*>(this, "UBaseSelectableButtonWidget.BPGetButton()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBaseSelectableButtonWidget.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBaseSelectableButtonWidget"); }
 };

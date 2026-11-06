@@ -9,8 +9,8 @@ public:
 	~AWorldPartitionCustomHLOD() = delete;
 	AWorldPartitionCustomHLOD(const AWorldPartitionCustomHLOD&) = delete;
 	AWorldPartitionCustomHLOD& operator=(const AWorldPartitionCustomHLOD&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWorldPartitionCustomHLOD"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWorldPartitionCustomHLOD"); }
 
 	FGuid& HLODInstanceGuidField() { return *GetNativePointerField<FGuid*>(this, "AWorldPartitionCustomHLOD.HLODInstanceGuid"); }
 	bool IsStandalone() { return NativeCall<bool>(this, "AWorldPartitionCustomHLOD.IsStandalone()"); }

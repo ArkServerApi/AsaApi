@@ -9,8 +9,8 @@ public:
 	~UWardrobeItemSelector() = delete;
 	UWardrobeItemSelector(const UWardrobeItemSelector&) = delete;
 	UWardrobeItemSelector& operator=(const UWardrobeItemSelector&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWardrobeItemSelector"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWardrobeItemSelector"); }
 
 	UDataListPanel*& WardrobeItemsDataListField() { return *GetNativePointerField<UDataListPanel**>(this, "UWardrobeItemSelector.WardrobeItemsDataList"); }
 	UDataListPanel*& WardrobeItemsDataListCCField() { return *GetNativePointerField<UDataListPanel**>(this, "UWardrobeItemSelector.WardrobeItemsDataListCC"); }

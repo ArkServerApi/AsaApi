@@ -279,7 +279,7 @@ struct UEngine : UObject
 	// Functions
 
 	void ForceGarbageCollection(bool bForcePurge) { NativeCall<void, bool>(this, "UEngine.ForceGarbageCollection(bool)", bForcePurge); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UEngine.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UEngine"); }
 	//UThreadNodeSubsystem* GetEngineSubsystem<class UThreadNodeSubsystem>() { return NativeCall<UThreadNodeSubsystem*>(this, "UEngine.GetEngineSubsystem<class UThreadNodeSubsystem>()"); }
 	FString* GetLastModDownloadText(FString* result) { return NativeCall<FString*, FString*>(this, "UEngine.GetLastModDownloadText()", result); }
 	bool IsInitialized() { return NativeCall<bool>(this, "UEngine.IsInitialized()"); }
@@ -426,5 +426,5 @@ struct UEngine : UObject
 	//static void FEngineStatFuncs() { NativeCall<void>(nullptr, "UEngine.FEngineStatFuncs()"); }
 	struct UContentBundleEngineSubsystem* GetEngineSubsystem() { return NativeCall<UContentBundleEngineSubsystem*>(this, "UEngine.GetEngineSubsystem<UThreadNodeSubsystem>()"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UEngine"); }
 };

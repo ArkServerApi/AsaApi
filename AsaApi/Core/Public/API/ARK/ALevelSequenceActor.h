@@ -9,7 +9,7 @@ public:
 	~ALevelSequenceActor() = delete;
 	ALevelSequenceActor(const ALevelSequenceActor&) = delete;
 	ALevelSequenceActor& operator=(const ALevelSequenceActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALevelSequenceActor"); }
 
 	FMovieSceneSequencePlaybackSettings& PlaybackSettingsField() { return *GetNativePointerField<FMovieSceneSequencePlaybackSettings*>(this, "ALevelSequenceActor.PlaybackSettings"); }
 	FLevelSequenceCameraSettings& CameraSettingsField() { return *GetNativePointerField<FLevelSequenceCameraSettings*>(this, "ALevelSequenceActor.CameraSettings"); }
@@ -32,7 +32,7 @@ public:
 	ULevelSequence* GetSequence() { return NativeCall<ULevelSequence*>(this, "ALevelSequenceActor.GetSequence()"); }
 	void SetBindingByTag(FName BindingTag, const TArray<AActor*, TSizedDefaultAllocator<32> >& Actors, bool bAllowBindingsFromAsset) { NativeCall<void, FName, const TArray<AActor*, TSizedDefaultAllocator<32> >&, bool>(this, "ALevelSequenceActor.SetBindingByTag(FName,TArray<AActor*,TSizedDefaultAllocator<32>>&,bool)", BindingTag, Actors, bAllowBindingsFromAsset); }
 	void RemoveBindingByTag(FName BindingTag, AActor* Actor) { NativeCall<void, FName, AActor*>(this, "ALevelSequenceActor.RemoveBindingByTag(FName,AActor*)", BindingTag, Actor); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ALevelSequenceActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALevelSequenceActor"); }
 	void PostInitProperties() { NativeCall<void>(this, "ALevelSequenceActor.PostInitProperties()"); }
 	void PostInitializeComponents() { NativeCall<void>(this, "ALevelSequenceActor.PostInitializeComponents()"); }
 	void PreInitializeComponents() { NativeCall<void>(this, "ALevelSequenceActor.PreInitializeComponents()"); }

@@ -9,8 +9,8 @@ public:
 	~UParticleSystemComponentWithSoftRef() = delete;
 	UParticleSystemComponentWithSoftRef(const UParticleSystemComponentWithSoftRef&) = delete;
 	UParticleSystemComponentWithSoftRef& operator=(const UParticleSystemComponentWithSoftRef&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleSystemComponentWithSoftRef"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleSystemComponentWithSoftRef"); }
 
 	void ResolveSynchronous() { NativeCall<void>(this, "UParticleSystemComponentWithSoftRef.ResolveSynchronous()"); }
 };

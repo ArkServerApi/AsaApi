@@ -9,7 +9,7 @@ public:
 	~UScriptViewportClient() = delete;
 	UScriptViewportClient(const UScriptViewportClient&) = delete;
 	UScriptViewportClient& operator=(const UScriptViewportClient&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UScriptViewportClient.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UScriptViewportClient"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UScriptViewportClient"); }
 
 };

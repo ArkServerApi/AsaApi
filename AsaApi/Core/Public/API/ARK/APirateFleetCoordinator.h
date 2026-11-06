@@ -9,8 +9,8 @@ public:
 	~APirateFleetCoordinator() = delete;
 	APirateFleetCoordinator(const APirateFleetCoordinator&) = delete;
 	APirateFleetCoordinator& operator=(const APirateFleetCoordinator&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APirateFleetCoordinator"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APirateFleetCoordinator"); }
 
 	float& FormationSpawnJitterField() { return *GetNativePointerField<float*>(this, "APirateFleetCoordinator.FormationSpawnJitter"); }
 	int& BossRewardCratesToDropField() { return *GetNativePointerField<int*>(this, "APirateFleetCoordinator.BossRewardCratesToDrop"); }

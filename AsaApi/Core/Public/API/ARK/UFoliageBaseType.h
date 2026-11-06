@@ -16,8 +16,8 @@ struct UFoliageBaseType : UObject
 	TArray<TObjectPtr<UMaterialInterface>, TSizedDefaultAllocator<32> >* getOverrideMaterials(TArray<TObjectPtr<UMaterialInterface>, TSizedDefaultAllocator<32> >* result) { return NativeCall<TArray<TObjectPtr<UMaterialInterface>, TSizedDefaultAllocator<32> >*, TArray<TObjectPtr<UMaterialInterface>, TSizedDefaultAllocator<32> >*>(this, "UFoliageBaseType.getOverrideMaterials()", result); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// UClass* GetPrivateStaticClass();
-	UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFoliageBaseType"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void StaticRegisterNativesUFoliageBaseType();
-	UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFoliageBaseType.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFoliageBaseType"); }
 };

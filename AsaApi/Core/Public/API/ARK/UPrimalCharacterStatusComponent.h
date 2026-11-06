@@ -224,7 +224,7 @@ struct UPrimalCharacterStatusComponent : UActorComponent
 	void NetSyncMaxStatusValues(const TArray<float, TSizedDefaultAllocator<32> >* NetMaxStatusValues, const TArray<float, TSizedDefaultAllocator<32> >* NetBaseMaxStatusValues) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >*, const TArray<float, TSizedDefaultAllocator<32> >*>(this, "UPrimalCharacterStatusComponent.NetSyncMaxStatusValues(TArray<float,TSizedDefaultAllocator<32>>&,TArray<float,TSizedDefaultAllocator<32>>&)", NetMaxStatusValues, NetBaseMaxStatusValues); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUPrimalCharacterStatusComponent();
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalCharacterStatusComponent.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCharacterStatusComponent"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "UPrimalCharacterStatusComponent.Serialize(FStructuredArchiveRecord)", Record); }
@@ -296,7 +296,7 @@ struct UPrimalCharacterStatusComponent : UActorComponent
 	double& LastReplicatedXPMilestoneTimeField() { return *GetNativePointerField<double*>(this, "UPrimalCharacterStatusComponent.LastReplicatedXPMilestoneTime"); }
 	float& MountedReceiveRiderXPPercentField() { return *GetNativePointerField<float*>(this, "UPrimalCharacterStatusComponent.MountedReceiveRiderXPPercent"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCharacterStatusComponent"); }
 
 	FName& SkillTreeQuickAccessField() { return *GetNativePointerField<FName*>(this, "UPrimalCharacterStatusComponent.SkillTreeQuickAccess"); }
 	TEnumAsByte<EPrimalCharacterStatusValue::Type>& MaxStatusValueToAutoUpdateField() { return *GetNativePointerField<TEnumAsByte<EPrimalCharacterStatusValue::Type>*>(this, "UPrimalCharacterStatusComponent.MaxStatusValueToAutoUpdate"); }

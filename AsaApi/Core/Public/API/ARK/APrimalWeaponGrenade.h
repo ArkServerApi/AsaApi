@@ -30,7 +30,7 @@ struct APrimalWeaponGrenade : AShooterWeapon_Projectile
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWeaponGrenade"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalWeaponGrenade();
 	void StartFire(bool bFromGamepad) { NativeCall<void, bool>(this, "APrimalWeaponGrenade.StartFire(bool)", bFromGamepad); }
@@ -66,4 +66,5 @@ struct APrimalWeaponGrenade : AShooterWeapon_Projectile
 	void UnHidePin() { NativeCall<void>(this, "APrimalWeaponGrenade.UnHidePin()"); }
 	static void SetbIsCookingGrenade_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalWeaponGrenade.SetbIsCookingGrenade_WrapperImpl(void*,void*)", Object, InValue); }
 	static void GetbIsCookingGrenade_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "APrimalWeaponGrenade.GetbIsCookingGrenade_WrapperImpl(void*,void*)", Object, OutValue); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWeaponGrenade"); }
 };

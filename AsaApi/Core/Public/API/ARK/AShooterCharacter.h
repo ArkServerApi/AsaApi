@@ -413,7 +413,7 @@ struct AShooterCharacter : APrimalCharacter
 
 	// Unavailable in UE 5.8.3: dependent class factory unavailable
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterCharacter"); }
 	void ClientNetEndClimbingLadder() { NativeCall<void>(this, "AShooterCharacter.ClientNetEndClimbingLadder()"); }
 	void DetachFromLadder() { NativeCall<void>(this, "AShooterCharacter.DetachFromLadder()"); }
 	void DetachGrapHookCable() { NativeCall<void>(this, "AShooterCharacter.DetachGrapHookCable()"); }
@@ -433,7 +433,7 @@ struct AShooterCharacter : APrimalCharacter
 	// static void StaticRegisterNativesAShooterCharacter();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterCharacter"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
 	void Serialize(FStructuredArchiveRecord Record) { NativeCall<void, FStructuredArchiveRecord>(this, "AShooterCharacter.Serialize(FStructuredArchiveRecord)", Record); }

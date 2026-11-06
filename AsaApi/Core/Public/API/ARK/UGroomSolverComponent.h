@@ -9,8 +9,8 @@ public:
 	~UGroomSolverComponent() = delete;
 	UGroomSolverComponent(const UGroomSolverComponent&) = delete;
 	UGroomSolverComponent& operator=(const UGroomSolverComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGroomSolverComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGroomSolverComponent"); }
 
 	FGroomSolverSettings& SolverSettingsField() { return *GetNativePointerField<FGroomSolverSettings*>(this, "UGroomSolverComponent.SolverSettings"); }
 	FDataflowSimulationAsset& SimulationAssetField() { return *GetNativePointerField<FDataflowSimulationAsset*>(this, "UGroomSolverComponent.SimulationAsset"); }

@@ -9,8 +9,8 @@ public:
 	~UInventoryArkCreaturesPanel() = delete;
 	UInventoryArkCreaturesPanel(const UInventoryArkCreaturesPanel&) = delete;
 	UInventoryArkCreaturesPanel& operator=(const UInventoryArkCreaturesPanel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInventoryArkCreaturesPanel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInventoryArkCreaturesPanel"); }
 
 	float& updateTimerField() { return *GetNativePointerField<float*>(this, "UInventoryArkCreaturesPanel.updateTimer"); }
 	FName& UploadedCreatureListNameField() { return *GetNativePointerField<FName*>(this, "UInventoryArkCreaturesPanel.UploadedCreatureListName"); }

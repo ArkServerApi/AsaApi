@@ -9,8 +9,8 @@ public:
 	~ULocalSkyLightOverrideComponent() = delete;
 	ULocalSkyLightOverrideComponent(const ULocalSkyLightOverrideComponent&) = delete;
 	ULocalSkyLightOverrideComponent& operator=(const ULocalSkyLightOverrideComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULocalSkyLightOverrideComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULocalSkyLightOverrideComponent"); }
 
 	bool& bUseBoxInfluenceShapeField() { return *GetNativePointerField<bool*>(this, "ULocalSkyLightOverrideComponent.bUseBoxInfluenceShape"); }
 	float& BlendDistanceField() { return *GetNativePointerField<float*>(this, "ULocalSkyLightOverrideComponent.BlendDistance"); }

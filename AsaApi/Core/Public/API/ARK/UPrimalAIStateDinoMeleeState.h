@@ -10,7 +10,7 @@ public:
 	~UPrimalAIStateDinoMeleeState() = delete;
 	UPrimalAIStateDinoMeleeState(const UPrimalAIStateDinoMeleeState&) = delete;
 	UPrimalAIStateDinoMeleeState& operator=(const UPrimalAIStateDinoMeleeState&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoMeleeState"); }
 
 	float& SpawnProjectileIntervalField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoMeleeState.SpawnProjectileInterval"); }
 	float& SecondarySwingRadiusField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoMeleeState.SecondarySwingRadius"); }
@@ -28,7 +28,7 @@ public:
 	void DoMeleeAttackTrace(float DeltaTime, bool bForceMeleeOverlapCheck) { NativeCall<void, float, bool>(this, "UPrimalAIStateDinoMeleeState.DoMeleeAttackTrace(float,bool)", DeltaTime, bForceMeleeOverlapCheck); }
 	bool BPPreventStopActiveStateOnTick() { return NativeCall<bool>(this, "UPrimalAIStateDinoMeleeState.BPPreventStopActiveStateOnTick()"); }
 	void OnBegin(UPrimalAIState* InParentState) { NativeCall<void, UPrimalAIState*>(this, "UPrimalAIStateDinoMeleeState.OnBegin(UPrimalAIState*)", InParentState); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalAIStateDinoMeleeState.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoMeleeState"); }
 
 	BitFieldValue<bool, unsigned char> bAdjustProjectileDamageIfTickMissesIntervals() { return { this, "UPrimalAIStateDinoMeleeState.bAdjustProjectileDamageIfTickMissesIntervals"}; }
 	BitFieldValue<bool, unsigned char> bCanAttackWhileFlying() { return { this, "UPrimalAIStateDinoMeleeState.bCanAttackWhileFlying"}; }

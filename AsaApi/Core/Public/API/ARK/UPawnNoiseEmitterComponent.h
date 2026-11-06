@@ -9,8 +9,8 @@ public:
 	~UPawnNoiseEmitterComponent() = delete;
 	UPawnNoiseEmitterComponent(const UPawnNoiseEmitterComponent&) = delete;
 	UPawnNoiseEmitterComponent& operator=(const UPawnNoiseEmitterComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPawnNoiseEmitterComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPawnNoiseEmitterComponent"); }
 
 	UE::Math::TVector<double>& LastRemoteNoisePositionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UPawnNoiseEmitterComponent.LastRemoteNoisePosition"); }
 	float& NoiseLifetimeField() { return *GetNativePointerField<float*>(this, "UPawnNoiseEmitterComponent.NoiseLifetime"); }

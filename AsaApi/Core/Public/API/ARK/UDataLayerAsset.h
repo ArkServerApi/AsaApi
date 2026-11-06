@@ -10,8 +10,8 @@ public:
 	~UDataLayerAsset() = delete;
 	UDataLayerAsset(const UDataLayerAsset&) = delete;
 	UDataLayerAsset& operator=(const UDataLayerAsset&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDataLayerAsset.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataLayerAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataLayerAsset"); }
 	bool& bSupportsActorFiltersField() { return *GetNativePointerField<bool*>(this, "UDataLayerAsset.bSupportsActorFilters"); }
 	FColor& DebugColorField() { return *GetNativePointerField<FColor*>(this, "UDataLayerAsset.DebugColor"); }
 };

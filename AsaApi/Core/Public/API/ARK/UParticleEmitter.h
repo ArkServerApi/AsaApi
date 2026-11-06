@@ -10,8 +10,8 @@ public:
 	~UParticleEmitter() = delete;
 	UParticleEmitter(const UParticleEmitter&) = delete;
 	UParticleEmitter& operator=(const UParticleEmitter&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UParticleEmitter.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleEmitter"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleEmitter"); }
 	FName& EmitterNameField() { return *GetNativePointerField<FName*>(this, "UParticleEmitter.EmitterName"); }
 	int& SubUVDataOffsetField() { return *GetNativePointerField<int*>(this, "UParticleEmitter.SubUVDataOffset"); }
 	EParticleSignificanceLevel& SignificanceLevelField() { return *GetNativePointerField<EParticleSignificanceLevel*>(this, "UParticleEmitter.SignificanceLevel"); }

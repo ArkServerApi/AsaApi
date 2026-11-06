@@ -9,7 +9,7 @@ public:
 	~ACombinedTransformGizmoActor() = delete;
 	ACombinedTransformGizmoActor(const ACombinedTransformGizmoActor&) = delete;
 	ACombinedTransformGizmoActor& operator=(const ACombinedTransformGizmoActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACombinedTransformGizmoActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACombinedTransformGizmoActor"); }
 
 };

@@ -9,8 +9,8 @@ public:
 	~UCapsuleComponent() = delete;
 	UCapsuleComponent(const UCapsuleComponent&) = delete;
 	UCapsuleComponent& operator=(const UCapsuleComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCapsuleComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCapsuleComponent"); }
 
 	float& CapsuleHalfHeightField() { return *GetNativePointerField<float*>(this, "UCapsuleComponent.CapsuleHalfHeight"); }
 	float& CapsuleRadiusField() { return *GetNativePointerField<float*>(this, "UCapsuleComponent.CapsuleRadius"); }

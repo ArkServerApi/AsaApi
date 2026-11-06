@@ -9,8 +9,8 @@ public:
 	~UGeometryCacheUsdComponent() = delete;
 	UGeometryCacheUsdComponent(const UGeometryCacheUsdComponent&) = delete;
 	UGeometryCacheUsdComponent& operator=(const UGeometryCacheUsdComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGeometryCacheUsdComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGeometryCacheUsdComponent"); }
 
 	void OnRegister() { NativeCall<void>(this, "UGeometryCacheUsdComponent.OnRegister()"); }
 	void OnUnregister() { NativeCall<void>(this, "UGeometryCacheUsdComponent.OnUnregister()"); }

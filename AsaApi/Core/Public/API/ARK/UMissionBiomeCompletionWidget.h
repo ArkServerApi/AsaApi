@@ -9,8 +9,8 @@ public:
 	~UMissionBiomeCompletionWidget() = delete;
 	UMissionBiomeCompletionWidget(const UMissionBiomeCompletionWidget&) = delete;
 	UMissionBiomeCompletionWidget& operator=(const UMissionBiomeCompletionWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMissionBiomeCompletionWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMissionBiomeCompletionWidget"); }
 
 	UTexture2D*& ButtonIconField() { return *GetNativePointerField<UTexture2D**>(this, "UMissionBiomeCompletionWidget.ButtonIcon"); }
 	FText& SectionNameField() { return *GetNativePointerField<FText*>(this, "UMissionBiomeCompletionWidget.SectionName"); }

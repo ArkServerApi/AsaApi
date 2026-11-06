@@ -353,7 +353,7 @@ struct APrimalBuff : APrimalEmitterSpawnable
     void SetBuffCauser(AActor* CausedBy) { NativeCall<void, AActor*>(this, "APrimalBuff.SetBuffCauser(AActor*)", CausedBy); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalBuff();
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalBuff.StaticClass()"); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
     bool TemplateAllowActorSpawn(UWorld* World, const UE::Math::TVector<double>* AtLocation, const UE::Math::TRotator<double>* AtRotation, const FActorSpawnParameters* SpawnParameters) { return NativeCall<bool, UWorld*, const UE::Math::TVector<double>*, const UE::Math::TRotator<double>*, const FActorSpawnParameters*>(this, "APrimalBuff.TemplateAllowActorSpawn(UWorld*,UE::Math::TVector<double>&,UE::Math::TRotator<double>&,FActorSpawnParameters&)", World, AtLocation, AtRotation, SpawnParameters); }
@@ -460,7 +460,7 @@ struct APrimalBuff : APrimalEmitterSpawnable
 	float& DinoDamageCauserAggroToAddTowardsInstigatorField() { return *GetNativePointerField<float*>(this, "APrimalBuff.DinoDamageCauserAggroToAddTowardsInstigator"); }
 	float& DinoInstigatorAggroToAddTowardsDamageCauserField() { return *GetNativePointerField<float*>(this, "APrimalBuff.DinoInstigatorAggroToAddTowardsDamageCauser"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff"); }
 
 	FTimerHandle& StackUpdateHandleField() { return *GetNativePointerField<FTimerHandle*>(this, "APrimalBuff.StackUpdateHandle"); }
 	TArray<FString, TSizedDefaultAllocator<32> >& ShouldInterceptedInputEventOverwriteUsualFunctionality_Array_GamepadField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff.ShouldInterceptedInputEventOverwriteUsualFunctionality_Array_Gamepad"); }

@@ -10,8 +10,8 @@ public:
 	~UBlueprintGeneratedClass() = delete;
 	UBlueprintGeneratedClass(const UBlueprintGeneratedClass&) = delete;
 	UBlueprintGeneratedClass& operator=(const UBlueprintGeneratedClass&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UBlueprintGeneratedClass.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBlueprintGeneratedClass"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBlueprintGeneratedClass"); }
 	int& NumReplicatedPropertiesField() { return *GetNativePointerField<int*>(this, "UBlueprintGeneratedClass.NumReplicatedProperties"); }
 	int& FieldNotifiesStartBitNumberField() { return *GetNativePointerField<int*>(this, "UBlueprintGeneratedClass.FieldNotifiesStartBitNumber"); }
 	FStructProperty*& UberGraphFramePointerPropertyField() { return *GetNativePointerField<FStructProperty**>(this, "UBlueprintGeneratedClass.UberGraphFramePointerProperty"); }

@@ -9,8 +9,8 @@ public:
 	~UInventoryQuickSlotsPanel() = delete;
 	UInventoryQuickSlotsPanel(const UInventoryQuickSlotsPanel&) = delete;
 	UInventoryQuickSlotsPanel& operator=(const UInventoryQuickSlotsPanel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInventoryQuickSlotsPanel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInventoryQuickSlotsPanel"); }
 
 	UUI_Inventory*& InventoryUIField() { return *GetNativePointerField<UUI_Inventory**>(this, "UInventoryQuickSlotsPanel.InventoryUI"); }
 	UDataListPanel*& QuickSlotDataListField() { return *GetNativePointerField<UDataListPanel**>(this, "UInventoryQuickSlotsPanel.QuickSlotDataList"); }

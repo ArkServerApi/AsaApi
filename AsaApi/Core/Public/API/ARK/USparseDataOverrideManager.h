@@ -38,10 +38,10 @@ struct USparseDataOverrideManager : UObject
 	float MateBoostDamageGiveMultiplier_Override_Implementation(float BaseValue, float CurrentValue, const UObject* ForInstance) { return NativeCall<float, float, float, const UObject*>(this, "USparseDataOverrideManager.MateBoostDamageGiveMultiplier_Override_Implementation(float,float,UObject*)", BaseValue, CurrentValue, ForInstance); }
 	// Unavailable in UE 5.8.3: dependent factory unavailable
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USparseDataOverrideManager"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USparseDataOverrideManager"); }
 	static float Internal_OverrideMateBoostDamageGiveMultiplier(float BaseValue, const UObject* ForInstance) { return NativeCall<float, float, const UObject*>(nullptr, "USparseDataOverrideManager.Internal_OverrideMateBoostDamageGiveMultiplier(float,UObject*)", BaseValue, ForInstance); }
 	float MateBoostRange_Override_Implementation(float BaseValue, float CurrentValue, const UObject* ForInstance) { return NativeCall<float, float, float, const UObject*>(this, "USparseDataOverrideManager.MateBoostRange_Override_Implementation(float,float,UObject*)", BaseValue, CurrentValue, ForInstance); }
 	float RandomMutationChance_Override(float BaseValue, float CurrentValue, const UObject* ForInstance) { return NativeCall<float, float, float, const UObject*>(this, "USparseDataOverrideManager.RandomMutationChance_Override(float,float,UObject*)", BaseValue, CurrentValue, ForInstance); }

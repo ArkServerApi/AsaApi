@@ -9,7 +9,7 @@ public:
 	~AZoneGraphAnnotationTestingActor() = delete;
 	AZoneGraphAnnotationTestingActor(const AZoneGraphAnnotationTestingActor&) = delete;
 	AZoneGraphAnnotationTestingActor& operator=(const AZoneGraphAnnotationTestingActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AZoneGraphAnnotationTestingActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AZoneGraphAnnotationTestingActor"); }
 
 };

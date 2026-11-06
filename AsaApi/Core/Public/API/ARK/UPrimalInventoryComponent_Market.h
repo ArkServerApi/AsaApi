@@ -10,8 +10,8 @@ public:
 	~UPrimalInventoryComponent_Market() = delete;
 	UPrimalInventoryComponent_Market(const UPrimalInventoryComponent_Market&) = delete;
 	UPrimalInventoryComponent_Market& operator=(const UPrimalInventoryComponent_Market&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent_Market"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent_Market"); }
 
 
 

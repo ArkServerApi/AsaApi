@@ -9,8 +9,8 @@ public:
 	~UCameraShakeSourceComponent() = delete;
 	UCameraShakeSourceComponent(const UCameraShakeSourceComponent&) = delete;
 	UCameraShakeSourceComponent& operator=(const UCameraShakeSourceComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCameraShakeSourceComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCameraShakeSourceComponent"); }
 
 	ECameraShakeAttenuation& AttenuationField() { return *GetNativePointerField<ECameraShakeAttenuation*>(this, "UCameraShakeSourceComponent.Attenuation"); }
 	float& InnerAttenuationRadiusField() { return *GetNativePointerField<float*>(this, "UCameraShakeSourceComponent.InnerAttenuationRadius"); }

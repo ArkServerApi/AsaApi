@@ -9,8 +9,8 @@ public:
 	~UShooterReplicationGraph() = delete;
 	UShooterReplicationGraph(const UShooterReplicationGraph&) = delete;
 	UShooterReplicationGraph& operator=(const UShooterReplicationGraph&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterReplicationGraph"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterReplicationGraph"); }
 
 	float& DynamicCellSizeField() { return *GetNativePointerField<float*>(this, "UShooterReplicationGraph.DynamicCellSize"); }
 	float& DormantCellSizeField() { return *GetNativePointerField<float*>(this, "UShooterReplicationGraph.DormantCellSize"); }

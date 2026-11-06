@@ -10,8 +10,8 @@ public:
 	~UPackageMap() = delete;
 	UPackageMap(const UPackageMap&) = delete;
 	UPackageMap& operator=(const UPackageMap&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPackageMap.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPackageMap"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPackageMap"); }
 	bool& bShouldTrackUnmappedGuidsField() { return *GetNativePointerField<bool*>(this, "UPackageMap.bShouldTrackUnmappedGuids"); }
 	FString& DebugContextStringField() { return *GetNativePointerField<FString*>(this, "UPackageMap.DebugContextString"); }
 	bool PrintExportBatch() { return NativeCall<bool>(this, "UPackageMap.PrintExportBatch()"); }

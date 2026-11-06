@@ -10,7 +10,7 @@ public:
 	~UReplicationDriver() = delete;
 	UReplicationDriver(const UReplicationDriver&) = delete;
 	UReplicationDriver& operator=(const UReplicationDriver&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UReplicationDriver"); }
 
 
 
@@ -29,7 +29,7 @@ public:
 	void RemoveClientConnection(UNetConnection* NetConnection) { NativeCall<void, UNetConnection*>(this, "UReplicationDriver.RemoveClientConnection(UNetConnection*)", NetConnection); }
 	void PostTickDispatch() { NativeCall<void>(this, "UReplicationDriver.PostTickDispatch()"); }
 	void AddNetworkActor(AActor* Actor) { NativeCall<void, AActor*>(this, "UReplicationDriver.AddNetworkActor(AActor*)", Actor); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UReplicationDriver.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UReplicationDriver"); }
 	void NotifyActorTearOff(AActor* Actor) { NativeCall<void, AActor*>(this, "UReplicationDriver.NotifyActorTearOff(AActor*)", Actor); }
 	void ResetGameWorldState() { NativeCall<void>(this, "UReplicationDriver.ResetGameWorldState()"); }
 	void PublicSetForceDormancyInsteadOfClosingDueToRelevancy(AActor* ForActor, bool bValue) { NativeCall<void, AActor*, bool>(this, "UReplicationDriver.PublicSetForceDormancyInsteadOfClosingDueToRelevancy(AActor*,bool)", ForActor, bValue); }

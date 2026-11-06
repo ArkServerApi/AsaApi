@@ -11,7 +11,7 @@ public:
 	~ULightComponent() = delete;
 	ULightComponent(const ULightComponent&) = delete;
 	ULightComponent& operator=(const ULightComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULightComponent"); }
 
 	float& TemperatureField() { return *GetNativePointerField<float*>(this, "ULightComponent.Temperature"); }
 	float& MaxDrawDistanceField() { return *GetNativePointerField<float*>(this, "ULightComponent.MaxDrawDistance"); }
@@ -90,7 +90,7 @@ public:
 	UMaterialInterface* GetMaterial(int ElementIndex) { return NativeCall<UMaterialInterface*, int>(this, "ULightComponent.GetMaterial(int)", ElementIndex); }
 	void SetIndirectLightingIntensity(float NewIntensity) { NativeCall<void, float>(this, "ULightComponent.SetIndirectLightingIntensity(float)", NewIntensity); }
 	void SetLightFunctionFadeDistance(float NewLightFunctionFadeDistance) { NativeCall<void, float>(this, "ULightComponent.SetLightFunctionFadeDistance(float)", NewLightFunctionFadeDistance); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULightComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULightComponent"); }
 	void SetLightFunctionScale(UE::Math::TVector<double>* NewLightFunctionScale) { if (!NewLightFunctionScale) throw std::invalid_argument("Null native value parameter"); return NativeCall<void, UE :: Math :: TVector < double >>(this, "ULightComponent.SetLightFunctionScale(UE::Math::TVector<double>)", *NewLightFunctionScale); }
 	unsigned char GetAtmosphereSunLightIndex() { return NativeCall<unsigned char>(this, "ULightComponent.GetAtmosphereSunLightIndex()"); }
 	void SetUseTemperature(bool bNewValue) { NativeCall<void, bool>(this, "ULightComponent.SetUseTemperature(bool)", bNewValue); }

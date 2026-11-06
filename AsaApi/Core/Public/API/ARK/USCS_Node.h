@@ -10,8 +10,8 @@ public:
 	~USCS_Node() = delete;
 	USCS_Node(const USCS_Node&) = delete;
 	USCS_Node& operator=(const USCS_Node&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USCS_Node"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USCS_Node"); }
 	FBlueprintCookedComponentInstancingData& CookedComponentInstancingDataField() { return *GetNativePointerField<FBlueprintCookedComponentInstancingData*>(this, "USCS_Node.CookedComponentInstancingData"); }
 	FName& AttachToNameField() { return *GetNativePointerField<FName*>(this, "USCS_Node.AttachToName"); }
 	FName& ParentComponentOrVariableNameField() { return *GetNativePointerField<FName*>(this, "USCS_Node.ParentComponentOrVariableName"); }

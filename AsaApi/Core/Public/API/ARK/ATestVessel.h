@@ -9,8 +9,8 @@ public:
 	~ATestVessel() = delete;
 	ATestVessel(const ATestVessel&) = delete;
 	ATestVessel& operator=(const ATestVessel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATestVessel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATestVessel"); }
 
 	UVesselDynamicsComponent*& VesselDynamicsComponentField() { return *GetNativePointerField<UVesselDynamicsComponent**>(this, "ATestVessel.VesselDynamicsComponent"); }
 	double& LastShipActionField() { return *GetNativePointerField<double*>(this, "ATestVessel.LastShipAction"); }

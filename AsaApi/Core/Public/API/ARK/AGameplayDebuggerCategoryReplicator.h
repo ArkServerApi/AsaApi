@@ -9,8 +9,8 @@ public:
 	~AGameplayDebuggerCategoryReplicator() = delete;
 	AGameplayDebuggerCategoryReplicator(const AGameplayDebuggerCategoryReplicator&) = delete;
 	AGameplayDebuggerCategoryReplicator& operator=(const AGameplayDebuggerCategoryReplicator&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayDebuggerCategoryReplicator"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayDebuggerCategoryReplicator"); }
 
 	bool& bIsEnabledField() { return *GetNativePointerField<bool*>(this, "AGameplayDebuggerCategoryReplicator.bIsEnabled"); }
 	FGameplayDebuggerNetPack& ReplicatedDataField() { return *GetNativePointerField<FGameplayDebuggerNetPack*>(this, "AGameplayDebuggerCategoryReplicator.ReplicatedData"); }

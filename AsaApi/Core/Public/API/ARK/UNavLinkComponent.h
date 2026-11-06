@@ -9,8 +9,8 @@ public:
 	~UNavLinkComponent() = delete;
 	UNavLinkComponent(const UNavLinkComponent&) = delete;
 	UNavLinkComponent& operator=(const UNavLinkComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavLinkComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavLinkComponent"); }
 
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "UNavLinkComponent._getUObject()"); }
 	bool IsNavigationRelevant() { return NativeCall<bool>(this, "UNavLinkComponent.IsNavigationRelevant()"); }

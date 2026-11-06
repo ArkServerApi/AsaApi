@@ -42,7 +42,7 @@ struct APrimalWheeledVehicleCharacter : APrimalDinoCharacter
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWheeledVehicleCharacter"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalWheeledVehicleCharacter();
 	void PostInitializeComponents() { NativeCall<void>(this, "APrimalWheeledVehicleCharacter.PostInitializeComponents()"); }
@@ -286,4 +286,5 @@ struct APrimalWheeledVehicleCharacter : APrimalDinoCharacter
 	void ProcessEvent(UFunction* Function, void* Parms) { NativeCall<void, UFunction*, void*>(this, "APrimalWheeledVehicleCharacter.ProcessEvent(UFunction*,void*)", Function, Parms); }
 	void TeleportVehicleTo(const UE::Math::TVector<double>& NewLocation, const UE::Math::TRotator<double>& NewRotation) { NativeCall<void, const UE::Math::TVector<double>&, const UE::Math::TRotator<double>&>(this, "APrimalWheeledVehicleCharacter.TeleportVehicleTo(UE::Math::TVector<double>&,UE::Math::TRotator<double>&)", NewLocation, NewRotation); }
 	float GetSteerMultiplier_Implementation() { return NativeCall<float>(this, "APrimalWheeledVehicleCharacter.GetSteerMultiplier_Implementation()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWheeledVehicleCharacter"); }
 };

@@ -16,12 +16,12 @@ struct ADamageVolumeBase : AVolume
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ADamageVolumeBase.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADamageVolumeBase"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesADamageVolumeBase();
 	void BeginPlay() { NativeCall<void>(this, "ADamageVolumeBase.BeginPlay()"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADamageVolumeBase"); }
 
 	void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "ADamageVolumeBase.Tick(float)", DeltaSeconds); }
 	void OnBeginOverlap(AActor* OverlappedActor, AActor* Actor) { NativeCall<void, AActor*, AActor*>(this, "ADamageVolumeBase.OnBeginOverlap(AActor*,AActor*)", OverlappedActor, Actor); }

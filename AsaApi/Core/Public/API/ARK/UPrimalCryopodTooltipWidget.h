@@ -9,8 +9,8 @@ public:
 	~UPrimalCryopodTooltipWidget() = delete;
 	UPrimalCryopodTooltipWidget(const UPrimalCryopodTooltipWidget&) = delete;
 	UPrimalCryopodTooltipWidget& operator=(const UPrimalCryopodTooltipWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalCryopodTooltipWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalCryopodTooltipWidget"); }
 
 	UTexture2D*& FemaleIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalCryopodTooltipWidget.FemaleIcon"); }
 	UTexture2D*& MaleIconField() { return *GetNativePointerField<UTexture2D**>(this, "UPrimalCryopodTooltipWidget.MaleIcon"); }

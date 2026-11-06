@@ -9,7 +9,7 @@ public:
 	~ARectLight() = delete;
 	ARectLight(const ARectLight&) = delete;
 	ARectLight& operator=(const ARectLight&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ARectLight"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ARectLight"); }
 
 };

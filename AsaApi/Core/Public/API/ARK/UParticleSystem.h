@@ -10,8 +10,8 @@ public:
 	~UParticleSystem() = delete;
 	UParticleSystem(const UParticleSystem&) = delete;
 	UParticleSystem& operator=(const UParticleSystem&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UParticleSystem.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleSystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleSystem"); }
 	float& UpdateTime_FPSField() { return *GetNativePointerField<float*>(this, "UParticleSystem.UpdateTime_FPS"); }
 	float& UpdateTime_DeltaField() { return *GetNativePointerField<float*>(this, "UParticleSystem.UpdateTime_Delta"); }
 	float& WarmupTimeField() { return *GetNativePointerField<float*>(this, "UParticleSystem.WarmupTime"); }

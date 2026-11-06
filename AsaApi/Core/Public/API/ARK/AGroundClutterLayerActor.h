@@ -9,8 +9,8 @@ public:
 	~AGroundClutterLayerActor() = delete;
 	AGroundClutterLayerActor(const AGroundClutterLayerActor&) = delete;
 	AGroundClutterLayerActor& operator=(const AGroundClutterLayerActor&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGroundClutterLayerActor"); }
 
 	bool IsLevelBoundsRelevant() { return NativeCall<bool>(this, "AGroundClutterLayerActor.IsLevelBoundsRelevant()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AGroundClutterLayerActor.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGroundClutterLayerActor"); }
 };

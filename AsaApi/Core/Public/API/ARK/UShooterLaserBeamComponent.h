@@ -9,8 +9,8 @@ public:
 	~UShooterLaserBeamComponent() = delete;
 	UShooterLaserBeamComponent(const UShooterLaserBeamComponent&) = delete;
 	UShooterLaserBeamComponent& operator=(const UShooterLaserBeamComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterLaserBeamComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterLaserBeamComponent"); }
 
 	bool& bIsOwnerWeaponField() { return *GetNativePointerField<bool*>(this, "UShooterLaserBeamComponent.bIsOwnerWeapon"); }
 	float& LaserBeamRangeField() { return *GetNativePointerField<float*>(this, "UShooterLaserBeamComponent.LaserBeamRange"); }

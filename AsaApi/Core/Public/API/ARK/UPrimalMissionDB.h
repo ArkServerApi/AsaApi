@@ -9,8 +9,8 @@ public:
 	~UPrimalMissionDB() = delete;
 	UPrimalMissionDB(const UPrimalMissionDB&) = delete;
 	UPrimalMissionDB& operator=(const UPrimalMissionDB&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalMissionDB"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalMissionDB"); }
 
 	void AddAsset(UClass* MissionClass) { NativeCall<void, UClass*>(this, "UPrimalMissionDB.AddAsset(UClass*)", MissionClass); }
 	UClass* GetDBClass() { return NativeCall<UClass*>(this, "UPrimalMissionDB.GetDBClass()"); }

@@ -9,7 +9,7 @@ public:
 	~UNavigationSystemModuleConfig() = delete;
 	UNavigationSystemModuleConfig(const UNavigationSystemModuleConfig&) = delete;
 	UNavigationSystemModuleConfig& operator=(const UNavigationSystemModuleConfig&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNavigationSystemModuleConfig.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavigationSystemModuleConfig"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavigationSystemModuleConfig"); }
 
 };

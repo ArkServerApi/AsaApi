@@ -9,8 +9,8 @@ public:
 	~ACineCameraRigRail() = delete;
 	ACineCameraRigRail(const ACineCameraRigRail&) = delete;
 	ACineCameraRigRail& operator=(const ACineCameraRigRail&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACineCameraRigRail"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACineCameraRigRail"); }
 
 	bool& bUseAbsolutePositionField() { return *GetNativePointerField<bool*>(this, "ACineCameraRigRail.bUseAbsolutePosition"); }
 	float& AbsolutePositionOnRailField() { return *GetNativePointerField<float*>(this, "ACineCameraRigRail.AbsolutePositionOnRail"); }

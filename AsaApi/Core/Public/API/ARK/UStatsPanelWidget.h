@@ -9,7 +9,7 @@ public:
 	~UStatsPanelWidget() = delete;
 	UStatsPanelWidget(const UStatsPanelWidget&) = delete;
 	UStatsPanelWidget& operator=(const UStatsPanelWidget&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget"); }
 
 	FName& MultiUseButton1NameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget.MultiUseButton1Name"); }
 	FName& MultiUseButton2NameField() { return *GetNativePointerField<FName*>(this, "UStatsPanelWidget.MultiUseButton2Name"); }
@@ -34,7 +34,7 @@ public:
 	void SetInventoryComp(UPrimalInventoryComponent* InInventoryComponent) { NativeCall<void, UPrimalInventoryComponent*>(this, "UStatsPanelWidget.SetInventoryComp(UPrimalInventoryComponent*)", InInventoryComponent); }
 	void RefreshItemLists() { NativeCall<void>(this, "UStatsPanelWidget.RefreshItemLists()"); }
 	UPrimalInventoryComponent* GetInventoryComp() { return NativeCall<UPrimalInventoryComponent*>(this, "UStatsPanelWidget.GetInventoryComp()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UStatsPanelWidget.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStatsPanelWidget"); }
 	void RefreshStats() { NativeCall<void>(this, "UStatsPanelWidget.RefreshStats()"); }
 	FString* GetPanelName(FString* result) { return NativeCall<FString*, FString*>(this, "UStatsPanelWidget.GetPanelName()", result); }
 	UDataListPanel* GetEquipmentDataList() { return NativeCall<UDataListPanel*>(this, "UStatsPanelWidget.GetEquipmentDataList()"); }

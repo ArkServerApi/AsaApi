@@ -9,8 +9,8 @@ public:
 	~ALandscapeBlueprintBrushBase() = delete;
 	ALandscapeBlueprintBrushBase(const ALandscapeBlueprintBrushBase&) = delete;
 	ALandscapeBlueprintBrushBase& operator=(const ALandscapeBlueprintBrushBase&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ALandscapeBlueprintBrushBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ALandscapeBlueprintBrushBase"); }
 
 	bool& UpdateOnPropertyChangeField() { return *GetNativePointerField<bool*>(this, "ALandscapeBlueprintBrushBase.UpdateOnPropertyChange"); }
 	bool& AffectHeightmapField() { return *GetNativePointerField<bool*>(this, "ALandscapeBlueprintBrushBase.AffectHeightmap"); }

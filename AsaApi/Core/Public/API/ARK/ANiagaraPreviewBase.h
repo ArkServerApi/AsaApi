@@ -9,8 +9,8 @@ public:
 	~ANiagaraPreviewBase() = delete;
 	ANiagaraPreviewBase(const ANiagaraPreviewBase&) = delete;
 	ANiagaraPreviewBase& operator=(const ANiagaraPreviewBase&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ANiagaraPreviewBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ANiagaraPreviewBase"); }
 
 	bool ShouldTickIfViewportsOnly() { return NativeCall<bool>(this, "ANiagaraPreviewBase.ShouldTickIfViewportsOnly()"); }
 };

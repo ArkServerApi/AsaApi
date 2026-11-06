@@ -37,8 +37,8 @@ struct UStreamableRenderAsset : UObject
 	float GetLastRenderTimeForStreaming() { return NativeCall<float>(this, "UStreamableRenderAsset.GetLastRenderTimeForStreaming()"); }
 	bool DoesMipDataExist(const int MipIndex) { return NativeCall<bool, const int>(this, "UStreamableRenderAsset.DoesMipDataExist(int)", MipIndex); }
 	unsigned int GetMipIoFilenameHash(const int MipIndex) { return NativeCall<unsigned int, const int>(this, "UStreamableRenderAsset.GetMipIoFilenameHash(int)", MipIndex); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UStreamableRenderAsset.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UStreamableRenderAsset.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UStreamableRenderAsset"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UStreamableRenderAsset"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUStreamableRenderAsset();
 	//void UStreamableRenderAsset(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UStreamableRenderAsset.UStreamableRenderAsset(FObjectInitializer*)", ObjectInitializer); }

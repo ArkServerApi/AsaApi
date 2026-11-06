@@ -9,8 +9,8 @@ public:
 	~UMRMeshComponent() = delete;
 	UMRMeshComponent(const UMRMeshComponent&) = delete;
 	UMRMeshComponent& operator=(const UMRMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMRMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMRMeshComponent"); }
 
 	bool& bCreateMeshProxySectionsField() { return *GetNativePointerField<bool*>(this, "UMRMeshComponent.bCreateMeshProxySections"); }
 	bool& bUpdateNavMeshOnMeshUpdateField() { return *GetNativePointerField<bool*>(this, "UMRMeshComponent.bUpdateNavMeshOnMeshUpdate"); }

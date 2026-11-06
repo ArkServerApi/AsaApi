@@ -9,8 +9,8 @@ public:
 	~UPrimalHitNotifyObserver() = delete;
 	UPrimalHitNotifyObserver(const UPrimalHitNotifyObserver&) = delete;
 	UPrimalHitNotifyObserver& operator=(const UPrimalHitNotifyObserver&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalHitNotifyObserver"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalHitNotifyObserver"); }
 
 	bool& OddsField() { return *GetNativePointerField<bool*>(this, "UPrimalHitNotifyObserver.Odds"); }
 	FMassEntityQuery& QueryField() { return *GetNativePointerField<FMassEntityQuery*>(this, "UPrimalHitNotifyObserver.Query"); }

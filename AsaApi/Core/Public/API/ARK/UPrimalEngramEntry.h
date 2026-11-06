@@ -47,8 +47,8 @@ struct UPrimalEngramEntry : UObject
 	double& LastTimeCheckedRequirementsField() { return *GetNativePointerField<double*>(this, "UPrimalEngramEntry.LastTimeCheckedRequirements"); }
 	bool& bMeetsDLCRequirementsCachedField() { return *GetNativePointerField<bool*>(this, "UPrimalEngramEntry.bMeetsDLCRequirementsCached"); }
 
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalEngramEntry"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalEngramEntry"); }
 
 	FString& ExtraEngramDescriptionField() { return *GetNativePointerField<FString*>(this, "UPrimalEngramEntry.ExtraEngramDescription"); }
 	TEnumAsByte<EEngramGroup::Type>& EngramGroupField() { return *GetNativePointerField<TEnumAsByte<EEngramGroup::Type>*>(this, "UPrimalEngramEntry.EngramGroup"); }

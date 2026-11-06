@@ -9,8 +9,8 @@ public:
 	~ACustomizableSkeletalMeshActor() = delete;
 	ACustomizableSkeletalMeshActor(const ACustomizableSkeletalMeshActor&) = delete;
 	ACustomizableSkeletalMeshActor& operator=(const ACustomizableSkeletalMeshActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ACustomizableSkeletalMeshActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ACustomizableSkeletalMeshActor"); }
 
 	bool& bDebugMaterialEnabledField() { return *GetNativePointerField<bool*>(this, "ACustomizableSkeletalMeshActor.bDebugMaterialEnabled"); }
 	bool& bRemoveDebugMaterialField() { return *GetNativePointerField<bool*>(this, "ACustomizableSkeletalMeshActor.bRemoveDebugMaterial"); }

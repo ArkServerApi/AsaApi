@@ -9,8 +9,8 @@ public:
 	~URadialIntMask() = delete;
 	URadialIntMask(const URadialIntMask&) = delete;
 	URadialIntMask& operator=(const URadialIntMask&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("URadialIntMask"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("URadialIntMask"); }
 
 	float& RadiusField() { return *GetNativePointerField<float*>(this, "URadialIntMask.Radius"); }
 	UE::Math::TVector<double>& PositionField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "URadialIntMask.Position"); }

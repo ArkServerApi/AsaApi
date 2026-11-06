@@ -10,8 +10,8 @@ public:
 	~UParticleModuleRequired() = delete;
 	UParticleModuleRequired(const UParticleModuleRequired&) = delete;
 	UParticleModuleRequired& operator=(const UParticleModuleRequired&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleModuleRequired"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleModuleRequired"); }
 	float& MinFacingCameraBlendDistanceField() { return *GetNativePointerField<float*>(this, "UParticleModuleRequired.MinFacingCameraBlendDistance"); }
 	float& MaxFacingCameraBlendDistanceField() { return *GetNativePointerField<float*>(this, "UParticleModuleRequired.MaxFacingCameraBlendDistance"); }
 	UE::Math::TVector<double>& EmitterOriginField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "UParticleModuleRequired.EmitterOrigin"); }

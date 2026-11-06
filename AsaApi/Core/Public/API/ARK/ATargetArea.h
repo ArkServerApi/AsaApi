@@ -9,8 +9,8 @@ public:
 	~ATargetArea() = delete;
 	ATargetArea(const ATargetArea&) = delete;
 	ATargetArea& operator=(const ATargetArea&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ATargetArea"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ATargetArea"); }
 
 	float& RadiusField() { return *GetNativePointerField<float*>(this, "ATargetArea.Radius"); }
 	USphereComponent*& MySphereComponentField() { return *GetNativePointerField<USphereComponent**>(this, "ATargetArea.MySphereComponent"); }

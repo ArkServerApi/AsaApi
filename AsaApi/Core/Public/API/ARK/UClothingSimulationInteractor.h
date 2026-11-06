@@ -10,8 +10,8 @@ public:
 	~UClothingSimulationInteractor() = delete;
 	UClothingSimulationInteractor(const UClothingSimulationInteractor&) = delete;
 	UClothingSimulationInteractor& operator=(const UClothingSimulationInteractor&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UClothingSimulationInteractor.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UClothingSimulationInteractor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UClothingSimulationInteractor"); }
 	int& LastNumClothsField() { return *GetNativePointerField<int*>(this, "UClothingSimulationInteractor.LastNumCloths"); }
 	int& LastNumKinematicParticlesField() { return *GetNativePointerField<int*>(this, "UClothingSimulationInteractor.LastNumKinematicParticles"); }
 	int& LastNumDynamicParticlesField() { return *GetNativePointerField<int*>(this, "UClothingSimulationInteractor.LastNumDynamicParticles"); }

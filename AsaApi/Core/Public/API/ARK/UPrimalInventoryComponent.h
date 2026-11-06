@@ -242,7 +242,7 @@ struct UPrimalInventoryComponent : UActorComponent
 	void UpdateTribeGroupInventoryRank(unsigned __int8 NewRank) { NativeCall<void, unsigned __int8>(this, "UPrimalInventoryComponent.UpdateTribeGroupInventoryRank(unsignedchar)", NewRank); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUPrimalInventoryComponent();
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalInventoryComponent.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
 	//void ~UPrimalInventoryComponent() { NativeCall<void>(this, "UPrimalInventoryComponent.~UPrimalInventoryComponent()"); }
@@ -426,7 +426,7 @@ struct UPrimalInventoryComponent : UActorComponent
 	bool& bUseBPGetExtraItemRepairResourceRequirementsField() { return *GetNativePointerField<bool*>(this, "UPrimalInventoryComponent.bUseBPGetExtraItemRepairResourceRequirements"); }
 	bool& bUseBPAllowRepairingItemInInventoryField() { return *GetNativePointerField<bool*>(this, "UPrimalInventoryComponent.bUseBPAllowRepairingItemInInventory"); }
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalInventoryComponent"); }
 
 	TArray<UPrimalItem*, TSizedDefaultAllocator<32> >& DisabledItemsTEMPField() { return *GetNativePointerField<TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.DisabledItemsTEMP"); }
 	TArray<UPrimalItem*, TSizedDefaultAllocator<32> >& AllSortingInputItemsField() { return *GetNativePointerField<TArray<UPrimalItem*, TSizedDefaultAllocator<32> >*>(this, "UPrimalInventoryComponent.AllSortingInputItems"); }

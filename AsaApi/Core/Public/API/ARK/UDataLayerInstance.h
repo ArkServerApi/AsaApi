@@ -10,8 +10,8 @@ public:
 	~UDataLayerInstance() = delete;
 	UDataLayerInstance(const UDataLayerInstance&) = delete;
 	UDataLayerInstance& operator=(const UDataLayerInstance&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UDataLayerInstance.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDataLayerInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDataLayerInstance"); }
 	EDataLayerRuntimeState& InitialRuntimeStateField() { return *GetNativePointerField<EDataLayerRuntimeState*>(this, "UDataLayerInstance.InitialRuntimeState"); }
 	bool CanHaveParentDataLayerInstance() { return NativeCall<bool>(this, "UDataLayerInstance.CanHaveParentDataLayerInstance()"); }
 	bool IsServerOnly() { return NativeCall<bool>(this, "UDataLayerInstance.IsServerOnly()"); }

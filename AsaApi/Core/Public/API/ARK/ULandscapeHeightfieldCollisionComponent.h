@@ -9,7 +9,7 @@ public:
 	~ULandscapeHeightfieldCollisionComponent() = delete;
 	ULandscapeHeightfieldCollisionComponent(const ULandscapeHeightfieldCollisionComponent&) = delete;
 	ULandscapeHeightfieldCollisionComponent& operator=(const ULandscapeHeightfieldCollisionComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULandscapeHeightfieldCollisionComponent"); }
 
 	int& SectionBaseXField() { return *GetNativePointerField<int*>(this, "ULandscapeHeightfieldCollisionComponent.SectionBaseX"); }
 	int& SectionBaseYField() { return *GetNativePointerField<int*>(this, "ULandscapeHeightfieldCollisionComponent.SectionBaseY"); }
@@ -32,7 +32,7 @@ public:
 	bool DoCustomNavigableGeometryExport(FNavigableGeometryExport& GeomExport) { return NativeCall<bool, FNavigableGeometryExport&>(this, "ULandscapeHeightfieldCollisionComponent.DoCustomNavigableGeometryExport(FNavigableGeometryExport&)", GeomExport); }
 	bool SupportsGatheringGeometrySlices() { return NativeCall<bool>(this, "ULandscapeHeightfieldCollisionComponent.SupportsGatheringGeometrySlices()"); }
 	bool RecreateCollision() { return NativeCall<bool>(this, "ULandscapeHeightfieldCollisionComponent.RecreateCollision()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULandscapeHeightfieldCollisionComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULandscapeHeightfieldCollisionComponent"); }
 	void DestroyComponent(bool bPromoteChildren) { NativeCall<void, bool>(this, "ULandscapeHeightfieldCollisionComponent.DestroyComponent(bool)", bPromoteChildren); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "ULandscapeHeightfieldCollisionComponent.Serialize(FArchive&)", Ar); }
 	void CreateCollisionObject() { NativeCall<void>(this, "ULandscapeHeightfieldCollisionComponent.CreateCollisionObject()"); }

@@ -10,8 +10,8 @@ public:
 	~UParticleModuleTypeDataBase() = delete;
 	UParticleModuleTypeDataBase(const UParticleModuleTypeDataBase&) = delete;
 	UParticleModuleTypeDataBase& operator=(const UParticleModuleTypeDataBase&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UParticleModuleTypeDataBase.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleModuleTypeDataBase"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleModuleTypeDataBase"); }
 	FParticleEmitterInstance* CreateInstance(UParticleEmitter* InEmitterParent, IParticleEmitterInstanceOwner& InComponent) { return NativeCall<FParticleEmitterInstance*, UParticleEmitter*, IParticleEmitterInstanceOwner&>(this, "UParticleModuleTypeDataBase.CreateInstance(UParticleEmitter*,IParticleEmitterInstanceOwner&)", InEmitterParent, InComponent); }
 	bool IsAMeshEmitter() { return NativeCall<bool>(this, "UParticleModuleTypeDataBase.IsAMeshEmitter()"); }
 	const FVertexFactoryType* GetVertexFactoryType() { return NativeCall<const FVertexFactoryType*>(this, "UParticleModuleTypeDataBase.GetVertexFactoryType()"); }

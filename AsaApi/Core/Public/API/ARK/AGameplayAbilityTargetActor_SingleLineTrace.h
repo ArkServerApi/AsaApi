@@ -9,7 +9,7 @@ public:
 	~AGameplayAbilityTargetActor_SingleLineTrace() = delete;
 	AGameplayAbilityTargetActor_SingleLineTrace(const AGameplayAbilityTargetActor_SingleLineTrace&) = delete;
 	AGameplayAbilityTargetActor_SingleLineTrace& operator=(const AGameplayAbilityTargetActor_SingleLineTrace&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AGameplayAbilityTargetActor_SingleLineTrace"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AGameplayAbilityTargetActor_SingleLineTrace"); }
 
 };

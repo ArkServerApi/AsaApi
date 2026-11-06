@@ -9,8 +9,8 @@ public:
 	~UChaosDebugDrawComponent() = delete;
 	UChaosDebugDrawComponent(const UChaosDebugDrawComponent&) = delete;
 	UChaosDebugDrawComponent& operator=(const UChaosDebugDrawComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UChaosDebugDrawComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UChaosDebugDrawComponent"); }
 
 	bool& bInPlayField() { return *GetNativePointerField<bool*>(this, "UChaosDebugDrawComponent.bInPlay"); }
 	void BeginPlay() { NativeCall<void>(this, "UChaosDebugDrawComponent.BeginPlay()"); }

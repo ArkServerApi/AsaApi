@@ -9,8 +9,8 @@ public:
 	~UZoneGraphDisturbanceAnnotation() = delete;
 	UZoneGraphDisturbanceAnnotation(const UZoneGraphDisturbanceAnnotation&) = delete;
 	UZoneGraphDisturbanceAnnotation& operator=(const UZoneGraphDisturbanceAnnotation&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UZoneGraphDisturbanceAnnotation"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UZoneGraphDisturbanceAnnotation"); }
 
 	FZoneGraphTag& DangerAnnotationTagField() { return *GetNativePointerField<FZoneGraphTag*>(this, "UZoneGraphDisturbanceAnnotation.DangerAnnotationTag"); }
 	FZoneGraphTag& ObstacleAnnotationTagField() { return *GetNativePointerField<FZoneGraphTag*>(this, "UZoneGraphDisturbanceAnnotation.ObstacleAnnotationTag"); }

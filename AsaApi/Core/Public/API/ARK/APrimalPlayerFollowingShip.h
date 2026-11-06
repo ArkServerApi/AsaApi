@@ -10,8 +10,8 @@ public:
 	~APrimalPlayerFollowingShip() = delete;
 	APrimalPlayerFollowingShip(const APrimalPlayerFollowingShip&) = delete;
 	APrimalPlayerFollowingShip& operator=(const APrimalPlayerFollowingShip&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalPlayerFollowingShip"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalPlayerFollowingShip"); }
 
 	float& ShipScaleField() { return *GetNativePointerField<float*>(this, "APrimalPlayerFollowingShip.ShipScale"); }
 	int& LevelColorBandRegionField() { return *GetNativePointerField<int*>(this, "APrimalPlayerFollowingShip.LevelColorBandRegion"); }

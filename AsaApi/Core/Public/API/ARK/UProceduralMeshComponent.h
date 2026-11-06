@@ -10,7 +10,7 @@ public:
 	~UProceduralMeshComponent() = delete;
 	UProceduralMeshComponent(const UProceduralMeshComponent&) = delete;
 	UProceduralMeshComponent& operator=(const UProceduralMeshComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UProceduralMeshComponent"); }
 
 	bool& bUseComplexAsSimpleCollisionField() { return *GetNativePointerField<bool*>(this, "UProceduralMeshComponent.bUseComplexAsSimpleCollision"); }
 	bool& bUseAsyncCookingField() { return *GetNativePointerField<bool*>(this, "UProceduralMeshComponent.bUseAsyncCooking"); }
@@ -24,7 +24,7 @@ public:
 	FPrimitiveSceneProxy* CreateSceneProxy() { return NativeCall<FPrimitiveSceneProxy*>(this, "UProceduralMeshComponent.CreateSceneProxy()"); }
 	void FinishPhysicsAsyncCook(bool bSuccess, UBodySetup* FinishedBodySetup) { NativeCall<void, bool, UBodySetup*>(this, "UProceduralMeshComponent.FinishPhysicsAsyncCook(bool,UBodySetup*)", bSuccess, FinishedBodySetup); }
 	void UpdateCollision() { NativeCall<void>(this, "UProceduralMeshComponent.UpdateCollision()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UProceduralMeshComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UProceduralMeshComponent"); }
 	UMaterialInterface* GetMaterialFromCollisionFaceIndex(int FaceIndex, int& SectionIndex) { return NativeCall<UMaterialInterface*, int, int&>(this, "UProceduralMeshComponent.GetMaterialFromCollisionFaceIndex(int,int&)", FaceIndex, SectionIndex); }
 	void ClearCollisionConvexMeshes() { NativeCall<void>(this, "UProceduralMeshComponent.ClearCollisionConvexMeshes()"); }
 	UBodySetup* CreateBodySetupHelper() { return NativeCall<UBodySetup*>(this, "UProceduralMeshComponent.CreateBodySetupHelper()"); }

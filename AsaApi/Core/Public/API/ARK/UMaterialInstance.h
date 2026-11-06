@@ -10,8 +10,8 @@ public:
 	~UMaterialInstance() = delete;
 	UMaterialInstance(const UMaterialInstance&) = delete;
 	UMaterialInstance& operator=(const UMaterialInstance&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UMaterialInstance.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialInstance"); }
 	FMaterialOverrideNanite& NaniteOverrideMaterialField() { return *GetNativePointerField<FMaterialOverrideNanite*>(this, "UMaterialInstance.NaniteOverrideMaterial"); }
 	int& BlendablePriorityOverrideField() { return *GetNativePointerField<int*>(this, "UMaterialInstance.BlendablePriorityOverride"); }
 	FMaterialShadingModelField& ShadingModelsField() { return *GetNativePointerField<FMaterialShadingModelField*>(this, "UMaterialInstance.ShadingModels"); }

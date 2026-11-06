@@ -10,8 +10,8 @@ public:
 	~UTextureCube() = delete;
 	UTextureCube(const UTextureCube&) = delete;
 	UTextureCube& operator=(const UTextureCube&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextureCube"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextureCube"); }
 	FTexturePlatformData*& PrivatePlatformDataField() { return *GetNativePointerField<FTexturePlatformData**>(this, "UTextureCube.PrivatePlatformData"); }
 	float GetSurfaceDepth() { return NativeCall<float>(this, "UTextureCube.GetSurfaceDepth()"); }
 	void Serialize(FArchive& Ar) { NativeCall<void, FArchive&>(this, "UTextureCube.Serialize(FArchive&)", Ar); }

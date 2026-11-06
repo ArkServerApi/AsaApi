@@ -1025,8 +1025,8 @@ struct APrimalDinoCharacter : APrimalCharacter
 	bool UseHighQualityMovement() { return NativeCall<bool>(this, "APrimalDinoCharacter.UseHighQualityMovement()"); }
 	bool AllowPushOthers() { return NativeCall<bool>(this, "APrimalDinoCharacter.AllowPushOthers()"); }
 	bool FlyingUseHighQualityCollision() { return NativeCall<bool>(this, "APrimalDinoCharacter.FlyingUseHighQualityCollision()"); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalDinoCharacter.StaticClass()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalDinoCharacter"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalDinoCharacter"); }
 	bool AllowWakingTame(APlayerController* ForPC) { return NativeCall<bool, APlayerController*>(this, "APrimalDinoCharacter.AllowWakingTame(APlayerController*)", ForPC); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// float BlueprintAdjustOutputDamage(int AttackIndex, float OriginalDamageAmount, AActor* HitActor, TSubclassOf<UDamageType>* OutDamageType, float* OutDamageImpulse);

@@ -9,8 +9,8 @@ public:
 	~AMapBuildDataActor() = delete;
 	AMapBuildDataActor(const AMapBuildDataActor&) = delete;
 	AMapBuildDataActor& operator=(const AMapBuildDataActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AMapBuildDataActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AMapBuildDataActor"); }
 
 	FName& CellPackageField() { return *GetNativePointerField<FName*>(this, "AMapBuildDataActor.CellPackage"); }
 	FGuid& LevelBuildDataIdField() { return *GetNativePointerField<FGuid*>(this, "AMapBuildDataActor.LevelBuildDataId"); }

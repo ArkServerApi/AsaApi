@@ -9,8 +9,8 @@ public:
 	~UAIPerceptionComponent() = delete;
 	UAIPerceptionComponent(const UAIPerceptionComponent&) = delete;
 	UAIPerceptionComponent& operator=(const UAIPerceptionComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAIPerceptionComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAIPerceptionComponent"); }
 
 	FPerceptionChannelAllowList& PerceptionFilterField() { return *GetNativePointerField<FPerceptionChannelAllowList*>(this, "UAIPerceptionComponent.PerceptionFilter"); }
 	TArray<float, TSizedDefaultAllocator<32> >& MaxActiveAgeField() { return *GetNativePointerField<TArray<float, TSizedDefaultAllocator<32> >*>(this, "UAIPerceptionComponent.MaxActiveAge"); }

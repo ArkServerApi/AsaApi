@@ -19,7 +19,7 @@ struct UShooterCheatManager : UCheatManager
 	static void SpoilItem(const char* pstrMessage) { NativeCall<void, const char*>(nullptr, "UShooterCheatManager.SpoilItem()", pstrMessage); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterCheatManager"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUShooterCheatManager();
 	//void UShooterCheatManager(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "UShooterCheatManager.UShooterCheatManager(FObjectInitializer*)", ObjectInitializer); }
@@ -561,4 +561,5 @@ struct UShooterCheatManager : UCheatManager
 	void GFIS(const FName& blueprintPath, float qualityOverride) { NativeCall<void, const FName&, float>(this, "UShooterCheatManager.GFIS(FName&,float)", blueprintPath, qualityOverride); }
 	void StartLoggingSavedMoves() { NativeCall<void>(this, "UShooterCheatManager.StartLoggingSavedMoves()"); }
 	void SpawnShipPerfGridCustom(const FString& blueprintPathShip, int NumShips, int AdditionalStructures, int ShipsPerRow, float ShipSpacing, float SpawnDistance, bool bForceAnchored) { NativeCall<void, const FString&, int, int, int, float, float, bool>(this, "UShooterCheatManager.SpawnShipPerfGridCustom(FString&,int,int,int,float,float,bool)", blueprintPathShip, NumShips, AdditionalStructures, ShipsPerRow, ShipSpacing, SpawnDistance, bForceAnchored); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterCheatManager"); }
 };

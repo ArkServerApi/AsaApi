@@ -9,8 +9,8 @@ public:
 	~UShooterGraphNode_DormantSpatialGrid() = delete;
 	UShooterGraphNode_DormantSpatialGrid(const UShooterGraphNode_DormantSpatialGrid&) = delete;
 	UShooterGraphNode_DormantSpatialGrid& operator=(const UShooterGraphNode_DormantSpatialGrid&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_DormantSpatialGrid"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterGraphNode_DormantSpatialGrid"); }
 
 	void NotifyActorRemoved(AActor* Actor) { NativeCall<void, AActor*>(this, "UShooterGraphNode_DormantSpatialGrid.NotifyActorRemoved(AActor*)", Actor); }
 	void GatherActorListsForConnection(const FConnectionGatherActorListParameters& Params) { NativeCall<void, const FConnectionGatherActorListParameters&>(this, "UShooterGraphNode_DormantSpatialGrid.GatherActorListsForConnection(FConnectionGatherActorListParameters&)", Params); }

@@ -9,8 +9,8 @@ public:
 	~UDyeItemSelector() = delete;
 	UDyeItemSelector(const UDyeItemSelector&) = delete;
 	UDyeItemSelector& operator=(const UDyeItemSelector&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDyeItemSelector"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDyeItemSelector"); }
 
 	UDataListPanel*& DyeItemsDataListField() { return *GetNativePointerField<UDataListPanel**>(this, "UDyeItemSelector.DyeItemsDataList"); }
 	UEditableTextBox*& DyeSearchBoxField() { return *GetNativePointerField<UEditableTextBox**>(this, "UDyeItemSelector.DyeSearchBox"); }

@@ -10,8 +10,8 @@ public:
 	~UAsyncPhysicsData() = delete;
 	UAsyncPhysicsData(const UAsyncPhysicsData&) = delete;
 	UAsyncPhysicsData& operator=(const UAsyncPhysicsData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAsyncPhysicsData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAsyncPhysicsData"); }
 	int& ServerFrameField() { return *GetNativePointerField<int*>(this, "UAsyncPhysicsData.ServerFrame"); }
 	int& ReplicationRedundancyField() { return *GetNativePointerField<int*>(this, "UAsyncPhysicsData.ReplicationRedundancy"); }
 };

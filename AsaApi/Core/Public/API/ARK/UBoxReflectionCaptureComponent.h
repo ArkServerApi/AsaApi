@@ -9,8 +9,8 @@ public:
 	~UBoxReflectionCaptureComponent() = delete;
 	UBoxReflectionCaptureComponent(const UBoxReflectionCaptureComponent&) = delete;
 	UBoxReflectionCaptureComponent& operator=(const UBoxReflectionCaptureComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UBoxReflectionCaptureComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UBoxReflectionCaptureComponent"); }
 
 	float& BoxTransitionDistanceField() { return *GetNativePointerField<float*>(this, "UBoxReflectionCaptureComponent.BoxTransitionDistance"); }
 	float GetInfluenceBoundingRadius() { return NativeCall<float>(this, "UBoxReflectionCaptureComponent.GetInfluenceBoundingRadius()"); }

@@ -9,8 +9,8 @@ public:
 	~UFieldSystemMetaDataProcessingResolution() = delete;
 	UFieldSystemMetaDataProcessingResolution(const UFieldSystemMetaDataProcessingResolution&) = delete;
 	UFieldSystemMetaDataProcessingResolution& operator=(const UFieldSystemMetaDataProcessingResolution&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFieldSystemMetaDataProcessingResolution"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFieldSystemMetaDataProcessingResolution"); }
 
 	FFieldSystemMetaData* NewMetaData() { return NativeCall<FFieldSystemMetaData*>(this, "UFieldSystemMetaDataProcessingResolution.NewMetaData()"); }
 };

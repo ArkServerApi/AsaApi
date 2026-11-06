@@ -9,7 +9,7 @@ public:
 	~UPrimalDamageType() = delete;
 	UPrimalDamageType(const UPrimalDamageType&) = delete;
 	UPrimalDamageType& operator=(const UPrimalDamageType&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDamageType"); }
 
 	float& ImpulseMinimumZPercentField() { return *GetNativePointerField<float*>(this, "UPrimalDamageType.ImpulseMinimumZPercent"); }
 	float& DestructibleImpulseScaleField() { return *GetNativePointerField<float*>(this, "UPrimalDamageType.DestructibleImpulseScale"); }
@@ -20,7 +20,7 @@ public:
 	float& ArmorDurabilityDegradationMultiplierField() { return *GetNativePointerField<float*>(this, "UPrimalDamageType.ArmorDurabilityDegradationMultiplier"); }
 	float& RadialPartiallyObstructedDamagePercentField() { return *GetNativePointerField<float*>(this, "UPrimalDamageType.RadialPartiallyObstructedDamagePercent"); }
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UPrimalDamageType.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDamageType"); }
 
 	BitFieldValue<bool, unsigned __int32> bIsPhysicalDamage() { return { this, "UPrimalDamageType.bIsPhysicalDamage"}; }
 	BitFieldValue<bool, unsigned __int32> bAllowPerBoneDamageAdjustment() { return { this, "UPrimalDamageType.bAllowPerBoneDamageAdjustment"}; }

@@ -10,8 +10,8 @@ public:
 	~UWorldPartitionRuntimeHash() = delete;
 	UWorldPartitionRuntimeHash(const UWorldPartitionRuntimeHash&) = delete;
 	UWorldPartitionRuntimeHash& operator=(const UWorldPartitionRuntimeHash&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UWorldPartitionRuntimeHash.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldPartitionRuntimeHash"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldPartitionRuntimeHash"); }
 	bool& bQueryNonSpatialCellsField() { return *GetNativePointerField<bool*>(this, "UWorldPartitionRuntimeHash.bQueryNonSpatialCells"); }
 	bool UnregisterWorldAssetStreaming(const FGuid& InWorldAssetStreamingGuid) { return NativeCall<bool, const FGuid&>(this, "UWorldPartitionRuntimeHash.UnregisterWorldAssetStreaming(FGuid&)", InWorldAssetStreamingGuid); }
 	unsigned int ComputeUpdateStreamingHash() { return NativeCall<unsigned int>(this, "UWorldPartitionRuntimeHash.ComputeUpdateStreamingHash()"); }

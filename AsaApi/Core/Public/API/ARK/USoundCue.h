@@ -10,8 +10,8 @@ public:
 	~USoundCue() = delete;
 	USoundCue(const USoundCue&) = delete;
 	USoundCue& operator=(const USoundCue&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("USoundCue"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("USoundCue"); }
 	float& VolumeMultiplierField() { return *GetNativePointerField<float*>(this, "USoundCue.VolumeMultiplier"); }
 	float& PitchMultiplierField() { return *GetNativePointerField<float*>(this, "USoundCue.PitchMultiplier"); }
 	FSoundAttenuationSettings& AttenuationOverridesField() { return *GetNativePointerField<FSoundAttenuationSettings*>(this, "USoundCue.AttenuationOverrides"); }

@@ -20,7 +20,7 @@ struct APrimalWorldModifier : AActor
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWorldModifier"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalWorldModifier();
 	//void APrimalWorldModifier(const FObjectInitializer* ObjectInitializer) { NativeCall<void, const FObjectInitializer*>(this, "APrimalWorldModifier.APrimalWorldModifier(FObjectInitializer&)", ObjectInitializer); }
@@ -36,7 +36,7 @@ struct APrimalWorldModifier : AActor
 
 	bool& bUseMapExclusionListAsExclusiveListField() { return *GetNativePointerField<bool*>(this, "APrimalWorldModifier.bUseMapExclusionListAsExclusiveList"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWorldModifier"); }
 
 	TArray<AInstancedFoliageActor*, TSizedDefaultAllocator<32> >& ReskinnedFoliageTrackingListField() { return *GetNativePointerField<TArray<AInstancedFoliageActor*, TSizedDefaultAllocator<32> >*>(this, "APrimalWorldModifier.ReskinnedFoliageTrackingList"); }
 	FNotifyOnFoliageSkinned& OnFoliageSkinnedField() { return *GetNativePointerField<FNotifyOnFoliageSkinned*>(this, "APrimalWorldModifier.OnFoliageSkinned"); }

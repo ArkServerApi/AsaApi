@@ -9,8 +9,8 @@ public:
 	~APrimalCameraProbeActor() = delete;
 	APrimalCameraProbeActor(const APrimalCameraProbeActor&) = delete;
 	APrimalCameraProbeActor& operator=(const APrimalCameraProbeActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalCameraProbeActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalCameraProbeActor"); }
 
 	bool& bActiveField() { return *GetNativePointerField<bool*>(this, "APrimalCameraProbeActor.bActive"); }
 	void AdvanceInternal(bool bBackwards) { NativeCall<void, bool>(this, "APrimalCameraProbeActor.AdvanceInternal(bool)", bBackwards); }

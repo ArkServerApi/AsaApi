@@ -9,8 +9,8 @@ public:
 	~APainCausingVolume() = delete;
 	APainCausingVolume(const APainCausingVolume&) = delete;
 	APainCausingVolume& operator=(const APainCausingVolume&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APainCausingVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APainCausingVolume"); }
 
 	float& DamagePerSecField() { return *GetNativePointerField<float*>(this, "APainCausingVolume.DamagePerSec"); }
 	float& PainIntervalField() { return *GetNativePointerField<float*>(this, "APainCausingVolume.PainInterval"); }

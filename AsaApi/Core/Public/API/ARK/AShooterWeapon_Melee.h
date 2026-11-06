@@ -10,8 +10,8 @@ struct AShooterWeapon_Melee : AShooterWeapon
 
 	  // Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "AShooterWeapon_Melee.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Melee"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Melee"); }
 	void FireWeapon() { NativeCall<void>(this, "AShooterWeapon_Melee.FireWeapon()"); }
 	void StartFire(bool bFromGamepad) { NativeCall<void, bool>(this, "AShooterWeapon_Melee.StartFire(bool)", bFromGamepad); }
 	void StopFire() { NativeCall<void>(this, "AShooterWeapon_Melee.StopFire()"); }

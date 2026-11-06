@@ -18,7 +18,7 @@ struct APrimalBotAIController : APrimalDinoAIController
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBotAIController"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalBotAIController();
     //void InitializeBlackboardValues(const APrimalBotCharacter* Bot) { NativeCall<void, const APrimalBotCharacter*>(this, "APrimalBotAIController.InitializeBlackboardValues(APrimalBotCharacter*)", Bot); }
@@ -72,4 +72,5 @@ struct APrimalBotAIController : APrimalDinoAIController
 	bool ClaimSeatingStructure(APrimalStructureSeating* Structure, int SeatNumber) { return NativeCall<bool, APrimalStructureSeating*, int>(this, "APrimalBotAIController.ClaimSeatingStructure(APrimalStructureSeating*,int)", Structure, SeatNumber); }
 	void BPOnClaimedSeatingStructure(APrimalStructureSeating* Structure, int SeatNumber) { NativeCall<void, APrimalStructureSeating*, int>(this, "APrimalBotAIController.BPOnClaimedSeatingStructure(APrimalStructureSeating*,int)", Structure, SeatNumber); }
 	void ReleaseClaimOnSeatingStructure() { NativeCall<void>(this, "APrimalBotAIController.ReleaseClaimOnSeatingStructure()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBotAIController"); }
 };

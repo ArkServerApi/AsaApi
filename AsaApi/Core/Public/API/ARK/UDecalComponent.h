@@ -9,8 +9,8 @@ public:
 	~UDecalComponent() = delete;
 	UDecalComponent(const UDecalComponent&) = delete;
 	UDecalComponent& operator=(const UDecalComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UDecalComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UDecalComponent"); }
 
 	int& SortOrderField() { return *GetNativePointerField<int*>(this, "UDecalComponent.SortOrder"); }
 	float& FadeScreenSizeField() { return *GetNativePointerField<float*>(this, "UDecalComponent.FadeScreenSize"); }

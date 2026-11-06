@@ -9,8 +9,8 @@ public:
 	~UTrackedDinoListEntryWidget() = delete;
 	UTrackedDinoListEntryWidget(const UTrackedDinoListEntryWidget&) = delete;
 	UTrackedDinoListEntryWidget& operator=(const UTrackedDinoListEntryWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTrackedDinoListEntryWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTrackedDinoListEntryWidget"); }
 
 	FString& ItemLabelNameField() { return *GetNativePointerField<FString*>(this, "UTrackedDinoListEntryWidget.ItemLabelName"); }
 	FLinearColor& NameLabelColor_DefaultField() { return *GetNativePointerField<FLinearColor*>(this, "UTrackedDinoListEntryWidget.NameLabelColor_Default"); }

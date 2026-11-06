@@ -11,8 +11,8 @@ public:
 	~UAnimBlueprintGeneratedClass() = delete;
 	UAnimBlueprintGeneratedClass(const UAnimBlueprintGeneratedClass&) = delete;
 	UAnimBlueprintGeneratedClass& operator=(const UAnimBlueprintGeneratedClass&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimBlueprintGeneratedClass"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimBlueprintGeneratedClass"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& SyncGroupNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "UAnimBlueprintGeneratedClass.SyncGroupNames"); }
 	FStructProperty*& MutableNodeDataPropertyField() { return *GetNativePointerField<FStructProperty**>(this, "UAnimBlueprintGeneratedClass.MutableNodeDataProperty"); }
 	bool& bPrimalBadAnimBPField() { return *GetNativePointerField<bool*>(this, "UAnimBlueprintGeneratedClass.bPrimalBadAnimBP"); }

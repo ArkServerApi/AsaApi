@@ -9,7 +9,7 @@ public:
 	~ABattleGameState() = delete;
 	ABattleGameState(const ABattleGameState&) = delete;
 	ABattleGameState& operator=(const ABattleGameState&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ABattleGameState"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ABattleGameState"); }
 
 };

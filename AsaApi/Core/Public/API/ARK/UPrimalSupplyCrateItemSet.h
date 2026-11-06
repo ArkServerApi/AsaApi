@@ -9,8 +9,8 @@ public:
 	~UPrimalSupplyCrateItemSet() = delete;
 	UPrimalSupplyCrateItemSet(const UPrimalSupplyCrateItemSet&) = delete;
 	UPrimalSupplyCrateItemSet& operator=(const UPrimalSupplyCrateItemSet&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalSupplyCrateItemSet"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalSupplyCrateItemSet"); }
 
 	FSupplyCrateItemSet& ItemSetField() { return *GetNativePointerField<FSupplyCrateItemSet*>(this, "UPrimalSupplyCrateItemSet.ItemSet"); }
 };

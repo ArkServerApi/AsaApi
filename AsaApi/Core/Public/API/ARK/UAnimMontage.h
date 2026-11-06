@@ -10,8 +10,8 @@ public:
 	~UAnimMontage() = delete;
 	UAnimMontage(const UAnimMontage&) = delete;
 	UAnimMontage& operator=(const UAnimMontage&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAnimMontage"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAnimMontage"); }
 	FAlphaBlend& BlendInField() { return *GetNativePointerField<FAlphaBlend*>(this, "UAnimMontage.BlendIn"); }
 	FAlphaBlend& BlendOutField() { return *GetNativePointerField<FAlphaBlend*>(this, "UAnimMontage.BlendOut"); }
 	float& BlendOutTriggerTimeField() { return *GetNativePointerField<float*>(this, "UAnimMontage.BlendOutTriggerTime"); }

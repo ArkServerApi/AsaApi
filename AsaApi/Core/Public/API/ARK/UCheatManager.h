@@ -25,7 +25,7 @@ struct UCheatManager : AShooterPlayerController
 
 	// Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UCheatManager.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCheatManager"); }
 	void ServerToggleAILogging() { NativeCall<void>(this, "UCheatManager.ServerToggleAILogging()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesUCheatManager();
@@ -84,5 +84,5 @@ struct UCheatManager : AShooterPlayerController
 	void DestroyServerStatReplicator() { NativeCall<void>(this, "UCheatManager.DestroyServerStatReplicator()"); }
 	void AddCheatManagerExtension(UCheatManagerExtension* CheatObject) { NativeCall<void, UCheatManagerExtension*>(this, "UCheatManager.AddCheatManagerExtension(UCheatManagerExtension*)", CheatObject); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCheatManager"); }
 };

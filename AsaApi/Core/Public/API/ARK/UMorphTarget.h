@@ -10,8 +10,8 @@ public:
 	~UMorphTarget() = delete;
 	UMorphTarget(const UMorphTarget&) = delete;
 	UMorphTarget& operator=(const UMorphTarget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMorphTarget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMorphTarget"); }
 	bool HasValidData() { return NativeCall<bool>(this, "UMorphTarget.HasValidData()"); }
 	bool UsesBuiltinMorphTargetCompression() { return NativeCall<bool>(this, "UMorphTarget.UsesBuiltinMorphTargetCompression()"); }
 	bool HasDataForLOD(int LODIndex) { return NativeCall<bool, int>(this, "UMorphTarget.HasDataForLOD(int)", LODIndex); }

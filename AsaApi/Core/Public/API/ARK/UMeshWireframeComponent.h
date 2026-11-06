@@ -10,8 +10,8 @@ public:
 	~UMeshWireframeComponent() = delete;
 	UMeshWireframeComponent(const UMeshWireframeComponent&) = delete;
 	UMeshWireframeComponent& operator=(const UMeshWireframeComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMeshWireframeComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMeshWireframeComponent"); }
 
 	float& LineDepthBiasField() { return *GetNativePointerField<float*>(this, "UMeshWireframeComponent.LineDepthBias"); }
 	float& LineDepthBiasSizeScaleField() { return *GetNativePointerField<float*>(this, "UMeshWireframeComponent.LineDepthBiasSizeScale"); }

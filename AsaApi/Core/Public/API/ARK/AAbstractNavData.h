@@ -9,8 +9,8 @@ public:
 	~AAbstractNavData() = delete;
 	AAbstractNavData(const AAbstractNavData&) = delete;
 	AAbstractNavData& operator=(const AAbstractNavData&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AAbstractNavData"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AAbstractNavData"); }
 
 	void OnNavAreaAdded(const UClass* NavAreaClass, int AgentIndex) { NativeCall<void, const UClass*, int>(this, "AAbstractNavData.OnNavAreaAdded(UClass*,int)", NavAreaClass, AgentIndex); }
 	void OnNavAreaRemoved(const UClass* NavAreaClass) { NativeCall<void, const UClass*>(this, "AAbstractNavData.OnNavAreaRemoved(UClass*)", NavAreaClass); }

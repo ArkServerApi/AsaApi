@@ -8,7 +8,7 @@ struct UVictoryCoreHighest : UObject
 
 	  // Functions
 
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UVictoryCoreHighest.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UVictoryCoreHighest"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UVictoryCoreHighest"); }
 };

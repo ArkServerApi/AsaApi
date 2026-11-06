@@ -9,8 +9,8 @@ public:
 	~UPrimalMassSubsystem() = delete;
 	UPrimalMassSubsystem(const UPrimalMassSubsystem&) = delete;
 	UPrimalMassSubsystem& operator=(const UPrimalMassSubsystem&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalMassSubsystem"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalMassSubsystem"); }
 
 	FMassEntityManager*& EntityManagerField() { return *GetNativePointerField<FMassEntityManager**>(this, "UPrimalMassSubsystem.EntityManager"); }
 	FMassArchetypeHandle& MassArchetypeField() { return *GetNativePointerField<FMassArchetypeHandle*>(this, "UPrimalMassSubsystem.MassArchetype"); }

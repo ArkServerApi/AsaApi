@@ -19,7 +19,7 @@ struct APrimalWeaponGrapplingHook : AShooterWeapon_Projectile
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalWeaponGrapplingHook"); }
 	void BeginPlay() { NativeCall<void>(this, "APrimalWeaponGrapplingHook.BeginPlay()"); }
 	void StartFire(bool bFromGamepad) { NativeCall<void, bool>(this, "APrimalWeaponGrapplingHook.StartFire(bool)", bFromGamepad); }
 	void StopFire() { NativeCall<void>(this, "APrimalWeaponGrapplingHook.StopFire()"); }
@@ -39,4 +39,5 @@ struct APrimalWeaponGrapplingHook : AShooterWeapon_Projectile
 	bool& bPullingRopeField() { return *GetNativePointerField<bool*>(this, "APrimalWeaponGrapplingHook.bPullingRope"); }
 
 	USceneComponent* GetCableAttachComponent() { return NativeCall<USceneComponent*>(this, "APrimalWeaponGrapplingHook.GetCableAttachComponent()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalWeaponGrapplingHook"); }
 };

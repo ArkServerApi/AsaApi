@@ -9,8 +9,8 @@ public:
 	~APrimalBuff_WindBoost() = delete;
 	APrimalBuff_WindBoost(const APrimalBuff_WindBoost&) = delete;
 	APrimalBuff_WindBoost& operator=(const APrimalBuff_WindBoost&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_WindBoost"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_WindBoost"); }
 
 
 

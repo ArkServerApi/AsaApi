@@ -33,8 +33,8 @@ struct AShooterWeapon_FlameThrower : AShooterWeapon
 
 	// Functions
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "AShooterWeapon_FlameThrower.StaticClass()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_FlameThrower"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_FlameThrower"); }
 	void ServerStopShootFX_Implementation() { NativeCall<void>(this, "AShooterWeapon_FlameThrower.ServerStopShootFX_Implementation()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterWeapon_FlameThrower();

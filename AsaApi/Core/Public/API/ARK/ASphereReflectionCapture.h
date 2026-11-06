@@ -9,8 +9,8 @@ public:
 	~ASphereReflectionCapture() = delete;
 	ASphereReflectionCapture(const ASphereReflectionCapture&) = delete;
 	ASphereReflectionCapture& operator=(const ASphereReflectionCapture&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASphereReflectionCapture"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASphereReflectionCapture"); }
 
 	USphereReflectionCaptureComponent* GetSphereCaptureComponent() { return NativeCall<USphereReflectionCaptureComponent*>(this, "ASphereReflectionCapture.GetSphereCaptureComponent()"); }
 };

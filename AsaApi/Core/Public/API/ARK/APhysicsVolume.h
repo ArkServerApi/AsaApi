@@ -24,8 +24,8 @@ struct APhysicsVolume : AVolume
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APhysicsVolume.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APhysicsVolume"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APhysicsVolume"); }
 	float GetVolumeZAtPosition(UE::Math::TVector2<double>* Position) { return NativeCall<float, UE::Math::TVector2<double>*>(this, "APhysicsVolume.GetVolumeZAtPosition(UE::Math::TVector2<double>)", Position); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPhysicsVolume();

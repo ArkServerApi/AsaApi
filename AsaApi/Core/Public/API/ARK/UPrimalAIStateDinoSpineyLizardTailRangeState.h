@@ -10,8 +10,8 @@ public:
 	~UPrimalAIStateDinoSpineyLizardTailRangeState() = delete;
 	UPrimalAIStateDinoSpineyLizardTailRangeState(const UPrimalAIStateDinoSpineyLizardTailRangeState&) = delete;
 	UPrimalAIStateDinoSpineyLizardTailRangeState& operator=(const UPrimalAIStateDinoSpineyLizardTailRangeState&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoSpineyLizardTailRangeState"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoSpineyLizardTailRangeState"); }
 
 	float& minPercentField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoSpineyLizardTailRangeState.minPercent"); }
 	float& maxPercentField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoSpineyLizardTailRangeState.maxPercent"); }

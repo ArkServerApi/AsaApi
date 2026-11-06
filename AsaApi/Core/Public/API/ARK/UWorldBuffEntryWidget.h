@@ -9,8 +9,8 @@ public:
 	~UWorldBuffEntryWidget() = delete;
 	UWorldBuffEntryWidget(const UWorldBuffEntryWidget&) = delete;
 	UWorldBuffEntryWidget& operator=(const UWorldBuffEntryWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UWorldBuffEntryWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UWorldBuffEntryWidget"); }
 
 	float& DefaultDisplayTimeField() { return *GetNativePointerField<float*>(this, "UWorldBuffEntryWidget.DefaultDisplayTime"); }
 	float& ExpiringSoonDisplayTimeField() { return *GetNativePointerField<float*>(this, "UWorldBuffEntryWidget.ExpiringSoonDisplayTime"); }

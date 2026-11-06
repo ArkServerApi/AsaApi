@@ -9,8 +9,8 @@ public:
 	~UPrimalDinoAnimInstance() = delete;
 	UPrimalDinoAnimInstance(const UPrimalDinoAnimInstance&) = delete;
 	UPrimalDinoAnimInstance& operator=(const UPrimalDinoAnimInstance&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDinoAnimInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDinoAnimInstance"); }
 
 	UE::Math::TRotator<double>& RootRotOffsetField() { return *GetNativePointerField<UE::Math::TRotator<double>*>(this, "UPrimalDinoAnimInstance.RootRotOffset"); }
 	float& RootYawSpeedField() { return *GetNativePointerField<float*>(this, "UPrimalDinoAnimInstance.RootYawSpeed"); }

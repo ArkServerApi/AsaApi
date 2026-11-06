@@ -10,8 +10,8 @@ public:
 	~UParticleModule() = delete;
 	UParticleModule(const UParticleModule&) = delete;
 	UParticleModule& operator=(const UParticleModule&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UParticleModule.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UParticleModule"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UParticleModule"); }
 	unsigned char& LODValidityField() { return *GetNativePointerField<unsigned char*>(this, "UParticleModule.LODValidity"); }
 	BitFieldValue<bool, unsigned char> bSpawnModule() { return { this, "UParticleModule.bSpawnModule"}; }
 	BitFieldValue<bool, unsigned char> bUpdateModule() { return { this, "UParticleModule.bUpdateModule"}; }

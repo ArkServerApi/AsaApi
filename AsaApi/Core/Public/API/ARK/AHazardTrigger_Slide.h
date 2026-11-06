@@ -41,7 +41,7 @@ struct AHazardTrigger_Slide : AHazardTrigger
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AHazardTrigger_Slide"); }
 	void SpawnWarningFX() { NativeCall<void>(this, "AHazardTrigger_Slide.SpawnWarningFX()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAHazardTrigger_Slide();
@@ -64,4 +64,5 @@ struct AHazardTrigger_Slide : AHazardTrigger
 	void StartSlide() { NativeCall<void>(this, "AHazardTrigger_Slide.StartSlide()"); }
 	void SpawnProjectile(UE::Math::TVector<double>* Location, UE::Math::TVector<double>* Heading) { if (!Location) throw std::invalid_argument("Null native value parameter"); if (!Heading) throw std::invalid_argument("Null native value parameter"); return NativeCall<void, UE :: Math :: TVector < double >, UE :: Math :: TVector < double >>(this, "AHazardTrigger_Slide.SpawnProjectile(UE::Math::TVector<double>,UE::Math::TVector<double>)", *Location, *Heading); }
 	void RebuildSplines() { NativeCall<void>(this, "AHazardTrigger_Slide.RebuildSplines()"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AHazardTrigger_Slide"); }
 };

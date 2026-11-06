@@ -10,8 +10,8 @@ public:
 	~UTextureRenderTarget2D() = delete;
 	UTextureRenderTarget2D(const UTextureRenderTarget2D&) = delete;
 	UTextureRenderTarget2D& operator=(const UTextureRenderTarget2D&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UTextureRenderTarget2D.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UTextureRenderTarget2D"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UTextureRenderTarget2D"); }
 	int& SizeXField() { return *GetNativePointerField<int*>(this, "UTextureRenderTarget2D.SizeX"); }
 	int& SizeYField() { return *GetNativePointerField<int*>(this, "UTextureRenderTarget2D.SizeY"); }
 	FLinearColor& ClearColorField() { return *GetNativePointerField<FLinearColor*>(this, "UTextureRenderTarget2D.ClearColor"); }

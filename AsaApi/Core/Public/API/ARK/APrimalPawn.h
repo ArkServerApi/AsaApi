@@ -23,7 +23,7 @@ struct APrimalPawn : APawn
 
 	AController* GetCharacterController() { return NativeCall<AController*>(this, "APrimalPawn.GetCharacterController()"); }
 	void SetLastMovementDesiredRotation(const UE::Math::TRotator<double>* InRotation) { NativeCall<void, const UE::Math::TRotator<double>*>(this, "APrimalPawn.SetLastMovementDesiredRotation(UE::Math::TRotator<double>&)", InRotation); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "APrimalPawn.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalPawn"); }
 	void InterceptInputEvent(const FString* InputName) { NativeCall<void, const FString*>(this, "APrimalPawn.InterceptInputEvent(FString&)", InputName); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalPawn();
@@ -36,7 +36,7 @@ struct APrimalPawn : APawn
 	bool IsLocallyControlledByPlayer() { return NativeCall<bool>(this, "APrimalPawn.IsLocallyControlledByPlayer()"); }
 	void InitInputComponent() { NativeCall<void>(this, "APrimalPawn.InitInputComponent()"); }
 
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalPawn"); }
 
 	BitFieldValue<bool, unsigned __int32> bUseBPCanCombineMoves() { return { this, "APrimalPawn.bUseBPCanCombineMoves"}; }
 	BitFieldValue<bool, unsigned char> bPreventHUDInitialization() { return { this, "APrimalPawn.bPreventHUDInitialization"}; }

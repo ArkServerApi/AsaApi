@@ -9,7 +9,7 @@ public:
 	~UFloatingPawnMovement() = delete;
 	UFloatingPawnMovement(const UFloatingPawnMovement&) = delete;
 	UFloatingPawnMovement& operator=(const UFloatingPawnMovement&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UFloatingPawnMovement"); }
 
 	float& MaxSpeedField() { return *GetNativePointerField<float*>(this, "UFloatingPawnMovement.MaxSpeed"); }
 	float& AccelerationField() { return *GetNativePointerField<float*>(this, "UFloatingPawnMovement.Acceleration"); }
@@ -18,7 +18,7 @@ public:
 	BitFieldValue<bool, unsigned __int32> bPositionCorrected() { return { this, "UFloatingPawnMovement.bPositionCorrected"}; }
 	void ApplyControlInputToVelocity(float DeltaTime) { NativeCall<void, float>(this, "UFloatingPawnMovement.ApplyControlInputToVelocity(float)", DeltaTime); }
 	void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) { NativeCall<void, float, ELevelTick, FActorComponentTickFunction*>(this, "UFloatingPawnMovement.TickComponent(float,ELevelTick,FActorComponentTickFunction*)", DeltaTime, TickType, ThisTickFunction); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UFloatingPawnMovement.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UFloatingPawnMovement"); }
 	bool LimitWorldBounds() { return NativeCall<bool>(this, "UFloatingPawnMovement.LimitWorldBounds()"); }
 	float GetMaxSpeed() { return NativeCall<float>(this, "UFloatingPawnMovement.GetMaxSpeed()"); }
 };

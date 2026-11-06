@@ -9,8 +9,8 @@ public:
 	~ASmartObjectTestingActor() = delete;
 	ASmartObjectTestingActor(const ASmartObjectTestingActor&) = delete;
 	ASmartObjectTestingActor& operator=(const ASmartObjectTestingActor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ASmartObjectTestingActor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ASmartObjectTestingActor"); }
 
 	bool& bRunTestsEachFrameField() { return *GetNativePointerField<bool*>(this, "ASmartObjectTestingActor.bRunTestsEachFrame"); }
 	void RunTests() { NativeCall<void>(this, "ASmartObjectTestingActor.RunTests()"); }

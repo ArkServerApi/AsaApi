@@ -10,8 +10,8 @@ public:
 	~ADebugCameraController() = delete;
 	ADebugCameraController(const ADebugCameraController&) = delete;
 	ADebugCameraController& operator=(const ADebugCameraController&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADebugCameraController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADebugCameraController"); }
 
 	float& SpeedScaleField() { return *GetNativePointerField<float*>(this, "ADebugCameraController.SpeedScale"); }
 	float& InitialMaxSpeedField() { return *GetNativePointerField<float*>(this, "ADebugCameraController.InitialMaxSpeed"); }

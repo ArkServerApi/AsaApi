@@ -9,7 +9,7 @@ public:
 	~UNetReplicationGraphConnection() = delete;
 	UNetReplicationGraphConnection(const UNetReplicationGraphConnection&) = delete;
 	UNetReplicationGraphConnection& operator=(const UNetReplicationGraphConnection&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNetReplicationGraphConnection.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNetReplicationGraphConnection"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNetReplicationGraphConnection"); }
 
 };

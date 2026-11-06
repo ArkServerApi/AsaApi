@@ -9,8 +9,8 @@ public:
 	~AShooterHUD() = delete;
 	AShooterHUD(const AShooterHUD&) = delete;
 	AShooterHUD& operator=(const AShooterHUD&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterHUD"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterHUD"); }
 
 	UUI_SavingOverlay*& SavingOverlayField() { return *GetNativePointerField<UUI_SavingOverlay**>(this, "AShooterHUD.SavingOverlay"); }
 	float& MaxDamageCameraShakeScaleField() { return *GetNativePointerField<float*>(this, "AShooterHUD.MaxDamageCameraShakeScale"); }

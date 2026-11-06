@@ -10,8 +10,8 @@ public:
 	~ULevelStreamingLevelInstance() = delete;
 	ULevelStreamingLevelInstance(const ULevelStreamingLevelInstance&) = delete;
 	ULevelStreamingLevelInstance& operator=(const ULevelStreamingLevelInstance&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULevelStreamingLevelInstance.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULevelStreamingLevelInstance"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULevelStreamingLevelInstance"); }
 	FLevelInstanceID& LevelInstanceIDField() { return *GetNativePointerField<FLevelInstanceID*>(this, "ULevelStreamingLevelInstance.LevelInstanceID"); }
 	static ULevelStreamingLevelInstance* LoadInstance(ILevelInstanceInterface* LevelInstance) { return NativeCall<ULevelStreamingLevelInstance*, ILevelInstanceInterface*>(nullptr, "ULevelStreamingLevelInstance.LoadInstance(ILevelInstanceInterface*)", LevelInstance); }
 	ILevelInstanceInterface* GetLevelInstance() { return NativeCall<ILevelInstanceInterface*>(this, "ULevelStreamingLevelInstance.GetLevelInstance()"); }

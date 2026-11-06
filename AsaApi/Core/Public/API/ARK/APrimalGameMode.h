@@ -14,8 +14,8 @@ struct APrimalGameMode : AGameMode
 
 	// Functions
 
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalGameMode.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalGameMode"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalGameMode"); }
 	//void ~APrimalGameMode() { NativeCall<void>(this, "APrimalGameMode.~APrimalGameMode()"); }
 	void FinishRestartPlayer(AController* NewPlayer, const UE::Math::TRotator<double>* StartRotation) { NativeCall<void, AController*, const UE::Math::TRotator<double>*>(this, "APrimalGameMode.FinishRestartPlayer(AController*,UE::Math::TRotator<double>&)", NewPlayer, StartRotation); }
 

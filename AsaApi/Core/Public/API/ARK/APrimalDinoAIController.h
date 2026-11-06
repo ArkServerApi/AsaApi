@@ -175,8 +175,8 @@ struct APrimalDinoAIController : AAIController
 	// Functions
 
 	//UPrimalPathFollowingComponent* PFC() { return NativeCall<UPrimalPathFollowingComponent*>(this, "APrimalDinoAIController.PFC()"); }
-	static UClass* StaticClass() { return GetPrivateStaticClass(); }
-	static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalDinoAIController.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalDinoAIController"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalDinoAIController"); }
 	void BPOnFleeEvent() { NativeCall<void>(this, "APrimalDinoAIController.BPOnFleeEvent()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalDinoAIController();

@@ -9,8 +9,8 @@ public:
 	~UMaterialGPUReadbackMessageComponent() = delete;
 	UMaterialGPUReadbackMessageComponent(const UMaterialGPUReadbackMessageComponent&) = delete;
 	UMaterialGPUReadbackMessageComponent& operator=(const UMaterialGPUReadbackMessageComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialGPUReadbackMessageComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialGPUReadbackMessageComponent"); }
 
 	FName& MessageNameField() { return *GetNativePointerField<FName*>(this, "UMaterialGPUReadbackMessageComponent.MessageName"); }
 	bool& bAutoEnableMessagesOnRegisterField() { return *GetNativePointerField<bool*>(this, "UMaterialGPUReadbackMessageComponent.bAutoEnableMessagesOnRegister"); }

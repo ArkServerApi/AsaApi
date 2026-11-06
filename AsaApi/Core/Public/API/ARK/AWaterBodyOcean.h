@@ -9,8 +9,8 @@ public:
 	~AWaterBodyOcean() = delete;
 	AWaterBodyOcean(const AWaterBodyOcean&) = delete;
 	AWaterBodyOcean& operator=(const AWaterBodyOcean&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AWaterBodyOcean"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AWaterBodyOcean"); }
 
 	void PostLoad() { NativeCall<void>(this, "AWaterBodyOcean.PostLoad()"); }
 };

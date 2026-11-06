@@ -9,8 +9,8 @@ public:
 	~ADinoFoliage_PresetGenerator() = delete;
 	ADinoFoliage_PresetGenerator(const ADinoFoliage_PresetGenerator&) = delete;
 	ADinoFoliage_PresetGenerator& operator=(const ADinoFoliage_PresetGenerator&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADinoFoliage_PresetGenerator"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADinoFoliage_PresetGenerator"); }
 
 	BitFieldValue<bool, unsigned char> bGeneratePresets() { return { this, "ADinoFoliage_PresetGenerator.bGeneratePresets"}; }
 	BitFieldValue<bool, unsigned char> bGetAllMeshesFromDataTable() { return { this, "ADinoFoliage_PresetGenerator.bGetAllMeshesFromDataTable"}; }

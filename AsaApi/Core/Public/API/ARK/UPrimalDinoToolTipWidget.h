@@ -9,8 +9,8 @@ public:
 	~UPrimalDinoToolTipWidget() = delete;
 	UPrimalDinoToolTipWidget(const UPrimalDinoToolTipWidget&) = delete;
 	UPrimalDinoToolTipWidget& operator=(const UPrimalDinoToolTipWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalDinoToolTipWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalDinoToolTipWidget"); }
 
 	FString& DinoNameLabelNameField() { return *GetNativePointerField<FString*>(this, "UPrimalDinoToolTipWidget.DinoNameLabelName"); }
 	FString& TamedLabelNameField() { return *GetNativePointerField<FString*>(this, "UPrimalDinoToolTipWidget.TamedLabelName"); }

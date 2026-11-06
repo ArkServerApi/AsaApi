@@ -24,7 +24,7 @@ struct ADroppedItemEgg : ADroppedItem
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* GetPrivateStaticClass();
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ADroppedItemEgg"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesADroppedItemEgg();
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
@@ -36,7 +36,7 @@ struct ADroppedItemEgg : ADroppedItem
 	void BeginPlay() { NativeCall<void>(this, "ADroppedItemEgg.BeginPlay()"); }
 	void CalcInsulation() { NativeCall<void>(this, "ADroppedItemEgg.CalcInsulation()"); }
 
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ADroppedItemEgg"); }
 
 	float& EggVFXScaleMultiplierField() { return *GetNativePointerField<float*>(this, "ADroppedItemEgg.EggVFXScaleMultiplier"); }
 	float& LastEggTemperatureAlphaField() { return *GetNativePointerField<float*>(this, "ADroppedItemEgg.LastEggTemperatureAlpha"); }

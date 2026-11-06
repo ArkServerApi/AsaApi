@@ -9,8 +9,8 @@ public:
 	~AVolumetricDispatcher() = delete;
 	AVolumetricDispatcher(const AVolumetricDispatcher&) = delete;
 	AVolumetricDispatcher& operator=(const AVolumetricDispatcher&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AVolumetricDispatcher"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AVolumetricDispatcher"); }
 
 	int& CurrentDetailLevelField() { return *GetNativePointerField<int*>(this, "AVolumetricDispatcher.CurrentDetailLevel"); }
 	TArray<TWeakObjectPtr<AActor, FWeakObjectPtr>, TSizedDefaultAllocator<32> >& cachedActorListField() { return *GetNativePointerField<TArray<TWeakObjectPtr<AActor, FWeakObjectPtr>, TSizedDefaultAllocator<32> >*>(this, "AVolumetricDispatcher.cachedActorList"); }

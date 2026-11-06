@@ -10,8 +10,8 @@ public:
 	~UPrimalAIStateBotRangedState() = delete;
 	UPrimalAIStateBotRangedState(const UPrimalAIStateBotRangedState&) = delete;
 	UPrimalAIStateBotRangedState& operator=(const UPrimalAIStateBotRangedState&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateBotRangedState"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateBotRangedState"); }
 
 	bool& bDrawDebugField() { return *GetNativePointerField<bool*>(this, "UPrimalAIStateBotRangedState.bDrawDebug"); }
 	float& ChanceBotWillAimDirectlyAtPlayerField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateBotRangedState.ChanceBotWillAimDirectlyAtPlayer"); }

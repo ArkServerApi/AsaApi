@@ -10,8 +10,8 @@ public:
 	~UPrimalAIStateDinoSpiderRangedWebState() = delete;
 	UPrimalAIStateDinoSpiderRangedWebState(const UPrimalAIStateDinoSpiderRangedWebState&) = delete;
 	UPrimalAIStateDinoSpiderRangedWebState& operator=(const UPrimalAIStateDinoSpiderRangedWebState&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoSpiderRangedWebState"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalAIStateDinoSpiderRangedWebState"); }
 
 	float& TimeBetweenProjectileField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoSpiderRangedWebState.TimeBetweenProjectile"); }
 	float& LeadTimeField() { return *GetNativePointerField<float*>(this, "UPrimalAIStateDinoSpiderRangedWebState.LeadTime"); }

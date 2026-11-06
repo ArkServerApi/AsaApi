@@ -10,8 +10,8 @@ public:
 	~UPrimalItem_Dye() = delete;
 	UPrimalItem_Dye(const UPrimalItem_Dye&) = delete;
 	UPrimalItem_Dye& operator=(const UPrimalItem_Dye&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalItem_Dye"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalItem_Dye"); }
 
 	int& CachedDinoColorSetIndexField() { return *GetNativePointerField<int*>(this, "UPrimalItem_Dye.CachedDinoColorSetIndex"); }
 

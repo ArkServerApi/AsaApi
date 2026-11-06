@@ -9,8 +9,8 @@ public:
 	~UCameraProxyMeshComponent() = delete;
 	UCameraProxyMeshComponent(const UCameraProxyMeshComponent&) = delete;
 	UCameraProxyMeshComponent& operator=(const UCameraProxyMeshComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UCameraProxyMeshComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UCameraProxyMeshComponent"); }
 
 	FPrimitiveSceneProxy* CreateSceneProxy() { return NativeCall<FPrimitiveSceneProxy*>(this, "UCameraProxyMeshComponent.CreateSceneProxy()"); }
 };

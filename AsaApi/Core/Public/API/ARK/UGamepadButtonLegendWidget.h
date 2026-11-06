@@ -9,8 +9,8 @@ public:
 	~UGamepadButtonLegendWidget() = delete;
 	UGamepadButtonLegendWidget(const UGamepadButtonLegendWidget&) = delete;
 	UGamepadButtonLegendWidget& operator=(const UGamepadButtonLegendWidget&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UGamepadButtonLegendWidget"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UGamepadButtonLegendWidget"); }
 
 	FText& ButtonDescriptionField() { return *GetNativePointerField<FText*>(this, "UGamepadButtonLegendWidget.ButtonDescription"); }
 	UTexture2D*& ButtonIconField() { return *GetNativePointerField<UTexture2D**>(this, "UGamepadButtonLegendWidget.ButtonIcon"); }

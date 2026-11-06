@@ -9,7 +9,7 @@ public:
 	~UShooterHaptics() = delete;
 	UShooterHaptics(const UShooterHaptics&) = delete;
 	UShooterHaptics& operator=(const UShooterHaptics&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UShooterHaptics"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UShooterHaptics"); }
 
 };

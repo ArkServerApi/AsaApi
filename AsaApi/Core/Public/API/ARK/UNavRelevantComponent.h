@@ -9,7 +9,7 @@ public:
 	~UNavRelevantComponent() = delete;
 	UNavRelevantComponent(const UNavRelevantComponent&) = delete;
 	UNavRelevantComponent& operator=(const UNavRelevantComponent&) = delete;
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UNavRelevantComponent"); }
 
 	BitFieldValue<bool, unsigned __int32> bAttachToOwnersRoot() { return { this, "UNavRelevantComponent.bAttachToOwnersRoot"}; }
 	BitFieldValue<bool, unsigned __int32> bBoundsInitialized() { return { this, "UNavRelevantComponent.bBoundsInitialized"}; }
@@ -22,6 +22,6 @@ public:
 	UObject* _getUObject() { return NativeCall<UObject*>(this, "UNavRelevantComponent._getUObject()"); }
 	void UpdateNavigationBounds() { NativeCall<void>(this, "UNavRelevantComponent.UpdateNavigationBounds()"); }
 	void RefreshNavigationModifiers() { NativeCall<void>(this, "UNavRelevantComponent.RefreshNavigationModifiers()"); }
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "UNavRelevantComponent.StaticClass()"); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UNavRelevantComponent"); }
 	void OnUnregister() { NativeCall<void>(this, "UNavRelevantComponent.OnUnregister()"); }
 };

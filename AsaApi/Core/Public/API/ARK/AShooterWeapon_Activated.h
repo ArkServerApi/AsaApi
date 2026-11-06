@@ -33,7 +33,7 @@ struct AShooterWeapon_Activated : AShooterWeapon_FlameThrower
 
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Activated"); }
 	bool CanPlayFireEffects() { return NativeCall<bool>(this, "AShooterWeapon_Activated.CanPlayFireEffects()"); }
 	// Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAShooterWeapon_Activated();
@@ -75,4 +75,5 @@ struct AShooterWeapon_Activated : AShooterWeapon_FlameThrower
 	void BPPreFireEvent(UE::Math::TVector<double>* Origin, UE::Math::TVector<double>* ShootDir) { if (!Origin) throw std::invalid_argument("Null native value parameter"); if (!ShootDir) throw std::invalid_argument("Null native value parameter"); return NativeCall<void, UE :: Math :: TVector < double >, UE :: Math :: TVector < double >>(this, "AShooterWeapon_Activated.BPPreFireEvent(UE::Math::TVector<double>,UE::Math::TVector<double>)", *Origin, *ShootDir); }
 	void MultiPlayActivationAnim(bool bActivate, int AnimIndex) { NativeCall<void, bool, int>(this, "AShooterWeapon_Activated.MultiPlayActivationAnim(bool,int)", bActivate, AnimIndex); }
 	bool GetAimOffsets(float DeltaTime, UE::Math::TRotator<double>& RootRotOffset, float& RootYawSpeed, float MaxYawAimClamp, UE::Math::TVector<double>& RootLocOffset, UE::Math::TRotator<double>& CurrentAimRot, UE::Math::TVector<double>& CurrentRootLoc, UE::Math::TVector<double>& TargetRootLoc, UE::Math::TRotator<double>& TargetAimRot) { return NativeCall<bool, float, UE::Math::TRotator<double>&, float&, float, UE::Math::TVector<double>&, UE::Math::TRotator<double>&, UE::Math::TVector<double>&, UE::Math::TVector<double>&, UE::Math::TRotator<double>&>(this, "AShooterWeapon_Activated.GetAimOffsets(float,UE::Math::TRotator<double>&,float&,float,UE::Math::TVector<double>&,UE::Math::TRotator<double>&,UE::Math::TVector<double>&,UE::Math::TVector<double>&,UE::Math::TRotator<double>&)", DeltaTime, RootRotOffset, RootYawSpeed, MaxYawAimClamp, RootLocOffset, CurrentAimRot, CurrentRootLoc, TargetRootLoc, TargetAimRot); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("AShooterWeapon_Activated"); }
 };

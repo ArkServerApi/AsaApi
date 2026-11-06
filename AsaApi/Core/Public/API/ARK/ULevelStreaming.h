@@ -10,8 +10,8 @@ public:
 	~ULevelStreaming() = delete;
 	ULevelStreaming(const ULevelStreaming&) = delete;
 	ULevelStreaming& operator=(const ULevelStreaming&) = delete;
-	static UClass* StaticClass() { return NativeCall<UClass*>(nullptr, "ULevelStreaming.StaticClass()"); }
-	static UClass* GetPrivateStaticClass() { return StaticClass(); }
+	static UClass* StaticClass() { return AsaApi::ResolveClass("ULevelStreaming"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("ULevelStreaming"); }
 	int& StreamingPriorityField() { return *GetNativePointerField<int*>(this, "ULevelStreaming.StreamingPriority"); }
 	FName& PackageNameToLoadField() { return *GetNativePointerField<FName*>(this, "ULevelStreaming.PackageNameToLoad"); }
 	TArray<FName, TSizedDefaultAllocator<32> >& LODPackageNamesField() { return *GetNativePointerField<TArray<FName, TSizedDefaultAllocator<32> >*>(this, "ULevelStreaming.LODPackageNames"); }

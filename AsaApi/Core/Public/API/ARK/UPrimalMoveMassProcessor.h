@@ -9,8 +9,8 @@ public:
 	~UPrimalMoveMassProcessor() = delete;
 	UPrimalMoveMassProcessor(const UPrimalMoveMassProcessor&) = delete;
 	UPrimalMoveMassProcessor& operator=(const UPrimalMoveMassProcessor&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UPrimalMoveMassProcessor"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UPrimalMoveMassProcessor"); }
 
 	FMassEntityQuery& QueryField() { return *GetNativePointerField<FMassEntityQuery*>(this, "UPrimalMoveMassProcessor.Query"); }
 	void Execute(FMassEntityManager& EntityManager, FMassExecutionContext& Context) { NativeCall<void, FMassEntityManager&, FMassExecutionContext&>(this, "UPrimalMoveMassProcessor.Execute(FMassEntityManager&,FMassExecutionContext&)", EntityManager, Context); }

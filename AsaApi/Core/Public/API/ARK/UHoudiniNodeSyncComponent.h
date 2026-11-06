@@ -9,8 +9,8 @@ public:
 	~UHoudiniNodeSyncComponent() = delete;
 	UHoudiniNodeSyncComponent(const UHoudiniNodeSyncComponent&) = delete;
 	UHoudiniNodeSyncComponent& operator=(const UHoudiniNodeSyncComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UHoudiniNodeSyncComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UHoudiniNodeSyncComponent"); }
 
 	FString& FetchMessageField() { return *GetNativePointerField<FString*>(this, "UHoudiniNodeSyncComponent.FetchMessage"); }
 	FString& FetchNodePathField() { return *GetNativePointerField<FString*>(this, "UHoudiniNodeSyncComponent.FetchNodePath"); }

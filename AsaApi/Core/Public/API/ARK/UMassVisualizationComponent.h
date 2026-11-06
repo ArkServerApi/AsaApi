@@ -9,8 +9,8 @@ public:
 	~UMassVisualizationComponent() = delete;
 	UMassVisualizationComponent(const UMassVisualizationComponent&) = delete;
 	UMassVisualizationComponent& operator=(const UMassVisualizationComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMassVisualizationComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMassVisualizationComponent"); }
 
 	FMassISMCSharedDataMap& ISMCSharedDataField() { return *GetNativePointerField<FMassISMCSharedDataMap*>(this, "UMassVisualizationComponent.ISMCSharedData"); }
 	FMassInstancedSkinnedMeshComponentSharedDataMap& InstancedSkinnedMeshComponentSharedDataField() { return *GetNativePointerField<FMassInstancedSkinnedMeshComponentSharedDataMap*>(this, "UMassVisualizationComponent.InstancedSkinnedMeshComponentSharedData"); }

@@ -9,7 +9,7 @@ public:
 	~APlaneReflectionCapture() = delete;
 	APlaneReflectionCapture(const APlaneReflectionCapture&) = delete;
 	APlaneReflectionCapture& operator=(const APlaneReflectionCapture&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APlaneReflectionCapture"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APlaneReflectionCapture"); }
 
 };

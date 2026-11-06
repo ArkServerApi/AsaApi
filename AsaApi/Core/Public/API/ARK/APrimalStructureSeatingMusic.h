@@ -21,7 +21,7 @@ struct APrimalStructureSeatingMusic : APrimalStructureSeating
 
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static UClass* StaticClass();
-	static UClass* StaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructureSeatingMusic"); }
     void PostInitializeComponents() { NativeCall<void>(this, "APrimalStructureSeatingMusic.PostInitializeComponents()"); }
     void Control(AShooterCharacter* ShooterCharacter, int SeatNumber, bool bLockedToSeat) { NativeCall<void, AShooterCharacter*, int, bool>(this, "APrimalStructureSeatingMusic.Control(AShooterCharacter*,int,bool)", ShooterCharacter, SeatNumber, bLockedToSeat); }
     void Release(AShooterCharacter* ShooterCharacter) { NativeCall<void, AShooterCharacter*>(this, "APrimalStructureSeatingMusic.Release(AShooterCharacter*)", ShooterCharacter); }
@@ -30,4 +30,5 @@ struct APrimalStructureSeatingMusic : APrimalStructureSeating
     void OnUseKey(int Index) { NativeCall<void, int>(this, "APrimalStructureSeatingMusic.OnUseKey(int)", Index); }
     void LocalSeatingStructureAction(unsigned __int8 ActionNumber) { NativeCall<void, unsigned __int8>(this, "APrimalStructureSeatingMusic.LocalSeatingStructureAction(unsignedchar)", ActionNumber); }
     void ServerSeatingStructureAction(unsigned __int8 ActionNumber) { NativeCall<void, unsigned __int8>(this, "APrimalStructureSeatingMusic.ServerSeatingStructureAction(unsignedchar)", ActionNumber); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructureSeatingMusic"); }
 };

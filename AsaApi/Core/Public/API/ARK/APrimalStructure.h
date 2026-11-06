@@ -436,8 +436,8 @@ struct APrimalStructure : APrimalTargetableActor
     void SetEnabledPrimarySnappedStructureParent(bool bEnabled) { NativeCall<void, bool>(this, "APrimalStructure.SetEnabledPrimarySnappedStructureParent(bool)", bEnabled); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// static void StaticRegisterNativesAPrimalStructure();
-    static UClass* GetPrivateStaticClass() { return NativeCall<UClass*>(nullptr, "APrimalStructure.StaticClass()"); }
-    static UClass* StaticClass() { return GetPrivateStaticClass(); }
+    static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalStructure"); }
+    static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalStructure"); }
     // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
 	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
     bool FillVolumetricDispatchesForFluidInteraction(bool bDebugb, bool bTriggerEvents, UActorComponent* interactionComponent, AActor* dispatcher) { return NativeCall<bool, bool, bool, UActorComponent*, AActor*>(this, "APrimalStructure.FillVolumetricDispatchesForFluidInteraction(bool,bool,UActorComponent*,AActor*)", bDebugb, bTriggerEvents, interactionComponent, dispatcher); }

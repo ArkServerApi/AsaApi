@@ -9,8 +9,8 @@ public:
 	~UAIPerceptionStimuliSourceComponent() = delete;
 	UAIPerceptionStimuliSourceComponent(const UAIPerceptionStimuliSourceComponent&) = delete;
 	UAIPerceptionStimuliSourceComponent& operator=(const UAIPerceptionStimuliSourceComponent&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UAIPerceptionStimuliSourceComponent"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UAIPerceptionStimuliSourceComponent"); }
 
 	BitFieldValue<bool, unsigned __int32> bAutoRegisterAsSource() { return { this, "UAIPerceptionStimuliSourceComponent.bAutoRegisterAsSource"}; }
 	BitFieldValue<bool, unsigned __int32> bSuccessfullyRegistered() { return { this, "UAIPerceptionStimuliSourceComponent.bSuccessfullyRegistered"}; }

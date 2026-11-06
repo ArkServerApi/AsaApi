@@ -10,8 +10,8 @@ public:
 	~UMaterialInstanceDynamic() = delete;
 	UMaterialInstanceDynamic(const UMaterialInstanceDynamic&) = delete;
 	UMaterialInstanceDynamic& operator=(const UMaterialInstanceDynamic&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UMaterialInstanceDynamic"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UMaterialInstanceDynamic"); }
 	static UMaterialInstanceDynamic* Create(UMaterialInterface* ParentMaterial, UObject* InOuter, FName Name) { return NativeCall<UMaterialInstanceDynamic*, UMaterialInterface*, UObject*, FName>(nullptr, "UMaterialInstanceDynamic.Create(UMaterialInterface*,UObject*,FName)", ParentMaterial, InOuter, Name); }
 	void CopyScalarAndVectorParameters(const UMaterialInterface& SourceMaterialToCopyFrom, EShaderPlatform ShaderPlatform) { NativeCall<void, const UMaterialInterface&, EShaderPlatform>(this, "UMaterialInstanceDynamic.CopyScalarAndVectorParameters(UMaterialInterface&,EShaderPlatform)", SourceMaterialToCopyFrom, ShaderPlatform); }
 	bool IsTranslucencyWritingVelocity() { return NativeCall<bool>(this, "UMaterialInstanceDynamic.IsTranslucencyWritingVelocity()"); }

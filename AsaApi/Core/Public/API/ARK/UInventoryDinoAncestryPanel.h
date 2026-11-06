@@ -9,8 +9,8 @@ public:
 	~UInventoryDinoAncestryPanel() = delete;
 	UInventoryDinoAncestryPanel(const UInventoryDinoAncestryPanel&) = delete;
 	UInventoryDinoAncestryPanel& operator=(const UInventoryDinoAncestryPanel&) = delete;
-	static UClass* StaticClass() = delete;
-	static UClass* GetPrivateStaticClass() = delete;
+	static UClass* StaticClass() { return AsaApi::ResolveClass("UInventoryDinoAncestryPanel"); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("UInventoryDinoAncestryPanel"); }
 
 	UUI_Inventory*& InventoryUIField() { return *GetNativePointerField<UUI_Inventory**>(this, "UInventoryDinoAncestryPanel.InventoryUI"); }
 	APrimalDinoCharacter*& ActiveDinoField() { return *GetNativePointerField<APrimalDinoCharacter**>(this, "UInventoryDinoAncestryPanel.ActiveDino"); }
