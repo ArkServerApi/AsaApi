@@ -349,7 +349,7 @@ namespace AsaApi
 
 					state->SetTribeTamingDinoSettings(dino);
 
-					dino->TameDino(player, true, 0, true, true, false);
+					dino->TameDino(player, true, 0, true, true, false, false);
 				}
 
 				if (neutered)
