@@ -24,13 +24,34 @@ inline UScriptStruct* FindScriptStruct(std::wstring_view structName)
 	if (structName.size() > 1 && structName.front() == L'F')
 		structName.remove_prefix(1);
 
-	UClass* scriptStructClass = static_cast<UClass*>(Globals::StaticFindObject(nullptr, AnyPackage(), L"ScriptStruct", true));
+	if (structName.empty())
+		return nullptr;
+
+	UClass* scriptStructClass = UScriptStruct::StaticClass();
 	if (!scriptStructClass)
 		return nullptr;
 
 	std::wstring reflectedName{ structName };
+	if (structName.front() == L'/')
+		return static_cast<UScriptStruct*>(Globals::StaticFindObject(scriptStructClass, nullptr, reflectedName.c_str(), true));
 
-	return static_cast<UScriptStruct*>(Globals::StaticFindObject(scriptStructClass, AnyPackage(), reflectedName.c_str(), true));
+	const std::string requestedNameUtf8 = FString(reflectedName.c_str()).ToStringUTF8();
+	const FName requestedName(requestedNameUtf8.c_str(), EFindName::FNAME_Find);
+	TArray<UObject*> structs;
+	Globals::GetObjectsOfClass(scriptStructClass, structs, false, EObjectFlags::RF_ClassDefaultObject, EInternalObjectFlags::None);
+
+	UScriptStruct* result = nullptr;
+	for (UObject* object : structs)
+	{
+		if (!object || object->NamePrivateField() != requestedName)
+			continue;
+
+		if (result && result != object)
+			return nullptr;
+
+		result = static_cast<UScriptStruct*>(object);
+	}
+	return result;
 }
 
 template <typename T>

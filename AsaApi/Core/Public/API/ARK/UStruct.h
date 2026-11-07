@@ -9,7 +9,7 @@ struct UStruct : UField
 	UField*& ChildrenField() { return *GetNativePointerField<UField**>(this, "UStruct.Children"); }
 	FField*& ChildPropertiesField() { return *GetNativePointerField<FField**>(this, "UStruct.ChildProperties"); }
 	int& PropertiesSizeField() { return *GetNativePointerField<int*>(this, "UStruct.PropertiesSize"); }
-	int& MinAlignmentField() { return *GetNativePointerField<int*>(this, "UStruct.MinAlignment"); }
+	int16& MinAlignmentField() { return *GetNativePointerField<int16*>(this, "UStruct.MinAlignment"); }
 	TArray<unsigned char, TSizedDefaultAllocator<32> >& ScriptField() { return *GetNativePointerField<TArray<unsigned char, TSizedDefaultAllocator<32> >*>(this, "UStruct.Script"); }
 	FProperty*& PropertyLinkField() { return *GetNativePointerField<FProperty**>(this, "UStruct.PropertyLink"); }
 	FProperty*& RefLinkField() { return *GetNativePointerField<FProperty**>(this, "UStruct.RefLink"); }
