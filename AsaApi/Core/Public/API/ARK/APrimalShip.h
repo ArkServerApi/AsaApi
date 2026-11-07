@@ -385,7 +385,7 @@ public:
 	bool IsVehicle() { return NativeCall<bool>(this, "APrimalShip.IsVehicle()"); }
 	bool CanDoAnchoringInternal() { return NativeCall<bool>(this, "APrimalShip.CanDoAnchoringInternal()"); }
 	float GetSteeringForceMultiplier() { return NativeCall<float>(this, "APrimalShip.GetSteeringForceMultiplier()"); }
-	void TameDino(AShooterPlayerController* ForPC, bool bIgnoreMaxTameLimit, int OverrideTamingTeamID, bool bPreventNameDialog, bool bSkipAddingTamedLevels, bool bSuppressNotifications) { NativeCall<void, AShooterPlayerController*, bool, int, bool, bool, bool>(this, "APrimalShip.TameDino(AShooterPlayerController*,bool,int,bool,bool,bool)", ForPC, bIgnoreMaxTameLimit, OverrideTamingTeamID, bPreventNameDialog, bSkipAddingTamedLevels, bSuppressNotifications); }
+	void TameDino(AShooterPlayerController* ForPC, bool bIgnoreMaxTameLimit, int OverrideTamingTeamID, bool bPreventNameDialog, bool bSkipAddingTamedLevels, bool bSuppressNotifications, bool bPreventDossierAndMilestones = false) { NativeCall<void, AShooterPlayerController*, bool, int, bool, bool, bool, bool>(this, "APrimalShip.TameDino(AShooterPlayerController*,bool,int,bool,bool,bool,bool)", ForPC, bIgnoreMaxTameLimit, OverrideTamingTeamID, bPreventNameDialog, bSkipAddingTamedLevels, bSuppressNotifications, bPreventDossierAndMilestones); }
 	void UpdateSwimmingState() { NativeCall<void>(this, "APrimalShip.UpdateSwimmingState()"); }
 	void SetThrottleForceMultiplier(float InValue) { NativeCall<void, float>(this, "APrimalShip.SetThrottleForceMultiplier(float)", InValue); }
 	bool HasResourcesForRepair(AShooterPlayerController* ForPC) { return NativeCall<bool, AShooterPlayerController*>(this, "APrimalShip.HasResourcesForRepair(AShooterPlayerController*)", ForPC); }

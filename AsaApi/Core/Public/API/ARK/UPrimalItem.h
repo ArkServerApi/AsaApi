@@ -630,7 +630,7 @@ struct UPrimalItem : UObject
 	float GetMaxDurability() { return NativeCall<float>(this, "UPrimalItem.GetMaxDurability()"); }
 	void CraftBlueprint(bool bConsumeResources) { NativeCall<void, bool>(this, "UPrimalItem.CraftBlueprint(bool)", bConsumeResources); }
 	bool CanFullyCraft(bool bForceUpdateWirelessResources) { return NativeCall<bool, bool>(this, "UPrimalItem.CanFullyCraft(bool)", bForceUpdateWirelessResources); }
-	void StopCraftingRepairing(bool bCheckIfCraftingOrRepairing) { NativeCall<void, bool>(this, "UPrimalItem.StopCraftingRepairing(bool)", bCheckIfCraftingOrRepairing); }
+	void StopCraftingRepairing(bool bCheckIfCraftingOrRepairing, bool bSkipClientNotification = false) { NativeCall<void, bool, bool>(this, "UPrimalItem.StopCraftingRepairing(bool,bool)", bCheckIfCraftingOrRepairing, bSkipClientNotification); }
 	UPrimalItem* FinishCraftingBlueprint() { return NativeCall<UPrimalItem*>(this, "UPrimalItem.FinishCraftingBlueprint()"); }
 	float GetTimeToCraftBlueprint() { return NativeCall<float>(this, "UPrimalItem.GetTimeToCraftBlueprint()"); }
 	//     float GetTimeForFullRepair() { return NativeCall<float>(this, "UPrimalItem.GetTimeForFullRepair()"); }

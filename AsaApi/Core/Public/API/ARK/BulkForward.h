@@ -1928,6 +1928,7 @@ struct UPrimalCharacterMovement;
 struct UPrimalCharacterStatusComponent;
 struct UPrimalClimbingSettings;
 struct UPrimalColorSet;
+struct UPrimalEscortComponent;
 struct UPrimalCorpseMotionComponent;
 struct UPrimalDinoEntry;
 struct UPrimalDinoToolTipWidget;
