@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class UCurrencySpacing:int
+{
+	UNUM_CURRENCY_MATCH = 0x0,
+	UNUM_CURRENCY_SURROUNDING_MATCH = 0x1,
+	UNUM_CURRENCY_INSERT = 0x2,
+	UNUM_CURRENCY_SPACING_COUNT = 0x3
+};

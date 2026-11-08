@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class FWPM_FIELD_TYPE_:int
+{
+	FWPM_FIELD_RAW_DATA = 0x0,
+	FWPM_FIELD_IP_ADDRESS = 0x1,
+	FWPM_FIELD_FLAGS = 0x2,
+	FWPM_FIELD_TYPE_MAX = 0x3
+};

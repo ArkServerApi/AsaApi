@@ -1,0 +1,21 @@
+#pragma once
+
+struct FPrimalStatGroupDefinition;
+struct FPrimalStructureSnapPoint;
+struct FPrimalStructureSnapPointOverride;
+struct FPrimalWirelessReferences;
+struct FPrimaryAssetId;
+struct FProcHandle;
+struct FProjectileArc;
+struct FProjectileWeaponData;
+struct FPropertyModificationsTracker;
+struct FPropertyWrapper;
+struct FPubSub_TribeNotification_Chat;
+struct FQualityTierCraftingResourceRequirements;
+struct FQueuedThreadPool;
+struct FRadialDamageEvent;
+struct FRangedValues;
+struct FRecoveryRateOverride;
+struct FReferenceCollector;
+struct FRegionGeneralOverrides;
+struct FRegisterComponentContext;

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreTypes.h"
+#include "Math/MathFwd.h" // IWYU pragma: export
 #include "Math/UnrealMathUtility.h"
 #include "Containers/UnrealString.h"
 #include "Math/IntPoint.h"
@@ -13,6 +14,8 @@ namespace UE::Math
 
 /**
  * Structure for integer rectangles in 2-d space.
+ * 
+ * Represented as half-open bounds [min, max)
  *
  * @todo Docs: The operators need better documentation, i.e. what does it mean to divide a rectangle?
  */
@@ -39,7 +42,7 @@ struct TIntRect
 	};
 
 	/** Constructor */
-	TIntRect()
+	[[nodiscard]] TIntRect()
 		: Min(ForceInit)
 		, Max(ForceInit)
 	{}
@@ -47,12 +50,14 @@ struct TIntRect
 	/**
 	 * Constructor
 	 *
-	 * @param X0 Minimum X coordinate.
-	 * @param Y0 Minimum Y coordinate.
-	 * @param X1 Maximum X coordinate.
-	 * @param Y1 Maximum Y coordinate.
+	 * @param X0 Minimum X coordinate (inclusive)
+	 * @param Y0 Minimum Y coordinate (inclusive)
+	 * @param X1 Maximum X coordinate (exclusive)
+	 * @param Y1 Maximum Y coordinate (exclusive)
+	 * 
+	 * @note  
 	 */
-	TIntRect(IntType X0, IntType Y0, IntType X1, IntType Y1)
+	[[nodiscard]] TIntRect(IntType X0, IntType Y0, IntType X1, IntType Y1)
 		: Min(X0, Y0)
 		, Max(X1, Y1)
 	{
@@ -61,16 +66,16 @@ struct TIntRect
 	/**
 	 * Constructor
 	 *
-	 * @param InMin Minimum Point
-	 * @param InMax Maximum Point
+	 * @param InMin Minimum Point (inclusive)
+	 * @param InMax Maximum Point (exclusive)
 	 */
-	TIntRect(IntPointType InMin, IntPointType InMax)
+	[[nodiscard]] TIntRect(IntPointType InMin, IntPointType InMax)
 		: Min(InMin)
 		, Max(InMax)
 	{
 	}
 
-	TIntRect(const TIntRect& Other)
+	[[nodiscard]] TIntRect(const TIntRect& Other)
 	{
 		*this = Other;
 	}
@@ -86,7 +91,7 @@ struct TIntRect
 	 * Converts to another int type. Checks that the cast will succeed.
 	 */
 	template <typename OtherIntType>
-	explicit TIntRect(TIntRect<OtherIntType> Other)
+	[[nodiscard]] explicit TIntRect(TIntRect<OtherIntType> Other)
 		: Min(IntPointType(Other.Min))
 		, Max(IntPointType(Other.Max))
 	{
@@ -98,7 +103,7 @@ struct TIntRect
 	 * @param PointIndex Index of Point in rectangle.
 	 * @return Const reference to point in rectangle.
 	 */
-	const TIntRect& operator()(int32 PointIndex) const
+	[[nodiscard]] const TIntRect& operator()(int32 PointIndex) const
 	{
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		return MinMax[PointIndex];
@@ -111,7 +116,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param PointIndex Index of Point in rectangle.
 	 * @return Reference to point in rectangle.
 	 */
-	TIntRect& operator()(int32 PointIndex)
+	[[nodiscard]] TIntRect& operator()(int32 PointIndex)
 	{
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		return MinMax[PointIndex];
@@ -124,7 +129,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Other The Other Rectangle for comparison.
 	 * @return true if the rectangles are equal, false otherwise..
 	 */
-	bool operator==(const TIntRect& Other) const
+	[[nodiscard]] bool operator==(const TIntRect& Other) const
 	{
 		return Min == Other.Min && Max == Other.Max;
 	}
@@ -135,7 +140,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Other The Other Rectangle for comparison.
 	 * @return true if the rectangles are not equal, false otherwise..
 	 */
-	bool operator!=(const TIntRect& Other) const
+	[[nodiscard]] bool operator!=(const TIntRect& Other) const
 	{
 		return Min != Other.Min || Max != Other.Max;
 	}
@@ -188,7 +193,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Scale What to multiply this rectangle by.
 	 * @return New scaled rectangle.
 	 */
-	TIntRect operator*(IntType Scale) const
+	[[nodiscard]] TIntRect operator*(IntType Scale) const
 	{
 		return TIntRect(Min * Scale, Max * Scale);
 	}
@@ -199,7 +204,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Div What to divide this rectangle by.
 	 * @return New divided rectangle.
 	 */
-	TIntRect operator/(IntType Div) const
+	[[nodiscard]] TIntRect operator/(IntType Div) const
 	{
 		return TIntRect(Min / Div, Max / Div);
 	}
@@ -210,7 +215,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Point The point to add to both points in the rectangle.
 	 * @return New rectangle with point added to it.
 	 */
-	TIntRect operator+(const IntPointType& Point) const
+	[[nodiscard]] TIntRect operator+(const IntPointType& Point) const
 	{
 		return TIntRect(Min + Point, Max + Point);
 	}
@@ -221,7 +226,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Point The point to divide with.
 	 * @return New rectangle with point divided.
 	 */
-	TIntRect operator/(const IntPointType& Point) const
+	[[nodiscard]] TIntRect operator/(const IntPointType& Point) const
 	{
 		return TIntRect(Min / Point, Max / Point);
 	}
@@ -232,7 +237,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Point The point to subtract from both points in the rectangle.
 	 * @return New rectangle with point subtracted from it.
 	 */
-	TIntRect operator-(const IntPointType& Point) const
+	[[nodiscard]] TIntRect operator-(const IntPointType& Point) const
 	{
 		return TIntRect(Min - Point, Max - Point);
 	}
@@ -243,7 +248,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Other The other rectangle to add to this.
 	 * @return New rectangle after both are added together.
 	 */
-	TIntRect operator+(const TIntRect& Other) const
+	[[nodiscard]] TIntRect operator+(const TIntRect& Other) const
 	{
 		return TIntRect(Min + Other.Min, Max + Other.Max);
 	}
@@ -254,7 +259,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Other The other rectangle to subtract from this.
 	 * @return New rectangle after one is subtracted from this.
 	 */
-	TIntRect operator-(const TIntRect& Other) const
+	[[nodiscard]] TIntRect operator-(const TIntRect& Other) const
 	{
 		return TIntRect(Min - Other.Min, Max - Other.Max);
 	}
@@ -264,7 +269,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 *
 	 * @return The area of this rectangle.
 	 */
-	IntType Area() const
+	[[nodiscard]] IntType Area() const
 	{
 		return (Max.X - Min.X) * (Max.Y - Min.Y);
 	}
@@ -276,7 +281,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @return The new rectangle.
 	 */
 
-	TIntRect Bottom(IntType InHeight) const
+	[[nodiscard]] TIntRect Bottom(IntType InHeight) const
 	{
 		return TIntRect(Min.X, FMath::Max(Min.Y, Max.Y - InHeight), Max.X, Max.Y);
 	}
@@ -298,7 +303,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		Max.Y = FMath::Max<IntType>(Min.Y, Max.Y);
 	}
 
-	/** Combines the two rectanges. */
+	/** Combines the two rectangles. */
 	void Union(const TIntRect& R)
 	{
 		Min.X = FMath::Min<IntType>(Min.X, R.Min.X);
@@ -307,21 +312,41 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		Max.Y = FMath::Max<IntType>(Max.Y, R.Max.Y);
 	}
 
-	/** Returns true if the two rects have any overlap. */
-	bool Intersect(const TIntRect& Other) const
+	/**
+	 * Returns true if the two rects have any overlap.
+	 *
+	 * @param Other The rect to compare with.
+	 * @return true if the rectangle overlaps the other rectangle, false otherwise.
+	 *
+	 * @note  This function assumes rects have open bounds, i.e. rects with
+	 *        coincident borders on any edge will not overlap.
+	 */
+	[[nodiscard]] bool Intersect(const TIntRect& Other) const
 	{
-		return Other.Min.X < Max.X&& Other.Max.X > Min.X && Other.Min.Y < Max.Y&& Other.Max.Y > Min.Y;
+		return Other.Min.X < Max.X && Other.Max.X > Min.X && Other.Min.Y < Max.Y && Other.Max.Y > Min.Y;
 	}
 
 	/**
 	 * Test whether this rectangle contains a point.
 	 *
 	 * @param Point The point to test against.
-	 * @return true if the rectangle contains the specified point,, false otherwise..
+	 * @return true if the rectangle contains the specified point, false otherwise.
+	 *
+	 * @note  This function assumes rects have half-open bounds, i.e. points are contained
+	 *        by the minimum border of the box, but not the maximum border.
 	 */
-	bool Contains(IntPointType P) const
+	[[nodiscard]] bool Contains(IntPointType P) const
 	{
 		return P.X >= Min.X && P.X < Max.X&& P.Y >= Min.Y && P.Y < Max.Y;
+	}
+
+	/**
+	 * Test whether this rectangle fully contains other rectangle.
+	 */
+	[[nodiscard]] bool Contains(const FIntRect& Other) const
+	{
+		return Other.Min.X >= Min.X && Other.Max.X <= Max.X &&
+			   Other.Min.Y >= Min.Y && Other.Max.Y <= Max.Y;
 	}
 
 	/**
@@ -344,7 +369,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 *
 	 * @return The Height of the rectangle.
 	 */
-	IntType Height() const
+	[[nodiscard]] IntType Height() const
 	{
 		return (Max.Y - Min.Y);
 	}
@@ -381,7 +406,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Shrink How much to remove from each point of this rectangle.
 	 * @return New inner Rectangle.
 	 */
-	TIntRect Inner(IntPointType Shrink) const
+	[[nodiscard]] TIntRect Inner(IntPointType Shrink) const
 	{
 		return TIntRect(Min + Shrink, Max - Shrink);
 	}
@@ -391,7 +416,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param InWidth Width of the new rectangle (<= rectangles original width).
 	 * @return The new rectangle.
 	 */
-	TIntRect Right(IntType InWidth) const
+	[[nodiscard]] TIntRect Right(IntType InWidth) const
 	{
 		return TIntRect(FMath::Max(Min.X, Max.X - InWidth), Min.Y, Max.X, Max.Y);
 	}
@@ -402,7 +427,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Fraction What to scale the rectangle by
 	 * @return New scaled rectangle.
 	 */
-	TIntRect Scale(double Fraction) const
+	[[nodiscard]] TIntRect Scale(double Fraction) const
 	{
 		using Vec2D = UE::Math::TVector2<double>;
 		const Vec2D Min2D = Vec2D((double)Min.X, (double)Min.Y) * Fraction;
@@ -421,7 +446,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 *
 	 * @return The distance from one corner of the rectangle to the other.
 	 */
-	IntPointType Size() const
+	[[nodiscard]] IntPointType Size() const
 	{
 		return IntPointType(Max.X - Min.X, Max.Y - Min.Y);
 	}
@@ -431,7 +456,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 *
 	 * @return A string describing the rectangle.
 	 */
-	FString ToString() const
+	[[nodiscard]] FString ToString() const
 	{
 		return FString::Printf(TEXT("Min=(%s) Max=(%s)"), *Min.ToString(), *Max.ToString());
 	}
@@ -441,7 +466,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 *
 	 * @return The width of the rectangle.
 	 */
-	IntType Width() const
+	[[nodiscard]] IntType Width() const
 	{
 		return Max.X - Min.X;
 	}
@@ -451,7 +476,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 *
 	 * @return true if the rectangle is 0 x 0.
 	 */
-	bool IsEmpty() const
+	[[nodiscard]] bool IsEmpty() const
 	{
 		return Width() == 0 && Height() == 0;
 	}
@@ -463,12 +488,12 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 * @param Div What to divide by.
 	 * @return New divided rectangle.
 	 */
-	static TIntRect DivideAndRoundUp(TIntRect lhs, IntType Div)
+	[[nodiscard]] static TIntRect DivideAndRoundUp(TIntRect lhs, IntType Div)
 	{
 		return DivideAndRoundUp(lhs, IntPointType(Div, Div));
 	}
 
-	static TIntRect DivideAndRoundUp(TIntRect lhs, IntPointType Div)
+	[[nodiscard]] static TIntRect DivideAndRoundUp(TIntRect lhs, IntPointType Div)
 	{
 		return TIntRect(lhs.Min / Div, IntPointType::DivideAndRoundUp(lhs.Max, Div));
 	}
@@ -478,7 +503,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	 *
 	 * @return Number of points in the Rectangle.
 	 */
-	static int32 Num()
+	[[nodiscard]] static constexpr int32 Num()
 	{
 		return 2;
 	}

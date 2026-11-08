@@ -1070,28 +1070,7 @@ FString FString::RightPad( int32 ChCount ) const
  */
 ARK_API int32 FString::ParseIntoArray( TArray<FString>& OutArray, const TCHAR* pchDelim, const bool InCullEmpty ) const
 {
-	// Make sure the delimit string is not null or empty
-	check(pchDelim);
-	OutArray.Reset();
-	const TCHAR *Start = **this;
-	const int32 DelimLength = FCString::Strlen(pchDelim);
-	if (Start && *Start != TEXT('\0') && DelimLength)
-	{
-		while( const TCHAR *At = FCString::Strstr(Start,pchDelim) )
-		{
-			if (!InCullEmpty || At-Start)
-			{
-				OutArray.Emplace(UE_PTRDIFF_TO_INT32(At-Start),Start);
-			}
-			Start = At + DelimLength;
-		}
-		if (!InCullEmpty || *Start)
-		{
-			OutArray.Emplace(Start);
-		}
-
-	}
-	return OutArray.Num();
+	return NativeCall<int32, TArray<FString>&, const TCHAR*, bool>(this, "FString.ParseIntoArray(TArray<FString,TSizedDefaultAllocator<32>>&,wchar_t*,bool)", OutArray, pchDelim, InCullEmpty);
 }
 
 bool FString::MatchesWildcard(const TCHAR* InWildcard, int32 InWildcardLen, ESearchCase::Type SearchCase) const
@@ -1113,104 +1092,17 @@ bool FString::MatchesWildcard(const TCHAR* InWildcard, int32 InWildcardLen, ESea
 /** Caution!! this routine is O(N^2) allocations...use it for parsing very short text or not at all */
 ARK_API int32 FString::ParseIntoArrayWS( TArray<FString>& OutArray, const TCHAR* pchExtraDelim, bool InCullEmpty ) const
 {
-	// default array of White Spaces, the last entry can be replaced with the optional pchExtraDelim string
-	// (if you want to split on white space and another character)
-	const TCHAR* WhiteSpace[] = 
-	{
-		TEXT(" "),
-		TEXT("\t"),
-		TEXT("\r"),
-		TEXT("\n"),
-		TEXT(""),
-	};
-
-	// start with just the standard whitespaces
-	int32 NumWhiteSpaces = UE_ARRAY_COUNT(WhiteSpace) - 1;
-	// if we got one passed in, use that in addition
-	if (pchExtraDelim && *pchExtraDelim)
-	{
-		WhiteSpace[NumWhiteSpaces++] = pchExtraDelim;
-	}
-
-	return ParseIntoArray(OutArray, WhiteSpace, NumWhiteSpaces, InCullEmpty);
+	return NativeCall<int32, TArray<FString>&, const TCHAR*, bool>(this, "FString.ParseIntoArrayWS(TArray<FString,TSizedDefaultAllocator<32>>&,wchar_t*,bool)", OutArray, pchExtraDelim, InCullEmpty);
 }
 
 ARK_API int32 FString::ParseIntoArrayLines(TArray<FString>& OutArray, bool InCullEmpty) const
 {
-	// default array of LineEndings
-	static const TCHAR* LineEndings[] =
-	{				
-		TEXT("\r\n"),
-		TEXT("\r"),
-		TEXT("\n"),	
-	};
-
-	// start with just the standard line endings
-	int32 NumLineEndings = UE_ARRAY_COUNT(LineEndings);	
-	return ParseIntoArray(OutArray, LineEndings, NumLineEndings, InCullEmpty);
+	return NativeCall<int32, TArray<FString>&, bool>(this, "FString.ParseIntoArrayLines(TArray<FString,TSizedDefaultAllocator<32>>&,bool)", OutArray, InCullEmpty);
 }
 
 ARK_API int32 FString::ParseIntoArray(TArray<FString>& OutArray, const TCHAR* const * DelimArray, int32 NumDelims, bool InCullEmpty) const
 {
-	// Make sure the delimit string is not null or empty
-	check(DelimArray);
-	OutArray.Reset();
-	const TCHAR *Start = Data.GetData();
-	const int32 Length = Len();
-	if (Start)
-	{
-		int32 SubstringBeginIndex = 0;
-
-		// Iterate through string.
-		for(int32 i = 0; i < Len();)
-		{
-			int32 SubstringEndIndex = INDEX_NONE;
-			int32 DelimiterLength = 0;
-
-			// Attempt each delimiter.
-			for(int32 DelimIndex = 0; DelimIndex < NumDelims; ++DelimIndex)
-			{
-				DelimiterLength = FCString::Strlen(DelimArray[DelimIndex]);
-
-				// If we found a delimiter...
-				if (FCString::Strncmp(Start + i, DelimArray[DelimIndex], DelimiterLength) == 0)
-				{
-					// Mark the end of the substring.
-					SubstringEndIndex = i;
-					break;
-				}
-			}
-
-			if (SubstringEndIndex != INDEX_NONE)
-			{
-				const int32 SubstringLength = SubstringEndIndex - SubstringBeginIndex;
-				// If we're not culling empty strings or if we are but the string isn't empty anyways...
-				if(!InCullEmpty || SubstringLength != 0)
-				{
-					// ... add new string from substring beginning up to the beginning of this delimiter.
-					new (OutArray) FString(SubstringEndIndex - SubstringBeginIndex, Start + SubstringBeginIndex);
-				}
-				// Next substring begins at the end of the discovered delimiter.
-				SubstringBeginIndex = SubstringEndIndex + DelimiterLength;
-				i = SubstringBeginIndex;
-			}
-			else
-			{
-				++i;
-			}
-		}
-
-		// Add any remaining characters after the last delimiter.
-		const int32 SubstringLength = Length - SubstringBeginIndex;
-		// If we're not culling empty strings or if we are but the string isn't empty anyways...
-		if(!InCullEmpty || SubstringLength != 0)
-		{
-			// ... add new string from substring beginning up to the beginning of this delimiter.
-			new (OutArray) FString(Start + SubstringBeginIndex);
-		}
-	}
-
-	return OutArray.Num();
+	return NativeCall<int32, TArray<FString>&, const TCHAR* const*, int32, bool>(this, "FString.ParseIntoArray(TArray<FString,TSizedDefaultAllocator<32>>&,wchar_t**,int,bool)", OutArray, DelimArray, NumDelims, InCullEmpty);
 }
 
 
@@ -1595,3 +1487,5 @@ void StringConv::InlineCombineSurrogates(FString& Str)
 {
 	InlineCombineSurrogates_Array(Str.GetCharArray());
 }
+
+#include "API/ARK/FParseNativeMethods.h"

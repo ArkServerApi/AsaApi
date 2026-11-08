@@ -1,0 +1,56 @@
+#pragma once
+
+
+namespace FReleaseObjectVersion
+{
+	enum Type:int
+	{
+		BeforeCustomVersionWasAdded = 0x0,
+		StaticMeshExtendedBoundsFix = 0x1,
+		NoSyncAsyncPhysAsset = 0x2,
+		LevelTransArrayConvertedToTArray = 0x3,
+		AddComponentNodeTemplateUniqueNames = 0x4,
+		UPropertryForMeshSectionSerialize = 0x5,
+		ConvertHLODScreenSize = 0x6,
+		SpeedTreeBillboardSectionInfoFixup = 0x7,
+		EventSectionParameterStringAssetRef = 0x8,
+		SkyLightRemoveMobileIrradianceMap = 0x9,
+		RenameNoTwistToAllowTwistInTwoBoneIK = 0xA,
+		MaterialLayersParameterSerializationRefactor = 0xB,
+		AddSkeletalMeshSectionDisable = 0xC,
+		RemovedMaterialSharedInputCollection = 0xD,
+		HISMCClusterTreeMigration = 0xE,
+		PinDefaultValuesVerified = 0xF,
+		FixBrokenStateMachineReferencesInTransitionGetters = 0x10,
+		MeshDescriptionNewSerialization = 0x11,
+		UnclampRGBColorCurves = 0x12,
+		LinkTimeAnimBlueprintRootDiscoveryBugFix = 0x13,
+		TrailNodeBlendVariableNameChange = 0x14,
+		PropertiesSerializeRepCondition = 0x15,
+		FocalDistanceDisablesDOF = 0x16,
+		Unused_SoundClass2DReverbSend = 0x17,
+		GroomAssetVersion1 = 0x18,
+		GroomAssetVersion2 = 0x19,
+		SerializeAnimModifierState = 0x1A,
+		GroomAssetVersion3 = 0x1B,
+		DeprecateFilmbackSettings = 0x1C,
+		CustomImplicitCollisionType = 0x1D,
+		FFieldPathOwnerSerialization = 0x1E,
+		MeshDescriptionNewFormat = 0x1F,
+		PinTypeIncludesUObjectWrapperFlag = 0x20,
+		WeightFMeshToMeshVertData = 0x21,
+		AnimationGraphNodeBindingsDisplayedAsPins = 0x22,
+		SerializeRigVMOffsetSegmentPaths = 0x23,
+		AbcVelocitiesSupport = 0x24,
+		MarginAddedToConvexAndBox = 0x25,
+		StructureDataAddedToConvex = 0x26,
+		AddedFrontRightUpAxesToLiveLinkPreProcessor = 0x27,
+		FixupCopiedEventSections = 0x28,
+		RemoteControlSerializeFunctionArgumentsSize = 0x29,
+		AddedSubSequenceEntryWarpCounter = 0x2A,
+		LonglatTextureCubeDefaultMaxResolution = 0x2B,
+		GeometryCollectionCacheRemovesMassToLocal = 0x2C,
+		VersionPlusOne = 0x2D,
+		LatestVersion = 0x2C
+	};
+}

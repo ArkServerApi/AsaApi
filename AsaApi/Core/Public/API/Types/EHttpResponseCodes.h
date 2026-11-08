@@ -1,0 +1,50 @@
+#pragma once
+
+
+namespace EHttpResponseCodes
+{
+	enum Type:int
+	{
+		Unknown = 0x0,
+		Continue = 0x64,
+		SwitchProtocol = 0x65,
+		Ok = 0xC8,
+		Created = 0xC9,
+		Accepted = 0xCA,
+		Partial = 0xCB,
+		NoContent = 0xCC,
+		ResetContent = 0xCD,
+		PartialContent = 0xCE,
+		Ambiguous = 0x12C,
+		Moved = 0x12D,
+		Redirect = 0x12E,
+		RedirectMethod = 0x12F,
+		NotModified = 0x130,
+		UseProxy = 0x131,
+		RedirectKeepVerb = 0x133,
+		BadRequest = 0x190,
+		Denied = 0x191,
+		PaymentReq = 0x192,
+		Forbidden = 0x193,
+		NotFound = 0x194,
+		BadMethod = 0x195,
+		NoneAcceptable = 0x196,
+		ProxyAuthReq = 0x197,
+		RequestTimeout = 0x198,
+		Conflict = 0x199,
+		Gone = 0x19A,
+		LengthRequired = 0x19B,
+		PrecondFailed = 0x19C,
+		RequestTooLarge = 0x19D,
+		UriTooLong = 0x19E,
+		UnsupportedMedia = 0x19F,
+		TooManyRequests = 0x1AD,
+		RetryWith = 0x1C1,
+		ServerError = 0x1F4,
+		NotSupported = 0x1F5,
+		BadGateway = 0x1F6,
+		ServiceUnavail = 0x1F7,
+		GatewayTimeout = 0x1F8,
+		VersionNotSup = 0x1F9
+	};
+}

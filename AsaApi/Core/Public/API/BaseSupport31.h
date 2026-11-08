@@ -1,0 +1,13 @@
+#pragma once
+
+struct FPlacementData;
+struct FPlayerBanInfo;
+struct FPlayerBoneBodyPreset;
+struct FPlayerCharacterGenderDefinition;
+struct FPlayerConfigVoiceCollectionInfo;
+struct FPlayerDeathReason;
+struct FPlayerDynamicMaterialColors;
+struct FPlayerDynamicMaterialFloat;
+struct FPlayerDynamicMaterialVector;
+struct FPlayerFlagData;
+struct FPlayerLocatorEffectMap;

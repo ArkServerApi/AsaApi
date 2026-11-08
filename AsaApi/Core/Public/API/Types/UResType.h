@@ -1,0 +1,24 @@
+#pragma once
+
+
+enum class UResType:int
+{
+	URES_NONE = 0xFF,
+	URES_STRING = 0x0,
+	URES_BINARY = 0x1,
+	URES_TABLE = 0x2,
+	URES_ALIAS = 0x3,
+	URES_INT = 0x7,
+	URES_ARRAY = 0x8,
+	URES_INT_VECTOR = 0xE,
+	RES_NONE = 0xFF,
+	RES_STRING = 0x0,
+	RES_BINARY = 0x1,
+	RES_TABLE = 0x2,
+	RES_ALIAS = 0x3,
+	RES_INT = 0x7,
+	RES_ARRAY = 0x8,
+	RES_INT_VECTOR = 0xE,
+	RES_RESERVED = 0xF,
+	URES_LIMIT = 0x10
+};

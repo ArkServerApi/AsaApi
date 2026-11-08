@@ -1,0 +1,42 @@
+#pragma once
+
+
+enum class EEditMeshPolygonsToolActions:int
+{
+	NoAction = 0x0,
+	AcceptCurrent = 0x1,
+	CancelCurrent = 0x2,
+	Extrude = 0x3,
+	PushPull = 0x4,
+	Offset = 0x5,
+	Inset = 0x6,
+	Outset = 0x7,
+	BevelFaces = 0x8,
+	InsertEdge = 0x9,
+	InsertEdgeLoop = 0xA,
+	Complete = 0xB,
+	PlaneCut = 0xC,
+	Merge = 0xD,
+	Delete = 0xE,
+	CutFaces = 0xF,
+	RecalculateNormals = 0x10,
+	FlipNormals = 0x11,
+	Retriangulate = 0x12,
+	Decompose = 0x13,
+	Disconnect = 0x14,
+	Duplicate = 0x15,
+	CollapseEdge = 0x16,
+	WeldEdges = 0x17,
+	StraightenEdge = 0x18,
+	FillHole = 0x19,
+	BridgeEdges = 0x1A,
+	BevelEdges = 0x1B,
+	PlanarProjectionUV = 0x1C,
+	SimplifyByGroups = 0x1D,
+	RegenerateExtraCorners = 0x1E,
+	PokeSingleFace = 0x1F,
+	SplitSingleEdge = 0x20,
+	FlipSingleEdge = 0x21,
+	CollapseSingleEdge = 0x22,
+	BevelAuto = 0x23
+};

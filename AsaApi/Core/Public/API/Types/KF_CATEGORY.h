@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class KF_CATEGORY:int
+{
+	KF_CATEGORY_VIRTUAL = 0x1,
+	KF_CATEGORY_FIXED = 0x2,
+	KF_CATEGORY_COMMON = 0x3,
+	KF_CATEGORY_PERUSER = 0x4
+};

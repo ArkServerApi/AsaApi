@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class LIBRARYSAVEFLAGS:int
+{
+	LSF_FAILIFTHERE = 0x0,
+	LSF_OVERRIDEEXISTING = 0x1,
+	LSF_MAKEUNIQUENAME = 0x2
+};

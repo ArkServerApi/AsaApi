@@ -4,6 +4,11 @@
 #include <Windows.h>
 #include <string>
 #include <utility>
+#include <type_traits>
+#include <cstring>
+#include <memory>
+#include <new>
+#include <stdexcept>
 
 #include "Base.h"
 
@@ -45,23 +50,50 @@ RT GetNativeDataPointerField(const std::string& field_name)
 	return reinterpret_cast<RT>(GetDataAddress(field_name));
 }
 
+namespace AsaApi::detail
+{
+    inline void ValidateBitFieldMetadata(const BitField& field, const std::string& key)
+    {
+        if (field.length == 0 || field.length > 8 || field.num_bits == 0 || field.num_bits > 64 ||
+            field.bit_position >= 64 || field.bit_position + field.num_bits > field.length * 8)
+            throw std::runtime_error("Invalid bitfield metadata: " + key);
+    }
+}
+
 template <typename RT, typename T>
 RT GetNativeBitField(const LPVOID _this, const std::string& field_name)
 {
-	const auto bf = GetBitField(_this, field_name);
-	T result =
-		((*reinterpret_cast<T*>(bf.offset)) >> bf.bit_position) & (~0ULL >> (sizeof(unsigned long long) * 8 - bf.num_bits));
-
-	return static_cast<RT>(result);
+    const auto field = GetBitField(_this, field_name);
+    AsaApi::detail::ValidateBitFieldMetadata(field, field_name);
+    const auto first_byte = field.bit_position / 8;
+    const auto shift = field.bit_position % 8;
+    const auto byte_count = (shift + field.num_bits + 7) / 8;
+    unsigned long long storage = 0;
+    std::memcpy(&storage, reinterpret_cast<const unsigned char*>(field.offset) + first_byte, byte_count);
+    const auto mask = ~0ULL >> (64 - field.num_bits);
+    auto value = (storage >> shift) & mask;
+    if constexpr (std::is_integral_v<RT> && std::is_signed_v<RT>)
+    {
+        if (field.num_bits < 64 && (value & (1ULL << (field.num_bits - 1))))
+            value |= ~mask;
+    }
+    return static_cast<RT>(value);
 }
 
 template <typename RT, typename T>
 void SetNativeBitField(LPVOID _this, const std::string& field_name, RT new_value)
 {
-	const auto bf = GetBitField(_this, field_name);
-	const auto mask = (~0ULL >> ((sizeof(unsigned long long) * 8) - bf.num_bits)) << bf.bit_position;
-	*reinterpret_cast<T*>(bf.offset) =
-		(*reinterpret_cast<T*>(bf.offset) & ~mask) | ((static_cast<T>(new_value) << bf.bit_position) & mask);
+    const auto field = GetBitField(_this, field_name);
+    AsaApi::detail::ValidateBitFieldMetadata(field, field_name);
+    const auto first_byte = field.bit_position / 8;
+    const auto shift = field.bit_position % 8;
+    const auto byte_count = (shift + field.num_bits + 7) / 8;
+    auto* bytes = reinterpret_cast<unsigned char*>(field.offset) + first_byte;
+    unsigned long long storage = 0;
+    std::memcpy(&storage, bytes, byte_count);
+    const auto mask = ~0ULL >> (64 - field.num_bits);
+    storage = (storage & ~(mask << shift)) | ((static_cast<unsigned long long>(new_value) & mask) << shift);
+    std::memcpy(bytes, &storage, byte_count);
 }
 
 template <typename T, size_t size>
@@ -124,6 +156,8 @@ private:
 	T* value_;
 };
 
+#include "LegacyBooleanFields.h"
+
 template <typename RT, typename T>
 class BitFieldValue
 {
@@ -135,22 +169,36 @@ public:
 
 	RT operator()() const
 	{
+        if constexpr (std::is_same_v<RT, bool>)
+        {
+            bool value;
+            if (AsaApi::detail::ReadLegacyBoolean(parent_, field_name_, value)) return value;
+        }
 		return GetNativeBitField<RT, T>(parent_, field_name_);
 	}
 
 	BitFieldValue& operator=(RT other)
 	{
+        if constexpr (std::is_same_v<RT, bool>)
+            if (AsaApi::detail::WriteLegacyBoolean(parent_, field_name_, other)) return *this;
 		SetNativeBitField<RT, T>(parent_, field_name_, other);
 		return *this;
 	}
 
 	RT Get() const
 	{
+        if constexpr (std::is_same_v<RT, bool>)
+        {
+            bool value;
+            if (AsaApi::detail::ReadLegacyBoolean(parent_, field_name_, value)) return value;
+        }
 		return GetNativeBitField<RT, T>(parent_, field_name_);
 	}
 
 	void Set(RT other)
 	{
+        if constexpr (std::is_same_v<RT, bool>)
+            if (AsaApi::detail::WriteLegacyBoolean(parent_, field_name_, other)) return;
 		SetNativeBitField<RT, T>(parent_, field_name_, other);
 	}
 

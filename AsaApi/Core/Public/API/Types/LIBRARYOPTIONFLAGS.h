@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class LIBRARYOPTIONFLAGS:int
+{
+	LOF_DEFAULT = 0x0,
+	LOF_PINNEDTONAVPANE = 0x1,
+	LOF_MASK_ALL = 0x1
+};

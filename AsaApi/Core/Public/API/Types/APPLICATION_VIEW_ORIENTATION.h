@@ -1,0 +1,8 @@
+#pragma once
+
+
+enum class APPLICATION_VIEW_ORIENTATION:int
+{
+	AVO_LANDSCAPE = 0x0,
+	AVO_PORTRAIT = 0x1
+};

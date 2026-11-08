@@ -1,0 +1,7 @@
+#pragma once
+
+struct FActiveForceFeedbackEffect;
+struct FActiveHapticFeedbackEffect;
+struct FActorBeginCursorOverSignature;
+struct FActorBeginOverlapSignature;
+struct FActorBeginTouchOverSignature;

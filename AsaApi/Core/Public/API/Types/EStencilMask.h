@@ -1,0 +1,17 @@
+#pragma once
+
+
+enum class EStencilMask:int
+{
+	SM_Default = 0x0,
+	SM_255 = 0x1,
+	SM_1 = 0x2,
+	SM_2 = 0x3,
+	SM_4 = 0x4,
+	SM_8 = 0x5,
+	SM_16 = 0x6,
+	SM_32 = 0x7,
+	SM_64 = 0x8,
+	SM_128 = 0x9,
+	SM_Count = 0xA
+};

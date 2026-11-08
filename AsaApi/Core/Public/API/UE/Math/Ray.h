@@ -2,7 +2,9 @@
 
 #pragma once
 
+#include "Math/MathFwd.h" // IWYU pragma: export
 #include "Math/Vector.h"
+#include "Templates/Requires.h"
 
 
 /**
@@ -28,7 +30,7 @@ public:
 public:
 
 	/** Default constructor initializes ray to Zero origin and Z-axis direction */
-	TRay()
+	[[nodiscard]] TRay()
 	{
 		Init();
 	}
@@ -37,7 +39,7 @@ public:
 	 * Creates and initializes a new Ray to Zero Origin and Z-axis Direction.
 	 * @param EForceInit Force Init Enum.
 	 */
-	explicit TRay<T>( EForceInit )
+	[[nodiscard]] explicit TRay<T>( EForceInit )
 	{
 		Init();
 	}
@@ -50,7 +52,7 @@ public:
 	  * @param Direction Ray Direction Vector
 	  * @param bDirectionIsNormalized Direction will be normalized unless this is passed as true (default false)
 	  */
-	TRay(const TVector<T>& Origin, const TVector<T>& Direction, bool bDirectionIsNormalized = false)
+	[[nodiscard]] TRay(const TVector<T>& Origin, const TVector<T>& Direction, bool bDirectionIsNormalized = false)
 	{
 		this->Origin = Origin;
 		this->Direction = Direction;
@@ -76,7 +78,7 @@ public:
 	 * @param Other The other Ray to compare with.
 	 * @return true if the Rays are equal, false otherwise.
 	 */
-	bool operator==( const TRay<T>& Other ) const
+	[[nodiscard]] bool operator==( const TRay<T>& Other ) const
 	{
 		return (Origin == Other.Origin) && (Direction == Other.Direction);
 	}
@@ -87,7 +89,7 @@ public:
 	 * @param Other The other Ray to compare with.
 	 * @return true if the Rays are not equal, false otherwise.
 	 */
-	bool operator!=( const TRay<T>& Other ) const
+	[[nodiscard]] bool operator!=( const TRay<T>& Other ) const
 	{
 		return !(*this == Other);
 	}
@@ -101,7 +103,7 @@ public:
 	 * @param RayParameter Scalar distance along Ray
 	 * @return Point on Ray
 	 */
-	TVector<T> PointAt(T RayParameter) const
+	[[nodiscard]] TVector<T> PointAt(T RayParameter) const
 	{
 		return Origin + RayParameter * Direction;
 	}
@@ -112,7 +114,7 @@ public:
 	 * @param Point query Point
 	 * @return distance along ray from origin to closest point
 	 */
-	T GetParameter(const TVector<T>& Point) const
+	[[nodiscard]] T GetParameter(const TVector<T>& Point) const
 	{
 		return TVector<T>::DotProduct((Point - Origin), Direction);
 	}
@@ -123,7 +125,7 @@ public:
 	 * @param Point query Point
 	 * @return squared distance to Ray
 	 */
-	T DistSquared(const TVector<T>& Point) const
+	[[nodiscard]] T DistSquared(const TVector<T>& Point) const
 	{
 		T RayParameter = TVector<T>::DotProduct((Point - Origin), Direction);
 		if (RayParameter < 0)
@@ -143,7 +145,7 @@ public:
 	 * @param Point query Point
 	 * @return distance to Ray
 	 */
-	T Dist(const TVector<T>& Point) const
+	[[nodiscard]] T Dist(const TVector<T>& Point) const
 	{
 		return FMath::Sqrt(DistSquared(Point));
 	}
@@ -153,7 +155,7 @@ public:
 	 * @param Point query point
 	 * @return closest point on Ray
 	 */
-	TVector<T> ClosestPoint(const TVector<T>& Point) const
+	[[nodiscard]] TVector<T> ClosestPoint(const TVector<T>& Point) const
 	{
 		T RayParameter = TVector<T>::DotProduct((Point - Origin), Direction);
 		if (RayParameter < 0) 
@@ -175,7 +177,7 @@ public:
 	*
 	* @return Text describing the Ray.
 	*/
-	FString ToString() const
+	[[nodiscard]] FString ToString() const
 	{
 		return FString::Printf(TEXT("Origin=(%s), Direction=(%s)"), *Origin.ToString(), *Direction.ToString());
 	}
@@ -200,17 +202,35 @@ public:
 		return true;
 	}
 
-	bool SerializeFromMismatchedTag(FName StructTag, FArchive& Ar);
+	bool SerializeFromMismatchedTag(FName StructTag, FArchive& Ar)
+	{
+		if constexpr (std::is_same_v<T, float>)
+		{
+			return UE_SERIALIZE_VARIANT_FROM_MISMATCHED_TAG(Ar, Ray, Ray3f, Ray3d);
+		}
+		else if constexpr (std::is_same_v<T, double>)
+		{
+			return UE_SERIALIZE_VARIANT_FROM_MISMATCHED_TAG(Ar, Ray, Ray3d, Ray3f);
+		}
+		else
+		{
+			static_assert(sizeof(T) == 0, "Unimplemented");
+			return false;
+		}
+	}
 
 	// Conversion to other type.
-	template<typename FArg, TEMPLATE_REQUIRES(!std::is_same_v<T, FArg>)>
-	explicit TRay(const TRay<FArg>& From) : TRay<T>(TVector<T>(From.Origin), TVector<T>(From.Direction), true) {}
+	template<typename FArg UE_REQUIRES(!std::is_same_v<T, FArg>)>
+	explicit TRay(const TRay<FArg>& From)
+		: TRay<T>(TVector<T>(From.Origin), TVector<T>(From.Direction), true)
+	{
+	}
 };
 
 }	// namespace UE::Math
 }	// namespace UE
 
-UE_DECLARE_LWC_TYPE(Ray, 3);
+
 
 template<> struct TIsPODType<FRay3f> { enum { Value = true }; };
 template<> struct TIsPODType<FRay3d> { enum { Value = true }; };
@@ -218,15 +238,3 @@ template<> struct TIsUECoreVariant<FRay3f> { enum { Value = true }; };
 template<> struct TIsUECoreVariant<FRay3d> { enum { Value = true }; };
 template<> struct TCanBulkSerialize<FRay3f> { enum { Value = true }; };
 template<> struct TCanBulkSerialize<FRay3d> { enum { Value = true }; };
-
-template<>
-inline bool FRay3f::SerializeFromMismatchedTag(FName StructTag, FArchive& Ar)
-{
-	return UE_SERIALIZE_VARIANT_FROM_MISMATCHED_TAG(Ar, Ray, Ray3f, Ray3d);
-}
-
-template<>
-inline bool FRay3d::SerializeFromMismatchedTag(FName StructTag, FArchive& Ar)
-{
-	return UE_SERIALIZE_VARIANT_FROM_MISMATCHED_TAG(Ar, Ray, Ray3d, Ray3f);
-}

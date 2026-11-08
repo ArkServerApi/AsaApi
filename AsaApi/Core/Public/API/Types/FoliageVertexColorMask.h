@@ -1,0 +1,11 @@
+#pragma once
+
+
+enum class FoliageVertexColorMask:int
+{
+	FOLIAGEVERTEXCOLORMASK_Disabled = 0x0,
+	FOLIAGEVERTEXCOLORMASK_Red = 0x1,
+	FOLIAGEVERTEXCOLORMASK_Green = 0x2,
+	FOLIAGEVERTEXCOLORMASK_Blue = 0x3,
+	FOLIAGEVERTEXCOLORMASK_Alpha = 0x4
+};

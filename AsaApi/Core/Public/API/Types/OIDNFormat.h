@@ -1,0 +1,11 @@
+#pragma once
+
+
+enum class OIDNFormat:int
+{
+	OIDN_FORMAT_UNDEFINED = 0x0,
+	OIDN_FORMAT_FLOAT = 0x1,
+	OIDN_FORMAT_FLOAT2 = 0x2,
+	OIDN_FORMAT_FLOAT3 = 0x3,
+	OIDN_FORMAT_FLOAT4 = 0x4
+};

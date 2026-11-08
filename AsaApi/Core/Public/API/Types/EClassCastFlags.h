@@ -1,0 +1,40 @@
+#pragma once
+
+
+enum class EClassCastFlags:unsigned __int64
+{
+	CASTCLASS_None = 0x0,
+	CASTCLASS_UField = 0x1,
+	CASTCLASS_FInt8Property = 0x2,
+	CASTCLASS_UEnum = 0x4,
+	CASTCLASS_UStruct = 0x8,
+	CASTCLASS_UScriptStruct = 0x10,
+	CASTCLASS_UClass = 0x20,
+	CASTCLASS_FByteProperty = 0x40,
+	CASTCLASS_FIntProperty = 0x80,
+	CASTCLASS_FFloatProperty = 0x100,
+	CASTCLASS_FUInt64Property = 0x200,
+	CASTCLASS_FClassProperty = 0x400,
+	CASTCLASS_FUInt32Property = 0x800,
+	CASTCLASS_FInterfaceProperty = 0x1000,
+	CASTCLASS_FNameProperty = 0x2000,
+	CASTCLASS_FStrProperty = 0x4000,
+	CASTCLASS_FProperty = 0xFFFF8000,
+	CASTCLASS_FObjectProperty = 0x10000,
+	CASTCLASS_FBoolProperty = 0x20000,
+	CASTCLASS_FUInt16Property = 0x40000,
+	CASTCLASS_UFunction = 0x80000,
+	CASTCLASS_FStructProperty = 0x100000,
+	CASTCLASS_FArrayProperty = 0x200000,
+	CASTCLASS_FInt64Property = 0x400000,
+	CASTCLASS_FDelegateProperty = 0x800000,
+	CASTCLASS_FNumericProperty = 0x1000000,
+	CASTCLASS_FMulticastDelegateProperty = 0x2000000,
+	CASTCLASS_FObjectPropertyBase = 0x4000000,
+	CASTCLASS_FWeakObjectProperty = 0x8000000,
+	CASTCLASS_FLazyObjectProperty = 0x10000000,
+	CASTCLASS_FSoftObjectProperty = 0x20000000,
+	CASTCLASS_FTextProperty = 0x40000000,
+	CASTCLASS_FInt16Property = 0x80000000,
+
+};

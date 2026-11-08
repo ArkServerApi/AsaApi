@@ -1,0 +1,21 @@
+#pragma once
+
+
+enum class ECommonFrameRate:unsigned char
+{
+	FPS_12 = 0x0,
+	FPS_15 = 0x1,
+	FPS_24 = 0x2,
+	FPS_25 = 0x3,
+	FPS_30 = 0x4,
+	FPS_48 = 0x5,
+	FPS_50 = 0x6,
+	FPS_60 = 0x7,
+	FPS_100 = 0x8,
+	FPS_120 = 0x9,
+	FPS_240 = 0xA,
+	NTSC_24 = 0xB,
+	NTSC_30 = 0xC,
+	NTSC_60 = 0xD,
+	Private_Num = 0xE
+};

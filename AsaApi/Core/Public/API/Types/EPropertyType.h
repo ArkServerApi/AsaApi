@@ -1,0 +1,42 @@
+#pragma once
+
+
+enum class EPropertyType:int
+{
+	CPT_None = 0x0,
+	CPT_Byte = 0x1,
+	CPT_UInt16 = 0x2,
+	CPT_UInt32 = 0x3,
+	CPT_UInt64 = 0x4,
+	CPT_Int8 = 0x5,
+	CPT_Int16 = 0x6,
+	CPT_Int = 0x7,
+	CPT_Int64 = 0x8,
+	CPT_Bool = 0x9,
+	CPT_Bool8 = 0xA,
+	CPT_Bool16 = 0xB,
+	CPT_Bool32 = 0xC,
+	CPT_Bool64 = 0xD,
+	CPT_Float = 0xE,
+	CPT_ObjectReference = 0xF,
+	CPT_Name = 0x10,
+	CPT_Delegate = 0x11,
+	CPT_Interface = 0x12,
+	CPT_Unused_Index_19 = 0x13,
+	CPT_Struct = 0x14,
+	CPT_Unused_Index_21 = 0x15,
+	CPT_Unused_Index_22 = 0x16,
+	CPT_String = 0x17,
+	CPT_Text = 0x18,
+	CPT_MulticastDelegate = 0x19,
+	CPT_WeakObjectReference = 0x1A,
+	CPT_LazyObjectReference = 0x1B,
+	CPT_ObjectPtrReference = 0x1C,
+	CPT_SoftObjectReference = 0x1D,
+	CPT_Double = 0x1E,
+	CPT_Map = 0x1F,
+	CPT_Set = 0x20,
+	CPT_FieldPath = 0x21,
+	CPT_FLargeWorldCoordinatesReal = 0x22,
+	CPT_MAX = 0x23
+};

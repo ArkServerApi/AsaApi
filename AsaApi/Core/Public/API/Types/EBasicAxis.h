@@ -1,0 +1,12 @@
+#pragma once
+
+
+enum class EBasicAxis:int
+{
+	X = 0x0,
+	Y = 0x1,
+	Z = 0x2,
+	NegX = 0x3,
+	NegY = 0x4,
+	NegZ = 0x5
+};

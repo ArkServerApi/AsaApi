@@ -239,6 +239,11 @@ namespace API
 		return reinterpret_cast<LPVOID>(module_base_ + static_cast<DWORD64>(offsets_dump_[name]));
 	}
 
+	bool Offsets::HasOffset(const std::string& name) const noexcept
+	{
+		return offsets_dump_.contains(name);
+	}
+
 	LPVOID Offsets::GetDataAddress(const std::string& name)
 	{
 		if (!offsets_dump_.contains(name))

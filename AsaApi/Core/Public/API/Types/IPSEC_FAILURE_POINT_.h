@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class IPSEC_FAILURE_POINT_:int
+{
+	IPSEC_FAILURE_NONE = 0x0,
+	IPSEC_FAILURE_ME = 0x1,
+	IPSEC_FAILURE_PEER = 0x2,
+	IPSEC_FAILURE_POINT_MAX = 0x3
+};

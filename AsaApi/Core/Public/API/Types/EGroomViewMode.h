@@ -1,0 +1,43 @@
+#pragma once
+
+
+enum class EGroomViewMode:unsigned char
+{
+	None = 0x0,
+	SimHairStrands = 0x1,
+	RenderHairStrands = 0x2,
+	UV = 0x3,
+	RootUV = 0x4,
+	RootUDIM = 0x5,
+	Seed = 0x6,
+	Dimension = 0x7,
+	RadiusVariation = 0x8,
+	Tangent = 0x9,
+	Color = 0xA,
+	Roughness = 0xB,
+	AO = 0xC,
+	ClumpID = 0xD,
+	Cluster = 0xE,
+	ClusterAABB = 0xF,
+	Group = 0x10,
+	LODColoration = 0x11,
+	ControlPoints = 0x12,
+	MacroGroups = 0x13,
+	LightBounds = 0x14,
+	DeepOpacityMaps = 0x15,
+	MacroGroupScreenRect = 0x16,
+	SamplePerPixel = 0x17,
+	CoverageType = 0x18,
+	TAAResolveType = 0x19,
+	VoxelsDensity = 0x1A,
+	MeshProjection = 0x1B,
+	Coverage = 0x1C,
+	MaterialDepth = 0x1D,
+	MaterialBaseColor = 0x1E,
+	MaterialRoughness = 0x1F,
+	MaterialSpecular = 0x20,
+	MaterialTangent = 0x21,
+	CardGuides = 0x22,
+	Tile = 0x23,
+	Count = 0x24
+};

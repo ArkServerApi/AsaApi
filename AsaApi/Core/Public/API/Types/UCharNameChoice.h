@@ -1,0 +1,11 @@
+#pragma once
+
+
+enum class UCharNameChoice:int
+{
+	U_UNICODE_CHAR_NAME = 0x0,
+	U_UNICODE_10_CHAR_NAME = 0x1,
+	U_EXTENDED_CHAR_NAME = 0x2,
+	U_CHAR_NAME_ALIAS = 0x3,
+	U_CHAR_NAME_CHOICE_COUNT = 0x4
+};

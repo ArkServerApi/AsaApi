@@ -1,0 +1,18 @@
+#pragma once
+
+
+enum class EMonthOfYear:int
+{
+	January = 0x1,
+	February = 0x2,
+	March = 0x3,
+	April = 0x4,
+	May = 0x5,
+	June = 0x6,
+	July = 0x7,
+	August = 0x8,
+	September = 0x9,
+	October = 0xA,
+	November = 0xB,
+	December = 0xC
+};

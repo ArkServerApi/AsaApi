@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class INPUT_DESTINATION_IDENTITY:int
+{
+	IDID_NONE = 0x0,
+	IDID_LUID = 0x1,
+	IDID_INPUTROUTINGINFO = 0x2,
+	IDID_WINDOW = 0x4
+};

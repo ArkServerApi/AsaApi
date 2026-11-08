@@ -1,0 +1,14 @@
+#pragma once
+
+
+enum class curl_infotype:int
+{
+	CURLINFO_TEXT = 0x0,
+	CURLINFO_HEADER_IN = 0x1,
+	CURLINFO_HEADER_OUT = 0x2,
+	CURLINFO_DATA_IN = 0x3,
+	CURLINFO_DATA_OUT = 0x4,
+	CURLINFO_SSL_DATA_IN = 0x5,
+	CURLINFO_SSL_DATA_OUT = 0x6,
+	CURLINFO_END = 0x7
+};

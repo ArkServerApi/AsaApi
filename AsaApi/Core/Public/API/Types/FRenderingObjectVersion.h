@@ -1,0 +1,57 @@
+#pragma once
+
+
+namespace FRenderingObjectVersion
+{
+	enum Type:int
+	{
+		BeforeCustomVersionWasAdded = 0x0,
+		IndirectLightingCache3BandSupport = 0x1,
+		CustomReflectionCaptureResolutionSupport = 0x2,
+		RemovedTextureStreamingLevelData = 0x3,
+		IntroducedMeshDecals = 0x4,
+		ReflectionCapturesStoreAverageBrightness = 0x5,
+		ChangedPlanarReflectionFadeDefaults = 0x6,
+		RemovedRenderTargetSize = 0x7,
+		MovedParticleCutoutsToRequiredModule = 0x8,
+		MapBuildDataSeparatePackage = 0x9,
+		TextureStreamingMeshUVChannelData = 0xA,
+		TypeHandlingForMaterialSqrtNodes = 0xB,
+		FixedBSPLightmaps = 0xC,
+		DistanceFieldSelfShadowBias = 0xD,
+		FixedLegacyMaterialAttributeNodeTypes = 0xE,
+		ShaderResourceCodeSharing = 0xF,
+		MotionBlurAndTAASupportInSceneCapture2d = 0x10,
+		AddedTextureRenderTargetFormats = 0x11,
+		FixedMeshUVDensity = 0x12,
+		AddedbUseShowOnlyList = 0x13,
+		VolumetricLightmaps = 0x14,
+		MaterialAttributeLayerParameters = 0x15,
+		StoreReflectionCaptureBrightnessForCooking = 0x16,
+		ModelVertexBufferSerialization = 0x17,
+		ReplaceLightAsIfStatic = 0x18,
+		ShaderPermutationId = 0x19,
+		IncreaseNormalPrecision = 0x1A,
+		VirtualTexturedLightmaps = 0x1B,
+		GeometryCacheFastDecoder = 0x1C,
+		LightmapHasShadowmapData = 0x1D,
+		DiaphragmDOFOnlyForDeferredShadingRenderer = 0x1E,
+		VirtualTexturedLightmapsV2 = 0x1F,
+		SkyAtmosphereStaticLightingVersioning = 0x20,
+		ExplicitSRGBSetting = 0x21,
+		VolumetricLightmapStreaming = 0x22,
+		RemovedSM4 = 0x23,
+		MaterialShaderMapIdSerialization = 0x24,
+		StaticMeshSectionForceOpaqueField = 0x25,
+		AutoExposureChanges = 0x26,
+		RemovedEmulatedInstancing = 0x27,
+		PerInstanceCustomData = 0x28,
+		AnisotropicMaterial = 0x29,
+		AutoExposureForceOverrideBiasFlag = 0x2A,
+		AutoExposureDefaultFix = 0x2B,
+		VolumeExtinctionBecomesRGB = 0x2C,
+		VirtualTexturedLightmapsV3 = 0x2D,
+		VersionPlusOne = 0x2E,
+		LatestVersion = 0x2D
+	};
+}

@@ -1,0 +1,40 @@
+#pragma once
+
+
+enum class ESkeletalMeshAsyncProperties:unsigned __int64
+{
+	None = 0x0,
+	Materials = 0x1,
+	Skeleton = 0x2,
+	RefSkeleton = 0x4,
+	RetargetBasePose = 0x8,
+	RefBasesInvMatrix = 0x10,
+	MeshClothingAssets = 0x20,
+	UseLegacyMeshDerivedDataKey = 0x40,
+	HasActiveClothingAssets = 0x80,
+	LODSettings = 0x100,
+	HasVertexColors = 0x200,
+	VertexColorGuid = 0x400,
+	MorphTargets = 0x800,
+	SkeletalMeshRenderData = 0x1000,
+	MeshEditorDataObject = 0x2000,
+	NeverStream = 0x4000,
+	OverrideLODStreamingSettings = 0xFFFF8000,
+	SupportLODStreaming = 0x10000,
+	MaxNumStreamedLODs = 0x20000,
+	MaxNumOptionalLODs = 0x40000,
+	ImportedModel = 0x80000,
+	LODInfo = 0x100000,
+	SkinWeightProfiles = 0x200000,
+	CachedComposedRefPoseMatrices = 0x400000,
+	SamplingInfo = 0x800000,
+	NodeMappingData = 0x1000000,
+	ShadowPhysicsAsset = 0x2000000,
+	SkelMirrorTable = 0x4000000,
+	MinLod = 0x8000000,
+	DisableBelowMinLodStripping = 0x10000000,
+	SkelMirrorAxis = 0x20000000,
+	SkelMirrorFlipAxis = 0x40000000,
+	DefaultAnimationRig = 0x80000000,
+
+};

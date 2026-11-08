@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class AllocationModeParam:int
+{
+	TBBMALLOC_USE_HUGE_PAGES = 0x0,
+	USE_HUGE_PAGES = 0x0,
+	TBBMALLOC_SET_SOFT_HEAP_LIMIT = 0x1,
+	TBBMALLOC_SET_HUGE_SIZE_THRESHOLD = 0x2
+};

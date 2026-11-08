@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class DrawNavMeshFlags:int
+{
+	DU_DRAWNAVMESH_OFFMESHCONS = 0x1,
+	DU_DRAWNAVMESH_CLOSEDLIST = 0x2,
+	DU_DRAWNAVMESH_COLOR_TILES = 0x4
+};

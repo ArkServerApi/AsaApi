@@ -1,0 +1,41 @@
+#pragma once
+
+
+enum class EViewModeIndex:int
+{
+	VMI_BrushWireframe = 0x0,
+	VMI_Wireframe = 0x1,
+	VMI_Unlit = 0x2,
+	VMI_Lit = 0x3,
+	VMI_Lit_DetailLighting = 0x4,
+	VMI_LightingOnly = 0x5,
+	VMI_LightComplexity = 0x6,
+	VMI_ShaderComplexity = 0x8,
+	VMI_LightmapDensity = 0x9,
+	VMI_LitLightmapDensity = 0xA,
+	VMI_ReflectionOverride = 0xB,
+	VMI_VisualizeBuffer = 0xC,
+	VMI_StationaryLightOverlap = 0xE,
+	VMI_CollisionPawn = 0xF,
+	VMI_CollisionVisibility = 0x10,
+	VMI_LODColoration = 0x12,
+	VMI_QuadOverdraw = 0x13,
+	VMI_PrimitiveDistanceAccuracy = 0x14,
+	VMI_MeshUVDensityAccuracy = 0x15,
+	VMI_ShaderComplexityWithQuadOverdraw = 0x16,
+	VMI_HLODColoration = 0x17,
+	VMI_GroupLODColoration = 0x18,
+	VMI_MaterialTextureScaleAccuracy = 0x19,
+	VMI_RequiredTextureResolution = 0x1A,
+	VMI_PathTracing = 0x1B,
+	VMI_RayTracingDebug = 0x1C,
+	VMI_VisualizeNanite = 0x1D,
+	VMI_VirtualTexturePendingMips = 0x1E,
+	VMI_VisualizeLumen = 0x1F,
+	VMI_VisualizeVirtualShadowMap = 0x20,
+	VMI_VisualizeGPUSkinCache = 0x21,
+	VMI_VisualizeSubstrate = 0x22,
+	VMI_VisualizeGroom = 0x23,
+	VMI_Max = 0x24,
+	VMI_Unknown = 0xFF
+};

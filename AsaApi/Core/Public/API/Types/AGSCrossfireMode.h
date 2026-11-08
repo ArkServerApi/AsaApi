@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class AGSCrossfireMode:int
+{
+	AGS_CROSSFIRE_MODE_DRIVER_AFR = 0x0,
+	AGS_CROSSFIRE_MODE_EXPLICIT_AFR = 0x1,
+	AGS_CROSSFIRE_MODE_DISABLE = 0x2
+};

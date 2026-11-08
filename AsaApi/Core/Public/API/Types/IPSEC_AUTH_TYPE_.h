@@ -1,0 +1,13 @@
+#pragma once
+
+
+enum class IPSEC_AUTH_TYPE_:int
+{
+	IPSEC_AUTH_MD5 = 0x0,
+	IPSEC_AUTH_SHA_1 = 0x1,
+	IPSEC_AUTH_SHA_256 = 0x2,
+	IPSEC_AUTH_AES_128 = 0x3,
+	IPSEC_AUTH_AES_192 = 0x4,
+	IPSEC_AUTH_AES_256 = 0x5,
+	IPSEC_AUTH_MAX = 0x6
+};

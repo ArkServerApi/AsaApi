@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class ULocDataLocaleType:int
+{
+	ULOC_ACTUAL_LOCALE = 0x0,
+	ULOC_VALID_LOCALE = 0x1,
+	ULOC_REQUESTED_LOCALE = 0x2,
+	ULOC_DATA_LOCALE_TYPE_LIMIT = 0x3
+};

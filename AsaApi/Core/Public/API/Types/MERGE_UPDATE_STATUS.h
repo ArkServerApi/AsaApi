@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class MERGE_UPDATE_STATUS:int
+{
+	MUS_COMPLETE = 0x0,
+	MUS_USERINPUTNEEDED = 0x1,
+	MUS_FAILED = 0x2
+};

@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class NSVGpaintType:int
+{
+	NSVG_PAINT_NONE = 0x0,
+	NSVG_PAINT_COLOR = 0x1,
+	NSVG_PAINT_LINEAR_GRADIENT = 0x2,
+	NSVG_PAINT_RADIAL_GRADIENT = 0x3
+};

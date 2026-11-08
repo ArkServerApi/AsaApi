@@ -1,0 +1,17 @@
+#pragma once
+
+
+enum class EMeshLODIdentifier:int
+{
+	LOD0 = 0x0,
+	LOD1 = 0x1,
+	LOD2 = 0x2,
+	LOD3 = 0x3,
+	LOD4 = 0x4,
+	LOD5 = 0x5,
+	LOD6 = 0x6,
+	LOD7 = 0x7,
+	HiResSource = 0x64,
+	Default = 0x3E8,
+	MaxQuality = 0x3E9
+};

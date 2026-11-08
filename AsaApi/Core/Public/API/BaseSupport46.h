@@ -1,0 +1,20 @@
+#pragma once
+
+struct UAnimationAsset;
+struct UAnimMontage;
+struct UAnimNotify;
+struct UAnimNotifyState;
+struct UAnimSequence;
+struct UAnimSequenceBase;
+struct UAntiDupeTransactionLog;
+struct UAssetUserData;
+struct UAsyncPhysicsData;
+struct UAsyncPhysicsInputComponent;
+struct UAudioComponent;
+struct UBehaviorTree;
+struct UBlueprintCore;
+struct UBookmarkBase;
+struct UBoxComponent;
+struct UBrainComponent;
+struct UCanvas;
+struct UCapsuleComponent;

@@ -1,0 +1,21 @@
+#pragma once
+
+struct FCryopodPersistantBuffs;
+struct FCustomContextMenuData;
+struct FCustomContextSubmenu;
+struct FCustomItemData;
+struct FCustomPropertyConditionState;
+struct FCustomTrackedActorInfo;
+struct FCustomVersion;
+struct FDamageEvent;
+struct FDamagePrimalCharacterStatusValueModifier;
+struct FDamageTypeAdjuster;
+struct FDatabase_AllianceWrapper;
+struct FDatabase_ClusterInfo_Server;
+struct FDatabase_CreateShapshot;
+struct FDatabase_LogEntryWrapper;
+struct FDatabase_PlayerJoinedTribe;
+struct FDatabase_PlayerRemovedFromTribe;
+struct FDatabase_TravelEntry;
+struct FDatabase_TribeEntities;
+struct FDatabase_TribeWrapper;

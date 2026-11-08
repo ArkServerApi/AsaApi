@@ -1,0 +1,16 @@
+#pragma once
+
+
+enum class NSVGunits:int
+{
+	NSVG_UNITS_USER = 0x0,
+	NSVG_UNITS_PX = 0x1,
+	NSVG_UNITS_PT = 0x2,
+	NSVG_UNITS_PC = 0x3,
+	NSVG_UNITS_MM = 0x4,
+	NSVG_UNITS_CM = 0x5,
+	NSVG_UNITS_IN = 0x6,
+	NSVG_UNITS_PERCENT = 0x7,
+	NSVG_UNITS_EM = 0x8,
+	NSVG_UNITS_EX = 0x9
+};

@@ -1,0 +1,11 @@
+#pragma once
+
+
+enum class ScalableAllocationResult:int
+{
+	TBBMALLOC_OK = 0x0,
+	TBBMALLOC_INVALID_PARAM = 0x1,
+	TBBMALLOC_UNSUPPORTED = 0x2,
+	TBBMALLOC_NO_MEMORY = 0x3,
+	TBBMALLOC_NO_EFFECT = 0x4
+};

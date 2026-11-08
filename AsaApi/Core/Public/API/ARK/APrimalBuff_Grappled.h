@@ -1,0 +1,355 @@
+#pragma once
+#include "BulkForward.h"
+
+
+struct APrimalBuff_Grappled : APrimalBuff
+{
+    // Fields
+
+    TArray<FGrappleTether, TSizedDefaultAllocator<32> >& CurrentGrappleTethersField() { return *GetNativePointerField<TArray<FGrappleTether, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.CurrentGrappleTethers"); }
+    TArray<FGrappleTether, TSizedDefaultAllocator<32> >& LastSyncedGrappleTethersField() { return *GetNativePointerField<TArray<FGrappleTether, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.LastSyncedGrappleTethers"); }
+    TArray<FReplicatedGrappleTetherData, TSizedDefaultAllocator<32> >& ReplicatedGrappleTethersField() { return *GetNativePointerField<TArray<FReplicatedGrappleTetherData, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.ReplicatedGrappleTethers"); }
+    APrimalCharacter*& MyOwnerField() { return *GetNativePointerField<APrimalCharacter**>(this, "APrimalBuff_Grappled.MyOwner"); }
+    APrimalCharacter*& MyOwnerCDOField() { return *GetNativePointerField<APrimalCharacter**>(this, "APrimalBuff_Grappled.MyOwnerCDO"); }
+    TEnumAsByte<enum EGrappleState::Type>& GrappleState_PreviousField() { return *GetNativePointerField<TEnumAsByte<enum EGrappleState::Type>*>(this, "APrimalBuff_Grappled.GrappleState_Previous"); }
+    TSubclassOf<APrimalBuff_Grappled>& DefaultGrappledBuffClassField() { return *GetNativePointerField<TSubclassOf<APrimalBuff_Grappled>*>(this, "APrimalBuff_Grappled.DefaultGrappledBuffClass"); }
+    USoundCue*& PullingSoundCueField() { return *GetNativePointerField<USoundCue**>(this, "APrimalBuff_Grappled.PullingSoundCue"); }
+    USoundCue*& ReleasingSoundCueField() { return *GetNativePointerField<USoundCue**>(this, "APrimalBuff_Grappled.ReleasingSoundCue"); }
+    UStaticMesh*& GrappleTetherMeshField() { return *GetNativePointerField<UStaticMesh**>(this, "APrimalBuff_Grappled.GrappleTetherMesh"); }
+    int& MaxAllowedGrappleTethersField() { return *GetNativePointerField<int*>(this, "APrimalBuff_Grappled.MaxAllowedGrappleTethers"); }
+    float& ForceFallingWhenDirToTetherAboveUpDotField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ForceFallingWhenDirToTetherAboveUpDot"); }
+    float& ForceFallingWhenAboveVelocityAwayFromAnchorField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ForceFallingWhenAboveVelocityAwayFromAnchor"); }
+    float& ForceFallingBelowTetherToOwnerDeltaZField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ForceFallingBelowTetherToOwnerDeltaZ"); }
+    float& ReduceFallDamageUnderAngleToAnchorField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ReduceFallDamageUnderAngleToAnchor"); }
+    float& GrappledFallDamageMult_MINField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.GrappledFallDamageMult_MIN"); }
+    float& OwnerInput_SwingSpeedField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.OwnerInput_SwingSpeed"); }
+    float& SwingingVelocityDampingRate_IdleField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingVelocityDampingRate_Idle"); }
+    float& SwingingVelocityDampingRate_PullingField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingVelocityDampingRate_Pulling"); }
+    UE::Math::TVector2<double>& SwingingVelocityDampingRateAxisMults_PullingField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.SwingingVelocityDampingRateAxisMults_Pulling"); }
+    float& SwingingVelocityDampingRate_ReleasingField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingVelocityDampingRate_Releasing"); }
+    float& SwingingVelocityDampingRate_OwnerInputField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingVelocityDampingRate_OwnerInput"); }
+    float& TetherTensionVelocityDampingRateField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherTensionVelocityDampingRate"); }
+    float& GrappleVelocityMAXField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.GrappleVelocityMAX"); }
+    float& SwingingClientPositionErrorOverride_PlayerField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingClientPositionErrorOverride_Player"); }
+    float& SwingingClientPositionErrorOverride_Dino_MovingFlyingField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingClientPositionErrorOverride_Dino_MovingFlying"); }
+    float& SwingingClientPositionErrorOverride_Dino_StoppedField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingClientPositionErrorOverride_Dino_Stopped"); }
+    float& SwingingClientLocationInterpSpeedField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingClientLocationInterpSpeed"); }
+    float& SwingingClientRotationInterpSpeedField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SwingingClientRotationInterpSpeed"); }
+    float& SyncGrappleTetherLengthIntervalField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.SyncGrappleTetherLengthInterval"); }
+    float& PullableWeightLimitField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.PullableWeightLimit"); }
+    float& TetherMaxLengthField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherMaxLength"); }
+    float& TetherMinLengthField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherMinLength"); }
+    float& TetherAutoDetachUnderLengthField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherAutoDetachUnderLength"); }
+    float& TetherBreakLimit_OwnerPastCurrentLengthDeltaField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherBreakLimit_OwnerPastCurrentLengthDelta"); }
+    float& TetherBreakLimit_OwnerPastCurrentLengthForTimeField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherBreakLimit_OwnerPastCurrentLengthForTime"); }
+    float& TetherBreakLimit_GrappledActorAboveVelocityField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherBreakLimit_GrappledActorAboveVelocity"); }
+    float& TetherWidthField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherWidth"); }
+    long double& LastGrappleTetherLengthSyncTimeField() { return *GetNativePointerField<long double*>(this, "APrimalBuff_Grappled.LastGrappleTetherLengthSyncTime"); }
+    UE::Math::TVector<double>& OwnerInput_CurrentSwingingVelocityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.OwnerInput_CurrentSwingingVelocity"); }
+    UE::Math::TVector2<double>& OwnerInput_CurrentSyncedField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.OwnerInput_CurrentSynced"); }
+    UE::Math::TVector2<double>& OwnerInput_LastSyncedField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.OwnerInput_LastSynced"); }
+    long double& OwnerInput_LastSyncTimeField() { return *GetNativePointerField<long double*>(this, "APrimalBuff_Grappled.OwnerInput_LastSyncTime"); }
+    float& OwnerInput_SyncInvervalField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.OwnerInput_SyncInverval"); }
+    UE::Math::TVector<double>& DirToAgainstSurfaceField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.DirToAgainstSurface"); }
+    UE::Math::TVector<double>& LastDirToAgainstSurfaceField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.LastDirToAgainstSurface"); }
+    float& RequiredDirToSurfaceDotDeltaToUpdateField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.RequiredDirToSurfaceDotDeltaToUpdate"); }
+    UE::Math::TVector<double>& AgainstSurfaceNormalField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.AgainstSurfaceNormal"); }
+    float& TetherPullMaxVelocityField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherPullMaxVelocity"); }
+    float& TetherPullAccelerationField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherPullAcceleration"); }
+    float& TetherPullMaxVelocity_GrappledCharField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherPullMaxVelocity_GrappledChar"); }
+    float& TetherPullAcceleration_GrappledCharField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherPullAcceleration_GrappledChar"); }
+    float& TetherReleaseMaxVelocityField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherReleaseMaxVelocity"); }
+    float& TetherReleaseMaxVelocity_GrappledCharField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherReleaseMaxVelocity_GrappledChar"); }
+    UE::Math::TVector<double>& CurrentTetherMoveVelocityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.CurrentTetherMoveVelocity"); }
+    UE::Math::TVector<double>& AvgParentCharVelocityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.AvgParentCharVelocity"); }
+    float& ClientSuggestTetherLength_AllowedDeltaField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ClientSuggestTetherLength_AllowedDelta"); }
+    float& ClientSuggestTetherLength_AllowedIntervalField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ClientSuggestTetherLength_AllowedInterval"); }
+    long double& ClientSuggestTetherLength_LastReceivedTimeField() { return *GetNativePointerField<long double*>(this, "APrimalBuff_Grappled.ClientSuggestTetherLength_LastReceivedTime"); }
+    float& ValidHitSurface_DistanceFromCapsuleEdgeField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ValidHitSurface_DistanceFromCapsuleEdge"); }
+    UE::Math::TVector2<double>& ValidHitSurface_UpVectorAngleRangeField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.ValidHitSurface_UpVectorAngleRange"); }
+    UE::Math::TVector2<double>& LastProjectedOwnerInputsField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.LastProjectedOwnerInputs"); }
+    float& OwnerCapsuleRadiusField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.OwnerCapsuleRadius"); }
+    float& OwnerCapsuleHalfHeightField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.OwnerCapsuleHalfHeight"); }
+    UE::Math::TVector<double>& PreviousOwnerVelocityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.PreviousOwnerVelocity"); }
+    float& TetherTensionStrengthField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherTensionStrength"); }
+    float& TetherTensionExponentField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.TetherTensionExponent"); }
+    float& ForceFallingStateImpulseField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.ForceFallingStateImpulse"); }
+    TArray<FString, TSizedDefaultAllocator<32> >& ReservedTetherTagsField() { return *GetNativePointerField<TArray<FString, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.ReservedTetherTags"); }
+    FString& TetherTagOwnerConnectorStringField() { return *GetNativePointerField<FString*>(this, "APrimalBuff_Grappled.TetherTagOwnerConnectorString"); }
+    UE::Math::TVector2<double>& GrappledGravityScaleRangeField() { return *GetNativePointerField<UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.GrappledGravityScaleRange"); }
+    float& GrappledGravityScaleMult_IdleField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.GrappledGravityScaleMult_Idle"); }
+    float& GrappledGravityScaleMult_PullingField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.GrappledGravityScaleMult_Pulling"); }
+    float& GrappledGravityScaleMult_ReleasingField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.GrappledGravityScaleMult_Releasing"); }
+    float& AtTetherLimitBelowDistFromEndField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.AtTetherLimitBelowDistFromEnd"); }
+    UE::Math::TVector<double>& LastGravityField() { return *GetNativePointerField<UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.LastGravity"); }
+    float& LookingAtAgainstSurfaceAngleField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.LookingAtAgainstSurfaceAngle"); }
+    float& VelocityOverrideMaxDeltaTimeField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.VelocityOverrideMaxDeltaTime"); }
+
+    // Bitfields
+
+    BitFieldValue<bool, unsigned __int32> bDetachGrappledChars() { return { this, "APrimalBuff_Grappled.bDetachGrappledChars" }; }
+    BitFieldValue<bool, unsigned __int32> bDebugGrappling() { return { this, "APrimalBuff_Grappled.bDebugGrappling" }; }
+    BitFieldValue<bool, unsigned __int32> bDebugGrappling_AgainstSurface() { return { this, "APrimalBuff_Grappled.bDebugGrappling_AgainstSurface" }; }
+    BitFieldValue<bool, unsigned __int32> bAllowGrappleLogicOnRemoteClients() { return { this, "APrimalBuff_Grappled.bAllowGrappleLogicOnRemoteClients" }; }
+    BitFieldValue<bool, unsigned __int32> bForceIdleGrappleState() { return { this, "APrimalBuff_Grappled.bForceIdleGrappleState" }; }
+    BitFieldValue<bool, unsigned __int32> bHasGrappleBuffInitialized() { return { this, "APrimalBuff_Grappled.bHasGrappleBuffInitialized" }; }
+    BitFieldValue<bool, unsigned __int32> bIsOwnerAgainstSurface() { return { this, "APrimalBuff_Grappled.bIsOwnerAgainstSurface" }; }
+    BitFieldValue<bool, unsigned __int32> bOwnerMovementAffectedByGrappleTethers() { return { this, "APrimalBuff_Grappled.bOwnerMovementAffectedByGrappleTethers" }; }
+    BitFieldValue<bool, unsigned __int32> bLastIsOwnerSubmerged() { return { this, "APrimalBuff_Grappled.bLastIsOwnerSubmerged" }; }
+    BitFieldValue<bool, unsigned __int32> bLastIsOwnerSwinging() { return { this, "APrimalBuff_Grappled.bLastIsOwnerSwinging" }; }
+    BitFieldValue<bool, unsigned __int32> bHasAnyValidTethers() { return { this, "APrimalBuff_Grappled.bHasAnyValidTethers" }; }
+    BitFieldValue<bool, unsigned __int32> bHasValidReservedTethers() { return { this, "APrimalBuff_Grappled.bHasValidReservedTethers" }; }
+    BitFieldValue<bool, unsigned __int32> bBrokeAnyTethersThisFrame() { return { this, "APrimalBuff_Grappled.bBrokeAnyTethersThisFrame" }; }
+    BitFieldValue<bool, unsigned __int32> bHasAnyGrappledChars() { return { this, "APrimalBuff_Grappled.bHasAnyGrappledChars" }; }
+    BitFieldValue<bool, unsigned __int32> bHasAnyTethersAttachedToDynamicActors() { return { this, "APrimalBuff_Grappled.bHasAnyTethersAttachedToDynamicActors" }; }
+    BitFieldValue<bool, unsigned __int32> bDidOverrideVelocityThisFrame() { return { this, "APrimalBuff_Grappled.bDidOverrideVelocityThisFrame" }; }
+    BitFieldValue<bool, unsigned __int32> bShouldResetOwnerVars() { return { this, "APrimalBuff_Grappled.bShouldResetOwnerVars" }; }
+
+    // Functions
+
+    // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
+	// static UClass* StaticClass();
+	static UClass* StaticClass() { return AsaApi::ResolveClass("APrimalBuff_Grappled"); }
+    bool AllowGrappleLogic() { return NativeCall<bool>(this, "APrimalBuff_Grappled.AllowGrappleLogic()"); }
+    void ApplyTetherMoveVelocity(UE::Math::TVector<double>* CurrentVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.ApplyTetherMoveVelocity(UE::Math::TVector<double>&,float)", CurrentVelocity, DeltaTime); }
+    bool BP_InterceptGrappleLogic(UE::Math::TVector<double>* CharVelocity) { return NativeCall<bool, UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.BP_InterceptGrappleLogic(UE::Math::TVector<double>&)", CharVelocity); }
+    bool CanBeGrappledAgainstSurface() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanBeGrappledAgainstSurface()"); }
+    bool CanPullChar(APrimalCharacter* PullChar, const bool bForStart) { return NativeCall<bool, APrimalCharacter*, const bool>(this, "APrimalBuff_Grappled.CanPullChar(APrimalCharacter*,bool)", PullChar, bForStart); }
+    void ClampGrappleVelocity(UE::Math::TVector<double>* ClampVelocity) { NativeCall<void, UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.ClampGrappleVelocity(UE::Math::TVector<double>&)", ClampVelocity); }
+    bool DisplayGrappleSystemHudNotification(AShooterPlayerController* ForPC, const AActor* FromActor, const unsigned __int8 NotificationType, const int NotificationID, const FString* ReasonString) { return NativeCall<bool, AShooterPlayerController*, const AActor*, const unsigned __int8, const int, const FString*>(this, "APrimalBuff_Grappled.DisplayGrappleSystemHudNotification(AShooterPlayerController*,AActor*,unsignedchar,int,FString&)", ForPC, FromActor, NotificationType, NotificationID, ReasonString); }
+    void EndGrapple() { NativeCall<void>(this, "APrimalBuff_Grappled.EndGrapple()"); }
+    float GetGrappleTetherPullAcceleration(const APrimalCharacter* ForPullingChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleTetherPullAcceleration(APrimalCharacter*,FGrappleTether&)", ForPullingChar, ForTether); }
+    float GetGrappleTetherPullMaxVelocity(const APrimalCharacter* ForPullingChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleTetherPullMaxVelocity(APrimalCharacter*,FGrappleTether&)", ForPullingChar, ForTether); }
+    float GetGrappleTetherReleaseMaxVelocity(const APrimalCharacter* ForReleasingChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleTetherReleaseMaxVelocity(APrimalCharacter*,FGrappleTether&)", ForReleasingChar, ForTether); }
+    float GetGrappleVelocityDampingRate(const APrimalCharacter* ForChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleVelocityDampingRate(APrimalCharacter*,FGrappleTether&)", ForChar, ForTether); }
+    float GetMaxTetherLength(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetMaxTetherLength(FGrappleTether&)", ForTether); }
+    float GetMinTetherLength(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetMinTetherLength(FGrappleTether&)", ForTether); }
+    float GetTetherBreakLimit_OwnerPastCurrentLengthDelta(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetTetherBreakLimit_OwnerPastCurrentLengthDelta(FGrappleTether&)", ForTether); }
+    float GetTetherBreakLimit_OwnerPastCurrentLengthForTime(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetTetherBreakLimit_OwnerPastCurrentLengthForTime(FGrappleTether&)", ForTether); }
+    void InitGrappleBuff() { NativeCall<void>(this, "APrimalBuff_Grappled.InitGrappleBuff()"); }
+    bool IsGrappledCharHardAttached(APrimalCharacter* ForChar) { return NativeCall<bool, APrimalCharacter*>(this, "APrimalBuff_Grappled.IsGrappledCharHardAttached(APrimalCharacter*)", ForChar); }
+    void ModifyOverriddenCharVelocity(UE::Math::TVector<double>* CurrentCharVelocity, const float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, const float>(this, "APrimalBuff_Grappled.ModifyOverriddenCharVelocity(UE::Math::TVector<double>&,float)", CurrentCharVelocity, DeltaTime); }
+    void ModifyTetherMoveVelocity(UE::Math::TVector<double>* CurrentMoveVelocity, const FGrappleTether* ForTether) { NativeCall<void, UE::Math::TVector<double>*, const FGrappleTether*>(this, "APrimalBuff_Grappled.ModifyTetherMoveVelocity(UE::Math::TVector<double>&,FGrappleTether&)", CurrentMoveVelocity, ForTether); }
+    void Multi_SyncGrappleTetherLength(const float SyncedTetherLength) { NativeCall<void, const float>(this, "APrimalBuff_Grappled.Multi_SyncGrappleTetherLength(float)", SyncedTetherLength); }
+    void OnAgainstValidSurfaceStateChanged() { NativeCall<void>(this, "APrimalBuff_Grappled.OnAgainstValidSurfaceStateChanged()"); }
+    void OnGrappleTetherRemoved(const FGrappleTether* RemovedTether) { NativeCall<void, const FGrappleTether*>(this, "APrimalBuff_Grappled.OnGrappleTetherRemoved(FGrappleTether&)", RemovedTether); }
+    void OnGrappleTethersChanged() { NativeCall<void>(this, "APrimalBuff_Grappled.OnGrappleTethersChanged()"); }
+    void OnReleasedPrimalChar(APrimalCharacter* ReleasedChar) { NativeCall<void, APrimalCharacter*>(this, "APrimalBuff_Grappled.OnReleasedPrimalChar(APrimalCharacter*)", ReleasedChar); }
+    void ResetOwnerVars() { NativeCall<void>(this, "APrimalBuff_Grappled.ResetOwnerVars()"); }
+    void SetupDelegateBindingsForChar(APrimalCharacter* ForChar, const bool bDoBind) { NativeCall<void, APrimalCharacter*, const bool>(this, "APrimalBuff_Grappled.SetupDelegateBindingsForChar(APrimalCharacter*,bool)", ForChar, bDoBind); }
+    bool ShouldForceOwnerIntoFallingState(const FGrappleTether* ForTether, const UE::Math::TVector<double>* WithOwnerVelocity, const EMovementMode CheckMovementModeOverride) { return NativeCall<bool, const FGrappleTether*, const UE::Math::TVector<double>*, const EMovementMode>(this, "APrimalBuff_Grappled.ShouldForceOwnerIntoFallingState(FGrappleTether&,UE::Math::TVector<double>&,EMovementMode)", ForTether, WithOwnerVelocity, CheckMovementModeOverride); }
+    void SimulateTautTetherForces(UE::Math::TVector<double>* WithCharVelocity, float DeltaTime, float LastGravityZ) { NativeCall<void, UE::Math::TVector<double>*, float, float>(this, "APrimalBuff_Grappled.SimulateTautTetherForces(UE::Math::TVector<double>&,float,float)", WithCharVelocity, DeltaTime, LastGravityZ); }
+    void SimulateTetherFriction(UE::Math::TVector<double>* WithCharVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.SimulateTetherFriction(UE::Math::TVector<double>&,float)", WithCharVelocity, DeltaTime); }
+    // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
+	// static void StaticRegisterNativesAPrimalBuff_Grappled();
+    // Unavailable in UE 5.8.3: no matching current declaration with a supported runtime key
+	// void ValidateGeneratedRepEnums(const TArray<FRepRecord, TSizedDefaultAllocator<32> >* ClassReps);
+    void GetLifetimeReplicatedProps(TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >* OutLifetimeProps) { NativeCall<void, TArray<FLifetimeProperty, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.GetLifetimeReplicatedProps(TArray<FLifetimeProperty,TSizedDefaultAllocator<32>>&)", OutLifetimeProps); }
+    void BeginPlay() { NativeCall<void>(this, "APrimalBuff_Grappled.BeginPlay()"); }
+    void Tick(float DeltaSeconds) { NativeCall<void, float>(this, "APrimalBuff_Grappled.Tick(float)", DeltaSeconds); }
+    void Destroyed() { NativeCall<void>(this, "APrimalBuff_Grappled.Destroyed()"); }
+    bool PreventInstigatorMovementMode(EMovementMode NewMovementMode, unsigned __int8 NewCustomMode) { return NativeCall<bool, EMovementMode, unsigned __int8>(this, "APrimalBuff_Grappled.PreventInstigatorMovementMode(EMovementMode,unsignedchar)", NewMovementMode, NewCustomMode); }
+    void Unstasis() { NativeCall<void>(this, "APrimalBuff_Grappled.Unstasis()"); }
+    void InitGrappleBuff_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.InitGrappleBuff_Implementation()"); }
+    void SetupDelegateBindingsForChar_Implementation(APrimalCharacter* ForChar, bool bDoBind) { NativeCall<void, APrimalCharacter*, bool>(this, "APrimalBuff_Grappled.SetupDelegateBindingsForChar_Implementation(APrimalCharacter*,bool)", ForChar, bDoBind); }
+    void GrappleTick(const float DeltaTime) { NativeCall<void, const float>(this, "APrimalBuff_Grappled.GrappleTick(float)", DeltaTime); }
+    void Tick_UpdateGrappleTethers(const float DeltaTime) { NativeCall<void, const float>(this, "APrimalBuff_Grappled.Tick_UpdateGrappleTethers(float)", DeltaTime); }
+    void Tick_UpdateAgainstSurface(const float DeltaTime) { NativeCall<void, const float>(this, "APrimalBuff_Grappled.Tick_UpdateAgainstSurface(float)", DeltaTime); }
+    bool AllowGrappleLogic_Implementation() { return NativeCall<bool>(this, "APrimalBuff_Grappled.AllowGrappleLogic_Implementation()"); }
+    void UpdateTethersByState(const float* DeltaTime) { NativeCall<void, const float*>(this, "APrimalBuff_Grappled.UpdateTethersByState(float&)", DeltaTime); }
+    //int AddGrappleTether(const FCreateGrappleTetherData* FromData, const bool bPreventNetSync, const int AddAtIndex) { return NativeCall<int, const FCreateGrappleTetherData*, const bool, const int>(this, "APrimalBuff_Grappled.AddGrappleTether(FCreateGrappleTetherData&,bool,int)", FromData, bPreventNetSync, AddAtIndex); }
+    void ReceiveRepGrappleTether(const FReplicatedGrappleTetherData* FromRepData, const int ReceivedTetherIndex) { NativeCall<void, const FReplicatedGrappleTetherData*, const int>(this, "APrimalBuff_Grappled.ReceiveRepGrappleTether(FReplicatedGrappleTetherData&,int)", FromRepData, ReceivedTetherIndex); }
+    char RemoveGrappleTether(const int AtIndex, const FString* WithTag, const APrimalBuff_Grappled* WithMasterBuff, const bool bForceNetSync, const bool bRemoveAllTethersWithTag) { return NativeCall<char, const int, const FString*, const APrimalBuff_Grappled*, const bool, const bool>(this, "APrimalBuff_Grappled.RemoveGrappleTether(int,FString,APrimalBuff_Grappled*,bool,bool)", AtIndex, WithTag, WithMasterBuff, bForceNetSync, bRemoveAllTethersWithTag); }
+    char BreakGrappleTether(const int AtIndex, const FString* WithTag, const APrimalBuff_Grappled* WithMasterBuff, const bool bBreakAllTethersWithTag) { return NativeCall<char, const int, const FString*, const APrimalBuff_Grappled*, const bool>(this, "APrimalBuff_Grappled.BreakGrappleTether(int,FString,APrimalBuff_Grappled*,bool)", AtIndex, WithTag, WithMasterBuff, bBreakAllTethersWithTag); }
+    void UpdateBrokenTethers() { NativeCall<void>(this, "APrimalBuff_Grappled.UpdateBrokenTethers()"); }
+    void NetSyncGrappleTethers() { NativeCall<void>(this, "APrimalBuff_Grappled.NetSyncGrappleTethers()"); }
+    void OnRep_ReplicatedGrappleTethers() { NativeCall<void>(this, "APrimalBuff_Grappled.OnRep_ReplicatedGrappleTethers()"); }
+    void OnGrappleTethersChanged_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.OnGrappleTethersChanged_Implementation()"); }
+    void OnGrappleStateChanged_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.OnGrappleStateChanged_Implementation()"); }
+    bool CanUpdateTetherLength_Implementation(const FGrappleTether* ForTether, const float WithLength) { return NativeCall<bool, const FGrappleTether*, const float>(this, "APrimalBuff_Grappled.CanUpdateTetherLength_Implementation(FGrappleTether&,float)", ForTether, WithLength); }
+    bool CanChangeGrappleState_Implementation(unsigned char DesiredGrappleState) { return NativeCall<bool, unsigned char>(this, "APrimalBuff_Grappled.CanChangeGrappleState_Implementation(unsignedchar)", DesiredGrappleState); }
+    bool ShouldUseDynamicTetherTension_Implementation(const FGrappleTether* ForTether) { return NativeCall<bool, const FGrappleTether*>(this, "APrimalBuff_Grappled.ShouldUseDynamicTetherTension_Implementation(FGrappleTether&)", ForTether); }
+    void ApplyTetherMoveVelocity_Implementation(UE::Math::TVector<double>* CurrentVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.ApplyTetherMoveVelocity_Implementation(UE::Math::TVector<double>&,float)", CurrentVelocity, DeltaTime); }
+    void AdjustMovementVectorIfAgainstSurface_Implementation(UE::Math::TVector<double>* AdjustVector) { NativeCall<void, UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.AdjustMovementVectorIfAgainstSurface_Implementation(UE::Math::TVector<double>&)", AdjustVector); }
+    bool ShouldReplicateOwnerInputs_Implementation() { return NativeCall<bool>(this, "APrimalBuff_Grappled.ShouldReplicateOwnerInputs_Implementation()"); }
+    void Server_SyncOwnerInputs_Implementation(UE::Math::TVector2<double>* NewInputs) { NativeCall<void, UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.Server_SyncOwnerInputs_Implementation(UE::Math::TVector2<double>)", NewInputs); }
+    void SyncOwnerInputs(UE::Math::TVector2<double>* NewInputs) { NativeCall<void, UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.SyncOwnerInputs(UE::Math::TVector2<double>)", NewInputs); }
+    bool SetGrappleState(const TEnumAsByte<EGrappleState::Type> NewGrappleState, const bool bForceUpdate) { return NativeCall<bool, const TEnumAsByte<EGrappleState::Type>, const bool>(this, "APrimalBuff_Grappled.SetGrappleState(TEnumAsByte<EGrappleState::Type>,bool)", NewGrappleState, bForceUpdate); }
+    void Server_SetGrappleState_Implementation(const unsigned __int8 NewGrappleState, bool bForceUpdate) { NativeCall<void, const unsigned __int8, bool>(this, "APrimalBuff_Grappled.Server_SetGrappleState_Implementation(unsignedchar,bool)", NewGrappleState, bForceUpdate); }
+    void OnGrappledPrimalChar_Implementation(APrimalCharacter* GrappledChar, const FGrappleTether* WithMasterTether) { NativeCall<void, APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.OnGrappledPrimalChar_Implementation(APrimalCharacter*,FGrappleTether&)", GrappledChar, WithMasterTether); }
+    void OnReleasedPrimalChar_Implementation(APrimalCharacter* ReleasedChar) { NativeCall<void, APrimalCharacter*>(this, "APrimalBuff_Grappled.OnReleasedPrimalChar_Implementation(APrimalCharacter*)", ReleasedChar); }
+    void OnGrappledCharSleepStateChange_Implementation(APrimalCharacter* ForChar, bool bIsSleeping) { NativeCall<void, APrimalCharacter*, bool>(this, "APrimalBuff_Grappled.OnGrappledCharSleepStateChange_Implementation(APrimalCharacter*,bool)", ForChar, bIsSleeping); }
+    void OnGrappledCharDeath_Implementation(APrimalCharacter* DyingChar) { NativeCall<void, APrimalCharacter*>(this, "APrimalBuff_Grappled.OnGrappledCharDeath_Implementation(APrimalCharacter*)", DyingChar); }
+    float ModifyTetherTensionLerpValue_Implementation(const float CurrentLerpValue) { return NativeCall<float, const float>(this, "APrimalBuff_Grappled.ModifyTetherTensionLerpValue_Implementation(float)", CurrentLerpValue); }
+    bool ShouldReturnToIdleGrappleState_Implementation() { return NativeCall<bool>(this, "APrimalBuff_Grappled.ShouldReturnToIdleGrappleState_Implementation()"); }
+    void UpdateOwnerSwingingVelocity() { NativeCall<void>(this, "APrimalBuff_Grappled.UpdateOwnerSwingingVelocity()"); }
+    void ApplyOwnerSwingingVelocity_Implementation(UE::Math::TVector<double>* CurrentVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.ApplyOwnerSwingingVelocity_Implementation(UE::Math::TVector<double>&,float)", CurrentVelocity, DeltaTime); }
+    void ClampOwnerReleasingVelocity_Implementation(UE::Math::TVector<double>* WithReleasingVelocity) { NativeCall<void, UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.ClampOwnerReleasingVelocity_Implementation(UE::Math::TVector<double>&)", WithReleasingVelocity); }
+    void OverrideCharacterWalkingVelocity(UE::Math::TVector<double>* InitialVelocity, const float* Friction, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, const float*, float>(this, "APrimalBuff_Grappled.OverrideCharacterWalkingVelocity(UE::Math::TVector<double>&,float&,float)", InitialVelocity, Friction, DeltaTime); }
+    void OverrideCharacterSwimmingVelocity(UE::Math::TVector<double>* InitialVelocity, const UE::Math::TVector<double>* Gravity, const float* FluidFriction, const float* NetBuoyancy, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, const UE::Math::TVector<double>*, const float*, const float*, float>(this, "APrimalBuff_Grappled.OverrideCharacterSwimmingVelocity(UE::Math::TVector<double>&,UE::Math::TVector<double>&,float&,float&,float)", InitialVelocity, Gravity, FluidFriction, NetBuoyancy, DeltaTime); }
+    void OverrideCharacterNewFallVelocity(UE::Math::TVector<double>* InitialVelocity, const UE::Math::TVector<double>* Gravity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, const UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.OverrideCharacterNewFallVelocity(UE::Math::TVector<double>&,UE::Math::TVector<double>&,float)", InitialVelocity, Gravity, DeltaTime); }
+    void OverrideCharacterFlyingVelocity(UE::Math::TVector<double>* InitialVelocity, const UE::Math::TVector<double>* Gravity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, const UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.OverrideCharacterFlyingVelocity(UE::Math::TVector<double>&,UE::Math::TVector<double>&,float)", InitialVelocity, Gravity, DeltaTime); }
+    float GetGravityZScale(float CurrentScale) { return NativeCall<float, float>(this, "APrimalBuff_Grappled.GetGravityZScale(float)", CurrentScale); }
+    bool ShouldForceOwnerDedicatedMovementTickPerFrame() { return NativeCall<bool>(this, "APrimalBuff_Grappled.ShouldForceOwnerDedicatedMovementTickPerFrame()"); }
+    void OnOwnerTeleported() { NativeCall<void>(this, "APrimalBuff_Grappled.OnOwnerTeleported()"); }
+    void SimulateTetherFriction_Implementation(UE::Math::TVector<double>* WithCharVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, float>(this, "APrimalBuff_Grappled.SimulateTetherFriction_Implementation(UE::Math::TVector<double>&,float)", WithCharVelocity, DeltaTime); }
+    void SimulateTautTetherForces_Implementation(UE::Math::TVector<double>* WithCharVelocity, float DeltaTime, float LastGravityZ) { NativeCall<void, UE::Math::TVector<double>*, float, float>(this, "APrimalBuff_Grappled.SimulateTautTetherForces_Implementation(UE::Math::TVector<double>&,float,float)", WithCharVelocity, DeltaTime, LastGravityZ); }
+    void UpdateOwnerMovementSpeed_Implementation(UE::Math::TVector<double>* WithCharVelocity) { NativeCall<void, UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.UpdateOwnerMovementSpeed_Implementation(UE::Math::TVector<double>&)", WithCharVelocity); }
+    bool IsSwingingTowardsAxisCenter(const FGrappleTether* ForTether) { return NativeCall<bool, const FGrappleTether*>(this, "APrimalBuff_Grappled.IsSwingingTowardsAxisCenter(FGrappleTether&)", ForTether); }
+    bool IsValidGrappleHit(const FHitResult* ForHit) { return NativeCall<bool, const FHitResult*>(this, "APrimalBuff_Grappled.IsValidGrappleHit(FHitResult&)", ForHit); }
+    bool IsHitWithinGrappleRange_Implementation(const FHitResult* ForHit) { return NativeCall<bool, const FHitResult*>(this, "APrimalBuff_Grappled.IsHitWithinGrappleRange_Implementation(FHitResult&)", ForHit); }
+    void OnOwnerCapsuleHit(AActor* OtherActor, UPrimitiveComponent* OtherComp, UE::Math::TVector<double>* NormalImpulse, const FHitResult* Hit) { NativeCall<void, AActor*, UPrimitiveComponent*, UE::Math::TVector<double>*, const FHitResult*>(this, "APrimalBuff_Grappled.OnOwnerCapsuleHit(AActor*,UPrimitiveComponent*,UE::Math::TVector<double>,FHitResult&)", OtherActor, OtherComp, NormalImpulse, Hit); }
+    void OnOwnerSleepStateChanged_Implementation(APrimalCharacter* ForChar, bool bIsSleeping) { NativeCall<void, APrimalCharacter*, bool>(this, "APrimalBuff_Grappled.OnOwnerSleepStateChanged_Implementation(APrimalCharacter*,bool)", ForChar, bIsSleeping); }
+    void OnOwnerDeath_Implementation(APrimalCharacter* DyingChar) { NativeCall<void, APrimalCharacter*>(this, "APrimalBuff_Grappled.OnOwnerDeath_Implementation(APrimalCharacter*)", DyingChar); }
+    bool CanBeGrappledAgainstSurface_Implementation() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanBeGrappledAgainstSurface_Implementation()"); }
+    bool IsValidSurfaceHit(const FHitResult* ForHit) { return NativeCall<bool, const FHitResult*>(this, "APrimalBuff_Grappled.IsValidSurfaceHit(FHitResult&)", ForHit); }
+    void UpdateAgainstSurfaceFromHits(const TArray<FHitResult, TSizedDefaultAllocator<32> >* Hits) { NativeCall<void, const TArray<FHitResult, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.UpdateAgainstSurfaceFromHits(TArray<FHitResult,TSizedDefaultAllocator<32>>)", Hits); }
+    void OnAgainstValidSurfaceStateChanged_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.OnAgainstValidSurfaceStateChanged_Implementation()"); }
+    bool IsOwnerAgainstValidSurface() { return NativeCall<bool>(this, "APrimalBuff_Grappled.IsOwnerAgainstValidSurface()"); }
+    bool IsOwnerLookingAtAgainstSurface_Implementation() { return NativeCall<bool>(this, "APrimalBuff_Grappled.IsOwnerLookingAtAgainstSurface_Implementation()"); }
+    int GetNumValidTethers(const bool bOnlyReservedTethers) { return NativeCall<int, const bool>(this, "APrimalBuff_Grappled.GetNumValidTethers(bool)", bOnlyReservedTethers); }
+    bool ShouldForceOwnerIntoFallingState_Implementation(const FGrappleTether* ForGrappleTether, const UE::Math::TVector<double>* WithOwnerVelocity, const EMovementMode CheckMovementModeOverride) { return NativeCall<bool, const FGrappleTether*, const UE::Math::TVector<double>*, const EMovementMode>(this, "APrimalBuff_Grappled.ShouldForceOwnerIntoFallingState_Implementation(FGrappleTether&,UE::Math::TVector<double>&,EMovementMode)", ForGrappleTether, WithOwnerVelocity, CheckMovementModeOverride); }
+    void ResetOwnerVars_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.ResetOwnerVars_Implementation()"); }
+    void ResetOwnerClientPositionErrorTolerance_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.ResetOwnerClientPositionErrorTolerance_Implementation()"); }
+    void SyncGrappleTetherLengths() { NativeCall<void>(this, "APrimalBuff_Grappled.SyncGrappleTetherLengths()"); }
+    void Multi_SyncGrappleTetherLength_Implementation(const float SyncedTetherLength) { NativeCall<void, const float>(this, "APrimalBuff_Grappled.Multi_SyncGrappleTetherLength_Implementation(float)", SyncedTetherLength); }
+    void Multi_SyncGrappleTetherLengths_Implementation(const TArray<float, TSizedDefaultAllocator<32> >* SyncedTetherLengths) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.Multi_SyncGrappleTetherLengths_Implementation(TArray<float,TSizedDefaultAllocator<32>>&)", SyncedTetherLengths); }
+    void OnGrappleStateChangedNotify_Implementation(const unsigned __int8* NewGrappleState, bool bIsEarlyNotify) { NativeCall<void, const unsigned __int8*, bool>(this, "APrimalBuff_Grappled.OnGrappleStateChangedNotify_Implementation(unsignedchar&,bool)", NewGrappleState, bIsEarlyNotify); }
+    void Server_SuggestTetherLength_Implementation(const float NewTetherLength) { NativeCall<void, const float>(this, "APrimalBuff_Grappled.Server_SuggestTetherLength_Implementation(float)", NewTetherLength); }
+    void Server_SuggestTetherLengths_Implementation(const TArray<float, TSizedDefaultAllocator<32> >* NewTetherLengths) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.Server_SuggestTetherLengths_Implementation(TArray<float,TSizedDefaultAllocator<32>>&)", NewTetherLengths); }
+    void ReceiveTetherLengthSuggestion(const int* ForTetherIndex, const float* NewTetherLength) { NativeCall<void, const int*, const float*>(this, "APrimalBuff_Grappled.ReceiveTetherLengthSuggestion(int&,float&)", ForTetherIndex, NewTetherLength); }
+    void ReceiveTetherLengthsSuggestion(const TArray<float, TSizedDefaultAllocator<32> >* NewTetherLengths) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.ReceiveTetherLengthsSuggestion(TArray<float,TSizedDefaultAllocator<32>>&)", NewTetherLengths); }
+    void CheckForTetherBreak(FGrappleTether* CheckTether, const int WithIndex, const float OverrideBreakPastDist) { NativeCall<void, FGrappleTether*, const int, const float>(this, "APrimalBuff_Grappled.CheckForTetherBreak(FGrappleTether&,int,float)", CheckTether, WithIndex, OverrideBreakPastDist); }
+    void EndGrapple_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.EndGrapple_Implementation()"); }
+    bool IsTetherAtMaxLength(const FGrappleTether* ForTether) { return NativeCall<bool, const FGrappleTether*>(this, "APrimalBuff_Grappled.IsTetherAtMaxLength(FGrappleTether&)", ForTether); }
+    bool CanPullChar_Implementation(APrimalCharacter* ForChar, bool bForStart) { return NativeCall<bool, APrimalCharacter*, bool>(this, "APrimalBuff_Grappled.CanPullChar_Implementation(APrimalCharacter*,bool)", ForChar, bForStart); }
+    bool IsTethersMasterGrappleBuff(const FGrappleTether* CheckTether) { return NativeCall<bool, const FGrappleTether*>(this, "APrimalBuff_Grappled.IsTethersMasterGrappleBuff(FGrappleTether&)", CheckTether); }
+    static float GetCharAngleToGrappleTetherEnd(const FGrappleTether* ForTether, const APrimalCharacter* ForChar) { return NativeCall<float, const FGrappleTether*, const APrimalCharacter*>(nullptr, "APrimalBuff_Grappled.GetCharAngleToGrappleTetherEnd(FGrappleTether&,APrimalCharacter*)", ForTether, ForChar); }
+    static bool CanTetherOwnerPullGrappledChar(const FGrappleTether* ForTether) { return NativeCall<bool, const FGrappleTether*>(nullptr, "APrimalBuff_Grappled.CanTetherOwnerPullGrappledChar(FGrappleTether&)", ForTether); }
+    static bool ShouldOwnerBeAffectedByTether(const FGrappleTether* ForTether, const TEnumAsByte<EGrappleState::Type> ForGrappeState) { return NativeCall<bool, const FGrappleTether*, const TEnumAsByte<EGrappleState::Type>>(nullptr, "APrimalBuff_Grappled.ShouldOwnerBeAffectedByTether(FGrappleTether&,TEnumAsByte<EGrappleState::Type>)", ForTether, ForGrappeState); }
+    static APrimalCharacter* GetActorAttachParentChar(const AActor* ForActor) { return NativeCall<APrimalCharacter*, const AActor*>(nullptr, "APrimalBuff_Grappled.GetActorAttachParentChar(AActor*)", ForActor); }
+    static bool InitializeGrappleTether(FGrappleTether* InitTether, APrimalBuff_Grappled* ByGrappleBuff) { return NativeCall<bool, FGrappleTether*, APrimalBuff_Grappled*>(nullptr, "APrimalBuff_Grappled.InitializeGrappleTether(FGrappleTether&,APrimalBuff_Grappled*)", InitTether, ByGrappleBuff); }
+    bool UpdateTetherMasterRef(FGrappleTether* ForTether, const bool bInit) { return NativeCall<bool, FGrappleTether*, const bool>(this, "APrimalBuff_Grappled.UpdateTetherMasterRef(FGrappleTether&,bool)", ForTether, bInit); }
+    void RefreshAllTetherMasterRefs() { NativeCall<void>(this, "APrimalBuff_Grappled.RefreshAllTetherMasterRefs()"); }
+    bool CheckForAutoBreakTether_Implementation(const FGrappleTether* CheckTether) { return NativeCall<bool, const FGrappleTether*>(this, "APrimalBuff_Grappled.CheckForAutoBreakTether_Implementation(FGrappleTether&)", CheckTether); }
+    bool BreakChildTetherOnGrappledChar(const FGrappleTether* WithTether) { return NativeCall<bool, const FGrappleTether*>(this, "APrimalBuff_Grappled.BreakChildTetherOnGrappledChar(FGrappleTether&)", WithTether); }
+    void ClampGrappleVelocity_Implementation(UE::Math::TVector<double>* ClampVelocity) { NativeCall<void, UE::Math::TVector<double>*>(this, "APrimalBuff_Grappled.ClampGrappleVelocity_Implementation(UE::Math::TVector<double>&)", ClampVelocity); }
+    static void UpdateGrappleTetherVars(FGrappleTether* ForTether) { NativeCall<void, FGrappleTether*>(nullptr, "APrimalBuff_Grappled.UpdateGrappleTetherVars(FGrappleTether&)", ForTether); }
+    static FString* GetOwnerAppendedTetherTag(FString* result, const FString* WithRootTag, const APrimalBuff_Grappled* OwnerGrappleBuff) { return NativeCall<FString*, FString*, const FString*, const APrimalBuff_Grappled*>(nullptr, "APrimalBuff_Grappled.GetOwnerAppendedTetherTag(FString,APrimalBuff_Grappled*)", result, WithRootTag, OwnerGrappleBuff); }
+    static bool SetGrappleTetherLength(FGrappleTether* ForTether, float SetNewLength, const int ForTetherIndex) { return NativeCall<bool, FGrappleTether*, float, const int>(nullptr, "APrimalBuff_Grappled.SetGrappleTetherLength(FGrappleTether&,float,int)", ForTether, SetNewLength, ForTetherIndex); }
+    static float GetRequiredTetherLengthForChar(const FGrappleTether* ForTether, const APrimalCharacter* ForChar) { return NativeCall<float, const FGrappleTether*, const APrimalCharacter*>(nullptr, "APrimalBuff_Grappled.GetRequiredTetherLengthForChar(FGrappleTether&,APrimalCharacter*)", ForTether, ForChar); }
+    bool ShouldTetherBreak_Implementation(FGrappleTether* ForTether, const APrimalCharacter* ForChar, const float OverrideBreakPastDist) { return NativeCall<bool, FGrappleTether*, const APrimalCharacter*, const float>(this, "APrimalBuff_Grappled.ShouldTetherBreak_Implementation(FGrappleTether&,APrimalCharacter*,float)", ForTether, ForChar, OverrideBreakPastDist); }
+    bool CanReceiveNewGrappleTether(const FString* WithTag) { return NativeCall<bool, const FString*>(this, "APrimalBuff_Grappled.CanReceiveNewGrappleTether(FString)", WithTag); }
+    bool AreGrappleTetherTagsEqual(const FString* TagA, const FString* TagB, const bool bOnlyCompareRootTag) { return NativeCall<bool, const FString*, const FString*, const bool>(this, "APrimalBuff_Grappled.AreGrappleTetherTagsEqual(FString,FString,bool)", TagA, TagB, bOnlyCompareRootTag); }
+    FString* GetGrappleTetherRootTag(FString* result, const FString* ForTag) { return NativeCall<FString*, FString*, const FString*>(this, "APrimalBuff_Grappled.GetGrappleTetherRootTag(FString)", result, ForTag); }
+    float GetGrappleVelocityDampingRate_Implementation(const APrimalCharacter* ForChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleVelocityDampingRate_Implementation(APrimalCharacter*,FGrappleTether&)", ForChar, ForTether); }
+    float GetGrappleTetherPullMaxVelocity_Implementation(const APrimalCharacter* ForPullingChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleTetherPullMaxVelocity_Implementation(APrimalCharacter*,FGrappleTether&)", ForPullingChar, ForTether); }
+    float GetGrappleTetherPullAcceleration_Implementation(const APrimalCharacter* ForPullingChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleTetherPullAcceleration_Implementation(APrimalCharacter*,FGrappleTether&)", ForPullingChar, ForTether); }
+    float GetGrappleTetherReleaseMaxVelocity_Implementation(const APrimalCharacter* ForReleasingChar, const FGrappleTether* ForTether) { return NativeCall<float, const APrimalCharacter*, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetGrappleTetherReleaseMaxVelocity_Implementation(APrimalCharacter*,FGrappleTether&)", ForReleasingChar, ForTether); }
+    void ModifyGrappledCharVelocity_Implementation(UE::Math::TVector<double>* CurrentCharVelocity, const FGrappleTether* ForTether, const float DeltaTime) { NativeCall<void, UE::Math::TVector<double>*, const FGrappleTether*, const float>(this, "APrimalBuff_Grappled.ModifyGrappledCharVelocity_Implementation(UE::Math::TVector<double>&,FGrappleTether&,float)", CurrentCharVelocity, ForTether, DeltaTime); }
+    void ModifyTetherMoveVelocity_Implementation(UE::Math::TVector<double>* CurrentMoveVelocity, const FGrappleTether* ForTether) { NativeCall<void, UE::Math::TVector<double>*, const FGrappleTether*>(this, "APrimalBuff_Grappled.ModifyTetherMoveVelocity_Implementation(UE::Math::TVector<double>&,FGrappleTether&)", CurrentMoveVelocity, ForTether); }
+    float GetMinTetherLength_Implementation(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetMinTetherLength_Implementation(FGrappleTether&)", ForTether); }
+    float GetMaxTetherLength_Implementation(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetMaxTetherLength_Implementation(FGrappleTether&)", ForTether); }
+    bool CanOwnerGrappleSwing_Implementation() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanOwnerGrappleSwing_Implementation()"); }
+    void BreakAllTethers() { NativeCall<void>(this, "APrimalBuff_Grappled.BreakAllTethers()"); }
+    float GetTetherBreakLimit_OwnerPastCurrentLengthDelta_Implementation(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetTetherBreakLimit_OwnerPastCurrentLengthDelta_Implementation(FGrappleTether&)", ForTether); }
+    float GetTetherBreakLimit_OwnerPastCurrentLengthForTime_Implementation(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetTetherBreakLimit_OwnerPastCurrentLengthForTime_Implementation(FGrappleTether&)", ForTether); }
+    float GetTetherBreakLimit_GrappledActorAboveVelocity_Implementation(const FGrappleTether* ForTether) { return NativeCall<float, const FGrappleTether*>(this, "APrimalBuff_Grappled.GetTetherBreakLimit_GrappledActorAboveVelocity_Implementation(FGrappleTether&)", ForTether); }
+    bool CanSyncGrappleTetherLengths_Implementation() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanSyncGrappleTetherLengths_Implementation()"); }
+    bool IsGrappledCharHardAttached_Implementation(APrimalCharacter* ForChar) { return NativeCall<bool, APrimalCharacter*>(this, "APrimalBuff_Grappled.IsGrappledCharHardAttached_Implementation(APrimalCharacter*)", ForChar); }
+    bool DisplayGrappleSystemHudNotification_Implementation(AShooterPlayerController* ForPC, const AActor* FromActor, const unsigned __int8 NotificationType, const int NotificationID, const FString* ReasonString) { return NativeCall<bool, AShooterPlayerController*, const AActor*, const unsigned __int8, const int, const FString*>(this, "APrimalBuff_Grappled.DisplayGrappleSystemHudNotification_Implementation(AShooterPlayerController*,AActor*,unsignedchar,int,FString&)", ForPC, FromActor, NotificationType, NotificationID, ReasonString); }
+
+	float& PendingGravityInterpDeltaTimeField() { return *GetNativePointerField<float*>(this, "APrimalBuff_Grappled.PendingGravityInterpDeltaTime"); }
+
+	TEnumAsByte<EGrappleState::Type>& GrappleState_CurrentField() { return *GetNativePointerField<TEnumAsByte<EGrappleState::Type>*>(this, "APrimalBuff_Grappled.GrappleState_Current"); }
+	TEnumAsByte<EGrappleState::Type>& WantsGrappleStateField() { return *GetNativePointerField<TEnumAsByte<EGrappleState::Type>*>(this, "APrimalBuff_Grappled.WantsGrappleState"); }
+	BitFieldValue<bool, unsigned __int32> bAllowDinoRiding() { return { this, "APrimalBuff_Grappled.bAllowDinoRiding"}; }
+	BitFieldValue<bool, unsigned __int32> bAllowDinoPassenger() { return { this, "APrimalBuff_Grappled.bAllowDinoPassenger"}; }
+	BitFieldValue<bool, unsigned __int32> bAllowLadderClimbing() { return { this, "APrimalBuff_Grappled.bAllowLadderClimbing"}; }
+	BitFieldValue<bool, unsigned __int32> bAllowStructureSeating() { return { this, "APrimalBuff_Grappled.bAllowStructureSeating"}; }
+	BitFieldValue<bool, unsigned __int32> bAllowGrappledCharacterToCutGrapple() { return { this, "APrimalBuff_Grappled.bAllowGrappledCharacterToCutGrapple"}; }
+	bool GetGrappleAltBlendSpaceSettings(float& OutRightLeftAlpha, float& OutForwardBackwardAlpha, UAnimSequence*& OutGrappleIdle) { return NativeCall<bool, float&, float&, UAnimSequence*&>(this, "APrimalBuff_Grappled.GetGrappleAltBlendSpaceSettings(float&,float&,UAnimSequence*&)", OutRightLeftAlpha, OutForwardBackwardAlpha, OutGrappleIdle); }
+	void OnGrappleTetherAdded(const FGrappleTether& AddedTether) { NativeCall<void, const FGrappleTether&>(this, "APrimalBuff_Grappled.OnGrappleTetherAdded(FGrappleTether&)", AddedTether); }
+	void CustomGrappleTick_Implementation(float DeltaTime) { NativeCall<void, float>(this, "APrimalBuff_Grappled.CustomGrappleTick_Implementation(float)", DeltaTime); }
+	bool IsOwnerAboveGround(UE::Math::TVector<double>& FoundGroundLocation, float CheckDistance) { return NativeCall<bool, UE::Math::TVector<double>&, float>(this, "APrimalBuff_Grappled.IsOwnerAboveGround(UE::Math::TVector<double>&,float)", FoundGroundLocation, CheckDistance); }
+	bool CanUpdateTetherLength(const FGrappleTether& ForTether, float WithLength) { return NativeCall<bool, const FGrappleTether&, float>(this, "APrimalBuff_Grappled.CanUpdateTetherLength(FGrappleTether&,float)", ForTether, WithLength); }
+	static UE::Math::TVector<double>* GetGrappleAnchorWorldLocation(UE::Math::TVector<double>* result, const FGrappleAnchor& ForAnchorData, const AActor* WithAnchorOwner) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const FGrappleAnchor&, const AActor*>(nullptr, "APrimalBuff_Grappled.GetGrappleAnchorWorldLocation(FGrappleAnchor&,AActor*)", result, ForAnchorData, WithAnchorOwner); }
+	static void SetGrappleState_Current_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalBuff_Grappled.SetGrappleState_Current_WrapperImpl(void*,void*)", Object, InValue); }
+	EGrappleState::Type GetCurrentGrappleState(const FGrappleTether& ForTether) { return NativeCall<EGrappleState::Type, const FGrappleTether&>(this, "APrimalBuff_Grappled.GetCurrentGrappleState(FGrappleTether&)", ForTether); }
+	void OnGrappleTetherBroken_Implementation(const int& BrokenIndex) { NativeCall<void, const int&>(this, "APrimalBuff_Grappled.OnGrappleTetherBroken_Implementation(int&)", BrokenIndex); }
+	float GetCharDistanceFromTetherEndRatio(const FGrappleTether& ForTether, const APrimalCharacter* ForChar) { return NativeCall<float, const FGrappleTether&, const APrimalCharacter*>(this, "APrimalBuff_Grappled.GetCharDistanceFromTetherEndRatio(FGrappleTether&,APrimalCharacter*)", ForTether, ForChar); }
+	static bool IsGrappleTetherValid(const FGrappleTether& CheckTether) { return NativeCall<bool, const FGrappleTether&>(nullptr, "APrimalBuff_Grappled.IsGrappleTetherValid(FGrappleTether&)", CheckTether); }
+	void UpdateOwnerMovementSpeed(UE::Math::TVector<double>& WithCharVelocity) { NativeCall<void, UE::Math::TVector<double>&>(this, "APrimalBuff_Grappled.UpdateOwnerMovementSpeed(UE::Math::TVector<double>&)", WithCharVelocity); }
+	void Server_SetGrappleState(unsigned char NewGrappleState, bool bForceUpdate) { NativeCall<void, unsigned char, bool>(this, "APrimalBuff_Grappled.Server_SetGrappleState(unsignedchar,bool)", NewGrappleState, bForceUpdate); }
+	UE::Math::TVector2<double>* GetCurrentSwingingAxisValues(UE::Math::TVector2<double>* result) { return NativeCall<UE::Math::TVector2<double>*, UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.GetCurrentSwingingAxisValues()", result); }
+	bool CanChangeGrappleState(unsigned char DesiredGrappleState) { return NativeCall<bool, unsigned char>(this, "APrimalBuff_Grappled.CanChangeGrappleState(unsignedchar)", DesiredGrappleState); }
+	void ApplyPhysicsImpulses_Implementation(float DeltaSeconds) { NativeCall<void, float>(this, "APrimalBuff_Grappled.ApplyPhysicsImpulses_Implementation(float)", DeltaSeconds); }
+	void OnGrappleStateChanged() { NativeCall<void>(this, "APrimalBuff_Grappled.OnGrappleStateChanged()"); }
+	void TryCutGrappleTether_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.TryCutGrappleTether_Implementation()"); }
+	bool IsCharPastMaxTetherLength(const FGrappleTether& ForTether, const APrimalCharacter* ForChar) { return NativeCall<bool, const FGrappleTether&, const APrimalCharacter*>(this, "APrimalBuff_Grappled.IsCharPastMaxTetherLength(FGrappleTether&,APrimalCharacter*)", ForTether, ForChar); }
+	void ModifyGrappledCharVelocity(UE::Math::TVector<double>& CurrentCharVelocity, const FGrappleTether& ForTether, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>&, const FGrappleTether&, float>(this, "APrimalBuff_Grappled.ModifyGrappledCharVelocity(UE::Math::TVector<double>&,FGrappleTether&,float)", CurrentCharVelocity, ForTether, DeltaTime); }
+	bool GetGrappleFPVBlendSpaceAlphas(float& OutXAlpha, float& OutYAlpha) { return NativeCall<bool, float&, float&>(this, "APrimalBuff_Grappled.GetGrappleFPVBlendSpaceAlphas(float&,float&)", OutXAlpha, OutYAlpha); }
+	bool ShouldTetherBreak(FGrappleTether& ForTether, const APrimalCharacter* ForChar, float OverrideBreakPastDist) { return NativeCall<bool, FGrappleTether&, const APrimalCharacter*, float>(this, "APrimalBuff_Grappled.ShouldTetherBreak(FGrappleTether&,APrimalCharacter*,float)", ForTether, ForChar, OverrideBreakPastDist); }
+	static void SetbLastIsOwnerSwinging_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalBuff_Grappled.SetbLastIsOwnerSwinging_WrapperImpl(void*,void*)", Object, InValue); }
+	UE::Math::TVector<double>* GetAverageTetherEndLocation(UE::Math::TVector<double>* result, bool bReservedTethersOnly) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, bool>(this, "APrimalBuff_Grappled.GetAverageTetherEndLocation(bool)", result, bReservedTethersOnly); }
+	void OnGrappleTetherAdded_Implementation(const FGrappleTether& AddedTether) { NativeCall<void, const FGrappleTether&>(this, "APrimalBuff_Grappled.OnGrappleTetherAdded_Implementation(FGrappleTether&)", AddedTether); }
+	bool CheckForAutoBreakTether(const FGrappleTether& CheckTether) { return NativeCall<bool, const FGrappleTether&>(this, "APrimalBuff_Grappled.CheckForAutoBreakTether(FGrappleTether&)", CheckTether); }
+	void OnGrappledPrimalChar(APrimalCharacter* GrappledChar, const FGrappleTether& WithMasterTether) { NativeCall<void, APrimalCharacter*, const FGrappleTether&>(this, "APrimalBuff_Grappled.OnGrappledPrimalChar(APrimalCharacter*,FGrappleTether&)", GrappledChar, WithMasterTether); }
+	static void GetbLastIsOwnerSwinging_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "APrimalBuff_Grappled.GetbLastIsOwnerSwinging_WrapperImpl(void*,void*)", Object, OutValue); }
+	void ClampOwnerReleasingVelocity(UE::Math::TVector<double>& WithReleasingVelocity) { NativeCall<void, UE::Math::TVector<double>&>(this, "APrimalBuff_Grappled.ClampOwnerReleasingVelocity(UE::Math::TVector<double>&)", WithReleasingVelocity); }
+	static bool CanGrappleTetherAffectOwnerMovement(const FGrappleTether& ForTether) { return NativeCall<bool, const FGrappleTether&>(nullptr, "APrimalBuff_Grappled.CanGrappleTetherAffectOwnerMovement(FGrappleTether&)", ForTether); }
+	UE::Math::TVector<double>* GetCurrentTetherMoveDir(UE::Math::TVector<double>* result, const FGrappleTether& ForTether) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const FGrappleTether&>(this, "APrimalBuff_Grappled.GetCurrentTetherMoveDir(FGrappleTether&)", result, ForTether); }
+	int AddGrappleTether(const FCreateGrappleTetherData& FromData, bool bPreventNetSync, int AddAtIndex) { return NativeCall<int, const FCreateGrappleTetherData&, bool, int>(this, "APrimalBuff_Grappled.AddGrappleTether(FCreateGrappleTetherData&,bool,int)", FromData, bPreventNetSync, AddAtIndex); }
+	void AdjustMovementVectorIfAgainstSurface(UE::Math::TVector<double>& AdjustVector) { NativeCall<void, UE::Math::TVector<double>&>(this, "APrimalBuff_Grappled.AdjustMovementVectorIfAgainstSurface(UE::Math::TVector<double>&)", AdjustVector); }
+	void Server_SuggestTetherLengths(const TArray<float, TSizedDefaultAllocator<32> >& NewTetherLengths) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >&>(this, "APrimalBuff_Grappled.Server_SuggestTetherLengths(TArray<float,TSizedDefaultAllocator<32>>&)", NewTetherLengths); }
+	bool CanManipulateOwnerVelocity() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanManipulateOwnerVelocity()"); }
+	void Server_SuggestTetherLength(float NewTetherLength) { NativeCall<void, float>(this, "APrimalBuff_Grappled.Server_SuggestTetherLength(float)", NewTetherLength); }
+	static void CalcGrappleAltBlendSpaceAlphas(const UE::Math::TVector<double>& ActorLocation, const UE::Math::TVector<double>& TargetLocation, float& OutLeftAlpha, float& OutUpAlpha) { NativeCall<void, const UE::Math::TVector<double>&, const UE::Math::TVector<double>&, float&, float&>(nullptr, "APrimalBuff_Grappled.CalcGrappleAltBlendSpaceAlphas(UE::Math::TVector<double>&,UE::Math::TVector<double>&,float&,float&)", ActorLocation, TargetLocation, OutLeftAlpha, OutUpAlpha); }
+	void ApplyOwnerSwingingVelocity(UE::Math::TVector<double>& CurrentVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>&, float>(this, "APrimalBuff_Grappled.ApplyOwnerSwingingVelocity(UE::Math::TVector<double>&,float)", CurrentVelocity, DeltaTime); }
+	static void GetGrappleState_Current_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "APrimalBuff_Grappled.GetGrappleState_Current_WrapperImpl(void*,void*)", Object, OutValue); }
+	bool CanOwnerGrappleSwing() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanOwnerGrappleSwing()"); }
+	TArray<APrimalCharacter*, TSizedDefaultAllocator<32> >* GetAllCurrentGrapplers(TArray<APrimalCharacter*, TSizedDefaultAllocator<32> >* result) { return NativeCall<TArray<APrimalCharacter*, TSizedDefaultAllocator<32> >*, TArray<APrimalCharacter*, TSizedDefaultAllocator<32> >*>(this, "APrimalBuff_Grappled.GetAllCurrentGrapplers()", result); }
+	void Multi_SyncGrappleTetherLengths(const TArray<float, TSizedDefaultAllocator<32> >& SyncedTetherLengths) { NativeCall<void, const TArray<float, TSizedDefaultAllocator<32> >&>(this, "APrimalBuff_Grappled.Multi_SyncGrappleTetherLengths(TArray<float,TSizedDefaultAllocator<32>>&)", SyncedTetherLengths); }
+	UE::Math::TVector2<double>* GetReplicatedOwnerInputs(UE::Math::TVector2<double>* result) { return NativeCall<UE::Math::TVector2<double>*, UE::Math::TVector2<double>*>(this, "APrimalBuff_Grappled.GetReplicatedOwnerInputs()", result); }
+	bool SetGrappleTetherAtIndexLength(int AtIndex, float SetNewLength) { return NativeCall<bool, int, float>(this, "APrimalBuff_Grappled.SetGrappleTetherAtIndexLength(int,float)", AtIndex, SetNewLength); }
+	void OnAgainstValidSurfaceUpdated() { NativeCall<void>(this, "APrimalBuff_Grappled.OnAgainstValidSurfaceUpdated()"); }
+	void OnRep_GrappleState() { NativeCall<void>(this, "APrimalBuff_Grappled.OnRep_GrappleState()"); }
+	bool ShouldReplicateOwnerInputs() { return NativeCall<bool>(this, "APrimalBuff_Grappled.ShouldReplicateOwnerInputs()"); }
+	void CustomGrappleTick(float DeltaTime) { NativeCall<void, float>(this, "APrimalBuff_Grappled.CustomGrappleTick(float)", DeltaTime); }
+	static void SetbHasAnyGrappledChars_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalBuff_Grappled.SetbHasAnyGrappledChars_WrapperImpl(void*,void*)", Object, InValue); }
+	bool BPGetGrappleFPVBlendSpaceAlphas(float& RightLeftAlpha, float& ForwardBackwardAlpha) { return NativeCall<bool, float&, float&>(this, "APrimalBuff_Grappled.BPGetGrappleFPVBlendSpaceAlphas(float&,float&)", RightLeftAlpha, ForwardBackwardAlpha); }
+	static void SetReplicatedGrappleTethers_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalBuff_Grappled.SetReplicatedGrappleTethers_WrapperImpl(void*,void*)", Object, InValue); }
+	static void GetbHasAnyGrappledChars_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "APrimalBuff_Grappled.GetbHasAnyGrappledChars_WrapperImpl(void*,void*)", Object, OutValue); }
+	bool IsHitWithinGrappleRange(const FHitResult& ForHit) { return NativeCall<bool, const FHitResult&>(this, "APrimalBuff_Grappled.IsHitWithinGrappleRange(FHitResult&)", ForHit); }
+	static void SetbIsOwnerAgainstSurface_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalBuff_Grappled.SetbIsOwnerAgainstSurface_WrapperImpl(void*,void*)", Object, InValue); }
+	float GetTetherBreakLimit_GrappledActorAboveVelocity(const FGrappleTether& ForTether) { return NativeCall<float, const FGrappleTether&>(this, "APrimalBuff_Grappled.GetTetherBreakLimit_GrappledActorAboveVelocity(FGrappleTether&)", ForTether); }
+	static void SetbHasAnyTethersAttachedToDynamicActors_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalBuff_Grappled.SetbHasAnyTethersAttachedToDynamicActors_WrapperImpl(void*,void*)", Object, InValue); }
+	void OnGrappleTetherRemoved_Implementation(const FGrappleTether& RemovedTether) { NativeCall<void, const FGrappleTether&>(this, "APrimalBuff_Grappled.OnGrappleTetherRemoved_Implementation(FGrappleTether&)", RemovedTether); }
+	bool ShouldReturnToIdleGrappleState() { return NativeCall<bool>(this, "APrimalBuff_Grappled.ShouldReturnToIdleGrappleState()"); }
+	static void GetbIsOwnerAgainstSurface_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "APrimalBuff_Grappled.GetbIsOwnerAgainstSurface_WrapperImpl(void*,void*)", Object, OutValue); }
+	UE::Math::TVector<double>* GetCurrentTetherMoveDir_Implementation(UE::Math::TVector<double>* result, const FGrappleTether& ForTether) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const FGrappleTether&>(this, "APrimalBuff_Grappled.GetCurrentTetherMoveDir_Implementation(FGrappleTether&)", result, ForTether); }
+	void TryCutGrappleTether() { NativeCall<void>(this, "APrimalBuff_Grappled.TryCutGrappleTether()"); }
+	void OnAllowedRestrictedAction() { NativeCall<void>(this, "APrimalBuff_Grappled.OnAllowedRestrictedAction()"); }
+	void Server_SyncOwnerInputs(UE::Math::TVector2<double>* NewInputs) { if (!NewInputs) throw std::invalid_argument("Null native value parameter"); return NativeCall<void, UE :: Math :: TVector2 < double >>(this, "APrimalBuff_Grappled.Server_SyncOwnerInputs(UE::Math::TVector2<double>)", *NewInputs); }
+	void ModifyOverriddenCharVelocity_Implementation(UE::Math::TVector<double>& CurrentCharVelocity, float DeltaTime) { NativeCall<void, UE::Math::TVector<double>&, float>(this, "APrimalBuff_Grappled.ModifyOverriddenCharVelocity_Implementation(UE::Math::TVector<double>&,float)", CurrentCharVelocity, DeltaTime); }
+	void Stasis() { NativeCall<void>(this, "APrimalBuff_Grappled.Stasis()"); }
+	static bool GetTetherMasterRef(FGrappleTether& ForTether, FGrappleTether& MasterRef) { return NativeCall<bool, FGrappleTether&, FGrappleTether&>(nullptr, "APrimalBuff_Grappled.GetTetherMasterRef(FGrappleTether&,FGrappleTether&)", ForTether, MasterRef); }
+	void OnGrappleTetherBroken(const int& BrokenIndex) { NativeCall<void, const int&>(this, "APrimalBuff_Grappled.OnGrappleTetherBroken(int&)", BrokenIndex); }
+	void ResetOwnerClientPositionErrorTolerance() { NativeCall<void>(this, "APrimalBuff_Grappled.ResetOwnerClientPositionErrorTolerance()"); }
+	bool ShouldUseDynamicTetherTension(const FGrappleTether& ForTether) { return NativeCall<bool, const FGrappleTether&>(this, "APrimalBuff_Grappled.ShouldUseDynamicTetherTension(FGrappleTether&)", ForTether); }
+	static void SetOwnerInput_CurrentSynced_WrapperImpl(void* Object, const void* InValue) { NativeCall<void, void*, const void*>(nullptr, "APrimalBuff_Grappled.SetOwnerInput_CurrentSynced_WrapperImpl(void*,void*)", Object, InValue); }
+	EGrappleState::Type GetCurrentGrappleState_Implementation(const FGrappleTether& ForTether) { return NativeCall<EGrappleState::Type, const FGrappleTether&>(this, "APrimalBuff_Grappled.GetCurrentGrappleState_Implementation(FGrappleTether&)", ForTether); }
+	float ModifyTetherTensionLerpValue(float CurrentLerpValue) { return NativeCall<float, float>(this, "APrimalBuff_Grappled.ModifyTetherTensionLerpValue(float)", CurrentLerpValue); }
+	void OnAgainstValidSurfaceUpdated_Implementation() { NativeCall<void>(this, "APrimalBuff_Grappled.OnAgainstValidSurfaceUpdated_Implementation()"); }
+	static void GetOwnerInput_CurrentSynced_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "APrimalBuff_Grappled.GetOwnerInput_CurrentSynced_WrapperImpl(void*,void*)", Object, OutValue); }
+	static void GetbHasAnyTethersAttachedToDynamicActors_WrapperImpl(const void* Object, void* OutValue) { NativeCall<void, const void*, void*>(nullptr, "APrimalBuff_Grappled.GetbHasAnyTethersAttachedToDynamicActors_WrapperImpl(void*,void*)", Object, OutValue); }
+	static UE::Math::TVector<double>* GetInitGrappleAnchorRelativeOffset(UE::Math::TVector<double>* result, const FGrappleAnchor& ForAnchorData, const AActor* WithAnchorOwner) { return NativeCall<UE::Math::TVector<double>*, UE::Math::TVector<double>*, const FGrappleAnchor&, const AActor*>(nullptr, "APrimalBuff_Grappled.GetInitGrappleAnchorRelativeOffset(FGrappleAnchor&,AActor*)", result, ForAnchorData, WithAnchorOwner); }
+	int GetNumReservedTethers() { return NativeCall<int>(this, "APrimalBuff_Grappled.GetNumReservedTethers()"); }
+	float GetGravityInterpDeltaTime() { return NativeCall<float>(this, "APrimalBuff_Grappled.GetGravityInterpDeltaTime()"); }
+	void OnGrappleStateChangedNotify(const unsigned char& NewGrappleState, bool bIsEarlyNotify) { NativeCall<void, const unsigned char&, bool>(this, "APrimalBuff_Grappled.OnGrappleStateChangedNotify(unsignedchar&,bool)", NewGrappleState, bIsEarlyNotify); }
+	bool BPGetGrappleAltBlendSpaceSettings(float& RightLeftAlpha, float& ForwardBackwardAlpha, UAnimSequence*& GrappleIdle) { return NativeCall<bool, float&, float&, UAnimSequence*&>(this, "APrimalBuff_Grappled.BPGetGrappleAltBlendSpaceSettings(float&,float&,UAnimSequence*&)", RightLeftAlpha, ForwardBackwardAlpha, GrappleIdle); }
+	static bool CanCharControlGrappleTether(APrimalCharacter* ForChar, const FGrappleTether& ForTether, bool bAllowSlaveGrappleToControl) { return NativeCall<bool, APrimalCharacter*, const FGrappleTether&, bool>(nullptr, "APrimalBuff_Grappled.CanCharControlGrappleTether(APrimalCharacter*,FGrappleTether&,bool)", ForChar, ForTether, bAllowSlaveGrappleToControl); }
+	bool CanSyncGrappleTetherLengths() { return NativeCall<bool>(this, "APrimalBuff_Grappled.CanSyncGrappleTetherLengths()"); }
+	static bool TetherHasValidMasterRef(FGrappleTether& ForTether) { return NativeCall<bool, FGrappleTether&>(nullptr, "APrimalBuff_Grappled.TetherHasValidMasterRef(FGrappleTether&)", ForTether); }
+	static UClass* GetPrivateStaticClass() { return AsaApi::ResolveClass("APrimalBuff_Grappled"); }
+};

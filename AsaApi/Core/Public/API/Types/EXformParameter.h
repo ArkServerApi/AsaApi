@@ -1,0 +1,16 @@
+#pragma once
+
+
+enum class EXformParameter:unsigned char
+{
+	TX = 0x0,
+	TY = 0x1,
+	TZ = 0x2,
+	RX = 0x3,
+	RY = 0x4,
+	RZ = 0x5,
+	SX = 0x6,
+	SY = 0x7,
+	SZ = 0x8,
+	COUNT = 0x9
+};

@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class FWP_IP_VERSION_:int
+{
+	FWP_IP_VERSION_V4 = 0x0,
+	FWP_IP_VERSION_V6 = 0x1,
+	FWP_IP_VERSION_NONE = 0x2,
+	FWP_IP_VERSION_MAX = 0x3
+};

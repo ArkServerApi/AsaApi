@@ -1,0 +1,27 @@
+#pragma once
+
+struct FTreeStumpCreationTime;
+struct FTribeAlliance;
+struct FTribeData;
+struct FTribeEntity;
+struct FTribeGovernment;
+struct FTribeLogEntry;
+struct FTribeNotification;
+struct FTribeRankGroup;
+struct FTribeTravelCount;
+struct FTribeWar;
+struct FTributePlayerTribeInfo;
+struct FTutorialDefinition;
+struct FUniqueNetId;
+struct FUniqueNetIdRepl;
+struct FUniqueNetIdUInt64;
+struct FUniqueNetIdWrapper;
+struct FUnlockableEmoteEntry;
+struct FUnreplicatedEggData;
+struct FUseItemAddCharacterStatusValue;
+struct FVector_NetQuantize;
+struct FVector_NetQuantize100;
+struct FVector_NetQuantizeNormal;
+struct FViewport;
+struct FVirtualTextureBuildSettings;
+struct FWalkableSlopeOverride;

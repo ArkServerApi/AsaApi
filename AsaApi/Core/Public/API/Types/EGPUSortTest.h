@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class EGPUSortTest:int
+{
+	GPU_SORT_TEST_SMALL = 0x1,
+	GPU_SORT_TEST_LARGE = 0x2,
+	GPU_SORT_TEST_EXHAUSTIVE = 0x3,
+	GPU_SORT_TEST_RANDOM = 0x4
+};

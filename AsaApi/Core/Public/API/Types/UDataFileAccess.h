@@ -1,0 +1,12 @@
+#pragma once
+
+
+enum class UDataFileAccess:int
+{
+	UDATA_FILES_FIRST = 0x0,
+	UDATA_DEFAULT_ACCESS = 0x0,
+	UDATA_ONLY_PACKAGES = 0x1,
+	UDATA_PACKAGES_FIRST = 0x2,
+	UDATA_NO_FILES = 0x3,
+	UDATA_FILE_ACCESS_COUNT = 0x4
+};

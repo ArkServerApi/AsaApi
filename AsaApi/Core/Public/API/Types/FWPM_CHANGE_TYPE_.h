@@ -1,0 +1,9 @@
+#pragma once
+
+
+enum class FWPM_CHANGE_TYPE_:int
+{
+	FWPM_CHANGE_ADD = 0x1,
+	FWPM_CHANGE_DELETE = 0x2,
+	FWPM_CHANGE_TYPE_MAX = 0x3
+};

@@ -5,6 +5,7 @@
 #include "../Hooks.h"
 #include "../PluginManager/PluginManager.h"
 #include "../IBaseApi.h"
+#include "../UE/ClassCacheState.h"
 #include <../Private/Ark/Globals.h>
 #include "Containers/UnrealString.h"
 #include "HAL/UnrealMemory.h"
@@ -27,6 +28,13 @@ struct AController;
 
 namespace AsaApi
 {
+	DECLARE_HOOK(StaticExit, void);
+
+	void Hook_StaticExit()
+	{
+		detail::ShutdownClassCache();
+		StaticExit_original();
+	}
 	// Hooks declaration
 	DECLARE_HOOK(UEngine_Init, void, DWORD64, DWORD64);
 	DECLARE_HOOK(UWorld_Tick, void, DWORD64, DWORD64, float);
@@ -45,6 +53,7 @@ namespace AsaApi
 	void InitHooks()
 	{
 		auto& hooks = API::game_api->GetHooks();
+		hooks->SetHook("Global.StaticExit()", &Hook_StaticExit, &StaticExit_original);
 		hooks->SetHook("UEngine.Init(IEngineLoop*)", &Hook_UEngine_Init, &UEngine_Init_original);
 		hooks->SetHook("UWorld.Tick(ELevelTick,float)", &Hook_UWorld_Tick, &UWorld_Tick_original);
 		hooks->SetHook("AShooterGameMode.InitGame(FString&,FString&,FString&)", &Hook_AShooterGameMode_InitGame, &AShooterGameMode_InitGame_original);

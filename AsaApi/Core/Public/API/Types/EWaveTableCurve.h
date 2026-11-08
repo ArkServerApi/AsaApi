@@ -1,0 +1,18 @@
+#pragma once
+
+
+enum class EWaveTableCurve:unsigned char
+{
+	Linear = 0x0,
+	Linear_Inv = 0x1,
+	Exp = 0x2,
+	Exp_Inverse = 0x3,
+	Log = 0x4,
+	Sin = 0x5,
+	Sin_Full = 0x6,
+	SCurve = 0x7,
+	Shared = 0x8,
+	Custom = 0x9,
+	File = 0xA,
+	Count = 0xB
+};

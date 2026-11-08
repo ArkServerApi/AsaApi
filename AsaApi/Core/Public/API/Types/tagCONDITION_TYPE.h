@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class tagCONDITION_TYPE:int
+{
+	CT_AND_CONDITION = 0x0,
+	CT_OR_CONDITION = 0x1,
+	CT_NOT_CONDITION = 0x2,
+	CT_LEAF_CONDITION = 0x3
+};

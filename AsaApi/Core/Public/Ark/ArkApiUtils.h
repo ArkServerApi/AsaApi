@@ -349,7 +349,7 @@ namespace AsaApi
 
 					state->SetTribeTamingDinoSettings(dino);
 
-					dino->TameDino(player, true, 0, true, true, false);
+					dino->TameDino(player, true, 0, true, true, false, false);
 				}
 
 				if (neutered)
@@ -782,18 +782,14 @@ namespace AsaApi
 			if (!ss)
 				return nullptr;
 
-			uint32 alignment = static_cast<uint32>(ss->MinAlignmentField());
-			alignment = FMath::RoundUpToPowerOfTwo(FMath::Max<uint32>(alignment, 1u));
-
-			const uint32 unalignedSize = static_cast<uint32>(ss->PropertiesSizeField());
-			if (unalignedSize == 0u)
+			const int unalignedSize = ss->PropertiesSizeField();
+			const int alignment = ss->MinAlignmentField();
+			if (unalignedSize <= 0 || alignment <= 0 ||
+				!FMath::IsPowerOfTwo(static_cast<uint32>(alignment)))
 				return nullptr;
 
-			const uint32 size = Align(unalignedSize, alignment);
-			if (size == 0u)
-				return nullptr;
-
-			void* obj = FMemory::Malloc(size, alignment);
+			const SIZE_T size = Align(static_cast<SIZE_T>(unalignedSize), static_cast<uint32>(alignment));
+			void* obj = FMemory::Malloc(size, static_cast<uint32>(alignment));
 			if (!obj)
 				return nullptr;
 

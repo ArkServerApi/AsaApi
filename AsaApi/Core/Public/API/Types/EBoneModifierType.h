@@ -1,0 +1,36 @@
+#pragma once
+
+
+namespace EBoneModifierType
+{
+	enum Type:int
+	{
+		HEAD = 0x0,
+		NECK = 0x1,
+		NECKLENGTH = 0x2,
+		CHEST = 0x3,
+		SHOULDERS = 0x4,
+		ARMLENGTH = 0x5,
+		UPPERARM = 0x6,
+		LOWERARM = 0x7,
+		HAND = 0x8,
+		LEGLENGTH = 0x9,
+		UPPERLEG = 0xA,
+		LOWERLEG = 0xB,
+		FOOT = 0xC,
+		HIP = 0xD,
+		TORSO = 0xE,
+		UPPERFACESIZE = 0xF,
+		LOWERFACESIZE = 0x10,
+		TORSODEPTH = 0x11,
+		HEADHEIGHT = 0x12,
+		HEADWIDTH = 0x13,
+		HEADDEPTH = 0x14,
+		TORSOHEIGHT = 0x15,
+		TORSOSIZE = 0x16,
+		OVERALLHEIGHT = 0x17,
+		EYESIZE = 0x18,
+		EYEWIDTH = 0x19,
+		MAX = 0x1A
+	};
+}

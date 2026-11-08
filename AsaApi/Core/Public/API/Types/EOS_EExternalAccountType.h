@@ -1,0 +1,20 @@
+#pragma once
+
+
+enum class EOS_EExternalAccountType:int
+{
+	EOS_EAT_EPIC = 0x0,
+	EOS_EAT_STEAM = 0x1,
+	EOS_EAT_PSN = 0x2,
+	EOS_EAT_XBL = 0x3,
+	EOS_EAT_DISCORD = 0x4,
+	EOS_EAT_GOG = 0x5,
+	EOS_EAT_NINTENDO = 0x6,
+	EOS_EAT_UPLAY = 0x7,
+	EOS_EAT_OPENID = 0x8,
+	EOS_EAT_APPLE = 0x9,
+	EOS_EAT_GOOGLE = 0xA,
+	EOS_EAT_OCULUS = 0xB,
+	EOS_EAT_ITCHIO = 0xC,
+	EOS_EAT_AMAZON = 0xD
+};

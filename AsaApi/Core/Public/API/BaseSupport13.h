@@ -1,0 +1,6 @@
+#pragma once
+
+struct FConfigNPCSpawnEntriesContainer;
+struct FConfigSupplyCrateItemsOverride;
+struct FCraftingResourceRequirement;
+struct FCrateTemporaryQualityModifierSet;

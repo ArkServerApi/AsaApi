@@ -1,0 +1,11 @@
+#pragma once
+#include "SparseLayoutChecks.h"
+#include "FPrimalBotCharacterSparseClassData.h"
+#include "FPrimalCharacterSparseClassData.h"
+#include "FPrimalDinoCharacterSparseClassData.h"
+#include "FPrimalItemSparseClassData.h"
+#include "FPrimalRaftSparseClassData.h"
+#include "FPrimalStructureSparseClassData.h"
+#include "FPrimalTargetableActorSparseClassData.h"
+#include "FPrimalWheeledCharSparseClassData.h"
+#include "FShooterCharacterSparseClassData.h"

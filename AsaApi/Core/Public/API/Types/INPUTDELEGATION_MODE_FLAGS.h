@@ -1,0 +1,10 @@
+#pragma once
+
+
+enum class INPUTDELEGATION_MODE_FLAGS:int
+{
+	IDLM_OFF = 0x0,
+	IDLM_KEYBOARD = 0x1,
+	IDLM_SPATIAL = 0x2,
+	IDLM_VALID_FLAGS = 0x3
+};

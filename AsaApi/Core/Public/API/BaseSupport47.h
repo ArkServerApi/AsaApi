@@ -1,0 +1,26 @@
+#pragma once
+
+struct UCharacterMovementComponent;
+struct UCheatManager;
+struct UCheatManagerExtension;
+struct UChildActorComponent;
+struct UClass;
+struct UConsole;
+struct UDamageType;
+struct UDatabase_LoginData;
+struct UDatabase_PubSub_GeneralNotifications;
+struct UDatabase_RemoteFileManager;
+struct UDatabase_SharedLog;
+struct UDatabase_TerritoryMap;
+struct UDatabase_TravelData;
+struct UDatabase_TribeDataManager;
+struct UDataLayerAsset;
+struct UDataLayerInstance;
+struct UDataTable;
+struct UDeferredMovementContext;
+struct UDeviceProfileManager;
+struct UDialogueWave;
+struct UDiscoveryZoneDataListEntry;
+struct UEngine;
+struct UField;
+struct UFoliageType;
