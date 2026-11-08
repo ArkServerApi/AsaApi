@@ -4,8 +4,8 @@
 class FUObjectItem
 {
 public:
+	__int64 FlagsAndRefCount;
 	UObject* Object;
-	int Flags;
-	int ClusterRootIndex;
 	int SerialNumber;
+	int ClusterRootIndex;
 };

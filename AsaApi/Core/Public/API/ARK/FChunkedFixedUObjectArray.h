@@ -23,9 +23,9 @@ public:
 	}
 
 	FUObjectItem** Objects;
-	FUObjectItem* PreAllocatedObjects;
-	int MaxElements;
 	int NumElements;
-	int MaxChunks;
+	int MaxElements;
 	int NumChunks;
+	int MaxChunks;
+	FUObjectItem* PreAllocatedObjects;
 };
