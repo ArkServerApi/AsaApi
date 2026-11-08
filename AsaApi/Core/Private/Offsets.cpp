@@ -271,11 +271,6 @@ namespace API
 		return GetBitFieldInternal(base, name);
 	}
 
-	bool Offsets::HasOffset(const std::string& name) const
-	{
-		return offsets_dump_.contains(name);
-	}
-
 	bool Offsets::HasBitField(const std::string& name) const
 	{
 		return bitfields_dump_.contains(name);
