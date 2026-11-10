@@ -123,13 +123,22 @@ namespace AsaApi
 
 	std::shared_ptr<MessagingManager> ApiUtils::GetMessagingManagerInternal(const FString& forPlugin) const
 	{
-		auto iter = messaging_managers_.find(forPlugin);
-		if (forPlugin.IsEmpty()
-			|| iter == messaging_managers_.end())
+		if (!forPlugin.IsEmpty())
 		{
-			return messaging_managers_.find("Default")->second;
+			const auto iter = messaging_managers_.find(forPlugin);
+			if (iter != messaging_managers_.end() && iter->second)
+				return iter->second;
 		}
-		return iter->second;
+
+		const auto default_iter = messaging_managers_.find("Default");
+		if (default_iter != messaging_managers_.end() && default_iter->second)
+			return default_iter->second;
+
+		// No "Default" entry: it is only registered in SetWorld (InitGame), so a plugin that sends
+		// a message earlier used to dereference end() here. Hand back a plain manager instead.
+		static const std::shared_ptr<MessagingManager> fallback = std::make_shared<MessagingManager>();
+		fallback->SetWorldContext(u_world_);
+		return fallback;
 	}
 
 	void ApiUtils::SetMessagingManagerInternal(const FString& forPlugin, std::shared_ptr<MessagingManager> manager)
@@ -172,6 +181,17 @@ namespace AsaApi
 					Log::GetLog()->warn("[OPTIONAL MOD MISSING] 'AsaApiUtils' (Mod ID: 955333) not available for '{}'. Falling back to default messaging system. Reason: {}",
 						parsedName.Last().ToString(), error.value());
 					Log::GetLog()->warn("[OPTIONAL] Download: https://www.curseforge.com/ark-survival-ascended/mods/asa-api-utils");
+
+					if (it->first.Equals("Default"))
+					{
+						// The API-wide default must never be removed: every plugin without its own
+						// manager falls back to it. Swap in the plain messaging manager instead.
+						manager = std::make_shared<MessagingManager>();
+						manager->SetWorldContext(u_world_);
+						++it;
+						continue;
+					}
+
 					it = messaging_managers_.erase(it);
 					continue;
 				}
