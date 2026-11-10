@@ -29,4 +29,5 @@ struct FNPCSpawnEntry
 	float SpawnMinDistanceFromTamedDinosMultiplier;
 	float RandGroupSpawnOffsetZMin;
 	float RandGroupSpawnOffsetZMax;
+	TSubclassOf<UPrimalEscortComponent> EscortClass;
 };
