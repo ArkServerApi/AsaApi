@@ -88,12 +88,15 @@
 	#define UE_REQUIRES_DEFINITION(...) , std::enable_if_t<(__VA_ARGS__), int>
 	#define UE_REQUIRES_EXPR(...) (!std::is_same_v<decltype(__VA_ARGS__), long long************>) // This is highly unlikely to be the type of any expression
 #else
+	#ifndef UE_BOOL_IDENTITY_CONCEPT_DEFINED
+	#define UE_BOOL_IDENTITY_CONCEPT_DEFINED
 	namespace UE::Core::Private
 	{
 		// Only needed for the UE_REQUIRES macro to work, to allow for a trailing > token after the macro
 		template <bool B>
 		concept BoolIdentityConcept = B;
 	}
+	#endif
 
 	#define UE_REQUIRES(...) > requires (!!(__VA_ARGS__)) && UE::Core::Private::BoolIdentityConcept<true
 	#define UE_REQUIRES_FRIEND(...) UE_REQUIRES(__VA_ARGS__)

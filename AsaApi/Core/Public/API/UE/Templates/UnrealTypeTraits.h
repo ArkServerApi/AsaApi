@@ -41,12 +41,15 @@
     #define UE_CONSTRAINT(...) (__VA_ARGS__) &&
     #define UE_CONSTRAINTS_END true, int> = 0
 #else
+    #ifndef UE_BOOL_IDENTITY_CONCEPT_DEFINED
+    #define UE_BOOL_IDENTITY_CONCEPT_DEFINED
     namespace UE::Core::Private
     {
         // Only needed for the UE_CONSTRAINT* macros to work
         template <bool B>
         concept BoolIdentityConcept = B;
     }
+    #endif
 
     #define UE_CONSTRAINTS_BEGIN > requires
     #define UE_CONSTRAINT(...) (__VA_ARGS__) &&
