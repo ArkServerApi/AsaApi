@@ -324,7 +324,19 @@ namespace API
 		: pimpl{ std::make_unique<impl>() }
 	{
 		const nlohmann::json config = dynamic_cast<ArkBaseApi&>(*game_api).GetConfig();
-		suppress_errors = config.value("SuppressHttpErrors", false);
+
+		// The shipped config.json has SuppressHttpErrors under "settings". The root is still
+		// checked afterwards because that is the only place this used to be read from.
+		// GetConfig() returns a non-object when config.json is missing, hence the is_object checks.
+		suppress_errors = false;
+		if (config.is_object())
+		{
+			const auto settings = config.find("settings");
+			if (settings != config.end() && settings->is_object() && settings->contains("SuppressHttpErrors"))
+				suppress_errors = settings->value("SuppressHttpErrors", false);
+			else
+				suppress_errors = config.value("SuppressHttpErrors", false);
+		}
 
 		Poco::Net::initializeSSL();
 		Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> ptrCert = new Poco::Net::RejectCertificateHandler(false);

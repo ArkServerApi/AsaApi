@@ -74,11 +74,13 @@ void DeleteOldLogFiles()
 	file >> config;
 	file.close();
 
-	if (config.value("settings", nlohmann::json::object()).value("DeleteOldLogs", nlohmann::json::object()).value("Enable", false) == false)
+	const nlohmann::json deleteOldLogs = config.value("settings", nlohmann::json::object()).value("DeleteOldLogs", nlohmann::json::object());
+	if (deleteOldLogs.value("Enable", false) == false)
 		return;
 
 	const std::string folderPath = API::Tools::GetCurrentDir() + "\\logs";
-	const int maxAgeInSeconds = config.value("DeleteOldLogs", nlohmann::json::object()).value("MaxAge", 24) * 3600;
+	// MaxAge (hours) sits next to Enable under settings.DeleteOldLogs
+	const int maxAgeInSeconds = deleteOldLogs.value("MaxAge", 24) * 3600;
 
 	for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
 		if (entry.is_regular_file()) {
