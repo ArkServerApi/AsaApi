@@ -57,5 +57,8 @@ inline UScriptStruct* FindScriptStruct(std::wstring_view structName)
 template <typename T>
 inline UScriptStruct* FindScriptStruct()
 {
-	return FindScriptStruct(GetGeneratedTypeName<std::remove_cvref_t<T>>());
+	static UScriptStruct* scriptStruct = nullptr;
+	if (!scriptStruct)
+		scriptStruct = FindScriptStruct(GetGeneratedTypeName<std::remove_cvref_t<T>>());
+	return scriptStruct;
 }
