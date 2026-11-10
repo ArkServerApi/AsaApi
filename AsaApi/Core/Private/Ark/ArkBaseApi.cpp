@@ -899,10 +899,11 @@ namespace API
 
 		if (parsed.IsValidIndex(1))
 		{
-			int new_server_id = std::stoi(parsed[1].ToString());
-
 			try
 			{
+				// inside the try: std::stoi throws on a non-numeric or out-of-range id
+				const int new_server_id = std::stoi(parsed[1].ToString());
+
 				const auto& actors = AsaApi::GetApiUtils().GetWorld()->PersistentLevelField().Get()->ActorsField();
 				for (auto actor : actors)
 				{
