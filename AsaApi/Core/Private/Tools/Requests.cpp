@@ -295,6 +295,7 @@ namespace API
 		Poco::Net::HTTPRequest ConstructRequest(const std::string& url, Poco::Net::HTTPClientSession*& session, const std::vector<std::string>& headers, const std::string& request_type, long connectionTimeout, long receiveTimeout, long sendTimeout);
 		std::string GetResponse(Poco::Net::HTTPClientSession* session, Poco::Net::HTTPResponse& response); std::unordered_map<std::string, std::string> GetResponseHeaders(Poco::Net::HTTPResponse& response);
 		void LogRequestError(const std::string& url, const Poco::Exception& exc);
+		void LogRequestError(const std::string& url, const char* what);
 			
 		void Update();
 		private:
@@ -361,6 +362,23 @@ namespace API
 		}
 
 		Log::GetLog()->error("HTTP request to '{}' failed: {}", host, exc.displayText());
+	}
+
+	// For anything that is not a Poco::Exception. Requests run on detached threads, where an
+	// exception nobody catches ends in std::terminate and takes the server down.
+	void Requests::impl::LogRequestError(const std::string& url, const char* what)
+	{
+		std::string host;
+		try
+		{
+			host = Poco::URI(url).getHost();
+		}
+		catch (...)
+		{
+			host = "<unknown host>";
+		}
+
+		Log::GetLog()->error("HTTP request to '{}' failed: {}", host, what ? what : "unknown exception");
 	}
 
 	Poco::Net::HTTPRequest Requests::impl::ConstructRequest(const std::string& url, Poco::Net::HTTPClientSession*& session,
@@ -488,6 +506,16 @@ namespace API
     	    } catch (const Poco::Exception &exc) {
     	        if (!suppressErrors) LogRequestError(url, exc);
     	    }
+    	    catch (const std::exception& exc)
+    	    {
+    	    	if (!suppressErrors)
+    	    		LogRequestError(url, exc.what());
+    	    }
+    	    catch (...)
+    	    {
+    	    	if (!suppressErrors)
+    	    		LogRequestError(url, "unknown exception");
+    	    }
 
     	    const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
 
@@ -548,6 +576,16 @@ namespace API
 			if (!suppress_errors)
 				pimpl->LogRequestError(url, exc);
 		}
+		catch (const std::exception& exc)
+		{
+			if (!suppress_errors)
+				pimpl->LogRequestError(url, exc.what());
+		}
+		catch (...)
+		{
+			if (!suppress_errors)
+				pimpl->LogRequestError(url, "unknown exception");
+		}
 
 		Result.statusCode = (int)response.getStatus();
 		Result.success = (int)response.getStatus() >= 200
@@ -586,6 +624,16 @@ namespace API
     		    responseHeaders = GetResponseHeaders(response);
     		} catch (const Poco::Exception &exc) {
     		    if (!suppressErrors) LogRequestError(url, exc);
+    		}
+    		catch (const std::exception& exc)
+    		{
+    			if (!suppressErrors)
+    				LogRequestError(url, exc.what());
+    		}
+    		catch (...)
+    		{
+    			if (!suppressErrors)
+    				LogRequestError(url, "unknown exception");
     		}
 		
     		const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
@@ -639,6 +687,16 @@ namespace API
 				{
 					if (!suppressErrors)
 						LogRequestError(url, exc);
+				}
+				catch (const std::exception& exc)
+				{
+					if (!suppressErrors)
+						LogRequestError(url, exc.what());
+				}
+				catch (...)
+				{
+					if (!suppressErrors)
+						LogRequestError(url, "unknown exception");
 				}
 
 				const bool success = (int)response.getStatus() >= 200
@@ -762,6 +820,16 @@ namespace API
 	        } catch (const Poco::Exception &exc) {
 	            if (!suppressErrors) LogRequestError(url, exc);
 	        }
+	        catch (const std::exception& exc)
+	        {
+	        	if (!suppressErrors)
+	        		LogRequestError(url, exc.what());
+	        }
+	        catch (...)
+	        {
+	        	if (!suppressErrors)
+	        		LogRequestError(url, "unknown exception");
+	        }
 
 	        const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
 
@@ -836,6 +904,16 @@ namespace API
 	            Result = GetResponse(session, response);
 	        } catch (const Poco::Exception &exc) {
 	            if (!suppressErrors) LogRequestError(url, exc);
+	        }
+	        catch (const std::exception& exc)
+	        {
+	        	if (!suppressErrors)
+	        		LogRequestError(url, exc.what());
+	        }
+	        catch (...)
+	        {
+	        	if (!suppressErrors)
+	        		LogRequestError(url, "unknown exception");
 	        }
 
 	        const bool success = (int)response.getStatus() >= 200 && (int)response.getStatus() < 300;
