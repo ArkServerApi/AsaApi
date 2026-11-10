@@ -13,7 +13,9 @@ namespace API
 
 	Timer::~Timer()
 	{
-		game_api->GetCommands()->RemoveOnTimerCallback("API.TimerUpdate");
+		// Runs as a static destructor, after DllMain(DLL_PROCESS_DETACH) has already released game_api
+		if (game_api)
+			game_api->GetCommands()->RemoveOnTimerCallback("API.TimerUpdate");
 	}
 
 	Timer& Timer::Get()

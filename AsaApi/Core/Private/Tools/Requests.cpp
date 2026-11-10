@@ -339,7 +339,10 @@ namespace API
 	Requests::~Requests()
 	{
 		Poco::Net::uninitializeSSL();
-		game_api->GetCommands()->RemoveOnTickCallback("RequestsUpdate");
+
+		// Runs as a static destructor, after DllMain(DLL_PROCESS_DETACH) has already released game_api
+		if (game_api)
+			game_api->GetCommands()->RemoveOnTickCallback("RequestsUpdate");
 	}
 
 	Requests& Requests::Get()
