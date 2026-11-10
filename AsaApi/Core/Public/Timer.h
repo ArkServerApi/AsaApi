@@ -1,7 +1,11 @@
 #pragma once
 
-#include <functional>
+#include <atomic>
 #include <chrono>
+#include <functional>
+#include <memory>
+#include <mutex>
+#include <vector>
 
 #include "API/ARK/Ark.h"
 
@@ -104,9 +108,12 @@ namespace API
 	private:
 		friend class PluginManager;
 
+		// Monotonic, so a system clock correction neither stalls nor bursts the timers
+		using Clock = std::chrono::steady_clock;
+
 		struct TimerFunc
 		{
-			TimerFunc(const std::chrono::time_point<std::chrono::system_clock>& next_time,
+			TimerFunc(const Clock::time_point& next_time,
 				std::function<void()> callback,
 				bool exec_once, int execution_counter, int execution_interval,
 				FString identifier, FString moduleName)
@@ -122,11 +129,17 @@ namespace API
 
 			FString identifier;
 			FString moduleName;
-			std::chrono::time_point<std::chrono::system_clock> next_time;
+			Clock::time_point next_time;
 			std::function<void()> callback;
 			bool exec_once;
 			int execution_counter;
 			int execution_interval;
+
+			// Set by UnloadTimer / UnloadAllTimers. Update() checks it right before the call,
+			// so a timer removed earlier in the same pass does not fire.
+			std::atomic<bool> cancelled{ false };
+			// Ran for the last time, to be dropped from timer_funcs_. Guarded by timers_mutex_.
+			bool finished = false;
 		};
 
 		Timer();
@@ -140,6 +153,9 @@ namespace API
 
 		void Update();
 
+		// Guards timer_funcs_: timers may be added or removed from threads other than the game thread.
+		// Never held while a callback runs or while a TimerFunc is destroyed.
+		std::mutex timers_mutex_;
 		std::vector<std::shared_ptr<TimerFunc>> timer_funcs_;
 	};
 } // namespace API
