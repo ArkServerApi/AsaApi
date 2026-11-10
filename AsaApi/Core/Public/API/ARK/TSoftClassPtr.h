@@ -12,11 +12,21 @@ public:
     template<class ClassType>
     explicit TSoftClassPtr(ClassType* Class) : SoftObjectPtr(static_cast<const UObject*>(Class))
     {
-        static_assert(std::is_base_of_v<UClass, ClassType>);
+        static_assert(std::is_base_of_v<UClass, ClassType>, "ClassType must derive from UClass");
     }
     explicit TSoftClassPtr(const FSoftObjectPath& Path) : SoftObjectPtr(Path) {}
-    explicit TSoftClassPtr(const FString& Path) { SoftObjectPtr.ObjectID = Path; }
+    explicit TSoftClassPtr(const FString& Path)
+    {
+        TSubclassOf<UObject> result;
+        NativeCall<TSubclassOf<UObject>*, TSubclassOf<UObject>*, const FString*>(nullptr, "UVictoryCore.StringReferenceToClass(FString&)", &result, &Path);
+        if (result.uClass)
+            SoftObjectPtr = FSoftObjectPtr(static_cast<const UObject*>(result.uClass));
+        else
+            SoftObjectPtr.ObjectID = Path;
+    }
     explicit TSoftClassPtr(const wchar_t* Path) : TSoftClassPtr(FString(Path)) {}
+    explicit TSoftClassPtr(const char* Path) : TSoftClassPtr(FString(Path)) {}
+    explicit TSoftClassPtr(char* Path) : TSoftClassPtr(FString(Path)) {}
     UClass* Get() const { return AsaSoftClassCast<T>(SoftObjectPtr.Get()); }
     UClass* LoadSynchronous(ELoadFlags Flags = ELoadFlags::LOAD_None) const { return AsaSoftClassCast<T>(SoftObjectPtr.LoadSynchronous(Flags)); }
     const FSoftObjectPath& ToSoftObjectPath() const { return SoftObjectPtr.ToSoftObjectPath(); }
